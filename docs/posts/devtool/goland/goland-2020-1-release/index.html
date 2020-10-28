@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#494f5c">
+	<meta name="msapplication-TileColor" content="#494f5c">
+<meta itemprop="name" content="还在用 2019.3 就 Out 了：GoLand 2020.1 版本正式发布">
+<meta itemprop="description" content="北京时间 2020 年 4 月 10 日凌晨，Jetbrains 宣布正式发布 GoLand 2020.1 版本。
+该版本主要的变化有：
+引入了对 Go 模块支持的各种升级以及代码编辑功能，这些功能几乎不需要用户交互，也不需要扩展的代码补全系列。
+除此之外，还添加了新的代码检查、快速修复和其他改进，例如新的 LightEdit 模式（可让您在文本编辑器中打开文件，而无需创建或加载项目）、智能拼写和语法检查以及用于 Web 开发和数据库处理的新功能。
+Go 语言中文网在 2020.1 还未正式发布之前，就发过关于该版本特性的文章，现在 2020.1 正式发布了，相关功能特性稳定了，我们再次介绍下相关新特性。
+Go 模块改进 2020.1 现已支持 Go 1.13 的环境变量 GOPROXY、GOPRIVATE、GOSUMDB、GONOPROXY 和 GONOSUMB。
+使用 Go Modules 项目模板配置其默认值。只需点击 Environment 字段中的 Browse 图标即可打开新的 Environment Variables 对话框。
+go.mod 文件支持 go、module、require、replace 和 exclude 关键字代码补全、依赖项名称以及本地路径替换。
+此外，也可以使用 Rename 和 Move 重构。 重命名或移动由 replace 语句引用的目录时，GoLand 将相应地更改 go.mod 文件中的路径。
+现在，您还可以通过 Project 视图调用 Find Usages，以探索 go.mod 文件中特定目录路径的使用位置。">
+<meta itemprop="datePublished" content="2020-04-10T14:17:51+08:00" />
+<meta itemprop="dateModified" content="2020-04-10T14:17:51+08:00" />
+<meta itemprop="wordCount" content="437">
+
+
+
+<meta itemprop="keywords" content="GoLand,开发工具,发布," />
+<meta property="og:title" content="还在用 2019.3 就 Out 了：GoLand 2020.1 版本正式发布" />
+<meta property="og:description" content="北京时间 2020 年 4 月 10 日凌晨，Jetbrains 宣布正式发布 GoLand 2020.1 版本。
+该版本主要的变化有：
+引入了对 Go 模块支持的各种升级以及代码编辑功能，这些功能几乎不需要用户交互，也不需要扩展的代码补全系列。
+除此之外，还添加了新的代码检查、快速修复和其他改进，例如新的 LightEdit 模式（可让您在文本编辑器中打开文件，而无需创建或加载项目）、智能拼写和语法检查以及用于 Web 开发和数据库处理的新功能。
+Go 语言中文网在 2020.1 还未正式发布之前，就发过关于该版本特性的文章，现在 2020.1 正式发布了，相关功能特性稳定了，我们再次介绍下相关新特性。
+Go 模块改进 2020.1 现已支持 Go 1.13 的环境变量 GOPROXY、GOPRIVATE、GOSUMDB、GONOPROXY 和 GONOSUMB。
+使用 Go Modules 项目模板配置其默认值。只需点击 Environment 字段中的 Browse 图标即可打开新的 Environment Variables 对话框。
+go.mod 文件支持 go、module、require、replace 和 exclude 关键字代码补全、依赖项名称以及本地路径替换。
+此外，也可以使用 Rename 和 Move 重构。 重命名或移动由 replace 语句引用的目录时，GoLand 将相应地更改 go.mod 文件中的路径。
+现在，您还可以通过 Project 视图调用 Find Usages，以探索 go.mod 文件中特定目录路径的使用位置。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://polarisxu.studygolang.com/posts/devtool/goland/goland-2020-1-release/" />
+<meta property="article:published_time" content="2020-04-10T14:17:51+08:00" />
+<meta property="article:modified_time" content="2020-04-10T14:17:51+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="还在用 2019.3 就 Out 了：GoLand 2020.1 版本正式发布"/>
+<meta name="twitter:description" content="北京时间 2020 年 4 月 10 日凌晨，Jetbrains 宣布正式发布 GoLand 2020.1 版本。
+该版本主要的变化有：
+引入了对 Go 模块支持的各种升级以及代码编辑功能，这些功能几乎不需要用户交互，也不需要扩展的代码补全系列。
+除此之外，还添加了新的代码检查、快速修复和其他改进，例如新的 LightEdit 模式（可让您在文本编辑器中打开文件，而无需创建或加载项目）、智能拼写和语法检查以及用于 Web 开发和数据库处理的新功能。
+Go 语言中文网在 2020.1 还未正式发布之前，就发过关于该版本特性的文章，现在 2020.1 正式发布了，相关功能特性稳定了，我们再次介绍下相关新特性。
+Go 模块改进 2020.1 现已支持 Go 1.13 的环境变量 GOPROXY、GOPRIVATE、GOSUMDB、GONOPROXY 和 GONOSUMB。
+使用 Go Modules 项目模板配置其默认值。只需点击 Environment 字段中的 Browse 图标即可打开新的 Environment Variables 对话框。
+go.mod 文件支持 go、module、require、replace 和 exclude 关键字代码补全、依赖项名称以及本地路径替换。
+此外，也可以使用 Rename 和 Move 重构。 重命名或移动由 replace 语句引用的目录时，GoLand 将相应地更改 go.mod 文件中的路径。
+现在，您还可以通过 Project 视图调用 Find Usages，以探索 go.mod 文件中特定目录路径的使用位置。"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>还在用 2019.3 就 Out 了：GoLand 2020.1 版本正式发布</title>
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
+	
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://polarisxu.studygolang.com">polarisxu</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+  <a href="https://polarisxu.studygolang.com/posts/">文章</a>
+  <a href="https://polarisxu.studygolang.com/go-categories/">Go系列</a>
+  <a href="https://polarisxu.studygolang.com/devtool-categories/">开发工具</a>
+  <a href="https://polarisxu.studygolang.com/about/">关于</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<button id="toc-btn" class="hdr-btn desktop-only-ib" title="目录"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3" y2="6"></line><line x1="3" y1="12" x2="3" y2="12"></line><line x1="3" y1="18" x2="3" y2="18"></line></svg></button><span class="hdr-social hide-in-mobile"><a href="https://github.com/polaris1119" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a><a href="https://twitter.com/polaris1119" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="菜单"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://polarisxu.studygolang.com/posts/">文章</a></li>
+			<li><a href="https://polarisxu.studygolang.com/go-categories/">Go系列</a></li>
+			<li><a href="https://polarisxu.studygolang.com/devtool-categories/">开发工具</a></li>
+			<li><a href="https://polarisxu.studygolang.com/about/">关于</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Apr 10, 2020</span></div>
+				<h1>还在用 2019.3 就 Out 了：GoLand 2020.1 版本正式发布</h1>
+			</header>
+			<div class="content">
+				<p>北京时间 2020 年 4 月 10 日凌晨，Jetbrains 宣布正式发布 GoLand 2020.1 版本。</p>
+<p>该版本主要的变化有：</p>
+<p>引入了对 Go 模块支持的各种升级以及代码编辑功能，这些功能几乎不需要用户交互，也不需要扩展的代码补全系列。</p>
+<p>除此之外，还添加了新的代码检查、快速修复和其他改进，例如新的 LightEdit 模式（可让您在文本编辑器中打开文件，而无需创建或加载项目）、智能拼写和语法检查以及用于 Web 开发和数据库处理的新功能。</p>
+<p>Go 语言中文网在 2020.1 还未正式发布之前，就发过关于该版本特性的文章，现在 2020.1 正式发布了，相关功能特性稳定了，我们再次介绍下相关新特性。</p>
+<h2 id="go-模块改进">Go 模块改进<a href="#go-模块改进" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>2020.1 现已支持 Go 1.13 的环境变量 GOPROXY、GOPRIVATE、GOSUMDB、GONOPROXY 和 GONOSUMB。</p>
+<p>使用 Go Modules 项目模板配置其默认值。只需点击 Environment 字段中的 Browse 图标即可打开新的 Environment Variables 对话框。</p>
+<p>go.mod 文件支持 go、module、require、replace 和 exclude 关键字代码补全、依赖项名称以及本地路径替换。</p>
+<p>此外，也可以使用 Rename 和 Move 重构。 重命名或移动由 replace 语句引用的目录时，GoLand 将相应地更改 go.mod 文件中的路径。</p>
+<p>现在，您还可以通过 Project 视图调用 Find Usages，以探索 go.mod 文件中特定目录路径的使用位置。</p>
+<p>在 GoLand 2020.1 中，您可以通过 Alt-Enter 获取缺失的依赖项并移除未使用的依赖项。</p>
+<p>最后但同样重要的是，如果存在本地路径替换，则新版本将在您提交之前显示一条通知，这样您就不会意外提交它们。</p>
+<h2 id="您无需学习如何使用的代码补全功能">您无需学习如何使用的代码补全功能<a href="#您无需学习如何使用的代码补全功能" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>GoLand 2020.1 将建议 if err != nil { &hellip; } 来补全错误处理模式。 只需在表达式内输入 if。</p>
+<p>只需输入 type 关键字或 struct 和 interface，即可更快地定义结构和接口类型。</p>
+<p>Fill Fields 操作在格式化规则要求时会在冒号后面添加空格。 它还会在组合文字声明中语句的末尾添加逗号。</p>
+<p>现在，使用 map 时，代码补全会在您补全键类型后将光标移到右中括号后面。</p>
+<p>对于函数的返回类型，补全功能将为局部变量和零值提供适合相应返回值类型的建议。</p>
+<h2 id="智能代码补全space-或-ctrlshiftspace">智能代码补全（⌥⇧Space 或 Ctrl+Shift+Space）<a href="#智能代码补全space-或-ctrlshiftspace" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>智能代码补全会建议一个指向结构初始值设定项的指针。</p>
+<p>它还会建议在断言和类型 switch 用例中首先使用兼容类型。</p>
+<p>在类型断言中，它提供已赋值变量的类型。</p>
+<p>最后，它提供了表达式中可能指针的建议列表。</p>
+<h2 id="基本代码补全空格或-ctrl空格">基本代码补全（⌃空格或 Ctrl+空格）<a href="#基本代码补全空格或-ctrl空格" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>为注释添加了基本代码补全，这将使编写文档更加轻松！ 它可为当前包声明建议名称，并为函数和方法建议参数名称。除此之外，基本代码补全还可以建议文字和转换。</p>
+<h2 id="代码编辑">代码编辑<a href="#代码编辑" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>编写多值返回函数的签名时，GoLand 2020.1 会在逗号后面的返回类型周围添加括号。当您在字符串文字中粘贴一些文本时，IDE 会转义双引号。</p>
+<h2 id="go-114-支持">Go 1.14 支持<a href="#go-114-支持" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>1）支持重叠接口</p>
+<p>Go 1.14 添加了对嵌入重叠接口的支持，我们也添加了此功能！ 当您使用重叠接口描述类型的不同方面时，GoLand 不会将这些方面的重复方法报告为错误。</p>
+<p>2）自动 vendoring 模式</p>
+<p>如果模块根包含 vendor 目录，则会在 Go 1.14 中自动启用 vendoring 模式。 对于 GoLand 2020.1，我们决定为 Go 1.13 及更早版本实现类似的行为。 IDE 会自动将导入解析到 vendor/ 文件夹（如果模块中存在）。</p>
+<h2 id="调试器更新">调试器更新<a href="#调试器更新" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>1）分析器标签支持</p>
+<p>为了帮助您在调试或核心转储分析过程中更轻松地区分 goroutine，我们为其添加了分析器标签。更多详情请参考：<a href="https://mp.weixin.qq.com/s/ANNUlYvWshNikNwCw6qSHw" target="_blank" rel="noopener">如何在调试过程中查找 Goroutine</a>
+。</p>
+<p>2）宏支持</p>
+<p>现在，可以将宏用作运行或调试应用程序的参数。 在 Run/Debug Configurations 对话框中，点击 Go Tool 中的 + 或 Program arguments 字段即可打开新的 Macros 对话框，其中会列出要使用的可用宏。</p>
+<p>此外，您现在还可以将配置文件存储在项目中。 在 Run/Debug Configurations 对话框的顶部，选择 Store 作为项目文件选项。</p>
+<h2 id="后缀补全">后缀补全<a href="#后缀补全" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p><code>.else</code> <em>Postfix Completion</em> 模板可以快速添加 <code>if</code> 语句来检查表达式是否为假。</p>
+<h2 id="快速修复">快速修复<a href="#快速修复" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>按下 Alt+Enter，可立即将非格式化调用更改为格式化调用。现在，Create variable 快速修复会显示预期的类型提示，以便您更轻松地输入正确的值。</p>
+<h2 id="代码检查">代码检查<a href="#代码检查" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>新代码检查可以警告您注意非指针接收器上指针方法的无效调用，并提供了快速修复。</p>
+<p>如果错误使用 uintptr 和 unsafe.Pointer 将整数转换为指针，Invalid conversions of uintptr to unsafe.Pointer 代码检查会发出警告。</p>
+<p>Unmarshal is called with incorrect argument 检查可以分析对 json.Unmarshal 以及 encoding/json、encoding/xml 和 encoding/gob 包的类似函数的调用。</p>
+<p>Locks mistakenly passed by value 代码检查可帮助您避免意外复制包含锁定的值。</p>
+<h2 id="实时模板">实时模板<a href="#实时模板" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>添加了新模板来帮助您快速创建声明组。 其中包括 consts、vars、types 和 imports。 当您使用这些模板之一时，GoLand 将在声明名称周围添加大括号。</p>
+<p>fori 模板可为经典的 for 循环插入样板代码。</p>
+<h2 id="重构">重构<a href="#重构" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>Extract Method 重构会保留父函数和方法参数的原始顺序。Rename 重构现在会自动检测声明的重命名。 这意味着当您手动重命名声明时，IDE 将显示一个间距图标，此图标会建议重命名其所有用法。</p>
+<h2 id="导航">导航<a href="#导航" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>Navigate to implementations（macOS 上为 ⌥⌘B，Windows/Linux 上为 Ctrl+Alt+B）和 Navigate to Declaration 或 Usages（macOS 上为 ⌘B，Windows/Linux 上为 Ctrl+B）现在会首先显示当前项目中的结果。</p>
+<p>此外，默认情况下，Find Usages（Windows/Linux 上为 Alt+F7，macOS 上为 ⌥F7）操作现在会始终查找接口方法的用法。 要像以前一样查找当前方法的用法，请在 Windows/Linux 上使用 Alt+Shift+Ctrl+F7 或在 macOS 上使用 ⌥⇧⌘F7。</p>
+<h2 id="改进-vcs">改进 VCS<a href="#改进-vcs" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>1）新 Commit 工具窗口</p>
+<p>现在，新的 Commit 工具窗口包含 <em>Local Changes</em> 和 <em>Shelf</em> 选项卡。 此工具窗口涵盖了与提交有关的所有任务，例如检查差异，选择要提交的文件和块，以及输入提交消息。 Commit 是位于屏幕左侧的垂直工具窗口，这样就为整个编辑器留出了显示差异的空间。</p>
+<p>2）改进了 Branches 弹出窗口</p>
+<p><em>Branches</em> 弹出窗口在多个方面进行了重新设计：</p>
+<ul>
+<li>我们添加了一个显式搜索字段，您可以借助此字段查找现有的远程和本地分支。</li>
+<li>现在，您可以使用 <em>Refresh</em> 按钮更新现有的远程分支。</li>
+<li>传入（蓝色）和传出（绿色）提交指示器已添加到状态栏。</li>
+</ul>
+<p>3）Interactively Rebase from Here 对话框</p>
+<p>大幅重新设计了 Interactively Rebase from Here。 您可以利用此对话框编辑、组合及移除之前的提交，从而让您的提交历史记录更加清晰易懂。</p>
+<p>要调用此对话框，请转到 Git 工具窗口的 Log 选项卡，在要编辑的一系列提交中选择最旧的提交，点击右键，然后选择 Interactively Rebase from Here。</p>
+<h2 id="数据库更新">数据库更新<a href="#数据库更新" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<ul>
+<li>使用 <em>Run configurations</em> 运行脚本文件和代码段。 这样，您可以在启动前一次运行多个文件，对它们进行重新排序，添加新文件以及运行其他程序或配置。</li>
+<li>现在，您可以在代码编辑器中查看结果。 默认情况下，此选项处于禁用状态。 要启用此功能，请转到 <em>Settings/Preferences | Database | General | Show output results in the editor</em>。</li>
+<li>创建 SSH 隧道的配置，并在许多数据源或项目中使用。</li>
+<li>我们添加了以 Excel 格式导出数据的功能。</li>
+<li>另外，您也可以在提取程序下拉列表中选择首选数据格式。</li>
+</ul>
+<h2 id="web开发">Web开发<a href="#web开发" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>1）用于 JavaScript 和 TypeScript 的新智能意图和检查</p>
+<p>使用新的智能意图和检查 (Alt+Enter) 可在编码时节省时间！ 例如，您现在可以快速地将现有代码转换为可选链和/或空值合并，该语法已在最新版本的 JavaScript 和 TypeScript 中引入。</p>
+<p>2）更有帮助的快速文档</p>
+<p>对于 JavaScript 和 TypeScript，<em>Documentation</em> 弹出窗口现在会显示更多有用的信息，包括符号类型和可视性的详细信息以及定义符号的位置。</p>
+<h2 id="其他变更">其他变更<a href="#其他变更" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<ul>
+<li>JetBrains 的新字体 <em>JetBrains Mono</em> 默认可用。 要详细了解该字体，请访问<a href="https://www.jetbrains.com/lp/mono/" target="_blank" rel="noopener">此页面</a>
+。</li>
+<li>默认捆绑了 <em>Grazie</em>，此插件可为您在 IDE 中编写的文本提供智能的拼写和语法检查。</li>
+<li>新的 <em>LightEdit 模式</em>允许您在文本编辑器中打开文件，而无需创建或加载项目。 要试用此这一功能，您首先需要从 <em>Tools | Create Command-line Launcher</em> 创建命令行启动器，如<a href="https://www.jetbrains.com/help/idea/working-with-the-ide-features-from-command-line.html" target="_blank" rel="noopener">此处</a>
+所述（如果您使用的是 Toolbox App，步骤<a href="https://www.jetbrains.com/help/idea/working-with-the-ide-features-from-command-line.html#toolbox" target="_blank" rel="noopener">略有不同</a>
+）。 有关如何打开文件、比较/合并文件甚至运行代码检查的详细说明，请参阅<a href="https://www.jetbrains.com/help/idea/opening-files-from-command-line.html" target="_blank" rel="noopener">此 Web 帮助部分</a>
+。</li>
+<li>我们添加了新的 <em>Zen 模式</em>，它消除了可能的干扰，可帮助您完全专注于代码。 本质上，此模式结合了<em>免打扰模式</em>和<em>全屏模式</em>。 要启用此模式，请转到 <em>View | Appearance | Enter Zen Mod</em>，或者从 <em>Quick Switch Scheme</em> 弹出窗口中选择 (<em>Ctrl+` | View mode | Enter Zen Mode</em>)。</li>
+<li><em>外部文档</em>现在指向 <a href="https://pkg.go.dev/" target="_blank" rel="noopener">https://pkg.go.dev</a>
+ 而不是 <a href="https://godoc.org/" target="_blank" rel="noopener">https://godoc.org</a>
+。</li>
+<li>我们恢复了<em>默认</em>配色方案，但采用新名称 <em>Classic Light</em>。</li>
+</ul>
+<h2 id="结语">结语<a href="#结语" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>新版本可以免费试用 30 天。新版本下载地址：<a href="https://www.jetbrains.com/zh-cn/go/download/">https://www.jetbrains.com/zh-cn/go/download/</a>。该下载页面支持通过微信和支付宝支付。</p>
+
+			</div><div class="content">
+	<br>
+	<img src="https://static.studygolang.com/static/img/polarisxu-qrcode-soso-s.png">
+</div>
+
+<div class="related-posts thin">
+	<h2>相关推荐</h2>
+	<ul>
+	
+	<li><a href="/posts/devtool/goland/2020.2.beta/">GoLand 2020.2 Beta 版发布：go.mod 升级以及对泛型的实验性支持</a></li>
+	
+	<li><a href="/posts/devtool/goland/debugging-a-go-application-inside-a-docker-container/">基于 GoLand 使用 Docker 容器进行 Go 开发</a></li>
+	
+	<li><a href="/posts/devtool/goland/welcome-to-the-goland-2020-1-eap/">欢迎加入 GoLand 2020.1 抢先体验计划</a></li>
+	
+	<li><a href="/posts/devtool/goland/using-kubernetes-from-goland/">当 GoLand 遇到 Kubernetes：如何调试和运行 Go 程序</a></li>
+	
+	<li><a href="/posts/devtool/goland/running-go-applications-using-docker-compose-in-goland/">在 GoLang 中使用 Docker Compose 运行 Go 应用程序</a></li>
+	
+	</ul>
+</div>
+
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://polarisxu.studygolang.com/tags/goland">GoLand</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7">开发工具</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/%E5%8F%91%E5%B8%83">发布</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>437 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2020-04-10 14:17 &#43;0800</p>
+			</footer>
+		</article>
+		<aside id="toc">
+			<div class="toc-title">目录</div>
+			<nav id="TableOfContents">
+  <ul>
+    <li><a href="#go-模块改进">Go 模块改进</a></li>
+    <li><a href="#您无需学习如何使用的代码补全功能">您无需学习如何使用的代码补全功能</a></li>
+    <li><a href="#智能代码补全space-或-ctrlshiftspace">智能代码补全（⌥⇧Space 或 Ctrl+Shift+Space）</a></li>
+    <li><a href="#基本代码补全空格或-ctrl空格">基本代码补全（⌃空格或 Ctrl+空格）</a></li>
+    <li><a href="#代码编辑">代码编辑</a></li>
+    <li><a href="#go-114-支持">Go 1.14 支持</a></li>
+    <li><a href="#调试器更新">调试器更新</a></li>
+    <li><a href="#后缀补全">后缀补全</a></li>
+    <li><a href="#快速修复">快速修复</a></li>
+    <li><a href="#代码检查">代码检查</a></li>
+    <li><a href="#实时模板">实时模板</a></li>
+    <li><a href="#重构">重构</a></li>
+    <li><a href="#导航">导航</a></li>
+    <li><a href="#改进-vcs">改进 VCS</a></li>
+    <li><a href="#数据库更新">数据库更新</a></li>
+    <li><a href="#web开发">Web开发</a></li>
+    <li><a href="#其他变更">其他变更</a></li>
+    <li><a href="#结语">结语</a></li>
+  </ul>
+</nav>
+		</aside>
+		<div class="post-nav thin">
+			<a class="next-post" href="https://polarisxu.studygolang.com/posts/devtool/goland/debugging-a-go-application-inside-a-docker-container/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;新</span><br><span>基于 GoLand 使用 Docker 容器进行 Go 开发</span>
+			</a>
+			<a class="prev-post" href="https://polarisxu.studygolang.com/posts/go/echo/custom04-renderer/">
+				<span class="post-nav-label">旧&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>Echo 系列教程——定制篇4：自定义 Renderer，增强或替换模板引擎</span>
+			</a>
+		</div>
+		<div id="comments" class="thin"><script src="https://utteranc.es/client.js"
+	repo="polaris1119/polarisxu"
+	issue-term="pathname"
+	theme="github-light"
+	crossorigin="anonymous"
+	async>
+</script>
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2019 - 2020 <a href="https://polarisxu.studygolang.com">polarisxu</a> &#183; <a href="http://www.beian.miit.gov.cn/">京ICP备14030343号-1</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://polarisxu.studygolang.com/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+
+	<script src="https://polarisxu.studygolang.com/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw=" crossorigin="anonymous"></script>
+	<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?224c227cd9239761ec770bc8c1fb134c";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+</body>
+
+</html>

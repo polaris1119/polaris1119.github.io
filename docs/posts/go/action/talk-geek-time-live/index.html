@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#494f5c">
+	<meta name="msapplication-TileColor" content="#494f5c">
+<meta itemprop="name" content="闲聊昨晚极客时间的直播">
+<meta itemprop="description" content="昨天晚上（10 月 25 日）极客时间进行了一场直播，主题是：《未来 5 年将是 Go 语言的天下》。 客观说，这个主题还是挺唬人的，而直播的内容跟这个主题关系">
+<meta itemprop="datePublished" content="2020-10-26T18:12:51+08:00" />
+<meta itemprop="dateModified" content="2020-10-26T18:12:51+08:00" />
+<meta itemprop="wordCount" content="1418">
+
+
+
+<meta itemprop="keywords" content="Go,Golang,面试,杂谈," />
+<meta property="og:title" content="闲聊昨晚极客时间的直播" />
+<meta property="og:description" content="昨天晚上（10 月 25 日）极客时间进行了一场直播，主题是：《未来 5 年将是 Go 语言的天下》。 客观说，这个主题还是挺唬人的，而直播的内容跟这个主题关系" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/action/talk-geek-time-live/" />
+<meta property="article:published_time" content="2020-10-26T18:12:51+08:00" />
+<meta property="article:modified_time" content="2020-10-26T18:12:51+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="闲聊昨晚极客时间的直播"/>
+<meta name="twitter:description" content="昨天晚上（10 月 25 日）极客时间进行了一场直播，主题是：《未来 5 年将是 Go 语言的天下》。 客观说，这个主题还是挺唬人的，而直播的内容跟这个主题关系"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>闲聊昨晚极客时间的直播</title>
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
+	
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://polarisxu.studygolang.com">polarisxu</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+  <a href="https://polarisxu.studygolang.com/posts/">文章</a>
+  <a href="https://polarisxu.studygolang.com/go-categories/">Go系列</a>
+  <a href="https://polarisxu.studygolang.com/devtool-categories/">开发工具</a>
+  <a href="https://polarisxu.studygolang.com/about/">关于</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<button id="toc-btn" class="hdr-btn desktop-only-ib" title="目录"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3" y2="6"></line><line x1="3" y1="12" x2="3" y2="12"></line><line x1="3" y1="18" x2="3" y2="18"></line></svg></button><span class="hdr-social hide-in-mobile"><a href="https://github.com/polaris1119" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a><a href="https://twitter.com/polaris1119" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="菜单"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://polarisxu.studygolang.com/posts/">文章</a></li>
+			<li><a href="https://polarisxu.studygolang.com/go-categories/">Go系列</a></li>
+			<li><a href="https://polarisxu.studygolang.com/devtool-categories/">开发工具</a></li>
+			<li><a href="https://polarisxu.studygolang.com/about/">关于</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Oct 26, 2020</span></div>
+				<h1>闲聊昨晚极客时间的直播</h1>
+			</header>
+			<div class="content">
+				<p>昨天晚上（10 月 25 日）极客时间进行了一场直播，主题是：《未来 5 年将是 Go 语言的天下》。</p>
+<p>客观说，这个主题还是挺唬人的，而直播的内容跟这个主题关系不大。有三个嘉宾，只有左耳朵耗子谈了 Go 的未来，他的判断，Go 会成为主流，只会 PHP 肯定行不通。</p>
+<p>在提问环节，有人问到耗子哥关于 Python 的看法，他直言：Python 会成为新手语言。不管你认不认同，耗子哥的一些观点还是有一定道理的。</p>
+<p>耗子哥的部分，我只听了结尾一点。另外两位的分享，我都听完了。简单聊聊。</p>
+<h2 id="01-go-在字节跳动的地位">01 Go 在字节跳动的地位<a href="#01-go-在字节跳动的地位" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>秦岩老师 PPT 第一页：</p>
+<p><p class="md__image">
+  <img src="../imgs/geektime01.png"
+    alt=""  />
+</p>
+</p>
+<blockquote>
+<p>提到的文章地址：<a href="https://www.infoq.cn/article/fEa7CHf9MOohbxbTYReS">https://www.infoq.cn/article/fEa7CHf9MOohbxbTYReS</a></p>
+</blockquote>
+<p>据我了解，字节当前后端服务超过 80% 的流量是跑在 Go 构建的服务上。高峰 QPS 超过 700 万，日处理请求量超过3000 亿，是业内最大规模的 Go 应用。</p>
+<p>对于 Go 爱好者来说，如果能够进入字节跳动，在项目中进行历练，自己上进，相信 Go 水平会有一个质的提升；而应届生，我个人也强烈建议努力朝着进入字节跳动努力。</p>
+<p><p class="md__image">
+  <img src="../imgs/geektime02.png"
+    alt=""  />
+</p>
+</p>
+<p>如上图，Go 在这样量级的公司占据第一使用率，无论从哪方面讲，对 Go 来说都是巨大的成功，也证明了 Go 的可靠性。</p>
+<h2 id="02-直播的故障">02 直播的故障<a href="#02-直播的故障" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>抖音的老师刚开个头，突然直播故障了，持续了几分钟。</p>
+<p>大家的吐槽来了：</p>
+<p><p class="md__image">
+  <img src="../imgs/geektime03.png"
+    alt=""  />
+</p>
+</p>
+<p><p class="md__image">
+  <img src="../imgs/geektime04.png"
+    alt=""  />
+</p>
+</p>
+<p>秦岩老师是负责抖音、直播稳定性的，他一来不稳定了？！</p>
+<p>对于这个突发的故障，不用太较真，各种系统应该常遇到。正式因为这样那样的故障，催生出各种应对办法，各种高可用、稳定性架构。</p>
+<p>对此，我想说的是，如果你一直在一个小公司，没有大流量，很多问题你是没法遇到的，这些问题只学理论是不够的。你写的代码，你的架构，可能在你的公司运行的很好，但只要流量一大，他们可能就崩溃了。一定阶段，技术的提升，需要环境、需要大项目、大流量的历练。又回到那句话：趁年轻，能进大厂，一定要到大厂去历练，现在能力不够，恶补下，朝着大厂的目标去努力。</p>
+<h2 id="03-毛剑老师的分享">03 毛剑老师的分享<a href="#03-毛剑老师的分享" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>毛剑老师这次主要站在面试官的角度分享大厂面试 Go 工程师更看重哪些能力。他提到了软实力、硬实力，以及他喜欢问候选人哪些题。</p>
+<p>这方面，每个人的喜好不一样，有些面试官喜欢问这个，有些喜欢问那个。就技术能力来说，大厂一般会有规范的流程，有些可能有面试考察能力的要求。所以，除了 Go 语言本身使用掌握外，还需要对核心的一些设计有所了解。比如调度、内存、并发等，此外服务端相关的其他技能，也是必须掌握的。</p>
+<p>对此，我个人的看法：</p>
+<ul>
+<li>根据职位不同，可能侧重点不一样；不同公司、不同部门，面试的喜好也会有所区别，需要有针对性的准备；</li>
+<li>Go 语言本身的基本功，底层的一些实现，作为一个 Gopher，你应该不断探索；</li>
+<li>操作系统、网络、数据库、缓存等服务端相关的技能得不断加深；</li>
+<li>适当刷刷题，比如 LeetCode；手写代码也可以练练。比如字节面试都会让手写代码；</li>
+</ul>
+<h2 id="04-未来-5-年将是-go-语言的天下">04 未来 5 年将是 Go 语言的天下？<a href="#04-未来-5-年将是-go-语言的天下" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>这个定义有点夸张，但 Go 确实受到越来越多的关注。别的不说，很多 PHPer 都在学习 Go。从我的网站：https://studygolang.com 流量看，这些年上升还是挺厉害的。</p>
+<p>一直以来，国内的技术和国外是不太一样的。Go 语言也很明显，在国内的热度明显高于国外。因为有字节跳动、腾讯（据说 Go 在腾讯今年有望成为第二大编程语言，去年是第三大）、滴滴、B 站等大厂的大规模使用（圈内人应该发现，曾经 PHP 一统天下的好未来，这段时间也是各种 Go），Go 必然会受到越来越多的关注。从目前在线教育对 Go 的投入来看，他们也看到了 Go 的潜力。所以，我看好 Go，你呢？！</p>
+
+			</div><div class="content">
+	<br>
+	<img src="https://static.studygolang.com/static/img/polarisxu-qrcode-soso-s.png">
+</div>
+
+<div class="related-posts thin">
+	<h2>相关推荐</h2>
+	<ul>
+	
+	<li><a href="/posts/go/action/interview-slice-json/">一道关于 json 和 slice 的题难倒了 80% 的人</a></li>
+	
+	<li><a href="/posts/go/pkg/statsviz/">你喜欢的 Go 第三方库：一步为系统集成可视化实时运行时统计</a></li>
+	
+	<li><a href="/posts/go/project/usingg-gpgsync/">Go Playground 还能这么玩？</a></li>
+	
+	<li><a href="/posts/go/project/go-version-manager/">终于找到了一款我喜欢的安装和管理 Go 版本的工具</a></li>
+	
+	<li><a href="/posts/go/translation/when-to-use-rust-and-when-to-use-golang/">何时使用 Rust 和何时使用 Golang</a></li>
+	
+	</ul>
+</div>
+
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://polarisxu.studygolang.com/tags/go">Go</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/golang">Golang</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/%E9%9D%A2%E8%AF%95">面试</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/%E6%9D%82%E8%B0%88">杂谈</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1418 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2020-10-26 18:12 &#43;0800</p>
+			</footer>
+		</article>
+		<aside id="toc">
+			<div class="toc-title">目录</div>
+			<nav id="TableOfContents">
+  <ul>
+    <li><a href="#01-go-在字节跳动的地位">01 Go 在字节跳动的地位</a></li>
+    <li><a href="#02-直播的故障">02 直播的故障</a></li>
+    <li><a href="#03-毛剑老师的分享">03 毛剑老师的分享</a></li>
+    <li><a href="#04-未来-5-年将是-go-语言的天下">04 未来 5 年将是 Go 语言的天下？</a></li>
+  </ul>
+</nav>
+		</aside>
+		<div class="post-nav thin">
+			<a class="prev-post" href="https://polarisxu.studygolang.com/posts/go/translation/go-error-printing-catastrophe/">
+				<span class="post-nav-label">旧&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>Go error 打印灾难 —  CockroachDB errors 库（第3篇）</span>
+			</a>
+		</div>
+		<div id="comments" class="thin"><script src="https://utteranc.es/client.js"
+	repo="polaris1119/polarisxu"
+	issue-term="pathname"
+	theme="github-light"
+	crossorigin="anonymous"
+	async>
+</script>
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2019 - 2020 <a href="https://polarisxu.studygolang.com">polarisxu</a> &#183; <a href="http://www.beian.miit.gov.cn/">京ICP备14030343号-1</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://polarisxu.studygolang.com/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+
+	<script src="https://polarisxu.studygolang.com/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw=" crossorigin="anonymous"></script>
+	<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?224c227cd9239761ec770bc8c1fb134c";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+</body>
+
+</html>

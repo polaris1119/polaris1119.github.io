@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#494f5c">
+	<meta name="msapplication-TileColor" content="#494f5c">
+<meta itemprop="name" content="当 GoLand 遇到 Kubernetes：如何调试和运行 Go 程序">
+<meta itemprop="description" content="这是我们使用 Docker，Docker Compose 或 Kubernetes 运行 Go 服务的系列文章的最后一部分。在这一部分中，我们将专注于使用 Kubernetes 集群时的运行和调试。
+虽然我们不会介绍如何安装和配置 Kubernetes 集群，但是可以使用各种工具（例如 kubeadm ，minikube 和 microk8s ）来实现这一目标。如果您使用的是 Windows，则 Docker Desktop for Windows 附带内置的 Kubernetes 支持 。如果您打算使用基于 ARM 芯片的平台（例如 Raspberry Pi 4 ），则可以使用 k3s 之类的东西来入门。
+在开始之前，还应该安装 Kubernetes 插件，因为它没有与 IDE 捆绑在一起。您可以通过打开 Settings/Preferences | Plugins | Marketplace并搜索 Kubernetes 找到并安装插件。
+在 IDE 中使用 Kubernetes 运行服务 如果您到目前为止一直在关注本系列，那么您会知道所有代码都可以在此 下载和使用，使用 Kubernetes 也是这种情况。我们可以从 kubernetes 分支 开始。
+在这里我们可以找到两个不同的文件：db.yaml 和 web.yaml。这些文件包含了我们开始使用 Kubernetes 集群中的应用程序所需的所有定义。为了方便起见，他们还假定 Kubernetes 与 IDE 在同一台计算机上运行。
+打开 db.yaml：">
+<meta itemprop="datePublished" content="2020-05-11T14:17:51+08:00" />
+<meta itemprop="dateModified" content="2020-05-11T14:17:51+08:00" />
+<meta itemprop="wordCount" content="212">
+
+
+
+<meta itemprop="keywords" content="GoLand,Kubernetes,Debug," />
+<meta property="og:title" content="当 GoLand 遇到 Kubernetes：如何调试和运行 Go 程序" />
+<meta property="og:description" content="这是我们使用 Docker，Docker Compose 或 Kubernetes 运行 Go 服务的系列文章的最后一部分。在这一部分中，我们将专注于使用 Kubernetes 集群时的运行和调试。
+虽然我们不会介绍如何安装和配置 Kubernetes 集群，但是可以使用各种工具（例如 kubeadm ，minikube 和 microk8s ）来实现这一目标。如果您使用的是 Windows，则 Docker Desktop for Windows 附带内置的 Kubernetes 支持 。如果您打算使用基于 ARM 芯片的平台（例如 Raspberry Pi 4 ），则可以使用 k3s 之类的东西来入门。
+在开始之前，还应该安装 Kubernetes 插件，因为它没有与 IDE 捆绑在一起。您可以通过打开 Settings/Preferences | Plugins | Marketplace并搜索 Kubernetes 找到并安装插件。
+在 IDE 中使用 Kubernetes 运行服务 如果您到目前为止一直在关注本系列，那么您会知道所有代码都可以在此 下载和使用，使用 Kubernetes 也是这种情况。我们可以从 kubernetes 分支 开始。
+在这里我们可以找到两个不同的文件：db.yaml 和 web.yaml。这些文件包含了我们开始使用 Kubernetes 集群中的应用程序所需的所有定义。为了方便起见，他们还假定 Kubernetes 与 IDE 在同一台计算机上运行。
+打开 db.yaml：" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://polarisxu.studygolang.com/posts/devtool/goland/using-kubernetes-from-goland/" />
+<meta property="article:published_time" content="2020-05-11T14:17:51+08:00" />
+<meta property="article:modified_time" content="2020-05-11T14:17:51+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="当 GoLand 遇到 Kubernetes：如何调试和运行 Go 程序"/>
+<meta name="twitter:description" content="这是我们使用 Docker，Docker Compose 或 Kubernetes 运行 Go 服务的系列文章的最后一部分。在这一部分中，我们将专注于使用 Kubernetes 集群时的运行和调试。
+虽然我们不会介绍如何安装和配置 Kubernetes 集群，但是可以使用各种工具（例如 kubeadm ，minikube 和 microk8s ）来实现这一目标。如果您使用的是 Windows，则 Docker Desktop for Windows 附带内置的 Kubernetes 支持 。如果您打算使用基于 ARM 芯片的平台（例如 Raspberry Pi 4 ），则可以使用 k3s 之类的东西来入门。
+在开始之前，还应该安装 Kubernetes 插件，因为它没有与 IDE 捆绑在一起。您可以通过打开 Settings/Preferences | Plugins | Marketplace并搜索 Kubernetes 找到并安装插件。
+在 IDE 中使用 Kubernetes 运行服务 如果您到目前为止一直在关注本系列，那么您会知道所有代码都可以在此 下载和使用，使用 Kubernetes 也是这种情况。我们可以从 kubernetes 分支 开始。
+在这里我们可以找到两个不同的文件：db.yaml 和 web.yaml。这些文件包含了我们开始使用 Kubernetes 集群中的应用程序所需的所有定义。为了方便起见，他们还假定 Kubernetes 与 IDE 在同一台计算机上运行。
+打开 db.yaml："/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>当 GoLand 遇到 Kubernetes：如何调试和运行 Go 程序</title>
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
+	
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://polarisxu.studygolang.com">polarisxu</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+  <a href="https://polarisxu.studygolang.com/posts/">文章</a>
+  <a href="https://polarisxu.studygolang.com/go-categories/">Go系列</a>
+  <a href="https://polarisxu.studygolang.com/devtool-categories/">开发工具</a>
+  <a href="https://polarisxu.studygolang.com/about/">关于</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<button id="toc-btn" class="hdr-btn desktop-only-ib" title="目录"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3" y2="6"></line><line x1="3" y1="12" x2="3" y2="12"></line><line x1="3" y1="18" x2="3" y2="18"></line></svg></button><span class="hdr-social hide-in-mobile"><a href="https://github.com/polaris1119" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a><a href="https://twitter.com/polaris1119" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="菜单"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://polarisxu.studygolang.com/posts/">文章</a></li>
+			<li><a href="https://polarisxu.studygolang.com/go-categories/">Go系列</a></li>
+			<li><a href="https://polarisxu.studygolang.com/devtool-categories/">开发工具</a></li>
+			<li><a href="https://polarisxu.studygolang.com/about/">关于</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>May 11, 2020</span></div>
+				<h1>当 GoLand 遇到 Kubernetes：如何调试和运行 Go 程序</h1>
+			</header>
+			<div class="content">
+				<p>这是我们使用 Docker，Docker Compose 或 Kubernetes 运行 Go 服务的系列文章的最后一部分。在这一部分中，我们将专注于使用 Kubernetes 集群时的运行和调试。</p>
+<p>虽然我们不会介绍如何安装和配置 Kubernetes 集群，但是可以使用各种工具（例如 <a href="https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/" target="_blank" rel="noopener">kubeadm</a>
+，<a href="https://kubernetes.io/docs/setup/learning-environment/minikube/" target="_blank" rel="noopener">minikube</a>
+ 和 <a href="https://microk8s.io/" target="_blank" rel="noopener">microk8s</a>
+）来实现这一目标。如果您使用的是 Windows，则 <a href="https://www.docker.com/products/docker-desktop" target="_blank" rel="noopener">Docker Desktop for Windows</a>
+ 附带<a href="https://docs.docker.com/docker-for-windows/kubernetes/" target="_blank" rel="noopener">内置的 Kubernetes 支持</a>
+。如果您打算使用基于 ARM 芯片的平台（例如 <a href="https://blog.jetbrains.com/go/2020/02/18/running-goland-on-a-raspberry-pi-4/" target="_blank" rel="noopener">Raspberry Pi 4</a>
+），则可以使用 <a href="https://k3s.io/" target="_blank" rel="noopener">k3s</a>
+ 之类的东西来入门。</p>
+<p>在开始之前，还应该安装 Kubernetes 插件，因为它没有与 IDE 捆绑在一起。您可以通过打开 <code>Settings/Preferences | Plugins | Marketplace</code>并搜索 Kubernetes 找到并安装插件。</p>
+<h2 id="在-ide-中使用-kubernetes-运行服务">在 IDE 中使用 Kubernetes 运行服务<a href="#在-ide-中使用-kubernetes-运行服务" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>如果您到目前为止一直在关注本系列，那么您会知道所有代码都可以<a href="https://github.com/dlsniper/dockerdev" target="_blank" rel="noopener">在此</a>
+下载和使用，使用 Kubernetes 也是这种情况。我们可以从 <a href="https://github.com/dlsniper/dockerdev/tree/kubernetes" target="_blank" rel="noopener">kubernetes 分支</a>
+开始。</p>
+<p>在这里我们可以找到两个不同的文件：db.yaml 和 web.yaml。这些文件包含了我们开始使用 Kubernetes 集群中的应用程序所需的所有定义。为了方便起见，他们还假定 Kubernetes 与 IDE 在同一台计算机上运行。</p>
+<p>打开 db.yaml：</p>
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">ConfigMap</span><span class="w">
+</span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">db-config</span><span class="w">
+</span><span class="w">  </span><span class="nt">labels</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">dockerdev</span><span class="p">:</span><span class="w"> </span><span class="l">db</span><span class="w">
+</span><span class="w"></span><span class="nt">data</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">POSTGRES_DB</span><span class="p">:</span><span class="w"> </span><span class="l">goland</span><span class="w">
+</span><span class="w">  </span><span class="nt">POSTGRES_USER</span><span class="p">:</span><span class="w"> </span><span class="l">goland</span><span class="w">
+</span><span class="w">  </span><span class="nt">POSTGRES_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="l">goland</span><span class="w">
+</span><span class="w"></span><span class="nn">---</span><span class="w">
+</span><span class="w"></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">apps/v1</span><span class="w">
+</span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">StatefulSet</span><span class="w">
+</span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">labels</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">dockerdev</span><span class="p">:</span><span class="w"> </span><span class="l">db</span><span class="w">
+</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">db</span><span class="w">
+</span><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">serviceName</span><span class="p">:</span><span class="w"> </span><span class="l">dockerdev-db</span><span class="w">
+</span><span class="w">  </span><span class="nt">selector</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">matchLabels</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">dockerdev</span><span class="p">:</span><span class="w"> </span><span class="l">db</span><span class="w">
+</span><span class="w">  </span><span class="nt">template</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">labels</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span><span class="nt">dockerdev</span><span class="p">:</span><span class="w"> </span><span class="l">db</span><span class="w">
+</span><span class="w">    </span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">containers</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">db</span><span class="w">
+</span><span class="w">          </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">postgres:12.2-alpine</span><span class="w">
+</span><span class="w">          </span><span class="nt">imagePullPolicy</span><span class="p">:</span><span class="w"> </span><span class="l">IfNotPresent</span><span class="w">
+</span><span class="w">          </span><span class="nt">envFrom</span><span class="p">:</span><span class="w">
+</span><span class="w">            </span>- <span class="nt">configMapRef</span><span class="p">:</span><span class="w">
+</span><span class="w">                </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">db-config</span><span class="w">
+</span><span class="w">          </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span><span class="w">            </span>- <span class="nt">containerPort</span><span class="p">:</span><span class="w"> </span><span class="m">5432</span><span class="w">
+</span><span class="w">          </span><span class="nt">volumeMounts</span><span class="p">:</span><span class="w">
+</span><span class="w">            </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">db-init</span><span class="w">
+</span><span class="w">              </span><span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="l">/docker-entrypoint-initdb.d/init.sql</span><span class="w">
+</span><span class="w">              </span><span class="nt">subPath</span><span class="p">:</span><span class="w"> </span><span class="l">init.sql</span><span class="w">
+</span><span class="w">      </span><span class="nt">volumes</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span>- <span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">db-init</span><span class="w">
+</span><span class="w">           </span><span class="nt">hostPath</span><span class="p">:</span><span class="w">
+</span><span class="w">             </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l">/d/GoLandProjects/dockerdev</span><span class="w">
+</span><span class="w"></span><span class="nn">---</span><span class="w">
+</span><span class="w"></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Service</span><span class="w">
+</span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">labels</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">dockerdev</span><span class="p">:</span><span class="w"> </span><span class="l">db</span><span class="w">
+</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">dockerdev-db-exported</span><span class="w">
+</span><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">NodePort</span><span class="w">
+</span><span class="w">  </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="m">5432</span>-<span class="l">tcp</span><span class="w">
+</span><span class="w">      </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">5432</span><span class="w">
+</span><span class="w">      </span><span class="nt">targetPort</span><span class="p">:</span><span class="w"> </span><span class="m">5432</span><span class="w">
+</span><span class="w">      </span><span class="nt">nodePort</span><span class="p">:</span><span class="w"> </span><span class="m">30432</span><span class="w">
+</span><span class="w">  </span><span class="nt">selector</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">dockerdev</span><span class="p">:</span><span class="w"> </span><span class="l">db</span><span class="w">
+</span></code></pre></div><p><strong>注意</strong>：在启动此示例之前，我们需要确保更改了 init.sql 文件在主机上的位置。您可以通过将路径：/d/ GoLandProjects / dockerdev 替换为先前克隆该项目的位置的路径来实现。</p>
+<p>完成此操作后，我们可以使用文件顶部编辑器装订线上的绿色箭头在 Kubernetes 中部署数据库。</p>
+<p>部署数据库将创建一个 StatefulSet 并在 pod 中运行数据库。将出现 “Services Tool” 窗口，并显示用于创建资源的命令以及该命令的输出。</p>
+<h2 id="kubernetes-集群概述">Kubernetes 集群概述<a href="#kubernetes-集群概述" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>在 Kubernetes 集群中，我们将看到工作负载信息，例如正在运行的 Pods, Deployments, Stateful Sets, Daemon Sets, Jobs, Cron Jobs, Replica Sets, 和 Replication Controllers。</p>
+<p><p class="md__image">
+  <img src="../imgs/14-Launching-a-Kubernetes-ReplicaSet-from-GoLand.gif"
+    alt=""  />
+</p>
+</p>
+<p>我们还可以查看有关集群中服务和入口点的网络信息。</p>
+<p><p class="md__image">
+  <img src="../imgs/15-Kubernetes-Services-and-Ingress-points.gif"
+    alt=""  />
+</p>
+</p>
+<p>“Configuration” 部分包含当前名称空间或群集的所有配置信息，例如有关运行名称空间，节点，群集角色，角色，配置 map 和秘钥的信息。</p>
+<p><p class="md__image">
+  <img src="../imgs/16-Kubernetes-Configuration-options.gif"
+    alt=""  />
+</p>
+</p>
+<p>最后，“Storage” 部分将向我们显示当前配置中的“持久卷”，“持久卷声明”和“存储类”。</p>
+<p><p class="md__image">
+  <img src="../imgs/17-Kubernetes-Storage-options.gif"
+    alt=""  />
+</p>
+</p>
+<h2 id="在-ide-中使用-kubernetes-集群运行-go-应用程序">在 IDE 中使用 Kubernetes 集群运行 Go 应用程序<a href="#在-ide-中使用-kubernetes-集群运行-go-应用程序" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>让我们在同一个 Kubernetes 集群中运行 Go 应用程序，看看它是如何工作的。</p>
+<p>不过，在运行该应用程序之前，我们首先需要构建该应用程序所在的 Docker 容器。示例代码库中包含一个名为 build Dockerfile 的运行配置，需要运行该配置才能在集群中使用我们的容器。</p>
+<p>正如您可能已经猜到的那样，此后，我们终于可以使用先前与 db.yaml 文件一起使用的绿色箭头在 Kubernetes 中运行 Go 应用程序，只有这次我们才在 web.yaml 文件中使用它。</p>
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">apps/v1</span><span class="w">
+</span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Deployment</span><span class="w">
+</span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">labels</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">dockerdev</span><span class="p">:</span><span class="w"> </span><span class="l">web</span><span class="w">
+</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">web</span><span class="w">
+</span><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">selector</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">matchLabels</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">dockerdev</span><span class="p">:</span><span class="w"> </span><span class="l">web</span><span class="w">
+</span><span class="w">  </span><span class="nt">template</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">labels</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span><span class="nt">dockerdev</span><span class="p">:</span><span class="w"> </span><span class="l">web</span><span class="w">
+</span><span class="w">    </span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">containers</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">dockerdev-web</span><span class="w">
+</span><span class="w">          </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">dockerdev-web:latest</span><span class="w">
+</span><span class="w">          </span><span class="nt">imagePullPolicy</span><span class="p">:</span><span class="w"> </span><span class="l">Never</span><span class="w">
+</span><span class="w">          </span><span class="nt">env</span><span class="p">:</span><span class="w">
+</span><span class="w">            </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">DD_DB_HOST</span><span class="w">
+</span><span class="w">              </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;dockerdev-db-exported&#34;</span><span class="w">
+</span><span class="w">          </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span><span class="w">            </span>- <span class="nt">containerPort</span><span class="p">:</span><span class="w"> </span><span class="m">8000</span><span class="w">
+</span><span class="w"></span><span class="nn">---</span><span class="w">
+</span><span class="w"></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Service</span><span class="w">
+</span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">labels</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">dockerdev</span><span class="p">:</span><span class="w"> </span><span class="l">web</span><span class="w">
+</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">dockerdev-web-exported</span><span class="w">
+</span><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">NodePort</span><span class="w">
+</span><span class="w">  </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="m">8000</span>-<span class="l">tcp</span><span class="w">
+</span><span class="w">      </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">8000</span><span class="w">
+</span><span class="w">      </span><span class="nt">targetPort</span><span class="p">:</span><span class="w"> </span><span class="m">8000</span><span class="w">
+</span><span class="w">      </span><span class="nt">nodePort</span><span class="p">:</span><span class="w"> </span><span class="m">30800</span><span class="w">
+</span><span class="w">  </span><span class="nt">selector</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">dockerdev</span><span class="p">:</span><span class="w"> </span><span class="l">web</span><span class="w">
+</span></code></pre></div><p><p class="md__image">
+  <img src="../imgs/18-Run-a-Go-service-in-Kubernetes-with-GoLand.gif"
+    alt=""  />
+</p>
+</p>
+<p><strong>Pro tip</strong>：我们可以使用 HTTP 请求文件的方式从 IDE 运行请求，以检查服务是否已启动并正在运行。</p>
+<p><p class="md__image">
+  <img src="../imgs/19-Run-HTTP-Request-from-IDE.gif"
+    alt=""  />
+</p>
+</p>
+<h2 id="从-kubernetes-调试服务">从 Kubernetes 调试服务<a href="#从-kubernetes-调试服务" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>在使用 GoLand 调试 Kubernetes 服务之前，我们需要对 web.yaml 文件进行一些更改。这些变化可以在我们代码库的 kubernetes-debug 分支中看到。</p>
+<p>我们需要进行一些与调试常规 Docker 容器非常相似的更改。</p>
+<p>首先，我们需要调整 Dockerfile，然后我们必须使用 <code>Run | Run … | ‘build Dockerfile’ </code>来配置。</p>
+<p>接着我们可以使用 <code>Run | Debug … | Kubernetes Service</code>，它将启动 Go Remote 调试配置。</p>
+<p><p class="md__image">
+  <img src="../imgs/20-Debugging-Go-Service-running-in-Kubernetes.gif"
+    alt=""  />
+</p>
+</p>
+<p>调试器将跟之前我们习惯的调试形式一样工作。</p>
+<p>这个系列文章是我们使用 Docker，Docker Compose 和 Kubernetes 运行和调试 Go 微服务的总结。</p>
+<p>在本文中，我们讨论了如何使用 Kubernetes 插件来编辑 Deployment 文件，以便它将正常启动，从而可以对其进行调试。</p>
+<blockquote>
+<p>原文链接：https://blog.jetbrains.com/go/2020/05/11/using-kubernetes-from-goland/</p>
+<p>作者：Florin Pățan</p>
+<p>翻译：Go语言中文网 polaris</p>
+</blockquote>
+
+			</div><div class="content">
+	<br>
+	<img src="https://static.studygolang.com/static/img/polarisxu-qrcode-soso-s.png">
+</div>
+
+<div class="related-posts thin">
+	<h2>相关推荐</h2>
+	<ul>
+	
+	<li><a href="/posts/devtool/goland/2020.2.beta/">GoLand 2020.2 Beta 版发布：go.mod 升级以及对泛型的实验性支持</a></li>
+	
+	<li><a href="/posts/devtool/goland/running-go-applications-using-docker-compose-in-goland/">在 GoLang 中使用 Docker Compose 运行 Go 应用程序</a></li>
+	
+	<li><a href="/posts/devtool/goland/debugging-a-go-application-inside-a-docker-container/">基于 GoLand 使用 Docker 容器进行 Go 开发</a></li>
+	
+	<li><a href="/posts/devtool/goland/goland-2020-1-release/">还在用 2019.3 就 Out 了：GoLand 2020.1 版本正式发布</a></li>
+	
+	<li><a href="/posts/devtool/goland/welcome-to-the-goland-2020-1-eap/">欢迎加入 GoLand 2020.1 抢先体验计划</a></li>
+	
+	</ul>
+</div>
+
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://polarisxu.studygolang.com/tags/goland">GoLand</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/kubernetes">Kubernetes</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/debug">Debug</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>212 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2020-05-11 14:17 &#43;0800</p>
+			</footer>
+		</article>
+		<aside id="toc">
+			<div class="toc-title">目录</div>
+			<nav id="TableOfContents">
+  <ul>
+    <li><a href="#在-ide-中使用-kubernetes-运行服务">在 IDE 中使用 Kubernetes 运行服务</a></li>
+    <li><a href="#kubernetes-集群概述">Kubernetes 集群概述</a></li>
+    <li><a href="#在-ide-中使用-kubernetes-集群运行-go-应用程序">在 IDE 中使用 Kubernetes 集群运行 Go 应用程序</a></li>
+    <li><a href="#从-kubernetes-调试服务">从 Kubernetes 调试服务</a></li>
+  </ul>
+</nav>
+		</aside>
+		<div class="post-nav thin">
+			<a class="next-post" href="https://polarisxu.studygolang.com/posts/go/echo/action00-intro/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;新</span><br><span>Echo 系列教程——实战篇0：使用 Echo 开发一个博客系统</span>
+			</a>
+			<a class="prev-post" href="https://polarisxu.studygolang.com/posts/devtool/goland/running-go-applications-using-docker-compose-in-goland/">
+				<span class="post-nav-label">旧&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>在 GoLang 中使用 Docker Compose 运行 Go 应用程序</span>
+			</a>
+		</div>
+		<div id="comments" class="thin"><script src="https://utteranc.es/client.js"
+	repo="polaris1119/polarisxu"
+	issue-term="pathname"
+	theme="github-light"
+	crossorigin="anonymous"
+	async>
+</script>
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2019 - 2020 <a href="https://polarisxu.studygolang.com">polarisxu</a> &#183; <a href="http://www.beian.miit.gov.cn/">京ICP备14030343号-1</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://polarisxu.studygolang.com/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+
+	<script src="https://polarisxu.studygolang.com/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw=" crossorigin="anonymous"></script>
+	<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?224c227cd9239761ec770bc8c1fb134c";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+</body>
+
+</html>

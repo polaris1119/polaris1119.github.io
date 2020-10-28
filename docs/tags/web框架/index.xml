@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>web框架 on polarisxu</title>
+    <link>https://polarisxu.studygolang.com/tags/web%E6%A1%86%E6%9E%B6/</link>
+    <description>Recent content in web框架 on polarisxu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
+    <lastBuildDate>Mon, 16 Mar 2020 10:17:51 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/web%E6%A1%86%E6%9E%B6/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Echo 系列教程——定制篇4：自定义 Renderer，增强或替换模板引擎</title>
+      <link>https://polarisxu.studygolang.com/posts/go/echo/custom04-renderer/</link>
+      <pubDate>Mon, 16 Mar 2020 10:17:51 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/echo/custom04-renderer/</guid>
+      <description>Render，顾名思义，要进行页面渲染。Go 语言不但自带有强大的 http 库，还自带了 HTML 模板引擎。Echo 框架对模板引擎进行了一些额外处理，并提供了</description>
+    </item>
+    
+    <item>
+      <title>Echo 系列教程——定制篇5：自定义 HTTP Error Handler，让 HTTP 错误处理更友好</title>
+      <link>https://polarisxu.studygolang.com/posts/go/echo/custom05-error-handler/</link>
+      <pubDate>Mon, 16 Mar 2020 10:17:51 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/echo/custom05-error-handler/</guid>
+      <description>Echo 倡导通过从中间件和 Handler 返回错误来进行集中式 HTTP 错误处理。集中式错误处理程序使我们能够从统一位置将错误记录到外部服务，并向客户端发送自定义的 HTTP 响</description>
+    </item>
+    
+    <item>
+      <title>Echo 系列教程——定制篇6：自定义 Server 相关，替换或扩展默认的 Server</title>
+      <link>https://polarisxu.studygolang.com/posts/go/echo/custom06-ext-server/</link>
+      <pubDate>Mon, 16 Mar 2020 10:17:51 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/echo/custom06-ext-server/</guid>
+      <description>这是定制篇的最后一节，讲解 Server 的自定义。 默认 Server 通常情况下，Echo 通过如下方式启动一个 HTTP Server： e := echo.New() e.GET(&amp;#34;/&amp;#34;, func(c echo.Context) error { return c.String(http.StatusOK, &amp;#34;Hello, World!&amp;#34;) }) e.Logger.Fatal(e.Start(&amp;#34;:2020&amp;#34;)) 我们打开源码</description>
+    </item>
+    
+    <item>
+      <title>Echo 系列教程——定制篇3：自定义 Logger，用你喜欢的日志库</title>
+      <link>https://polarisxu.studygolang.com/posts/go/echo/custom03-logger/</link>
+      <pubDate>Fri, 06 Mar 2020 11:50:51 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/echo/custom03-logger/</guid>
+      <description>在知识星球简书项目中，我们分析对比了目前的一些日志库。虽然 Go 标准库有一个 log，但功能有限，所以才出现了很多第三方的日志库。在 用 Go 实现一个简</description>
+    </item>
+    
+    <item>
+      <title>Echo 系列教程——定制篇2：自定义 Validator，进行输入校验</title>
+      <link>https://polarisxu.studygolang.com/posts/go/echo/custom02-validator/</link>
+      <pubDate>Fri, 28 Feb 2020 18:53:51 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/echo/custom02-validator/</guid>
+      <description>上一篇讲 Binder 时提到，参数自动绑定和校验是 Web 框架很重要的两个功能，可以极大的提升开发速度，并更好的保证数据的可靠性（服务端数据校验很重要）。本节</description>
+    </item>
+    
+    <item>
+      <title>Echo 系列教程——定制篇1：自定义 Binder，处理 Request 数据绑定</title>
+      <link>https://polarisxu.studygolang.com/posts/go/echo/custom01-binder/</link>
+      <pubDate>Fri, 21 Feb 2020 19:26:51 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/echo/custom01-binder/</guid>
+      <description>Web 开发，数据获取和校验是两个最基本的功能。在数据获取时，我们可以通过标准库的 *http.Request 提供的相关功能进行获取。然而这样效率是很低，重复工作较多，而且</description>
+    </item>
+    
+    <item>
+      <title>Echo 系列教程——定制篇0：让 Echo 更强大、更好用</title>
+      <link>https://polarisxu.studygolang.com/posts/go/echo/custom00-intro/</link>
+      <pubDate>Fri, 21 Feb 2020 19:24:51 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/echo/custom00-intro/</guid>
+      <description>一个强大的框架，一定是可以定制的，或者说可以扩展，能够根据用户自己的需求进行改变、增强，甚至某些功能的替换。作为一个强大的框架，Echo 必然</description>
+    </item>
+    
+    <item>
+      <title>Echo 系列教程——基础篇3：通过一个例子串联各特性</title>
+      <link>https://polarisxu.studygolang.com/posts/go/echo/basic03-example/</link>
+      <pubDate>Tue, 03 Dec 2019 20:31:51 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/echo/basic03-example/</guid>
+      <description>通过前面的介绍，相信对 echo 有了一个初步的认识。本文我们通过一个简单的登录页面来串联 echo 的相关特性。因为该文主要关注各个特性，所以在目录结构和代码</description>
+    </item>
+    
+    <item>
+      <title>Echo 系列教程——基础篇2：Echo 核心亮点介绍</title>
+      <link>https://polarisxu.studygolang.com/posts/go/echo/basic02-feature/</link>
+      <pubDate>Mon, 28 Oct 2019 11:15:51 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/echo/basic02-feature/</guid>
+      <description>在 Echo 的官网的首页，列出了 9 个核心功能或亮点。我这里将它说成是亮点（也许并不一定都比其他框架更好）。 一、优化的路由 高度优化的 HTTP 路由，动态内存分</description>
+    </item>
+    
+    <item>
+      <title>Echo 系列教程——基础篇1：搭建 Echo 开发环境</title>
+      <link>https://polarisxu.studygolang.com/posts/go/echo/basic01-env/</link>
+      <pubDate>Mon, 21 Oct 2019 14:17:51 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/echo/basic01-env/</guid>
+      <description>工欲善其事必先利其器。我们先搞定 Echo 环境。 Go 开发环境 这个系列基于 Go1.14.4，Linux 系统。 安装 Go 的方式有很多，可以在这里 https://studygolang.com/dl 下载对应操作</description>
+    </item>
+    
+  </channel>
+</rss>

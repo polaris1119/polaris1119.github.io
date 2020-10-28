@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>统计 on polarisxu</title>
+    <link>https://polarisxu.studygolang.com/tags/%E7%BB%9F%E8%AE%A1/</link>
+    <description>Recent content in 统计 on polarisxu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
+    <lastBuildDate>Thu, 15 Oct 2020 18:12:51 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/%E7%BB%9F%E8%AE%A1/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>你喜欢的 Go 第三方库：一步为系统集成可视化实时运行时统计</title>
+      <link>https://polarisxu.studygolang.com/posts/go/pkg/statsviz/</link>
+      <pubDate>Thu, 15 Oct 2020 18:12:51 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/pkg/statsviz/</guid>
+      <description>大家好，我是站长 polarisxu。 掌握系统运行状态，知道系统哪些地方可能存在问题，方便进行优化，这是一个实际系统必备的。裸奔，对系统一无所</description>
+    </item>
+    
+  </channel>
+</rss>

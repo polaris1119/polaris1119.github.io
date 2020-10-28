@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#494f5c">
+	<meta name="msapplication-TileColor" content="#494f5c">
+<meta itemprop="name" content="Echo 系列教程——实战篇0：使用 Echo 开发一个博客系统">
+<meta itemprop="description" content="实战是掌握一门技术很好的方式：纸上得来终觉浅，绝知此事要躬行！ 在初步了解了 Echo 框架的特性、功能后，我们通过具体的一个项目来掌握 Echo 框架，这个项目">
+<meta itemprop="datePublished" content="2020-05-16T15:08:51+08:00" />
+<meta itemprop="dateModified" content="2020-05-16T15:08:51+08:00" />
+<meta itemprop="wordCount" content="356">
+
+
+
+<meta itemprop="keywords" content="echo,博客系统," />
+<meta property="og:title" content="Echo 系列教程——实战篇0：使用 Echo 开发一个博客系统" />
+<meta property="og:description" content="实战是掌握一门技术很好的方式：纸上得来终觉浅，绝知此事要躬行！ 在初步了解了 Echo 框架的特性、功能后，我们通过具体的一个项目来掌握 Echo 框架，这个项目" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/echo/action00-intro/" />
+<meta property="article:published_time" content="2020-05-16T15:08:51+08:00" />
+<meta property="article:modified_time" content="2020-05-16T15:08:51+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Echo 系列教程——实战篇0：使用 Echo 开发一个博客系统"/>
+<meta name="twitter:description" content="实战是掌握一门技术很好的方式：纸上得来终觉浅，绝知此事要躬行！ 在初步了解了 Echo 框架的特性、功能后，我们通过具体的一个项目来掌握 Echo 框架，这个项目"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>Echo 系列教程——实战篇0：使用 Echo 开发一个博客系统</title>
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
+	
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://polarisxu.studygolang.com">polarisxu</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+  <a href="https://polarisxu.studygolang.com/posts/">文章</a>
+  <a href="https://polarisxu.studygolang.com/go-categories/">Go系列</a>
+  <a href="https://polarisxu.studygolang.com/devtool-categories/">开发工具</a>
+  <a href="https://polarisxu.studygolang.com/about/">关于</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<button id="toc-btn" class="hdr-btn desktop-only-ib" title="目录"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3" y2="6"></line><line x1="3" y1="12" x2="3" y2="12"></line><line x1="3" y1="18" x2="3" y2="18"></line></svg></button><span class="hdr-social hide-in-mobile"><a href="https://github.com/polaris1119" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a><a href="https://twitter.com/polaris1119" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="菜单"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://polarisxu.studygolang.com/posts/">文章</a></li>
+			<li><a href="https://polarisxu.studygolang.com/go-categories/">Go系列</a></li>
+			<li><a href="https://polarisxu.studygolang.com/devtool-categories/">开发工具</a></li>
+			<li><a href="https://polarisxu.studygolang.com/about/">关于</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>May 16, 2020</span></div>
+				<h1>Echo 系列教程——实战篇0：使用 Echo 开发一个博客系统</h1>
+			</header>
+			<div class="content">
+				<p>实战是掌握一门技术很好的方式：纸上得来终觉浅，绝知此事要躬行！</p>
+<p>在初步了解了 Echo 框架的特性、功能后，我们通过具体的一个项目来掌握 Echo 框架，这个项目就是写一个博客系统。</p>
+<h2 id="实战篇目标">实战篇目标<a href="#实战篇目标" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<ul>
+<li>掌握 go/echo 开发项目的方法；</li>
+<li>通过项目更深入掌握 echo；</li>
+<li>完善完善，甚至可以作为自己的一个博客系统使用；</li>
+</ul>
+<p>因此，在项目实战过程中可能引申讲解 Echo 的特性，毕竟基础篇对 Echo 的特性没有深入讲解。</p>
+<h2 id="依赖技术">依赖技术<a href="#依赖技术" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>该实战项目计划采用前后端分离的方式进行。前端采用 Vue + ElementUI。前端不是强项，目标就是争取能做出来，还凑合，如果你是 Vue 老手，欢迎帮忙处理这块。</p>
+<h2 id="主要功能">主要功能<a href="#主要功能" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>我们会实现博客系统常用的一些功能，包括：</p>
+<ul>
+<li>列表页</li>
+<li>详情页</li>
+<li>归档</li>
+<li>标签</li>
+<li>浏览数</li>
+<li>简单的管理后台</li>
+</ul>
+<p>该项目代码放在 GitHub 上：<a href="https://github.com/polaris1119/go-echo-example">https://github.com/polaris1119/go-echo-example</a> ，欢迎 star 。</p>
+
+			</div><div class="content">
+	<br>
+	<img src="https://static.studygolang.com/static/img/polarisxu-qrcode-soso-s.png">
+</div>
+
+<div class="related-posts thin">
+	<h2>相关推荐</h2>
+	<ul>
+	
+	<li><a href="/posts/go/echo/custom04-renderer/">Echo 系列教程——定制篇4：自定义 Renderer，增强或替换模板引擎</a></li>
+	
+	<li><a href="/posts/go/echo/custom05-error-handler/">Echo 系列教程——定制篇5：自定义 HTTP Error Handler，让 HTTP 错误处理更友好</a></li>
+	
+	<li><a href="/posts/go/echo/custom06-ext-server/">Echo 系列教程——定制篇6：自定义 Server 相关，替换或扩展默认的 Server</a></li>
+	
+	<li><a href="/posts/go/echo/custom03-logger/">Echo 系列教程——定制篇3：自定义 Logger，用你喜欢的日志库</a></li>
+	
+	<li><a href="/posts/go/echo/custom02-validator/">Echo 系列教程——定制篇2：自定义 Validator，进行输入校验</a></li>
+	
+	</ul>
+</div>
+
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://polarisxu.studygolang.com/tags/echo">echo</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/%E5%8D%9A%E5%AE%A2%E7%B3%BB%E7%BB%9F">博客系统</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>356 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2020-05-16 15:08 &#43;0800</p>
+			</footer>
+		</article>
+		<aside id="toc">
+			<div class="toc-title">目录</div>
+			<nav id="TableOfContents">
+  <ul>
+    <li><a href="#实战篇目标">实战篇目标</a></li>
+    <li><a href="#依赖技术">依赖技术</a></li>
+    <li><a href="#主要功能">主要功能</a></li>
+  </ul>
+</nav>
+		</aside>
+		<div class="post-nav thin">
+			<a class="next-post" href="https://polarisxu.studygolang.com/posts/go/translation/go-is-terrible/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;新</span><br><span>从这些角度看 Go 是一门糟糕的语言</span>
+			</a>
+			<a class="prev-post" href="https://polarisxu.studygolang.com/posts/devtool/goland/using-kubernetes-from-goland/">
+				<span class="post-nav-label">旧&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>当 GoLand 遇到 Kubernetes：如何调试和运行 Go 程序</span>
+			</a>
+		</div>
+		<div id="comments" class="thin"><script src="https://utteranc.es/client.js"
+	repo="polaris1119/polarisxu"
+	issue-term="pathname"
+	theme="github-light"
+	crossorigin="anonymous"
+	async>
+</script>
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2019 - 2020 <a href="https://polarisxu.studygolang.com">polarisxu</a> &#183; <a href="http://www.beian.miit.gov.cn/">京ICP备14030343号-1</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://polarisxu.studygolang.com/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+
+	<script src="https://polarisxu.studygolang.com/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw=" crossorigin="anonymous"></script>
+	<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?224c227cd9239761ec770bc8c1fb134c";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+</body>
+
+</html>

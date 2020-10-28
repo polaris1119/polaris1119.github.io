@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#494f5c">
+	<meta name="msapplication-TileColor" content="#494f5c">
+<meta itemprop="name" content="Echo 系列教程——定制篇3：自定义 Logger，用你喜欢的日志库">
+<meta itemprop="description" content="在知识星球简书项目中，我们分析对比了目前的一些日志库。虽然 Go 标准库有一个 log，但功能有限，所以才出现了很多第三方的日志库。在 用 Go 实现一个简">
+<meta itemprop="datePublished" content="2020-03-06T11:50:51+08:00" />
+<meta itemprop="dateModified" content="2020-03-06T11:50:51+08:00" />
+<meta itemprop="wordCount" content="1491">
+
+
+
+<meta itemprop="keywords" content="echo,web框架,日志库," />
+<meta property="og:title" content="Echo 系列教程——定制篇3：自定义 Logger，用你喜欢的日志库" />
+<meta property="og:description" content="在知识星球简书项目中，我们分析对比了目前的一些日志库。虽然 Go 标准库有一个 log，但功能有限，所以才出现了很多第三方的日志库。在 用 Go 实现一个简" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/echo/custom03-logger/" />
+<meta property="article:published_time" content="2020-03-06T11:50:51+08:00" />
+<meta property="article:modified_time" content="2020-03-06T11:50:51+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Echo 系列教程——定制篇3：自定义 Logger，用你喜欢的日志库"/>
+<meta name="twitter:description" content="在知识星球简书项目中，我们分析对比了目前的一些日志库。虽然 Go 标准库有一个 log，但功能有限，所以才出现了很多第三方的日志库。在 用 Go 实现一个简"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>Echo 系列教程——定制篇3：自定义 Logger，用你喜欢的日志库</title>
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
+	
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://polarisxu.studygolang.com">polarisxu</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+  <a href="https://polarisxu.studygolang.com/posts/">文章</a>
+  <a href="https://polarisxu.studygolang.com/go-categories/">Go系列</a>
+  <a href="https://polarisxu.studygolang.com/devtool-categories/">开发工具</a>
+  <a href="https://polarisxu.studygolang.com/about/">关于</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<button id="toc-btn" class="hdr-btn desktop-only-ib" title="目录"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3" y2="6"></line><line x1="3" y1="12" x2="3" y2="12"></line><line x1="3" y1="18" x2="3" y2="18"></line></svg></button><span class="hdr-social hide-in-mobile"><a href="https://github.com/polaris1119" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a><a href="https://twitter.com/polaris1119" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="菜单"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://polarisxu.studygolang.com/posts/">文章</a></li>
+			<li><a href="https://polarisxu.studygolang.com/go-categories/">Go系列</a></li>
+			<li><a href="https://polarisxu.studygolang.com/devtool-categories/">开发工具</a></li>
+			<li><a href="https://polarisxu.studygolang.com/about/">关于</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Mar 6, 2020</span></div>
+				<h1>Echo 系列教程——定制篇3：自定义 Logger，用你喜欢的日志库</h1>
+			</header>
+			<div class="content">
+				<p>在知识星球简书项目中，我们分析对比了目前的一些日志库。虽然 Go 标准库有一个 log，但功能有限，所以才出现了很多第三方的日志库。在 <a href="https://studygolang.com/topics/10625" target="_blank" rel="noopener">用 Go 实现一个简书 8：日志记录和优秀库的学习</a>
+ 中，我们得出结论，推荐大家使用 <a href="https://github.com/rs/zerolog" target="_blank" rel="noopener">zerolog</a>
+。现在我们就将 zerolog 集成进 Echo 框架中。</p>
+<h2 id="echo-默认的-logger">Echo 默认的 Logger<a href="#echo-默认的-logger" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>Echo 日志记录的默认格式是 JSON，可以通过修改标头来更改，即 <code>Echo#Logger.SetHeader(io.Writer)</code>。</p>
+<h3 id="log-header">Log Header<a href="#log-header" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>标头默认值为：</p>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span><span class="nt">&#34;time&#34;</span><span class="p">:</span><span class="s2">&#34;${time_rfc3339_nano}&#34;</span><span class="p">,</span><span class="nt">&#34;level&#34;</span><span class="p">:</span><span class="s2">&#34;${level}&#34;</span><span class="p">,</span><span class="nt">&#34;prefix&#34;</span><span class="p">:</span><span class="s2">&#34;${prefix}&#34;</span><span class="p">,</span><span class="nt">&#34;file&#34;</span><span class="p">:</span><span class="s2">&#34;${short_file}&#34;</span><span class="p">,</span><span class="nt">&#34;line&#34;</span><span class="p">:</span><span class="s2">&#34;${line}&#34;</span><span class="p">}</span>
+</code></pre></div><p>因为 Echo 默认使用的 Logger 是作者开发的 <code>github.com/labstack/gommon/log</code> 库，我们看看怎么自定义默认标头。</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">import</span> <span class="s">&#34;github.com/labstack/gommon/log&#34;</span>
+
+<span class="cm">/* ... */</span>
+
+<span class="k">if</span> <span class="nx">l</span><span class="p">,</span> <span class="nx">ok</span> <span class="o">:=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">Logger</span><span class="p">.(</span><span class="o">*</span><span class="nx">log</span><span class="p">.</span><span class="nx">Logger</span><span class="p">);</span> <span class="nx">ok</span> <span class="p">{</span>
+  <span class="nx">l</span><span class="p">.</span><span class="nf">SetHeader</span><span class="p">(</span><span class="s">&#34;${time_rfc3339} ${level}&#34;</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div><p>这样输出的标头成为：<code>2018-05-08T20:30:06-07:00 INFO info</code>。</p>
+<p>目前，预定义的 tag 有：</p>
+<ul>
+<li><code>time_rfc3339</code>：时间格式</li>
+<li><code>time_rfc3339_nano</code>：带纳秒的时间格式</li>
+<li><code>level</code>：级别</li>
+<li><code>prefix</code>：前缀</li>
+<li><code>long_file</code>：长文件名（带路径）</li>
+<li><code>short_file</code>：短文件名（不带路径）</li>
+<li><code>line</code>：文件行号</li>
+</ul>
+<h3 id="log-输出">Log 输出<a href="#log-输出" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p><code>Echo#Logger.SetOutput(io.Writer)</code> 可以设置日志输出的目的地。默认输出到标准输出。如果想禁用日志，有两种方式：</p>
+<ul>
+<li>Echo#Logger.SetOutput(ioutil.Discard)</li>
+<li>Echo#Logger.SetLevel(log.OFF)</li>
+</ul>
+<h3 id="log-级别">Log 级别<a href="#log-级别" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>默认情况下，日志的级别是 ERROR。可以通过 <code>Echo#Logger.SetLevel(log.Lvl)</code> 修改。一共有如下一些级别：</p>
+<ul>
+<li><code>DEBUG</code></li>
+<li><code>INFO</code></li>
+<li><code>WARN</code></li>
+<li><code>ERROR</code></li>
+<li><code>OFF</code></li>
+</ul>
+<p>以上就是 Echo 框架提供的可以定制 Log 的相关接口。</p>
+<h2 id="自定义-logger">自定义 Logger<a href="#自定义-logger" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>Echo 支持通过<code>Echo#Logger</code> 注册自定义的 Logger，前提是这个 Logger 必须实现 Echo 提供的接口：echo.Logger：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">Logger</span> <span class="kd">interface</span> <span class="p">{</span>
+    <span class="nf">Output</span><span class="p">()</span> <span class="nx">io</span><span class="p">.</span><span class="nx">Writer</span>
+    <span class="nf">SetOutput</span><span class="p">(</span><span class="nx">w</span> <span class="nx">io</span><span class="p">.</span><span class="nx">Writer</span><span class="p">)</span>
+    <span class="nf">Prefix</span><span class="p">()</span> <span class="kt">string</span>
+    <span class="nf">SetPrefix</span><span class="p">(</span><span class="nx">p</span> <span class="kt">string</span><span class="p">)</span>
+    <span class="nf">Level</span><span class="p">()</span> <span class="nx">log</span><span class="p">.</span><span class="nx">Lvl</span>
+    <span class="nf">SetLevel</span><span class="p">(</span><span class="nx">v</span> <span class="nx">log</span><span class="p">.</span><span class="nx">Lvl</span><span class="p">)</span>
+    <span class="nf">SetHeader</span><span class="p">(</span><span class="nx">h</span> <span class="kt">string</span><span class="p">)</span>
+    <span class="nf">Print</span><span class="p">(</span><span class="nx">i</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span>
+    <span class="nf">Printf</span><span class="p">(</span><span class="nx">format</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">args</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span>
+    <span class="nf">Printj</span><span class="p">(</span><span class="nx">j</span> <span class="nx">log</span><span class="p">.</span><span class="nx">JSON</span><span class="p">)</span>
+    <span class="nf">Debug</span><span class="p">(</span><span class="nx">i</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span>
+    <span class="nf">Debugf</span><span class="p">(</span><span class="nx">format</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">args</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span>
+    <span class="nf">Debugj</span><span class="p">(</span><span class="nx">j</span> <span class="nx">log</span><span class="p">.</span><span class="nx">JSON</span><span class="p">)</span>
+    <span class="nf">Info</span><span class="p">(</span><span class="nx">i</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span>
+    <span class="nf">Infof</span><span class="p">(</span><span class="nx">format</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">args</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span>
+    <span class="nf">Infoj</span><span class="p">(</span><span class="nx">j</span> <span class="nx">log</span><span class="p">.</span><span class="nx">JSON</span><span class="p">)</span>
+    <span class="nf">Warn</span><span class="p">(</span><span class="nx">i</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span>
+    <span class="nf">Warnf</span><span class="p">(</span><span class="nx">format</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">args</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span>
+    <span class="nf">Warnj</span><span class="p">(</span><span class="nx">j</span> <span class="nx">log</span><span class="p">.</span><span class="nx">JSON</span><span class="p">)</span>
+    <span class="nf">Error</span><span class="p">(</span><span class="nx">i</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span>
+    <span class="nf">Errorf</span><span class="p">(</span><span class="nx">format</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">args</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span>
+    <span class="nf">Errorj</span><span class="p">(</span><span class="nx">j</span> <span class="nx">log</span><span class="p">.</span><span class="nx">JSON</span><span class="p">)</span>
+    <span class="nf">Fatal</span><span class="p">(</span><span class="nx">i</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span>
+    <span class="nf">Fatalj</span><span class="p">(</span><span class="nx">j</span> <span class="nx">log</span><span class="p">.</span><span class="nx">JSON</span><span class="p">)</span>
+    <span class="nf">Fatalf</span><span class="p">(</span><span class="nx">format</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">args</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span>
+    <span class="nf">Panic</span><span class="p">(</span><span class="nx">i</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span>
+    <span class="nf">Panicj</span><span class="p">(</span><span class="nx">j</span> <span class="nx">log</span><span class="p">.</span><span class="nx">JSON</span><span class="p">)</span>
+    <span class="nf">Panicf</span><span class="p">(</span><span class="nx">format</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">args</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span>
+<span class="p">}</span>
+</code></pre></div><p>这个接口看着很吓人，基本上是几个日志级别对应的方法。因此，如果我们要将 zerolog 集成进 Echo，让 zerolog 实现该接口（zerolog 本身肯定没有实现该接口）。</p>
+<p>因为 zerolog 库的设计和 API 与 echo.Logger 接口差异极大，想要直接为 zerolog 实现一个 Adapter 以便实现 echo.Logger 接口不太现实。于是我们做如下处理来进行适配：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">Logger</span> <span class="kd">struct</span> <span class="p">{</span>
+	<span class="o">*</span><span class="nx">log</span><span class="p">.</span><span class="nx">Logger</span>
+	<span class="nx">ZeroLog</span> <span class="nx">zerolog</span><span class="p">.</span><span class="nx">Logger</span>
+<span class="p">}</span>
+</code></pre></div><p>我们定义一个自己的 Logger 结构体，内嵌一个 github.com/labstack/gommon/log 库的 Logger 指针，这样默认就实现了 echo.Logger 接口，然后再是 zerolog.Logger。看看构造函数如何实现？</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">New</span><span class="p">(</span><span class="nx">writer</span> <span class="nx">io</span><span class="p">.</span><span class="nx">Writer</span><span class="p">)</span> <span class="o">*</span><span class="nx">Logger</span> <span class="p">{</span>
+	<span class="nx">l</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">Logger</span><span class="p">{</span>
+		<span class="nx">Logger</span><span class="p">:</span>  <span class="nx">log</span><span class="p">.</span><span class="nf">New</span><span class="p">(</span><span class="s">&#34;-&#34;</span><span class="p">),</span>
+		<span class="nx">ZeroLog</span><span class="p">:</span> <span class="nx">zerolog</span><span class="p">.</span><span class="nf">New</span><span class="p">(</span><span class="nx">writer</span><span class="p">).</span><span class="nf">With</span><span class="p">().</span><span class="nf">Caller</span><span class="p">().</span><span class="nf">Timestamp</span><span class="p">().</span><span class="nf">Logger</span><span class="p">(),</span>
+	<span class="p">}</span>
+  
+	<span class="c1">// log 默认是 ERROR，将 Level 默认都改为 INFO
+</span><span class="c1"></span>	<span class="nx">l</span><span class="p">.</span><span class="nf">SetLevel</span><span class="p">(</span><span class="nx">log</span><span class="p">.</span><span class="nx">INFO</span><span class="p">)</span>
+
+	<span class="nx">l</span><span class="p">.</span><span class="nx">Logger</span><span class="p">.</span><span class="nf">SetOutput</span><span class="p">(</span><span class="nx">writer</span><span class="p">)</span>
+
+	<span class="k">return</span> <span class="nx">l</span>
+<span class="p">}</span>
+</code></pre></div><p>这么做有什么用？还不如干脆 echo 框架自己的日志由它处理，我们的日志使用 zerolog 处理。这样当然是可以的。但集成在一起有如下好处：</p>
+<ul>
+<li>形式上变成了一个日志类，也就是我们自定义的 Logger；</li>
+<li>方便统一控制，比如输出目标、日志级别；</li>
+<li>通过一个日志库，既可以做到单独控制 echo 的行为，也可以单独控制 zerolog 的行为；</li>
+</ul>
+<p>那统一控制行为如何实现呢？这里实现了两个，控制输出目的地和日志级别。</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="p">(</span><span class="nx">l</span> <span class="o">*</span><span class="nx">Logger</span><span class="p">)</span> <span class="nf">SetOutput</span><span class="p">(</span><span class="nx">writer</span> <span class="nx">io</span><span class="p">.</span><span class="nx">Writer</span><span class="p">)</span> <span class="p">{</span>
+	<span class="nx">l</span><span class="p">.</span><span class="nx">Logger</span><span class="p">.</span><span class="nf">SetOutput</span><span class="p">(</span><span class="nx">writer</span><span class="p">)</span>
+	<span class="nx">l</span><span class="p">.</span><span class="nx">ZeroLog</span><span class="p">.</span><span class="nf">Output</span><span class="p">(</span><span class="nx">writer</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="p">(</span><span class="nx">l</span> <span class="o">*</span><span class="nx">Logger</span><span class="p">)</span> <span class="nf">SetLevel</span><span class="p">(</span><span class="nx">level</span> <span class="nx">log</span><span class="p">.</span><span class="nx">Lvl</span><span class="p">)</span> <span class="p">{</span>
+	<span class="nx">l</span><span class="p">.</span><span class="nx">Logger</span><span class="p">.</span><span class="nf">SetLevel</span><span class="p">(</span><span class="nx">level</span><span class="p">)</span>
+	<span class="k">if</span> <span class="nx">level</span> <span class="o">==</span> <span class="nx">log</span><span class="p">.</span><span class="nx">OFF</span> <span class="p">{</span>
+		<span class="nx">l</span><span class="p">.</span><span class="nx">ZeroLog</span> <span class="p">=</span> <span class="nx">l</span><span class="p">.</span><span class="nx">ZeroLog</span><span class="p">.</span><span class="nf">Level</span><span class="p">(</span><span class="nx">zerolog</span><span class="p">.</span><span class="nx">Disabled</span><span class="p">)</span>
+	<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+		<span class="nx">zeroLevel</span> <span class="o">:=</span> <span class="nb">int8</span><span class="p">(</span><span class="nx">level</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+		<span class="nx">l</span><span class="p">.</span><span class="nx">ZeroLog</span> <span class="p">=</span> <span class="nx">l</span><span class="p">.</span><span class="nx">ZeroLog</span><span class="p">.</span><span class="nf">Level</span><span class="p">(</span><span class="nx">zerolog</span><span class="p">.</span><span class="nf">Level</span><span class="p">(</span><span class="nx">zeroLevel</span><span class="p">))</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><p>当然这种方式也有麻烦的地方，那就是通过 echo 的 Context 获得 zerolog 日志实例：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">zerolog</span> <span class="o">:=</span> <span class="nx">ctx</span><span class="p">.</span><span class="nf">Logger</span><span class="p">().(</span><span class="o">*</span><span class="nx">logger</span><span class="p">.</span><span class="nx">Logger</span><span class="p">).</span><span class="nx">ZeroLog</span>
+</code></pre></div><p>这样自定义日志库就完成了。该库完整代码见：<a href="https://github.com/polaris1119/go-echo-example/blob/master/pkg/logger/logger.go">https://github.com/polaris1119/go-echo-example/blob/master/pkg/logger/logger.go</a>。</p>
+<h2 id="在-echo-项目中使用自定义日志库">在 Echo 项目中使用自定义日志库<a href="#在-echo-项目中使用自定义日志库" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>在 go-echo-example 项目的 cmd 下创建一个目录 gopher，将来我们的实战篇就用它作为入口。之后创建一个 main.go 文件，核心代码如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="nx">e</span> <span class="o">:=</span> <span class="nx">echo</span><span class="p">.</span><span class="nf">New</span><span class="p">()</span>
+
+	<span class="nx">e</span><span class="p">.</span><span class="nx">Logger</span> <span class="p">=</span> <span class="nx">logger</span><span class="p">.</span><span class="nf">New</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Stdout</span><span class="p">)</span>
+  <span class="c1">// e.Logger.SetLevel(log.DEBUG)
+</span><span class="c1"></span>
+	<span class="nx">e</span><span class="p">.</span><span class="nf">Use</span><span class="p">(</span><span class="nx">middleware</span><span class="p">.</span><span class="nf">Recover</span><span class="p">())</span>
+
+	<span class="nx">e</span><span class="p">.</span><span class="nf">GET</span><span class="p">(</span><span class="s">&#34;/&#34;</span><span class="p">,</span> <span class="kd">func</span><span class="p">(</span><span class="nx">ctx</span> <span class="nx">echo</span><span class="p">.</span><span class="nx">Context</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
+    <span class="nx">ctx</span><span class="p">.</span><span class="nf">Logger</span><span class="p">().</span><span class="nf">Debugf</span><span class="p">(</span><span class="s">&#34;This is echo logger debug msg!&#34;</span><span class="p">)</span>
+
+		<span class="nx">zerolog</span> <span class="o">:=</span> <span class="nx">ctx</span><span class="p">.</span><span class="nf">Logger</span><span class="p">().(</span><span class="o">*</span><span class="nx">logger</span><span class="p">.</span><span class="nx">Logger</span><span class="p">).</span><span class="nx">ZeroLog</span>
+		<span class="nx">zerolog</span><span class="p">.</span><span class="nf">Debug</span><span class="p">().</span><span class="nf">Str</span><span class="p">(</span><span class="s">&#34;path&#34;</span><span class="p">,</span> <span class="nx">ctx</span><span class="p">.</span><span class="nf">Path</span><span class="p">()).</span><span class="nf">Msg</span><span class="p">(</span><span class="s">&#34;This is Debug msg!&#34;</span><span class="p">)</span>
+
+		<span class="k">return</span> <span class="nx">ctx</span><span class="p">.</span><span class="nf">HTML</span><span class="p">(</span><span class="nx">http</span><span class="p">.</span><span class="nx">StatusOK</span><span class="p">,</span> <span class="s">&#34;Hello World!&#34;</span><span class="p">)</span>
+	<span class="p">})</span>
+
+	<span class="nx">e</span><span class="p">.</span><span class="nx">Logger</span><span class="p">.</span><span class="nf">Fatal</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nf">Start</span><span class="p">(</span><span class="s">&#34;:2020&#34;</span><span class="p">))</span>
+<span class="p">}</span>
+</code></pre></div><p>我们得到 echo 的实例后，将其日志设置为我们自定义的 logger：<code>e.Logger = logger.New(os.Stdout)</code>。注意注释掉的代码。运行程序：go run main.go，打开浏览器访问 http://localhost:2020 ，看看日志是否有两条 Debug 记录。接着将注释去掉再次测试，看日志是否有输出。</p>
+<p>不出意外，一切都符合预期。恭喜你大功告成！</p>
+<p><a href="https://github.com/polaris1119/go-echo-example/tree/091967f4bea4a3f9ee7c20411f15287d2c950e02" target="_blank" rel="noopener">完整代码点这里</a>
+。</p>
+
+			</div><div class="content">
+	<br>
+	<img src="https://static.studygolang.com/static/img/polarisxu-qrcode-soso-s.png">
+</div>
+
+<div class="related-posts thin">
+	<h2>相关推荐</h2>
+	<ul>
+	
+	<li><a href="/posts/go/echo/custom04-renderer/">Echo 系列教程——定制篇4：自定义 Renderer，增强或替换模板引擎</a></li>
+	
+	<li><a href="/posts/go/echo/custom05-error-handler/">Echo 系列教程——定制篇5：自定义 HTTP Error Handler，让 HTTP 错误处理更友好</a></li>
+	
+	<li><a href="/posts/go/echo/custom06-ext-server/">Echo 系列教程——定制篇6：自定义 Server 相关，替换或扩展默认的 Server</a></li>
+	
+	<li><a href="/posts/go/echo/custom02-validator/">Echo 系列教程——定制篇2：自定义 Validator，进行输入校验</a></li>
+	
+	<li><a href="/posts/go/echo/custom01-binder/">Echo 系列教程——定制篇1：自定义 Binder，处理 Request 数据绑定</a></li>
+	
+	</ul>
+</div>
+
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://polarisxu.studygolang.com/tags/echo">echo</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/web%E6%A1%86%E6%9E%B6">web框架</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/%E6%97%A5%E5%BF%97%E5%BA%93">日志库</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1491 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2020-03-06 11:50 &#43;0800</p>
+			</footer>
+		</article>
+		<aside id="toc">
+			<div class="toc-title">目录</div>
+			<nav id="TableOfContents">
+  <ul>
+    <li><a href="#echo-默认的-logger">Echo 默认的 Logger</a>
+      <ul>
+        <li><a href="#log-header">Log Header</a></li>
+        <li><a href="#log-输出">Log 输出</a></li>
+        <li><a href="#log-级别">Log 级别</a></li>
+      </ul>
+    </li>
+    <li><a href="#自定义-logger">自定义 Logger</a></li>
+    <li><a href="#在-echo-项目中使用自定义日志库">在 Echo 项目中使用自定义日志库</a></li>
+  </ul>
+</nav>
+		</aside>
+		<div class="post-nav thin">
+			<a class="next-post" href="https://polarisxu.studygolang.com/posts/go/echo/custom06-ext-server/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;新</span><br><span>Echo 系列教程——定制篇6：自定义 Server 相关，替换或扩展默认的 Server</span>
+			</a>
+			<a class="prev-post" href="https://polarisxu.studygolang.com/posts/go/echo/custom02-validator/">
+				<span class="post-nav-label">旧&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>Echo 系列教程——定制篇2：自定义 Validator，进行输入校验</span>
+			</a>
+		</div>
+		<div id="comments" class="thin"><script src="https://utteranc.es/client.js"
+	repo="polaris1119/polarisxu"
+	issue-term="pathname"
+	theme="github-light"
+	crossorigin="anonymous"
+	async>
+</script>
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2019 - 2020 <a href="https://polarisxu.studygolang.com">polarisxu</a> &#183; <a href="http://www.beian.miit.gov.cn/">京ICP备14030343号-1</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://polarisxu.studygolang.com/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+
+	<script src="https://polarisxu.studygolang.com/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw=" crossorigin="anonymous"></script>
+	<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?224c227cd9239761ec770bc8c1fb134c";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+</body>
+
+</html>

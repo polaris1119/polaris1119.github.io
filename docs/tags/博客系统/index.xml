@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>博客系统 on polarisxu</title>
+    <link>https://polarisxu.studygolang.com/tags/%E5%8D%9A%E5%AE%A2%E7%B3%BB%E7%BB%9F/</link>
+    <description>Recent content in 博客系统 on polarisxu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
+    <lastBuildDate>Sat, 16 May 2020 15:08:51 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/%E5%8D%9A%E5%AE%A2%E7%B3%BB%E7%BB%9F/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Echo 系列教程——实战篇0：使用 Echo 开发一个博客系统</title>
+      <link>https://polarisxu.studygolang.com/posts/go/echo/action00-intro/</link>
+      <pubDate>Sat, 16 May 2020 15:08:51 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/echo/action00-intro/</guid>
+      <description>实战是掌握一门技术很好的方式：纸上得来终觉浅，绝知此事要躬行！ 在初步了解了 Echo 框架的特性、功能后，我们通过具体的一个项目来掌握 Echo 框架，这个项目</description>
+    </item>
+    
+  </channel>
+</rss>

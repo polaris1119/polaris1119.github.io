@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>error on polarisxu</title>
+    <link>https://polarisxu.studygolang.com/tags/error/</link>
+    <description>Recent content in error on polarisxu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
+    <lastBuildDate>Mon, 26 Oct 2020 11:15:51 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/error/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go error 打印灾难 —  CockroachDB errors 库（第3篇）</title>
+      <link>https://polarisxu.studygolang.com/posts/go/translation/go-error-printing-catastrophe/</link>
+      <pubDate>Mon, 26 Oct 2020 11:15:51 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/translation/go-error-printing-catastrophe/</guid>
+      <description>这篇文章是关于 “CockroachDB errors 库” 的系列文章的第 3 篇，“CockroachDB errors 库”实际上是 Go 的标准 errors 包的通用、开放源码的替代品。</description>
+    </item>
+    
+    <item>
+      <title>Go 格式化 API —  CockroachDB errors 库（第2篇）</title>
+      <link>https://polarisxu.studygolang.com/posts/go/translation/go-formatting-apis/</link>
+      <pubDate>Sat, 24 Oct 2020 11:15:51 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/translation/go-formatting-apis/</guid>
+      <description>这篇文章是关于 “CockroachDB errors 库” 的系列文章的第 2 篇，“CockroachDB errors 库”实际上是 Go 的标准 errors 包的通用、开放源码的替代品。</description>
+    </item>
+    
+    <item>
+      <title>Go 标准错误 API — CockroachDB errors 库（第1篇）</title>
+      <link>https://polarisxu.studygolang.com/posts/go/translation/cockroachdb-errors-std-api/</link>
+      <pubDate>Fri, 23 Oct 2020 11:15:51 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/translation/cockroachdb-errors-std-api/</guid>
+      <description>这篇文章是关于 “CockroachDB errors 库” 的系列文章的第 1 篇，“CockroachDB errors 库”实际上是 Go 的标准 errors 包的通用、开放源码的替代品。</description>
+    </item>
+    
+  </channel>
+</rss>

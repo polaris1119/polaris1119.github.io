@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>awesome on polarisxu</title>
+    <link>https://polarisxu.studygolang.com/tags/awesome/</link>
+    <description>Recent content in awesome on polarisxu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
+    <lastBuildDate>Mon, 22 Jun 2020 11:15:51 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/awesome/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>从这些角度看 Go 是一门很棒的语言</title>
+      <link>https://polarisxu.studygolang.com/posts/go/translation/go-is-awesome/</link>
+      <pubDate>Mon, 22 Jun 2020 11:15:51 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/translation/go-is-awesome/</guid>
+      <description>Go 当前引起了很多关注。让我们看一下 Go 好的部分。 我最近用 Go 写了一个 SSH 服务器 ，在其中启动容器。该项目已经发展到很大规模，并且我还向 Go 发起了 PR ，以</description>
+    </item>
+    
+    <item>
+      <title>从这些角度看 Go 是一门糟糕的语言</title>
+      <link>https://polarisxu.studygolang.com/posts/go/translation/go-is-terrible/</link>
+      <pubDate>Mon, 22 Jun 2020 11:15:51 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/translation/go-is-terrible/</guid>
+      <description>上篇文章作者讲到了 Go 的优点，这篇文章提到一些缺点。然而，不少内容我是不认可的。欢迎留言说说你的观点。 Go 当前引起了很多关注。让我们看一下 Go 不好</description>
+    </item>
+    
+  </channel>
+</rss>

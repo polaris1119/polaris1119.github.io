@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#494f5c">
+	<meta name="msapplication-TileColor" content="#494f5c">
+<meta itemprop="name" content="在 GoLang 中使用 Docker Compose 运行 Go 应用程序">
+<meta itemprop="description" content="今天，我们将继续有关如何使用 Docker 运行 和调试 Go 应用程序 的系列文章。
+在本文中，我们将使用 Docker Compose 运行和调试我们的应用程序。对于本文，我们将使用此处的源代码 ，在开始之前切换到 compose 分支 。
+使用 Docker Compose 运行 Go 应用程序 让我们从使用 Docker Compose 运行应用程序开始。
+查看我们已经创建的项目，可以在代码仓库中找到 docker-compose.yaml 文件：
+version:&#34;3.5&#34;services:web:container_name:dockerdevbuild:./ports:- &#34;8000:8000&#34;environment:DD_DB_HOST:dbcommand:/serverdepends_on:- dbdb:container_name:dockerdev-dbimage:postgres:12.2-alpineports:- &#34;5432:5432&#34;environment:POSTGRES_USER:golandPOSTGRES_PASSWORD:golandPOSTGRES_DB:golandvolumes:- ./init.sql:/docker-entrypoint-initdb.d/init.sql在数据库部分，我们需要创建一个名为 init.sql 的新文件。该文件的内容用于设置服务运行所需的数据库。
+最后，让我们在 main.go 文件中运行 Sync packages of &lt;project&gt; 来 quick-fix，以下载 pgx 库并运行该应用程序。注意：如果你的模块缓存中还没有 pgx 的 4.5.0 版本，则需要执行此步骤。
+运行基于 Docker Compose 的应用程序类似于其他 Run Configurations。单击 docker-compose.yaml 中 services 指令旁边的双绿色箭头按钮。要仅运行一项服务，请点击要运行的服务类型旁边的绿色箭头，例如上面的示例配置中的 web 或 db。
+配置运行后，在 Docker 节点下的 Services Tool 窗口中会有一个名为 Compose 的新节点。这里会显示正在运行的每个 Docker Compose 服务套件。">
+<meta itemprop="datePublished" content="2020-05-08T14:17:51+08:00" />
+<meta itemprop="dateModified" content="2020-05-08T14:17:51+08:00" />
+<meta itemprop="wordCount" content="168">
+
+
+
+<meta itemprop="keywords" content="GoLand,Docker,Compose," />
+<meta property="og:title" content="在 GoLang 中使用 Docker Compose 运行 Go 应用程序" />
+<meta property="og:description" content="今天，我们将继续有关如何使用 Docker 运行 和调试 Go 应用程序 的系列文章。
+在本文中，我们将使用 Docker Compose 运行和调试我们的应用程序。对于本文，我们将使用此处的源代码 ，在开始之前切换到 compose 分支 。
+使用 Docker Compose 运行 Go 应用程序 让我们从使用 Docker Compose 运行应用程序开始。
+查看我们已经创建的项目，可以在代码仓库中找到 docker-compose.yaml 文件：
+version:&#34;3.5&#34;services:web:container_name:dockerdevbuild:./ports:- &#34;8000:8000&#34;environment:DD_DB_HOST:dbcommand:/serverdepends_on:- dbdb:container_name:dockerdev-dbimage:postgres:12.2-alpineports:- &#34;5432:5432&#34;environment:POSTGRES_USER:golandPOSTGRES_PASSWORD:golandPOSTGRES_DB:golandvolumes:- ./init.sql:/docker-entrypoint-initdb.d/init.sql在数据库部分，我们需要创建一个名为 init.sql 的新文件。该文件的内容用于设置服务运行所需的数据库。
+最后，让我们在 main.go 文件中运行 Sync packages of &lt;project&gt; 来 quick-fix，以下载 pgx 库并运行该应用程序。注意：如果你的模块缓存中还没有 pgx 的 4.5.0 版本，则需要执行此步骤。
+运行基于 Docker Compose 的应用程序类似于其他 Run Configurations。单击 docker-compose.yaml 中 services 指令旁边的双绿色箭头按钮。要仅运行一项服务，请点击要运行的服务类型旁边的绿色箭头，例如上面的示例配置中的 web 或 db。
+配置运行后，在 Docker 节点下的 Services Tool 窗口中会有一个名为 Compose 的新节点。这里会显示正在运行的每个 Docker Compose 服务套件。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://polarisxu.studygolang.com/posts/devtool/goland/running-go-applications-using-docker-compose-in-goland/" />
+<meta property="article:published_time" content="2020-05-08T14:17:51+08:00" />
+<meta property="article:modified_time" content="2020-05-08T14:17:51+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="在 GoLang 中使用 Docker Compose 运行 Go 应用程序"/>
+<meta name="twitter:description" content="今天，我们将继续有关如何使用 Docker 运行 和调试 Go 应用程序 的系列文章。
+在本文中，我们将使用 Docker Compose 运行和调试我们的应用程序。对于本文，我们将使用此处的源代码 ，在开始之前切换到 compose 分支 。
+使用 Docker Compose 运行 Go 应用程序 让我们从使用 Docker Compose 运行应用程序开始。
+查看我们已经创建的项目，可以在代码仓库中找到 docker-compose.yaml 文件：
+version:&#34;3.5&#34;services:web:container_name:dockerdevbuild:./ports:- &#34;8000:8000&#34;environment:DD_DB_HOST:dbcommand:/serverdepends_on:- dbdb:container_name:dockerdev-dbimage:postgres:12.2-alpineports:- &#34;5432:5432&#34;environment:POSTGRES_USER:golandPOSTGRES_PASSWORD:golandPOSTGRES_DB:golandvolumes:- ./init.sql:/docker-entrypoint-initdb.d/init.sql在数据库部分，我们需要创建一个名为 init.sql 的新文件。该文件的内容用于设置服务运行所需的数据库。
+最后，让我们在 main.go 文件中运行 Sync packages of &lt;project&gt; 来 quick-fix，以下载 pgx 库并运行该应用程序。注意：如果你的模块缓存中还没有 pgx 的 4.5.0 版本，则需要执行此步骤。
+运行基于 Docker Compose 的应用程序类似于其他 Run Configurations。单击 docker-compose.yaml 中 services 指令旁边的双绿色箭头按钮。要仅运行一项服务，请点击要运行的服务类型旁边的绿色箭头，例如上面的示例配置中的 web 或 db。
+配置运行后，在 Docker 节点下的 Services Tool 窗口中会有一个名为 Compose 的新节点。这里会显示正在运行的每个 Docker Compose 服务套件。"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>在 GoLang 中使用 Docker Compose 运行 Go 应用程序</title>
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
+	
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://polarisxu.studygolang.com">polarisxu</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+  <a href="https://polarisxu.studygolang.com/posts/">文章</a>
+  <a href="https://polarisxu.studygolang.com/go-categories/">Go系列</a>
+  <a href="https://polarisxu.studygolang.com/devtool-categories/">开发工具</a>
+  <a href="https://polarisxu.studygolang.com/about/">关于</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<button id="toc-btn" class="hdr-btn desktop-only-ib" title="目录"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3" y2="6"></line><line x1="3" y1="12" x2="3" y2="12"></line><line x1="3" y1="18" x2="3" y2="18"></line></svg></button><span class="hdr-social hide-in-mobile"><a href="https://github.com/polaris1119" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a><a href="https://twitter.com/polaris1119" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="菜单"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://polarisxu.studygolang.com/posts/">文章</a></li>
+			<li><a href="https://polarisxu.studygolang.com/go-categories/">Go系列</a></li>
+			<li><a href="https://polarisxu.studygolang.com/devtool-categories/">开发工具</a></li>
+			<li><a href="https://polarisxu.studygolang.com/about/">关于</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>May 8, 2020</span></div>
+				<h1>在 GoLang 中使用 Docker Compose 运行 Go 应用程序</h1>
+			</header>
+			<div class="content">
+				<p>今天，我们将继续有关<a href="https://mp.weixin.qq.com/s/2tajxPBhGwgwlT4TzAgmVw" target="_blank" rel="noopener">如何使用 Docker 运行</a>
+和<a href="https://mp.weixin.qq.com/s/4-fkIWcr_3LdLFALVk4ZTA" target="_blank" rel="noopener">调试 Go 应用程序</a>
+的系列文章。</p>
+<p>在本文中，我们将使用 Docker Compose 运行和调试我们的应用程序。对于本文，我们将使用<a href="https://github.com/dlsniper/dockerdev/tree/compose" target="_blank" rel="noopener">此处的源代码</a>
+，在开始之前切换到 <a href="https://github.com/dlsniper/dockerdev/tree/compose" target="_blank" rel="noopener">compose 分支</a>
+。</p>
+<h2 id="使用-docker-compose-运行-go-应用程序">使用 Docker Compose 运行 Go 应用程序<a href="#使用-docker-compose-运行-go-应用程序" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>让我们从使用 Docker Compose 运行应用程序开始。</p>
+<p>查看我们已经创建的项目，可以在代码仓库中找到 docker-compose.yaml 文件：</p>
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;3.5&#34;</span><span class="w">
+</span><span class="w"> 
+</span><span class="w"></span><span class="nt">services</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">web</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l">dockerdev</span><span class="w">
+</span><span class="w">    </span><span class="nt">build</span><span class="p">:</span><span class="w"> </span><span class="l">./</span><span class="w">
+</span><span class="w">    </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="s2">&#34;8000:8000&#34;</span><span class="w">
+</span><span class="w">    </span><span class="nt">environment</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">DD_DB_HOST</span><span class="p">:</span><span class="w"> </span><span class="l">db</span><span class="w">
+</span><span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l">/server</span><span class="w">
+</span><span class="w">    </span><span class="nt">depends_on</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="l">db</span><span class="w">
+</span><span class="w">  </span><span class="nt">db</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l">dockerdev-db</span><span class="w">
+</span><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">postgres:12.2-alpine</span><span class="w">
+</span><span class="w">    </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="s2">&#34;5432:5432&#34;</span><span class="w">
+</span><span class="w">    </span><span class="nt">environment</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">POSTGRES_USER</span><span class="p">:</span><span class="w"> </span><span class="l">goland</span><span class="w">
+</span><span class="w">      </span><span class="nt">POSTGRES_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="l">goland</span><span class="w">
+</span><span class="w">      </span><span class="nt">POSTGRES_DB</span><span class="p">:</span><span class="w"> </span><span class="l">goland</span><span class="w">
+</span><span class="w">    </span><span class="nt">volumes</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="l">./init.sql:/docker-entrypoint-initdb.d/init.sql</span><span class="w">
+</span></code></pre></div><p>在数据库部分，我们需要创建一个名为 init.sql 的新文件。该文件的内容用于设置服务运行所需的数据库。</p>
+<p>最后，让我们在 main.go 文件中运行 <code>Sync packages of &lt;project&gt;</code> 来 quick-fix，以下载 <a href="https://github.com/jackc/pgx/" target="_blank" rel="noopener">pgx</a>
+ 库并运行该应用程序。注意：如果你的模块缓存中还没有 pgx 的 4.5.0 版本，则需要执行此步骤。</p>
+<p>运行基于 Docker Compose 的应用程序类似于其他 <code>Run Configurations</code>。单击 docker-compose.yaml 中 services 指令旁边的双绿色箭头按钮。要仅运行一项服务，请点击要运行的服务类型旁边的绿色箭头，例如上面的示例配置中的 web 或 db。</p>
+<p><p class="md__image">
+  <img src="../imgs/11-Running-Docker-Compose-from-the-IDE.gif"
+    alt=""  />
+</p>
+</p>
+<p>配置运行后，在 Docker 节点下的 <code>Services Tool</code> 窗口中会有一个名为 Compose 的新节点。这里会显示正在运行的每个 Docker Compose 服务套件。</p>
+<p>可以浏览每个服务定义，并为每个服务显示所有正在运行的实例。Docker Compose 服务中可用于容器的信息与常规 Docker 容器可使用的信息相同。</p>
+<p><strong>注意</strong>：如果你要启动较重的服务（例如数据库服务器），或者这些服务需要一些初始化时间，则我们的 Go 程序服务需要考虑这些服务的启动时间。</p>
+<p>在我们的示例代码中，这是使用 getDBConnection 函数处理的，该函数尝试在放弃之前尝试几次以指数退避的方式连接到数据库。</p>
+<h2 id="重启动-docker-compose-服务">重启动 Docker Compose 服务<a href="#重启动-docker-compose-服务" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>更改我们的代码后，我们需要重新启动服务以重新加载这些更改。目前，使用 IDE 重新启动它有点复杂，因为这样做需要你执行以下步骤：</p>
+<ul>
+<li>执行 <code>Run | Edit Configurations</code> 并复制一份现有的 Docker Compose 配置；</li>
+<li>编辑新创建的配置以添加重新启动的服务的名称，并启用 <code>–build</code> 选项以强制在运行镜像之前对其进行重建；</li>
+</ul>
+<p>完成这些步骤之后，你可以停止现有服务，删除现有容器，然后启动新创建的配置。</p>
+<p><p class="md__image">
+  <img src="../imgs/12-Restart-Docker-Compose-service.gif"
+    alt=""  />
+</p>
+</p>
+<p><strong>Pro tip</strong>：你可以使用 “Delete” 功能同时停止和删除服务。</p>
+<h2 id="使用-docker-compose-调试-go-应用程序">使用 Docker Compose 调试 Go 应用程序<a href="#使用-docker-compose-调试-go-应用程序" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>要使用 Docker Compose 调试应用程序，我们需要同时更改 Dockerfile 和 docker-compose.yaml 文件。我们可以切换到代码库的 <a href="https://github.com/dlsniper/dockerdev/tree/compose-debug" target="_blank" rel="noopener">compose-debug 分支</a>
+，这样更容易理解。</p>
+<p>现在，docker-compose.yaml 文件如下所示：</p>
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;3.5&#34;</span><span class="w">
+</span><span class="w"> 
+</span><span class="w"></span><span class="nt">services</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">web</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l">dockerdev</span><span class="w">
+</span><span class="w">    </span><span class="nt">build</span><span class="p">:</span><span class="w"> </span><span class="l">./</span><span class="w">
+</span><span class="w">    </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="s2">&#34;8000:8000&#34;</span><span class="w">
+</span><span class="w">      </span>- <span class="s2">&#34;40000:40000&#34;</span><span class="w">
+</span><span class="w">    </span><span class="nt">environment</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">DD_DB_HOST</span><span class="p">:</span><span class="w"> </span><span class="l">db</span><span class="w">
+</span><span class="w">    </span><span class="nt">security_opt</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="s2">&#34;seccomp:unconfined&#34;</span><span class="w">
+</span><span class="w">    </span><span class="nt">cap_add</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="l">SYS_PTRACE</span><span class="w">
+</span><span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l">/dlv --headless --listen=:40000 --api-version=2 exec /server</span><span class="w">
+</span><span class="w">    </span><span class="nt">depends_on</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="l">db</span><span class="w">
+</span><span class="w">  </span><span class="nt">db</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l">dockerdev-db</span><span class="w">
+</span><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">postgres:12.2-alpine</span><span class="w">
+</span><span class="w">    </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="s2">&#34;5432:5432&#34;</span><span class="w">
+</span><span class="w">    </span><span class="nt">environment</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">POSTGRES_USER</span><span class="p">:</span><span class="w"> </span><span class="l">goland</span><span class="w">
+</span><span class="w">      </span><span class="nt">POSTGRES_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="l">goland</span><span class="w">
+</span><span class="w">      </span><span class="nt">POSTGRES_DB</span><span class="p">:</span><span class="w"> </span><span class="l">goland</span><span class="w">
+</span><span class="w">    </span><span class="nt">volumes</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="l">./init.sql:/docker-entrypoint-initdb.d/init.sql</span><span class="w">
+</span></code></pre></div><p><strong>注意</strong>：这里的重要部分是 security_opt 和 cap_add 属性，因为它们允许调试器在 Docker 环境中运行。</p>
+<p>运行此操作类似于运行常规 Docker Compose 配置。我们可以使用 Go Remote 配置连接到容器，调试器会话将像调试常规配置一样开始。</p>
+<p><p class="md__image">
+  <img src="../imgs/13-Debugging-Go-Service-in-Docker-Compose.gif"
+    alt=""  />
+</p>
+</p>
+<p>今天我们的文章到此结束。我们已经讨论了如何使用 Docker Compose，以及如何从 GoLand 运行和调试我们的应用程序。</p>
+<p>在下一篇文章中，我们将介绍如何在 IDE 中使用 Kubernetes，以及如何使用它运行和调试我们的应用程序。</p>
+<blockquote>
+<p>原文链接：https://blog.jetbrains.com/go/2020/05/08/running-go-applications-using-docker-compose-in-goland/</p>
+<p>作者：Florin Pățan</p>
+<p>翻译：Go语言中文网 polaris</p>
+</blockquote>
+
+			</div><div class="content">
+	<br>
+	<img src="https://static.studygolang.com/static/img/polarisxu-qrcode-soso-s.png">
+</div>
+
+<div class="related-posts thin">
+	<h2>相关推荐</h2>
+	<ul>
+	
+	<li><a href="/posts/devtool/goland/debugging-a-go-application-inside-a-docker-container/">基于 GoLand 使用 Docker 容器进行 Go 开发</a></li>
+	
+	<li><a href="/posts/devtool/goland/2020.2.beta/">GoLand 2020.2 Beta 版发布：go.mod 升级以及对泛型的实验性支持</a></li>
+	
+	<li><a href="/posts/devtool/goland/using-kubernetes-from-goland/">当 GoLand 遇到 Kubernetes：如何调试和运行 Go 程序</a></li>
+	
+	<li><a href="/posts/devtool/goland/goland-2020-1-release/">还在用 2019.3 就 Out 了：GoLand 2020.1 版本正式发布</a></li>
+	
+	<li><a href="/posts/devtool/goland/welcome-to-the-goland-2020-1-eap/">欢迎加入 GoLand 2020.1 抢先体验计划</a></li>
+	
+	</ul>
+</div>
+
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://polarisxu.studygolang.com/tags/goland">GoLand</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/docker">Docker</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/compose">Compose</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>168 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2020-05-08 14:17 &#43;0800</p>
+			</footer>
+		</article>
+		<aside id="toc">
+			<div class="toc-title">目录</div>
+			<nav id="TableOfContents">
+  <ul>
+    <li><a href="#使用-docker-compose-运行-go-应用程序">使用 Docker Compose 运行 Go 应用程序</a></li>
+    <li><a href="#重启动-docker-compose-服务">重启动 Docker Compose 服务</a></li>
+    <li><a href="#使用-docker-compose-调试-go-应用程序">使用 Docker Compose 调试 Go 应用程序</a></li>
+  </ul>
+</nav>
+		</aside>
+		<div class="post-nav thin">
+			<a class="next-post" href="https://polarisxu.studygolang.com/posts/devtool/goland/using-kubernetes-from-goland/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;新</span><br><span>当 GoLand 遇到 Kubernetes：如何调试和运行 Go 程序</span>
+			</a>
+			<a class="prev-post" href="https://polarisxu.studygolang.com/posts/devtool/goland/debugging-a-go-application-inside-a-docker-container/">
+				<span class="post-nav-label">旧&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>基于 GoLand 使用 Docker 容器进行 Go 开发</span>
+			</a>
+		</div>
+		<div id="comments" class="thin"><script src="https://utteranc.es/client.js"
+	repo="polaris1119/polarisxu"
+	issue-term="pathname"
+	theme="github-light"
+	crossorigin="anonymous"
+	async>
+</script>
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2019 - 2020 <a href="https://polarisxu.studygolang.com">polarisxu</a> &#183; <a href="http://www.beian.miit.gov.cn/">京ICP备14030343号-1</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://polarisxu.studygolang.com/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+
+	<script src="https://polarisxu.studygolang.com/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw=" crossorigin="anonymous"></script>
+	<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?224c227cd9239761ec770bc8c1fb134c";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>发布 on polarisxu</title>
+    <link>https://polarisxu.studygolang.com/tags/%E5%8F%91%E5%B8%83/</link>
+    <description>Recent content in 发布 on polarisxu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
+    <lastBuildDate>Fri, 10 Apr 2020 14:17:51 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/%E5%8F%91%E5%B8%83/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>还在用 2019.3 就 Out 了：GoLand 2020.1 版本正式发布</title>
+      <link>https://polarisxu.studygolang.com/posts/devtool/goland/goland-2020-1-release/</link>
+      <pubDate>Fri, 10 Apr 2020 14:17:51 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/devtool/goland/goland-2020-1-release/</guid>
+      <description>北京时间 2020 年 4 月 10 日凌晨，Jetbrains 宣布正式发布 GoLand 2020.1 版本。
+该版本主要的变化有：
+引入了对 Go 模块支持的各种升级以及代码编辑功能，这些功能几乎不需要用户交互，也不需要扩展的代码补全系列。
+除此之外，还添加了新的代码检查、快速修复和其他改进，例如新的 LightEdit 模式（可让您在文本编辑器中打开文件，而无需创建或加载项目）、智能拼写和语法检查以及用于 Web 开发和数据库处理的新功能。
+Go 语言中文网在 2020.1 还未正式发布之前，就发过关于该版本特性的文章，现在 2020.1 正式发布了，相关功能特性稳定了，我们再次介绍下相关新特性。
+Go 模块改进 2020.1 现已支持 Go 1.13 的环境变量 GOPROXY、GOPRIVATE、GOSUMDB、GONOPROXY 和 GONOSUMB。
+使用 Go Modules 项目模板配置其默认值。只需点击 Environment 字段中的 Browse 图标即可打开新的 Environment Variables 对话框。
+go.mod 文件支持 go、module、require、replace 和 exclude 关键字代码补全、依赖项名称以及本地路径替换。
+此外，也可以使用 Rename 和 Move 重构。 重命名或移动由 replace 语句引用的目录时，GoLand 将相应地更改 go.mod 文件中的路径。
+现在，您还可以通过 Project 视图调用 Find Usages，以探索 go.mod 文件中特定目录路径的使用位置。</description>
+    </item>
+    
+  </channel>
+</rss>

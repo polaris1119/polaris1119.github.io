@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>泛型 on polarisxu</title>
+    <link>https://polarisxu.studygolang.com/tags/%E6%B3%9B%E5%9E%8B/</link>
+    <description>Recent content in 泛型 on polarisxu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
+    <lastBuildDate>Thu, 16 Jul 2020 14:17:51 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/%E6%B3%9B%E5%9E%8B/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>GoLand 2020.2 Beta 版发布：go.mod 升级以及对泛型的实验性支持</title>
+      <link>https://polarisxu.studygolang.com/posts/devtool/goland/2020.2.beta/</link>
+      <pubDate>Thu, 16 Jul 2020 14:17:51 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/devtool/goland/2020.2.beta/</guid>
+      <description>GoLand 2020.2 达到 Beta。这意味着我们将结束一连串的新功能开发，将重点转移到完善我们已经完成的工作上，并开始计算发布日之前的日子！
+与我们的“抢先体验计划”版本相比，该测试版非常稳定，但请记住，可能仍然在某处存在 Bug。
+同样请注意，此 Beta 版本是 EAP 周期中的最后一个版本，不需要订阅即可使用（如果您只是想尝试 GoLand，请尝试）。测试版通常会在发布候选版本之后出现，一旦我们发现该版本足够好并且可以在您的计算机上安装了。
+在此发布周期中，我们为即将推出的 GoLand 2020.2 打包了 Go 模块的新功能，更好地呈现了代码中可能存在的问题和薄弱环节，提供了新的代码检查功能以及新的代码编辑功能，例如期待已久的 “Add Caret Per Selected Line”，改进了后台流程，使其更透明，更快，更多！
+让我们来看看即将发布的版本中的新功能。选择您感兴趣的主题，或浏览整个博客文章以了解每个新功能。
+ Go Modules Generics a.k.a. Type Parameters Code Editing Code Inspections Take Variadic Arguments Under Сontrol References from Comments Save Projects as Templates Under the Hood Processes Version Control  Go Modules 支持 GOMODCACHE 环境变量 从 Go 1.15 开始，可以使用新的 GOMODCACHE 环境变量将 Go Modules 缓存的默认位置从 $GOPATH/pkg/mod 更改为另一个文件夹。</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>polarisxu</title>
+    <link>https://polarisxu.studygolang.com/</link>
+    <description>Recent content on polarisxu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
+    <lastBuildDate>Mon, 26 Oct 2020 18:12:51 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>闲聊昨晚极客时间的直播</title>
+      <link>https://polarisxu.studygolang.com/posts/go/action/talk-geek-time-live/</link>
+      <pubDate>Mon, 26 Oct 2020 18:12:51 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/action/talk-geek-time-live/</guid>
+      <description>昨天晚上（10 月 25 日）极客时间进行了一场直播，主题是：《未来 5 年将是 Go 语言的天下》。 客观说，这个主题还是挺唬人的，而直播的内容跟这个主题关系</description>
+    </item>
+    
+    <item>
+      <title>Go error 打印灾难 —  CockroachDB errors 库（第3篇）</title>
+      <link>https://polarisxu.studygolang.com/posts/go/translation/go-error-printing-catastrophe/</link>
+      <pubDate>Mon, 26 Oct 2020 11:15:51 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/translation/go-error-printing-catastrophe/</guid>
+      <description>这篇文章是关于 “CockroachDB errors 库” 的系列文章的第 3 篇，“CockroachDB errors 库”实际上是 Go 的标准 errors 包的通用、开放源码的替代品。</description>
+    </item>
+    
+    <item>
+      <title>《polarisxu Go 系列教程》</title>
+      <link>https://polarisxu.studygolang.com/go-categories/</link>
+      <pubDate>Mon, 26 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/go-categories/</guid>
+      <description>这里汇集 polarisxu 的原创和翻译文章。如果你有哪些想学的 Go 技术可以留言，我抽空写写。
+ Echo 系列  基础篇1：搭建 Echo 开发环境  基础篇2：Echo 核心亮点介绍  基础篇3：通过一个例子串联各特性  定制篇0：让 Echo 更强大、好用  定制篇1：自定义 Binder，处理 Request 数据绑定  定制篇2：自定义 Validator，进行输入校验  定制篇3：自定义 Logger，用你喜欢的日志库  定制篇4：自定义 Renderer，增强或替换模板引擎  定制篇5：自定义 HTTP Error Handler，让 HTTP 错误处理更友好  定制篇6：自定义 Server 相关，替换或扩展默认的 Server  实战篇0：使用 Echo 开发一个博客系统     </description>
+    </item>
+    
+    <item>
+      <title>《polarisxu 开发工具教程》</title>
+      <link>https://polarisxu.studygolang.com/devtool-categories/</link>
+      <pubDate>Mon, 26 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/devtool-categories/</guid>
+      <description>关于编辑器&amp;amp;IDE相关的教程。
+ 玩转 VSCode 玩转 GoLand  基于 GoLand 使用 Docker 容器进行 Go 开发  在 GoLang 中使用 Docker Compose 运行 Go 应用程序  当 GoLand 遇到 Kubernetes：如何调试和运行 Go 程序  欢迎加入 GoLand 2020.1 抢先体验计划  还在用 2019.3 就 Out 了：GoLand 2020.1 版本正式发布  GoLand 2020.2 Beta 版发布：go.mod 升级以及对泛型的实验性支持     </description>
+    </item>
+    
+    <item>
+      <title>关于</title>
+      <link>https://polarisxu.studygolang.com/about/</link>
+      <pubDate>Mon, 26 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/about/</guid>
+      <description>你好，我是 polarisxu，Go语言中文网 站长。目前在北京一家创业公司担任 CTO。2011 年春，北京大学硕士毕业，先后在开心网、奇虎 360 工作。本人一直从事服务端相关工作，有着丰富的经验，对前端也有所掌握，Android 开发也了解些。虽然目前管理方面的事情较多，但一直保持着技术学习。擅长服务端技术和架构。
+我与 Go 语言  2012 年 3 月，Go1.0 正式发布时，有幸参与 360 的一个 Go 项目（关注过 Gopher China 大会的应该知道 360 有一个消息系统，而且 Go 官方博客 还专门介绍过，这个项目成立的第一天我就参与了），从此爱上了它。 2012 年底，利用业余时间使用 Go 语言开发了 Go 语言中文网，先后开通运营了 QQ 群、微博、微信公众号等。 2013 年 4 月 14 日，开始撰写《通过例子学习Go标准库》 一书；有点遗憾，至今还没完成。 2017 年年底，发起了 GCTT 项目，组织国内志愿者一起翻译国外优秀的英文资料、博文等（无闻 帮忙校对很多文章，还对流程优化提供了很多建议）。 截止 2019 年 3 月，Go 中文网注册用户超 3.2 万，近一年多增长很快，每天新增注册 100+。  我的 Go 语言学习之路 2012 年 3 月，Go1.0 发布时，Go 相关的资料还是比较少的，那时候主要看官方文档、啃源码。那段时间是我技术成长最快的，一方面，参与的项目有挑战，通过项目学习 Go，很快掌握了它；另一方面，项目负责人（diogin）是一个大牛，能完全 Hold 住 Go，他给我们讲解、传授了很多知识。</description>
+    </item>
+    
+    <item>
+      <title>Go 格式化 API —  CockroachDB errors 库（第2篇）</title>
+      <link>https://polarisxu.studygolang.com/posts/go/translation/go-formatting-apis/</link>
+      <pubDate>Sat, 24 Oct 2020 11:15:51 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/translation/go-formatting-apis/</guid>
+      <description>这篇文章是关于 “CockroachDB errors 库” 的系列文章的第 2 篇，“CockroachDB errors 库”实际上是 Go 的标准 errors 包的通用、开放源码的替代品。</description>
+    </item>
+    
+    <item>
+      <title>Go 标准错误 API — CockroachDB errors 库（第1篇）</title>
+      <link>https://polarisxu.studygolang.com/posts/go/translation/cockroachdb-errors-std-api/</link>
+      <pubDate>Fri, 23 Oct 2020 11:15:51 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/translation/cockroachdb-errors-std-api/</guid>
+      <description>这篇文章是关于 “CockroachDB errors 库” 的系列文章的第 1 篇，“CockroachDB errors 库”实际上是 Go 的标准 errors 包的通用、开放源码的替代品。</description>
+    </item>
+    
+    <item>
+      <title>一道关于 json 和 slice 的题难倒了 80% 的人</title>
+      <link>https://polarisxu.studygolang.com/posts/go/action/interview-slice-json/</link>
+      <pubDate>Sun, 18 Oct 2020 14:18:50 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/action/interview-slice-json/</guid>
+      <description>昨天在 Go语言爱好者周刊：第 65 期 刊首语发了一道题，以下代码输出什么？ package main import ( &amp;#34;encoding/json&amp;#34; &amp;#34;fmt&amp;#34; ) type AutoGenerated struct { Age int `json:&amp;#34;age&amp;#34;` Name string `json:&amp;#34;name&amp;#34;` Child []int `json:&amp;#34;child&amp;#34;` } func main() { jsonStr1 := `{&amp;#34;age&amp;#34;: 14,&amp;#34;name&amp;#34;: &amp;#34;potter&amp;#34;, &amp;#34;child&amp;#34;:[1,2,3]}` a := AutoGenerated{} json.Unmarshal([]byte(jsonStr1), &amp;amp;a) aa</description>
+    </item>
+    
+    <item>
+      <title>你喜欢的 Go 第三方库：一步为系统集成可视化实时运行时统计</title>
+      <link>https://polarisxu.studygolang.com/posts/go/pkg/statsviz/</link>
+      <pubDate>Thu, 15 Oct 2020 18:12:51 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/pkg/statsviz/</guid>
+      <description>大家好，我是站长 polarisxu。 掌握系统运行状态，知道系统哪些地方可能存在问题，方便进行优化，这是一个实际系统必备的。裸奔，对系统一无所</description>
+    </item>
+    
+    <item>
+      <title>Go Playground 还能这么玩？</title>
+      <link>https://polarisxu.studygolang.com/posts/go/project/usingg-gpgsync/</link>
+      <pubDate>Fri, 09 Oct 2020 18:12:51 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/project/usingg-gpgsync/</guid>
+      <description>大家好，我是 polarisxu。 之前我为大家推荐过 Playground，对比了三款 Go Playground 。今天发现了另外一款 Playground，它最核心的特</description>
+    </item>
+    
+  </channel>
+</rss>

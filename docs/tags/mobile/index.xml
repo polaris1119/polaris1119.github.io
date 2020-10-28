@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Mobile on polarisxu</title>
+    <link>https://polarisxu.studygolang.com/tags/mobile/</link>
+    <description>Recent content in Mobile on polarisxu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
+    <lastBuildDate>Mon, 14 Sep 2020 11:15:51 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/mobile/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>在 iOS 和 Android 上运行 Go 代码</title>
+      <link>https://polarisxu.studygolang.com/posts/go/translation/running-go-code-on-ios-and-android/</link>
+      <pubDate>Mon, 14 Sep 2020 11:15:51 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/translation/running-go-code-on-ios-and-android/</guid>
+      <description>在本教程中，我们将构建一个简单的 Go 包，您可以从 iOS 应用程序（Swift）和 Android 应用程序（Kotlin）运行该软件包。 本教程不会使用go mobile 框架。相</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on polarisxu</title>
+    <link>https://polarisxu.studygolang.com/tags/</link>
+    <description>Recent content in Tags on polarisxu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
+    <lastBuildDate>Mon, 26 Oct 2020 18:12:51 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go</title>
+      <link>https://polarisxu.studygolang.com/tags/go/</link>
+      <pubDate>Mon, 26 Oct 2020 18:12:51 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/tags/go/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Golang</title>
+      <link>https://polarisxu.studygolang.com/tags/golang/</link>
+      <pubDate>Mon, 26 Oct 2020 18:12:51 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/tags/golang/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>杂谈</title>
+      <link>https://polarisxu.studygolang.com/tags/%E6%9D%82%E8%B0%88/</link>
+      <pubDate>Mon, 26 Oct 2020 18:12:51 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/tags/%E6%9D%82%E8%B0%88/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>面试</title>
+      <link>https://polarisxu.studygolang.com/tags/%E9%9D%A2%E8%AF%95/</link>
+      <pubDate>Mon, 26 Oct 2020 18:12:51 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/tags/%E9%9D%A2%E8%AF%95/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>CockroachDB</title>
+      <link>https://polarisxu.studygolang.com/tags/cockroachdb/</link>
+      <pubDate>Mon, 26 Oct 2020 11:15:51 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/tags/cockroachdb/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>error</title>
+      <link>https://polarisxu.studygolang.com/tags/error/</link>
+      <pubDate>Mon, 26 Oct 2020 11:15:51 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/tags/error/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>JSON</title>
+      <link>https://polarisxu.studygolang.com/tags/json/</link>
+      <pubDate>Sun, 18 Oct 2020 14:18:50 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/tags/json/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>切片</title>
+      <link>https://polarisxu.studygolang.com/tags/%E5%88%87%E7%89%87/</link>
+      <pubDate>Sun, 18 Oct 2020 14:18:50 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/tags/%E5%88%87%E7%89%87/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>面试题</title>
+      <link>https://polarisxu.studygolang.com/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/</link>
+      <pubDate>Sun, 18 Oct 2020 14:18:50 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>第三方库</title>
+      <link>https://polarisxu.studygolang.com/tags/%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93/</link>
+      <pubDate>Thu, 15 Oct 2020 18:12:51 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/tags/%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

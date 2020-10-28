@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Compose on polarisxu</title>
+    <link>https://polarisxu.studygolang.com/tags/compose/</link>
+    <description>Recent content in Compose on polarisxu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
+    <lastBuildDate>Fri, 08 May 2020 14:17:51 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/compose/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>在 GoLang 中使用 Docker Compose 运行 Go 应用程序</title>
+      <link>https://polarisxu.studygolang.com/posts/devtool/goland/running-go-applications-using-docker-compose-in-goland/</link>
+      <pubDate>Fri, 08 May 2020 14:17:51 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/devtool/goland/running-go-applications-using-docker-compose-in-goland/</guid>
+      <description>今天，我们将继续有关如何使用 Docker 运行 和调试 Go 应用程序 的系列文章。
+在本文中，我们将使用 Docker Compose 运行和调试我们的应用程序。对于本文，我们将使用此处的源代码 ，在开始之前切换到 compose 分支 。
+使用 Docker Compose 运行 Go 应用程序 让我们从使用 Docker Compose 运行应用程序开始。
+查看我们已经创建的项目，可以在代码仓库中找到 docker-compose.yaml 文件：
+version:&amp;#34;3.5&amp;#34;services:web:container_name:dockerdevbuild:./ports:- &amp;#34;8000:8000&amp;#34;environment:DD_DB_HOST:dbcommand:/serverdepends_on:- dbdb:container_name:dockerdev-dbimage:postgres:12.2-alpineports:- &amp;#34;5432:5432&amp;#34;environment:POSTGRES_USER:golandPOSTGRES_PASSWORD:golandPOSTGRES_DB:golandvolumes:- ./init.sql:/docker-entrypoint-initdb.d/init.sql在数据库部分，我们需要创建一个名为 init.sql 的新文件。该文件的内容用于设置服务运行所需的数据库。
+最后，让我们在 main.go 文件中运行 Sync packages of &amp;lt;project&amp;gt; 来 quick-fix，以下载 pgx 库并运行该应用程序。注意：如果你的模块缓存中还没有 pgx 的 4.5.0 版本，则需要执行此步骤。
+运行基于 Docker Compose 的应用程序类似于其他 Run Configurations。单击 docker-compose.yaml 中 services 指令旁边的双绿色箭头按钮。要仅运行一项服务，请点击要运行的服务类型旁边的绿色箭头，例如上面的示例配置中的 web 或 db。
+配置运行后，在 Docker 节点下的 Services Tool 窗口中会有一个名为 Compose 的新节点。这里会显示正在运行的每个 Docker Compose 服务套件。</description>
+    </item>
+    
+  </channel>
+</rss>

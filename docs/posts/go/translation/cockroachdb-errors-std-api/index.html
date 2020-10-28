@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#494f5c">
+	<meta name="msapplication-TileColor" content="#494f5c">
+<meta itemprop="name" content="Go 标准错误 API — CockroachDB errors 库（第1篇）">
+<meta itemprop="description" content="这篇文章是关于 “CockroachDB errors 库” 的系列文章的第 1 篇，“CockroachDB errors 库”实际上是 Go 的标准 errors 包的通用、开放源码的替代品。">
+<meta itemprop="datePublished" content="2020-10-23T11:15:51+08:00" />
+<meta itemprop="dateModified" content="2020-10-23T11:15:51+08:00" />
+<meta itemprop="wordCount" content="3127">
+
+
+
+<meta itemprop="keywords" content="Go,CockroachDB,error," />
+<meta property="og:title" content="Go 标准错误 API — CockroachDB errors 库（第1篇）" />
+<meta property="og:description" content="这篇文章是关于 “CockroachDB errors 库” 的系列文章的第 1 篇，“CockroachDB errors 库”实际上是 Go 的标准 errors 包的通用、开放源码的替代品。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/translation/cockroachdb-errors-std-api/" />
+<meta property="article:published_time" content="2020-10-23T11:15:51+08:00" />
+<meta property="article:modified_time" content="2020-10-23T11:15:51+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Go 标准错误 API — CockroachDB errors 库（第1篇）"/>
+<meta name="twitter:description" content="这篇文章是关于 “CockroachDB errors 库” 的系列文章的第 1 篇，“CockroachDB errors 库”实际上是 Go 的标准 errors 包的通用、开放源码的替代品。"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>Go 标准错误 API — CockroachDB errors 库（第1篇）</title>
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
+	
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://polarisxu.studygolang.com">polarisxu</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+  <a href="https://polarisxu.studygolang.com/posts/">文章</a>
+  <a href="https://polarisxu.studygolang.com/go-categories/">Go系列</a>
+  <a href="https://polarisxu.studygolang.com/devtool-categories/">开发工具</a>
+  <a href="https://polarisxu.studygolang.com/about/">关于</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<button id="toc-btn" class="hdr-btn desktop-only-ib" title="目录"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3" y2="6"></line><line x1="3" y1="12" x2="3" y2="12"></line><line x1="3" y1="18" x2="3" y2="18"></line></svg></button><span class="hdr-social hide-in-mobile"><a href="https://github.com/polaris1119" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a><a href="https://twitter.com/polaris1119" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="菜单"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://polarisxu.studygolang.com/posts/">文章</a></li>
+			<li><a href="https://polarisxu.studygolang.com/go-categories/">Go系列</a></li>
+			<li><a href="https://polarisxu.studygolang.com/devtool-categories/">开发工具</a></li>
+			<li><a href="https://polarisxu.studygolang.com/about/">关于</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Oct 23, 2020</span></div>
+				<h1>Go 标准错误 API — CockroachDB errors 库（第1篇）</h1>
+			</header>
+			<div class="content">
+				<p>这篇文章是关于 <a href="https://github.com/cockroachdb/errors" target="_blank" rel="noopener">“CockroachDB errors 库”</a>
+的系列文章的第 1 篇，“CockroachDB errors 库”实际上是 Go 的标准 errors 包的通用、开放源码的替代品。</p>
+<p>那本篇文章主要谈论什么呢？</p>
+<h2 id="基本的-go-错误error-是值">基本的 Go 错误：error 是值<a href="#基本的-go-错误error-是值" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>Go 生态有一些非常流行、也非常基本的学习资源（文档）：</p>
+<ul>
+<li><a href="http://tour.studygolang.com/methods/19" target="_blank" rel="noopener">A Tour of Go: Errors</a>
+。这是 Go 的官方教程。</li>
+<li><a href="http://books.studygolang.com/gobyexample/errors/" target="_blank" rel="noopener">Go By Example: errors</a>
+。Go By Example 是一些系列文章，推荐给那些希望通过示例学习 Go 的朋友们。</li>
+<li><a href="https://golangdocs.com/errors-exception-handling-in-golang" target="_blank" rel="noopener">Goland Docs: Errors and Exception handling in GoLang</a>
+。“Golang Docs” 是一系列文章，它涵盖了 Go 中的常见软件模式。</li>
+</ul>
+<p>我们可以从这些文章中学到什么？</p>
+<ul>
+<li>
+<p>Go 提供了一个预定义的接口类型 error，定义如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// an &#34;error&#34; is an object with an `Error()` method
+</span><span class="c1">// which describes the situation that occurred.
+</span><span class="c1"></span><span class="kd">type</span> <span class="kt">error</span> <span class="kd">interface</span> <span class="p">{</span>
+     <span class="nf">Error</span><span class="p">()</span> <span class="kt">string</span>
+<span class="p">}</span>
+</code></pre></div></li>
+<li>
+<p>编写 Go 函数/方法的惯用方法是让它们在常规返回值之外，再返回一个 error 类型值，并在每个调用点上进行测试</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">div</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span> <span class="kt">int</span><span class="p">)</span> <span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="nx">y</span> <span class="o">==</span> <span class="mi">0</span> <span class="p">{</span>
+       <span class="k">return</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">fmt</span><span class="p">.</span><span class="nf">Errorf</span><span class="p">(</span><span class="s">&#34;boo&#34;</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">x</span> <span class="o">/</span> <span class="nx">y</span><span class="p">,</span> <span class="kc">nil</span>
+<span class="p">}</span>
+  
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">r</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nf">div</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+       <span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;woops: %v&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+       <span class="k">return</span>
+    <span class="p">}</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;result:&#34;</span><span class="p">,</span> <span class="nx">r</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></li>
+<li>
+<p>如上面的示例所示，fmt.Printf 会知道如何调用 error 的 Error() 方法来显示错误文本。如果错误是通过%s、%q、%x/%X 打印的，它也会这样做。</p>
+</li>
+</ul>
+<h2 id="error-也是链表">error 也是链表<a href="#error-也是链表" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>如果你还不知道 <a href="https://dave.cheney.net/" target="_blank" rel="noopener">Dave Cheney</a>
+ 是谁，现在是时候去了解下这位及其高产的 Go 大师程序员。</p>
+<p>2015 年，Dave 创建了 pkg/errors 包（<a href="https://github.com/pkg/errors" target="_blank" rel="noopener">源代码</a>
+，<a href="https://pkg.go.dev/github.com/pkg/errors" target="_blank" rel="noopener">文档</a>
+），随后在 2016 年东京举行的 GoCon 春季会议上展示了它。下面这篇文章用散文的形式解释了这个故事：</p>
+<p><a href="https://studygolang.com/articles/12484" target="_blank" rel="noopener">Dave Cheney：优雅的处理错误，而不仅仅只是检查错误</a>
+</p>
+<p>以下是 Dave 提到的主要创新：</p>
+<ul>
+<li>Go error 对象像链表一样构建，而且是不可变的。</li>
+<li>err 在任何时候都会指向列表的头部。</li>
+<li>在首次发生错误时，将构造一个原子或&quot;叶&quot;错误对象，该对象将在列表的尾部。</li>
+<li>当错误通过调用堆栈和软件组件返回时，通过向错误添加更多&quot;层&quot;、在现有错误列表的头部 push 更多列表元素或&quot;包装器&quot;来增加错误。</li>
+</ul>
+<p>这在实践中给我们什么启发呢？主要用途是向错误对象添加消息前缀，以给出有关&quot;错误发生在哪&quot;的更多上下文。例如：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">import</span> <span class="p">(</span>
+   <span class="s">&#34;fmt&#34;</span>
+   <span class="s">&#34;github.com/pkg/errors&#34;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nf">foo</span><span class="p">()</span> <span class="kt">error</span> <span class="p">{</span>
+     <span class="k">return</span> <span class="nx">fmt</span><span class="p">.</span><span class="nf">Errorf</span><span class="p">(</span><span class="s">&#34;boo&#34;</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">bar</span><span class="p">()</span> <span class="kt">error</span> <span class="p">{</span>
+     <span class="k">return</span> <span class="nx">errors</span><span class="p">.</span><span class="nf">Wrap</span><span class="p">(</span><span class="nf">foo</span><span class="p">(),</span> <span class="s">&#34;bar&#34;</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">baz</span><span class="p">()</span> <span class="kt">error</span> <span class="p">{</span>
+     <span class="k">return</span> <span class="nx">errors</span><span class="p">.</span><span class="nf">Wrap</span><span class="p">(</span><span class="nf">foo</span><span class="p">(),</span> <span class="s">&#34;baz&#34;</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+     <span class="nx">r</span> <span class="o">:=</span> <span class="nf">rollDice</span><span class="p">()</span>
+     <span class="kd">var</span> <span class="nx">err</span> <span class="kt">error</span>
+     <span class="k">if</span> <span class="p">(</span><span class="nx">r</span> <span class="p">&lt;</span> <span class="mi">4</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">err</span> <span class="p">=</span> <span class="nf">bar</span><span class="p">()</span>
+     <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">err</span> <span class="p">=</span> <span class="nf">baz</span><span class="p">()</span>
+     <span class="p">}</span>
+     <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div><p>使用 <code>errors.Wrap()</code>，添加一个前缀到错误消息，main 函数能报告：<code>bar: boo</code> 或 <code>baz:boo</code> 这样人类可读错误消息，方便知晓哪个函数被调用。如果没有 <code>errors.Wrap()</code>，哪个调用路径导致错误将不容易知晓。</p>
+<p>在实践中，这是如何工作的，看起来有点像这样：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// errorString represents a leaf error. This
+</span><span class="c1">// is what gets constructed by e.g. fmt.Errorf().
+</span><span class="c1"></span><span class="kd">type</span> <span class="nx">errorString</span> <span class="kd">struct</span> <span class="p">{</span>
+     <span class="nx">msg</span> <span class="kt">string</span>
+<span class="p">}</span>
+
+<span class="c1">// Error implements the error interface.
+</span><span class="c1"></span><span class="kd">func</span> <span class="p">(</span><span class="nx">e</span> <span class="o">*</span><span class="nx">errorString</span><span class="p">)</span> <span class="nf">Error</span><span class="p">()</span> <span class="kt">string</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">e</span><span class="p">.</span><span class="nx">msg</span> <span class="p">}</span>
+
+<span class="c1">// msgWrap represents a wrapper which adds a prefix
+</span><span class="c1">// to an error. This is what gets constructed
+</span><span class="c1">// by e.g. pkg/errors.Wrap().
+</span><span class="c1"></span><span class="kd">type</span> <span class="nx">msgWrap</span> <span class="kd">struct</span> <span class="p">{</span>
+     <span class="nx">cause</span> <span class="kt">error</span>
+     <span class="nx">msg</span> <span class="kt">string</span>
+<span class="p">}</span>
+
+<span class="c1">// instances of msgWrap are also instances of the error
+</span><span class="c1">// interface, by implementing the Error() method.
+</span><span class="c1"></span><span class="kd">func</span> <span class="p">(</span><span class="nx">e</span> <span class="o">*</span><span class="nx">msgWrap</span><span class="p">)</span> <span class="nf">Error</span><span class="p">()</span> <span class="kt">string</span> <span class="p">{</span>
+     <span class="k">return</span> <span class="nx">fmt</span><span class="p">.</span><span class="nf">Sprintf</span><span class="p">(</span><span class="s">&#34;%s: %v&#34;</span><span class="p">,</span> <span class="nx">e</span><span class="p">.</span><span class="nx">msg</span><span class="p">,</span> <span class="nx">e</span><span class="p">.</span><span class="nx">cause</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div><h2 id="错误消息包装注释和-cause-发现">错误消息、包装注释和 cause 发现<a href="#错误消息包装注释和-cause-发现" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>Dave Cheney 的基础逻辑是：</p>
+<blockquote>
+<p>The <code>Error</code> method on the <code>error</code> interface exists for humans, not code.</p>
+</blockquote>
+<p>换句话说，程序代码不应检查或比较 Error() 方法的结果。</p>
+<p>Dave 继续谴责两种 Go 编程模式，他认为令人厌恶，现在仍然不赞成：</p>
+<ul>
+<li>“哨兵错误（sentinel errors）&ldquo;的概念，这是在代码中通过 error 实例进行比较。例如，<code>if err == ErrNotExists</code>。这种方式的主要问题是，如果错误是链表，也许是在列表的尾部找到哨兵，而头部有其他内容（例如，消息前缀）。Sentinel 的另一个更实际的问题是，为了能够执行比较，发生比较的包必须导入定义 sentinel 所在的包。这将导致依赖项。这种类型的硬依赖性使软件组合更加困难。</li>
+<li>引用 &ldquo;error types&rdquo;（或错误包装类型）的概念，进行错误类型断言，例如，<code>if e, ok := err.(SomeType); ok</code>。此处的问题与上述问题相同：如果错误是链表，则它可能不起作用，并且还导致了包依赖。</li>
+</ul>
+<p>Dave 建议应该采用这两种方式：</p>
+<ul>
+<li>为调用者感兴趣的错误对象的属性定义接口。例如，错误是否可恢复可以通过 IsRecoverable() 方法来定义。然后，在任何包都可以断言此接口的实现，没有依赖关系：在 Go 中，接口断言基于结构相等，而不是命名相等。</li>
+<li>注意错误链接列表结构，并在检查错误对象时正确遍及链表层级。</li>
+</ul>
+<p>为了实现后一点，Dave Cheney 在 pkg/errors 中引入了 causer 接口，从而有了以下可重用的代码模式：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// NB: causer is not exported by pkg/errors; instead
+</span><span class="c1">// any package can re-defined it as needed
+</span><span class="c1"></span><span class="kd">type</span> <span class="nx">causer</span> <span class="kd">interface</span> <span class="p">{</span> <span class="nf">Cause</span><span class="p">()</span> <span class="kt">error</span> <span class="p">}</span>
+
+<span class="o">...</span>
+<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+   <span class="k">for</span> <span class="p">{</span>
+       <span class="k">if</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">ok</span> <span class="o">:=</span> <span class="nx">err</span><span class="p">.(</span><span class="nx">SomeInterfaceWithProperty</span><span class="p">);</span> <span class="nx">ok</span> <span class="p">{</span>
+          <span class="c1">// ... do something ...
+</span><span class="c1"></span>       <span class="p">}</span>
+
+       <span class="c1">// Peel one layer, if wrapped.
+</span><span class="c1"></span>       <span class="k">if</span> <span class="nx">c</span><span class="p">,</span> <span class="nx">ok</span> <span class="p">=</span> <span class="nx">c</span><span class="p">.(</span><span class="nx">causer</span><span class="p">);</span> <span class="nx">ok</span> <span class="p">{</span>
+          <span class="nx">err</span> <span class="p">=</span> <span class="nx">c</span><span class="p">.</span><span class="nf">Cause</span><span class="p">()</span>
+          <span class="k">continue</span>
+       <span class="p">}</span>
+       <span class="k">break</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><p>此模式会将错误展开，根据错误链访问，直到叶子节点或链表尾部。</p>
+<h2 id="在-errors-中内嵌堆栈追踪">在 errors 中内嵌堆栈追踪<a href="#在-errors-中内嵌堆栈追踪" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>包 pkg/errors 的一个被低估的特性是，每次构造错误或包装错误时，它都会自动保留堆栈跟踪的副本。</p>
+<p>这一点很重要，因为它使得在排除问题时能够分析”错误发生在哪里&rdquo;：通常情况下，该错误仅对开发人员可见，或在实例化后很长一段时间，在调用者中的某个地方出现问题。各种 Go 并发模式使这种困难更加复杂，其中错误对象通过通道将错误对象从一个 goroutine 传输到下一个 goroutine。因此，仅仅查看源代码中的&quot;一行&quot;来查找错误的来源是不够的。</p>
+<p>为此，pkg/error 使用极其轻量级且相当聪明的机制来在每个错误构造时保留调用堆栈的副本。</p>
+<p>此堆栈跟踪不出现在 Error() 方法的结果中；相反，当通过 Printf 中的 %+v 谓词（这是最常见的情况，例如在调试期间）或通过检查错误链接列表某些层（例如与 <a href="https://sentry.io/" target="_blank" rel="noopener">Sentry.io</a>
+ 集成）上是否存在 StackTrace() 方法时，将显示错误对象。</p>
+<p>这种机制特别巧妙的是，堆栈跟踪的所有详细信息（包括函数/包名称）不会直接存储在错误对象中，而是在打印堆栈跟踪时检索它们。通常情况下，错误发生，但可能是无害的，这样可以节省时间和内存。</p>
+<h2 id="go-113-中的提升和-api-分裂">Go 1.13 中的提升和 API 分裂<a href="#go-113-中的提升和-api-分裂" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>很难说 pkg/errors 包多么基础和重要。但目前直接依赖它的公开 Go 项目超过 5 万个，还有无法统计的私有 Go 存储库。</p>
+<p>Go 语言的设计者认识到了这一点，并<a href="https://blog.golang.org/go1.13-errors" target="_blank" rel="noopener">在 2019 年将其语义集成到 Go 标准库</a>
+中，从 Go 1.13 开始：</p>
+<ul>
+<li>Go 1.13 的错误也是链表。</li>
+<li>Go 1.13 没有提供 <code>errors.Wrap()</code>，但是为 fmt.Errorf 做了扩充：使用格式化动词 %w，构造一个包装错误，并保持原来的错误对象放在链表尾部供检测；
+<ul>
+<li>在 <code>pkg/errors</code>: <code>errors.Wrapf(err, &quot;hello %s&quot;, &quot;world&quot;)</code></li>
+<li>在 Go 1.13: <code>fmt.Errorf(&quot;hello %s: %w&quot;, &quot;world&quot;, err)</code></li>
+</ul>
+</li>
+<li>Go 1.13 简化了在错误链表的每个中间级别上测试属性的任务，使用以下 api：
+<ul>
+<li>errors.Is(err1, err2) 检查 err1 中的任何层是否等于 err2（会递归地测试哨兵）。这可以用来识别许多标准库的哨兵，例如 errors.Is(err, os.ErrNotExist) 检查是否由于找不到某个文件/目录而导致错误。</li>
+<li><code>errors.As(err1, &lt;type&gt;)</code> 检查 err1 中的任何层是否可以被转换为 <code>&lt;type&gt;</code>（接口或具体类型），并返回转换的结果。这可以用来断言错误属性，就 Dave Cheney 在 2015 年建议的那样。</li>
+</ul>
+</li>
+</ul>
+<p>然而存在一些争议，因为 Go 1.13 在社区中引发了 API 的分裂：</p>
+<ul>
+<li>error 对象上的展开方法称为 Unwrap()，而不是 Cause()。我个人很讨厌 Go 团队选择一个单独的方法名，因为这直接破坏了与所有基于 pkg/errors 构建的包的兼容性，而且没有很好这么做的原因。</li>
+<li>Go 1.13 没有提供像 pkg/errors 中的 error.Cause() 那样的 “unwrap 一切”的函数。</li>
+<li>另外，遗憾的是，因为 Go 1.13 没有定义 Cause() 方法，所以不可能使用 pkg/errors 中的 error.Cause() 来解包装来自 Go 1.13 项目和为 pkg/errors API 设计的项目的混合错误对象。</li>
+<li>非常遗憾的是，Go 1.13 没有像 pkg/errors 那样提供捕获堆栈跟踪的工具。由于上述 API 的不兼容性，不可能将 pkg/errors 与特定于 Go 1.13 的代码混合匹配来获得这种行为。</li>
+</ul>
+<p>总结为如下表格：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Feature</th>
+<th style="text-align:left">Go’s &lt;1.13 <code>errors</code></th>
+<th style="text-align:left"><code>github.com/pkg/errors</code></th>
+<th style="text-align:left">Go 1.13 <code>errors</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">leaf error constructors (<code>New</code>, <code>Errorf</code> etc)</td>
+<td style="text-align:left">✔</td>
+<td style="text-align:left">✔</td>
+<td style="text-align:left">✔</td>
+</tr>
+<tr>
+<td style="text-align:left">abstraction: errors are linked lists</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">✔</td>
+<td style="text-align:left">✔</td>
+</tr>
+<tr>
+<td style="text-align:left">error causes via <code>Cause()</code></td>
+<td style="text-align:left"></td>
+<td style="text-align:left">✔</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">error causes via <code>Unwrap()</code></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left">✔</td>
+</tr>
+<tr>
+<td style="text-align:left">best practice: test interfaces, not values/types</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">✔</td>
+<td style="text-align:left">(partial)</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>errors.As()</code>, <code>errors.Is()</code></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left">✔</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>errors.Wrap()</code></td>
+<td style="text-align:left"></td>
+<td style="text-align:left">✔</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">automatic error wrap when format ends with : %w</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left">✔</td>
+</tr>
+<tr>
+<td style="text-align:left">standard wrappers with efficient stack trace capture</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">✔</td>
+<td style="text-align:left"></td>
+</tr>
+</tbody>
+</table>
+<p>这种分裂是真实而悲哀的。发生这种情况的原因（也许令人惊讶）是 Go 团队无法确定一种好的方法来标准化打印错误。我们将在本系列的后续文章中了解其中的原因。</p>
+<p>然而，pkg/error 社区的用户不能简单地加入到 Go 1.13 的潮流中去。这里有一个缺口，需要一些交叉兼容的库来弥补这个缺口。</p>
+<p>这就是为什么 <a href="https://github.com/cockroachdb/errors/" target="_blank" rel="noopener">CockroachDB 错误库</a>
+能够做到这一点。您可以使用它作为 pkg/errors 和 Go 1.13 自己的 errors 包的临时替代。</p>
+<blockquote>
+<p>原文链接：https://dr-knz.net/cockroachdb-errors-std-api.html</p>
+<p>本文作者：Raphael ‘kena’ Poss</p>
+<p>译者：polarisxu</p>
+</blockquote>
+
+			</div><div class="content">
+	<br>
+	<img src="https://static.studygolang.com/static/img/polarisxu-qrcode-soso-s.png">
+</div>
+
+<div class="related-posts thin">
+	<h2>相关推荐</h2>
+	<ul>
+	
+	<li><a href="/posts/go/translation/go-error-printing-catastrophe/">Go error 打印灾难 —  CockroachDB errors 库（第3篇）</a></li>
+	
+	<li><a href="/posts/go/translation/go-formatting-apis/">Go 格式化 API —  CockroachDB errors 库（第2篇）</a></li>
+	
+	<li><a href="/posts/go/action/talk-geek-time-live/">闲聊昨晚极客时间的直播</a></li>
+	
+	<li><a href="/posts/go/action/interview-slice-json/">一道关于 json 和 slice 的题难倒了 80% 的人</a></li>
+	
+	<li><a href="/posts/go/pkg/statsviz/">你喜欢的 Go 第三方库：一步为系统集成可视化实时运行时统计</a></li>
+	
+	</ul>
+</div>
+
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://polarisxu.studygolang.com/tags/go">Go</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/cockroachdb">CockroachDB</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/error">error</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>3127 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2020-10-23 11:15 &#43;0800</p>
+			</footer>
+		</article>
+		<aside id="toc">
+			<div class="toc-title">目录</div>
+			<nav id="TableOfContents">
+  <ul>
+    <li><a href="#基本的-go-错误error-是值">基本的 Go 错误：error 是值</a></li>
+    <li><a href="#error-也是链表">error 也是链表</a></li>
+    <li><a href="#错误消息包装注释和-cause-发现">错误消息、包装注释和 cause 发现</a></li>
+    <li><a href="#在-errors-中内嵌堆栈追踪">在 errors 中内嵌堆栈追踪</a></li>
+    <li><a href="#go-113-中的提升和-api-分裂">Go 1.13 中的提升和 API 分裂</a></li>
+  </ul>
+</nav>
+		</aside>
+		<div class="post-nav thin">
+			<a class="next-post" href="https://polarisxu.studygolang.com/posts/go/translation/go-formatting-apis/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;新</span><br><span>Go 格式化 API —  CockroachDB errors 库（第2篇）</span>
+			</a>
+			<a class="prev-post" href="https://polarisxu.studygolang.com/posts/go/action/interview-slice-json/">
+				<span class="post-nav-label">旧&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>一道关于 json 和 slice 的题难倒了 80% 的人</span>
+			</a>
+		</div>
+		<div id="comments" class="thin"><script src="https://utteranc.es/client.js"
+	repo="polaris1119/polarisxu"
+	issue-term="pathname"
+	theme="github-light"
+	crossorigin="anonymous"
+	async>
+</script>
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2019 - 2020 <a href="https://polarisxu.studygolang.com">polarisxu</a> &#183; <a href="http://www.beian.miit.gov.cn/">京ICP备14030343号-1</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://polarisxu.studygolang.com/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+
+	<script src="https://polarisxu.studygolang.com/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw=" crossorigin="anonymous"></script>
+	<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?224c227cd9239761ec770bc8c1fb134c";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+</body>
+
+</html>

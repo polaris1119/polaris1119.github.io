@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>杂谈 on polarisxu</title>
+    <link>https://polarisxu.studygolang.com/tags/%E6%9D%82%E8%B0%88/</link>
+    <description>Recent content in 杂谈 on polarisxu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
+    <lastBuildDate>Mon, 26 Oct 2020 18:12:51 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/%E6%9D%82%E8%B0%88/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>闲聊昨晚极客时间的直播</title>
+      <link>https://polarisxu.studygolang.com/posts/go/action/talk-geek-time-live/</link>
+      <pubDate>Mon, 26 Oct 2020 18:12:51 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/action/talk-geek-time-live/</guid>
+      <description>昨天晚上（10 月 25 日）极客时间进行了一场直播，主题是：《未来 5 年将是 Go 语言的天下》。 客观说，这个主题还是挺唬人的，而直播的内容跟这个主题关系</description>
+    </item>
+    
+  </channel>
+</rss>

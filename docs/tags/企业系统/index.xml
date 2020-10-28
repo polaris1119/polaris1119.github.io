@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>企业系统 on polarisxu</title>
+    <link>https://polarisxu.studygolang.com/tags/%E4%BC%81%E4%B8%9A%E7%B3%BB%E7%BB%9F/</link>
+    <description>Recent content in 企业系统 on polarisxu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
+    <lastBuildDate>Sat, 12 Sep 2020 11:15:51 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/%E4%BC%81%E4%B8%9A%E7%B3%BB%E7%BB%9F/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>观点：Go 尚未准备好用于企业系统，原因在这里</title>
+      <link>https://polarisxu.studygolang.com/posts/go/translation/golang-is-not-ready-for-enterprise-systems-yet-and-heres-why/</link>
+      <pubDate>Sat, 12 Sep 2020 11:15:51 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/translation/golang-is-not-ready-for-enterprise-systems-yet-and-heres-why/</guid>
+      <description>译注：发表这篇文章，不代表我认同作者的观点。大家都知道，在国内，Go 已经被很多大厂使用，早就可以用于企业系统。 对一门语言的爱，可以接受任何不</description>
+    </item>
+    
+  </channel>
+</rss>

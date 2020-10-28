@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#494f5c">
+	<meta name="msapplication-TileColor" content="#494f5c">
+<meta itemprop="name" content="欢迎加入 GoLand 2020.1 抢先体验计划">
+<meta itemprop="description" content="GoLand 2020.1 抢先体验计划已经启动。对于此发行版，我们着重于易用性，性能以及减少浪费在样板代码和 IDE 中的冗余操作上的时间。我们还包括对 Go Modules 支持的升级，和其他更多功能。您可以在 2020.1 的路线图博客 文章中找到简短说明。
+你可以通过 Toolbox App 获得它，也可以从网站上下载 ，也可以使用快照包（对于 Ubuntu）；或者直接在 GoLand 中通过自动更新的方式获取。Preferences / Settings | Appearance &amp; Behavior | System Settings | Updates。
+如果您想知道什么是抢先体验计划，这里有一个简短的解释：
+ EAP 版本使您可以试用 Goland 仍在开发中的最新功能和增强功能。这些版本尚未经过全面测试，可能会不稳定，但是您可以在这里为我们提供帮助。通过将这些内部版本和功能用于实际项目和场景中来测试，您可以帮助我们完善它们。这样，当最终版本准备就绪时，它将为您更好地工作。
+  EAP 使您可以首先试用所有最新功能; 自构建日期起 30 天内免费使用 EAP 版本。您可以将这段时间用作 GoLand 的扩展试用版； 我们会提供 EAP 版本，直到几乎可以发布稳定版本为止。对于即将推出的 2020.1 版本，EAP 期将大致持续到 3 月底； 在每个发布周期中，我们都会为他们提供免费的 1 年 GoLand 订阅和一件独家的 GoLand T 恤 ，以表彰他们中最活跃的评估人员。 此外，我们几乎每天都提供最新版本。因此，如果您不想等待正式的 EAP 版本公告，则只需下载这些夜间版本之一，即可通过 Toolbox App 获得。请注意，每晚构建的质量通常低于我们的标准，并且没有随附发行说明。与 EAP 版本一样，它们也将在发布后 30 天内过期；  因此，让我们看一下第一个 EAP 版本中包含的内容。">
+<meta itemprop="datePublished" content="2019-12-24T14:17:51+08:00" />
+<meta itemprop="dateModified" content="2019-12-24T14:17:51+08:00" />
+<meta itemprop="wordCount" content="305">
+
+
+
+<meta itemprop="keywords" content="GoLand,开发工具," />
+<meta property="og:title" content="欢迎加入 GoLand 2020.1 抢先体验计划" />
+<meta property="og:description" content="GoLand 2020.1 抢先体验计划已经启动。对于此发行版，我们着重于易用性，性能以及减少浪费在样板代码和 IDE 中的冗余操作上的时间。我们还包括对 Go Modules 支持的升级，和其他更多功能。您可以在 2020.1 的路线图博客 文章中找到简短说明。
+你可以通过 Toolbox App 获得它，也可以从网站上下载 ，也可以使用快照包（对于 Ubuntu）；或者直接在 GoLand 中通过自动更新的方式获取。Preferences / Settings | Appearance &amp; Behavior | System Settings | Updates。
+如果您想知道什么是抢先体验计划，这里有一个简短的解释：
+ EAP 版本使您可以试用 Goland 仍在开发中的最新功能和增强功能。这些版本尚未经过全面测试，可能会不稳定，但是您可以在这里为我们提供帮助。通过将这些内部版本和功能用于实际项目和场景中来测试，您可以帮助我们完善它们。这样，当最终版本准备就绪时，它将为您更好地工作。
+  EAP 使您可以首先试用所有最新功能; 自构建日期起 30 天内免费使用 EAP 版本。您可以将这段时间用作 GoLand 的扩展试用版； 我们会提供 EAP 版本，直到几乎可以发布稳定版本为止。对于即将推出的 2020.1 版本，EAP 期将大致持续到 3 月底； 在每个发布周期中，我们都会为他们提供免费的 1 年 GoLand 订阅和一件独家的 GoLand T 恤 ，以表彰他们中最活跃的评估人员。 此外，我们几乎每天都提供最新版本。因此，如果您不想等待正式的 EAP 版本公告，则只需下载这些夜间版本之一，即可通过 Toolbox App 获得。请注意，每晚构建的质量通常低于我们的标准，并且没有随附发行说明。与 EAP 版本一样，它们也将在发布后 30 天内过期；  因此，让我们看一下第一个 EAP 版本中包含的内容。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://polarisxu.studygolang.com/posts/devtool/goland/welcome-to-the-goland-2020-1-eap/" />
+<meta property="article:published_time" content="2019-12-24T14:17:51+08:00" />
+<meta property="article:modified_time" content="2019-12-24T14:17:51+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="欢迎加入 GoLand 2020.1 抢先体验计划"/>
+<meta name="twitter:description" content="GoLand 2020.1 抢先体验计划已经启动。对于此发行版，我们着重于易用性，性能以及减少浪费在样板代码和 IDE 中的冗余操作上的时间。我们还包括对 Go Modules 支持的升级，和其他更多功能。您可以在 2020.1 的路线图博客 文章中找到简短说明。
+你可以通过 Toolbox App 获得它，也可以从网站上下载 ，也可以使用快照包（对于 Ubuntu）；或者直接在 GoLand 中通过自动更新的方式获取。Preferences / Settings | Appearance &amp; Behavior | System Settings | Updates。
+如果您想知道什么是抢先体验计划，这里有一个简短的解释：
+ EAP 版本使您可以试用 Goland 仍在开发中的最新功能和增强功能。这些版本尚未经过全面测试，可能会不稳定，但是您可以在这里为我们提供帮助。通过将这些内部版本和功能用于实际项目和场景中来测试，您可以帮助我们完善它们。这样，当最终版本准备就绪时，它将为您更好地工作。
+  EAP 使您可以首先试用所有最新功能; 自构建日期起 30 天内免费使用 EAP 版本。您可以将这段时间用作 GoLand 的扩展试用版； 我们会提供 EAP 版本，直到几乎可以发布稳定版本为止。对于即将推出的 2020.1 版本，EAP 期将大致持续到 3 月底； 在每个发布周期中，我们都会为他们提供免费的 1 年 GoLand 订阅和一件独家的 GoLand T 恤 ，以表彰他们中最活跃的评估人员。 此外，我们几乎每天都提供最新版本。因此，如果您不想等待正式的 EAP 版本公告，则只需下载这些夜间版本之一，即可通过 Toolbox App 获得。请注意，每晚构建的质量通常低于我们的标准，并且没有随附发行说明。与 EAP 版本一样，它们也将在发布后 30 天内过期；  因此，让我们看一下第一个 EAP 版本中包含的内容。"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>欢迎加入 GoLand 2020.1 抢先体验计划</title>
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
+	
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://polarisxu.studygolang.com">polarisxu</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+  <a href="https://polarisxu.studygolang.com/posts/">文章</a>
+  <a href="https://polarisxu.studygolang.com/go-categories/">Go系列</a>
+  <a href="https://polarisxu.studygolang.com/devtool-categories/">开发工具</a>
+  <a href="https://polarisxu.studygolang.com/about/">关于</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<button id="toc-btn" class="hdr-btn desktop-only-ib" title="目录"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3" y2="6"></line><line x1="3" y1="12" x2="3" y2="12"></line><line x1="3" y1="18" x2="3" y2="18"></line></svg></button><span class="hdr-social hide-in-mobile"><a href="https://github.com/polaris1119" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a><a href="https://twitter.com/polaris1119" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="菜单"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://polarisxu.studygolang.com/posts/">文章</a></li>
+			<li><a href="https://polarisxu.studygolang.com/go-categories/">Go系列</a></li>
+			<li><a href="https://polarisxu.studygolang.com/devtool-categories/">开发工具</a></li>
+			<li><a href="https://polarisxu.studygolang.com/about/">关于</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Dec 24, 2019</span></div>
+				<h1>欢迎加入 GoLand 2020.1 抢先体验计划</h1>
+			</header>
+			<div class="content">
+				<p>GoLand 2020.1 抢先体验计划已经启动。对于此发行版，我们着重于易用性，性能以及减少浪费在样板代码和 IDE 中的冗余操作上的时间。我们还包括对 Go Modules 支持的升级，和其他更多功能。您可以在 2020.1 的<a href="https://blog.jetbrains.com/go/2019/12/24/whats-next-goland-2020-1-roadmap/" target="_blank" rel="noopener">路线图博客</a>
+文章中找到简短说明。</p>
+<p><p class="md__image">
+  <img src="https://d3nmt5vlzunoa1.cloudfront.net/go/files/2020/02/blog@2x.jpg"
+    alt=""  />
+</p>
+</p>
+<p>你可以通过 <a href="https://www.jetbrains.com/toolbox/app/?_ga=2.109771525.1651118980.1581665300-159533074.1581665300" target="_blank" rel="noopener">Toolbox App</a>
+ 获得它，也可以从<a href="https://www.jetbrains.com/go/nextversion/" target="_blank" rel="noopener">网站上下载</a>
+，也可以使用快照包（对于 Ubuntu）；或者直接在 GoLand 中通过自动更新的方式获取。<em>Preferences / Settings | Appearance &amp; Behavior | System Settings | Updates</em>。</p>
+<p>如果您想知道什么是抢先体验计划，这里有一个简短的解释：</p>
+<blockquote>
+<p>EAP 版本使您可以试用 Goland 仍在开发中的最新功能和增强功能。这些版本尚未经过全面测试，可能会不稳定，但是您可以在这里为我们提供帮助。通过将这些内部版本和功能用于实际项目和场景中来测试，您可以帮助我们完善它们。这样，当最终版本准备就绪时，它将为您更好地工作。</p>
+</blockquote>
+<ul>
+<li>EAP 使您可以首先试用所有最新功能;</li>
+<li>自构建日期起 30 天内免费使用 EAP 版本。您可以将这段时间用作 GoLand 的扩展试用版；</li>
+<li>我们会提供 EAP 版本，直到几乎可以发布稳定版本为止。对于即将推出的 2020.1 版本，EAP 期将大致持续到 3 月底；</li>
+<li>在每个发布周期中，我们都会为他们提供免费的 1 年 GoLand 订阅和一件独家的 <a href="https://twitter.com/GoLandIDE/status/1116361899308912645" target="_blank" rel="noopener">GoLand T 恤</a>
+，以表彰他们中最活跃的评估人员。<p class="md__image">
+  <img src="https://s2.ax1x.com/2020/02/15/1xBtL8.jpg"
+    alt=""  />
+</p>
+</li>
+<li>此外，我们几乎每天都提供最新版本。因此，如果您不想等待正式的 EAP 版本公告，则只需下载这些夜间版本之一，即可通过 Toolbox App 获得。请注意，每晚构建的质量通常低于我们的标准，并且没有随附发行说明。与 EAP 版本一样，它们也将在发布后 30 天内过期；</li>
+</ul>
+<p>因此，让我们看一下第一个 EAP 版本中包含的内容。</p>
+<h2 id="go-modules">Go Modules<a href="#go-modules" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>现在，您可以通过 go.mod 文件中的 <strong>Alt-Enter</strong> 来获取缺失的依赖项并删除未使用的依赖项。</p>
+<p><p class="md__image">
+  <img src="https://d3nmt5vlzunoa1.cloudfront.net/go/files/2020/02/go-mod-file-support.gif"
+    alt=""  />
+</p>
+</p>
+<h2 id="go-114-支持">Go 1.14 支持<a href="#go-114-支持" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>Go 1.14 增加了对嵌入重叠接口的支持，我们也是如此！当您使用重叠的接口时，GoLand 不会将重复的方法报告为错误。</p>
+<p>为什么将此功能添加到语言中？</p>
+<p>主要好处是我们可以使用嵌入定义接口，而不需要手动定义。这是一个例子：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">Person</span> <span class="kd">interface</span> <span class="p">{</span>
+	<span class="nf">Name</span><span class="p">()</span> <span class="kt">string</span>
+	<span class="nf">String</span><span class="p">()</span> <span class="kt">string</span>
+<span class="p">}</span>
+ 
+<span class="kd">type</span> <span class="nx">Employee</span> <span class="kd">interface</span> <span class="p">{</span>
+	<span class="nx">Person</span>
+	<span class="nf">Department</span><span class="p">()</span> <span class="kt">string</span>
+	<span class="nf">String</span><span class="p">()</span> <span class="kt">string</span>
+<span class="p">}</span>
+</code></pre></div><p>在 Go 1.14 之前，我们无法在 Employee 接口上添加 String() 方法，因为该方法已在 Person 接口上定义了。现在，我们可以使用接口嵌入定义它，如果 Person 接口有更新，我们自己更可控。</p>
+<h2 id="代码补全完成增强">代码补全/完成增强<a href="#代码补全完成增强" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>我们对样板代码说不！GoLand 为常见的错误处理模式添加了代码完成功能。现在，当您在函数中键入<code>if </code>时，您可以选择 <code>err！= nil {…}</code> 以自动完成它。</p>
+<p><p class="md__image">
+  <img src="https://d3nmt5vlzunoa1.cloudfront.net/go/files/2020/02/code-completion-handling-errors.gif"
+    alt=""  />
+</p>
+</p>
+<p>为了更快地定义接口和结构，现在，当您键入<code>type</code> 关键字时，IDE 会为它们建议模板。当您输入 <code>interface</code> 或 <code>struct</code> 时，将显示相同的补全内容。</p>
+<p><p class="md__image">
+  <img src="https://d3nmt5vlzunoa1.cloudfront.net/go/files/2020/02/type-keyword-completion-struct-interfaces.gif"
+    alt=""  />
+</p>
+</p>
+<p>现在，根据格式设置规则的要求，<strong>Fill Fields</strong> 操作会在冒号后添加空格，并在复合文字中的语句末尾添加逗号。</p>
+<p><p class="md__image">
+  <img src="https://d3nmt5vlzunoa1.cloudfront.net/go/files/2020/02/field-name-completion.gif"
+    alt=""  />
+</p>
+</p>
+<p>现在，当您使用 map 时，完成键类型后，代码补全将光标移到右括号后面。</p>
+<p><p class="md__image">
+  <img src="https://d3nmt5vlzunoa1.cloudfront.net/go/files/2020/02/code-compltion-map.gif"
+    alt=""  />
+</p>
+</p>
+<p><strong>智能代码补全</strong>建议使用指向结构的指针。</p>
+<p><p class="md__image">
+  <img src="https://d3nmt5vlzunoa1.cloudfront.net/go/files/2020/02/code-completion-for-pointer-to-struct-initializer.gif"
+    alt=""  />
+</p>
+</p>
+<p>最终，代码补全变得更加智能，现在在断言和 type-switch-case 中会首先建议兼容类型。</p>
+<p><p class="md__image">
+  <img src="https://d3nmt5vlzunoa1.cloudfront.net/go/files/2020/02/type-assertion-completion.gif"
+    alt=""  />
+</p>
+</p>
+<h2 id="代码编辑增强">代码编辑增强<a href="#代码编辑增强" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>当编写多值返回函数的签名时，GoLang 2020.1 将在逗号后面的返回类型周围自动添加括号。</p>
+<p><p class="md__image">
+  <img src="https://d3nmt5vlzunoa1.cloudfront.net/go/files/2020/02/multi-value-return-function.gif"
+    alt=""  />
+</p>
+</p>
+<p>此外，当您在字符串中粘贴一些文本时，GoLand 会自动转义双引号。</p>
+<h2 id="postfix-完成模板">Postfix 完成模板<a href="#postfix-完成模板" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p><code>.else</code> Postfix 完成模板可以快速添加 <code>if</code> 语句，以检查表达式是否为假。</p>
+<p><p class="md__image">
+  <img src="https://d3nmt5vlzunoa1.cloudfront.net/go/files/2020/02/else-postfix-completion.gif"
+    alt=""  />
+</p>
+</p>
+<h2 id="实时模板">实时模板<a href="#实时模板" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>我们添加了新的 <em>consts</em>, <em>vars</em>, <em>types</em>, 和 <em>import</em> 模板 。对于这些模板，默认情况下，GoLand 将在表达式周围添加括号。</p>
+<p><p class="md__image">
+  <img src="https://d3nmt5vlzunoa1.cloudfront.net/go/files/2020/02/consts-vars-live-templates.gif"
+    alt=""  />
+</p>
+</p>
+<p>fori 模板插入经典 for 循环的样板代码。</p>
+<p><p class="md__image">
+  <img src="https://d3nmt5vlzunoa1.cloudfront.net/go/files/2020/02/fori-live-template.gif"
+    alt=""  />
+</p>
+</p>
+<h2 id="重构">重构<a href="#重构" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>现在，即使接口定义中省略了参数名称，<em>Implement Methods</em>（在 macOS 和 Windows/Linux 上为 Ctrl + I）也允许您指定参数名称。</p>
+<p><p class="md__image">
+  <img src="https://d3nmt5vlzunoa1.cloudfront.net/go/files/2020/02/implement-methods.gif"
+    alt=""  />
+</p>
+</p>
+<h2 id="性能">性能<a href="#性能" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>现在 <em>Navigate to implementations</em>（在 MacOS 上为 ⌥⌘B，在 Windows/Linux 上为 Ctrl + Alt + B）和 <em>Navigate to Declaration or Usages</em>（在 macOS 上为 ⌘B，在 Windows/Linux 上为 Ctrl + B）速度更快，因为它们首先在项目范围内寻找实现。另外，搜索结果在非项目元素之前显示项目元素，而不是按字母顺序对它们进行排序。</p>
+<p>我们还限制了 dep 和 Go Modules 项目的参考搜索范围，以提高其搜索性能。</p>
+<h2 id="jetbrains-mono-字体">JetBrains Mono 字体<a href="#jetbrains-mono-字体" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>如果您想知道本博客文章中的屏幕截图和 GIF 使用的是哪种字体 — 我们在 JetBrains 上为开发人员创建了一种新的字体，称为 <a href="https://www.jetbrains.com/lp/mono/" target="_blank" rel="noopener">JetBrains Mono</a>
+。现在默认情况下它在 GoLand 中可用，请打开 <em>Preferences / Settings | Editor | Font</em>，然后选择 JetBrains Mono 尝试一下。</p>
+<p><p class="md__image">
+  <img src="https://d3nmt5vlzunoa1.cloudfront.net/go/files/2020/02/jetbrains-mono-font.png"
+    alt=""  />
+</p>
+</p>
+<h2 id="拼写检查器">拼写检查器<a href="#拼写检查器" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>前一段时间，我们宣布了一个名为 Grazie 的插件。此插件可为您在 IDE 中编写的文本提供智能的拼写和语法检查，并且支持 15 种以上的语言，包括英语，德语，俄语，中文等。在此 EAP 版本和即将发布的 2020.1 版本中，默认情况下捆绑了 Grazie。要了解更多信息，请阅读此<a href="https://blog.jetbrains.com/idea/2019/11/meet-grazie-the-ultimate-spelling-grammar-and-style-checker-for-intellij-idea/" target="_blank" rel="noopener">博客文章</a>
+。</p>
+<h2 id="默认配色方案改回为亮色">默认配色方案改回为亮色<a href="#默认配色方案改回为亮色" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>许多用户要求我们为 Default 和 Darcula 配色方案中突出显示的语义代码增加更多种类，而我们在 2019.2 版本中进行了添加。一些用户很高兴，而其他用户则不满意，请我们还原更改。</p>
+<p>因此，为了使所有人感到高兴，我们决定恢复默认配色方案，但使用了新名称 Classic Light。</p>
+<p>要切换配色方案，请打开 <em>Preferences/Settings | Editor | Color Scheme</em> 选择。</p>
+<h2 id="jbr8-支持终止">JBR8 支持终止<a href="#jbr8-支持终止" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>从现在开始，我们将完全转向 JetBrains Runtime 11（JBR11），并且将不再分发带有 JetBrains Runtime 8（JBR8）的内部版本。请注意，IDE 和工具箱应用程序中的所有 GoLand 2020.1 更新都将随附 JBR11。</p>
+<p>请记住，我们始终感谢您的反馈，因此请在留言区，Twitter 或 <a href="https://youtrack.jetbrains.com/issues/GO" target="_blank" rel="noopener">issue tracker</a>
+ 中与我们分享您的试用情况。</p>
+<blockquote>
+<p>由 Ekaterina Zharova 在 2020 年 2 月 6 日发布</p>
+<p>原文：https://blog.jetbrains.com/go/2020/02/06/welcome-to-the-goland-2020-1-eap/</p>
+</blockquote>
+
+			</div><div class="content">
+	<br>
+	<img src="https://static.studygolang.com/static/img/polarisxu-qrcode-soso-s.png">
+</div>
+
+<div class="related-posts thin">
+	<h2>相关推荐</h2>
+	<ul>
+	
+	<li><a href="/posts/devtool/goland/2020.2.beta/">GoLand 2020.2 Beta 版发布：go.mod 升级以及对泛型的实验性支持</a></li>
+	
+	<li><a href="/posts/devtool/goland/debugging-a-go-application-inside-a-docker-container/">基于 GoLand 使用 Docker 容器进行 Go 开发</a></li>
+	
+	<li><a href="/posts/devtool/goland/goland-2020-1-release/">还在用 2019.3 就 Out 了：GoLand 2020.1 版本正式发布</a></li>
+	
+	<li><a href="/posts/devtool/goland/using-kubernetes-from-goland/">当 GoLand 遇到 Kubernetes：如何调试和运行 Go 程序</a></li>
+	
+	<li><a href="/posts/devtool/goland/running-go-applications-using-docker-compose-in-goland/">在 GoLang 中使用 Docker Compose 运行 Go 应用程序</a></li>
+	
+	</ul>
+</div>
+
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://polarisxu.studygolang.com/tags/goland">GoLand</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7">开发工具</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>305 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2019-12-24 14:17 &#43;0800</p>
+			</footer>
+		</article>
+		<aside id="toc">
+			<div class="toc-title">目录</div>
+			<nav id="TableOfContents">
+  <ul>
+    <li><a href="#go-modules">Go Modules</a></li>
+    <li><a href="#go-114-支持">Go 1.14 支持</a></li>
+    <li><a href="#代码补全完成增强">代码补全/完成增强</a></li>
+    <li><a href="#代码编辑增强">代码编辑增强</a></li>
+    <li><a href="#postfix-完成模板">Postfix 完成模板</a></li>
+    <li><a href="#实时模板">实时模板</a></li>
+    <li><a href="#重构">重构</a></li>
+    <li><a href="#性能">性能</a></li>
+    <li><a href="#jetbrains-mono-字体">JetBrains Mono 字体</a></li>
+    <li><a href="#拼写检查器">拼写检查器</a></li>
+    <li><a href="#默认配色方案改回为亮色">默认配色方案改回为亮色</a></li>
+    <li><a href="#jbr8-支持终止">JBR8 支持终止</a></li>
+  </ul>
+</nav>
+		</aside>
+		<div class="post-nav thin">
+			<a class="next-post" href="https://polarisxu.studygolang.com/posts/go/echo/custom00-intro/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;新</span><br><span>Echo 系列教程——定制篇0：让 Echo 更强大、更好用</span>
+			</a>
+			<a class="prev-post" href="https://polarisxu.studygolang.com/posts/go/echo/basic03-example/">
+				<span class="post-nav-label">旧&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>Echo 系列教程——基础篇3：通过一个例子串联各特性</span>
+			</a>
+		</div>
+		<div id="comments" class="thin"><script src="https://utteranc.es/client.js"
+	repo="polaris1119/polarisxu"
+	issue-term="pathname"
+	theme="github-light"
+	crossorigin="anonymous"
+	async>
+</script>
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2019 - 2020 <a href="https://polarisxu.studygolang.com">polarisxu</a> &#183; <a href="http://www.beian.miit.gov.cn/">京ICP备14030343号-1</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://polarisxu.studygolang.com/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+
+	<script src="https://polarisxu.studygolang.com/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw=" crossorigin="anonymous"></script>
+	<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?224c227cd9239761ec770bc8c1fb134c";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+</body>
+
+</html>

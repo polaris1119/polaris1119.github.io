@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#494f5c">
+	<meta name="msapplication-TileColor" content="#494f5c">
+<meta itemprop="name" content="GoUI：一个非常简单的 GUI 框架">
+<meta itemprop="description" content="最近，我一直想开发一些桌面（主要是 Windows，但也可以考虑 MacOS 或 Linux）应用程序。虽然 Go 不是开发 UI 应用程序时首选语言，但是该语言的简单">
+<meta itemprop="datePublished" content="2020-08-17T11:15:51+08:00" />
+<meta itemprop="dateModified" content="2020-08-17T11:15:51+08:00" />
+<meta itemprop="wordCount" content="2413">
+
+
+
+<meta itemprop="keywords" content="Go,Golang,GoUI,GUI," />
+<meta property="og:title" content="GoUI：一个非常简单的 GUI 框架" />
+<meta property="og:description" content="最近，我一直想开发一些桌面（主要是 Windows，但也可以考虑 MacOS 或 Linux）应用程序。虽然 Go 不是开发 UI 应用程序时首选语言，但是该语言的简单" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/translation/goui-a-very-simple-ui-framework/" />
+<meta property="article:published_time" content="2020-08-17T11:15:51+08:00" />
+<meta property="article:modified_time" content="2020-08-17T11:15:51+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="GoUI：一个非常简单的 GUI 框架"/>
+<meta name="twitter:description" content="最近，我一直想开发一些桌面（主要是 Windows，但也可以考虑 MacOS 或 Linux）应用程序。虽然 Go 不是开发 UI 应用程序时首选语言，但是该语言的简单"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>GoUI：一个非常简单的 GUI 框架</title>
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
+	
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://polarisxu.studygolang.com">polarisxu</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+  <a href="https://polarisxu.studygolang.com/posts/">文章</a>
+  <a href="https://polarisxu.studygolang.com/go-categories/">Go系列</a>
+  <a href="https://polarisxu.studygolang.com/devtool-categories/">开发工具</a>
+  <a href="https://polarisxu.studygolang.com/about/">关于</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<button id="toc-btn" class="hdr-btn desktop-only-ib" title="目录"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3" y2="6"></line><line x1="3" y1="12" x2="3" y2="12"></line><line x1="3" y1="18" x2="3" y2="18"></line></svg></button><span class="hdr-social hide-in-mobile"><a href="https://github.com/polaris1119" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a><a href="https://twitter.com/polaris1119" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="菜单"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://polarisxu.studygolang.com/posts/">文章</a></li>
+			<li><a href="https://polarisxu.studygolang.com/go-categories/">Go系列</a></li>
+			<li><a href="https://polarisxu.studygolang.com/devtool-categories/">开发工具</a></li>
+			<li><a href="https://polarisxu.studygolang.com/about/">关于</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Aug 17, 2020</span></div>
+				<h1>GoUI：一个非常简单的 GUI 框架</h1>
+			</header>
+			<div class="content">
+				<p>最近，我一直想开发一些桌面（主要是 Windows，但也可以考虑 MacOS 或 Linux）应用程序。虽然 Go 不是开发 UI 应用程序时首选语言，但是该语言的简单性和健壮性仍然使它成为我的首选语言。是的，这是我的锤子（hammer）&hellip; 但这是一个该死的漂亮锤子。</p>
+<p>以前，我曾将 Ebiten 图形库用于 Go，以便与孩子们一起编写一些游戏。但是，对于一般的“应用程序”开发（即需要“小部件 widgets”，例如按钮，菜单等），Ebiten 并非真的适合。因此，我一直在寻找可以使用的 Go UI 库。然而大多数都使用 cgo，但我真的希望我的应用程序是纯 Go。这纯粹是个人喜好，我不知道使用 cgo 而不是纯 Go 会有什么影响。如果我要使用 cgo，我认为首选的 UI 库肯定是 <a href="https://fyne.io/" target="_blank" rel="noopener">Fyne</a>
+。Fyne 看起来是一个非常全面的框架，如果您不介意 cgo，我绝对会建议你看看看 Fyne。</p>
+<p>还有其他一些库，但没有吸引我。他们说你永远不应该编写自己的安全性代码，并且我也相信你不应该编写自己的 UI 库。但是我忽略了这个建议&hellip;</p>
+<p>因此，我写了一个 <a href="https://github.com/kpfaulkner/goui" target="_blank" rel="noopener">GoUI</a>
+ !!</p>
+<p>这纯粹是那些“抓痒”的项目之一。虽然现在还很早，但 UI 库的基本知识（由 Ebiten 进行实际渲染）正在慢慢融合。在详细介绍下面细节之前，我想先说明一下，我认为程序在 CLI 达到了顶峰。其次，我不是 UI 编程人员……写这些是我个人的兴趣。</p>
+<p>GoUI 的基本思想是两种类型的图形元素。一个是可以包含其他面板或小部件的面板（Panel）。另一个是小部件，它是基本的 UI 元素（按钮，文本输入等）。我们目前使用的面板类型有 HPanel（水平添加）和 VPanel（我让你猜）。从技术上讲，我们确实有其他面板，例如工具栏，但这实际上只是 HPanel，需要一点点定制工作。总体而言，如果我可以结合其他现有面板/小工具来构造一些“新”东西，那么我会做的。如果我需要优化或与已有产品脱节，那么我将做一些全新的事情。</p>
+<p>我们目前拥有的小部件是：</p>
+<ul>
+<li>
+<p>ImageButton：（由应用程序提供的单击/未单击的图像）。</p>
+</li>
+<li>
+<p>TextButton：基本的彩色矩形，其中包含您想要的任何文本。</p>
+</li>
+<li>
+<p>Checkbox：与 TextButton 相同，但是旁边有一个小方框，可以打对勾。</p>
+</li>
+<li>
+<p>EmptySpace：完全由我控制。用于强制其他小部件之间的空间。一旦添加适当的填充，该填充可能会消失。</p>
+</li>
+<li>
+<p>Label：文本标签，不能输入。</p>
+</li>
+<li>
+<p>Text Input：文本输入框。</p>
+</li>
+<li>
+<p>RadioButtonGroup：这是一个面板，其中包含 vpanel 或 hpanel（取决于标志），然后其中包含许多复选框。复选框将图像（带有刻度）替换为常规的单选按钮。这是重新使用现有窗口小部件的好例子。如果事实证明我需要对复选框进行足够的修改以使其不适合用作单选按钮，那么我将不得不放入一个真正的单选按钮。但是目前，它运行良好。</p>
+</li>
+</ul>
+<p>我还没有完成菜单，模态窗口等，但是正如我所说的……这还是早期。</p>
+<p>现在，让我们尝试一个超级简单的 Demo。</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+ 
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&#34;github.com/hajimehoshi/ebiten&#34;</span>
+    <span class="s">&#34;github.com/kpfaulkner/goui/pkg&#34;</span>
+    <span class="s">&#34;github.com/kpfaulkner/goui/pkg/widgets&#34;</span>
+    <span class="nx">log</span> <span class="s">&#34;github.com/sirupsen/logrus&#34;</span>
+    <span class="s">&#34;image/color&#34;</span>
+<span class="p">)</span>
+ 
+<span class="kd">type</span> <span class="nx">MyApp</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">window</span> <span class="nx">pkg</span><span class="p">.</span><span class="nx">Window</span>
+<span class="p">}</span>
+ 
+<span class="kd">func</span> <span class="nf">NewMyApp</span><span class="p">()</span> <span class="o">*</span><span class="nx">MyApp</span> <span class="p">{</span>
+    <span class="nx">a</span> <span class="o">:=</span> <span class="nx">MyApp</span><span class="p">{}</span>
+    <span class="nx">a</span><span class="p">.</span><span class="nx">window</span> <span class="p">=</span> <span class="nx">pkg</span><span class="p">.</span><span class="nf">NewWindow</span><span class="p">(</span><span class="mi">800</span><span class="p">,</span> <span class="mi">600</span><span class="p">,</span> <span class="s">&#34;test app&#34;</span><span class="p">,</span> <span class="kc">false</span><span class="p">,</span> <span class="kc">false</span><span class="p">)</span>
+    <span class="k">return</span> <span class="o">&amp;</span><span class="nx">a</span>
+<span class="p">}</span>
+ 
+<span class="kd">func</span> <span class="p">(</span><span class="nx">m</span> <span class="o">*</span><span class="nx">MyApp</span><span class="p">)</span> <span class="nf">SetupUI</span><span class="p">()</span> <span class="kt">error</span> <span class="p">{</span>
+    <span class="nx">vPanel</span> <span class="o">:=</span> <span class="nx">widgets</span><span class="p">.</span><span class="nf">NewVPanel</span><span class="p">(</span><span class="s">&#34;main vpanel&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">color</span><span class="p">.</span><span class="nx">RGBA</span><span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mh">0xff</span><span class="p">})</span>
+    <span class="nx">m</span><span class="p">.</span><span class="nx">window</span><span class="p">.</span><span class="nf">AddPanel</span><span class="p">(</span><span class="nx">vPanel</span><span class="p">)</span>
+    <span class="nx">button1</span> <span class="o">:=</span> <span class="nx">widgets</span><span class="p">.</span><span class="nf">NewTextButton</span><span class="p">(</span><span class="s">&#34;text button 1&#34;</span><span class="p">,</span> <span class="s">&#34;my button1&#34;</span><span class="p">,</span> <span class="kc">true</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="kc">nil</span><span class="p">,</span> <span class="kc">nil</span><span class="p">,</span> <span class="kc">nil</span><span class="p">,</span> <span class="kc">nil</span><span class="p">)</span>
+    <span class="nx">vPanel</span><span class="p">.</span><span class="nf">AddWidget</span><span class="p">(</span><span class="nx">button1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="kc">nil</span>
+<span class="p">}</span>
+ 
+<span class="kd">func</span> <span class="p">(</span><span class="nx">m</span> <span class="o">*</span><span class="nx">MyApp</span><span class="p">)</span> <span class="nf">Run</span><span class="p">()</span> <span class="kt">error</span> <span class="p">{</span>
+    <span class="nx">m</span><span class="p">.</span><span class="nf">SetupUI</span><span class="p">()</span>
+    <span class="nx">ebiten</span><span class="p">.</span><span class="nf">SetRunnableInBackground</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span>
+    <span class="nx">ebiten</span><span class="p">.</span><span class="nf">SetWindowResizable</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span>
+    <span class="nx">m</span><span class="p">.</span><span class="nx">window</span><span class="p">.</span><span class="nf">MainLoop</span><span class="p">()</span>
+    <span class="k">return</span> <span class="kc">nil</span>
+<span class="p">}</span>
+ 
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">log</span><span class="p">.</span><span class="nf">SetLevel</span><span class="p">(</span><span class="nx">log</span><span class="p">.</span><span class="nx">DebugLevel</span><span class="p">)</span>
+    <span class="nx">app</span> <span class="o">:=</span> <span class="nf">NewMyApp</span><span class="p">()</span>
+    <span class="nx">app</span><span class="p">.</span><span class="nf">Run</span><span class="p">()</span>
+<span class="p">}</span>
+</code></pre></div><p>让我们解释一下以上代码。</p>
+<p>首先，该程序的核心仍然是直接调用 Ebiten。这些尚未封装。因此，你将在 main 和 Run 函数中看到，我们基本上已经制作了 MyApp 结构的实例，然后调用 SetupUI，设置一些 Ebiten 标志，然后调用 MainLoop。</p>
+<p>NewMyApp 函数调用 pkg.NewWindow 函数。这是应用程序的主窗口。一旦添加了模态/其他窗口，这可能会更改，但是就目前而言，这将创建给定大小的主 UI 窗口。</p>
+<p>SetupUI 是你需要注意的地方。我们要做的第一件事是创建一个 VPanel。请记住，VPanel 把小部件垂直堆叠放置。我们将 vPanel 添加到主窗口。实际上（当前），我们应该只在主窗口中添加 1 个面板，其他所有内容都应放入该面板中。因此，在这种情况下，我们创建 button1（新的 TextButton）并将其添加到 vPanel。</p>
+<p><p class="md__image">
+  <img src="../imgs/goui-01.png"
+    alt=""  />
+</p>
+</p>
+<p>花点时间来学习理解一下上面的 UI 技能。</p>
+<p>下面，让我们做一些更有趣的事情。假设我们要在按下按钮时做出响应。创建 TextButton 的行是：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">button1</span> <span class="o">:=</span> <span class="nx">widgets</span><span class="p">.</span><span class="nf">NewTextButton</span><span class="p">(</span><span class="s">&#34;text button 1&#34;</span><span class="p">,</span> <span class="s">&#34;my button1&#34;</span><span class="p">,</span> <span class="kc">true</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="kc">nil</span><span class="p">,</span> <span class="kc">nil</span><span class="p">,</span> <span class="kc">nil</span><span class="p">,</span> <span class="kc">nil</span><span class="p">)</span>
+</code></pre></div><p>所有细节就不描述了，但是最后一个参数是带有 <strong>func (event IEvent) error</strong> 签名的事件处理程序。因此，如果我们创建一个带有该签名的方法，并将其作为最后一个参数传递给 NewTextButton。</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="p">(</span><span class="nx">m</span> <span class="o">*</span><span class="nx">MyApp</span><span class="p">)</span> <span class="nf">ButtonAction1</span><span class="p">(</span><span class="nx">event</span> <span class="nx">events</span><span class="p">.</span><span class="nx">IEvent</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
+    <span class="nx">log</span><span class="p">.</span><span class="nf">Debugf</span><span class="p">(</span><span class="s">&#34;My button1 action 1!!!&#34;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="kc">nil</span>
+<span class="p">}</span>
+</code></pre></div><p>然后我们将按钮创建修改为</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">button1</span> <span class="o">:=</span> <span class="nx">widgets</span><span class="p">.</span><span class="nf">NewTextButton</span><span class="p">(</span><span class="s">&#34;text button 1&#34;</span><span class="p">,</span> <span class="s">&#34;my button1&#34;</span><span class="p">,</span> <span class="kc">true</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="kc">nil</span><span class="p">,</span> <span class="kc">nil</span><span class="p">,</span> <span class="kc">nil</span><span class="p">,</span> <span class="nx">m</span><span class="p">.</span><span class="nx">ButtonAction1</span><span class="p">)</span>
+</code></pre></div><p>现在，当单击按钮时，将调用 ButtonAction1 函数，我们可以触发所需的任何功能。</p>
+<p>是不是很简单。</p>
+<p>现在，如果我想要在按钮旁边放点东西该怎么办？我们在这里要做的是创建一个 HPanel，并将其首先放入 VPanel。然后，将按钮添加到 HPanel。如果这样做，我们最终将得到如下代码：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="p">(</span><span class="nx">m</span> <span class="o">*</span><span class="nx">MyApp</span><span class="p">)</span> <span class="nf">SetupUI</span><span class="p">()</span> <span class="kt">error</span> <span class="p">{</span>
+ 
+    <span class="nx">vPanel</span> <span class="o">:=</span> <span class="nx">widgets</span><span class="p">.</span><span class="nf">NewVPanel</span><span class="p">(</span><span class="s">&#34;main vpanel&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">color</span><span class="p">.</span><span class="nx">RGBA</span><span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mh">0xff</span><span class="p">})</span>
+    <span class="nx">m</span><span class="p">.</span><span class="nx">window</span><span class="p">.</span><span class="nf">AddPanel</span><span class="p">(</span><span class="nx">vPanel</span><span class="p">)</span>
+ 
+    <span class="nx">hPanel</span> <span class="o">:=</span> <span class="nx">widgets</span><span class="p">.</span><span class="nf">NewHPanel</span><span class="p">(</span><span class="s">&#34;hpanel1&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">color</span><span class="p">.</span><span class="nx">RGBA</span><span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">})</span>
+    <span class="nx">vPanel</span><span class="p">.</span><span class="nf">AddWidget</span><span class="p">(</span><span class="nx">hPanel</span><span class="p">)</span>
+ 
+    <span class="nx">button1</span> <span class="o">:=</span> <span class="nx">widgets</span><span class="p">.</span><span class="nf">NewTextButton</span><span class="p">(</span><span class="s">&#34;text button 1&#34;</span><span class="p">,</span> <span class="s">&#34;my button1&#34;</span><span class="p">,</span> <span class="kc">true</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="kc">nil</span><span class="p">,</span> <span class="kc">nil</span><span class="p">,</span> <span class="kc">nil</span><span class="p">,</span> <span class="nx">m</span><span class="p">.</span><span class="nx">ButtonAction1</span><span class="p">)</span>
+    <span class="nx">hPanel</span><span class="p">.</span><span class="nf">AddWidget</span><span class="p">(</span><span class="nx">button1</span><span class="p">)</span>
+ 
+    <span class="k">return</span> <span class="kc">nil</span>
+<span class="p">}</span>
+</code></pre></div><p>从视觉上看，什么都不会改变。我们仍然只显示 1 个小部件。</p>
+<p>现在，如果我们在同一 HPanel 中添加一个复选框怎么办？</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="p">(</span><span class="nx">m</span> <span class="o">*</span><span class="nx">MyApp</span><span class="p">)</span> <span class="nf">SetupUI</span><span class="p">()</span> <span class="kt">error</span> <span class="p">{</span>
+ 
+    <span class="nx">vPanel</span> <span class="o">:=</span> <span class="nx">widgets</span><span class="p">.</span><span class="nf">NewVPanel</span><span class="p">(</span><span class="s">&#34;main vpanel&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">color</span><span class="p">.</span><span class="nx">RGBA</span><span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mh">0xff</span><span class="p">})</span>
+    <span class="nx">m</span><span class="p">.</span><span class="nx">window</span><span class="p">.</span><span class="nf">AddPanel</span><span class="p">(</span><span class="nx">vPanel</span><span class="p">)</span>
+ 
+    <span class="nx">hPanel</span> <span class="o">:=</span> <span class="nx">widgets</span><span class="p">.</span><span class="nf">NewHPanel</span><span class="p">(</span><span class="s">&#34;hpanel1&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">color</span><span class="p">.</span><span class="nx">RGBA</span><span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">})</span>
+    <span class="nx">button1</span> <span class="o">:=</span> <span class="nx">widgets</span><span class="p">.</span><span class="nf">NewTextButton</span><span class="p">(</span><span class="s">&#34;text button 1&#34;</span><span class="p">,</span> <span class="s">&#34;my button1&#34;</span><span class="p">,</span> <span class="kc">true</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="kc">nil</span><span class="p">,</span> <span class="kc">nil</span><span class="p">,</span> <span class="kc">nil</span><span class="p">,</span> <span class="nx">m</span><span class="p">.</span><span class="nx">ButtonAction1</span><span class="p">)</span>
+    <span class="nx">hPanel</span><span class="p">.</span><span class="nf">AddWidget</span><span class="p">(</span><span class="nx">button1</span><span class="p">)</span>
+ 
+    <span class="nx">cb1</span> <span class="o">:=</span> <span class="nx">widgets</span><span class="p">.</span><span class="nf">NewCheckBox</span><span class="p">(</span><span class="s">&#34;my checkbox1&#34;</span><span class="p">,</span> <span class="s">&#34;check me please&#34;</span><span class="p">,</span> <span class="s">&#34;&#34;</span><span class="p">,</span> <span class="s">&#34;&#34;</span><span class="p">,</span> <span class="kc">nil</span><span class="p">)</span>
+    <span class="nx">hPanel</span><span class="p">.</span><span class="nf">AddWidget</span><span class="p">(</span><span class="nx">cb1</span><span class="p">)</span>
+ 
+    <span class="nx">vPanel</span><span class="p">.</span><span class="nf">AddWidget</span><span class="p">(</span><span class="nx">hPanel</span><span class="p">)</span>
+    <span class="k">return</span> <span class="kc">nil</span>
+<span class="p">}</span>
+</code></pre></div><p>因此，与之前完全相同，但只有这额外的两条：创建复选框，然后添加到 hPanel。</p>
+<p>现在 UI 看起来是这样：</p>
+<p><p class="md__image">
+  <img src="../imgs/goui-02.png"
+    alt=""  />
+</p>
+</p>
+<p>现在不担心这里的间距了。</p>
+<p>现在让我们在 TextButton 下面添加一个 ImageButton。这意味着我们将向 vPanel 添加第二项（第一项是 hPanel）</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">imageButton</span> <span class="o">:=</span> <span class="nx">widgets</span><span class="p">.</span><span class="nf">NewImageButton</span><span class="p">(</span><span class="s">&#34;ib1&#34;</span><span class="p">,</span> <span class="s">&#34;images/pressedbutton.png&#34;</span><span class="p">,</span> <span class="s">&#34;images/nonpressedbutton.png&#34;</span><span class="p">,</span><span class="kc">nil</span> <span class="p">)</span>
+<span class="nx">vPanel</span><span class="p">.</span><span class="nf">AddWidget</span><span class="p">(</span><span class="nx">imageButton</span><span class="p">)</span>
+</code></pre></div><p>这是效果如下：</p>
+<p><p class="md__image">
+  <img src="../imgs/goui-03.png"
+    alt=""  />
+</p>
+</p>
+<p>这时，我们有了 2 张图片（屏幕截图中只显示了一张）。按下按钮时一个，不按下时一个（只更改了阴影）。懂了吧。</p>
+<p>好了，介绍就这么多。虽然该 UI 库还不完善，但 GUI 的基本功能已经可以实现了。再次放上该库的地址：<a href="https://github.com/kpfaulkner/goui">https://github.com/kpfaulkner/goui</a>。</p>
+<blockquote>
+<p>作者：<a href="https://kpfaulkner.wordpress.com/author/kpfaulkner/" target="_blank" rel="noopener">kpfaulkner</a>
+</p>
+<p>日期：2020 年 8 月 17 日</p>
+<p>原文链接：<a href="https://kpfaulkner.wordpress.com/2020/08/17/goui-a-very-simple-ui-framework/">https://kpfaulkner.wordpress.com/2020/08/17/goui-a-very-simple-ui-framework/</a></p>
+<p>译者：polaris</p>
+</blockquote>
+
+			</div><div class="content">
+	<br>
+	<img src="https://static.studygolang.com/static/img/polarisxu-qrcode-soso-s.png">
+</div>
+
+<div class="related-posts thin">
+	<h2>相关推荐</h2>
+	<ul>
+	
+	<li><a href="/posts/go/action/talk-geek-time-live/">闲聊昨晚极客时间的直播</a></li>
+	
+	<li><a href="/posts/go/action/interview-slice-json/">一道关于 json 和 slice 的题难倒了 80% 的人</a></li>
+	
+	<li><a href="/posts/go/pkg/statsviz/">你喜欢的 Go 第三方库：一步为系统集成可视化实时运行时统计</a></li>
+	
+	<li><a href="/posts/go/project/usingg-gpgsync/">Go Playground 还能这么玩？</a></li>
+	
+	<li><a href="/posts/go/project/go-version-manager/">终于找到了一款我喜欢的安装和管理 Go 版本的工具</a></li>
+	
+	</ul>
+</div>
+
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://polarisxu.studygolang.com/tags/go">Go</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/golang">Golang</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/goui">GoUI</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/gui">GUI</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>2413 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2020-08-17 11:15 &#43;0800</p>
+			</footer>
+		</article>
+		<aside id="toc">
+			<div class="toc-title">目录</div>
+			<nav id="TableOfContents"></nav>
+		</aside>
+		<div class="post-nav thin">
+			<a class="next-post" href="https://polarisxu.studygolang.com/posts/go/translation/google-go-coredata/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;新</span><br><span>Google 的核心数据解决方案团队是如何使用 Go 的？</span>
+			</a>
+			<a class="prev-post" href="https://polarisxu.studygolang.com/posts/go/translation/easter-eggs-in-go-source-code-2l02/">
+				<span class="post-nav-label">旧&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>Go 源代码中的复活节彩蛋</span>
+			</a>
+		</div>
+		<div id="comments" class="thin"><script src="https://utteranc.es/client.js"
+	repo="polaris1119/polarisxu"
+	issue-term="pathname"
+	theme="github-light"
+	crossorigin="anonymous"
+	async>
+</script>
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2019 - 2020 <a href="https://polarisxu.studygolang.com">polarisxu</a> &#183; <a href="http://www.beian.miit.gov.cn/">京ICP备14030343号-1</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://polarisxu.studygolang.com/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+
+	<script src="https://polarisxu.studygolang.com/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw=" crossorigin="anonymous"></script>
+	<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?224c227cd9239761ec770bc8c1fb134c";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+</body>
+
+</html>

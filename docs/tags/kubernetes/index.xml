@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Kubernetes on polarisxu</title>
+    <link>https://polarisxu.studygolang.com/tags/kubernetes/</link>
+    <description>Recent content in Kubernetes on polarisxu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
+    <lastBuildDate>Mon, 11 May 2020 14:17:51 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/kubernetes/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>当 GoLand 遇到 Kubernetes：如何调试和运行 Go 程序</title>
+      <link>https://polarisxu.studygolang.com/posts/devtool/goland/using-kubernetes-from-goland/</link>
+      <pubDate>Mon, 11 May 2020 14:17:51 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/devtool/goland/using-kubernetes-from-goland/</guid>
+      <description>这是我们使用 Docker，Docker Compose 或 Kubernetes 运行 Go 服务的系列文章的最后一部分。在这一部分中，我们将专注于使用 Kubernetes 集群时的运行和调试。
+虽然我们不会介绍如何安装和配置 Kubernetes 集群，但是可以使用各种工具（例如 kubeadm ，minikube 和 microk8s ）来实现这一目标。如果您使用的是 Windows，则 Docker Desktop for Windows 附带内置的 Kubernetes 支持 。如果您打算使用基于 ARM 芯片的平台（例如 Raspberry Pi 4 ），则可以使用 k3s 之类的东西来入门。
+在开始之前，还应该安装 Kubernetes 插件，因为它没有与 IDE 捆绑在一起。您可以通过打开 Settings/Preferences | Plugins | Marketplace并搜索 Kubernetes 找到并安装插件。
+在 IDE 中使用 Kubernetes 运行服务 如果您到目前为止一直在关注本系列，那么您会知道所有代码都可以在此 下载和使用，使用 Kubernetes 也是这种情况。我们可以从 kubernetes 分支 开始。
+在这里我们可以找到两个不同的文件：db.yaml 和 web.yaml。这些文件包含了我们开始使用 Kubernetes 集群中的应用程序所需的所有定义。为了方便起见，他们还假定 Kubernetes 与 IDE 在同一台计算机上运行。
+打开 db.yaml：</description>
+    </item>
+    
+  </channel>
+</rss>

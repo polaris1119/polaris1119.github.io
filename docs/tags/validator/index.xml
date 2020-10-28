@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>validator on polarisxu</title>
+    <link>https://polarisxu.studygolang.com/tags/validator/</link>
+    <description>Recent content in validator on polarisxu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
+    <lastBuildDate>Fri, 28 Feb 2020 18:53:51 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/validator/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Echo 系列教程——定制篇2：自定义 Validator，进行输入校验</title>
+      <link>https://polarisxu.studygolang.com/posts/go/echo/custom02-validator/</link>
+      <pubDate>Fri, 28 Feb 2020 18:53:51 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/echo/custom02-validator/</guid>
+      <description>上一篇讲 Binder 时提到，参数自动绑定和校验是 Web 框架很重要的两个功能，可以极大的提升开发速度，并更好的保证数据的可靠性（服务端数据校验很重要）。本节</description>
+    </item>
+    
+  </channel>
+</rss>

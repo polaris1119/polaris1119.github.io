@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#494f5c">
+	<meta name="msapplication-TileColor" content="#494f5c">
+<meta itemprop="name" content="从这些角度看 Go 是一门很棒的语言">
+<meta itemprop="description" content="Go 当前引起了很多关注。让我们看一下 Go 好的部分。 我最近用 Go 写了一个 SSH 服务器 ，在其中启动容器。该项目已经发展到很大规模，并且我还向 Go 发起了 PR ，以">
+<meta itemprop="datePublished" content="2020-06-22T11:15:51+08:00" />
+<meta itemprop="dateModified" content="2020-06-22T11:15:51+08:00" />
+<meta itemprop="wordCount" content="2039">
+
+
+
+<meta itemprop="keywords" content="Go,Golang,awesome," />
+<meta property="og:title" content="从这些角度看 Go 是一门很棒的语言" />
+<meta property="og:description" content="Go 当前引起了很多关注。让我们看一下 Go 好的部分。 我最近用 Go 写了一个 SSH 服务器 ，在其中启动容器。该项目已经发展到很大规模，并且我还向 Go 发起了 PR ，以" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/translation/go-is-awesome/" />
+<meta property="article:published_time" content="2020-06-22T11:15:51+08:00" />
+<meta property="article:modified_time" content="2020-06-22T11:15:51+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="从这些角度看 Go 是一门很棒的语言"/>
+<meta name="twitter:description" content="Go 当前引起了很多关注。让我们看一下 Go 好的部分。 我最近用 Go 写了一个 SSH 服务器 ，在其中启动容器。该项目已经发展到很大规模，并且我还向 Go 发起了 PR ，以"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>从这些角度看 Go 是一门很棒的语言</title>
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
+	
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://polarisxu.studygolang.com">polarisxu</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+  <a href="https://polarisxu.studygolang.com/posts/">文章</a>
+  <a href="https://polarisxu.studygolang.com/go-categories/">Go系列</a>
+  <a href="https://polarisxu.studygolang.com/devtool-categories/">开发工具</a>
+  <a href="https://polarisxu.studygolang.com/about/">关于</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<button id="toc-btn" class="hdr-btn desktop-only-ib" title="目录"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3" y2="6"></line><line x1="3" y1="12" x2="3" y2="12"></line><line x1="3" y1="18" x2="3" y2="18"></line></svg></button><span class="hdr-social hide-in-mobile"><a href="https://github.com/polaris1119" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a><a href="https://twitter.com/polaris1119" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="菜单"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://polarisxu.studygolang.com/posts/">文章</a></li>
+			<li><a href="https://polarisxu.studygolang.com/go-categories/">Go系列</a></li>
+			<li><a href="https://polarisxu.studygolang.com/devtool-categories/">开发工具</a></li>
+			<li><a href="https://polarisxu.studygolang.com/about/">关于</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Jun 22, 2020</span></div>
+				<h1>从这些角度看 Go 是一门很棒的语言</h1>
+			</header>
+			<div class="content">
+				<p>Go 当前引起了很多关注。让我们看一下 Go 好的部分。</p>
+<p><p class="md__image">
+  <img src="../imgs/go-is-awesome.jpg"
+    alt=""  />
+</p>
+</p>
+<p>我最近用 Go 写了一个 <a href="https://github.com/janoszen/containerssh" target="_blank" rel="noopener">SSH 服务器</a>
+，在其中启动容器。该项目已经发展到很大规模，并且我还向 Go <a href="https://go-review.googlesource.com/c/crypto/&#43;/236517" target="_blank" rel="noopener">发起了 PR</a>
+，以修复我发现的错误。在积累了比 “Hello world！” 更多的经验之后，现在我有信心写出我真正喜欢的 Go 语言部分。</p>
+<h2 id="跨平台">跨平台<a href="#跨平台" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>Go 引起我注意的原因之一是其构建系统。Java 的最初承诺是它是跨平台的，但是它需要安装运行时的事实显然是一个失败。而 Go 编译为本地二进制文件。在 Windows 上，您将获得一个 .exe 文件，在 Linux 上，您将获得一个 ELF 二进制文件，依此类推。而且，除非您使用 cgo，否则 Go 程序可以在几乎没有外部依赖的情况下运行。无需安装任何 .dll 或 .so 文件，Go 程序即可<a href="https://www.youtube.com/watch?v=YPN0qhSyWy8" target="_blank" rel="noopener">直接使用</a>
+。</p>
+<p>大部分时候，除了某些函数需要 libc 外，Go 程序可以在完全没有外部依赖的情况下运行。</p>
+<p>Go 可以用来构建真正的跨平台二进制文件而无需安装笨拙的运行时（例如使用 Java 或 Python），这一事实是 Go 的主要吸引点。</p>
+<h2 id="goroutines-和-channels">Goroutines 和 Channels<a href="#goroutines-和-channels" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>当我开始使用 Go 语言时，我意识到它对并发的处理是多么的酷。传统上，您将使用线程或单独的进程来同时运行多个任务（例如 Java，C，C ++）。另外，您也可以依靠协作式多任务处理（例如 Javascript）来达到相同的效果。</p>
+<p>对于线程和进程，操作系统必须执行的每个切换都会造成资源损耗。这称为上下文切换。换句话说，一个使用大量线程的粗心程序员将带来性能问题。</p>
+<p>另一方面，协作多任务将在单个线程上运行。每当一项任务必须等待某件事时，另一项任务就会运行。如果一个任务占用了 CPU，其他任务将被饿死。</p>
+<p>Go 以巧妙的方式将两者结合在一起。让我们以以下示例为例：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">go</span> <span class="nf">someOtherFunction</span><span class="p">()</span>
+<span class="p">}</span>
+</code></pre></div><p>注意 go 关键字。通过使用此关键字，someOtherFunction() 可在 goroutine 中运行。想象一下 Go 作为线程池处理并发的方式。每当您运行 goroutine 时，它将在这些线程之一中运行。这样 Go 可以优化线程的使用以提高性能。</p>
+<p>为了促进 goroutine 之间的数据传输，Go 引入了通道（channel），通道是应用程序中的消息队列，用于发送数据。</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">chan</span> <span class="nx">done</span> <span class="o">&lt;-</span> <span class="kt">bool</span>
+
+    <span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">time</span><span class="p">.</span><span class="nf">Sleep</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">)</span>
+        <span class="nx">done</span> <span class="o">&lt;-</span> <span class="kc">true</span>
+    <span class="p">}()</span>
+
+    <span class="c1">//This will wait until the goroutine finishes
+</span><span class="c1"></span>    <span class="o">&lt;-</span> <span class="nx">done</span>
+<span class="p">}</span>
+</code></pre></div><p>从上面的代码中可以看到，<code>&lt;- channelname</code> 将堵塞当前 goroutine 的执行，直到有可用数据为止，这使得并发编程非常容易。</p>
+<p>如果您对更多细节感兴趣，请查看 <a href="https://gobyexample.com/channels" target="_blank" rel="noopener">channel</a>
+，<a href="https://gobyexample.com/context" target="_blank" rel="noopener">上下文</a>
+和<a href="https://gobyexample.com/mutexes" target="_blank" rel="noopener">互斥锁</a>
+。</p>
+<h2 id="指针defer-和垃圾收集">指针，Defer 和垃圾收集<a href="#指针defer-和垃圾收集" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>当提到指针时，首先想到的是 C 或 C++。通常，这种记忆并不愉快。</p>
+<p>在 Go 中，指针更像是引用。指针并非总是将数据复制到变量中，而是指向原始的内存。不管传递包含指针的变量多少次，任何修改都将始终更改原始值。</p>
+<p>让我们看一个例子：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">someVar</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">someStruct</span><span class="p">{}</span>
+</code></pre></div><p>现在，变量包含指向该结构的指针。传递时，无论您复制指针多少次，它始终指代相同的内存空间。</p>
+<p>但是，与 C 指针不同，Go 指针在不再需要时会自动进行垃圾回收。您无需担心使用后释放或缓冲区溢出漏洞，这些在 Go 中都不是问题。太棒了！</p>
+<p>此外，您还可以使用 defer 语句来帮助您进行函数清除。考虑以下函数：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">foo</span><span class="p">()</span> <span class="kt">error</span> <span class="p">{</span>
+    <span class="nx">close</span> <span class="o">:=</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">// Do somehing to clean up stuff
+</span><span class="c1"></span>    <span class="p">}</span>
+    <span class="nx">err</span> <span class="o">:=</span> <span class="nf">doSomething</span><span class="p">()</span>
+    <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+        <span class="nb">close</span><span class="p">()</span>
+        <span class="k">return</span> <span class="nx">err</span>
+    <span class="p">}</span>
+    <span class="c1">// Do something else
+</span><span class="c1"></span>    <span class="nb">close</span><span class="p">()</span>
+<span class="p">}</span>
+</code></pre></div><p>如您所见，我们在此函数中调用了 close() 两次。如果 foo 函数有多个出口（返回），则需要为每个出口重复 close() 调用。</p>
+<p>defer 语句完全可以解决此问题：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">foo</span><span class="p">()</span> <span class="kt">error</span> <span class="p">{</span>
+    <span class="nx">close</span> <span class="o">:=</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">// Do somehing to clean up stuff
+</span><span class="c1"></span>    <span class="p">}</span>
+    <span class="k">defer</span> <span class="nb">close</span><span class="p">()</span>
+
+    <span class="nx">err</span> <span class="o">:=</span> <span class="nf">doSomething</span><span class="p">()</span>
+    <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">err</span>
+    <span class="p">}</span>
+    <span class="c1">// Do something else
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></div><p>defer 语句保证 close 总是会被调用。</p>
+<h2 id="多返回值">多返回值<a href="#多返回值" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>这看似没什么，但是在编程语言中却很少见。</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">sshConn</span><span class="p">,</span> <span class="nx">chans</span><span class="p">,</span> <span class="nx">reqs</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">ssh</span><span class="p">.</span><span class="nf">NewServerConn</span><span class="p">(</span><span class="nx">tcpConn</span><span class="p">,</span> <span class="nx">config</span><span class="p">)</span>
+</code></pre></div><p>有什么理由不喜欢？</p>
+<h2 id="oop好的部分">OOP（好的部分）<a href="#oop好的部分" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>尽管 Go 没有类的概念，但仍然可以编写面向对象的代码。</p>
+<p>假设有以下 Java 代码：</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">TreeNode</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">TreeNode</span><span class="o">&gt;</span> <span class="n">nodes</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">();</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">addChild</span><span class="o">(</span><span class="n">child</span> <span class="n">TreeNode</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">nodes</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">child</span><span class="o">)</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><p>在 Go 中，类似的代码如下所示：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">TreeNode</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">children</span> <span class="p">[]</span><span class="nx">treeNode</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">New</span><span class="p">()</span> <span class="o">*</span><span class="nx">TreeNode</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="o">&amp;</span><span class="nx">TreeNode</span><span class="p">{}</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="p">(</span><span class="nx">treeNode</span> <span class="o">*</span><span class="nx">TreeNode</span><span class="p">)</span> <span class="nf">AddChild</span><span class="p">(</span><span class="nx">child</span> <span class="o">*</span> <span class="nx">TreeNode</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">treeNode</span><span class="p">.</span><span class="nx">children</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">treeNode</span><span class="p">.</span><span class="nx">children</span><span class="p">,</span> <span class="nx">child</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div><p>Go 将（<code>treeNode *TreeNode</code>）部分称为接收器。Go 中的 Receiver 可以使用与其他语言中的 this 关键字非常相似的任何数据类型和功能。</p>
+<h2 id="slices">Slices<a href="#slices" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>和许多其他低级语言一样，Go 将数组实现为固定大小的元素列表。创建后无法更改其大小。</p>
+<p>另一方面，切片（Slice）是使它们动态化的技巧。当切片已满时，Go 会创建一个更大的切片新副本。Go 以尽可能少的复制的方式优化过程。</p>
+<p>此外，Go slice 还具有创建不占用额外内存的子切片的简洁功能。这些切片引用原始的数组。如果更改切片中的数据，则原始数据也将更改。</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">import</span> <span class="s">&#34;fmt&#34;</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="nx">data</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&#34;a&#34;</span><span class="p">,</span> <span class="s">&#34;b&#34;</span><span class="p">,</span> <span class="s">&#34;c&#34;</span><span class="p">,</span> <span class="s">&#34;d&#34;</span><span class="p">}</span>
+	<span class="nx">d</span> <span class="o">:=</span> <span class="nx">data</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
+	<span class="c1">// Will print [c]
+</span><span class="c1"></span>	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;%v&#34;</span><span class="p">,</span> <span class="nx">d</span><span class="p">)</span>
+	<span class="nx">d</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">=</span> <span class="s">&#34;f&#34;</span>
+	<span class="c1">//Will print [a b f d]
+</span><span class="c1"></span>	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;%v&#34;</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div><p>如果您想深入了解，请继续阅读 <a href="https://gobyexample.com/slices" target="_blank" rel="noopener">Go by Example</a>
+。</p>
+<h2 id="库">库<a href="#库" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>选择 Go 的原因之一是库数量众多。SSH 客户端和服务器库？<a href="https://godoc.org/golang.org/x/crypto/ssh" target="_blank" rel="noopener">有</a>
+。适用于 AWS 的 SDK？<a href="https://aws.amazon.com/sdk-for-go/" target="_blank" rel="noopener">同样有</a>
+。GitHub 操作库？<a href="https://github.com/google/go-github" target="_blank" rel="noopener">当然有</a>
+。让我们尝试一些非常少用的东西……FastCGI 协议实现如何？<a href="https://golang.org/pkg/net/http/fcgi/" target="_blank" rel="noopener">当然也有</a>
+。</p>
+<p>我可以继续，但是没多大必要了。Go 的普及无疑对生态系统有所帮助。</p>
+<h2 id="工具">工具<a href="#工具" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>构建 Go 拥有大量可用的工具。您拥有从<a href="https://blog.golang.org/gofmt" target="_blank" rel="noopener">自动代码格式化</a>
+，测试到<a href="https://goreleaser.com/" target="_blank" rel="noopener">完整发布工具</a>
+的全套工具。几乎所有的都有很多工具。</p>
+<h2 id="结论">结论<a href="#结论" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>在代码组织方面，Go 当然有其缺点。但是，它特别适合用于各种任务的高性能软件开发。</p>
+<p>那 Go 具体有哪些缺点呢？下次我们“喷一喷” Go 的缺点。</p>
+<blockquote>
+<p>原文链接：https://pasztor.at/blog/go-is-awesome
+编译：polaris</p>
+</blockquote>
+
+			</div><div class="content">
+	<br>
+	<img src="https://static.studygolang.com/static/img/polarisxu-qrcode-soso-s.png">
+</div>
+
+<div class="related-posts thin">
+	<h2>相关推荐</h2>
+	<ul>
+	
+	<li><a href="/posts/go/translation/go-is-terrible/">从这些角度看 Go 是一门糟糕的语言</a></li>
+	
+	<li><a href="/posts/go/action/talk-geek-time-live/">闲聊昨晚极客时间的直播</a></li>
+	
+	<li><a href="/posts/go/action/interview-slice-json/">一道关于 json 和 slice 的题难倒了 80% 的人</a></li>
+	
+	<li><a href="/posts/go/pkg/statsviz/">你喜欢的 Go 第三方库：一步为系统集成可视化实时运行时统计</a></li>
+	
+	<li><a href="/posts/go/project/usingg-gpgsync/">Go Playground 还能这么玩？</a></li>
+	
+	</ul>
+</div>
+
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://polarisxu.studygolang.com/tags/go">Go</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/golang">Golang</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/awesome">awesome</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>2039 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2020-06-22 11:15 &#43;0800</p>
+			</footer>
+		</article>
+		<aside id="toc">
+			<div class="toc-title">目录</div>
+			<nav id="TableOfContents">
+  <ul>
+    <li><a href="#跨平台">跨平台</a></li>
+    <li><a href="#goroutines-和-channels">Goroutines 和 Channels</a></li>
+    <li><a href="#指针defer-和垃圾收集">指针，Defer 和垃圾收集</a></li>
+    <li><a href="#多返回值">多返回值</a></li>
+    <li><a href="#oop好的部分">OOP（好的部分）</a></li>
+    <li><a href="#slices">Slices</a></li>
+    <li><a href="#库">库</a></li>
+    <li><a href="#工具">工具</a></li>
+    <li><a href="#结论">结论</a></li>
+  </ul>
+</nav>
+		</aside>
+		<div class="post-nav thin">
+			<a class="next-post" href="https://polarisxu.studygolang.com/posts/go/translation/benchmarking-grpc-in-rust-go/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;新</span><br><span>对 gRPC 的 Rust 和 Go 版本进行基准测试</span>
+			</a>
+			<a class="prev-post" href="https://polarisxu.studygolang.com/posts/go/translation/go-is-terrible/">
+				<span class="post-nav-label">旧&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>从这些角度看 Go 是一门糟糕的语言</span>
+			</a>
+		</div>
+		<div id="comments" class="thin"><script src="https://utteranc.es/client.js"
+	repo="polaris1119/polarisxu"
+	issue-term="pathname"
+	theme="github-light"
+	crossorigin="anonymous"
+	async>
+</script>
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2019 - 2020 <a href="https://polarisxu.studygolang.com">polarisxu</a> &#183; <a href="http://www.beian.miit.gov.cn/">京ICP备14030343号-1</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://polarisxu.studygolang.com/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+
+	<script src="https://polarisxu.studygolang.com/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw=" crossorigin="anonymous"></script>
+	<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?224c227cd9239761ec770bc8c1fb134c";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+</body>
+
+</html>

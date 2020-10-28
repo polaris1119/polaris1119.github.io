@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#494f5c">
+	<meta name="msapplication-TileColor" content="#494f5c">
+<meta itemprop="name" content="Echo 系列教程——基础篇2：Echo 核心亮点介绍">
+<meta itemprop="description" content="在 Echo 的官网的首页，列出了 9 个核心功能或亮点。我这里将它说成是亮点（也许并不一定都比其他框架更好）。 一、优化的路由 高度优化的 HTTP 路由，动态内存分">
+<meta itemprop="datePublished" content="2019-10-28T11:15:51+08:00" />
+<meta itemprop="dateModified" content="2019-10-28T11:15:51+08:00" />
+<meta itemprop="wordCount" content="1725">
+
+
+
+<meta itemprop="keywords" content="echo,web框架,亮点," />
+<meta property="og:title" content="Echo 系列教程——基础篇2：Echo 核心亮点介绍" />
+<meta property="og:description" content="在 Echo 的官网的首页，列出了 9 个核心功能或亮点。我这里将它说成是亮点（也许并不一定都比其他框架更好）。 一、优化的路由 高度优化的 HTTP 路由，动态内存分" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/echo/basic02-feature/" />
+<meta property="article:published_time" content="2019-10-28T11:15:51+08:00" />
+<meta property="article:modified_time" content="2019-10-28T11:15:51+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Echo 系列教程——基础篇2：Echo 核心亮点介绍"/>
+<meta name="twitter:description" content="在 Echo 的官网的首页，列出了 9 个核心功能或亮点。我这里将它说成是亮点（也许并不一定都比其他框架更好）。 一、优化的路由 高度优化的 HTTP 路由，动态内存分"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>Echo 系列教程——基础篇2：Echo 核心亮点介绍</title>
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
+	
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://polarisxu.studygolang.com">polarisxu</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+  <a href="https://polarisxu.studygolang.com/posts/">文章</a>
+  <a href="https://polarisxu.studygolang.com/go-categories/">Go系列</a>
+  <a href="https://polarisxu.studygolang.com/devtool-categories/">开发工具</a>
+  <a href="https://polarisxu.studygolang.com/about/">关于</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<button id="toc-btn" class="hdr-btn desktop-only-ib" title="目录"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3" y2="6"></line><line x1="3" y1="12" x2="3" y2="12"></line><line x1="3" y1="18" x2="3" y2="18"></line></svg></button><span class="hdr-social hide-in-mobile"><a href="https://github.com/polaris1119" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a><a href="https://twitter.com/polaris1119" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="菜单"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://polarisxu.studygolang.com/posts/">文章</a></li>
+			<li><a href="https://polarisxu.studygolang.com/go-categories/">Go系列</a></li>
+			<li><a href="https://polarisxu.studygolang.com/devtool-categories/">开发工具</a></li>
+			<li><a href="https://polarisxu.studygolang.com/about/">关于</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Oct 28, 2019</span></div>
+				<h1>Echo 系列教程——基础篇2：Echo 核心亮点介绍</h1>
+			</header>
+			<div class="content">
+				<p>在 Echo 的官网的首页，列出了 9 个核心功能或亮点。我这里将它说成是亮点（也许并不一定都比其他框架更好）。</p>
+<h2 id="一优化的路由">一、优化的路由<a href="#一优化的路由" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p><strong>高度优化的 HTTP 路由，动态内存分配为零，可对路由进行优先级排序。</strong></p>
+<p>这一点从上一篇：[搭建 Echo 开发环境](基础篇：搭建 Echo 开发环境.md) 可以看到。</p>
+<p>Echo 路由基于 <a href="http://en.wikipedia.org/wiki/Radix_tree" target="_blank" rel="noopener">radix tree</a>
+ ，查询速度非常快。路由使用 <a href="https://docs.studygolang.com/pkg/sync/#Pool" target="_blank" rel="noopener">sync pool</a>
+ 来重用内存，实现无 GC 开销下的零动态内存分配。</p>
+<h3 id="路由的注册和使用方式">路由的注册和使用方式<a href="#路由的注册和使用方式" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>各大框架路由的注册和使用方式都类似，通过 HTTP 方法（GET、POST、PUT、DELETE 等），将 url 路径和一个处理程序绑定在一起，唯一不太一样的一般是处理程序的函数签名不一样（主要参数类型不一样）。例如，下面的代码则展示了一个注册路由的例子：它包括 <code>GET</code> 的访问方式， <code>/hello</code> 的访问路径，以及发送 <code>Hello World</code> HTTP 响应的处理程序。</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// 业务处理
+</span><span class="c1"></span><span class="kd">func</span> <span class="nf">hello</span><span class="p">(</span><span class="nx">c</span> <span class="nx">echo</span><span class="p">.</span><span class="nx">Context</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
+  	<span class="k">return</span> <span class="nx">c</span><span class="p">.</span><span class="nf">String</span><span class="p">(</span><span class="nx">http</span><span class="p">.</span><span class="nx">StatusOK</span><span class="p">,</span> <span class="s">&#34;Hello, World!&#34;</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c1">// 路由
+</span><span class="c1"></span><span class="nx">e</span><span class="p">.</span><span class="nf">GET</span><span class="p">(</span><span class="s">&#34;/hello&#34;</span><span class="p">,</span> <span class="nx">hello</span><span class="p">)</span>
+</code></pre></div><p>更多路由的特性，参考文档：<a href="https://echo.labstack.com/guide/routing/">https://echo.labstack.com/guide/routing/</a>（英文）、 <a href="https://www.bookstack.cn/read/echo-v3-zh/guide-routing.md">https://www.bookstack.cn/read/echo-v3-zh/guide-routing.md</a> （中文）。（上篇贴的中文文档打不开了。注意，中文文档基于 V3，而不是 V4）</p>
+<h2 id="二scalable">二、Scalable<a href="#二scalable" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>Echo 方便构建健壮的 RESTful API，轻松将其组织起来。</p>
+<p>根据上一节路由，我们可以轻松构建出 RESTful API，比如：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">e</span><span class="p">.</span><span class="nf">POST</span><span class="p">(</span><span class="s">&#34;/user&#34;</span><span class="p">,</span> <span class="nx">createUser</span><span class="p">)</span>
+<span class="nx">e</span><span class="p">.</span><span class="nf">GET</span><span class="p">(</span><span class="s">&#34;/user/1&#34;</span><span class="p">,</span> <span class="nx">findUser</span><span class="p">)</span>
+<span class="nx">e</span><span class="p">.</span><span class="nf">PUT</span><span class="p">(</span><span class="s">&#34;/user/1&#34;</span><span class="p">,</span> <span class="nx">updateUser</span><span class="p">)</span>
+<span class="nx">e</span><span class="p">.</span><span class="nf">DELETE</span><span class="p">(</span><span class="s">&#34;/user/1&#34;</span><span class="p">,</span> <span class="nx">deleteUser</span><span class="p">)</span>
+</code></pre></div><p>可以轻松对应上 RESTful API 的标准。</p>
+<h2 id="三自动-tls">三、自动 TLS<a href="#三自动-tls" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>Echo 能够通过 “Let&rsquo;s Encrypt” 自动安装 TLS 证书。<code>Echo#StartAutoTLS</code> 接受一个接听 443 端口的网络地址。类似 <code>:443</code> 这样。</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">e</span><span class="p">.</span><span class="nf">StartAutoTLS</span><span class="p">(</span><span class="s">&#34;:443&#34;</span><span class="p">)</span>
+</code></pre></div><p>可以通过 <code>e.AutoTLSManager</code> 做一些控制，比如缓存等。</p>
+<h2 id="四http2">四、HTTP/2<a href="#四http2" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>Echo 自动支持 HTTP/2。HTTP/2 (原本的名字是 HTTP/2.0) 是万维网使用的 HTTP 网络协议的第二个主要版本。HTTP/2 提供了更快的速度和更好的用户体验。</p>
+<h3 id="特性">特性<a href="#特性" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<ul>
+<li>使用二进制格式传输数据，而不是文本。使得在解析和优化扩展上更为方便。</li>
+<li>多路复用，所有的请求都是通过一个 TCP 连接并发完成。</li>
+<li>对消息头采用 HPACK 进行压缩传输，能够节省消息头占用的网络的流量。</li>
+<li>Server Push：服务端能够更快的把资源推送给客户端。</li>
+</ul>
+<h2 id="五中间件">五、中间件<a href="#五中间件" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>这是让 Echo 可扩展、功能强大、好用的关键组件。</p>
+<p>中间件是一个函数，嵌入在 HTTP 的请求和响应之间。它可以获得 <code>Echo#Context</code> 对象用来进行一些特殊的操作， 比如记录每个请求或者统计请求数。</p>
+<h3 id="不同级别的中间件">不同级别的中间件<a href="#不同级别的中间件" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<h4 id="1根级别中间件router-之前">1、根级别中间件（router 之前）<a href="#1根级别中间件router-之前" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
+<p><code>Echo#Pre()</code> 用于注册一个在路由执行之前运行的中间件，可以用来修改请求的一些属性。比如在请求路径结尾添加或者删除一个 <code>/</code> 来使之能与路由匹配。</p>
+<p>下面的这几个内建中间件应该被注册在这一级别：</p>
+<ul>
+<li>AddTrailingSlash</li>
+<li>RemoveTrailingSlash</li>
+<li>MethodOverride</li>
+</ul>
+<p><em>注意</em>: 由于在这个级别路由还没有执行，所以这个级别的中间件不能调用任何 <code>echo.Context</code> 的 API。</p>
+<h4 id="2根级别中间件router-之后">2、根级别中间件（router 之后）<a href="#2根级别中间件router-之后" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
+<p>大部分时间你将用到 <code>Echo#Use()</code> 在这个级别注册中间件。 这个级别的中间件运行在路由处理完请求之后，可以调用所有的 <code>echo.Context</code> API。</p>
+<p>下面的这几个内建中间件应该被注册在这一级别：</p>
+<ul>
+<li>BodyLimit</li>
+<li>Logger</li>
+<li>Gzip</li>
+<li>Recover</li>
+<li>BasicAuth</li>
+<li>JWTAuth</li>
+<li>Secure</li>
+<li>CORS</li>
+<li>Static</li>
+</ul>
+<h4 id="3组级别中间件">3、组级别中间件<a href="#3组级别中间件" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
+<p>当在路由中创建一个组的时候，可以为这个组注册一个中间件。例如，给 admin 这个组注册一个 BasicAuth 中间件。</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">e</span> <span class="o">:=</span> <span class="nx">echo</span><span class="p">.</span><span class="nf">New</span><span class="p">()</span>
+<span class="nx">admin</span> <span class="o">:=</span> <span class="nx">e</span><span class="p">.</span><span class="nf">Group</span><span class="p">(</span><span class="s">&#34;/admin&#34;</span><span class="p">,</span> <span class="nx">middleware</span><span class="p">.</span><span class="nf">BasicAuth</span><span class="p">())</span>
+</code></pre></div><p>也可以在创建组之后用 <code>admin.Use()</code>注册该中间件。</p>
+<h4 id="4路由级别中间件">4、路由级别中间件<a href="#4路由级别中间件" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
+<p>当你创建了一个新的路由，可以选择性的给这个路由注册一个中间件。</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">e</span> <span class="o">:=</span> <span class="nx">echo</span><span class="p">.</span><span class="nf">New</span><span class="p">()</span>
+<span class="nx">e</span><span class="p">.</span><span class="nf">GET</span><span class="p">(</span><span class="s">&#34;/&#34;</span><span class="p">,</span> <span class="p">&lt;</span><span class="nx">Handler</span><span class="p">&gt;,</span> <span class="p">&lt;</span><span class="nx">Middleware</span><span class="o">...</span><span class="p">&gt;)</span>
+</code></pre></div><h2 id="六数据绑定">六、数据绑定<a href="#六数据绑定" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>HTTP 请求有效负载的数据绑定，包括 JSON，XML 或表单数据。</p>
+<p>可以使用 <code>Context#Bind(i interface{})</code> 将请求内容体绑定至 go 的结构体。默认绑定器支持基于 <code>Content-Type</code>  请求头包含 application/json，application/xml 和 application/x-www-form-urlencoded 的数据。</p>
+<p>下面是绑定请求数据到 <code>User</code> 结构体的例子。</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// User
+</span><span class="c1"></span><span class="nx">User</span> <span class="kd">struct</span> <span class="p">{</span>
+  <span class="nx">Name</span>  <span class="kt">string</span> <span class="s">`json:&#34;name&#34; form:&#34;name&#34; query:&#34;name&#34;`</span>
+  <span class="nx">Email</span> <span class="kt">string</span> <span class="s">`json:&#34;email&#34; form:&#34;email&#34; query:&#34;email&#34;`</span>
+<span class="p">}</span>
+
+<span class="c1">// Handler
+</span><span class="c1"></span><span class="kd">func</span><span class="p">(</span><span class="nx">c</span> <span class="nx">echo</span><span class="p">.</span><span class="nx">Context</span><span class="p">)</span> <span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">u</span> <span class="o">:=</span> <span class="nb">new</span><span class="p">(</span><span class="nx">User</span><span class="p">)</span>
+  <span class="k">if</span> <span class="nx">err</span> <span class="p">=</span> <span class="nx">c</span><span class="p">.</span><span class="nf">Bind</span><span class="p">(</span><span class="nx">u</span><span class="p">);</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+    <span class="k">return</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="nx">c</span><span class="p">.</span><span class="nf">JSON</span><span class="p">(</span><span class="nx">http</span><span class="p">.</span><span class="nx">StatusOK</span><span class="p">,</span> <span class="nx">u</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div><p>以上代码支持如下请求数据的绑定：</p>
+<p>1、JSON 数据</p>
+<pre><code>curl \
+  -X POST \
+  http://localhost:1323/users \
+  -H 'Content-Type: application/json' \
+  -d '{&quot;name&quot;:&quot;Joe&quot;,&quot;email&quot;:&quot;joe@labstack&quot;}'
+</code></pre><p>2、Form 表单数据</p>
+<pre><code>curl \
+  -X POST \
+  http://localhost:1323/users \
+  -d 'name=Joe' \
+  -d 'email=joe@labstack.com'
+</code></pre><p>3、查询参数 (Query Parameters)</p>
+<pre><code>curl \
+  -X GET \
+  http://localhost:1323/users\?name\=Joe\&amp;email\=joe@labstack.com
+</code></pre><h2 id="七数据呈现">七、数据呈现<a href="#七数据呈现" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>有发送各种 HTTP 响应的 API，包括 JSON，XML，HTML，文件，附件，内联，流或 Blob。</p>
+<h2 id="八模板">八、模板<a href="#八模板" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>支持使用任何模板引擎进行模板渲染。</p>
+<p>使用 <code>Context#Render(code int, name string, data interface{}) error</code> 命令渲染带有数据的模板，并发送带有状态代码的 <code>text/html</code> 响应。通过 <code>Echo.Renderer</code> 的设置我们可以使用任何模板引擎。</p>
+<h2 id="九可扩展extensible">九、可扩展（Extensible）<a href="#九可扩展extensible" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>拥有可定制的集中 HTTP 错误处理和易于扩展的 API 等。</p>
+<h2 id="总结">总结<a href="#总结" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>以上是 Echo 首页给出的 9 大核心亮点，后续教程会给出详细的讲解或实际例子。</p>
+
+			</div><div class="content">
+	<br>
+	<img src="https://static.studygolang.com/static/img/polarisxu-qrcode-soso-s.png">
+</div>
+
+<div class="related-posts thin">
+	<h2>相关推荐</h2>
+	<ul>
+	
+	<li><a href="/posts/go/echo/basic03-example/">Echo 系列教程——基础篇3：通过一个例子串联各特性</a></li>
+	
+	<li><a href="/posts/go/echo/basic01-env/">Echo 系列教程——基础篇1：搭建 Echo 开发环境</a></li>
+	
+	<li><a href="/posts/go/echo/echo/">Echo 系列教程——Go 语言 Web 框架 Echo 系列教程</a></li>
+	
+	<li><a href="/posts/go/echo/custom04-renderer/">Echo 系列教程——定制篇4：自定义 Renderer，增强或替换模板引擎</a></li>
+	
+	<li><a href="/posts/go/echo/custom05-error-handler/">Echo 系列教程——定制篇5：自定义 HTTP Error Handler，让 HTTP 错误处理更友好</a></li>
+	
+	</ul>
+</div>
+
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://polarisxu.studygolang.com/tags/echo">echo</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/web%E6%A1%86%E6%9E%B6">web框架</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/%E4%BA%AE%E7%82%B9">亮点</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1725 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2019-10-28 11:15 &#43;0800</p>
+			</footer>
+		</article>
+		<aside id="toc">
+			<div class="toc-title">目录</div>
+			<nav id="TableOfContents">
+  <ul>
+    <li><a href="#一优化的路由">一、优化的路由</a>
+      <ul>
+        <li><a href="#路由的注册和使用方式">路由的注册和使用方式</a></li>
+      </ul>
+    </li>
+    <li><a href="#二scalable">二、Scalable</a></li>
+    <li><a href="#三自动-tls">三、自动 TLS</a></li>
+    <li><a href="#四http2">四、HTTP/2</a>
+      <ul>
+        <li><a href="#特性">特性</a></li>
+      </ul>
+    </li>
+    <li><a href="#五中间件">五、中间件</a>
+      <ul>
+        <li><a href="#不同级别的中间件">不同级别的中间件</a></li>
+      </ul>
+    </li>
+    <li><a href="#六数据绑定">六、数据绑定</a></li>
+    <li><a href="#七数据呈现">七、数据呈现</a></li>
+    <li><a href="#八模板">八、模板</a></li>
+    <li><a href="#九可扩展extensible">九、可扩展（Extensible）</a></li>
+    <li><a href="#总结">总结</a></li>
+  </ul>
+</nav>
+		</aside>
+		<div class="post-nav thin">
+			<a class="next-post" href="https://polarisxu.studygolang.com/posts/go/echo/basic03-example/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;新</span><br><span>Echo 系列教程——基础篇3：通过一个例子串联各特性</span>
+			</a>
+			<a class="prev-post" href="https://polarisxu.studygolang.com/posts/go/echo/basic01-env/">
+				<span class="post-nav-label">旧&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>Echo 系列教程——基础篇1：搭建 Echo 开发环境</span>
+			</a>
+		</div>
+		<div id="comments" class="thin"><script src="https://utteranc.es/client.js"
+	repo="polaris1119/polarisxu"
+	issue-term="pathname"
+	theme="github-light"
+	crossorigin="anonymous"
+	async>
+</script>
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2019 - 2020 <a href="https://polarisxu.studygolang.com">polarisxu</a> &#183; <a href="http://www.beian.miit.gov.cn/">京ICP备14030343号-1</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://polarisxu.studygolang.com/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+
+	<script src="https://polarisxu.studygolang.com/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw=" crossorigin="anonymous"></script>
+	<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?224c227cd9239761ec770bc8c1fb134c";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+</body>
+
+</html>

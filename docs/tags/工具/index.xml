@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>工具 on polarisxu</title>
+    <link>https://polarisxu.studygolang.com/tags/%E5%B7%A5%E5%85%B7/</link>
+    <description>Recent content in 工具 on polarisxu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
+    <lastBuildDate>Fri, 09 Oct 2020 18:12:51 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/%E5%B7%A5%E5%85%B7/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>终于找到了一款我喜欢的安装和管理 Go 版本的工具</title>
+      <link>https://polarisxu.studygolang.com/posts/go/project/go-version-manager/</link>
+      <pubDate>Fri, 09 Oct 2020 18:12:51 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/project/go-version-manager/</guid>
+      <description>一直以来，我都习惯通过源码安装 Go。我是这么做的： 1）Git clone Go 源码 $ git clone https://github.com/golang/go 2）需要安装什么版本就切换到对应的分支，比如安装 1.15.x $ git checkout -b release-branch.go1.15 origin/release-branch.go1.15 如</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>GUI on polarisxu</title>
+    <link>https://polarisxu.studygolang.com/tags/gui/</link>
+    <description>Recent content in GUI on polarisxu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
+    <lastBuildDate>Mon, 17 Aug 2020 11:15:51 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/gui/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>GoUI：一个非常简单的 GUI 框架</title>
+      <link>https://polarisxu.studygolang.com/posts/go/translation/goui-a-very-simple-ui-framework/</link>
+      <pubDate>Mon, 17 Aug 2020 11:15:51 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/translation/goui-a-very-simple-ui-framework/</guid>
+      <description>最近，我一直想开发一些桌面（主要是 Windows，但也可以考虑 MacOS 或 Linux）应用程序。虽然 Go 不是开发 UI 应用程序时首选语言，但是该语言的简单</description>
+    </item>
+    
+  </channel>
+</rss>
