@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#fcfcfc">
+	<meta name="msapplication-TileColor" content="#fcfcfc">
+<meta itemprop="name" content="">
+<meta itemprop="description" content="AI 和 数据科学领域，Go 语言可能很快会取代 Python。最后的原因有点迷 30 年前，Python 首次出现。但是花了 20 年时间才能获得开发人员的赏识。快进到 2019 年，它成为开发人员中第二受欢迎的语言。（来自 Stackoverflow 开发人员 2019 调查结果 ）
+过去，尤其是在过去的 5 年中，它的增长是巨大的。Python 成为机器学习和数据科学开发人员的首选语言。
+在接下来的几年中，Python 在这些领域的主导地位无疑会持续。但是与更新的语言相比，它具有一些严重的缺点。对于 21 实际 20 年代的开发者来说，这可能是一个障碍。
+现在是检查 Python 问题并将其替换为更好的替代方法的正确时机。就 AI 开发和数据科学而言，我们的下一个入门语言可能是 Golang。
+Python 受欢迎的原因 Python 受欢迎的主要原因是：它易于学习。与其他语言相比，它的语法很简单，任何人都可以在几小时或几天内学习 Python 的基础知识。
+即使在学习了其他语言（例如 C&#43;&#43; 或 Java）之后，开发人员通常还是更喜欢使用 Python。那是因为有一个 Python 库，几乎可以满足所有人的要求。
+库和简单的语法使使用 Python 开发软件既简单又高效。这些优势使 Python 成为了初学者的语言。
+Python 问题 速度 Python 是一种解释型语言，这会引起 Python 的最大问题：执行缓慢。与其他编译语言（例如 C&#43;&#43; 和 Go）相比，Python 的执行速度很慢，非常慢。
+Python 是一种动态类型的语言。在运行期间会自动分配变量的数据类型。这使执行速度大大降低。
+使用 C/C&#43;&#43; 为了克服 Python 运行慢的缺点，Tensorflow，Numpy 和 Pandas 之类的库部分用 C 或 C&#43;&#43; 编写。它们有助于显著提高执行速度。">
+
+<meta itemprop="wordCount" content="250">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta property="og:title" content="" />
+<meta property="og:description" content="AI 和 数据科学领域，Go 语言可能很快会取代 Python。最后的原因有点迷 30 年前，Python 首次出现。但是花了 20 年时间才能获得开发人员的赏识。快进到 2019 年，它成为开发人员中第二受欢迎的语言。（来自 Stackoverflow 开发人员 2019 调查结果 ）
+过去，尤其是在过去的 5 年中，它的增长是巨大的。Python 成为机器学习和数据科学开发人员的首选语言。
+在接下来的几年中，Python 在这些领域的主导地位无疑会持续。但是与更新的语言相比，它具有一些严重的缺点。对于 21 实际 20 年代的开发者来说，这可能是一个障碍。
+现在是检查 Python 问题并将其替换为更好的替代方法的正确时机。就 AI 开发和数据科学而言，我们的下一个入门语言可能是 Golang。
+Python 受欢迎的原因 Python 受欢迎的主要原因是：它易于学习。与其他语言相比，它的语法很简单，任何人都可以在几小时或几天内学习 Python 的基础知识。
+即使在学习了其他语言（例如 C&#43;&#43; 或 Java）之后，开发人员通常还是更喜欢使用 Python。那是因为有一个 Python 库，几乎可以满足所有人的要求。
+库和简单的语法使使用 Python 开发软件既简单又高效。这些优势使 Python 成为了初学者的语言。
+Python 问题 速度 Python 是一种解释型语言，这会引起 Python 的最大问题：执行缓慢。与其他编译语言（例如 C&#43;&#43; 和 Go）相比，Python 的执行速度很慢，非常慢。
+Python 是一种动态类型的语言。在运行期间会自动分配变量的数据类型。这使执行速度大大降低。
+使用 C/C&#43;&#43; 为了克服 Python 运行慢的缺点，Tensorflow，Numpy 和 Pandas 之类的库部分用 C 或 C&#43;&#43; 编写。它们有助于显著提高执行速度。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/translation/golang-ai-programming-language/" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content=""/>
+<meta name="twitter:description" content="AI 和 数据科学领域，Go 语言可能很快会取代 Python。最后的原因有点迷 30 年前，Python 首次出现。但是花了 20 年时间才能获得开发人员的赏识。快进到 2019 年，它成为开发人员中第二受欢迎的语言。（来自 Stackoverflow 开发人员 2019 调查结果 ）
+过去，尤其是在过去的 5 年中，它的增长是巨大的。Python 成为机器学习和数据科学开发人员的首选语言。
+在接下来的几年中，Python 在这些领域的主导地位无疑会持续。但是与更新的语言相比，它具有一些严重的缺点。对于 21 实际 20 年代的开发者来说，这可能是一个障碍。
+现在是检查 Python 问题并将其替换为更好的替代方法的正确时机。就 AI 开发和数据科学而言，我们的下一个入门语言可能是 Golang。
+Python 受欢迎的原因 Python 受欢迎的主要原因是：它易于学习。与其他语言相比，它的语法很简单，任何人都可以在几小时或几天内学习 Python 的基础知识。
+即使在学习了其他语言（例如 C&#43;&#43; 或 Java）之后，开发人员通常还是更喜欢使用 Python。那是因为有一个 Python 库，几乎可以满足所有人的要求。
+库和简单的语法使使用 Python 开发软件既简单又高效。这些优势使 Python 成为了初学者的语言。
+Python 问题 速度 Python 是一种解释型语言，这会引起 Python 的最大问题：执行缓慢。与其他编译语言（例如 C&#43;&#43; 和 Go）相比，Python 的执行速度很慢，非常慢。
+Python 是一种动态类型的语言。在运行期间会自动分配变量的数据类型。这使执行速度大大降低。
+使用 C/C&#43;&#43; 为了克服 Python 运行慢的缺点，Tensorflow，Numpy 和 Pandas 之类的库部分用 C 或 C&#43;&#43; 编写。它们有助于显著提高执行速度。"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title></title>
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
+	
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://polarisxu.studygolang.com">polarisxu</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+  <a href="https://polarisxu.studygolang.com/posts/">文章</a>
+  <a href="https://polarisxu.studygolang.com/go-categories/">Go系列</a>
+  <a href="https://polarisxu.studygolang.com/devtool-categories/">开发工具</a>
+  <a href="https://polarisxu.studygolang.com/about/">关于</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<span class="hdr-social hide-in-mobile"><a href="https://github.com/polaris1119" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a><a href="https://twitter.com/polaris1119" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="菜单"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://polarisxu.studygolang.com/posts/">文章</a></li>
+			<li><a href="https://polarisxu.studygolang.com/go-categories/">Go系列</a></li>
+			<li><a href="https://polarisxu.studygolang.com/devtool-categories/">开发工具</a></li>
+			<li><a href="https://polarisxu.studygolang.com/about/">关于</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Jan 1, 0001</span></div>
+				<h1></h1>
+			</header>
+			<div class="content">
+				<h1 id="ai-和-数据科学领域go-语言可能很快会取代-python最后的原因有点迷">AI 和 数据科学领域，Go 语言可能很快会取代 Python。最后的原因有点迷<a href="#ai-和-数据科学领域go-语言可能很快会取代-python最后的原因有点迷" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+<p>30 年前，Python 首次出现。但是花了 20 年时间才能获得开发人员的赏识。快进到 2019 年，它成为开发人员中第二受欢迎的语言。（来自 <a href="https://insights.stackoverflow.com/survey/2019#most-loved-dreaded-and-wanted" target="_blank" rel="noopener">Stackoverflow 开发人员 2019 调查结果</a>
+）</p>
+<p>过去，尤其是在过去的 5 年中，它的增长是巨大的。Python 成为机器学习和数据科学开发人员的首选语言。</p>
+<p>在接下来的几年中，Python 在这些领域的主导地位无疑会持续。但是与更新的语言相比，它具有一些严重的缺点。对于 21 实际 20 年代的开发者来说，这可能是一个障碍。</p>
+<p>现在是检查 Python 问题并将其替换为更好的替代方法的正确时机。就 AI 开发和数据科学而言，我们的下一个入门语言可能是 Golang。</p>
+<h2 id="python-受欢迎的原因">Python 受欢迎的原因<a href="#python-受欢迎的原因" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>Python 受欢迎的主要原因是：它易于学习。与其他语言相比，它的语法很简单，任何人都可以在几小时或几天内学习 Python 的基础知识。</p>
+<p>即使在学习了其他语言（例如 C++ 或 Java）之后，开发人员通常还是更喜欢使用 Python。那是因为有一个 Python 库，几乎可以满足所有人的要求。</p>
+<p>库和简单的语法使使用 Python 开发软件既简单又高效。这些优势使 Python 成为了初学者的语言。</p>
+<h2 id="python-问题">Python 问题<a href="#python-问题" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<h3 id="速度">速度<a href="#速度" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>Python 是一种解释型语言，这会引起 Python 的最大问题：执行缓慢。与其他编译语言（例如 C++ 和 Go）相比，Python 的执行速度很慢，非常慢。</p>
+<p>Python 是一种动态类型的语言。在运行期间会自动分配变量的数据类型。这使执行速度大大降低。</p>
+<h3 id="使用-cc">使用 C/C++<a href="#使用-cc" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>为了克服 Python 运行慢的缺点，Tensorflow，Numpy 和 Pandas 之类的库部分用 C 或 C++ 编写。它们有助于显著提高执行速度。</p>
+<p>基本上，Python 需要其他语言的帮助才能克服其问题。</p>
+<h3 id="全局解释器锁global-interpreter-lock">全局解释器锁（Global Interpreter Lock）<a href="#全局解释器锁global-interpreter-lock" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>Python 的<a href="https://wiki.python.org/moin/GlobalInterpreterLock" target="_blank" rel="noopener">全局解释器锁</a>
+（GIL）一次只能执行一个线程，同时提高了单线程性能。Python 的多线程并没有真正让多个线程同时运行。</p>
+<p>实际上，Python 无法执行真正的多线程。</p>
+<p>（注意：Python 的非 CPython 实现（例如 Jython 和 IronPython 没有 GIL））</p>
+<h2 id="为什么要使用-go-语言">为什么要使用 Go 语言？<a href="#为什么要使用-go-语言" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<blockquote>
+<p>Go 是一种开放源代码编程语言，可轻松构建，简单，可靠和高效。</p>
+</blockquote>
+<p>“ Go” 在 10 年前首次亮相。它是 Google 开发的通用性编程语言。</p>
+<p>与 Python 和其他编程语言相比，它具有多个优势，这就是我们感兴趣的原因。</p>
+<h3 id="快速">快速<a href="#快速" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>Go 是静态类型化和编译的语言。这意味着执行速度将比 Python 快几倍。与 Python 不同，Go 不需要其他语言的帮助就可以更快。</p>
+<p>这是 Go 和 Python 之间的一个<a href="https://benchmarksgame-team.pages.debian.net/benchmarksgame/fastest/go-python3.html" target="_blank" rel="noopener">小型基准测试游戏比较</a>
+。Go 几乎与 C++ 和 Java 一样快。而且，Go 的代码编译速度比 C+C 和 Java 快得多。</p>
+<h3 id="简单易学">简单易学<a href="#简单易学" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>Go 的语法很简单，类似于 C。它是一种易于学习的编程语言，特别是已经了解 C 或 Java 语言的基础知识。</p>
+<p>要了解 Go 的基础知识，请访问 <a href="http://tour.studygolang.com/welcome/1" target="_blank" rel="noopener">Go 指南</a>
+ 进行交互式之旅或访问<a href="https://docs.studygolang.com/doc/" target="_blank" rel="noopener">官方文档</a>
+。</p>
+<h3 id="越来越受欢迎">越来越受欢迎<a href="#越来越受欢迎" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>根据此次 Hackearth 对来自 76 个国家/地区的 16,000 多名开发人员的<a href="https://www.hackerearth.com/recruit/developer-survey/" target="_blank" rel="noopener">调查</a>
+，Go 是 2020 年最受欢迎的编程语言。</p>
+<p>32％ 的经验丰富的开发人员和 29％ 的学生说他们想学习 Go 不足为奇。</p>
+<p><p class="md__image">
+  <img src="../imgs/go-for-ai-ds.png"
+    alt=""  />
+</p>
+</p>
+<h3 id="并发">并发<a href="#并发" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>并发是 Go 的主要优势之一。Go 具有 <a href="http://tour.studygolang.com/concurrency/1" target="_blank" rel="noopener">Goroutines</a>
+ 以实现并发。Goroutines 是可以同时独立运行的函数。</p>
+<p>Goroutine 重量轻，仅占用 2KB（依赖于不同实现，目前 Go1.15 是 2KB） 的内存。由于 Goroutine 轻巧，因此可以同时运行成千上万个。</p>
+<p>Goroutine 还有很多其他优点，比如：</p>
+<ul>
+<li>Goroutine 具有可增长的分段堆栈。这意味着它们仅在需要时才使用更多的内存。</li>
+<li>Goroutine 具有比线程更快的启动时间。</li>
+<li>Goroutine 带有内置原语，以在它们自己（通道）之间安全地通信。</li>
+<li>使用 Goroutines 可以避免共享数据结构时不得不使用互斥锁。</li>
+<li>此外，goroutine 和 OS 线程没有 1:1 映射。一个 goroutine 可以在多个线程上运行。 Goroutines 被多路复用到少量的 OS 线程中。</li>
+</ul>
+<p>参考文章：<a href="https://medium.com/@kevalpatel2106/why-should-you-learn-go-f607681fad65" target="_blank" rel="noopener">为什么要学习 Go？</a>
+。</p>
+<h2 id="是什么使-go-适用于-ai-研究">是什么使 Go 适用于 AI 研究<a href="#是什么使-go-适用于-ai-研究" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>将 Go 专门用于 AI 研究或数据科学并没有什么特别的。为什么应将 Go 用于 AI 和数据科学？我会告诉你的&hellip;但是等一下。</p>
+<p>30 年前，尚未开发 Python 来构建机器学习或深度学习算法或进行数据可视化。</p>
+<p>之所以是今天，是因为开发人员和学生们喜欢用 Python 进行代码编写，并且支持<em>开发该开发人员意图</em>的语言。</p>
+<p>Go 旨在提高程序员的生产力。与 Python 相比，它具有多个优点。它很可能会在未来几年中成功取代 Python，成为最受欢迎的语言。</p>
+<p>因此，它可以归结为 1 行：</p>
+<p><strong>Go 可以支持 “21 世纪 20 年代的开发人员”发展他们的思想，这比任何其他语言都要好得多。</strong></p>
+<blockquote>
+<p>原文链接：<a href="https://towardsdatascience.com/golang-ai-programming-language-for-the-20s-71890baa8c47">https://towardsdatascience.com/golang-ai-programming-language-for-the-20s-71890baa8c47</a></p>
+<p>本文作者：Dasaradh Saran</p>
+<p>编译：polarisxu</p>
+</blockquote>
+
+			</div><div class="content">
+	<br>
+	<img src="https://static.studygolang.com/static/img/polarisxu-qrcode-soso-s.png">
+</div>
+
+			<hr class="post-end">
+			<footer class="post-info">
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>250 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>0001-01-01 08:05 &#43;0805</p>
+			</footer>
+		</article>
+		<div class="post-nav thin">
+			<a class="next-post" href="https://polarisxu.studygolang.com/posts/go/echo/echo/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;新</span><br><span>Echo 系列教程——Go 语言 Web 框架 Echo 系列教程</span>
+			</a>
+		</div>
+		<div id="comments" class="thin"><script src="https://utteranc.es/client.js"
+	repo="polaris1119/polarisxu"
+	issue-term="pathname"
+	theme="github-light"
+	crossorigin="anonymous"
+	async>
+</script>
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2019 - 2020 <a href="https://polarisxu.studygolang.com">polarisxu</a> &#183; <a href="http://www.beian.miit.gov.cn/">京ICP备14030343号-1</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://polarisxu.studygolang.com/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+
+	<script src="https://polarisxu.studygolang.com/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw=" crossorigin="anonymous"></script>
+	<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?224c227cd9239761ec770bc8c1fb134c";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+</body>
+
+</html>
