@@ -17,5 +17,14 @@
       <description>大家好，我是 polarisxu。 之前我为大家推荐过 Playground，对比了三款 Go Playground 。今天发现了另外一款 Playground，它最核心的特</description>
     </item>
     
+    <item>
+      <title>对比三款 Go Playground：你喜欢哪款？</title>
+      <link>https://polarisxu.studygolang.com/posts/devtool/compare-three-playground/</link>
+      <pubDate>Wed, 19 Aug 2020 18:12:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/devtool/compare-three-playground/</guid>
+      <description>曾几何时，语言的在线运行（Playground）似乎成了标配。确实，Playground 能够让我们可以快速试验一些想法。Go 语言在发布之初就</description>
+    </item>
+    
   </channel>
 </rss>

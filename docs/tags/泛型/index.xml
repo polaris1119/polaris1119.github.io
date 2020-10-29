@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Thu, 16 Jul 2020 14:17:51 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/%E6%B3%9B%E5%9E%8B/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 23 Aug 2020 18:12:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/%E6%B3%9B%E5%9E%8B/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>关于 Go 语言泛型设计的最新进展和一些问题的说明</title>
+      <link>https://polarisxu.studygolang.com/posts/go/dynamic/about-go-generic-progress/</link>
+      <pubDate>Sun, 23 Aug 2020 18:12:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/dynamic/about-go-generic-progress/</guid>
+      <description>前段时间 Go 官方发布了新的泛型草案，一时间在社区引起了很大的反响，各种关于泛型的文章、讨论涌现出来。8 月 21日 Ian Lance Taylor 在 golang-nuts 讨论组总结了泛型设计的</description>
+    </item>
+    
     <item>
       <title>GoLand 2020.2 Beta 版发布：go.mod 升级以及对泛型的实验性支持</title>
       <link>https://polarisxu.studygolang.com/posts/devtool/goland/2020.2.beta/</link>

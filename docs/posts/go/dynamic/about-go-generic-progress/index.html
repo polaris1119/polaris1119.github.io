@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#fcfcfc">
+	<meta name="msapplication-TileColor" content="#fcfcfc">
+<meta itemprop="name" content="关于 Go 语言泛型设计的最新进展和一些问题的说明">
+<meta itemprop="description" content="前段时间 Go 官方发布了新的泛型草案，一时间在社区引起了很大的反响，各种关于泛型的文章、讨论涌现出来。8 月 21日 Ian Lance Taylor 在 golang-nuts 讨论组总结了泛型设计的">
+<meta itemprop="datePublished" content="2020-08-23T18:12:00+08:00" />
+<meta itemprop="dateModified" content="2020-08-23T18:12:00+08:00" />
+<meta itemprop="wordCount" content="1313">
+
+
+
+<meta itemprop="keywords" content="Go,泛型," />
+<meta property="og:title" content="关于 Go 语言泛型设计的最新进展和一些问题的说明" />
+<meta property="og:description" content="前段时间 Go 官方发布了新的泛型草案，一时间在社区引起了很大的反响，各种关于泛型的文章、讨论涌现出来。8 月 21日 Ian Lance Taylor 在 golang-nuts 讨论组总结了泛型设计的" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/dynamic/about-go-generic-progress/" />
+<meta property="article:published_time" content="2020-08-23T18:12:00+08:00" />
+<meta property="article:modified_time" content="2020-08-23T18:12:00+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="关于 Go 语言泛型设计的最新进展和一些问题的说明"/>
+<meta name="twitter:description" content="前段时间 Go 官方发布了新的泛型草案，一时间在社区引起了很大的反响，各种关于泛型的文章、讨论涌现出来。8 月 21日 Ian Lance Taylor 在 golang-nuts 讨论组总结了泛型设计的"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>关于 Go 语言泛型设计的最新进展和一些问题的说明</title>
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
+	
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://polarisxu.studygolang.com">polarisxu</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+  <a href="https://polarisxu.studygolang.com/posts/">文章</a>
+  <a href="https://polarisxu.studygolang.com/go-categories/">Go系列</a>
+  <a href="https://polarisxu.studygolang.com/devtool-categories/">开发工具</a>
+  <a href="https://polarisxu.studygolang.com/about/">关于</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<button id="toc-btn" class="hdr-btn desktop-only-ib" title="目录"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3" y2="6"></line><line x1="3" y1="12" x2="3" y2="12"></line><line x1="3" y1="18" x2="3" y2="18"></line></svg></button><span class="hdr-social hide-in-mobile"><a href="https://github.com/polaris1119" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a><a href="https://twitter.com/polaris1119" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="菜单"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://polarisxu.studygolang.com/posts/">文章</a></li>
+			<li><a href="https://polarisxu.studygolang.com/go-categories/">Go系列</a></li>
+			<li><a href="https://polarisxu.studygolang.com/devtool-categories/">开发工具</a></li>
+			<li><a href="https://polarisxu.studygolang.com/about/">关于</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Aug 23, 2020</span></div>
+				<h1>关于 Go 语言泛型设计的最新进展和一些问题的说明</h1>
+			</header>
+			<div class="content">
+				<p>前段时间 Go 官方发布了新的泛型草案，一时间在社区引起了很大的反响，各种关于泛型的文章、讨论涌现出来。8 月 21日 Ian Lance Taylor 在 <a href="https://groups.google.com/g/golang-nuts/c/iAD0NBz3DYw/m/VcXSK55XAwAJ" target="_blank" rel="noopener">golang-nuts</a>
+ 讨论组总结了泛型设计的最新进展和一些问题的说明。</p>
+<p>Go Team 在经过多次讨论并阅读了许多评论后，计划对泛型设计进行一些更改并澄清草案的一些问题。</p>
+<h2 id="1">1<a href="#1" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>泛型语法极有可能使用方括号 <code>[]</code>（不用 &lt;&gt; 是因为和比较运算符大于、小于冲突，为了保持 Go1 兼容性，所以选择了 []）但考虑删除类型参数中的 <code>type</code> 关键字，因为使用方括号足以区分类型参数和普通参数。为了避免与数组声明混淆，将要求所有类型参数都提供一个约束（constraint）。这样做的好处是可以给类型参数列表与普通参数列表使用完全相同的语法（除了括号的区别之外）。为简化类型参数的常见情况，该参数可以无限制，将引入一个新的预先声明的标识符 <code>any</code> 作为 <code>interface{}</code> 的别名。</p>
+<p>所以支持泛型的声明类似这样：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">Vector</span><span class="p">[</span><span class="nx">T</span> <span class="nx">any</span><span class="p">]</span> <span class="p">[]</span><span class="nx">T</span> 
+<span class="kd">func</span> <span class="nx">Print</span><span class="p">[</span><span class="nx">T</span> <span class="nx">any</span><span class="p">](</span><span class="nx">s</span> <span class="p">[]</span><span class="nx">T</span><span class="p">)</span> <span class="p">{</span> <span class="err">…</span> <span class="p">}</span> 
+<span class="kd">func</span> <span class="nx">Index</span><span class="p">[</span><span class="nx">T</span> <span class="nx">comparable</span><span class="p">](</span><span class="nx">s</span> <span class="p">[]</span><span class="nx">T</span><span class="p">,</span> <span class="nx">e</span> <span class="nx">T</span><span class="p">)</span> <span class="p">{</span> <span class="err">…</span> <span class="p">}</span> 
+</code></pre></div><p>Go Team 认为预定义新标识符 <code>any</code> 的成本较低：因为每个常规参数始终都有一个类型，每个类型参数始终具有一个约束（其元类型）。</p>
+<p>将 <code>[type T]</code> 更改为 <code>[T any]</code> 似乎同样易读，并且节省了一个字符。我们将能够简化许多现有的标准库和其他地方的代码，只需替换 <code>interface {}</code> 为 <code>any</code> 即可。</p>
+<h2 id="2">2<a href="#2" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>将简化类型列表满足的规则。如果类型参数或者类型参数的底层（underlying ）类型和类型列表中的任意类型相同，则类型参数满足约定。调整后的规则意味着，类型列表可以决定是否接受除预先声明的类型外的确切定义的类型，或者是否接受具有匹配底层类型的任何类型。</p>
+<p>这是一个微小的变化，预计不会影响任何现有的实验代码。</p>
+<h2 id="3">3<a href="#3" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>需要澄清的是，在考虑允许的操作时，对于类型参数中某个类型的值，将忽略在类型列表中的任何类型方法。一般规则是，泛型函数可以使用类型中每种类型允许的任何操作清单。但是，这仅适用于自定义函数和预声明的函数（例如 <code>len</code> 和 <code>cap</code>）。它不适用于方法，因为类型列表包含所有定义了方法的类型列表。任何方法都必须在 interface 中单独列出，而不是从类型列表中继承。即泛型函数只能使用类型约束所定义的那些操作。</p>
+<p>该规则通常看起来很清晰，并且避免了一些复杂的推理涉及类型列表，其中包括带有嵌入式类型的结构参数。</p>
+<h2 id="4">4<a href="#4" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>允许对具有类型列表的类型参数执行类型开关（type switch）操作。用 (.type) 的语法来阐明类似 <code>switch v := x.(type)</code> 的代码。在类型参数上的类型开关不能使用 <code>:=</code> 语法，因此 <code>.(type)</code> 是不必要的。在具有类型列表的类型参数上执行类型开关操作时，列出的每一个 case 都必须是出现在类型列表中的（当然也允许使用 <code>default</code>）。如果和类型参数匹配，则该 case 被选中。如上面讨论的那样，可能该 case 不是完全匹配的类型参数而是类型参数的底层类型，该 case 也会被选中。</p>
+<p>为了使该规则更明确。没有类型列表的类型参数不允许使用类型开关。但这种情况是允许的：对于一个没有类型列表的类型参数值 <code>x</code>，可以写这样的代码，<code>switch (interface{})(x).(type)</code>，根据上面的说明，以后应该写成这样 <code>switch any(x).(type)</code>。这个结构不是最简单的，但它仅使用了语言已有的特性。</p>
+<h2 id="接下来">接下来<a href="#接下来" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>这些更改将很快在以下实验设计中实现：dev.generics 分支，并在 go2go Playground 可用。以上有些已经可以完成了。同时 Go Team 会相应地更新设计草案。</p>
+
+			</div><div class="content">
+	<br>
+	<img src="https://static.studygolang.com/static/img/polarisxu-qrcode-soso-s.png">
+</div>
+
+<div class="related-posts thin">
+	<h2>相关推荐</h2>
+	<ul>
+	
+	<li><a href="/posts/go/translation/golang-ai-programming-language/">AI 和 数据科学领域，Go 语言可能很快会取代 Python。最后的原因有点迷</a></li>
+	
+	<li><a href="/posts/go/action/talk-geek-time-live/">闲聊昨晚极客时间的直播</a></li>
+	
+	<li><a href="/posts/go/translation/go-error-printing-catastrophe/">Go error 打印灾难 —  CockroachDB errors 库（第3篇）</a></li>
+	
+	<li><a href="/posts/go/translation/go-formatting-apis/">Go 格式化 API —  CockroachDB errors 库（第2篇）</a></li>
+	
+	<li><a href="/posts/go/translation/cockroachdb-errors-std-api/">Go 标准错误 API — CockroachDB errors 库（第1篇）</a></li>
+	
+	</ul>
+</div>
+
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://polarisxu.studygolang.com/tags/go">Go</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/%E6%B3%9B%E5%9E%8B">泛型</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1313 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2020-08-23 18:12 &#43;0800</p>
+			</footer>
+		</article>
+		<aside id="toc">
+			<div class="toc-title">目录</div>
+			<nav id="TableOfContents">
+  <ul>
+    <li><a href="#1">1</a></li>
+    <li><a href="#2">2</a></li>
+    <li><a href="#3">3</a></li>
+    <li><a href="#4">4</a></li>
+    <li><a href="#接下来">接下来</a></li>
+  </ul>
+</nav>
+		</aside>
+		<div class="post-nav thin">
+			<a class="next-post" href="https://polarisxu.studygolang.com/posts/go/translation/google-go-coredata/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;新</span><br><span>Google 的核心数据解决方案团队是如何使用 Go 的？</span>
+			</a>
+			<a class="prev-post" href="https://polarisxu.studygolang.com/posts/devtool/compare-three-playground/">
+				<span class="post-nav-label">旧&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>对比三款 Go Playground：你喜欢哪款？</span>
+			</a>
+		</div>
+		<div id="comments" class="thin"><script src="https://utteranc.es/client.js"
+	repo="polaris1119/polarisxu"
+	issue-term="pathname"
+	theme="github-light"
+	crossorigin="anonymous"
+	async>
+</script>
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2019 - 2020 <a href="https://polarisxu.studygolang.com">polarisxu</a> &#183; <a href="http://www.beian.miit.gov.cn/">京ICP备14030343号-1</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://polarisxu.studygolang.com/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+
+	<script src="https://polarisxu.studygolang.com/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw=" crossorigin="anonymous"></script>
+	<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?224c227cd9239761ec770bc8c1fb134c";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+</body>
+
+</html>

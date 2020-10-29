@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#fcfcfc">
+	<meta name="msapplication-TileColor" content="#fcfcfc">
+<meta itemprop="name" content="对比三款 Go Playground：你喜欢哪款？">
+<meta itemprop="description" content="曾几何时，语言的在线运行（Playground）似乎成了标配。确实，Playground 能够让我们可以快速试验一些想法。Go 语言在发布之初就">
+<meta itemprop="datePublished" content="2020-08-19T18:12:00+08:00" />
+<meta itemprop="dateModified" content="2020-08-19T18:12:00+08:00" />
+<meta itemprop="wordCount" content="1654">
+
+
+
+<meta itemprop="keywords" content="Go,Golang,Playground," />
+<meta property="og:title" content="对比三款 Go Playground：你喜欢哪款？" />
+<meta property="og:description" content="曾几何时，语言的在线运行（Playground）似乎成了标配。确实，Playground 能够让我们可以快速试验一些想法。Go 语言在发布之初就" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://polarisxu.studygolang.com/posts/devtool/compare-three-playground/" />
+<meta property="article:published_time" content="2020-08-19T18:12:00+08:00" />
+<meta property="article:modified_time" content="2020-08-19T18:12:00+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="对比三款 Go Playground：你喜欢哪款？"/>
+<meta name="twitter:description" content="曾几何时，语言的在线运行（Playground）似乎成了标配。确实，Playground 能够让我们可以快速试验一些想法。Go 语言在发布之初就"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>对比三款 Go Playground：你喜欢哪款？</title>
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
+	
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://polarisxu.studygolang.com">polarisxu</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+  <a href="https://polarisxu.studygolang.com/posts/">文章</a>
+  <a href="https://polarisxu.studygolang.com/go-categories/">Go系列</a>
+  <a href="https://polarisxu.studygolang.com/devtool-categories/">开发工具</a>
+  <a href="https://polarisxu.studygolang.com/about/">关于</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<button id="toc-btn" class="hdr-btn desktop-only-ib" title="目录"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3" y2="6"></line><line x1="3" y1="12" x2="3" y2="12"></line><line x1="3" y1="18" x2="3" y2="18"></line></svg></button><span class="hdr-social hide-in-mobile"><a href="https://github.com/polaris1119" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a><a href="https://twitter.com/polaris1119" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="菜单"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://polarisxu.studygolang.com/posts/">文章</a></li>
+			<li><a href="https://polarisxu.studygolang.com/go-categories/">Go系列</a></li>
+			<li><a href="https://polarisxu.studygolang.com/devtool-categories/">开发工具</a></li>
+			<li><a href="https://polarisxu.studygolang.com/about/">关于</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Aug 19, 2020</span></div>
+				<h1>对比三款 Go Playground：你喜欢哪款？</h1>
+			</header>
+			<div class="content">
+				<p>曾几何时，语言的在线运行（Playground）似乎成了标配。确实，Playground 能够让我们可以快速试验一些想法。Go 语言在发布之初就提供了一个，这就是 <a href="https://play.golang.org">https://play.golang.org</a>。然而，由于众所周知的原因，我们访问不了。为了方便国内广大 gopher，我搞了一个国内镜像：<a href="https://play.studygolang.com">https://play.studygolang.com</a>，尽情使用、分享吧。</p>
+<h2 id="官方的-playground">官方的 Playground<a href="#官方的-playground" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>不得不说，Go 官方的 Playground 真的比较原始。</p>
+<p><p class="md__image">
+  <img src="../imgs/playgolangorg.png"
+    alt=""  />
+</p>
+</p>
+<p>提供的功能比较少，主要有：</p>
+<ul>
+<li>格式化，但需要手动点击。在点击格式化时，如果勾选了 Imports，会自动对使用的标准库做导入；</li>
+<li>分享。能够将你的代码分享给其他人，方便对方查看、运行；</li>
+<li>代码片段。顶部下拉列表中提供了一些代码片段，点击可以直接切换编辑框内容；</li>
+</ul>
+<p>总结下：官方的 Playground 主要提供了在线编辑、运行、分享 Go 代码的功能，其中分享对全球的 gopher 来说，可以更方便的进行代码交流，排查问题等，分享也是使用最多的。</p>
+<p>然而官方的 Playground 缺点也很明显：</p>
+<ul>
+<li>界面简单，略显丑陋；</li>
+<li>不支持代码高亮；</li>
+<li>不支持代码提示；</li>
+<li>语法错误无法实时提示；</li>
+<li>。。。</li>
+</ul>
+<p>于是有了第三方的 Playground。</p>
+<h2 id="goplayspace">goplay.space<a href="#goplayspace" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>第一个出场的是 <a href="https://goplay.space">https://goplay.space</a>。这是 iafan 在 2017 年开发的，</p>
+<blockquote>
+<p>Go Play Space is an experimental alternative <a href="https://play.golang.org/" target="_blank" rel="noopener">Go Playground</a>
+ frontend that is built in Go itself (using <a href="https://github.com/gopherjs/gopherjs" target="_blank" rel="noopener">GopherJS</a>
+), a Go→JavaScript transpiler, and <a href="https://github.com/gopherjs/vecty" target="_blank" rel="noopener">Vecty</a>
+, a React-like frontend library for GopherJS).</p>
+</blockquote>
+<p><p class="md__image">
+  <img src="../imgs/goplayspace.gif"
+    alt=""  />
+</p>
+</p>
+<p>可见，goplay.space 的代码运行依然使用官方的，只是替换了前端部分。看看它提供了哪些功能：</p>
+<ul>
+<li>语法高亮显示，大括号和引号自动关闭，正确的撤消/重做，自动缩进；</li>
+<li>智能文档查找：例如双击源代码中的包名或 Println 等函数名称，在右边将看到相关的文档；这个功能真的很实用；</li>
+<li>实时的语法错误检查；</li>
+<li>错误行高亮显示（语法错误和编译器返回的错误）；</li>
+<li>能够突出显示代码行和代码块（类似在 Github 上，但更好！）—只需单击行号即可。使用 Shift 和 Ctrl 修改选择；</li>
+<li>键盘快捷键（请参阅顶部按钮标题处）；</li>
+<li>支持多个 UI 主题；</li>
+<li>支持 <a href="https://github.com/tonsky/FiraCode" target="_blank" rel="noopener">Fira Code</a>
+ 字体（系统中已安装的字体或 Webfont）；</li>
+<li>go import 始终在运行代码之前运行，因此您通常不必担心导入问题；</li>
+</ul>
+<p>代码执行是官方的 Go Playground 的代理，因此它保证了程序将有相同的结果。同时共享的代码段也存储在 golang.org 服务器上。所以，分享的代码，可以直接在 goplay.space 展示。比如这个代码：<a href="https://play.golang.org/p/aouL6zP4O35">https://play.golang.org/p/aouL6zP4O35</a>，对应的 goplay.space 就是：<a href="https://goplay.space/#aouL6zP4O35">https://goplay.space/#aouL6zP4O35</a>。</p>
+<p>个人认为 goplay.space 最大的特色是智能文档查找，可以在写代码时及时查看文档。要是加上自动完成功能就好了。</p>
+<h2 id="goplaytools">goplay.tools<a href="#goplaytools" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p><a href="https://twitter.com/x1unix" target="_blank" rel="noopener">x1unix</a>
+ 觉得以上两个 Playground 都不够好。就在前些天（2020-08-12），发布了一个 “Better Go Playground”，这就是 <a href="https://goplay.tools/">https://goplay.tools/</a>。</p>
+<p>几个月前，x1unix 决定尝试创建一个更好的 Go Play 版本，该版本将具有一些有价值的小功能，使原型制作足够舒适，例如基本代码自动完成（仅支持 stdlib），语法检查，代码段和示例。另外，随着 Go in WebAssembly 趋势开始增长，添加了 WebAssembly 支持。</p>
+<p>此外，用户可以选择编辑器字体以及一些其他选项的小选项来自定义编辑器。</p>
+<p>这个项目基于 React 和 Monaco editor 创建。</p>
+<p><p class="md__image">
+  <img src="../imgs/goplaytools.gif"
+    alt=""  />
+</p>
+</p>
+<p>目前该 Playground 有如下特性：</p>
+<ul>
+<li>代码完成：标准库</li>
+<li>加载和保存文件</li>
+<li>代码片段和教程，基于 <a href="https://gobyexample.com/" target="_blank" rel="noopener">gobyexample.com</a>
+</li>
+<li>WebAssembly 支持</li>
+<li>暗黑模式</li>
+<li>更多定制选项</li>
+</ul>
+<p>和 goplay.space 一样，它也是官方 Playground 的代理，因此官方分享的，在这里也可以直接查看，方便国内用户。上面例子对应该 Playground 是：<a href="https://goplay.tools/snippet/aouL6zP4O35">https://goplay.tools/snippet/aouL6zP4O35</a>。</p>
+<p>仔细研究会发现它还支持鼠标右键菜单，有类似 VSCode 的 Command Palette 功能，调出该面板的快捷键是 F1。</p>
+<p><p class="md__image">
+  <img src="../imgs/goplaytools.png"
+    alt=""  />
+</p>
+</p>
+<p>代码完成功能可以显示对应的文档（针对标准库），如下：</p>
+<p><p class="md__image">
+  <img src="../imgs/goplaytools-doc.png"
+    alt=""  />
+</p>
+</p>
+<p>可见这真的是一个更好的 Playground，一定程度上有点在线编辑器的感觉。该项目在 GitHub 的地址：<a href="https://github.com/x1unix/go-playground">https://github.com/x1unix/go-playground</a>。</p>
+<h2 id="后记">后记<a href="#后记" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>除了以上三款，其实还有一些其他的，比较小众，因此不做对比。最后，推荐大家以后可以使用 <a href="https://goplay.tools/">https://goplay.tools/</a>，有兴趣的也可以为它贡献代码。</p>
+
+			</div><div class="content">
+	<br>
+	<img src="https://static.studygolang.com/static/img/polarisxu-qrcode-soso-s.png">
+</div>
+
+<div class="related-posts thin">
+	<h2>相关推荐</h2>
+	<ul>
+	
+	<li><a href="/posts/go/project/usingg-gpgsync/">Go Playground 还能这么玩？</a></li>
+	
+	<li><a href="/posts/go/action/talk-geek-time-live/">闲聊昨晚极客时间的直播</a></li>
+	
+	<li><a href="/posts/go/action/interview-slice-json/">一道关于 json 和 slice 的题难倒了 80% 的人</a></li>
+	
+	<li><a href="/posts/go/pkg/statsviz/">你喜欢的 Go 第三方库：一步为系统集成可视化实时运行时统计</a></li>
+	
+	<li><a href="/posts/go/project/go-version-manager/">终于找到了一款我喜欢的安装和管理 Go 版本的工具</a></li>
+	
+	</ul>
+</div>
+
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://polarisxu.studygolang.com/tags/go">Go</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/golang">Golang</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/playground">Playground</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1654 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2020-08-19 18:12 &#43;0800</p>
+			</footer>
+		</article>
+		<aside id="toc">
+			<div class="toc-title">目录</div>
+			<nav id="TableOfContents">
+  <ul>
+    <li><a href="#官方的-playground">官方的 Playground</a></li>
+    <li><a href="#goplayspace">goplay.space</a></li>
+    <li><a href="#goplaytools">goplay.tools</a></li>
+    <li><a href="#后记">后记</a></li>
+  </ul>
+</nav>
+		</aside>
+		<div class="post-nav thin">
+			<a class="next-post" href="https://polarisxu.studygolang.com/posts/go/dynamic/about-go-generic-progress/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;新</span><br><span>关于 Go 语言泛型设计的最新进展和一些问题的说明</span>
+			</a>
+			<a class="prev-post" href="https://polarisxu.studygolang.com/posts/go/translation/goui-a-very-simple-ui-framework/">
+				<span class="post-nav-label">旧&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>GoUI：一个非常简单的 GUI 框架</span>
+			</a>
+		</div>
+		<div id="comments" class="thin"><script src="https://utteranc.es/client.js"
+	repo="polaris1119/polarisxu"
+	issue-term="pathname"
+	theme="github-light"
+	crossorigin="anonymous"
+	async>
+</script>
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2019 - 2020 <a href="https://polarisxu.studygolang.com">polarisxu</a> &#183; <a href="http://www.beian.miit.gov.cn/">京ICP备14030343号-1</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://polarisxu.studygolang.com/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+
+	<script src="https://polarisxu.studygolang.com/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw=" crossorigin="anonymous"></script>
+	<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?224c227cd9239761ec770bc8c1fb134c";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+</body>
+
+</html>
