@@ -3,27 +3,47 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://polarisxu.studygolang.com/tags/go/</loc>
-    <lastmod>2020-10-26T18:12:51+08:00</lastmod>
+    <loc>https://polarisxu.studygolang.com/tags/ai/</loc>
+    <lastmod>2020-10-29T21:40:00+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://polarisxu.studygolang.com/tags/golang/</loc>
-    <lastmod>2020-10-26T18:12:51+08:00</lastmod>
+    <loc>https://polarisxu.studygolang.com/posts/go/translation/golang-ai-programming-language/</loc>
+    <lastmod>2020-10-29T21:40:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polarisxu.studygolang.com/tags/datascience/</loc>
+    <lastmod>2020-10-29T21:40:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polarisxu.studygolang.com/tags/go/</loc>
+    <lastmod>2020-10-29T21:40:00+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://polarisxu.studygolang.com/</loc>
-    <lastmod>2020-10-26T18:12:51+08:00</lastmod>
+    <lastmod>2020-10-29T21:40:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polarisxu.studygolang.com/tags/python/</loc>
+    <lastmod>2020-10-29T21:40:00+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://polarisxu.studygolang.com/tags/</loc>
-    <lastmod>2020-10-26T18:12:51+08:00</lastmod>
+    <lastmod>2020-10-29T21:40:00+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://polarisxu.studygolang.com/posts/</loc>
+    <lastmod>2020-10-29T21:40:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polarisxu.studygolang.com/tags/golang/</loc>
     <lastmod>2020-10-26T18:12:51+08:00</lastmod>
   </url>
   
@@ -440,10 +460,6 @@
   <url>
     <loc>https://polarisxu.studygolang.com/posts/go/echo/echo/</loc>
     <lastmod>2019-10-21T13:42:51+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://polarisxu.studygolang.com/posts/go/translation/golang-ai-programming-language/</loc>
   </url>
   
 </urlset>

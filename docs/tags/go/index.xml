@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Mon, 26 Oct 2020 18:12:51 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 29 Oct 2020 21:40:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>AI 和 数据科学领域，Go 语言可能很快会取代 Python。最后的原因有点迷</title>
+      <link>https://polarisxu.studygolang.com/posts/go/translation/golang-ai-programming-language/</link>
+      <pubDate>Thu, 29 Oct 2020 21:40:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/translation/golang-ai-programming-language/</guid>
+      <description>30 年前，Python 首次出现。但是花了 20 年时间才能获得开发人员的赏识。快进到 2019 年，它成为开发人员中第二受欢迎的语言。（来自 Stackoverflow 开发人员 2019 调查结</description>
+    </item>
+    
     <item>
       <title>闲聊昨晚极客时间的直播</title>
       <link>https://polarisxu.studygolang.com/posts/go/action/talk-geek-time-live/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/translation/when-to-use-rust-and-when-to-use-golang/</guid>
       <description>Golang 和 Rust 之间有明显的区别。Golang 更加注重构建可以无限扩展的 Web API 和小型服务，尤其是在 goroutine 的强大支持下。Rust 也可以用于小型服务，但是从开发</description>
-    </item>
-    
-    <item>
-      <title>这么一道“简单”的题，为什么结果出乎我的意料</title>
-      <link>https://polarisxu.studygolang.com/posts/go/action/interview-len-shift/</link>
-      <pubDate>Sun, 27 Sep 2020 14:52:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/action/interview-len-shift/</guid>
-      <description>今天在《Go语言爱好者周刊：第62期》 中贴了一道 Go101 的题，原题如下： package main const s = &amp;#34;Go101.org&amp;#34; // len(s) == 9 // 1 &amp;lt;&amp;lt; 9 == 512 // 512 / 128 == 4 var a byte = 1 &amp;lt;&amp;lt; len(s) / 128 var b byte = 1 &amp;lt;&amp;lt;</description>
     </item>
     
   </channel>

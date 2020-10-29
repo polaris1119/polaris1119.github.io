@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>AI on polarisxu</title>
+    <link>https://polarisxu.studygolang.com/tags/ai/</link>
+    <description>Recent content in AI on polarisxu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
+    <lastBuildDate>Thu, 29 Oct 2020 21:40:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/ai/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>AI 和 数据科学领域，Go 语言可能很快会取代 Python。最后的原因有点迷</title>
+      <link>https://polarisxu.studygolang.com/posts/go/translation/golang-ai-programming-language/</link>
+      <pubDate>Thu, 29 Oct 2020 21:40:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/translation/golang-ai-programming-language/</guid>
+      <description>30 年前，Python 首次出现。但是花了 20 年时间才能获得开发人员的赏识。快进到 2019 年，它成为开发人员中第二受欢迎的语言。（来自 Stackoverflow 开发人员 2019 调查结</description>
+    </item>
+    
+  </channel>
+</rss>
