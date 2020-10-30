@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#fcfcfc">
+	<meta name="msapplication-TileColor" content="#fcfcfc">
+<meta itemprop="name" content="这个调查显示 Go 竟然是 2020 年最受欢迎的编程语言">
+<meta itemprop="description" content="大家好，我是站长 polarisxu。 今天看到一个 2020 年开发者调查报告，看到了 Go 的前景，忍不住想跟大家分享一下。 01 这份调查报告来自 HackerEarth 。简单介绍下">
+<meta itemprop="datePublished" content="2020-10-30T15:12:00+08:00" />
+<meta itemprop="dateModified" content="2020-10-30T15:12:00+08:00" />
+<meta itemprop="wordCount" content="1762">
+
+
+
+<meta itemprop="keywords" content="Survey,Programming," />
+<meta property="og:title" content="这个调查显示 Go 竟然是 2020 年最受欢迎的编程语言" />
+<meta property="og:description" content="大家好，我是站长 polarisxu。 今天看到一个 2020 年开发者调查报告，看到了 Go 的前景，忍不住想跟大家分享一下。 01 这份调查报告来自 HackerEarth 。简单介绍下" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/dynamic/hackerearth-developer-survey/" />
+<meta property="article:published_time" content="2020-10-30T15:12:00+08:00" />
+<meta property="article:modified_time" content="2020-10-30T15:12:00+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="这个调查显示 Go 竟然是 2020 年最受欢迎的编程语言"/>
+<meta name="twitter:description" content="大家好，我是站长 polarisxu。 今天看到一个 2020 年开发者调查报告，看到了 Go 的前景，忍不住想跟大家分享一下。 01 这份调查报告来自 HackerEarth 。简单介绍下"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>这个调查显示 Go 竟然是 2020 年最受欢迎的编程语言</title>
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
+	
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://polarisxu.studygolang.com">polarisxu</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+  <a href="https://polarisxu.studygolang.com/posts/">文章</a>
+  <a href="https://polarisxu.studygolang.com/go-categories/">Go系列</a>
+  <a href="https://polarisxu.studygolang.com/devtool-categories/">开发工具</a>
+  <a href="https://polarisxu.studygolang.com/about/">关于</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<button id="toc-btn" class="hdr-btn desktop-only-ib" title="目录"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3" y2="6"></line><line x1="3" y1="12" x2="3" y2="12"></line><line x1="3" y1="18" x2="3" y2="18"></line></svg></button><span class="hdr-social hide-in-mobile"><a href="https://github.com/polaris1119" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a><a href="https://twitter.com/polaris1119" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="菜单"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://polarisxu.studygolang.com/posts/">文章</a></li>
+			<li><a href="https://polarisxu.studygolang.com/go-categories/">Go系列</a></li>
+			<li><a href="https://polarisxu.studygolang.com/devtool-categories/">开发工具</a></li>
+			<li><a href="https://polarisxu.studygolang.com/about/">关于</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Oct 30, 2020</span></div>
+				<h1>这个调查显示 Go 竟然是 2020 年最受欢迎的编程语言</h1>
+			</header>
+			<div class="content">
+				<p>大家好，我是站长 polarisxu。</p>
+<p>今天看到一个 2020 年开发者调查报告，看到了 Go 的前景，忍不住想跟大家分享一下。</p>
+<h2 id="01">01<a href="#01" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>这份调查报告来自 <a href="https://www.hackerearth.com/" target="_blank" rel="noopener">HackerEarth</a>
+。简单介绍下它。</p>
+<p>HackerEarth 的口号是：远程雇用最优秀的技术人才。拥有 400 万+ 开发人员（注册用户），上千家企业信赖，他们帮助公司准确评估，面试和雇用顶尖技术人才。</p>
+<p>他们提供编程练习、黑客挑战，号称能够进行准确的编码评估并远程聘用最好的技术人才。根据官网介绍，创始人是大学时候的两个朋友。</p>
+<h2 id="02">02<a href="#02" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>为什么要做开发者调查？HackerEarth 是这么认为的：</p>
+<p>过去十年来技术的飞速发展改变了一切。它改变了我们的生活方式，工作方式以及彼此之间的互动方式—实际上，很难找到没有被技术改变的事物。</p>
+<p>然而，全球的组织都感觉到技术人才短缺。但是这种短缺可能比您预期的还要严重。根据最近的一项调查，今天的技术人才短缺是自 2008 年以来的最高水平。因此，招聘人员和招聘经理必须了解开发人员的状况并了解当今技术人员的心态，这样才能更好地满足开发人员的要求、需求。</p>
+<p>组织要想更好地招聘，需要做的关键改变之一就是将重点从传统的招聘方法转移到基于技能的招聘过程。如果我们超越目前对简历或学位的关注，将所有中学后课程都包括在内，那么将会出现更多的选择。基于技能的招聘实践可以帮助您降低招聘成本和雇用时间，提高多样性，更快地填补空缺职位，并在紧张的劳动力市场中找到组织所需的合适技术人才。</p>
+<p>在 HackerEarth，我们拥有 400 万强大的开发者社区，我们的使命是为他们提供合适的机会。为继续支持我们的使命，我们很高兴为您带来 2020 HackerEarth 开发人员调查。 HackerEarth 有史以来第一次分享了对来自 76 个国家/地区的 16,000 多名开发人员（其中女性占受访者的 20％ 以上）的调查所收集的反馈。</p>
+<p>我们认为，调查中提供的数据和见解将帮助招聘者更好地了解开发人员生态系统，采用基于技能的招聘方法。此外，这项调查将为开发人员提供一个机会，使他们能够了解当今市场的情况，了解趋势以及如何提高自己的技能。</p>
+<p>希望这份调查能够对你的技术招聘有帮助，对你的职业发展能有一点帮助。</p>
+<h2 id="03">03<a href="#03" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>调查结果的一些关键结论。</p>
+<h3 id="到了-2020-年数据科学仍然占据统治地位">到了 2020 年，数据科学仍然占据统治地位<a href="#到了-2020-年数据科学仍然占据统治地位" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>数据科学无止境！从学生开发人员（63％）到在职专业人员（61％），每个人都想占有一席之地。学生开发人员感兴趣的其他领域包括网络安全和物联网，而在职专业人员对物联网和区块链感兴趣。</p>
+<p><p class="md__image">
+  <img src="../imgs/hackerearth-survey01.png"
+    alt=""  />
+</p>
+</p>
+<h3 id="go-是今年最受欢迎的编程语言">Go 是今年最受欢迎的编程语言<a href="#go-是今年最受欢迎的编程语言" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>在学生（29％）和经验丰富的开发人员（32％）中，Go 已成为最受欢迎的编程语言的明显赢家。</p>
+<p><p class="md__image">
+  <img src="../imgs/hackerearth-survey02.png"
+    alt=""  />
+</p>
+</p>
+<p><p class="md__image">
+  <img src="../imgs/hackerearth-survey03.png"
+    alt=""  />
+</p>
+</p>
+<h3 id="开发人员在全栈开发方面经验最丰富而在机器学习方面经验最少">开发人员在全栈开发方面经验最丰富，而在机器学习方面经验最少<a href="#开发人员在全栈开发方面经验最丰富而在机器学习方面经验最少" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>大多数开发人员（无论是初学者还是经验丰富的人员）都具有全栈开发以及前端和后端开发的专业知识。</p>
+<p>尽管大多数开发人员都表示希望从事数据科学项目，但在机器学习方面经验不足。</p>
+<p>可见机器学习方面还有很大的潜力。</p>
+<p><p class="md__image">
+  <img src="../imgs/hackerearth-survey04.png"
+    alt=""  />
+</p>
+</p>
+<h3 id="您要让开发人员挂了吗">您要让开发人员挂了吗？<a href="#您要让开发人员挂了吗" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>技术面试可能会让人感到压力，招聘人员有责任使求职者的面试过程变得更加轻松。可悲的是，大多数开发人员在面试后都没有收到建设性的反馈。</p>
+<p>使他们对技术招聘过程感到不满意的其他原因包括：面试次数过多（14％），误导性的职位描述（14％），面试之间的等待时间（12％）和缺乏相关的技术问题（10％）。（不能同意更多，很多企业面试完全不考虑候选人的面试体验）</p>
+<h3 id="你对开会怎么看">你对开会怎么看？<a href="#你对开会怎么看" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>当问及要实现 100％ 的工作效率需要什么时，70％的开发人员选择了更少的会议。</p>
+<p>此外，大多数开发人员还选择了多显示器（61％），无杂物的工作空间（59％）以及戴耳机时不打扰的方式（59％）。</p>
+<h3 id="开发人员的幸福感与工作时间不成比例">开发人员的幸福感与工作时间不成比例<a href="#开发人员的幸福感与工作时间不成比例" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>所有的工作，没有乐趣，会削弱开发人员的幸福感吗？我们认为不是！在接受调查的所有开发人员中，有 70％ 对当前工作不满意的开发人员每周工作 40 至 50 个小时。大家还是希望能够按时上下班~</p>
+<p>考虑到大多数员工每周工作 40 小时是标准的工作，因此可以肯定地说，开发人员正在寻找有意义的工作，而坐在办公桌前并不能增加他们的幸福感。</p>
+<p>这一点国内似乎谈不上？</p>
+<p><p class="md__image">
+  <img src="../imgs/hackerearth-survey05.png"
+    alt=""  />
+</p>
+</p>
+<p>其他更多内容，包括程序员业余都喜欢做什么？喜欢从哪获取知识等，可以访问这里查看：<a href="https://www.hackerearth.com/recruit/developer-survey/">https://www.hackerearth.com/recruit/developer-survey/</a>。</p>
+<h2 id="04">04<a href="#04" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>虽然这份报告不能完全反馈出国内的情况，但有一点，那就是 Go 在国外也收到越来越多的关注，很多人都希望学习 Go 语言。是的，你别犹豫了~</p>
+
+			</div><div class="content">
+	<br>
+	<img src="https://static.studygolang.com/static/img/polarisxu-qrcode-soso-s.png">
+</div>
+
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://polarisxu.studygolang.com/tags/survey">Survey</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/programming">Programming</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1762 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2020-10-30 15:12 &#43;0800</p>
+			</footer>
+		</article>
+		<aside id="toc">
+			<div class="toc-title">目录</div>
+			<nav id="TableOfContents">
+  <ul>
+    <li><a href="#01">01</a></li>
+    <li><a href="#02">02</a></li>
+    <li><a href="#03">03</a>
+      <ul>
+        <li><a href="#到了-2020-年数据科学仍然占据统治地位">到了 2020 年，数据科学仍然占据统治地位</a></li>
+        <li><a href="#go-是今年最受欢迎的编程语言">Go 是今年最受欢迎的编程语言</a></li>
+        <li><a href="#开发人员在全栈开发方面经验最丰富而在机器学习方面经验最少">开发人员在全栈开发方面经验最丰富，而在机器学习方面经验最少</a></li>
+        <li><a href="#您要让开发人员挂了吗">您要让开发人员挂了吗？</a></li>
+        <li><a href="#你对开会怎么看">你对开会怎么看？</a></li>
+        <li><a href="#开发人员的幸福感与工作时间不成比例">开发人员的幸福感与工作时间不成比例</a></li>
+      </ul>
+    </li>
+    <li><a href="#04">04</a></li>
+  </ul>
+</nav>
+		</aside>
+		<div class="post-nav thin">
+			<a class="prev-post" href="https://polarisxu.studygolang.com/posts/go/translation/golang-ai-programming-language/">
+				<span class="post-nav-label">旧&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>AI 和 数据科学领域，Go 语言可能很快会取代 Python。最后的原因有点迷</span>
+			</a>
+		</div>
+		<div id="comments" class="thin"><script src="https://utteranc.es/client.js"
+	repo="polaris1119/polarisxu"
+	issue-term="pathname"
+	theme="github-light"
+	crossorigin="anonymous"
+	async>
+</script>
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2019 - 2020 <a href="https://polarisxu.studygolang.com">polarisxu</a> &#183; <a href="http://www.beian.miit.gov.cn/">京ICP备14030343号-1</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://polarisxu.studygolang.com/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+
+	<script src="https://polarisxu.studygolang.com/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw=" crossorigin="anonymous"></script>
+	<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?224c227cd9239761ec770bc8c1fb134c";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+</body>
+
+</html>

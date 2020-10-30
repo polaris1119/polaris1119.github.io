@@ -7,7 +7,25 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Thu, 29 Oct 2020 21:40:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 30 Oct 2020 15:12:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Programming</title>
+      <link>https://polarisxu.studygolang.com/tags/programming/</link>
+      <pubDate>Fri, 30 Oct 2020 15:12:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/tags/programming/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Survey</title>
+      <link>https://polarisxu.studygolang.com/tags/survey/</link>
+      <pubDate>Fri, 30 Oct 2020 15:12:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/tags/survey/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>AI</title>
       <link>https://polarisxu.studygolang.com/tags/ai/</link>
@@ -77,24 +95,6 @@
       <pubDate>Mon, 26 Oct 2020 11:15:51 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/tags/cockroachdb/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>error</title>
-      <link>https://polarisxu.studygolang.com/tags/error/</link>
-      <pubDate>Mon, 26 Oct 2020 11:15:51 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/tags/error/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>JSON</title>
-      <link>https://polarisxu.studygolang.com/tags/json/</link>
-      <pubDate>Sun, 18 Oct 2020 14:18:50 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/tags/json/</guid>
       <description></description>
     </item>
     
