@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Embed on polarisxu</title>
+    <link>https://polarisxu.studygolang.com/tags/embed/</link>
+    <description>Recent content in Embed on polarisxu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
+    <lastBuildDate>Sun, 01 Nov 2020 18:12:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/embed/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>提前试用将在 Go1.16 中发布的内嵌静态资源功能</title>
+      <link>https://polarisxu.studygolang.com/posts/go/dynamic/go-embed-try/</link>
+      <pubDate>Sun, 01 Nov 2020 18:12:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/dynamic/go-embed-try/</guid>
+      <description>大家好，我是站长 polarisxu。 喜欢 Go 语言有很多理由，其中有一点“因为编译为一个二进制文件，直接运行，没有其他依赖，使得部署特别容易。”</description>
+    </item>
+    
+  </channel>
+</rss>

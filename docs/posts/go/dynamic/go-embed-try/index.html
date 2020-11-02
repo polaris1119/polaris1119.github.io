@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#fcfcfc">
+	<meta name="msapplication-TileColor" content="#fcfcfc">
+<meta itemprop="name" content="提前试用将在 Go1.16 中发布的内嵌静态资源功能">
+<meta itemprop="description" content="大家好，我是站长 polarisxu。 喜欢 Go 语言有很多理由，其中有一点“因为编译为一个二进制文件，直接运行，没有其他依赖，使得部署特别容易。”">
+<meta itemprop="datePublished" content="2020-11-01T18:12:00+08:00" />
+<meta itemprop="dateModified" content="2020-11-01T18:12:00+08:00" />
+<meta itemprop="wordCount" content="4044">
+
+
+
+<meta itemprop="keywords" content="Go,Embed," />
+<meta property="og:title" content="提前试用将在 Go1.16 中发布的内嵌静态资源功能" />
+<meta property="og:description" content="大家好，我是站长 polarisxu。 喜欢 Go 语言有很多理由，其中有一点“因为编译为一个二进制文件，直接运行，没有其他依赖，使得部署特别容易。”" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/dynamic/go-embed-try/" />
+<meta property="article:published_time" content="2020-11-01T18:12:00+08:00" />
+<meta property="article:modified_time" content="2020-11-01T18:12:00+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="提前试用将在 Go1.16 中发布的内嵌静态资源功能"/>
+<meta name="twitter:description" content="大家好，我是站长 polarisxu。 喜欢 Go 语言有很多理由，其中有一点“因为编译为一个二进制文件，直接运行，没有其他依赖，使得部署特别容易。”"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>提前试用将在 Go1.16 中发布的内嵌静态资源功能</title>
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
+	
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://polarisxu.studygolang.com">polarisxu</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+  <a href="https://polarisxu.studygolang.com/posts/">文章</a>
+  <a href="https://polarisxu.studygolang.com/go-categories/">Go系列</a>
+  <a href="https://polarisxu.studygolang.com/devtool-categories/">开发工具</a>
+  <a href="https://polarisxu.studygolang.com/about/">关于</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<button id="toc-btn" class="hdr-btn desktop-only-ib" title="目录"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3" y2="6"></line><line x1="3" y1="12" x2="3" y2="12"></line><line x1="3" y1="18" x2="3" y2="18"></line></svg></button><span class="hdr-social hide-in-mobile"><a href="https://github.com/polaris1119" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a><a href="https://twitter.com/polaris1119" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="菜单"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://polarisxu.studygolang.com/posts/">文章</a></li>
+			<li><a href="https://polarisxu.studygolang.com/go-categories/">Go系列</a></li>
+			<li><a href="https://polarisxu.studygolang.com/devtool-categories/">开发工具</a></li>
+			<li><a href="https://polarisxu.studygolang.com/about/">关于</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Nov 1, 2020</span></div>
+				<h1>提前试用将在 Go1.16 中发布的内嵌静态资源功能</h1>
+			</header>
+			<div class="content">
+				<p>大家好，我是站长 polarisxu。</p>
+<p>喜欢 Go 语言有很多理由，其中有一点“因为编译为一个二进制文件，直接运行，没有其他依赖，使得部署特别容易。”我想是很多人喜欢的。</p>
+<p>然而一个项目，很可能会包含一些静态资源文件，这样一来，一个 Go 二进制文件就不能解决了，需要将静态资源文件一起带上。于是有了很多第三方解决方案，将静态资源文件“嵌入”最终的 Go 二进制文件中。最知名的应该是 <a href="https://pkg.go.dev/github.com/jteeuwen/go-bindata" target="_blank" rel="noopener">go-bindata</a>
+，此外还有很多其他的：</p>
+<ul>
+<li><a href="https://pkg.go.dev/github.com/alecthomas/gobundle" target="_blank" rel="noopener">github.com/alecthomas/gobundle</a>
+</li>
+<li><a href="https://pkg.go.dev/github.com/GeertJohan/go.rice" target="_blank" rel="noopener">github.com/GeertJohan/go.rice</a>
+</li>
+<li><a href="https://pkg.go.dev/github.com/go-playground/statics" target="_blank" rel="noopener">github.com/go-playground/statics</a>
+</li>
+<li><a href="https://pkg.go.dev/github.com/gobuffalo/packr" target="_blank" rel="noopener">github.com/gobuffalo/packr</a>
+</li>
+<li><a href="https://pkg.go.dev/github.com/knadh/stuffbin" target="_blank" rel="noopener">github.com/knadh/stuffbin</a>
+</li>
+<li><a href="https://pkg.go.dev/github.com/mjibson/esc" target="_blank" rel="noopener">github.com/mjibson/esc</a>
+</li>
+<li><a href="https://pkg.go.dev/github.com/omeid/go-resources" target="_blank" rel="noopener">github.com/omeid/go-resources</a>
+</li>
+<li><a href="https://pkg.go.dev/github.com/phogolabs/parcello" target="_blank" rel="noopener">github.com/phogolabs/parcello</a>
+</li>
+<li><a href="https://pkg.go.dev/github.com/pyros2097/go-embed" target="_blank" rel="noopener">github.com/pyros2097/go-embed</a>
+</li>
+<li><a href="https://pkg.go.dev/github.com/rakyll/statik" target="_blank" rel="noopener">github.com/rakyll/statik</a>
+</li>
+<li><a href="https://pkg.go.dev/github.com/shurcooL/vfsgen" target="_blank" rel="noopener">github.com/shurcooL/vfsgen</a>
+</li>
+<li><a href="https://pkg.go.dev/github.com/UnnoTed/fileb0x" target="_blank" rel="noopener">github.com/UnnoTed/fileb0x</a>
+</li>
+<li><a href="https://pkg.go.dev/github.com/wlbr/templify" target="_blank" rel="noopener">github.com/wlbr/templify</a>
+</li>
+<li><a href="https://pkg.go.dev/perkeep.org/pkg/fileembed" target="_blank" rel="noopener">perkeep.org/pkg/fileembed</a>
+</li>
+</ul>
+<p>从这个列表足以看出需求的广泛性。于是官方决定提供实现，在 go 命令中实现该功能。因为在 Go 命令中添加对嵌入基本功能的直接支持将消除对某些工具的需求，至少可以简化其他工具的实现。</p>
+<p>2020 年 10 月 30 日，Russ Cox 提交了最终的实现：[cmd/go: add //go:embed support](cmd/go: add //go:embed support)，意味着你在 tip 版本可以试用该功能了。Go1.16 版本会包含该功能。欢迎大家试用，反馈建议。</p>
+<h2 id="01-试用-go-embed">01 试用 go embed<a href="#01-试用-go-embed" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>通过几个示例快速了解 go embed 的用法。</p>
+<h3 id="例-1内嵌文件--web-应用">例 1：内嵌文件 — Web 应用<a href="#例-1内嵌文件--web-应用" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>基于 Echo 框架：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+	<span class="nx">_</span> <span class="s">&#34;embed&#34;</span>
+	<span class="s">&#34;net/http&#34;</span>
+
+	<span class="s">&#34;github.com/labstack/echo&#34;</span>
+<span class="p">)</span>
+
+<span class="c1">//go:embed static/logo.png
+</span><span class="c1"></span><span class="kd">var</span> <span class="nx">content</span> <span class="p">[]</span><span class="kt">byte</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="nx">e</span> <span class="o">:=</span> <span class="nx">echo</span><span class="p">.</span><span class="nf">New</span><span class="p">()</span>
+	<span class="nx">e</span><span class="p">.</span><span class="nf">GET</span><span class="p">(</span><span class="s">&#34;/&#34;</span><span class="p">,</span> <span class="kd">func</span><span class="p">(</span><span class="nx">c</span> <span class="nx">echo</span><span class="p">.</span><span class="nx">Context</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="nx">c</span><span class="p">.</span><span class="nf">Blob</span><span class="p">(</span><span class="nx">http</span><span class="p">.</span><span class="nx">StatusOK</span><span class="p">,</span> <span class="s">&#34;image/png&#34;</span><span class="p">,</span> <span class="nx">content</span><span class="p">)</span>
+	<span class="p">})</span>
+	<span class="nx">e</span><span class="p">.</span><span class="nx">Logger</span><span class="p">.</span><span class="nf">Fatal</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nf">Start</span><span class="p">(</span><span class="s">&#34;:8989&#34;</span><span class="p">))</span>
+<span class="p">}</span>
+</code></pre></div><p>目录结构如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">.
+├── main.go
+└── static
+    └── logo.png
+</code></pre></div><p>编译运行后，可以将二进制文件移到任何地方运行，浏览器访问 http://localhhost:8989，能够正确显示 logo 图片表示成功了。</p>
+<p>基于 Gin 框架，代码类似：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="nx">_</span> <span class="s">&#34;embed&#34;</span>
+    <span class="s">&#34;net/http&#34;</span>
+
+    <span class="s">&#34;github.com/gin-gonic/gin&#34;</span>
+<span class="p">)</span>
+
+<span class="c1">//go:embed static/logo.png
+</span><span class="c1"></span><span class="kd">var</span> <span class="nx">content</span> <span class="p">[]</span><span class="kt">byte</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">router</span> <span class="o">:=</span> <span class="nx">gin</span><span class="p">.</span><span class="nf">Default</span><span class="p">()</span>
+    <span class="nx">router</span><span class="p">.</span><span class="nf">GET</span><span class="p">(</span><span class="s">&#34;/&#34;</span><span class="p">,</span> <span class="kd">func</span><span class="p">(</span><span class="nx">ctx</span> <span class="o">*</span><span class="nx">gin</span><span class="p">.</span><span class="nx">Context</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">ctx</span><span class="p">.</span><span class="nf">Data</span><span class="p">(</span><span class="nx">http</span><span class="p">.</span><span class="nx">StatusOK</span><span class="p">,</span> <span class="s">&#34;image/png&#34;</span><span class="p">,</span> <span class="nx">content</span><span class="p">)</span>
+    <span class="p">})</span>
+
+    <span class="nx">router</span><span class="p">.</span><span class="nf">Run</span><span class="p">(</span><span class="s">&#34;:8989&#34;</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div><p>直接使用 net/http 库，代码如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="nx">_</span> <span class="s">&#34;embed&#34;</span>
+    <span class="s">&#34;log&#34;</span>
+    <span class="s">&#34;net/http&#34;</span>
+    <span class="s">&#34;fmt&#34;</span>
+<span class="p">)</span>
+
+<span class="c1">//go:embed static/logo.png
+</span><span class="c1"></span><span class="kd">var</span> <span class="nx">content</span> <span class="p">[]</span><span class="kt">byte</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">http</span><span class="p">.</span><span class="nf">HandleFunc</span><span class="p">(</span><span class="s">&#34;/&#34;</span><span class="p">,</span> <span class="kd">func</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">w</span><span class="p">.</span><span class="nf">Header</span><span class="p">().</span><span class="nf">Add</span><span class="p">(</span><span class="s">&#34;Content-Type&#34;</span><span class="p">,</span> <span class="s">&#34;image/png&#34;</span><span class="p">)</span>
+        <span class="nx">w</span><span class="p">.</span><span class="nf">WriteHeader</span><span class="p">(</span><span class="nx">http</span><span class="p">.</span><span class="nx">StatusOK</span><span class="p">)</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nf">Fprintf</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="s">&#34;%s&#34;</span><span class="p">,</span> <span class="nx">content</span><span class="p">)</span>
+    <span class="p">})</span>
+
+    <span class="nx">log</span><span class="p">.</span><span class="nf">Fatal</span><span class="p">(</span><span class="nx">http</span><span class="p">.</span><span class="nf">ListenAndServe</span><span class="p">(</span><span class="s">&#34;:8989&#34;</span><span class="p">,</span> <span class="kc">nil</span><span class="p">))</span>
+<span class="p">}</span>
+</code></pre></div><h3 id="例-2内嵌文件--命令行应用">例 2：内嵌文件 — 命令行应用<a href="#例-2内嵌文件--命令行应用" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>简单的 Hello World：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="nx">_</span> <span class="s">&#34;embed&#34;</span>
+    <span class="s">&#34;fmt&#34;</span>
+<span class="p">)</span>
+
+<span class="c1">//go:embed message.txt
+</span><span class="c1"></span><span class="kd">var</span> <span class="nx">message</span> <span class="kt">string</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">message</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div><p>其中 messaeg.txt 中的内容是 Hello World。目录结构如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">.
+├── main.go
+└── message.txt
+</code></pre></div><p>编译后，可以将二进制移到任何地方，运行输出 Hello World（即 messaeg.txt 中的内容）。</p>
+<h3 id="例-3内嵌目录---命令行应用">例 3：内嵌目录 - 命令行应用<a href="#例-3内嵌目录---命令行应用" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>以下程序将 static 目录内嵌到二进制程序中，然后在当前目录创建 static 目录中的所有文件。</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+	<span class="s">&#34;embed&#34;</span>
+	<span class="s">&#34;io&#34;</span>
+	<span class="s">&#34;log&#34;</span>
+	<span class="s">&#34;os&#34;</span>
+	<span class="s">&#34;path&#34;</span>
+<span class="p">)</span>
+
+<span class="c1">//go:embed static
+</span><span class="c1"></span><span class="kd">var</span> <span class="nx">local</span> <span class="nx">embed</span><span class="p">.</span><span class="nx">FS</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="nx">fis</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">local</span><span class="p">.</span><span class="nf">ReadDir</span><span class="p">(</span><span class="s">&#34;static&#34;</span><span class="p">)</span>
+	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+		<span class="nx">log</span><span class="p">.</span><span class="nf">Fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+	<span class="p">}</span>
+	<span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">fi</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">fis</span> <span class="p">{</span>
+		<span class="nx">in</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">local</span><span class="p">.</span><span class="nf">Open</span><span class="p">(</span><span class="nx">path</span><span class="p">.</span><span class="nf">Join</span><span class="p">(</span><span class="s">&#34;static&#34;</span><span class="p">,</span> <span class="nx">fi</span><span class="p">.</span><span class="nf">Name</span><span class="p">()))</span>
+		<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+			<span class="nx">log</span><span class="p">.</span><span class="nf">Fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+		<span class="p">}</span>
+		<span class="nx">out</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">os</span><span class="p">.</span><span class="nf">Create</span><span class="p">(</span><span class="s">&#34;embed-&#34;</span> <span class="o">+</span> <span class="nx">path</span><span class="p">.</span><span class="nf">Base</span><span class="p">(</span><span class="nx">fi</span><span class="p">.</span><span class="nf">Name</span><span class="p">()))</span>
+		<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+			<span class="nx">log</span><span class="p">.</span><span class="nf">Fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+		<span class="p">}</span>
+		<span class="nx">io</span><span class="p">.</span><span class="nf">Copy</span><span class="p">(</span><span class="nx">out</span><span class="p">,</span> <span class="nx">in</span><span class="p">)</span>
+		<span class="nx">out</span><span class="p">.</span><span class="nf">Close</span><span class="p">()</span>
+		<span class="nx">in</span><span class="p">.</span><span class="nf">Close</span><span class="p">()</span>
+		<span class="nx">log</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;exported&#34;</span><span class="p">,</span> <span class="s">&#34;embed-&#34;</span><span class="o">+</span><span class="nx">path</span><span class="p">.</span><span class="nf">Base</span><span class="p">(</span><span class="nx">fi</span><span class="p">.</span><span class="nf">Name</span><span class="p">()))</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><p>该示例的目录结构和例 1 一样。编译后，可以将二进制文件移到任何地方，运行后，会在当前目录输出以 embed- 开头的文件。</p>
+<h3 id="例-4内嵌目录--web-应用">例 4：内嵌目录 — Web 应用<a href="#例-4内嵌目录--web-应用" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>基于 Echo 框架：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&#34;embed&#34;</span>
+    <span class="s">&#34;net/http&#34;</span>
+
+    <span class="s">&#34;github.com/labstack/echo/v4&#34;</span>
+<span class="p">)</span>
+
+<span class="c1">//go:embed static
+</span><span class="c1"></span><span class="kd">var</span> <span class="nx">local</span> <span class="nx">embed</span><span class="p">.</span><span class="nx">FS</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">e</span> <span class="o">:=</span> <span class="nx">echo</span><span class="p">.</span><span class="nf">New</span><span class="p">()</span>
+    <span class="nx">e</span><span class="p">.</span><span class="nf">GET</span><span class="p">(</span><span class="s">&#34;/*&#34;</span><span class="p">,</span> <span class="nx">echo</span><span class="p">.</span><span class="nf">WrapHandler</span><span class="p">(</span><span class="nx">http</span><span class="p">.</span><span class="nf">FileServer</span><span class="p">(</span><span class="nx">http</span><span class="p">.</span><span class="nf">FS</span><span class="p">(</span><span class="nx">local</span><span class="p">))))</span>
+    <span class="nx">e</span><span class="p">.</span><span class="nx">Logger</span><span class="p">.</span><span class="nf">Fatal</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nf">Start</span><span class="p">(</span><span class="s">&#34;:8989&#34;</span><span class="p">))</span>
+<span class="p">}</span>
+</code></pre></div><p>同样，目录结构和 example1 一致。编译后运行，访问 http://localhost:8989，看到如下界面：</p>
+<p><p class="md__image">
+  <img src="../imgs/try-embed01.png"
+    alt=""  />
+</p>
+</p>
+<p>注意上面使用的是 <code>/*</code>，如果直接使用 <code>/</code>，点击链接会是 404。</p>
+<p>换成 Gin，代码如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&#34;embed&#34;</span>
+    <span class="s">&#34;net/http&#34;</span>
+
+    <span class="s">&#34;github.com/gin-gonic/gin&#34;</span>
+<span class="p">)</span>
+
+<span class="c1">//go:embed static/*
+</span><span class="c1"></span><span class="kd">var</span> <span class="nx">local</span> <span class="nx">embed</span><span class="p">.</span><span class="nx">FS</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">router</span> <span class="o">:=</span> <span class="nx">gin</span><span class="p">.</span><span class="nf">Default</span><span class="p">()</span>
+    <span class="nx">router</span><span class="p">.</span><span class="nf">GET</span><span class="p">(</span><span class="s">&#34;/*filepath&#34;</span><span class="p">,</span> <span class="nx">gin</span><span class="p">.</span><span class="nf">WrapH</span><span class="p">(</span><span class="nx">http</span><span class="p">.</span><span class="nf">FileServer</span><span class="p">(</span><span class="nx">http</span><span class="p">.</span><span class="nf">FS</span><span class="p">(</span><span class="nx">local</span><span class="p">))))</span>
+
+    <span class="nx">router</span><span class="p">.</span><span class="nf">Run</span><span class="p">(</span><span class="s">&#34;:8989&#34;</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div><p>结果和 Echo 框架一样。同样要注意是 <code>/*filepath</code>，不能是 <code>/</code>。</p>
+<p>换成标准库 net/http 试试？</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&#34;embed&#34;</span>
+    <span class="s">&#34;log&#34;</span>
+    <span class="s">&#34;net/http&#34;</span>
+<span class="p">)</span>
+
+<span class="c1">//go:embed static
+</span><span class="c1"></span><span class="kd">var</span> <span class="nx">local</span> <span class="nx">embed</span><span class="p">.</span><span class="nx">FS</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">http</span><span class="p">.</span><span class="nf">Handle</span><span class="p">(</span><span class="s">&#34;/&#34;</span><span class="p">,</span> <span class="nx">http</span><span class="p">.</span><span class="nf">FileServer</span><span class="p">(</span><span class="nx">http</span><span class="p">.</span><span class="nf">FS</span><span class="p">(</span><span class="nx">local</span><span class="p">)))</span>
+    <span class="nx">log</span><span class="p">.</span><span class="nf">Fatal</span><span class="p">(</span><span class="nx">http</span><span class="p">.</span><span class="nf">ListenAndServe</span><span class="p">(</span><span class="s">&#34;:8989&#34;</span><span class="p">,</span> <span class="kc">nil</span><span class="p">))</span>
+<span class="p">}</span>
+</code></pre></div><p>标准库中 <code>/</code> 会自动处理所有的请求。</p>
+<h2 id="02-goembed-指令">02 //go:embed 指令<a href="#02-goembed-指令" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>之前第三方的现实，基本是基于 go generate，将静态资源文件生成 go 源文件，最后编译进二进制文件中。官方的实现，通过 <code>//go:embed</code> 指令，在编译时将静态资源嵌入二进制文件中。然后，Go 通过标准库，让用户能够访问这些内嵌的资源。因此，先介绍下 <code>//go:embed</code> 指令的用法。</p>
+<h3 id="相关规则">相关规则<a href="#相关规则" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>在变量声明上方，通过 <code>//go:embed</code> 指令指定一个或多个符合 path.Match 模式的要嵌入的文件或目录。相关规则或使用注意如下：</p>
+<p>1）跟其他指令一样，// 和 go:embed 之间不能有空格。（不会报错，但该指令会被编译器忽略）</p>
+<p>2）指令和变量声明之间可以有空行或普通注释，不能有其他语句；</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">//go:embed message.txt
+</span><span class="c1"></span>
+<span class="kd">var</span> <span class="nx">message</span> <span class="kt">string</span>
+</code></pre></div><p>以上代码是允许的，不过建议紧挨着，而且建议变量声明和指令之间也别加注释，注释应该放在指令上方。</p>
+<p>3）变量的类型只能是 string、[]byte 或 embed.FS，即使是这三个类型的别名也不行；</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">mystring</span> <span class="p">=</span> <span class="kt">string</span>
+
+<span class="c1">//go:embed hello.txt
+</span><span class="c1"></span><span class="kd">var</span> <span class="nx">message</span> <span class="nx">mystring</span>	<span class="c1">// 编译不通过：go:embed cannot apply to var of type mystring
+</span></code></pre></div><p>4）允许有多个 <code>//go:embed</code> 指令。多个文件或目录可以通过空格分隔，也可以写多个指令。比如：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">//go:embed image template
+</span><span class="c1">//go:embed html/index.html
+</span><span class="c1"></span><span class="kd">var</span> <span class="nx">content</span> <span class="nx">embed</span><span class="p">.</span><span class="nx">FS</span>
+</code></pre></div><p>5）文件或目录使用的是相对路径，相对于指令所在 Go 源文件所在的目录，路径分隔符永远使用 <code>/</code>；当文件或目录名包含空格时，可以使用双引号或反引号括起来。</p>
+<p>6）对于目录，会以该目录为根，递归的方式嵌入所有文件和子目录；</p>
+<p>7）变量的声明可以是导出或非导出的；可以是全局也可以在函数内部；但只能是声明，不能给初始化值；</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">//go:embed message.txt
+</span><span class="c1"></span><span class="kd">var</span> <span class="nx">message</span> <span class="kt">string</span> <span class="p">=</span> <span class="s">&#34;&#34;</span>	<span class="c1">// 编译不通过：go:embed cannot apply to var with initializer
+</span></code></pre></div><p>8）只能内嵌模块内的文件，比如 <code>.git/*</code> 或软链接文件无法匹配；空目录会被忽略；</p>
+<p>9）模式不能包含 <code>.</code> 或 <code>..</code>，也不能以 <code>/</code> 开始，如果要匹配当前目录所有文件，应该使用 <code>*</code> 而不是 <code>.</code>；</p>
+<h2 id="03-标准库">03 标准库<a href="#03-标准库" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>和 embed 相关的标准库有 5 个，其中 2 个是新增的：embed 和 io/fs；net/http，text/template 和 html/template 包依赖 io/fs 包，而 embed.FS 类型实现了 io/fs 包的 FS 接口，因此这 3 个包可以使用 embed.FS。（Go1.16 发布时可能还会增加其他包或修改一些包的内容）</p>
+<h3 id="iofs-包">io/fs 包<a href="#iofs-包" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>该包定义了文件系统的基本接口。文件系统既可以由主机操作系统提供，也可以由其他包提供。本文我们主要介绍和 embed 密切相关的内容。</p>
+<p>先看 <strong>FS 接口</strong>：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">FS</span> <span class="kd">interface</span> <span class="p">{</span>
+    <span class="c1">// Open opens the named file.
+</span><span class="c1"></span>    <span class="c1">//
+</span><span class="c1"></span>    <span class="c1">// When Open returns an error, it should be of type *PathError
+</span><span class="c1"></span>    <span class="c1">// with the Op field set to &#34;open&#34;, the Path field set to name,
+</span><span class="c1"></span>    <span class="c1">// and the Err field describing the problem.
+</span><span class="c1"></span>    <span class="c1">//
+</span><span class="c1"></span>    <span class="c1">// Open should reject attempts to open names that do not satisfy
+</span><span class="c1"></span>    <span class="c1">// ValidPath(name), returning a *PathError with Err set to
+</span><span class="c1"></span>    <span class="c1">// ErrInvalid or ErrNotExist.
+</span><span class="c1"></span>    <span class="nf">Open</span><span class="p">(</span><span class="nx">name</span> <span class="kt">string</span><span class="p">)</span> <span class="p">(</span><span class="nx">File</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div><p>FS 提供对分层文件系统的访问。像操作系统使用的文件系统就是一种分层文件系统。</p>
+<p>FS 接口是文件系统所需的最小实现。文件系统可以实现其他接口，比如 fs.ReadFileFS，以提供其他或优化的功能。</p>
+<p><strong>File 接口</strong>：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">File</span> <span class="kd">interface</span> <span class="p">{</span>
+    <span class="nf">Stat</span><span class="p">()</span> <span class="p">(</span><span class="nx">FileInfo</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+    <span class="nf">Read</span><span class="p">([]</span><span class="kt">byte</span><span class="p">)</span> <span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+    <span class="nf">Close</span><span class="p">()</span> <span class="kt">error</span>
+<span class="p">}</span>
+</code></pre></div><p>该接口定义对单个文件的访问。这是文件的最小实现要求。文件可以实现其他接口，例如 fs.ReadDirFile，io.ReaderAt 或 io.Seeker，以提供其他或优化的功能。</p>
+<p>因为有了 FS、File 等的接口抽象，之前在 os 包中的一些内容移到了 io/fs 包中，比如 fs.FileInfo 接口、fs.FileMode 类型，os 中原有的定义改成了它们的别名。</p>
+<p><strong>DirEntry 接口</strong>：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">DirEntry</span> <span class="kd">interface</span> <span class="p">{</span>
+    <span class="c1">// Name returns the name of the file (or subdirectory) described by the entry.
+</span><span class="c1"></span>    <span class="c1">// This name is only the final element of the path (the base name), not the entire path.
+</span><span class="c1"></span>    <span class="c1">// For example, Name would return &#34;hello.go&#34; not &#34;/home/gopher/hello.go&#34;.
+</span><span class="c1"></span>    <span class="nf">Name</span><span class="p">()</span> <span class="kt">string</span>
+
+    <span class="c1">// IsDir reports whether the entry describes a directory.
+</span><span class="c1"></span>    <span class="nf">IsDir</span><span class="p">()</span> <span class="kt">bool</span>
+
+    <span class="c1">// Type returns the type bits for the entry.
+</span><span class="c1"></span>    <span class="c1">// The type bits are a subset of the usual FileMode bits, those returned by the FileMode.Type method.
+</span><span class="c1"></span>    <span class="nf">Type</span><span class="p">()</span> <span class="nx">FileMode</span>
+
+    <span class="c1">// Info returns the FileInfo for the file or subdirectory described by the entry.
+</span><span class="c1"></span>    <span class="c1">// The returned FileInfo may be from the time of the original directory read
+</span><span class="c1"></span>    <span class="c1">// or from the time of the call to Info. If the file has been removed or renamed
+</span><span class="c1"></span>    <span class="c1">// since the directory read, Info may return an error satisfying errors.Is(err, ErrNotExist).
+</span><span class="c1"></span>    <span class="c1">// If the entry denotes a symbolic link, Info reports the information about the link itself,
+</span><span class="c1"></span>    <span class="c1">// not the link&#39;s target.
+</span><span class="c1"></span>    <span class="nf">Info</span><span class="p">()</span> <span class="p">(</span><span class="nx">FileInfo</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div><p>DirEntry 是从目录读取的条目（使用 ReadDir 函数或 ReadDirFile 的 ReadDir方法）。比如下面 embed 包中的 embed.FS 有一个方法 ReadDir 就返回了 DirEntry 类型的切片。这样可以遍历 embed.FS 这个文件系统。</p>
+<h3 id="embed-包">embed 包<a href="#embed-包" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>资源文件嵌入 Go 二进制程序后，我们通过 embed 包可以访问它们。</p>
+<h4 id="string-和-byte">string 和 []byte<a href="#string-和-byte" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
+<p>当指令用于 string 或 []byte 时，只能有一个模式，匹配一个文件，字符串或 []byte 的内容是该文件的内容。这时虽然不需要使用 embed 包，但必须导入，因此采用空导入：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">import</span> <span class="nx">_</span> <span class="s">&#34;embed&#34;</span> 
+</code></pre></div><h4 id="fsfile-system">FS（File System）<a href="#fsfile-system" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
+<p>一般内嵌单个文件，采用 string 或 []byte 是最好的选择；但内嵌很多文件或目录树，应该使用 embed.FS 类型，这也是该包目前唯一的类型。</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">FS</span> <span class="kd">struct</span> <span class="p">{</span>
+	<span class="c1">// The compiler knows the layout of this struct.
+</span><span class="c1"></span>	<span class="c1">// See cmd/compile/internal/gc&#39;s initEmbed.
+</span><span class="c1"></span>	<span class="c1">//
+</span><span class="c1"></span>	<span class="c1">// The files list is sorted by name but not by simple string comparison.
+</span><span class="c1"></span>	<span class="c1">// Instead, each file&#39;s name takes the form &#34;dir/elem&#34; or &#34;dir/elem/&#34;.
+</span><span class="c1"></span>	<span class="c1">// The optional trailing slash indicates that the file is itself a directory.
+</span><span class="c1"></span>	<span class="c1">// The files list is sorted first by dir (if dir is missing, it is taken to be &#34;.&#34;)
+</span><span class="c1"></span>	<span class="c1">// and then by base, so this list of files:
+</span><span class="c1"></span>	<span class="c1">//
+</span><span class="c1"></span>	<span class="c1">//	p
+</span><span class="c1"></span>	<span class="c1">//	q/
+</span><span class="c1"></span>	<span class="c1">//	q/r
+</span><span class="c1"></span>	<span class="c1">//	q/s/
+</span><span class="c1"></span>	<span class="c1">//	q/s/t
+</span><span class="c1"></span>	<span class="c1">//	q/s/u
+</span><span class="c1"></span>	<span class="c1">//	q/v
+</span><span class="c1"></span>	<span class="c1">//	w
+</span><span class="c1"></span>	<span class="c1">//
+</span><span class="c1"></span>	<span class="c1">// is actually sorted as:
+</span><span class="c1"></span>	<span class="c1">//
+</span><span class="c1"></span>	<span class="c1">//	p       # dir=.    elem=p
+</span><span class="c1"></span>	<span class="c1">//	q/      # dir=.    elem=q
+</span><span class="c1"></span>	<span class="c1">//	w/      # dir=.    elem=w
+</span><span class="c1"></span>	<span class="c1">//	q/r     # dir=q    elem=r
+</span><span class="c1"></span>	<span class="c1">//	q/s/    # dir=q    elem=s
+</span><span class="c1"></span>	<span class="c1">//	q/v     # dir=q    elem=v
+</span><span class="c1"></span>	<span class="c1">//	q/s/t   # dir=q/s  elem=t
+</span><span class="c1"></span>	<span class="c1">//	q/s/u   # dir=q/s  elem=u
+</span><span class="c1"></span>	<span class="c1">//
+</span><span class="c1"></span>	<span class="c1">// This order brings directory contents together in contiguous sections
+</span><span class="c1"></span>	<span class="c1">// of the list, allowing a directory read to use binary search to find
+</span><span class="c1"></span>	<span class="c1">// the relevant sequence of entries.
+</span><span class="c1"></span>	<span class="nx">files</span> <span class="o">*</span><span class="p">[]</span><span class="nx">file</span>
+<span class="p">}</span>
+</code></pre></div><p>FS 是文件的只读集合，通常使用 <code>//go:embed</code> 指令进行初始化。如果不使用 <code>//go:embed</code> 指令声明 FS，则它是一个空文件系统。</p>
+<p>FS 是只读值，因此可以安全地同时使用多个 goroutine，也可以将 FS 类型的值相互赋值。</p>
+<p>FS 实现了 fs.FS，因此它可以与任何使用文件系统接口（fs.FS）的包一起使用，包括 net/http，text/template 和 html/template。</p>
+<p>此外，FS 还是实现了 fs.ReadDirFS 和 fs.ReadFileFS 这两个接口。</p>
+<p>所以，FS 实现了 3 个接口，一共 3 个方法：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="p">(</span><span class="nx">f</span> <span class="nx">FS</span><span class="p">)</span> <span class="nf">Open</span><span class="p">(</span><span class="nx">name</span> <span class="kt">string</span><span class="p">)</span> <span class="p">(</span><span class="nx">fs</span><span class="p">.</span><span class="nx">File</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">f</span> <span class="nx">FS</span><span class="p">)</span> <span class="nf">ReadDir</span><span class="p">(</span><span class="nx">name</span> <span class="kt">string</span><span class="p">)</span> <span class="p">([]</span><span class="nx">fs</span><span class="p">.</span><span class="nx">DirEntry</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">f</span> <span class="nx">FS</span><span class="p">)</span> <span class="nf">ReadFile</span><span class="p">(</span><span class="nx">name</span> <span class="kt">string</span><span class="p">)</span> <span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+</code></pre></div><p>关于它们的用法，在上文例子中有所涉及。</p>
+<h2 id="04-实际项目使用">04 实际项目使用<a href="#04-实际项目使用" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>本节模拟一个实际项目，看怎么使用 embed，主要两个方面：嵌入静态资源；嵌入模板文件。本节示例代码地址：<a href="https://github.com/polaris1119/embed-example">https://github.com/polaris1119/embed-example</a>，采用 Echo 框架。</p>
+<p>因为是演示 embed 的实际用法，因此项目做了尽可能简化，目录结构如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">.
+├── LICENSE
+├── README.md
+├── cmd
+│   └── blog
+│       └── main.go
+├── embed.go
+├── go.mod
+├── go.sum
+├── static
+│   └── css
+│       └── style.min.css
+└── template
+    └── index.html
+</code></pre></div><p>做个说明：</p>
+<ul>
+<li>因为 <code>go:embed</code> 指令只能从相对源码所在目录的位置引用资源，这里特意采用了 main.go 放在 cmd/blog 中这种方式，看这样如何处理资源嵌入；</li>
+<li>static 和 template 目录是需要嵌入的目录；</li>
+</ul>
+<p>因为 main.go 和 static/template 不在同一个目录，因此 main.go 中没法直接使用 <code>go:embed</code> 指令。我们在 static 的同级目录下创建一个文件：embed.go，专门用来写该指令。代码如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">embedexample</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+	<span class="s">&#34;embed&#34;</span>
+<span class="p">)</span>
+
+<span class="c1">//go:embed static
+</span><span class="c1"></span><span class="kd">var</span> <span class="nx">StaticAsset</span> <span class="nx">embed</span><span class="p">.</span><span class="nx">FS</span>
+
+<span class="c1">//go:embed template
+</span><span class="c1"></span><span class="kd">var</span> <span class="nx">TemplateFS</span> <span class="nx">embed</span><span class="p">.</span><span class="nx">FS</span>
+</code></pre></div><p>这样，项目中所有其他的地方都可以通过引用该包来使用内嵌的资源。</p>
+<p>接着看 main.go 的代码如何使用它的。</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+	<span class="s">&#34;html/template&#34;</span>
+	<span class="s">&#34;io&#34;</span>
+	<span class="s">&#34;net/http&#34;</span>
+
+	<span class="s">&#34;github.com/labstack/echo/v4&#34;</span>
+	<span class="s">&#34;github.com/labstack/echo/v4/middleware&#34;</span>
+	<span class="s">&#34;github.com/polaris1119/embedexample&#34;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="nx">e</span> <span class="o">:=</span> <span class="nx">echo</span><span class="p">.</span><span class="nf">New</span><span class="p">()</span>
+	<span class="nx">e</span><span class="p">.</span><span class="nf">Use</span><span class="p">(</span><span class="nx">middleware</span><span class="p">.</span><span class="nf">Recover</span><span class="p">())</span>
+	<span class="nx">e</span><span class="p">.</span><span class="nf">Use</span><span class="p">(</span><span class="nx">middleware</span><span class="p">.</span><span class="nf">Logger</span><span class="p">())</span>
+
+	<span class="nx">tpl</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">Template</span><span class="p">{</span>
+		<span class="nx">templates</span><span class="p">:</span> <span class="nx">template</span><span class="p">.</span><span class="nf">Must</span><span class="p">(</span><span class="nx">template</span><span class="p">.</span><span class="nf">New</span><span class="p">(</span><span class="s">&#34;index&#34;</span><span class="p">).</span><span class="nf">ParseFS</span><span class="p">(</span><span class="nx">embedexample</span><span class="p">.</span><span class="nx">TemplateFS</span><span class="p">,</span> <span class="s">&#34;template/*.html&#34;</span><span class="p">)),</span>
+	<span class="p">}</span>
+	<span class="nx">e</span><span class="p">.</span><span class="nx">Renderer</span> <span class="p">=</span> <span class="nx">tpl</span>
+
+	<span class="nx">e</span><span class="p">.</span><span class="nf">GET</span><span class="p">(</span><span class="s">&#34;/static/*&#34;</span><span class="p">,</span> <span class="nx">echo</span><span class="p">.</span><span class="nf">WrapHandler</span><span class="p">(</span><span class="nx">http</span><span class="p">.</span><span class="nf">FileServer</span><span class="p">(</span><span class="nx">http</span><span class="p">.</span><span class="nf">FS</span><span class="p">(</span><span class="nx">embedexample</span><span class="p">.</span><span class="nx">StaticAsset</span><span class="p">))))</span>
+
+	<span class="nx">e</span><span class="p">.</span><span class="nf">GET</span><span class="p">(</span><span class="s">&#34;/&#34;</span><span class="p">,</span> <span class="kd">func</span><span class="p">(</span><span class="nx">ctx</span> <span class="nx">echo</span><span class="p">.</span><span class="nx">Context</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="nx">ctx</span><span class="p">.</span><span class="nf">Render</span><span class="p">(</span><span class="nx">http</span><span class="p">.</span><span class="nx">StatusOK</span><span class="p">,</span> <span class="s">&#34;index.html&#34;</span><span class="p">,</span> <span class="kc">nil</span><span class="p">)</span>
+	<span class="p">})</span>
+
+	<span class="nx">e</span><span class="p">.</span><span class="nx">Logger</span><span class="p">.</span><span class="nf">Fatal</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nf">Start</span><span class="p">(</span><span class="s">&#34;:2020&#34;</span><span class="p">))</span>
+<span class="p">}</span>
+
+<span class="kd">type</span> <span class="nx">Template</span> <span class="kd">struct</span> <span class="p">{</span>
+	<span class="nx">templates</span> <span class="o">*</span><span class="nx">template</span><span class="p">.</span><span class="nx">Template</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="p">(</span><span class="nx">t</span> <span class="o">*</span><span class="nx">Template</span><span class="p">)</span> <span class="nf">Render</span><span class="p">(</span><span class="nx">w</span> <span class="nx">io</span><span class="p">.</span><span class="nx">Writer</span><span class="p">,</span> <span class="nx">name</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">data</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">c</span> <span class="nx">echo</span><span class="p">.</span><span class="nx">Context</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
+	<span class="k">return</span> <span class="nx">t</span><span class="p">.</span><span class="nx">templates</span><span class="p">.</span><span class="nf">ExecuteTemplate</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="nx">name</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div><p>模板的引用：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">tpl</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">Template</span><span class="p">{</span>
+  <span class="nx">templates</span><span class="p">:</span> <span class="nx">template</span><span class="p">.</span><span class="nf">Must</span><span class="p">(</span><span class="nx">template</span><span class="p">.</span><span class="nf">New</span><span class="p">(</span><span class="s">&#34;index&#34;</span><span class="p">).</span><span class="nf">ParseFS</span><span class="p">(</span><span class="nx">embedexample</span><span class="p">.</span><span class="nx">TemplateFS</span><span class="p">,</span> <span class="s">&#34;template/*.html&#34;</span><span class="p">)),</span>
+<span class="p">}</span>
+</code></pre></div><p>通过 ParseFS 方法来实现，支持 path.Match 格式。</p>
+<p>而静态资源这样引用：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">e</span><span class="p">.</span><span class="nf">GET</span><span class="p">(</span><span class="s">&#34;/static/*&#34;</span><span class="p">,</span> <span class="nx">echo</span><span class="p">.</span><span class="nf">WrapHandler</span><span class="p">(</span><span class="nx">http</span><span class="p">.</span><span class="nf">FileServer</span><span class="p">(</span><span class="nx">http</span><span class="p">.</span><span class="nf">FS</span><span class="p">(</span><span class="nx">embedexample</span><span class="p">.</span><span class="nx">StaticAsset</span><span class="p">))))</span>
+</code></pre></div><p>这样，在模板文件 index.html 中就可以访问到样式文件了：</p>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&#34;stylesheet&#34;</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;/static/css/style.min.css&#34;</span><span class="p">&gt;</span>
+</code></pre></div><p>可以将编译后的二进制文件移到任何地方，然后运行，访问 http://localhost:2020 看到如下界面表示成功了。</p>
+<p><p class="md__image">
+  <img src="../imgs/try-embed02.png"
+    alt=""  />
+</p>
+</p>
+<h2 id="05-总结">05 总结<a href="#05-总结" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>本文通过几个例子快速了解官方内嵌静态资源的用法，然后讲解一些关键的标准库，最后是一个实际项目中使用的例子。</p>
+<p>纵观官方的实现，使用起来很方便，通过一个 <code>go:embed</code> 指令，让很多细节都不需要关注。当然，如果你对它的实现感兴趣，可以阅读设计提案和源码。</p>
+<h2 id="06-参考资料">06 参考资料<a href="#06-参考资料" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<ol>
+<li>Embed 设计提案：<a href="https://github.com/golang/proposal/blob/master/design/draft-embed.md">https://github.com/golang/proposal/blob/master/design/draft-embed.md</a></li>
+<li>示例参考：<a href="https://github.com/mattn/go-embed-example">https://github.com/mattn/go-embed-example</a></li>
+<li>tip 相关文档：<a href="https://tip.golang.org">https://tip.golang.org</a></li>
+</ol>
+
+			</div><div class="content">
+	<br>
+	<img src="https://static.studygolang.com/static/img/polarisxu-qrcode-soso-s.png">
+</div>
+
+<div class="related-posts thin">
+	<h2>相关推荐</h2>
+	<ul>
+	
+	<li><a href="/posts/go/translation/golang-ai-programming-language/">AI 和 数据科学领域，Go 语言可能很快会取代 Python。最后的原因有点迷</a></li>
+	
+	<li><a href="/posts/go/action/talk-geek-time-live/">闲聊昨晚极客时间的直播</a></li>
+	
+	<li><a href="/posts/go/translation/go-error-printing-catastrophe/">Go error 打印灾难 —  CockroachDB errors 库（第3篇）</a></li>
+	
+	<li><a href="/posts/go/translation/go-formatting-apis/">Go 格式化 API —  CockroachDB errors 库（第2篇）</a></li>
+	
+	<li><a href="/posts/go/translation/cockroachdb-errors-std-api/">Go 标准错误 API — CockroachDB errors 库（第1篇）</a></li>
+	
+	</ul>
+</div>
+
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://polarisxu.studygolang.com/tags/go">Go</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/embed">Embed</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>4044 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2020-11-01 18:12 &#43;0800</p>
+			</footer>
+		</article>
+		<aside id="toc">
+			<div class="toc-title">目录</div>
+			<nav id="TableOfContents">
+  <ul>
+    <li><a href="#01-试用-go-embed">01 试用 go embed</a>
+      <ul>
+        <li><a href="#例-1内嵌文件--web-应用">例 1：内嵌文件 — Web 应用</a></li>
+        <li><a href="#例-2内嵌文件--命令行应用">例 2：内嵌文件 — 命令行应用</a></li>
+        <li><a href="#例-3内嵌目录---命令行应用">例 3：内嵌目录 - 命令行应用</a></li>
+        <li><a href="#例-4内嵌目录--web-应用">例 4：内嵌目录 — Web 应用</a></li>
+      </ul>
+    </li>
+    <li><a href="#02-goembed-指令">02 //go:embed 指令</a>
+      <ul>
+        <li><a href="#相关规则">相关规则</a></li>
+      </ul>
+    </li>
+    <li><a href="#03-标准库">03 标准库</a>
+      <ul>
+        <li><a href="#iofs-包">io/fs 包</a></li>
+        <li><a href="#embed-包">embed 包</a></li>
+      </ul>
+    </li>
+    <li><a href="#04-实际项目使用">04 实际项目使用</a></li>
+    <li><a href="#05-总结">05 总结</a></li>
+    <li><a href="#06-参考资料">06 参考资料</a></li>
+  </ul>
+</nav>
+		</aside>
+		<div class="post-nav thin">
+			<a class="prev-post" href="https://polarisxu.studygolang.com/posts/go/dynamic/hackerearth-developer-survey/">
+				<span class="post-nav-label">旧&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>这个调查显示 Go 竟然是 2020 年最受欢迎的编程语言</span>
+			</a>
+		</div>
+		<div id="comments" class="thin"><script src="https://utteranc.es/client.js"
+	repo="polaris1119/polarisxu"
+	issue-term="pathname"
+	theme="github-light"
+	crossorigin="anonymous"
+	async>
+</script>
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2019 - 2020 <a href="https://polarisxu.studygolang.com">polarisxu</a> &#183; <a href="http://www.beian.miit.gov.cn/">京ICP备14030343号-1</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://polarisxu.studygolang.com/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+
+	<script src="https://polarisxu.studygolang.com/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw=" crossorigin="anonymous"></script>
+	<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?224c227cd9239761ec770bc8c1fb134c";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+</body>
+
+</html>

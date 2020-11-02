@@ -3,8 +3,33 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://polarisxu.studygolang.com/tags/embed/</loc>
+    <lastmod>2020-11-01T18:12:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polarisxu.studygolang.com/tags/go/</loc>
+    <lastmod>2020-11-01T18:12:00+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://polarisxu.studygolang.com/</loc>
-    <lastmod>2020-10-30T15:12:00+08:00</lastmod>
+    <lastmod>2020-11-01T18:12:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polarisxu.studygolang.com/tags/</loc>
+    <lastmod>2020-11-01T18:12:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polarisxu.studygolang.com/posts/go/dynamic/go-embed-try/</loc>
+    <lastmod>2020-11-01T18:12:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polarisxu.studygolang.com/posts/</loc>
+    <lastmod>2020-11-01T18:12:00+08:00</lastmod>
   </url>
   
   <url>
@@ -14,16 +39,6 @@
   
   <url>
     <loc>https://polarisxu.studygolang.com/tags/survey/</loc>
-    <lastmod>2020-10-30T15:12:00+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://polarisxu.studygolang.com/tags/</loc>
-    <lastmod>2020-10-30T15:12:00+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://polarisxu.studygolang.com/posts/</loc>
     <lastmod>2020-10-30T15:12:00+08:00</lastmod>
   </url>
   
@@ -44,11 +59,6 @@
   
   <url>
     <loc>https://polarisxu.studygolang.com/tags/datascience/</loc>
-    <lastmod>2020-10-29T21:40:00+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://polarisxu.studygolang.com/tags/go/</loc>
     <lastmod>2020-10-29T21:40:00+08:00</lastmod>
   </url>
   

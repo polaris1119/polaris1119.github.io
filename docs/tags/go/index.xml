@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Thu, 29 Oct 2020 21:40:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 01 Nov 2020 18:12:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>提前试用将在 Go1.16 中发布的内嵌静态资源功能</title>
+      <link>https://polarisxu.studygolang.com/posts/go/dynamic/go-embed-try/</link>
+      <pubDate>Sun, 01 Nov 2020 18:12:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/dynamic/go-embed-try/</guid>
+      <description>大家好，我是站长 polarisxu。 喜欢 Go 语言有很多理由，其中有一点“因为编译为一个二进制文件，直接运行，没有其他依赖，使得部署特别容易。”</description>
+    </item>
+    
     <item>
       <title>AI 和 数据科学领域，Go 语言可能很快会取代 Python。最后的原因有点迷</title>
       <link>https://polarisxu.studygolang.com/posts/go/translation/golang-ai-programming-language/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/project/go-version-manager/</guid>
       <description>一直以来，我都习惯通过源码安装 Go。我是这么做的： 1）Git clone Go 源码 $ git clone https://github.com/golang/go 2）需要安装什么版本就切换到对应的分支，比如安装 1.15.x $ git checkout -b release-branch.go1.15 origin/release-branch.go1.15 如</description>
-    </item>
-    
-    <item>
-      <title>何时使用 Rust 和何时使用 Golang</title>
-      <link>https://polarisxu.studygolang.com/posts/go/translation/when-to-use-rust-and-when-to-use-golang/</link>
-      <pubDate>Wed, 30 Sep 2020 11:15:51 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/translation/when-to-use-rust-and-when-to-use-golang/</guid>
-      <description>Golang 和 Rust 之间有明显的区别。Golang 更加注重构建可以无限扩展的 Web API 和小型服务，尤其是在 goroutine 的强大支持下。Rust 也可以用于小型服务，但是从开发</description>
     </item>
     
   </channel>
