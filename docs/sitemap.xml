@@ -3,6 +3,36 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://polarisxu.studygolang.com/tags/cheatsheet/</loc>
+    <lastmod>2020-11-03T18:12:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polarisxu.studygolang.com/</loc>
+    <lastmod>2020-11-03T18:12:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polarisxu.studygolang.com/tags/</loc>
+    <lastmod>2020-11-03T18:12:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polarisxu.studygolang.com/tags/tool/</loc>
+    <lastmod>2020-11-03T18:12:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polarisxu.studygolang.com/posts/devtool/cheat-sh/</loc>
+    <lastmod>2020-11-03T18:12:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polarisxu.studygolang.com/posts/</loc>
+    <lastmod>2020-11-03T18:12:00+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://polarisxu.studygolang.com/tags/embed/</loc>
     <lastmod>2020-11-01T18:12:00+08:00</lastmod>
   </url>
@@ -13,22 +43,7 @@
   </url>
   
   <url>
-    <loc>https://polarisxu.studygolang.com/</loc>
-    <lastmod>2020-11-01T18:12:00+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://polarisxu.studygolang.com/tags/</loc>
-    <lastmod>2020-11-01T18:12:00+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://polarisxu.studygolang.com/posts/go/dynamic/go-embed-try/</loc>
-    <lastmod>2020-11-01T18:12:00+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://polarisxu.studygolang.com/posts/</loc>
     <lastmod>2020-11-01T18:12:00+08:00</lastmod>
   </url>
   

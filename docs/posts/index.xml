@@ -6,8 +6,247 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en</language>
 		<copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-		<lastBuildDate>Sun, 01 Nov 2020 18:12:00 +0800</lastBuildDate>
+		<lastBuildDate>Tue, 03 Nov 2020 18:12:00 +0800</lastBuildDate>
 		<atom:link href="https://polarisxu.studygolang.com/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>从来没有这么强烈想推荐一个工具</title>
+			<link>https://polarisxu.studygolang.com/posts/devtool/cheat-sh/</link>
+			<pubDate>Tue, 03 Nov 2020 18:12:00 +0800</pubDate>
+			
+			<guid>https://polarisxu.studygolang.com/posts/devtool/cheat-sh/</guid>
+			<description>大家好，我是站长 polarisxu。 在逛 GitHub Trending 时看到了这个项目：https://github.com/chubin/cheat.sh，因为之前</description>
+			<content type="html"><![CDATA[<p>大家好，我是站长 polarisxu。</p>
+<p>在逛 GitHub Trending 时看到了这个项目：<a href="https://github.com/chubin/cheat.sh">https://github.com/chubin/cheat.sh</a>，因为之前我整理过一系列 cheatsheet，因此好奇的打开了这个项目。于是被它吸引了。。。</p>
+<h2 id="01-是什么">01 是什么</h2>
+<p>该项目的描述是：</p>
+<blockquote>
+<p>the only cheat sheet you need</p>
+</blockquote>
+<p>简单一句话却很吸引人：这么强大，这一个 cheatsheet 就够了？</p>
+<p>因为在这一份清单中，包含了几乎所有开发者常见的东西，不仅如此，它还提供了很好的获取接口，让你轻松的找到你想要的。它是一个统一访问世界上最好的、社区驱动的备忘单（cheat sheet）存储库。</p>
+<h2 id="02-有什么">02 有什么</h2>
+<p>让我们想象一下，有一种理想的备忘单。看起来像什么？它应该具有什么功能？</p>
+<ul>
+<li><strong>简洁</strong>—它只应包含你需要的东西，而不能包含其他任何东西；</li>
+<li><strong>快速</strong>—想使用时就能立马使用；</li>
+<li><strong>全面</strong>—它应该包含每个可能问题的答案；</li>
+<li><strong>通用</strong>—它应该随处可用，无需任何准备；</li>
+<li><strong>不打扰</strong>—它不应分散你的主要任务；</li>
+<li><strong>辅导</strong>—它应该可以帮助你学习该主题；</li>
+<li><strong>不起眼</strong>—完全可以忽略使用它；</li>
+</ul>
+<p>作者认为 cheat.sh 做到了。我也认为做到了。</p>
+<p><strong>那它具体有哪些特性呢？</strong></p>
+<ul>
+<li>具有简单的 curl/browser 界面；</li>
+<li>涵盖 56 种编程语言，若干 DBMS 和 1000 多种最重要的 UNIX/Linux 命令；</li>
+<li>与 StackOverflow 一样，提供对世界上最好的社区驱动的备忘单存储库的访问；</li>
+<li>随处可用，无需安装；</li>
+<li>超快，通常会在 100 毫秒内返回答案；</li>
+<li>有一个方便的命令行客户端 cht.sh，虽然不是必须的，但它非常有用且很有帮助；</li>
+<li>可以直接从代码编辑器中使用，而无需打开浏览器并且不切换您的思维环境；</li>
+<li>支持特殊的隐形模式，在这种模式下，无需触摸按键和发出声音即可完全隐身使用；</li>
+</ul>
+<h2 id="03-如何使用">03 如何使用</h2>
+<p>使用 cheat.sh 有以下几种方式：（可以是 HTTP 或 HTTPS，也可以是 cheat.sh 或 cht.sh）</p>
+<ul>
+<li>在终端使用 curl 工具；</li>
+<li>使用其他 HTTP/HTTPS 客户端；</li>
+<li>浏览器访问 cheat.sh；</li>
+<li>终端使用 cht.sh 客户端；</li>
+<li>在你的编辑器中集成；</li>
+</ul>
+<p>一般建议通过 curl 工具、cht.sh 客户端或编辑器插件来使用。使用示例：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ curl cheat.sh/tar
+$ curl cht.sh/go
+$ curl https://cheat.sh/php
+$ curl https://cht.sh/redis
+</code></pre></div><p>上面例子中，tar、go、php、redis 等可以是 Linux 命令，也可以是语言的命令等。</p>
+<p>如果你记不起来命令准确名称，则可以使用 〜KEYWORD 表示法进行搜索。例如，查看如何制作文件系统/卷/其他内容的快照：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ curl cht.sh/~snapshot
+</code></pre></div><p>官方的一张图看看相关说明：</p>
+<p><p class="md__image">
+  <img src="../imgs/cheat01.png"
+    alt=""  />
+</p>
+</p>
+<p>关于选项（options），可以通过 <code>/:help</code> 查看。对于开发来说，经常会加上 Q 选项，比如上面命令加上 Q 选项后的结果：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ curl <span class="s2">&#34;http://cheat.sh/go/execute+external+program?Q&#34;</span>
+cmd :<span class="o">=</span> exec.Command<span class="o">(</span><span class="s2">&#34;yourcommand&#34;</span>, <span class="s2">&#34;some&#34;</span>, <span class="s2">&#34;args&#34;</span><span class="o">)</span>
+<span class="k">if</span> err :<span class="o">=</span> cmd.Run<span class="o">()</span><span class="p">;</span> err !<span class="o">=</span> nil <span class="o">{</span>
+    fmt.Println<span class="o">(</span><span class="s2">&#34;Error: &#34;</span>, err<span class="o">)</span>
+<span class="o">}</span>
+</code></pre></div><p>关于更多使用在客户端工具 cht.sh 中介绍。</p>
+<h2 id="04-客户端工具-chtsh">04 客户端工具 cht.sh</h2>
+<p>cheat.sh 服务有自己的命令行客户端（cht.sh），与使用 curl 直接查询该服务相比，它具有几个有用的功能：</p>
+<ul>
+<li>特殊的 shell 模式，具有持久查询上下文和 readline 支持；</li>
+<li>查询历史；</li>
+<li>粘贴板整合；</li>
+<li>shell 的 tab 完成支持（bash、zsh、fish）；</li>
+<li>stealth 模式；</li>
+</ul>
+<h3 id="安装">安装</h3>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">mkdir -p ~/bin/
+curl https://cht.sh/:cht.sh &gt; ~/bin/cht.sh
+chmod +x ~/bin/cht.sh
+</code></pre></div><p>确保 cht.sh 在 PATH 中，方便使用。</p>
+<p>shell 模式需要 rlwrap，这是 readline 的包装。Mac 下可以通过 brew install rlwrap 安装。</p>
+<h3 id="使用">使用</h3>
+<p>有了 cht.sh，之前 curl 的方式可以用更自然的方式。比如：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ cht.sh go execute external program
+</code></pre></div><p>个人更推荐采用交互式 shell 模式：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ cht.sh --shell <span class="o">[</span>LANG<span class="o">]</span>
+</code></pre></div><p>其中 [LANG] 可以指定具体的编程语言，比如 go。</p>
+<p>因此 cheat.sh 命令有两种上下文：特定语言和非特定语言（全局）。<code>:help</code> 在这两种上下文下显示的内容是不一样的。</p>
+<ul>
+<li>在特定语言下，有 hello、<code>:list</code> 和 <code>:learn</code>，其中 <code>:learn</code> 是该语言的一个简短教程；</li>
+<li>通过 <code>/</code> 可以切换上下文。比如：/go  表示在 go 这个语言上下文查找；/tar 表示在全局上下文查找 tar 命令；</li>
+<li>查找当前所在语言的内容，直接查询即可，比如当前如果是 Go 上下文，直接输入 int，可以查看 int 类型的信息；</li>
+</ul>
+<p>在交互式 shell 下通过 help 命令可以查看帮助：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">cht.sh&gt; <span class="nb">help</span>
+<span class="nb">help</span>    - show this <span class="nb">help</span>
+hush    - <span class="k">do</span> not show the <span class="s1">&#39;help&#39;</span> string at start anymore
+<span class="nb">cd</span> LANG - change the language context
+copy    - copy the last answer in the clipboard <span class="o">(</span>aliases: yank, y, c<span class="o">)</span>
+ccopy   - copy the last answer w/o comments <span class="o">(</span>cut comments<span class="p">;</span> aliases: cc, Y, C<span class="o">)</span>
+<span class="nb">exit</span>    - <span class="nb">exit</span> the cheat shell <span class="o">(</span>aliases: quit, ^D<span class="o">)</span>
+id <span class="o">[</span>ID<span class="o">]</span> - set/show an unique session id <span class="o">(</span><span class="s2">&#34;reset&#34;</span> to reset, <span class="s2">&#34;remove&#34;</span> to remove<span class="o">)</span>
+stealth - stealth mode <span class="o">(</span>automatic queries <span class="k">for</span> selected text<span class="o">)</span>
+update  - self update <span class="o">(</span>only <span class="k">if</span> the scriptfile is writeable<span class="o">)</span>
+version - show current cht.sh version
+/:help  - service <span class="nb">help</span>
+QUERY   - space separated query staring <span class="o">(</span>examples are below<span class="o">)</span>
+              cht.sh&gt; python zip list
+              cht.sh/python&gt; zip list
+              cht.sh/go&gt; /python zip list
+</code></pre></div><p>其中 cd 用来切换语言上下文；copy 和 ccopy 用来复制内容。</p>
+<h3 id="定制">定制</h3>
+<p>如果你想要定制 cht.sh，可以编辑文件：<code>~/.cht.sh/cht.sh.conf</code>。我觉得用默认即可。</p>
+<h2 id="05-编辑器集成">05 编辑器集成</h2>
+<p>这方面对 Vim 的支持是最好的。见下图：</p>
+<p><p class="md__image">
+  <img src="../imgs/cheat02.png"
+    alt=""  />
+</p>
+</p>
+<p>项目首页提供了这些编辑器对应的插件和配置、使用方法。请自行根据需要按照、配置。</p>
+<h2 id="06-搜索">06 搜索</h2>
+<p>cheat.sh 包含内容众多，方便的搜索是必不可少的。除了上文介绍的 ~KEYWORD 方式，还支持其他一些选项（辅助功能）。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">i   <span class="k">case</span> insensitive search
+b   word boundaries
+r   recursive search
+</code></pre></div><p>比如：</p>
+<pre><code>/~shot/bi
+</code></pre><h2 id="07-实际用途">07 实际用途</h2>
+<p>比如我想查询某们语言 MD5 怎么用？</p>
+<p><strong>Go 语言</strong></p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">cht</span><span class="p">.</span><span class="nx">sh</span><span class="p">&gt;</span><span class="o">/</span><span class="k">go</span> <span class="nx">md5</span>
+
+<span class="cm">/*
+</span><span class="cm"> * cryptography - How to get a MD5 hash from a string in Golang ...
+</span><span class="cm"> *
+</span><span class="cm"> * From crypto/md5 doc (http:golang.org/pkg/crypto/md5/#New):
+</span><span class="cm"> */</span>
+
+<span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&#34;crypto/md5&#34;</span>
+    <span class="s">&#34;fmt&#34;</span>
+    <span class="s">&#34;io&#34;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">h</span> <span class="o">:=</span> <span class="nx">md5</span><span class="p">.</span><span class="nf">New</span><span class="p">()</span>
+    <span class="nx">io</span><span class="p">.</span><span class="nf">WriteString</span><span class="p">(</span><span class="nx">h</span><span class="p">,</span> <span class="s">&#34;The fog is getting thicker!&#34;</span><span class="p">)</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;%x&#34;</span><span class="p">,</span> <span class="nx">h</span><span class="p">.</span><span class="nf">Sum</span><span class="p">(</span><span class="kc">nil</span><span class="p">))</span>
+<span class="p">}</span>
+
+<span class="c1">// [Stephen Hsu] [so/q/2377881] [cc by-sa 3.0]
+</span></code></pre></div><p><strong>PHP 语言</strong></p>
+<div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php"><span class="nx">cht</span><span class="o">.</span><span class="nx">sh</span><span class="o">&gt;/</span><span class="nx">php</span> <span class="nx">md5</span>
+
+<span class="cm">/*
+</span><span class="cm"> * php - Using MD5 on login page
+</span><span class="cm"> *
+</span><span class="cm"> * Simply wrap $_POST[&#39;password&#39;] into md5() like so:
+</span><span class="cm"> */</span>
+
+<span class="nv">$mypassword</span> <span class="o">=</span> <span class="nx">md5</span> <span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">]);</span>
+</code></pre></div><p><strong>Java 语言</strong></p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">cht</span><span class="o">.</span><span class="na">sh</span><span class="o">&gt;/</span><span class="n">java</span> <span class="n">md5</span>
+
+<span class="cm">/*
+</span><span class="cm"> * java - How can I generate an MD5 hash?
+</span><span class="cm"> *
+</span><span class="cm"> * The MessageDigest class can provide you with an instance of the MD5
+</span><span class="cm"> * digest.
+</span><span class="cm"> *
+</span><span class="cm"> * When working with strings and the crypto classes be sure to always
+</span><span class="cm"> * specify the encoding you want the byte representation in. If you just
+</span><span class="cm"> * use string.getBytes() it will use the platform default. (Not all
+</span><span class="cm"> * platforms use the same defaults)
+</span><span class="cm"> */</span>
+
+<span class="kn">import</span> <span class="nn">java.security.*</span><span class="o">;</span>
+
+<span class="o">..</span>
+
+<span class="kt">byte</span><span class="o">[]</span> <span class="n">bytesOfMessage</span> <span class="o">=</span> <span class="n">yourString</span><span class="o">.</span><span class="na">getBytes</span><span class="o">(</span><span class="s">&#34;UTF-8&#34;</span><span class="o">);</span>
+
+<span class="n">MessageDigest</span> <span class="n">md</span> <span class="o">=</span> <span class="n">MessageDigest</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="s">&#34;MD5&#34;</span><span class="o">);</span>
+<span class="kt">byte</span><span class="o">[]</span> <span class="n">thedigest</span> <span class="o">=</span> <span class="n">md</span><span class="o">.</span><span class="na">digest</span><span class="o">(</span><span class="n">bytesOfMessage</span><span class="o">);</span>
+
+<span class="o">/*</span>
+ <span class="o">*</span> <span class="n">If</span> <span class="n">you</span> <span class="n">have</span> <span class="n">a</span> <span class="n">lot</span> <span class="n">of</span> <span class="n">data</span> <span class="n">take</span> <span class="n">a</span> <span class="n">look</span> <span class="n">at</span> <span class="n">the</span> <span class="o">.</span><span class="na">update</span><span class="o">(</span><span class="kt">byte</span><span class="o">[])</span> <span class="n">method</span>
+ <span class="o">*</span> <span class="n">which</span> <span class="n">can</span> <span class="n">be</span> <span class="n">called</span> <span class="n">repeatedly</span><span class="o">.</span> <span class="n">Then</span> <span class="n">call</span> <span class="o">.</span><span class="na">digest</span><span class="o">()</span> <span class="n">to</span> <span class="n">obtain</span> <span class="n">the</span>
+ <span class="o">*</span> <span class="n">resulting</span> <span class="n">hash</span><span class="o">.</span>
+ <span class="o">*</span>
+ <span class="o">*</span> <span class="o">[</span><span class="n">koregan</span><span class="o">]</span> <span class="o">[</span><span class="n">so</span><span class="o">/</span><span class="n">q</span><span class="o">/</span><span class="n">415953</span><span class="o">]</span> <span class="o">[</span><span class="n">cc</span> <span class="n">by</span><span class="o">-</span><span class="n">sa</span> <span class="n">3</span><span class="o">.</span><span class="na">0</span><span class="o">]</span>
+</code></pre></div><p>再比如你需要反转一个数组，不知道怎么写，可以找 cheat.sh 帮忙：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">cht</span><span class="p">.</span><span class="nx">sh</span><span class="p">&gt;</span> <span class="o">/</span><span class="k">go</span> <span class="nx">reverse</span> <span class="nx">list</span>
+
+<span class="cm">/*
+</span><span class="cm"> * How do I reverse an array in Go?
+</span><span class="cm"> *
+</span><span class="cm"> * Honestly this one is simple enough that I&#39;d just write it out like
+</span><span class="cm"> * this:
+</span><span class="cm"> */</span>
+
+<span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="s">&#34;fmt&#34;</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="nx">s</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">int</span><span class="p">{</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">}</span>
+
+    <span class="k">for</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">j</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="nx">s</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="nx">j</span><span class="p">;</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">j</span> <span class="p">=</span> <span class="nx">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="nx">j</span><span class="o">-</span><span class="mi">1</span> <span class="p">{</span>
+        <span class="nx">s</span><span class="p">[</span><span class="nx">i</span><span class="p">],</span> <span class="nx">s</span><span class="p">[</span><span class="nx">j</span><span class="p">]</span> <span class="p">=</span> <span class="nx">s</span><span class="p">[</span><span class="nx">j</span><span class="p">],</span> <span class="nx">s</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span>
+    <span class="p">}</span>
+
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">s</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div><h2 id="08-数据来源">08 数据来源</h2>
+<p>目前 cheat.sh 的数据来源如下：</p>
+<p><p class="md__image">
+  <img src="../imgs/cheat03.png"
+    alt=""  />
+</p>
+</p>
+<p><p class="md__image">
+  <img src="../imgs/cheat04.png"
+    alt=""  />
+</p>
+</p>
+<p>你也可以为 cheat.sh 做贡献，输入 <code>:post</code> 看看。</p>
+<h2 id="09-总结">09 总结</h2>
+<p>这个项目在 GitHub 近 21k Star，觉得不错可以点个 Star，让更多人知晓这个优秀的项目。希望它能够为你的工作带来便利，通过查这个手册，能够提升你的效率，同时增强你的能力。</p>
+]]></content>
+		</item>
 		
 		<item>
 			<title>提前试用将在 Go1.16 中发布的内嵌静态资源功能</title>
@@ -80,7 +319,7 @@
 ├── main.go
 └── static
     └── logo.png
-</code></pre></div><p>编译运行后，可以将二进制文件移到任何地方运行，浏览器访问 http://localhhost:8989，能够正确显示 logo 图片表示成功了。</p>
+</code></pre></div><p>编译运行后，可以将二进制文件移到任何地方运行，浏览器访问 http://localhost:8989，能够正确显示 logo 图片表示成功了。</p>
 <p>基于 Gin 框架，代码类似：</p>
 <div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
 
@@ -581,7 +820,7 @@
 <h3 id="快速">快速</h3>
 <p>Go 是静态类型化和编译的语言。这意味着执行速度将比 Python 快几倍。与 Python 不同，Go 不需要其他语言的帮助就可以更快。</p>
 <p>这是 Go 和 Python 之间的一个<a href="https://benchmarksgame-team.pages.debian.net/benchmarksgame/fastest/go-python3.html" target="_blank" rel="noopener">小型基准测试游戏比较</a>
-。Go 几乎与 C++ 和 Java 一样快。而且，Go 的代码编译速度比 C+C 和 Java 快得多。</p>
+。Go 几乎与 C++ 和 Java 一样快。而且，Go 的代码编译速度比 C/C++ 和 Java 快得多。</p>
 <h3 id="简单易学">简单易学</h3>
 <p>Go 的语法很简单，类似于 C。它是一种易于学习的编程语言，特别是已经了解 C 或 Java 语言的基础知识。</p>
 <p>要了解 Go 的基础知识，请访问 <a href="http://tour.studygolang.com/welcome/1" target="_blank" rel="noopener">Go 指南</a>

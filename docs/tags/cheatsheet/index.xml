@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>cheatsheet on polarisxu</title>
+    <link>https://polarisxu.studygolang.com/tags/cheatsheet/</link>
+    <description>Recent content in cheatsheet on polarisxu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
+    <lastBuildDate>Tue, 03 Nov 2020 18:12:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/cheatsheet/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>从来没有这么强烈想推荐一个工具</title>
+      <link>https://polarisxu.studygolang.com/posts/devtool/cheat-sh/</link>
+      <pubDate>Tue, 03 Nov 2020 18:12:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/devtool/cheat-sh/</guid>
+      <description>大家好，我是站长 polarisxu。 在逛 GitHub Trending 时看到了这个项目：https://github.com/chubin/cheat.sh，因为之前</description>
+    </item>
+    
+  </channel>
+</rss>
