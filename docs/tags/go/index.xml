@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Sun, 01 Nov 2020 18:12:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 04 Nov 2020 21:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>除了 fmt.Errorf() 之外—Go 中的日常错误对象：CockroachDB errors 库（第4篇）</title>
+      <link>https://polarisxu.studygolang.com/posts/go/translation/cockroachdb-errors-everyday/</link>
+      <pubDate>Wed, 04 Nov 2020 21:00:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/translation/cockroachdb-errors-everyday/</guid>
+      <description>在 Go 中传递错误的惯用方式是使用预定义的类型错误。但是 Go 的标准库仅提供了非常简单的错误对象，errors.New() 和fmt.Errorf()</description>
+    </item>
+    
     <item>
       <title>提前试用将在 Go1.16 中发布的内嵌静态资源功能</title>
       <link>https://polarisxu.studygolang.com/posts/go/dynamic/go-embed-try/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/project/usingg-gpgsync/</guid>
       <description>大家好，我是 polarisxu。 之前我为大家推荐过 Playground，对比了三款 Go Playground 。今天发现了另外一款 Playground，它最核心的特</description>
-    </item>
-    
-    <item>
-      <title>终于找到了一款我喜欢的安装和管理 Go 版本的工具</title>
-      <link>https://polarisxu.studygolang.com/posts/go/project/go-version-manager/</link>
-      <pubDate>Fri, 09 Oct 2020 18:12:51 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/project/go-version-manager/</guid>
-      <description>一直以来，我都习惯通过源码安装 Go。我是这么做的： 1）Git clone Go 源码 $ git clone https://github.com/golang/go 2）需要安装什么版本就切换到对应的分支，比如安装 1.15.x $ git checkout -b release-branch.go1.15 origin/release-branch.go1.15 如</description>
     </item>
     
   </channel>

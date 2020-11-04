@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Tue, 03 Nov 2020 18:12:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 04 Nov 2020 21:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>除了 fmt.Errorf() 之外—Go 中的日常错误对象：CockroachDB errors 库（第4篇）</title>
+      <link>https://polarisxu.studygolang.com/posts/go/translation/cockroachdb-errors-everyday/</link>
+      <pubDate>Wed, 04 Nov 2020 21:00:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/translation/cockroachdb-errors-everyday/</guid>
+      <description>在 Go 中传递错误的惯用方式是使用预定义的类型错误。但是 Go 的标准库仅提供了非常简单的错误对象，errors.New() 和fmt.Errorf()</description>
+    </item>
+    
     <item>
       <title>从来没有这么强烈想推荐一个工具</title>
       <link>https://polarisxu.studygolang.com/posts/devtool/cheat-sh/</link>
@@ -90,15 +99,6 @@
       <guid>https://polarisxu.studygolang.com/about/</guid>
       <description>你好，我是 polarisxu，Go语言中文网 站长。目前在北京一家创业公司担任 CTO。2011 年春，北京大学硕士毕业，先后在开心网、奇虎 360 工作。本人一直从事服务端相关工作，有着丰富的经验，对前端也有所掌握，Android 开发也了解些。虽然目前管理方面的事情较多，但一直保持着技术学习。擅长服务端技术和架构。
 我与 Go 语言  2012 年 3 月，Go1.0 正式发布时，有幸参与 360 的一个 Go 项目（关注过 Gopher China 大会的应该知道 360 有一个消息系统，而且 Go 官方博客 还专门介绍过，这个项目成立的第一天我就参与了），从此爱上了它。 2012 年底，利用业余时间使用 Go 语言开发了 Go 语言中文网，先后开通运营了 QQ 群、微博、微信公众号等。 2013 年 4 月 14 日，开始撰写《通过例子学习Go标准库》 一书；有点遗憾，至今还没完成。 2017 年年底，发起了 GCTT 项目，组织国内志愿者一起翻译国外优秀的英文资料、博文等（无闻 帮忙校对很多文章，还对流程优化提供了很多建议）。 截止 2019 年 3 月，Go 中文网注册用户超 3.2 万，近一年多增长很快，每天新增注册 100+。  我的 Go 语言学习之路 2012 年 3 月，Go1.0 发布时，Go 相关的资料还是比较少的，那时候主要看官方文档、啃源码。那段时间是我技术成长最快的，一方面，参与的项目有挑战，通过项目学习 Go，很快掌握了它；另一方面，项目负责人（diogin）是一个大牛，能完全 Hold 住 Go，他给我们讲解、传授了很多知识。</description>
-    </item>
-    
-    <item>
-      <title>Go 格式化 API —  CockroachDB errors 库（第2篇）</title>
-      <link>https://polarisxu.studygolang.com/posts/go/translation/go-formatting-apis/</link>
-      <pubDate>Sat, 24 Oct 2020 11:15:51 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/translation/go-formatting-apis/</guid>
-      <description>这篇文章是关于 “CockroachDB errors 库” 的系列文章的第 2 篇，“CockroachDB errors 库”实际上是 Go 的标准 errors 包的通用、开放源码的替代品。</description>
     </item>
     
   </channel>
