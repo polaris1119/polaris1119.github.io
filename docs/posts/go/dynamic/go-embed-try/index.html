@@ -11,7 +11,7 @@
 <meta itemprop="description" content="大家好，我是站长 polarisxu。 喜欢 Go 语言有很多理由，其中有一点“因为编译为一个二进制文件，直接运行，没有其他依赖，使得部署特别容易。”">
 <meta itemprop="datePublished" content="2020-11-01T18:12:00+08:00" />
 <meta itemprop="dateModified" content="2020-11-01T18:12:00+08:00" />
-<meta itemprop="wordCount" content="4043">
+<meta itemprop="wordCount" content="4032">
 
 
 
@@ -112,7 +112,8 @@
 </li>
 </ul>
 <p>从这个列表足以看出需求的广泛性。于是官方决定提供实现，在 go 命令中实现该功能。因为在 Go 命令中添加对嵌入基本功能的直接支持将消除对某些工具的需求，至少可以简化其他工具的实现。</p>
-<p>2020 年 10 月 30 日，Russ Cox 提交了最终的实现：[cmd/go: add //go:embed support](cmd/go: add //go:embed support)，意味着你在 tip 版本可以试用该功能了。Go1.16 版本会包含该功能。欢迎大家试用，反馈建议。</p>
+<p>2020 年 10 月 30 日，Russ Cox 提交了最终的实现：<a href="https://github.com/golang/go/commit/25d28ec55aded46e0be9c2298f24287d296a9e47" target="_blank" rel="noopener">cmd/go: add //go:embed support</a>
+，意味着你在 tip 版本可以试用该功能了。Go1.16 版本会包含该功能。欢迎大家试用，反馈建议。</p>
 <h2 id="01-试用-go-embed">01 试用 go embed<a href="#01-试用-go-embed" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>通过几个示例快速了解 go embed 的用法。</p>
 <h3 id="例-1内嵌文件--web-应用">例 1：内嵌文件 — Web 应用<a href="#例-1内嵌文件--web-应用" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
@@ -539,6 +540,8 @@
 	<h2>相关推荐</h2>
 	<ul>
 	
+	<li><a href="/posts/go/micro/micro-3.0.0-m3o/">关于 Go 语言微服务框架 Micro 的一些情况说明</a></li>
+	
 	<li><a href="/posts/go/translation/cockroachdb-errors-everyday/">除了 fmt.Errorf() 之外—Go 中的日常错误对象：CockroachDB errors 库（第4篇）</a></li>
 	
 	<li><a href="/posts/go/translation/golang-ai-programming-language/">AI 和 数据科学领域，Go 语言可能很快会取代 Python。最后的原因有点迷</a></li>
@@ -546,8 +549,6 @@
 	<li><a href="/posts/go/action/talk-geek-time-live/">闲聊昨晚极客时间的直播</a></li>
 	
 	<li><a href="/posts/go/translation/go-error-printing-catastrophe/">Go error 打印灾难 —  CockroachDB errors 库（第3篇）</a></li>
-	
-	<li><a href="/posts/go/translation/go-formatting-apis/">Go 格式化 API —  CockroachDB errors 库（第2篇）</a></li>
 	
 	</ul>
 </div>
@@ -557,7 +558,7 @@
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://polarisxu.studygolang.com/tags/go">Go</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/embed">Embed</a></span>
 				</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>4043 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>4032 字</p>
 				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2020-11-01 18:12 &#43;0800</p>
 			</footer>
 		</article>

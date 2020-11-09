@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Wed, 04 Nov 2020 21:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 09 Nov 2020 15:50:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>关于 Go 语言微服务框架 Micro 的一些情况说明</title>
+      <link>https://polarisxu.studygolang.com/posts/go/micro/micro-3.0.0-m3o/</link>
+      <pubDate>Mon, 09 Nov 2020 15:50:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/micro/micro-3.0.0-m3o/</guid>
+      <description>用过或了解过 Micro 这个框架的人，可能有所耳闻，大家对其抱怨比较多，典型的抱怨是升级后不兼容。比如网上有教程是基于 1.x，但新版本是 2.x，完全不</description>
+    </item>
+    
     <item>
       <title>除了 fmt.Errorf() 之外—Go 中的日常错误对象：CockroachDB errors 库（第4篇）</title>
       <link>https://polarisxu.studygolang.com/posts/go/translation/cockroachdb-errors-everyday/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/pkg/statsviz/</guid>
       <description>大家好，我是站长 polarisxu。 掌握系统运行状态，知道系统哪些地方可能存在问题，方便进行优化，这是一个实际系统必备的。裸奔，对系统一无所</description>
-    </item>
-    
-    <item>
-      <title>Go Playground 还能这么玩？</title>
-      <link>https://polarisxu.studygolang.com/posts/go/project/usingg-gpgsync/</link>
-      <pubDate>Fri, 09 Oct 2020 18:12:51 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/project/usingg-gpgsync/</guid>
-      <description>大家好，我是 polarisxu。 之前我为大家推荐过 Playground，对比了三款 Go Playground 。今天发现了另外一款 Playground，它最核心的特</description>
     </item>
     
   </channel>

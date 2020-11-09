@@ -6,8 +6,61 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en</language>
 		<copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-		<lastBuildDate>Wed, 04 Nov 2020 21:00:00 +0800</lastBuildDate>
+		<lastBuildDate>Mon, 09 Nov 2020 15:50:00 +0800</lastBuildDate>
 		<atom:link href="https://polarisxu.studygolang.com/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>关于 Go 语言微服务框架 Micro 的一些情况说明</title>
+			<link>https://polarisxu.studygolang.com/posts/go/micro/micro-3.0.0-m3o/</link>
+			<pubDate>Mon, 09 Nov 2020 15:50:00 +0800</pubDate>
+			
+			<guid>https://polarisxu.studygolang.com/posts/go/micro/micro-3.0.0-m3o/</guid>
+			<description>用过或了解过 Micro 这个框架的人，可能有所耳闻，大家对其抱怨比较多，典型的抱怨是升级后不兼容。比如网上有教程是基于 1.x，但新版本是 2.x，完全不</description>
+			<content type="html"><![CDATA[<p>用过或了解过 Micro 这个框架的人，可能有所耳闻，大家对其抱怨比较多，典型的抱怨是升级后不兼容。比如网上有教程是基于 1.x，但新版本是 2.x，完全不一样了，而且似乎官方文档也没有及时更新，使用了它的人“痛苦不堪”。</p>
+<p>前些天，有人问我有无其他 Go 微服务框架推荐，说 Micro 3.0.0 开始不能用了！！</p>
+<p>我听了一惊：我只听说它不稳定，总是变来变去，兼容性不好，但没听说不能用。后来了解了下，原来 3.0 做了巨大的改变。主要有：</p>
+<ul>
+<li>Micro 3.0 推荐叫做 M3O，微服务框架成为了云原生开发平台</li>
+<li>废弃了 Go-Micro</li>
+<li>开源 License 由 Apache 2.0 改为 <a href="https://polyformproject.org/licenses/shield/1.0.0/" target="_blank" rel="noopener">Polyform Shield</a>
+</li>
+</ul>
+<p>说明一点，Micro 是一个公司：Micro Services, Inc。</p>
+<h2 id="01-micro-30-叫做-m3o一个云原生开发平台">01 Micro 3.0 叫做 M3O，一个云原生开发平台</h2>
+<p>在 11 月 05 日，官方宣布 Micro 3.0.0 发布。这不再是一个微服务框架，而是一个云原生平台。有什么不一样呢？</p>
+<p>官方在 3.0 版本对主要工具进行了重大重构，并将其整合到可以从开发人员的角度解决构建、运行、管理和使用这整个工作流的问题。</p>
+<h3 id="为什么做这样的改变">为什么做这样的改变</h3>
+<p>Micro 最初是作为微服务开发的工具包，它结合了 api 网关，Web dashboard 和 cli 与使用 Go RPC 框架构建的服务进行交互。因为考虑到那时让所有人重新购买 PaaS 感觉就像是一场失败的战斗。因此，官方选择围绕 RPC 框架编写单一用途的工具，以为它可以使人们逐步采用它，直到他们看到对平台的需求为止。</p>
+<p>虽然有一个简单的 Go 框架以及一些用于查询和与之交互的周围组件，但是就像任何长期存在的项目一样，随着试图解决瑞士军刀无法做到的那种平台体验，其复杂性也在增加，开发了许多独立的库。这对于用户而言，增加了认知上的负担。</p>
+<p>在 2019 年，官方对所有这些库进行了合并，这提供了极大的帮助，但始终仍然存在一个悬而未决的问题。 micro 和 go-micro 有什么区别？一般我们将 go-micro 视为框架，将 micro 视为工具箱，但这样的划分似乎没有意义。</p>
+<p>过去 5 年，随着容器和容器编排成为焦点，“云原生”工具激增，世界爆炸了。更具体地说，Docker 和 Kubernetes 重新定义了技术领域，并更加有意识地转向在云中构建软件。</p>
+<p>Micro 甚至可以追溯到 2015 年，都具有前瞻性的观点。很明显，分布式系统和云原生将在未来几年内成为后端服务开发的主导模型，但是不清楚要花多长时间花折腾各种工具，例如 docker，kubernetes，grpc，istio 等。这感觉就像重新构建技术栈。Micro 希望解决整个工作流上的事情，而只是在微服务开发上。</p>
+<p>M3O 官方认为 PaaS 3.0 不仅是在运行容器甚至是源代码，而且还囊括了整个开发人员的经验，包括用于编写云代码的模型。因此它们打造了 Micro 3.0，或叫 M3O，这是用于云原生开发的平台。</p>
+<p>更多信息可以看 <a href="https://micro.mu/blog/2020/11/05/micro-v3-aka-m3o.html" target="_blank" rel="noopener">Micro 3.0.0 的发布公告</a>
+。</p>
+<h2 id="02-废弃-go-micro">02 废弃 Go-Micro</h2>
+<p>这个点上面已经做了一定说明。</p>
+<p>官方终止对 go-micro 的支持。这个项目自 2014 年创建至今，已经拥有 14.7k+ Star。作者认为尽管它为许多人解决了一些问题，但它并没有完成它的初衷。</p>
+<p>现在这个项目并没有直接放弃，而是转交到个人名下（Micro 公司的 CEO Asim），为了避免混淆，项目名也改了，叫 <a href="https://github.com/asim/nitro" target="_blank" rel="noopener">Nitro</a>
+。现在它是一个快速的分布式应用程序开发框架。</p>
+<p>虽然 go-micro 2.0 依然可以使用，但已经不维护。更多相信信息可以查看 Nitro 项目的 FAQ。</p>
+<h2 id="03-licence-改为-polyform-shield">03 Licence 改为 Polyform Shield</h2>
+<p>Polyform Shield 这个 Licence 我是第一次见 ，相信很多人也是。官方的说法是：</p>
+<blockquote>
+<p>Micro 继续保持开源状态，但使用 Polyform Shield 进行了许可，这可以防止该软件被提取并作为服务运行。这是为了与 AWS 和其他运行开放源代码以谋取利益而不回馈的人抗衡。</p>
+</blockquote>
+<p>这个 Licence 是为了防止 AWS 这样的云服务部署 Micro 服务，和 Micro 公司进行直接竞争，其他情况下可以免费使用。因此不存在开头网友说的不让用的情况。</p>
+<p>值得一提的是，Nitro 项目的 Licence 也改为了 Polyform Shield。</p>
+<h2 id="04-总结">04 总结</h2>
+<p>Micro 3.0 的出现，可能是顺应时代的产物。但从另一个角度，包括 Licence 的变更，一个靠开源项目活下去的公司不容易。M3O 是一个云原生（m3o.com）托管平台，有兴趣可以了解它的收费模式，这是开源项目公司进行商业化的一种方式。</p>
+<p>就像 Micro 的创始人 Asim 在 Nitro 项目的 FAQ 中说的：</p>
+<blockquote>
+<p>Go Micro 的维护，需要花费很多的时间精力，它属于 Micro Services，Inc. 公司，该公司现在专注于 Micro as a Service，并将此处的所有接口合并到该项目的服务库中。在大多数情况下，Go Micro 都没有资金支持，虽然得到过好评。因此，在坚持了 6 年后，在 3.0 版中，这个项目属于我个人（Asim），我做出了艰难的决定，要重新许可为非商业项目。对于任何商业应用程序，我正在寻找  <a href="https://github.com/sponsors/asim" target="_blank" rel="noopener">github sponsorship</a>
+，以便我可以将这些资金用于维护和支持工作。</p>
+</blockquote>
+<p>所以，如果你曾经喜欢 Micro 这个项目，建议你可以继续喜欢。当然也希望这次之后，版本能够更稳定。而我看了这些后，作为一个开源爱好者，我准备花时间研究研究 Micro，顺便写写笔记，希望为它的推广做一点贡献。</p>
+]]></content>
+		</item>
 		
 		<item>
 			<title>除了 fmt.Errorf() 之外—Go 中的日常错误对象：CockroachDB errors 库（第4篇）</title>
@@ -681,7 +734,8 @@ r   recursive search
 </li>
 </ul>
 <p>从这个列表足以看出需求的广泛性。于是官方决定提供实现，在 go 命令中实现该功能。因为在 Go 命令中添加对嵌入基本功能的直接支持将消除对某些工具的需求，至少可以简化其他工具的实现。</p>
-<p>2020 年 10 月 30 日，Russ Cox 提交了最终的实现：[cmd/go: add //go:embed support](cmd/go: add //go:embed support)，意味着你在 tip 版本可以试用该功能了。Go1.16 版本会包含该功能。欢迎大家试用，反馈建议。</p>
+<p>2020 年 10 月 30 日，Russ Cox 提交了最终的实现：<a href="https://github.com/golang/go/commit/25d28ec55aded46e0be9c2298f24287d296a9e47" target="_blank" rel="noopener">cmd/go: add //go:embed support</a>
+，意味着你在 tip 版本可以试用该功能了。Go1.16 版本会包含该功能。欢迎大家试用，反馈建议。</p>
 <h2 id="01-试用-go-embed">01 试用 go embed</h2>
 <p>通过几个示例快速了解 go embed 的用法。</p>
 <h3 id="例-1内嵌文件--web-应用">例 1：内嵌文件 — Web 应用</h3>

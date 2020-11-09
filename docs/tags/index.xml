@@ -7,7 +7,34 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Wed, 04 Nov 2020 21:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 09 Nov 2020 15:50:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go</title>
+      <link>https://polarisxu.studygolang.com/tags/go/</link>
+      <pubDate>Mon, 09 Nov 2020 15:50:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/tags/go/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Micro</title>
+      <link>https://polarisxu.studygolang.com/tags/micro/</link>
+      <pubDate>Mon, 09 Nov 2020 15:50:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/tags/micro/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>微服务</title>
+      <link>https://polarisxu.studygolang.com/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/</link>
+      <pubDate>Mon, 09 Nov 2020 15:50:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>CockroachDB</title>
       <link>https://polarisxu.studygolang.com/tags/cockroachdb/</link>
@@ -23,15 +50,6 @@
       <pubDate>Wed, 04 Nov 2020 21:00:00 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/tags/error/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Go</title>
-      <link>https://polarisxu.studygolang.com/tags/go/</link>
-      <pubDate>Wed, 04 Nov 2020 21:00:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/tags/go/</guid>
       <description></description>
     </item>
     
@@ -77,24 +95,6 @@
       <pubDate>Fri, 30 Oct 2020 15:12:00 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/tags/survey/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>AI</title>
-      <link>https://polarisxu.studygolang.com/tags/ai/</link>
-      <pubDate>Thu, 29 Oct 2020 21:40:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/tags/ai/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>DataScience</title>
-      <link>https://polarisxu.studygolang.com/tags/datascience/</link>
-      <pubDate>Thu, 29 Oct 2020 21:40:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/tags/datascience/</guid>
       <description></description>
     </item>
     
