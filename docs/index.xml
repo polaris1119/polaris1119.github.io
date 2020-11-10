@@ -7,7 +7,25 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Mon, 09 Nov 2020 15:50:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 10 Nov 2020 09:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>祝贺 Go 开源 11 周年</title>
+      <link>https://polarisxu.studygolang.com/posts/go/dynamic/go-opensource-11-years/</link>
+      <pubDate>Tue, 10 Nov 2020 09:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/dynamic/go-opensource-11-years/</guid>
+      <description>题图来自《了不起的程序员》 今天是 Go 语言开源 11 周年。有些人可能不太知道，简单回顾下 Go 的历史。 2007 年 Rob Pike, Robert Griesemer 和 Ken Thompson 一起创建了 Go 语言。从代码提交记录</description>
+    </item>
+    
+    <item>
+      <title>客观、全面的比较 Rust 与 Go</title>
+      <link>https://polarisxu.studygolang.com/posts/go/translation/rust-vs-go/</link>
+      <pubDate>Tue, 10 Nov 2020 00:07:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/translation/rust-vs-go/</guid>
+      <description>最近一年，将 Rust 和 Go 进行比较的不少，但不少都不公正，带感情色彩。而这篇文章客观、全面的分析对比了 Rust 和 Go，让你具体项目时选择最合适的。 Rust 还是 G</description>
+    </item>
+    
     <item>
       <title>关于 Go 语言微服务框架 Micro 的一些情况说明</title>
       <link>https://polarisxu.studygolang.com/posts/go/micro/micro-3.0.0-m3o/</link>
@@ -78,26 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/translation/go-error-printing-catastrophe/</guid>
       <description>这篇文章是关于 “CockroachDB errors 库” 的系列文章的第 3 篇，“CockroachDB errors 库”实际上是 Go 的标准 errors 包的通用、开放源码的替代品。</description>
-    </item>
-    
-    <item>
-      <title>《polarisxu Go 系列教程》</title>
-      <link>https://polarisxu.studygolang.com/go-categories/</link>
-      <pubDate>Mon, 26 Oct 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/go-categories/</guid>
-      <description>这里汇集 polarisxu 的原创和翻译文章。如果你有哪些想学的 Go 技术可以留言，我抽空写写。
- Echo 系列  基础篇1：搭建 Echo 开发环境  基础篇2：Echo 核心亮点介绍  基础篇3：通过一个例子串联各特性  定制篇0：让 Echo 更强大、好用  定制篇1：自定义 Binder，处理 Request 数据绑定  定制篇2：自定义 Validator，进行输入校验  定制篇3：自定义 Logger，用你喜欢的日志库  定制篇4：自定义 Renderer，增强或替换模板引擎  定制篇5：自定义 HTTP Error Handler，让 HTTP 错误处理更友好  定制篇6：自定义 Server 相关，替换或扩展默认的 Server  实战篇0：使用 Echo 开发一个博客系统     </description>
-    </item>
-    
-    <item>
-      <title>《polarisxu 开发工具教程》</title>
-      <link>https://polarisxu.studygolang.com/devtool-categories/</link>
-      <pubDate>Mon, 26 Oct 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/devtool-categories/</guid>
-      <description>关于编辑器&amp;amp;IDE相关的教程。
- 玩转 VSCode 玩转 GoLand  基于 GoLand 使用 Docker 容器进行 Go 开发  在 GoLang 中使用 Docker Compose 运行 Go 应用程序  当 GoLand 遇到 Kubernetes：如何调试和运行 Go 程序  欢迎加入 GoLand 2020.1 抢先体验计划  还在用 2019.3 就 Out 了：GoLand 2020.1 版本正式发布  GoLand 2020.2 Beta 版发布：go.mod 升级以及对泛型的实验性支持     </description>
     </item>
     
   </channel>

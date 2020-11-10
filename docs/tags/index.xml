@@ -7,13 +7,40 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Mon, 09 Nov 2020 15:50:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 10 Nov 2020 09:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Go</title>
       <link>https://polarisxu.studygolang.com/tags/go/</link>
-      <pubDate>Mon, 09 Nov 2020 15:50:00 +0800</pubDate>
+      <pubDate>Tue, 10 Nov 2020 09:30:00 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/tags/go/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Golang</title>
+      <link>https://polarisxu.studygolang.com/tags/golang/</link>
+      <pubDate>Tue, 10 Nov 2020 09:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/tags/golang/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>图书</title>
+      <link>https://polarisxu.studygolang.com/tags/%E5%9B%BE%E4%B9%A6/</link>
+      <pubDate>Tue, 10 Nov 2020 09:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/tags/%E5%9B%BE%E4%B9%A6/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Rust</title>
+      <link>https://polarisxu.studygolang.com/tags/rust/</link>
+      <pubDate>Tue, 10 Nov 2020 00:07:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/tags/rust/</guid>
       <description></description>
     </item>
     
@@ -68,33 +95,6 @@
       <pubDate>Tue, 03 Nov 2020 18:12:00 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/tags/tool/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Embed</title>
-      <link>https://polarisxu.studygolang.com/tags/embed/</link>
-      <pubDate>Sun, 01 Nov 2020 18:12:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/tags/embed/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Programming</title>
-      <link>https://polarisxu.studygolang.com/tags/programming/</link>
-      <pubDate>Fri, 30 Oct 2020 15:12:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/tags/programming/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Survey</title>
-      <link>https://polarisxu.studygolang.com/tags/survey/</link>
-      <pubDate>Fri, 30 Oct 2020 15:12:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/tags/survey/</guid>
       <description></description>
     </item>
     

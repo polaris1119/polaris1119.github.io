@@ -7,7 +7,25 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Mon, 26 Oct 2020 18:12:51 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/golang/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 10 Nov 2020 09:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/golang/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>祝贺 Go 开源 11 周年</title>
+      <link>https://polarisxu.studygolang.com/posts/go/dynamic/go-opensource-11-years/</link>
+      <pubDate>Tue, 10 Nov 2020 09:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/dynamic/go-opensource-11-years/</guid>
+      <description>题图来自《了不起的程序员》 今天是 Go 语言开源 11 周年。有些人可能不太知道，简单回顾下 Go 的历史。 2007 年 Rob Pike, Robert Griesemer 和 Ken Thompson 一起创建了 Go 语言。从代码提交记录</description>
+    </item>
+    
+    <item>
+      <title>客观、全面的比较 Rust 与 Go</title>
+      <link>https://polarisxu.studygolang.com/posts/go/translation/rust-vs-go/</link>
+      <pubDate>Tue, 10 Nov 2020 00:07:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/translation/rust-vs-go/</guid>
+      <description>最近一年，将 Rust 和 Go 进行比较的不少，但不少都不公正，带感情色彩。而这篇文章客观、全面的分析对比了 Rust 和 Go，让你具体项目时选择最合适的。 Rust 还是 G</description>
+    </item>
+    
     <item>
       <title>闲聊昨晚极客时间的直播</title>
       <link>https://polarisxu.studygolang.com/posts/go/action/talk-geek-time-live/</link>
@@ -78,24 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/translation/running-go-code-on-ios-and-android/</guid>
       <description>在本教程中，我们将构建一个简单的 Go 包，您可以从 iOS 应用程序（Swift）和 Android 应用程序（Kotlin）运行该软件包。 本教程不会使用go mobile 框架。相</description>
-    </item>
-    
-    <item>
-      <title>观点：Go 尚未准备好用于企业系统，原因在这里</title>
-      <link>https://polarisxu.studygolang.com/posts/go/translation/golang-is-not-ready-for-enterprise-systems-yet-and-heres-why/</link>
-      <pubDate>Sat, 12 Sep 2020 11:15:51 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/translation/golang-is-not-ready-for-enterprise-systems-yet-and-heres-why/</guid>
-      <description>译注：发表这篇文章，不代表我认同作者的观点。大家都知道，在国内，Go 已经被很多大厂使用，早就可以用于企业系统。 对一门语言的爱，可以接受任何不</description>
-    </item>
-    
-    <item>
-      <title>Google 的核心数据解决方案团队是如何使用 Go 的？</title>
-      <link>https://polarisxu.studygolang.com/posts/go/translation/google-go-coredata/</link>
-      <pubDate>Tue, 08 Sep 2020 11:15:51 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/translation/google-go-coredata/</guid>
-      <description>关于 Google 的核心数据： Google 是一家技术公司，其使命是组织全世界的信息，并使其普遍可访问和有用。 在这个案例研究中，Google 的核心数据解决方案团队分</description>
     </item>
     
   </channel>
