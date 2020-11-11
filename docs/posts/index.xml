@@ -165,7 +165,7 @@
 </blockquote>
 <h3 id="大规模发展">大规模发展</h3>
 <p>Rust 和 Go 都具有一些有用的特性，这使其适合于大型编程，包括大型团队，大型代码库，或两者兼而有之。</p>
-<p>例如，尽管 C 程序员多年来一直在争论括号的位置，以及是否应使用制表符或空格使代码缩进，但 Rust 和 Go 都通过使用标准格式工具（gofmt 用于 Rust，rustfmt 用于 Rust）完全消除了此类问题。 它使用规范样式自动格式化你的代码。并不是说这种特殊的样式本身如此出色：而是 Rust 和 Go 程序员所欣赏的标准化。</p>
+<p>例如，尽管 C 程序员多年来一直在争论括号的位置，以及是否应使用制表符或空格使代码缩进，但 Rust 和 Go 都通过使用标准格式工具（gofmt 用于 Go，rustfmt 用于 Rust）完全消除了此类问题。 它使用规范样式自动格式化你的代码。并不是说这种特殊的样式本身如此出色：而是 Rust 和 Go 程序员所欣赏的标准化。</p>
 <blockquote>
 <p>gofmt 的风格不是每个人的最爱，但 gofmt 是每个人的最爱。<em>—</em><a href="https://www.youtube.com/watch?v=PAAkCSZUG1c&amp;t=8m43s" target="_blank" rel="noopener">Rob Pike</a>
 </p>
