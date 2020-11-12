@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Tue, 10 Nov 2020 09:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 12 Nov 2020 10:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>GitHub 出的这个功能，让开源项目有了自己的社区</title>
+      <link>https://polarisxu.studygolang.com/posts/talk/view-github-discussions/</link>
+      <pubDate>Thu, 12 Nov 2020 10:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/talk/view-github-discussions/</guid>
+      <description>大家好，我是站长 polarisxu。 为了更有利于开源项目的发展，形成自己的社区很重要，作者们可以更好地和使用者交流互动，了解他们需求、问题。</description>
+    </item>
+    
     <item>
       <title>祝贺 Go 开源 11 周年</title>
       <link>https://polarisxu.studygolang.com/posts/go/dynamic/go-opensource-11-years/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/action/talk-geek-time-live/</guid>
       <description>昨天晚上（10 月 25 日）极客时间进行了一场直播，主题是：《未来 5 年将是 Go 语言的天下》。 客观说，这个主题还是挺唬人的，而直播的内容跟这个主题关系</description>
-    </item>
-    
-    <item>
-      <title>Go error 打印灾难 —  CockroachDB errors 库（第3篇）</title>
-      <link>https://polarisxu.studygolang.com/posts/go/translation/go-error-printing-catastrophe/</link>
-      <pubDate>Mon, 26 Oct 2020 11:15:51 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/translation/go-error-printing-catastrophe/</guid>
-      <description>这篇文章是关于 “CockroachDB errors 库” 的系列文章的第 3 篇，“CockroachDB errors 库”实际上是 Go 的标准 errors 包的通用、开放源码的替代品。</description>
     </item>
     
   </channel>
