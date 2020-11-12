@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Sun, 18 Oct 2020 14:18:50 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 12 Nov 2020 18:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>字节跳动面试真的也会问这样的问题？！</title>
+      <link>https://polarisxu.studygolang.com/posts/go/action/bytedance-interview-201112/</link>
+      <pubDate>Thu, 12 Nov 2020 18:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/action/bytedance-interview-201112/</guid>
+      <description>大家好，我是站长 polarisxu。 网上看到有人分享去字节跳动的面试 Go 的经验 ，从面试题来看，应该是比较初级的职位。 这份面试经验总结中（其实谈</description>
+    </item>
+    
     <item>
       <title>一道关于 json 和 slice 的题难倒了 80% 的人</title>
       <link>https://polarisxu.studygolang.com/posts/go/action/interview-slice-json/</link>

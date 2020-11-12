@@ -7,7 +7,34 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Thu, 12 Nov 2020 10:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 12 Nov 2020 18:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go</title>
+      <link>https://polarisxu.studygolang.com/tags/go/</link>
+      <pubDate>Thu, 12 Nov 2020 18:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/tags/go/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Golang</title>
+      <link>https://polarisxu.studygolang.com/tags/golang/</link>
+      <pubDate>Thu, 12 Nov 2020 18:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/tags/golang/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>面试题</title>
+      <link>https://polarisxu.studygolang.com/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/</link>
+      <pubDate>Thu, 12 Nov 2020 18:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>GitHub</title>
       <link>https://polarisxu.studygolang.com/tags/github/</link>
@@ -23,24 +50,6 @@
       <pubDate>Thu, 12 Nov 2020 10:30:00 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/tags/nitro/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Go</title>
-      <link>https://polarisxu.studygolang.com/tags/go/</link>
-      <pubDate>Tue, 10 Nov 2020 09:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/tags/go/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Golang</title>
-      <link>https://polarisxu.studygolang.com/tags/golang/</link>
-      <pubDate>Tue, 10 Nov 2020 09:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/tags/golang/</guid>
       <description></description>
     </item>
     
@@ -86,15 +95,6 @@
       <pubDate>Wed, 04 Nov 2020 21:00:00 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/tags/cockroachdb/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>error</title>
-      <link>https://polarisxu.studygolang.com/tags/error/</link>
-      <pubDate>Wed, 04 Nov 2020 21:00:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/tags/error/</guid>
       <description></description>
     </item>
     

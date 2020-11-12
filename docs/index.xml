@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Thu, 12 Nov 2020 10:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 12 Nov 2020 18:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>字节跳动面试真的也会问这样的问题？！</title>
+      <link>https://polarisxu.studygolang.com/posts/go/action/bytedance-interview-201112/</link>
+      <pubDate>Thu, 12 Nov 2020 18:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/action/bytedance-interview-201112/</guid>
+      <description>大家好，我是站长 polarisxu。 网上看到有人分享去字节跳动的面试 Go 的经验 ，从面试题来看，应该是比较初级的职位。 这份面试经验总结中（其实谈</description>
+    </item>
+    
     <item>
       <title>GitHub 出的这个功能，让开源项目有了自己的社区</title>
       <link>https://polarisxu.studygolang.com/posts/talk/view-github-discussions/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/translation/golang-ai-programming-language/</guid>
       <description>30 年前，Python 首次出现。但是花了 20 年时间才能获得开发人员的赏识。快进到 2019 年，它成为开发人员中第二受欢迎的语言。（来自 Stackoverflow 开发人员 2019 调查结</description>
-    </item>
-    
-    <item>
-      <title>闲聊昨晚极客时间的直播</title>
-      <link>https://polarisxu.studygolang.com/posts/go/action/talk-geek-time-live/</link>
-      <pubDate>Mon, 26 Oct 2020 18:12:51 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/action/talk-geek-time-live/</guid>
-      <description>昨天晚上（10 月 25 日）极客时间进行了一场直播，主题是：《未来 5 年将是 Go 语言的天下》。 客观说，这个主题还是挺唬人的，而直播的内容跟这个主题关系</description>
     </item>
     
   </channel>

@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Tue, 10 Nov 2020 09:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 12 Nov 2020 18:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>字节跳动面试真的也会问这样的问题？！</title>
+      <link>https://polarisxu.studygolang.com/posts/go/action/bytedance-interview-201112/</link>
+      <pubDate>Thu, 12 Nov 2020 18:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/action/bytedance-interview-201112/</guid>
+      <description>大家好，我是站长 polarisxu。 网上看到有人分享去字节跳动的面试 Go 的经验 ，从面试题来看，应该是比较初级的职位。 这份面试经验总结中（其实谈</description>
+    </item>
+    
     <item>
       <title>祝贺 Go 开源 11 周年</title>
       <link>https://polarisxu.studygolang.com/posts/go/dynamic/go-opensource-11-years/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/translation/go-formatting-apis/</guid>
       <description>这篇文章是关于 “CockroachDB errors 库” 的系列文章的第 2 篇，“CockroachDB errors 库”实际上是 Go 的标准 errors 包的通用、开放源码的替代品。</description>
-    </item>
-    
-    <item>
-      <title>Go 标准错误 API — CockroachDB errors 库（第1篇）</title>
-      <link>https://polarisxu.studygolang.com/posts/go/translation/cockroachdb-errors-std-api/</link>
-      <pubDate>Fri, 23 Oct 2020 11:15:51 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/translation/cockroachdb-errors-std-api/</guid>
-      <description>这篇文章是关于 “CockroachDB errors 库” 的系列文章的第 1 篇，“CockroachDB errors 库”实际上是 Go 的标准 errors 包的通用、开放源码的替代品。</description>
     </item>
     
   </channel>

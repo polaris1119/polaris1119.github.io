@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#fcfcfc">
+	<meta name="msapplication-TileColor" content="#fcfcfc">
+<meta itemprop="name" content="字节跳动面试真的也会问这样的问题？！">
+<meta itemprop="description" content="大家好，我是站长 polarisxu。 网上看到有人分享去字节跳动的面试 Go 的经验 ，从面试题来看，应该是比较初级的职位。 这份面试经验总结中（其实谈">
+<meta itemprop="datePublished" content="2020-11-12T18:30:00+08:00" />
+<meta itemprop="dateModified" content="2020-11-12T18:30:00+08:00" />
+<meta itemprop="wordCount" content="1043">
+
+
+
+<meta itemprop="keywords" content="Go,Golang,面试题," />
+<meta property="og:title" content="字节跳动面试真的也会问这样的问题？！" />
+<meta property="og:description" content="大家好，我是站长 polarisxu。 网上看到有人分享去字节跳动的面试 Go 的经验 ，从面试题来看，应该是比较初级的职位。 这份面试经验总结中（其实谈" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/action/bytedance-interview-201112/" />
+<meta property="article:published_time" content="2020-11-12T18:30:00+08:00" />
+<meta property="article:modified_time" content="2020-11-12T18:30:00+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="字节跳动面试真的也会问这样的问题？！"/>
+<meta name="twitter:description" content="大家好，我是站长 polarisxu。 网上看到有人分享去字节跳动的面试 Go 的经验 ，从面试题来看，应该是比较初级的职位。 这份面试经验总结中（其实谈"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>字节跳动面试真的也会问这样的问题？！</title>
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
+	
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://polarisxu.studygolang.com">polarisxu</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+  <a href="https://polarisxu.studygolang.com/posts/">文章</a>
+  <a href="https://polarisxu.studygolang.com/go-categories/">Go系列</a>
+  <a href="https://polarisxu.studygolang.com/devtool-categories/">开发工具</a>
+  <a href="https://polarisxu.studygolang.com/about/">关于</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<button id="toc-btn" class="hdr-btn desktop-only-ib" title="目录"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3" y2="6"></line><line x1="3" y1="12" x2="3" y2="12"></line><line x1="3" y1="18" x2="3" y2="18"></line></svg></button><span class="hdr-social hide-in-mobile"><a href="https://github.com/polaris1119" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a><a href="https://twitter.com/polaris1119" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="菜单"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://polarisxu.studygolang.com/posts/">文章</a></li>
+			<li><a href="https://polarisxu.studygolang.com/go-categories/">Go系列</a></li>
+			<li><a href="https://polarisxu.studygolang.com/devtool-categories/">开发工具</a></li>
+			<li><a href="https://polarisxu.studygolang.com/about/">关于</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Nov 12, 2020</span></div>
+				<h1>字节跳动面试真的也会问这样的问题？！</h1>
+			</header>
+			<div class="content">
+				<p>大家好，我是站长 polarisxu。</p>
+<p>网上看到有人分享去字节跳动的<a href="https://zhuanlan.zhihu.com/p/132813717" target="_blank" rel="noopener">面试 Go 的经验</a>
+，从面试题来看，应该是比较初级的职位。</p>
+<p>这份面试经验总结中（其实谈不上总结，只是面试题的记录，并没有总结分析答案），有一道 Go 相关的题，也是一个老生常谈的问题：以下代码有什么问题，怎么解决？</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">total</span><span class="p">,</span> <span class="nx">sum</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;=</span> <span class="mi">10</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+    <span class="nx">sum</span> <span class="o">+=</span> <span class="nx">i</span>
+    <span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">total</span> <span class="o">+=</span> <span class="nx">i</span>
+    <span class="p">}()</span>
+<span class="p">}</span>
+<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;total:%d sum %d&#34;</span><span class="p">,</span> <span class="nx">total</span><span class="p">,</span> <span class="nx">sum</span><span class="p">)</span>
+</code></pre></div><h2 id="01-考点一">01 考点一<a href="#01-考点一" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>我相信很多人应该一眼看出了其中的一个问题，那就是 i 使用的问题。常见的题目是这样的：以下代码，输出什么？</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;=</span> <span class="mi">10</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+  <span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span>
+  <span class="p">}()</span>
+<span class="p">}</span>
+<span class="nx">time</span><span class="p">.</span><span class="nf">Sleep</span><span class="p">(</span><span class="mf">1e9</span><span class="p">)</span>
+</code></pre></div><p>相信很多人知道，输出 10 个 11，而不是期望的输出 1 到 10。</p>
+<p>怎么改进？你应该也知晓。</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;=</span> <span class="mi">10</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+  <span class="k">go</span> <span class="kd">func</span><span class="p">(</span><span class="nx">i</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span>
+  <span class="p">}(</span><span class="nx">i</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="nx">time</span><span class="p">.</span><span class="nf">Sleep</span><span class="p">(</span><span class="mf">1e9</span><span class="p">)</span>
+</code></pre></div><p>（当然这里的输出顺序是乱的，大家应该清楚）</p>
+<h2 id="02-考点二">02 考点二<a href="#02-考点二" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>该题的第二个考点：data race。因为存在多 goroutine 同时写 total 变量的问题，所以有数据竞争。可以加上 -race 参数验证：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ go run -race main.go
+<span class="o">==================</span>
+WARNING: DATA RACE
+Read at 0x00c0001b4020 by goroutine 8:
+  main.main.func1<span class="o">()</span>
+      /Users/xuxinhua/main.go:12 +0x57
+
+Previous write at 0x00c0001b4020 by main goroutine:
+  main.main<span class="o">()</span>
+      /Users/xuxinhua/main.go:9 +0x10b
+
+Goroutine <span class="m">8</span> <span class="o">(</span>running<span class="o">)</span> created at:
+  main.main<span class="o">()</span>
+      /Users/xuxinhua/main.go:11 +0xe7
+<span class="o">==================</span>
+</code></pre></div><p>这可以通过加锁的方式解决：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">var</span> <span class="nx">mutex</span> <span class="nx">sync</span><span class="p">.</span><span class="nx">Mutex</span>
+<span class="nx">total</span><span class="p">,</span> <span class="nx">sum</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;=</span> <span class="mi">10</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+  <span class="nx">sum</span> <span class="o">+=</span> <span class="nx">i</span>
+  <span class="k">go</span> <span class="kd">func</span><span class="p">(</span><span class="nx">i</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">mutex</span><span class="p">.</span><span class="nf">Lock</span><span class="p">()</span>
+    <span class="nx">total</span> <span class="o">+=</span> <span class="nx">i</span>
+    <span class="nx">mutex</span><span class="p">.</span><span class="nf">Unlock</span><span class="p">()</span>
+  <span class="p">}(</span><span class="nx">i</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div><p>此外，也可以通过 atomic 包解决：（注意 total 的类型，因为 atomic.AddInt64 需要）</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">var</span> <span class="nx">total</span> <span class="kt">int64</span>
+<span class="nx">sum</span> <span class="o">:=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;=</span> <span class="mi">10</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+  <span class="nx">sum</span> <span class="o">+=</span> <span class="nx">i</span>
+  <span class="k">go</span> <span class="kd">func</span><span class="p">(</span><span class="nx">i</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">atomic</span><span class="p">.</span><span class="nf">AddInt64</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">total</span><span class="p">,</span> <span class="nb">int64</span><span class="p">(</span><span class="nx">i</span><span class="p">))</span>
+  <span class="p">}(</span><span class="nx">i</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div><p>通过 -race 你验证，发现 data race 没了。</p>
+<p>细心的你不知道发现没有，以上代码我故意把最后的 fmt 输出那一行去掉了，因为它用了 total 变量，避免它导致 data race。这引出考点三。</p>
+<h2 id="03-考点三">03 考点三<a href="#03-考点三" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>我上面都没有给完整的代码，因为经过上面两步，最终的结果还是不对的。从上面说的 fmt 输出代码去掉就说明还有问题。</p>
+<p>初学 Go 应该遇到类似这样的问题，下面代码一般没有输出。</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="s">&#34;fmt&#34;</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Hello World!&#34;</span><span class="p">)</span>
+	<span class="p">}()</span>
+<span class="p">}</span>
+</code></pre></div><p>原因是 main 函数先退出了，开启的 goroutine 根本没有机会执行。所以，常见的解决办法是在最后加一个 Sleep：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="s">&#34;fmt&#34;</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Hello World!&#34;</span><span class="p">)</span>
+	<span class="p">}()</span>
+  
+  <span class="nx">time</span><span class="p">.</span><span class="nf">Sleep</span><span class="p">(</span><span class="mf">1e9</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div><p>Sleep 会让 main goroutine 休眠，调度器调度其他 goroutine 运行。</p>
+<p>回到开头的题目其实也存在这个问题，通过在 fmt 语句之前加上 Sleep，基本能得到正确的结果：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">var</span> <span class="nx">total</span> <span class="kt">int64</span>
+<span class="nx">sum</span> <span class="o">:=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;=</span> <span class="mi">10</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+    <span class="nx">sum</span> <span class="o">+=</span> <span class="nx">i</span>
+    <span class="k">go</span> <span class="kd">func</span><span class="p">(</span><span class="nx">i</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">atomic</span><span class="p">.</span><span class="nf">AddInt64</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">total</span><span class="p">,</span> <span class="nb">int64</span><span class="p">(</span><span class="nx">i</span><span class="p">))</span>
+    <span class="p">}(</span><span class="nx">i</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="nx">time</span><span class="p">.</span><span class="nf">Sleep</span><span class="p">(</span><span class="mf">1e9</span><span class="p">)</span>
+
+<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;total:%d sum %d&#34;</span><span class="p">,</span> <span class="nx">total</span><span class="p">,</span> <span class="nx">sum</span><span class="p">)</span>
+</code></pre></div><p>但如果加上 -race 发现还是有问题：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ go run -race main.go
+<span class="o">==================</span>
+WARNING: DATA RACE
+Read at 0x00c00001c0b0 by main goroutine:
+  main.main<span class="o">()</span>
+      /Users/xuxinhua/main.go:20 +0xe4
+
+Previous write at 0x00c00001c0b0 by goroutine 7:
+  sync/atomic.AddInt64<span class="o">()</span>
+      /Users/xuxinhua/.go/current/src/runtime/race_amd64.s:276 +0xb
+  main.main.func1<span class="o">()</span>
+      /Users/xuxinhua/main.go:15 +0x44
+
+Goroutine <span class="m">7</span> <span class="o">(</span>finished<span class="o">)</span> created at:
+  main.main<span class="o">()</span>
+      /Users/xuxinhua/main.go:14 +0xa4
+<span class="o">==================</span>
+total:55 sum 55Found <span class="m">1</span> data race<span class="o">(</span>s<span class="o">)</span>
+</code></pre></div><p>所以，这种方式是不靠谱的，这时正确的方式是使用 sync.WaitGroup。</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&#34;sync/atomic&#34;</span>
+    <span class="s">&#34;sync&#34;</span>
+    <span class="s">&#34;fmt&#34;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">wg</span> <span class="nx">sync</span><span class="p">.</span><span class="nx">WaitGroup</span>
+    <span class="kd">var</span> <span class="nx">total</span> <span class="kt">int64</span>
+    <span class="nx">sum</span> <span class="o">:=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;=</span> <span class="mi">10</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+        <span class="nx">wg</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="nx">sum</span> <span class="o">+=</span> <span class="nx">i</span>
+        <span class="k">go</span> <span class="kd">func</span><span class="p">(</span><span class="nx">i</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">defer</span> <span class="nx">wg</span><span class="p">.</span><span class="nf">Done</span><span class="p">()</span>
+            <span class="nx">atomic</span><span class="p">.</span><span class="nf">AddInt64</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">total</span><span class="p">,</span> <span class="nb">int64</span><span class="p">(</span><span class="nx">i</span><span class="p">))</span>
+        <span class="p">}(</span><span class="nx">i</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="nx">wg</span><span class="p">.</span><span class="nf">Wait</span><span class="p">()</span>
+
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;total:%d sum %d&#34;</span><span class="p">,</span> <span class="nx">total</span><span class="p">,</span> <span class="nx">sum</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div><h2 id="04-总结">04 总结<a href="#04-总结" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>通过上面的分析，发现看起来是一个简单的题目，其实考点好几个。这个题目还是挺好的，字节跳动面试官出的这道题还是有点水平。你觉得呢？</p>
+
+			</div><div class="content">
+	<br>
+	<img src="https://static.studygolang.com/static/img/polarisxu-qrcode-soso-s.png">
+</div>
+
+<div class="related-posts thin">
+	<h2>相关推荐</h2>
+	<ul>
+	
+	<li><a href="/posts/go/action/interview-slice-json/">一道关于 json 和 slice 的题难倒了 80% 的人</a></li>
+	
+	<li><a href="/posts/go/action/interview-len-shift/">这么一道“简单”的题，为什么结果出乎我的意料</a></li>
+	
+	<li><a href="/posts/go/dynamic/go-opensource-11-years/">祝贺 Go 开源 11 周年</a></li>
+	
+	<li><a href="/posts/go/translation/rust-vs-go/">客观、全面的比较 Rust 与 Go</a></li>
+	
+	<li><a href="/posts/go/action/talk-geek-time-live/">闲聊昨晚极客时间的直播</a></li>
+	
+	</ul>
+</div>
+
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://polarisxu.studygolang.com/tags/go">Go</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/golang">Golang</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/%E9%9D%A2%E8%AF%95%E9%A2%98">面试题</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1043 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2020-11-12 18:30 &#43;0800</p>
+			</footer>
+		</article>
+		<aside id="toc">
+			<div class="toc-title">目录</div>
+			<nav id="TableOfContents">
+  <ul>
+    <li><a href="#01-考点一">01 考点一</a></li>
+    <li><a href="#02-考点二">02 考点二</a></li>
+    <li><a href="#03-考点三">03 考点三</a></li>
+    <li><a href="#04-总结">04 总结</a></li>
+  </ul>
+</nav>
+		</aside>
+		<div class="post-nav thin">
+			<a class="prev-post" href="https://polarisxu.studygolang.com/posts/talk/view-github-discussions/">
+				<span class="post-nav-label">旧&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>GitHub 出的这个功能，让开源项目有了自己的社区</span>
+			</a>
+		</div>
+		<div id="comments" class="thin"><script src="https://utteranc.es/client.js"
+	repo="polaris1119/polarisxu"
+	issue-term="pathname"
+	theme="github-light"
+	crossorigin="anonymous"
+	async>
+</script>
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2019 - 2020 <a href="https://polarisxu.studygolang.com">polarisxu</a> &#183; <a href="http://www.beian.miit.gov.cn/">京ICP备14030343号-1</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://polarisxu.studygolang.com/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+		<span id="busuanzi_container" style="color: #666;">
+			本站总访客数/访问量：<span id="busuanzi_value_site_uv"></span>/<span id="busuanzi_value_site_pv"></span>
+		</span>
+	</footer>
+
+
+
+	<script src="https://polarisxu.studygolang.com/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw=" crossorigin="anonymous"></script>
+	<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?224c227cd9239761ec770bc8c1fb134c";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+</body>
+
+</html>
