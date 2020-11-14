@@ -36,7 +36,7 @@
   <span class="p">}()</span>
 <span class="p">}</span>
 <span class="nx">time</span><span class="p">.</span><span class="nf">Sleep</span><span class="p">(</span><span class="mf">1e9</span><span class="p">)</span>
-</code></pre></div><p>相信很多人知道，输出 10 个 11，而不是期望的输出 1 到 10。</p>
+</code></pre></div><p>相信很多人知道，会输出一堆 11（可能还有其他的数字），而不是期望的输出 1 到 10。</p>
 <p>怎么改进？你应该也知晓。</p>
 <div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;=</span> <span class="mi">10</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
   <span class="k">go</span> <span class="kd">func</span><span class="p">(</span><span class="nx">i</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
