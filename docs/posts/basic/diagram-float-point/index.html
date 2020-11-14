@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#fcfcfc">
+	<meta name="msapplication-TileColor" content="#fcfcfc">
+<meta itemprop="name" content="15 张图带你深入理解浮点数">
+<meta itemprop="description" content="大家好，我是站长 polarisxu。 团队一直保持着分享的习惯，而我却分享的较少。忘了当时同事分享什么主题，涉及到浮点数相关知识。于是我决定分">
+<meta itemprop="datePublished" content="2020-09-29T18:12:00+08:00" />
+<meta itemprop="dateModified" content="2020-09-29T18:12:00+08:00" />
+<meta itemprop="wordCount" content="5351">
+
+
+
+<meta itemprop="keywords" content="Float,Go,Golang," />
+<meta property="og:title" content="15 张图带你深入理解浮点数" />
+<meta property="og:description" content="大家好，我是站长 polarisxu。 团队一直保持着分享的习惯，而我却分享的较少。忘了当时同事分享什么主题，涉及到浮点数相关知识。于是我决定分" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://polarisxu.studygolang.com/posts/basic/diagram-float-point/" />
+<meta property="article:published_time" content="2020-09-29T18:12:00+08:00" />
+<meta property="article:modified_time" content="2020-09-29T18:12:00+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="15 张图带你深入理解浮点数"/>
+<meta name="twitter:description" content="大家好，我是站长 polarisxu。 团队一直保持着分享的习惯，而我却分享的较少。忘了当时同事分享什么主题，涉及到浮点数相关知识。于是我决定分"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>15 张图带你深入理解浮点数</title>
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
+	
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://polarisxu.studygolang.com">polarisxu</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+  <a href="https://polarisxu.studygolang.com/posts/">文章</a>
+  <a href="https://polarisxu.studygolang.com/go-categories/">Go系列</a>
+  <a href="https://polarisxu.studygolang.com/devtool-categories/">开发工具</a>
+  <a href="https://polarisxu.studygolang.com/about/">关于</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<button id="toc-btn" class="hdr-btn desktop-only-ib" title="目录"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3" y2="6"></line><line x1="3" y1="12" x2="3" y2="12"></line><line x1="3" y1="18" x2="3" y2="18"></line></svg></button><span class="hdr-social hide-in-mobile"><a href="https://github.com/polaris1119" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a><a href="https://twitter.com/polaris1119" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="菜单"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://polarisxu.studygolang.com/posts/">文章</a></li>
+			<li><a href="https://polarisxu.studygolang.com/go-categories/">Go系列</a></li>
+			<li><a href="https://polarisxu.studygolang.com/devtool-categories/">开发工具</a></li>
+			<li><a href="https://polarisxu.studygolang.com/about/">关于</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Sep 29, 2020</span></div>
+				<h1>15 张图带你深入理解浮点数</h1>
+			</header>
+			<div class="content">
+				<p>大家好，我是站长 polarisxu。</p>
+<p>团队一直保持着分享的习惯，而我却分享的较少。忘了当时同事分享什么主题，涉及到浮点数相关知识。于是我决定分享一期关于浮点数的，而且 Go 之父 Rob Pike 说不懂浮点数不配当码农。。。So？！</p>
+<p><p class="md__image">
+  <img src="../imgs/float-point01.png"
+    alt=""  />
+</p>
+</p>
+<p>本着「要学习就系统透彻的学」这个原则，本文通过图的方式尽可能详细的讲解浮点数，让大家能够对浮点数有一个更深层次的认识。</p>
+<p>本文目录：</p>
+<p><p class="md__image">
+  <img src="../imgs/float-point-content.png"
+    alt=""  />
+</p>
+</p>
+<h2 id="0几个问题">0、几个问题<a href="#0几个问题" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>开始之前请思考如下问题：</p>
+<ul>
+<li>二进制 0.1，用十进制表示的话是多少？十进制的 0.1，用二进制表示又是多少？</li>
+<li>为什么 0.1 + 0.2 = 0.30000000000000004？</li>
+<li>单精度和双精度浮点数的有效小数位分别是多少？</li>
+<li>单精度浮点数能表示的范围是什么？</li>
+<li>浮点数为什么会存在 -0？infinity 和 NaN 又是怎么表示的？</li>
+</ul>
+<p>如果现在不会，那这篇文章正好可以为你解惑。</p>
+<h2 id="1什么是浮点数">1、什么是浮点数<a href="#1什么是浮点数" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>我们知道，数学中并没有浮点数的概念，虽然小数看起来像浮点数，但从不这么叫。那为什么计算机中不叫小数而叫浮点数呢？</p>
+<p>因为资源的限制，数学中的小数无法直接在计算机中准确表示。为了更好地表示它，计算机科学家们发明了浮点数，这是对小数的近似表示。维基百科中关于<a href="https://en.wikipedia.org/wiki/Floating-point_arithmetic" target="_blank" rel="noopener">浮点数</a>
+的概念说明如下：</p>
+<blockquote>
+<p>The term floating point refers to the fact that a number&rsquo;s radix point (decimal point, or, more commonly in computers, binary point) can float; that is, it can be placed anywhere relative to the significant digits of the number.</p>
+</blockquote>
+<p>也就是说浮点数是相对于定点数而言的，表示小数点位置是浮动的。比如 7.5 × 10、0.75 × 10² 等表示法，值一样，但小数点位置不一样。</p>
+<p>具体来说，浮点数是指用符号、尾数、基数和指数这四部分来表示的小数。</p>
+<p><p class="md__image">
+  <img src="../imgs/float-point02.png"
+    alt=""  />
+</p>
+</p>
+<h2 id="2ieee754-又是什么">2、IEEE754 又是什么<a href="#2ieee754-又是什么" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>知道了浮点数的概念，但需要确定一套具体的表示、运算标准。其中最有名的就是 <a href="https://en.wikipedia.org/wiki/IEEE_754" target="_blank" rel="noopener">IEEE754 标准</a>
+。William Kahan 正是因为浮点数标准化的工作获得了图灵奖。</p>
+<blockquote>
+<p>The <strong>IEEE Standard for Floating-Point Arithmetic</strong> (<strong>IEEE 754</strong>) is a <a href="https://en.wikipedia.org/wiki/Technical_standard" target="_blank" rel="noopener">technical standard</a>
+ for <a href="https://en.wikipedia.org/wiki/Floating-point_arithmetic" target="_blank" rel="noopener">floating-point arithmetic</a>
+ established in 1985 by the <a href="https://en.wikipedia.org/wiki/Institute_of_Electrical_and_Electronics_Engineers" target="_blank" rel="noopener">Institute of Electrical and Electronics Engineers</a>
+ (IEEE). The standard <a href="https://en.wikipedia.org/wiki/Floating-point_arithmetic#IEEE_754_design_rationale" target="_blank" rel="noopener">addressed many problems</a>
+ found in the diverse floating-point implementations that made them difficult to use reliably and <a href="https://en.wikipedia.org/wiki/Software_portability" target="_blank" rel="noopener">portably</a>
+. Many hardware <a href="https://en.wikipedia.org/wiki/Floating-point_unit" target="_blank" rel="noopener">floating-point units</a>
+ use the IEEE 754 standard.</p>
+</blockquote>
+<p>本文的讨论都基于 IEEE754 标准，这也是目前各大编程语言和硬件使用的标准。</p>
+<p>根据上面浮点数的组成，因为是在计算机中表示浮点数，基数自然是 2，因此 IEEE754 浮点数只关注符号、尾数和指数三部分。</p>
+<h2 id="3小数的二进制和十进制转换">3、小数的二进制和十进制转换<a href="#3小数的二进制和十进制转换" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>为了方便后面的内容顺利进行，复习下二进制和十进制的转换，其中主要涉及到小数的转换。</p>
+<h3 id="二进制转十进制">二进制转十进制<a href="#二进制转十进制" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>和整数转换一样，采用各位数值和位权相乘。比如：</p>
+<p>(0.101)₂ = 1×2⁻¹ + 0×2⁻² + 0×2⁻³ = (0.625)₁₀</p>
+<p>记住小数点后第一位是从 -1 开始即可。</p>
+<h3 id="十进制转二进制">十进制转二进制<a href="#十进制转二进制" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>十进制整数转二进制采用“除 2 取余，逆序排列”法。例如十进制数 11 转为二进制：</p>
+<pre><code>11/2=5 … 余1
+5/2=2  … 余1
+2/2=1  … 余0
+1/2=0  … 余1
+</code></pre><p>所以 (11)₁₀ 的二进制是 (1011)₂。</p>
+<p>但如果十进制是小数，转为二进制小数如何做？采用“乘 2 取整，顺序排列”。例如十进制小数 0.625 转为二进制小数：</p>
+<pre><code>0.625*2=1.25 … 取整数部分1
+0.25*2=0.5 	 … 取整数部分0
+0.5*2=1			 … 取整数部分1
+</code></pre><p>顺序排列，所以 (0.625)₁₀ = (0.101)₂。</p>
+<p>为了方便大家快速的做转换，网上有很多这样的工具。推荐一个我觉得最棒的：<a href="https://baseconvert.com/">https://baseconvert.com/</a>，支持各进制的转换，还支持浮点数。</p>
+<h2 id="4经典问题01--02--030000000000000004">4、经典问题：0.1 + 0.2 = 0.30000000000000004<a href="#4经典问题01--02--030000000000000004" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>这个问题网上相关的讨论很多，甚至有专门的一个网站：<a href="https://0.30000000000000004.com/">https://0.30000000000000004.com/</a>，这个网站上有各门语言的 0.1 + 0.2 的结果。比如 C 语言：</p>
+<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">argv</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">&#34;%.17f</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="mf">.1</span> <span class="o">+</span> <span class="mf">.2</span><span class="p">);</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><p>Go 语言：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+	<span class="s">&#34;fmt&#34;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="kd">var</span> <span class="nx">a</span><span class="p">,</span> <span class="nx">b</span> <span class="kt">float64</span> <span class="p">=</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div><p>结果都是 0.30000000000000004。</p>
+<p>为什么会这样？这要回到 IEEE754 标准关于浮点数的规定。</p>
+<h2 id="5浮点数的-ieee754-表示">5、浮点数的 IEEE754 表示<a href="#5浮点数的-ieee754-表示" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>上文提到，浮点数由四个部分构成，那 IEEE754 标准是如何规定它们的存储方式的呢？</p>
+<p>一般地，IEEE754 浮点数有两种类型：单精度浮点数（float）和双精度浮点数（double），还有其他的，不常用。单精度浮点数使用 4 字节表示；双精度浮点数使用 8 字节表示。在 Go 语言中用 float32 和 float64 表示这两种类型。</p>
+<p><p class="md__image">
+  <img src="../imgs/float-point03.png"
+    alt=""  />
+</p>
+</p>
+<p>符号位不用说，0 表示正数，1 表示负数。着重看指数部分和尾数部分。（基数前文说了，固定是 2，因此不存）</p>
+<h3 id="尾数部分">尾数部分<a href="#尾数部分" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>前面提到过，浮点数名称的由来在于小数点是浮动的。但具体存储时，需要固定一种形式，这叫做尾数的标准化。IEEE754 规定，在二进制数中，通过移位，将小数点前面的值固定为 1。IEEE754 称这种形式的浮点数为规范化浮点数（normal number）。</p>
+<p>比如十进制数 0.15625，转为二进制是 0.00101。为了让第 1 位为 1，执行逻辑右移 3 位，尾数部分成为 1.01，因为右移了 3 位，所以指数部分是 -3。因为规定第 1 位永远为 1，因此可以省略不存，这样尾数部分多了 1 位，只需存 0100（要记住，这是的数字是小数点后的数字，因此实际是 0.01，转为十进制是 0.25 — 没算未存的小数点前面的 1）。</p>
+<p>因此对于规范化浮点数，尾数其实比实际的多 1 位，也就是说单精度的是 24 位，双精度是 53 位。为了作区分，IEEE754 称这种尾数为 significand。</p>
+<blockquote>
+<p>有规范化浮点数，自然会有<strong>非规范化浮点数</strong>（denormal number），这会在后文讲解。</p>
+</blockquote>
+<p>请牢记，尾数决定了精度，对于单精度浮点数，因为只有 23 位，而 <code>1&lt;&lt;23</code> 对应十进制是 8388608，因此不能完整表示全部的 7 个十进制位，所以说，单精度浮点数<strong>有效小数位</strong>最多 7 位；双精度的<strong>有效小数位</strong>是 15 位；切记切记，有精度问题！！</p>
+<h3 id="指数部分">指数部分<a href="#指数部分" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>因为指数有正、有负，为了避免使用符号位，同时方便比较、排序，指数部分采用了 <strong>The Biased exponent</strong>（有偏指数）。IEEE754 规定，2ᵉ⁻¹-1 的值是 0，其中 e 表示指数部分的位数，小于这个值表示负数，大于这个值表示正数。因此，对于单精度浮点数而言， 2⁸⁻¹-1 = 127 是 0；双精度浮点数，2¹¹⁻¹-1 = 1023 是 0。</p>
+<p>没看懂？举个栗子。</p>
+<p>还是用十进制 0.15625 举例。上文知道，因为右移了 3 位，所以指数是 -3。根据 IEEE754 的定义，单精度浮点数情况下，-3 的实际值是 127 - 3 = 124。明白了吗？127 表示 0，124 就表示 -3 了。而十进制的 124 转为二进制就是 1111100。</p>
+<p>如果你还不理解，想想这个问题。</p>
+<blockquote>
+<p>如果让你用扑克牌（A ~ K，也就是 1 ~ 13）来表示支持负数的。怎么办？我们会选择一个中间的数，比如 7 当做 0，因此 10 就是 +3，4 就是 -3。现在理解了吧！</p>
+</blockquote>
+<h3 id="小结">小结<a href="#小结" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>结合尾数和指数的规定，IEEE754 单精度浮点数，十进制 0.15625 对应的二进制内存表示是：0 01111100 01000000000000000000000。</p>
+<h2 id="6程序确认下-ieee754-的如上规定">6、程序确认下 IEEE754 的如上规定<a href="#6程序确认下-ieee754-的如上规定" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>读到这里，希望你能坚持下去。为了进一步加深理解，我画一张图和一个确认程序。</p>
+<h3 id="一张图">一张图<a href="#一张图" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p><p class="md__image">
+  <img src="../imgs/float-point04.png"
+    alt=""  />
+</p>
+</p>
+<p>这张图是单精度浮点数 0.15625 的内存存储表示。根据三部分的二进制表示，可以反推出计算该数的十进制表示。作为练习，十进制的 2.75，用上图表示的话，各个位置分别都是什么值呢？</p>
+<h3 id="程序确认单精度浮点数的内存表示">程序确认单精度浮点数的内存表示<a href="#程序确认单精度浮点数的内存表示" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>使用 Go 语言编写一个程序，能够得到一个单精度浮点数的二进制内存表示。比如提供单精度浮点数 0.15625，该程序能够输出：0-01111100-01000000000000000000000。</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+	<span class="s">&#34;fmt&#34;</span>
+	<span class="s">&#34;math&#34;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="kd">var</span> <span class="nx">f</span> <span class="kt">float32</span> <span class="p">=</span> <span class="mf">0.15625</span>
+	<span class="nf">outputFEEE754</span><span class="p">(</span><span class="nx">f</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">outputFEEE754</span><span class="p">(</span><span class="nx">f</span> <span class="kt">float32</span><span class="p">)</span> <span class="p">{</span>
+	<span class="c1">// 将该浮点数内存布局当做 uint32 看待（因为都占用 4 字节）
+</span><span class="c1"></span>	<span class="c1">// 这里实际上是做强制转换，内部实现是：return *(*uint32)(unsafe.Pointer(&amp;f))
+</span><span class="c1"></span>	<span class="nx">buf</span> <span class="o">:=</span> <span class="nx">math</span><span class="p">.</span><span class="nf">Float32bits</span><span class="p">(</span><span class="nx">f</span><span class="p">)</span>
+
+	<span class="c1">// 加上两处 -，结果一共 34 byte
+</span><span class="c1"></span>	<span class="kd">var</span> <span class="nx">result</span> <span class="p">[</span><span class="mi">34</span><span class="p">]</span><span class="kt">byte</span>
+
+	<span class="c1">// 从低字节开始
+</span><span class="c1"></span>	<span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">33</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">--</span> <span class="p">{</span>
+		<span class="k">if</span> <span class="nx">i</span> <span class="o">==</span> <span class="mi">1</span> <span class="o">||</span> <span class="nx">i</span> <span class="o">==</span> <span class="mi">10</span> <span class="p">{</span>
+			<span class="nx">result</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="p">=</span> <span class="sc">&#39;-&#39;</span>
+		<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+			<span class="k">if</span> <span class="nx">buf</span><span class="o">%</span><span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span> <span class="p">{</span>
+				<span class="nx">result</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="p">=</span> <span class="sc">&#39;1&#39;</span>
+			<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+				<span class="nx">result</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="p">=</span> <span class="sc">&#39;0&#39;</span>
+			<span class="p">}</span>
+			<span class="nx">buf</span> <span class="o">/=</span> <span class="mi">2</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;%s\n&#34;</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c1">// output: 0-01111100-01000000000000000000000
+</span></code></pre></div><p>你可以使用上述程序，验证下 2.75，看看你做对没有！提供了一个在线可运行版本：<a href="https://play.studygolang.com/p/pg0QNQtBHYx">https://play.studygolang.com/p/pg0QNQtBHYx</a>。</p>
+<p>其实上面推荐的那个工具就能够得到十进制浮点数的二进制内存表示，地址：<a href="https://baseconvert.com/ieee-754-floating-point">https://baseconvert.com/ieee-754-floating-point</a>。</p>
+<p><p class="md__image">
+  <img src="../imgs/float-point05.png"
+    alt=""  />
+</p>
+</p>
+<p>另外，在 Java 语言中也有类似的方法：Float.floatToIntBits()，你可以使用 Java 实现上面类似的功能。</p>
+<h2 id="6再看-0102--030000000000000004">6、再看 0.1+0.2 = 0.30000000000000004<a href="#6再看-0102--030000000000000004" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>有了上面的知识，我们回过头看看这个经典的问题。（讨论单精度的情况，因此实际是 0.1+0.2 = 0.300000004）</p>
+<h3 id="出错的原因">出错的原因<a href="#出错的原因" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>出现这种情况的根本原因是，有些十进制小数无法转换为二进制数。如下图：</p>
+<p><p class="md__image">
+  <img src="../imgs/float-point06.png"
+    alt=""  />
+</p>
+</p>
+<p>在小数点后 4 位时，连续的二进制数，对应的十进制数却是不连续的，因此只能增加位数来尽可能近似的表示。</p>
+<h3 id="01-和-02-是如何表示的">0.1 和 0.2 是如何表示的？<a href="#01-和-02-是如何表示的" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>根据前面的讲解，十进制 0.1 转为二进制小数，得到的是 0.0001100… （重复1100）这样一个循环二进制小数，使用 IEEE754 表示如下图：</p>
+<p><p class="md__image">
+  <img src="../imgs/float-point07.png"
+    alt=""  />
+</p>
+</p>
+<p>同样的方法，0.2 用单精度浮点数表示是：0.20000000298023223876953125。所以，0.1 + 0.2 的结果是：0.300000004470348358154296875。</p>
+<p><p class="md__image">
+  <img src="../imgs/float-point08.png"
+    alt=""  />
+</p>
+</p>
+<h2 id="7特殊值">7、特殊值<a href="#7特殊值" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>耐心的读者看到这里，你真的很棒！但还没完哦，继续加油！</p>
+<h3 id="单精度浮点数的最大值">单精度浮点数的最大值<a href="#单精度浮点数的最大值" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>讲解下一个知识点之前，请思考本文开始的一个问题：<strong>单精度浮点数的最大值是多少？</strong></p>
+<p>根据前面学到的知识，我们很容易想到它的最大值的内存应该表示是这样的。</p>
+<p><p class="md__image">
+  <img src="../imgs/float-point09.png"
+    alt=""  />
+</p>
+</p>
+<p>即：01111111111111111111111111111111。然而我们把这个值填入 <a href="https://baseconvert.com/ieee-754-floating-point">https://baseconvert.com/ieee-754-floating-point</a> 中，发现结果是这样的：</p>
+<p><p class="md__image">
+  <img src="../imgs/float-point10.png"
+    alt=""  />
+</p>
+</p>
+<p>什么？NaN 是个什么鬼？！我就是按照你上面讲过的思考的。。。</p>
+<p>别急，因为凡是都有特殊。现在就讲讲浮点数中的特殊值。</p>
+<h3 id="特殊值-infinity无穷">特殊值 infinity（无穷）<a href="#特殊值-infinity无穷" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>当指数位全是 1，尾数位全是 0 时，这样的浮点数表示无穷。根据符号位，有正无穷和负无穷（+infinity 和 -infinity）。为什么需要无穷？因为计算机资源的限制，没法表示所有的数，当一个数超过了浮点数的表示范围时，就可以用 infinity 来表示。而数学中也有无穷的概念。</p>
+<p>在 Go 语言中，通过 math 包的 func Inf(sign int) float64 函数可以获取到正负无穷。</p>
+<p>在 Java 语言中，通过 Float 或 Double 类中的常量可以获得：Float.POSITIVE_INFINITY、Float.NEGATIVE_INFINITY。</p>
+<p>具体表示可以定义一个常量，比如：</p>
+<blockquote>
+<p>正无穷：0x7FF0000000000000，负无穷：0xFFF0000000000000</p>
+</blockquote>
+<p>和上面浮点数内存位模型强转 int 类似，这个执行相反操作（类似 Float64frombits 这样的函数），就得到了这个特殊的浮点值。可以看 Go 语言 math 标准库相应函数的实现。</p>
+<h3 id="特殊值-nan">特殊值 NaN<a href="#特殊值-nan" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>NaN 是 not-a-number 的缩写，即不是一个数。为什么需要它？例如，当对 -1 进行开根号时，浮点数不知道如何进行计算，就会使用 NaN，表示不是一个数。</p>
+<p>NaN 的具体内存表示是：指数位全是 1，尾数位不全是 0。</p>
+<p>和 infinity 类似，Go 和 Java 都定义了相应的函数或常量。</p>
+<h3 id="小结-1">小结<a href="#小结-1" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>现在清楚上面单精度浮点数最大值是不对的了吧，它是一个 NaN。画一张图，方便你更清晰的记住这些特殊值。</p>
+<p><p class="md__image">
+  <img src="../imgs/float-point11.png"
+    alt=""  />
+</p>
+</p>
+<p>所以单精度浮点数的最大值应该能确认了，即：0 11111110 11111111111111111111111。</p>
+<p><p class="md__image">
+  <img src="../imgs/float-point12.png"
+    alt=""  />
+</p>
+</p>
+<h2 id="8非规范化浮点数">8、非规范化浮点数<a href="#8非规范化浮点数" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>接着用问题的方式继续：单精度浮点数的最小值是多少（正数）？</p>
+<p>根据前面的知识，我们会得到这样的最小值：0 00000000 00000000000000000000001。根据前面规范化浮点数的规定，我们知晓该值是：2⁻¹²⁷×(1+2⁻²³)。</p>
+<p>然而，最小值的内存表示没错，但算出来的结果是错的。（额头冒汗没？怎么又错了~）</p>
+<p>为了避免两个小浮点数相减结果是 0（也就是规范化浮点数无法表示）这样情况出现，同时根据规范化浮点数的定义，因为尾数部分有一个省略的前导 1，因此无法表示 0。所以，IEEE754 规定了另外一种浮点数：</p>
+<blockquote>
+<p>当指数位全是 0，尾数部分不全为 0，尾数部分没有省略的前导 1，同时指数部分的偏移值比规范形式的偏移值小 1，即单精度是 -126，双精度是 -2046。这种形式的浮点数叫非规范化浮点数（denormal number）。</p>
+</blockquote>
+<p>因此单精度浮点数的最小值（正数）如下图：</p>
+<p><p class="md__image">
+  <img src="../imgs/float-point13.png"
+    alt=""  />
+</p>
+</p>
+<p>有了非规范化浮点数，IEEE754 就可以表示 0 了，但会存在 +0 和 -0：即所有位全是 0 时是 +0；符号位是 1，其他位是 0 时是 -0。</p>
+<h2 id="9ieee754-浮点数分类小结">9、IEEE754 浮点数分类小结<a href="#9ieee754-浮点数分类小结" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>至此，浮点数相关的知识就介绍差不多了。为了让大家对整体再有一个更好的掌握，对浮点数的分类进行一些总结。</p>
+<p>从上面的讲解，IEEE754 浮点数，指数是关键，根据指数，将其分为：特殊值、非规范化浮点数和规范化浮点数。</p>
+<p><p class="md__image">
+  <img src="../imgs/float-point14.png"
+    alt=""  />
+</p>
+</p>
+<p>从上图规范化和非规范化浮点数的表示范围可以看出，两种类型的表示是具有连续性的。这也就是为什么非规范化浮点数指数规定为比规范形式的偏移值小 1（即单精度为 -126，双精度为 -2046）。</p>
+<p>在数轴上，浮点数的分布：</p>
+<p><p class="md__image">
+  <img src="../imgs/float-point15.png"
+    alt=""  />
+</p>
+</p>
+<h2 id="10总结">10、总结<a href="#10总结" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>《深入理解计算机系统》这本书在讲解浮点数时说：许多程序员认为浮点数没意思，往坏了说，深奥难懂。经过本文的四千多字图文并茂的方式讲解，如果你认真看完了，我相信你一定掌握了浮点数。</p>
+<p>此外，还有其他一些知识点，比如浮点数的运算、不满足结合律、四舍但五不一定入等，有兴趣的可以查阅相关资料。</p>
+<p>现在是时候回过头来看看开始的题目了，你都会了吗？</p>
+<p>最后，建议你结合你熟悉的语言更进一步补充相关知识。比如 Go 语言的 math 标准库；Java 的 java.lang.Float/Double 等包。</p>
+<h2 id="参考资料或相关链接">参考资料或相关链接<a href="#参考资料或相关链接" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<ul>
+<li><a href="https://floating-point-gui.de/">https://floating-point-gui.de/</a></li>
+<li><a href="https://www.geeksforgeeks.org/ieee-standard-754-floating-point-numbers/">https://www.geeksforgeeks.org/ieee-standard-754-floating-point-numbers/</a></li>
+<li><a href="https://baseconvert.com/">https://baseconvert.com/</a></li>
+<li>这个交互式工具，很不错：http://evanw.github.io/float-toy/</li>
+<li><a href="https://bartaz.github.io/ieee754-visualization/">https://bartaz.github.io/ieee754-visualization/</a></li>
+<li>柴大：https://mp.weixin.qq.com/s/0lCte3UD5qYcaBnebwnYrQ</li>
+<li>左神：https://mp.weixin.qq.com/s/QsEe34pcimNdqCb99h44cQ</li>
+<li>图书《程序是怎样跑起来的》</li>
+</ul>
+
+			</div><div class="content">
+	<br>
+	<img src="https://static.studygolang.com/static/img/polarisxu-qrcode-soso-s.png">
+</div>
+
+<div class="related-posts thin">
+	<h2>相关推荐</h2>
+	<ul>
+	
+	<li><a href="/posts/basic/complement/">题解：竟然半数以上的人做错了，基础真的很重要</a></li>
+	
+	<li><a href="/posts/go/action/bytedance-interview-201112/">字节跳动面试真的也会问这样的问题？！</a></li>
+	
+	<li><a href="/posts/go/dynamic/go-opensource-11-years/">祝贺 Go 开源 11 周年</a></li>
+	
+	<li><a href="/posts/go/translation/rust-vs-go/">客观、全面的比较 Rust 与 Go</a></li>
+	
+	<li><a href="/posts/go/action/talk-geek-time-live/">闲聊昨晚极客时间的直播</a></li>
+	
+	</ul>
+</div>
+
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://polarisxu.studygolang.com/tags/float">Float</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/go">Go</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/golang">Golang</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>5351 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2020-09-29 18:12 &#43;0800</p>
+			</footer>
+		</article>
+		<aside id="toc">
+			<div class="toc-title">目录</div>
+			<nav id="TableOfContents">
+  <ul>
+    <li><a href="#0几个问题">0、几个问题</a></li>
+    <li><a href="#1什么是浮点数">1、什么是浮点数</a></li>
+    <li><a href="#2ieee754-又是什么">2、IEEE754 又是什么</a></li>
+    <li><a href="#3小数的二进制和十进制转换">3、小数的二进制和十进制转换</a>
+      <ul>
+        <li><a href="#二进制转十进制">二进制转十进制</a></li>
+        <li><a href="#十进制转二进制">十进制转二进制</a></li>
+      </ul>
+    </li>
+    <li><a href="#4经典问题01--02--030000000000000004">4、经典问题：0.1 + 0.2 = 0.30000000000000004</a></li>
+    <li><a href="#5浮点数的-ieee754-表示">5、浮点数的 IEEE754 表示</a>
+      <ul>
+        <li><a href="#尾数部分">尾数部分</a></li>
+        <li><a href="#指数部分">指数部分</a></li>
+        <li><a href="#小结">小结</a></li>
+      </ul>
+    </li>
+    <li><a href="#6程序确认下-ieee754-的如上规定">6、程序确认下 IEEE754 的如上规定</a>
+      <ul>
+        <li><a href="#一张图">一张图</a></li>
+        <li><a href="#程序确认单精度浮点数的内存表示">程序确认单精度浮点数的内存表示</a></li>
+      </ul>
+    </li>
+    <li><a href="#6再看-0102--030000000000000004">6、再看 0.1+0.2 = 0.30000000000000004</a>
+      <ul>
+        <li><a href="#出错的原因">出错的原因</a></li>
+        <li><a href="#01-和-02-是如何表示的">0.1 和 0.2 是如何表示的？</a></li>
+      </ul>
+    </li>
+    <li><a href="#7特殊值">7、特殊值</a>
+      <ul>
+        <li><a href="#单精度浮点数的最大值">单精度浮点数的最大值</a></li>
+        <li><a href="#特殊值-infinity无穷">特殊值 infinity（无穷）</a></li>
+        <li><a href="#特殊值-nan">特殊值 NaN</a></li>
+        <li><a href="#小结-1">小结</a></li>
+      </ul>
+    </li>
+    <li><a href="#8非规范化浮点数">8、非规范化浮点数</a></li>
+    <li><a href="#9ieee754-浮点数分类小结">9、IEEE754 浮点数分类小结</a></li>
+    <li><a href="#10总结">10、总结</a></li>
+    <li><a href="#参考资料或相关链接">参考资料或相关链接</a></li>
+  </ul>
+</nav>
+		</aside>
+		<div class="post-nav thin">
+			<a class="next-post" href="https://polarisxu.studygolang.com/posts/go/translation/when-to-use-rust-and-when-to-use-golang/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;新</span><br><span>何时使用 Rust 和何时使用 Golang</span>
+			</a>
+			<a class="prev-post" href="https://polarisxu.studygolang.com/posts/go/action/interview-len-shift/">
+				<span class="post-nav-label">旧&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>这么一道“简单”的题，为什么结果出乎我的意料</span>
+			</a>
+		</div>
+		<div id="comments" class="thin"><script src="https://utteranc.es/client.js"
+	repo="polaris1119/polarisxu"
+	issue-term="pathname"
+	theme="github-light"
+	crossorigin="anonymous"
+	async>
+</script>
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2019 - 2020 <a href="https://polarisxu.studygolang.com">polarisxu</a> &#183; <a href="http://www.beian.miit.gov.cn/">京ICP备14030343号-1</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://polarisxu.studygolang.com/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+		<span id="busuanzi_container" style="color: #666;">
+			本站总访客数/访问量：<span id="busuanzi_value_site_uv"></span>/<span id="busuanzi_value_site_pv"></span>
+		</span>
+	</footer>
+
+
+
+	<script src="https://polarisxu.studygolang.com/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw=" crossorigin="anonymous"></script>
+	<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?224c227cd9239761ec770bc8c1fb134c";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+</body>
+
+</html>

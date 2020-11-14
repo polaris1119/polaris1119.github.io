@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Float on polarisxu</title>
+    <link>https://polarisxu.studygolang.com/tags/float/</link>
+    <description>Recent content in Float on polarisxu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
+    <lastBuildDate>Sat, 03 Oct 2020 18:12:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/float/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>题解：竟然半数以上的人做错了，基础真的很重要</title>
+      <link>https://polarisxu.studygolang.com/posts/basic/complement/</link>
+      <pubDate>Sat, 03 Oct 2020 18:12:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/basic/complement/</guid>
+      <description>双节发布了两道题： 题一： package main func main() { var a int8 = -1 var b int8 = -128 / a println(b) } 题二： package main func main() { const a int8 = -1 var b int8 = -128 / a println(b) } 答对的人真不多（半数以上答错了），</description>
+    </item>
+    
+    <item>
+      <title>15 张图带你深入理解浮点数</title>
+      <link>https://polarisxu.studygolang.com/posts/basic/diagram-float-point/</link>
+      <pubDate>Tue, 29 Sep 2020 18:12:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/basic/diagram-float-point/</guid>
+      <description>大家好，我是站长 polarisxu。 团队一直保持着分享的习惯，而我却分享的较少。忘了当时同事分享什么主题，涉及到浮点数相关知识。于是我决定分</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -81,21 +81,21 @@
     </item>
     
     <item>
+      <title>题解：竟然半数以上的人做错了，基础真的很重要</title>
+      <link>https://polarisxu.studygolang.com/posts/basic/complement/</link>
+      <pubDate>Sat, 03 Oct 2020 18:12:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/basic/complement/</guid>
+      <description>双节发布了两道题： 题一： package main func main() { var a int8 = -1 var b int8 = -128 / a println(b) } 题二： package main func main() { const a int8 = -1 var b int8 = -128 / a println(b) } 答对的人真不多（半数以上答错了），</description>
+    </item>
+    
+    <item>
       <title>何时使用 Rust 和何时使用 Golang</title>
       <link>https://polarisxu.studygolang.com/posts/go/translation/when-to-use-rust-and-when-to-use-golang/</link>
       <pubDate>Wed, 30 Sep 2020 11:15:51 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/posts/go/translation/when-to-use-rust-and-when-to-use-golang/</guid>
       <description>Golang 和 Rust 之间有明显的区别。Golang 更加注重构建可以无限扩展的 Web API 和小型服务，尤其是在 goroutine 的强大支持下。Rust 也可以用于小型服务，但是从开发</description>
-    </item>
-    
-    <item>
-      <title>这么一道“简单”的题，为什么结果出乎我的意料</title>
-      <link>https://polarisxu.studygolang.com/posts/go/action/interview-len-shift/</link>
-      <pubDate>Sun, 27 Sep 2020 14:52:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/action/interview-len-shift/</guid>
-      <description>今天在《Go语言爱好者周刊：第62期》 中贴了一道 Go101 的题，原题如下： package main const s = &amp;#34;Go101.org&amp;#34; // len(s) == 9 // 1 &amp;lt;&amp;lt; 9 == 512 // 512 / 128 == 4 var a byte = 1 &amp;lt;&amp;lt; len(s) / 128 var b byte = 1 &amp;lt;&amp;lt;</description>
     </item>
     
   </channel>
