@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Thu, 12 Nov 2020 18:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/golang/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 17 Nov 2020 15:12:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/golang/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>通过这个 Runtime 统计信息可视化库学到了什么？</title>
+      <link>https://polarisxu.studygolang.com/posts/go/pkg/statsview/</link>
+      <pubDate>Tue, 17 Nov 2020 15:12:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/pkg/statsview/</guid>
+      <description>大家好，我是站长 polarisxu。 掌握系统运行状态，知道系统哪些地方可能存在问题，方便进行优化，这是一个实际系统必备的。裸奔，对系统一无所</description>
+    </item>
+    
     <item>
       <title>字节跳动面试真的也会问这样的问题？！</title>
       <link>https://polarisxu.studygolang.com/posts/go/action/bytedance-interview-201112/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/basic/complement/</guid>
       <description>双节发布了两道题： 题一： package main func main() { var a int8 = -1 var b int8 = -128 / a println(b) } 题二： package main func main() { const a int8 = -1 var b int8 = -128 / a println(b) } 答对的人真不多（半数以上答错了），</description>
-    </item>
-    
-    <item>
-      <title>何时使用 Rust 和何时使用 Golang</title>
-      <link>https://polarisxu.studygolang.com/posts/go/translation/when-to-use-rust-and-when-to-use-golang/</link>
-      <pubDate>Wed, 30 Sep 2020 11:15:51 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/translation/when-to-use-rust-and-when-to-use-golang/</guid>
-      <description>Golang 和 Rust 之间有明显的区别。Golang 更加注重构建可以无限扩展的 Web API 和小型服务，尤其是在 goroutine 的强大支持下。Rust 也可以用于小型服务，但是从开发</description>
     </item>
     
   </channel>

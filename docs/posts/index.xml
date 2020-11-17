@@ -6,8 +6,228 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en</language>
 		<copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-		<lastBuildDate>Thu, 12 Nov 2020 18:30:00 +0800</lastBuildDate>
+		<lastBuildDate>Tue, 17 Nov 2020 15:12:00 +0800</lastBuildDate>
 		<atom:link href="https://polarisxu.studygolang.com/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>通过这个 Runtime 统计信息可视化库学到了什么？</title>
+			<link>https://polarisxu.studygolang.com/posts/go/pkg/statsview/</link>
+			<pubDate>Tue, 17 Nov 2020 15:12:00 +0800</pubDate>
+			
+			<guid>https://polarisxu.studygolang.com/posts/go/pkg/statsview/</guid>
+			<description>大家好，我是站长 polarisxu。 掌握系统运行状态，知道系统哪些地方可能存在问题，方便进行优化，这是一个实际系统必备的。裸奔，对系统一无所</description>
+			<content type="html"><![CDATA[<p>大家好，我是站长 polarisxu。</p>
+<p>掌握系统运行状态，知道系统哪些地方可能存在问题，方便进行优化，这是一个实际系统必备的。裸奔，对系统一无所知，迟早是要出大事的。</p>
+<p>在 Go 语言中，官方标准库提供了方法，让我们能够获得内存分配、GC 和 Goroutine 等情况。比如内存、GC 等情况，可以通过 runtime.MemStats 获取：<a href="https://docs.studygolang.com/pkg/runtime/#MemStats">https://docs.studygolang.com/pkg/runtime/#MemStats</a>，Goroutine 数量可以通过 runtime.NumGoroutine() 函数获得。</p>
+<p>一般我们我们需要自己解析 MemStats 信息、做展示，也可以做图表。</p>
+<p>之前推荐过一个在浏览器中实时查看 Go 应用程序运行时统计信息（GC，MemStats 等）的库：<a href="https://polarisxu.studygolang.com/posts/go/pkg/statsviz/" target="_blank" rel="noopener">statsviz</a>
+。今天给大家推荐另外一个库：<a href="https://github.com/go-echarts/statsview">https://github.com/go-echarts/statsview</a>，这是这两天刚出来的。</p>
+<p>看长什么样：</p>
+<p><p class="md__image">
+  <img src="../imgs/statsview.png"
+    alt=""  />
+</p>
+</p>
+<p>我们可以运行下面这段代码得到类似上面的图：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&#34;github.com/go-echarts/statsview&#34;</span>
+    <span class="s">&#34;time&#34;</span>
+    <span class="s">&#34;math/rand&#34;</span>
+    <span class="s">&#34;strconv&#34;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">go</span> <span class="nf">work</span><span class="p">()</span>
+    <span class="nx">mgr</span> <span class="o">:=</span> <span class="nx">statsview</span><span class="p">.</span><span class="nf">New</span><span class="p">()</span>
+
+    <span class="c1">// Start() runs a HTTP server at `localhost:18066` by default.
+</span><span class="c1"></span>    <span class="nx">mgr</span><span class="p">.</span><span class="nf">Start</span><span class="p">()</span>
+
+    <span class="c1">// Stop() will shutdown the http server gracefully
+</span><span class="c1"></span>    <span class="c1">// mgr.Stop()
+</span><span class="c1"></span><span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">work</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Generate some allocations
+</span><span class="c1"></span>    <span class="nx">m</span> <span class="o">:=</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">][]</span><span class="kt">byte</span><span class="p">{}</span>
+
+    <span class="k">for</span> <span class="p">{</span>
+        <span class="nx">b</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="mi">512</span><span class="o">+</span><span class="nx">rand</span><span class="p">.</span><span class="nf">Intn</span><span class="p">(</span><span class="mi">16</span><span class="o">*</span><span class="mi">1024</span><span class="p">))</span>
+        <span class="nx">m</span><span class="p">[</span><span class="nx">strconv</span><span class="p">.</span><span class="nf">Itoa</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="nx">m</span><span class="p">)</span><span class="o">%</span><span class="p">(</span><span class="mi">10</span><span class="o">*</span><span class="mi">100</span><span class="p">))]</span> <span class="p">=</span> <span class="nx">b</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nx">m</span><span class="p">)</span><span class="o">%</span><span class="p">(</span><span class="mi">10</span><span class="o">*</span><span class="mi">100</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="p">{</span>
+            <span class="nx">m</span> <span class="p">=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">][]</span><span class="kt">byte</span><span class="p">)</span>
+        <span class="p">}</span>
+
+        <span class="nx">time</span><span class="p">.</span><span class="nf">Sleep</span><span class="p">(</span><span class="mi">10</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Millisecond</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><h2 id="01-如何使用">01 如何使用</h2>
+<blockquote>
+<p>都 Go1.15.x 了，请使用 go module。</p>
+</blockquote>
+<p>statsview 的使用较简单。</p>
+<ul>
+<li>import &ldquo;github.com/go-echarts/statsview”</li>
+<li>mgr := statsview.New()</li>
+<li>mgr.Start()</li>
+<li>打开浏览器访问：http://localhost:18066/statsview/debug</li>
+<li>尽情享受吧~</li>
+</ul>
+<p>此外，可以通过 <code>viewer.SetConfiguration(opts …Option)</code>改变一些行为，包括：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// WithInterval sets the interval(in millisecond) of collecting and pulling metrics
+</span><span class="c1">// default -&gt; 1500
+</span><span class="c1"></span><span class="nf">WithInterval</span><span class="p">(</span><span class="nx">interval</span> <span class="kt">int</span><span class="p">)</span> <span class="nx">Option</span>
+
+<span class="c1">// WithMaxPoints sets the maximum points of each chart series
+</span><span class="c1">// default -&gt; 40
+</span><span class="c1"></span><span class="nf">WithMaxPoints</span><span class="p">(</span><span class="nx">n</span> <span class="kt">int</span><span class="p">)</span> <span class="nx">Option</span>
+
+<span class="c1">// WithTemplate sets the rendered template which fetching stats from the server and
+</span><span class="c1">// handling the metrics data
+</span><span class="c1"></span><span class="nf">WithTemplate</span><span class="p">(</span><span class="nx">t</span> <span class="kt">string</span><span class="p">)</span> <span class="nx">Option</span>
+
+<span class="c1">// WithAddr sets the listen address
+</span><span class="c1">// default -&gt; &#34;localhost:18066&#34;
+</span><span class="c1"></span><span class="nf">WithAddr</span><span class="p">(</span><span class="nx">addr</span> <span class="kt">string</span><span class="p">)</span> <span class="nx">Option</span>
+
+<span class="c1">// WithTimeFormat sets the time format for the line-chart Y-axis label
+</span><span class="c1">// default -&gt; &#34;15:04:05&#34;
+</span><span class="c1"></span><span class="nf">WithTimeFormat</span><span class="p">(</span><span class="nx">s</span> <span class="kt">string</span><span class="p">)</span> <span class="nx">Option</span>
+
+<span class="c1">// WithTheme sets the theme of the charts
+</span><span class="c1">// default -&gt; Macarons
+</span><span class="c1">//
+</span><span class="c1">// Optional:
+</span><span class="c1">// * ThemeWesteros
+</span><span class="c1">// * ThemeMacarons
+</span><span class="c1"></span><span class="nf">WithTheme</span><span class="p">(</span><span class="nx">theme</span> <span class="nx">Theme</span><span class="p">)</span> <span class="nx">Option</span>
+</code></pre></div><p>例如修改默认端口：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">viewer</span><span class="p">.</span><span class="nf">SetConfiguration</span><span class="p">(</span><span class="nx">view</span><span class="p">.</span><span class="nf">WithAddr</span><span class="p">(</span><span class="s">&#34;localhost:8087&#34;</span><span class="p">)</span>
+</code></pre></div><p>不像之前介绍的 statsviz，statsview 固定使用 net/http，所以集成到项目中只需要让它在单独的一个 goroutine 中运行，单独的端口即可。</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+	<span class="nx">mgr</span> <span class="o">:=</span> <span class="nx">statsview</span><span class="p">.</span><span class="nf">New</span><span class="p">()</span>
+	<span class="nx">mgr</span><span class="p">.</span><span class="nf">Start</span><span class="p">()</span>
+<span class="p">}()</span>
+</code></pre></div><p>其实这也是在介绍 statsviz 时的最佳实践。毕竟 runtime 信息属于系统内部信息，不适合暴露给公网用户。</p>
+<h2 id="02-学习相关实现">02 学习相关实现</h2>
+<p>和 <a href="https://polarisxu.studygolang.com/posts/go/pkg/statsviz/" target="_blank" rel="noopener">statsviz</a>
+ 不同，该库没有使用 WebSocket 协议，直接通过轮询的方式不断获取数据。另外，因为 statsview 是 go-echarts 出的，因此画图也使用的是 <a href="https://github.com/go-echarts/go-echarts" target="_blank" rel="noopener">go-echarts</a>
+ 库。</p>
+<h3 id="多参数控制">多参数控制</h3>
+<p>关于 statsview，有一个知识点想跟大家讲一下，那就是多参数控制。</p>
+<p>上文提到库可以通过 <code>viewer.SetConfiguration(opts …Option)</code> 函数定制一些行为，其中 Option 是一个函数类型：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">Option</span> <span class="kd">func</span><span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">config</span><span class="p">)</span>
+</code></pre></div><p>其中 config 的定义如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">config</span> <span class="kd">struct</span> <span class="p">{</span>
+	<span class="nx">Interval</span>   <span class="kt">int</span>
+	<span class="nx">MaxPoints</span>  <span class="kt">int</span>
+	<span class="nx">Template</span>   <span class="kt">string</span>
+	<span class="nx">Addr</span>       <span class="kt">string</span>
+	<span class="nx">TimeFormat</span> <span class="kt">string</span>
+	<span class="nx">Theme</span>      <span class="nx">Theme</span>
+<span class="p">}</span>
+</code></pre></div><p>该类型的字段用于控制该库的一些行为。它有一个默认的实例：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">var</span> <span class="nx">defaultCfg</span> <span class="p">=</span> <span class="o">&amp;</span><span class="nx">config</span><span class="p">{</span>
+	<span class="nx">Interval</span><span class="p">:</span>   <span class="nx">DefaultInterval</span><span class="p">,</span>
+	<span class="nx">MaxPoints</span><span class="p">:</span>  <span class="nx">DefaultMaxPoints</span><span class="p">,</span>
+	<span class="nx">Template</span><span class="p">:</span>   <span class="nx">DefaultTemplate</span><span class="p">,</span>
+	<span class="nx">Addr</span><span class="p">:</span>       <span class="nx">DefaultAddr</span><span class="p">,</span>
+	<span class="nx">TimeFormat</span><span class="p">:</span> <span class="nx">DefaultTimeFormat</span><span class="p">,</span>
+	<span class="nx">Theme</span><span class="p">:</span>      <span class="nx">DefaultTheme</span><span class="p">,</span>
+<span class="p">}</span>
+</code></pre></div><p>面对这样的需求，通常的解决方案是：</p>
+<ul>
+<li>将 config 默认实例导出，使用方直接修改对应字段的值；</li>
+<li>通过提供一系列函数实现修改，比如 SetInterval(int)</li>
+</ul>
+<p>方案一封装性不好，暴露太多细节；而方案二的问题在于，config 的字段类型不一致，通常方案不够优雅。该库的实现方式是定义一个 Option 类型，然后提供一系列具有相似签名的函数来控制这些配置，即上文列出来的 WithXXX 类函数，看其中的一个实现：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// WithAddr sets the listening address
+</span><span class="c1"></span><span class="kd">func</span> <span class="nf">WithAddr</span><span class="p">(</span><span class="nx">addr</span> <span class="kt">string</span><span class="p">)</span> <span class="nx">Option</span> <span class="p">{</span>
+	<span class="k">return</span> <span class="kd">func</span><span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
+		<span class="nx">c</span><span class="p">.</span><span class="nx">Addr</span> <span class="p">=</span> <span class="nx">addr</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><p>这样通过 WithXXX 函数得到一系列 Option 实例，而 viewer.SetConfiguration 接收一系列 Option 实例，所以使用是就这样了：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">viewer</span><span class="p">.</span><span class="nf">SetConfiguration</span><span class="p">(</span><span class="nx">viewer</span><span class="p">.</span><span class="nf">WithTheme</span><span class="p">(</span><span class="nx">viewer</span><span class="p">.</span><span class="nx">ThemeWalden</span><span class="p">),</span> <span class="nx">view</span><span class="p">.</span><span class="nf">WithAddr</span><span class="p">(</span><span class="s">&#34;localhost:8087&#34;</span><span class="p">))</span>
+</code></pre></div><p>还有其他案例吗？</p>
+<h3 id="colly-中的案例">colly 中的案例</h3>
+<p><a href="https://github.com/gocolly/colly" target="_blank" rel="noopener">Colly</a>
+ 是一个 Go 语言实现的，快速的、优雅的 Scraper 和 Crawler 框架。它的实例化函数比较“独特”：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">NewCollector</span><span class="p">(</span><span class="nx">options</span> <span class="o">...</span><span class="kd">func</span><span class="p">(</span><span class="o">*</span><span class="nx">Collector</span><span class="p">))</span> <span class="o">*</span><span class="nx">Collector</span>
+</code></pre></div><p>实例化一个类型，一般有以下几种方式：</p>
+<ol>
+<li>new(T)</li>
+<li>T{} 或 &amp;T{}</li>
+<li>自定义的工厂函数</li>
+</ol>
+<p>对于类型中的成员，我们可以在实例化时传递，如第 2、3 种方式；也可以在生成实例后，通过 <code>t.Field</code> 的形式赋值（前提是导出的成员）。</p>
+<p>一般地，我们在定义工厂函数时，要为类型成员初始化，会给工厂函数定义相应的参数。而 Collector 类型的工厂函数参数，却是一个或多个函数。这样设计有以下方面的原因：</p>
+<ol>
+<li>Collector 类型的成员较多；</li>
+<li>成员的类型多样；</li>
+<li>不要求所有的成员必须指定值；</li>
+</ol>
+<p>针对这些问题，Collector 工厂类 NewCollector() 巧妙的使用不定参数，而且类型是 <code>func(*Collector)</code>，这样可以有选择的配置一个或多个选项，很好地解决了上面的三个问题。它的源码如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">NewCollector</span><span class="p">(</span><span class="nx">options</span> <span class="o">...</span><span class="kd">func</span><span class="p">(</span><span class="o">*</span><span class="nx">Collector</span><span class="p">))</span> <span class="o">*</span><span class="nx">Collector</span> <span class="p">{</span>
+    <span class="nx">c</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">Collector</span><span class="p">{}</span>
+    <span class="nx">c</span><span class="p">.</span><span class="nf">Init</span><span class="p">()</span>
+
+    <span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">f</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">options</span> <span class="p">{</span>
+        <span class="nf">f</span><span class="p">(</span><span class="nx">c</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="nx">c</span><span class="p">.</span><span class="nf">parseSettingsFromEnv</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="nx">c</span>
+<span class="p">}</span>
+</code></pre></div><p>同时，通过函数的方式来配置选项，就好比很多面向对象语言中的 Set 方法，可以在里面有其他的一些逻辑判断，而不仅仅是设置一个值。比如以下配置函数：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">Debugger</span><span class="p">(</span><span class="nx">d</span> <span class="nx">debug</span><span class="p">.</span><span class="nx">Debugger</span><span class="p">)</span> <span class="kd">func</span><span class="p">(</span><span class="o">*</span><span class="nx">Collector</span><span class="p">)</span>
+</code></pre></div><h3 id="bigcache-中的案例">BigCache 中的案例</h3>
+<p><a href="https://github.com/allegro/bigcache" target="_blank" rel="noopener">BigCache</a>
+ 是一个高性能缓存库。获得它的一个实例是这样的形式：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">bigcache</span><span class="p">.</span><span class="nf">NewBigCache</span><span class="p">(</span><span class="nx">bigcache</span><span class="p">.</span><span class="nf">DefaultConfig</span><span class="p">(</span><span class="mi">10</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Minute</span><span class="p">))</span>
+</code></pre></div><p>即它的构造函数（New 函数）接收一个 Config 对象，这也是要控制多个配置。</p>
+<p>因为 Go 不是完全的面向对象语言。当类型中有较多成员，且可以通过外部控制时，根据封装的原则，一般不建议将这些字段导出（公开），但这样一来构造函数就需要能接收很多参数。在 Go 中有两种较常见的设计方法。</p>
+<p>1）通过另外一个结构体来控制</p>
+<p>比如 bigcache 包中的 Config 结构体。这么做有什么好处？</p>
+<p>一方面控制了 BigCache 类型的行为，避免实例化后可以随意更改，起到了封装的作用。另一方面，让构造函数更简洁，只需要接收一个 Config 即可（注意最好使用 Config 值类型，而不是指针）。而且可以通过提供一些 Config 的默认值来做到更易用，比如 bigcache.DefaultConfig() 函数就是这样的例子。</p>
+<p>2）通过一个函数类型来控制</p>
+<p>比如我们通过这种方式替换 bigcache 包的 Config 结构体。</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">BigCacheOption</span> <span class="kd">func</span><span class="p">(</span><span class="o">*</span><span class="nx">BigCache</span><span class="p">)</span>
+
+<span class="kd">func</span> <span class="nf">ShardsNum</span><span class="p">(</span><span class="nx">shards</span> <span class="kt">int</span><span class="p">)</span> <span class="nx">BigCacheOption</span> <span class="p">{</span>
+	<span class="k">return</span> <span class="kd">func</span><span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">BigCache</span><span class="p">)</span> <span class="p">{</span>
+		<span class="nx">c</span><span class="p">.</span><span class="nx">shards</span> <span class="p">=</span> <span class="nx">shards</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">LifeWindow</span><span class="p">(</span><span class="nx">eviction</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Duration</span><span class="p">)</span> <span class="nx">BigCacheOption</span> <span class="p">{</span>
+	<span class="k">return</span> <span class="kd">func</span><span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">BigCache</span><span class="p">)</span> <span class="p">{</span>
+		<span class="nx">c</span><span class="p">.</span><span class="nx">lifeWindow</span> <span class="p">=</span> <span class="nb">uint64</span><span class="p">(</span><span class="nx">eviction</span><span class="p">.</span><span class="nf">Seconds</span><span class="p">())</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// 提供更多的配置选项函数
+</span><span class="c1"></span><span class="o">...</span>
+</code></pre></div><p>通过定义一个函数类型 BigCacheOption 来控制。对 BigCache 类型中非导出的字段，提供相应的函数，该函数返回 BigCacheOption 类型。</p>
+<p>针对这种方式，BigCache 的构造函数需要改为如下的形式：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">NewBigCache</span><span class="p">(</span><span class="nx">options</span> <span class="o">...</span><span class="nx">BigCacheOption</span><span class="p">)</span> <span class="p">(</span><span class="o">*</span><span class="nx">BigCache</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
+	<span class="nx">c</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">BigCache</span><span class="p">{}</span>
+	<span class="c1">// 省略其他，主要处理 options 部分
+</span><span class="c1"></span>	<span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">f</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">options</span> <span class="p">{</span>
+		<span class="nf">f</span><span class="p">(</span><span class="nx">c</span><span class="p">)</span>
+	<span class="p">}</span>
+
+	<span class="k">return</span> <span class="nx">c</span><span class="p">,</span> <span class="kc">nil</span>
+<span class="p">}</span>
+</code></pre></div><h2 id="03-总结">03 总结</h2>
+<p>如果你需要实时图表的方式查看系统运行时的一些数据，可能之前介绍的 statsviz 更合适。</p>
+<p>该文介绍的通过参数灵活控制系统的方法，希望你能够掌握。</p>
+]]></content>
+		</item>
 		
 		<item>
 			<title>字节跳动面试真的也会问这样的问题？！</title>
