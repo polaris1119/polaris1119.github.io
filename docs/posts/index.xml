@@ -6,8 +6,50 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en</language>
 		<copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-		<lastBuildDate>Tue, 17 Nov 2020 15:12:00 +0800</lastBuildDate>
+		<lastBuildDate>Wed, 18 Nov 2020 18:40:00 +0800</lastBuildDate>
 		<atom:link href="https://polarisxu.studygolang.com/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>聊聊 Go 和创业</title>
+			<link>https://polarisxu.studygolang.com/posts/talk/go-and-business/</link>
+			<pubDate>Wed, 18 Nov 2020 18:40:00 +0800</pubDate>
+			
+			<guid>https://polarisxu.studygolang.com/posts/talk/go-and-business/</guid>
+			<description>昨天 PingCAP 完成 D 轮 2.7 亿美元融资的消息，相信很多人看到了。PingCAP 今天的成就，对开源界真是极大的鼓舞。祝贺祝贺！ 01 PingCAP 成立于 2015 年，是一家企业级</description>
+			<content type="html"><![CDATA[<p>昨天 PingCAP 完成 D 轮 2.7 亿美元融资的消息，相信很多人看到了。PingCAP 今天的成就，对开源界真是极大的鼓舞。祝贺祝贺！</p>
+<h2 id="01">01</h2>
+<p>PingCAP 成立于 2015 年，是一家企业级开源分布式数据库厂商，提供包括开源分布式数据库产品、解决方案与咨询、技术支持与培训认证服务，致力于为全球行业用户提供稳定高效、安全可靠、开放兼容的新型数据基础设施，解放企业生产力，加速企业数字化转型升级。</p>
+<p>由 PingCAP 创立的分布式关系型数据库 TiDB，为企业关键业务打造，具备「分布式强一致性事务、在线弹性水平扩展、故障自恢复的高可用、跨数据中心多活」等企业级核心特性，帮助企业最大化发挥数据价值，充分释放企业增长空间。</p>
+<p>对 TiDB 有所耳闻的都知道，它是使用 Go 语言实现的，它的创始人兼 CEO 刘奇早期就活跃在 Go 社区，早在豌豆荚，他就主导开源了 <a href="https://github.com/CodisLabs/codis" target="_blank" rel="noopener">Codis</a>
+。</p>
+<p>PingCAP 的员工，一直活跃在各大社区，包括频频出席各种技术交流、分享场所，他们创业早期，刘奇本人都经常分享 TiDB。5 年的时间，做出这样的成绩，真的是开源界特别值得骄傲的事情。这样纯技术驱动的公司，是不是每个技术人员向往的呢？！</p>
+<h2 id="02">02</h2>
+<p>另一个创业公司，也是和 Go 有关：七牛。相信 Go 圈内知道的更多。我个人的看法，七牛和 Go 是相互成就的。</p>
+<p>七牛成立于 2011 年 6 月，那时候 Go1.0 还未发布（Go1.0 是 2012 年 3 月 28 日发布的）。七牛的创始人兼 CEO 许式伟离开盛大创新院创办七牛云时，面临技术选型。尽管 Go 正式版本都还未发布，但他很坚决地选择了 Go 语言。为此他还专门给团队发了一封邮件，邮件中有一段是这么说的：</p>
+<blockquote>
+<p>在创业过程中我们会面临很多选择，也会有很多选择后来会被证明是错的，但是今天我可以确定的是，选择 Go 将会成为我们最正确的选择。</p>
+</blockquote>
+<p>在选择了 Go 语言后，考虑到 Go 仍然是一门十分小众的语言，七牛开始有意识地培养 Go 中国社区。为了让更多人能够知道 Go，加入 Go 的行列，他们做了很多工作，比如启动了《Go 语言编程》一书的编写工作，并最终和 Go 1.0 版本同步发布。2012 年 2 月，许老板首次在公开场合说：Go 会超过 C、Java，成为最流行的语言。这一年他到处宣讲，做了不下十场的 Go 语言讲座，平均每个月有一场。讲得最多的一个 PPT 是《Go，Next C》这篇，它基本上算他对 Go 的革命性到底在哪里的一个总结。对于一个初创公司来说，为一个并不属于自己业务的技术这么花时间去宣传，有些人可能会觉得比较不可理解。但是实际上有三个理由支撑他们这么做：</p>
+<ul>
+<li>Go 真的是一门革命性的语言，它的流行将对产业发展具重大意义。</li>
+<li>Go 仍然是一门小众语言，而我们不止要招 Go 程序员，更重要的是要说服他们相信 Go 语言是有远大前景的专业技能方向。</li>
+<li>七牛的用户是程序员，我们需要建立在用户心目中的专家形象。</li>
+</ul>
+<p>大家看到了现在 Go 语言的发展势头，同时作为一个创业公司，七牛云今年 6 月份获得了 F 轮 10 亿人民币的融资。</p>
+<p>七牛为 Go 的发展做了很大的贡献，另一方面，我认为，正是因为借助 Go，也让七牛发展的更好。</p>
+<h2 id="03">03</h2>
+<p>再聊一个和 Go 没啥关系的公司，但相信大家都知晓。</p>
+<p>掘金社区，大家不陌生。号称是一个帮助开发者成长的社区，是给开发者用的 Hacker News，给设计师用的 Designer News，和给产品经理用的 Medium。</p>
+<p>2015 年阴明（网名 kalasoo） 创办了稀土掘金公司（2014 年底获得天使轮融资），运营掘金社区网站，16 年初获得 Pre-A 轮融资，17 年中旬获得 A 轮融资。之后并没有获得融资，运营很艰难。我记得去年，阴明大佬还做了一次女装直播，还发了文章，据说公司没有开发人员了，自己得学全栈技术，维护网站的运营，感觉随时有倒闭的风险。</p>
+<p>今年 8 月份，听字节跳动的朋友说，在公司内部发现了掘金这个部门，而且在内部可以搜到掘金创始人和站长。前段时间，也证实了字节跳动收购了掘金。具体见：<a href="https://xw.qq.com/cmsid/20201104A04LTM00">https://xw.qq.com/cmsid/20201104A04LTM00</a>。</p>
+<p>被收购，对掘金来说，也许是一个不错的出路。</p>
+<h2 id="04">04</h2>
+<p>常说创业九死一生，而我自己也一直在创业中（并非 Go 语言中文网），个中滋味只有自己清楚。作为技术人员，PingCAP、七牛 这样技术驱动的公司是很向往的，但自己作为创始人是很难的。</p>
+<p>掘金，外面看来，网站做的很不错，但一直却活得很辛苦。我个人也运营了一个网站，投入的时间和心血，只有我自己知晓，它一直还只是我的个人项目，也许一直会是我的个人爱好项目。当时听到掘金被并购的消息，同样作为网站创建者，感触颇多，如果有资本的进入，也许就不能只是爱好了。。。</p>
+<h2 id="参考资料">参考资料</h2>
+<p><a href="https://www.sohu.com/a/197332119_355140">https://www.sohu.com/a/197332119_355140</a></p>
+]]></content>
+		</item>
 		
 		<item>
 			<title>通过这个 Runtime 统计信息可视化库学到了什么？</title>
@@ -3407,7 +3449,7 @@ nil                    对应JSON的null
 <li>使用 Go 语言实现；</li>
 </ul>
 <h2 id="2安装-goup">2、安装 goup</h2>
-<p>因为 goup 本身是 Go 语言实现的，因此他通过一个脚本下载对应系统的预编译 goup 程序。当前最新版本 0.0.7 （这个工具是 9 月底开发的），当然你也可以自己手动下载这些编译好 goup 程序。（如果你本地安装了 Go 版本，直接 go get -u -v github.com/owenthereal/goup 安装也是可以的）</p>
+<p>因为 goup 本身是 Go 语言实现的，因此他通过一个脚本下载对应系统的预编译 goup 程序。当前最新版本 0.0.7 （这个工具是 9 月底开发的），当然你也可以自己手动下载这些编译好 goup 程序。（如果你本地安装了 Go 版本，直接 go get -u -v github.com/owenthereal/goup/&hellip; 安装也是可以的）</p>
 <p><p class="md__image">
   <img src="../imgs/goup01.png"
     alt=""  />
@@ -3496,6 +3538,17 @@ drwxr-xr-x   <span class="m">2</span> xuxinhua  staff   <span class="m">64</span
 <h2 id="6小结">6、小结</h2>
 <p>整体上，目前 goup 的使用还是比较顺畅的。欢迎大家试用，可以顺便给个 star。对了，项目地址：<a href="https://github.com/owenthereal/goup">https://github.com/owenthereal/goup</a>。</p>
 <p>对了，至于为什么会需要管理多版本，我想很多人还会有这样的需求吧？！你为什么需要呢？欢迎留言。</p>
+<h2 id="7更新">7、更新</h2>
+<p>上面提到的点，目前差不多解决了。</p>
+<ul>
+<li>提供了 goup ls-ver 命令列出 Go 版本</li>
+<li>提供 goup remove 命令删除某个已安装的 Go 版本</li>
+<li>还提供了 goup upgrade 来升级自己</li>
+</ul>
+<p>此外当执行 goup install 时，默认会安装当前最新发布版本，大陆会有问题，可以通过如下方式解决：</p>
+<blockquote>
+<p>GOUP_GO_HOST=golang.google.cn goup install</p>
+</blockquote>
 ]]></content>
 		</item>
 		
