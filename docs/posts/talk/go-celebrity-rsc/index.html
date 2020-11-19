@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#fcfcfc">
+	<meta name="msapplication-TileColor" content="#fcfcfc">
+<meta itemprop="name" content="Go 语言名人：除了 Rob Pike，很多人可能不知道他">
+<meta itemprop="description" content="大家好，我是站长 polarisxu。 01 说起 Go 语言，很多人知晓有三个创始人。在 2007 年 09 月 25 日，Rob Pike 发了一封邮件： 所以一般认为 Rob Pike、Ro">
+<meta itemprop="datePublished" content="2020-11-19T19:20:00+08:00" />
+<meta itemprop="dateModified" content="2020-11-19T19:20:00+08:00" />
+<meta itemprop="wordCount" content="1664">
+
+
+
+<meta itemprop="keywords" content="Go,rsc,Rob," />
+<meta property="og:title" content="Go 语言名人：除了 Rob Pike，很多人可能不知道他" />
+<meta property="og:description" content="大家好，我是站长 polarisxu。 01 说起 Go 语言，很多人知晓有三个创始人。在 2007 年 09 月 25 日，Rob Pike 发了一封邮件： 所以一般认为 Rob Pike、Ro" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://polarisxu.studygolang.com/posts/talk/go-celebrity-rsc/" />
+<meta property="article:published_time" content="2020-11-19T19:20:00+08:00" />
+<meta property="article:modified_time" content="2020-11-19T19:20:00+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Go 语言名人：除了 Rob Pike，很多人可能不知道他"/>
+<meta name="twitter:description" content="大家好，我是站长 polarisxu。 01 说起 Go 语言，很多人知晓有三个创始人。在 2007 年 09 月 25 日，Rob Pike 发了一封邮件： 所以一般认为 Rob Pike、Ro"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>Go 语言名人：除了 Rob Pike，很多人可能不知道他</title>
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
+	
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://polarisxu.studygolang.com">polarisxu</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+  <a href="https://polarisxu.studygolang.com/posts/">文章</a>
+  <a href="https://polarisxu.studygolang.com/go-categories/">Go系列</a>
+  <a href="https://polarisxu.studygolang.com/devtool-categories/">开发工具</a>
+  <a href="https://polarisxu.studygolang.com/about/">关于</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<button id="toc-btn" class="hdr-btn desktop-only-ib" title="目录"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3" y2="6"></line><line x1="3" y1="12" x2="3" y2="12"></line><line x1="3" y1="18" x2="3" y2="18"></line></svg></button><span class="hdr-social hide-in-mobile"><a href="https://github.com/polaris1119" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a><a href="https://twitter.com/polaris1119" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="菜单"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://polarisxu.studygolang.com/posts/">文章</a></li>
+			<li><a href="https://polarisxu.studygolang.com/go-categories/">Go系列</a></li>
+			<li><a href="https://polarisxu.studygolang.com/devtool-categories/">开发工具</a></li>
+			<li><a href="https://polarisxu.studygolang.com/about/">关于</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Nov 19, 2020</span></div>
+				<h1>Go 语言名人：除了 Rob Pike，很多人可能不知道他</h1>
+			</header>
+			<div class="content">
+				<p>大家好，我是站长 polarisxu。</p>
+<h2 id="01">01<a href="#01" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>说起 Go 语言，很多人知晓有三个创始人。在 2007 年 09 月 25 日，Rob Pike 发了一封邮件：</p>
+<p><p class="md__image">
+  <img src="../imgs/rsc01.jpg"
+    alt=""  />
+</p>
+</p>
+<p>所以一般认为 Rob Pike、Robert Griesemer 和 Ken Thompson 是 Go 的创始人，而很长一段时间，Rob Pike 在引领 Go 团队，同时在一些公众场合经常出现，因此大家对 Rob Piike 更熟悉。关于他们三个的情况，网上资料挺多的，这里不说了。</p>
+<p>今天说的是另外一个人。在 Go 项目启动后不久，Russ Cox 和 Lance Taylor 也加入了 Go 语言的设计团队。他们 5 人一起开发了两款编译器和一个标准库，为 2009 年 11 月 10 日 Go 语言以开源方式发布打下了基础。</p>
+<p><p class="md__image">
+  <img src="../imgs/rsc02.png"
+    alt=""  />
+</p>
+</p>
+<blockquote>
+<p>问题：为什么说开发了两款编译器？</p>
+</blockquote>
+<p>是的，今天要说的这个人就是 Russ Cox，他是现在 Go Team 的 Leader。</p>
+<h2 id="02">02<a href="#02" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>Russ Cox，网络上的昵称是 rsc，2008 年博士毕业于 MIT（麻省理工学院），毕业后就加入了 Go 核心设计开发团队，非常年轻。下面是毕业证信息，在 MIT 网站可以查到：<a href="https://pdos.csail.mit.edu/~rsc/">https://pdos.csail.mit.edu/~rsc/</a>。</p>
+<p><p class="md__image">
+  <img src="../imgs/rsc03.png"
+    alt=""  />
+</p>
+</p>
+<p>关于 Russ Cox 加入 Google 进入 Go Team 团队有一段小故事，这是 Russ Cox 本人在 2018 年 4 月份参加<a href="https://changelog.com/gotime/77" target="_blank" rel="noopener">第 77 期 GoTime</a>
+ 时讲述的。</p>
+<blockquote>
+<p>我上大学时就曾与 Rob Pike 合作参与 Plan 9 操作系统的开发，之后在 Google 研究院实习。当我读完研究生（博士）时，Rob 告诉我有关 Go 的内容，大概是说：“我们正在尝试吸收我们在 Plan 9 上开发软件时真正喜欢的所有东西，并使它们能够用于我们在 Google 的日常编程中。你想帮忙吗？”我当时想，“是的，当然。” 就这样我加入了 Go 团队。</p>
+<p>有趣的是，我在想这件事（因为你可能会问这个&hellip;那是十年前的事了），我自己不敢相信这有多幸运，因为我完成博士研究生学业的时候，这份工作随之而来，就像是我过去十年所做的所有事情的完美结合。似乎过去做的事情是为做 Go 这件事做铺垫。 然后我和所有这些伟大的人一起工作，比如 Rob，Ken，Robert Griesemer，Ian Taylor。。。我们辛苦了两年，然后 Go 开源了。</p>
+<p>然后真正令人惊讶的事情发生了，坦诚地说，我们没有人预料到，我们选择开源后，人们竟然想使用 Go。这对我们来说很震惊。 我在发布（开源发布）前几天对 Rob  说，我希望也许有几个人会注意到，理想的情况是，无论下一个大语言是什么，都会窃取 Go 的并发和接口思想。这将是我们使编程更好一点的微小贡献。</p>
+</blockquote>
+<p>大牛果然一开始就很厉害！</p>
+<p>此外在这个 Go Time 中，Russ Cox 谈到了较多 Plan9 的事情以及大篇幅说道 vgo 的设计。当然还有很多其他内容，虽然过去 2 年了，感兴趣的可以去读一读。</p>
+<p>实际上，几年前开始，Russ Cox 就已经是 Go Team 的技术负责人（Leader）。他会做一些领导工作，并帮助确定优先事项等。很多拿不定主意的决策都是 Russ Cox 最后拍板，很多时候他都是力排众议。相信大家印象最深的就是他设计的 vgo，即 Go Module 的前身，在这之前可是已经有了 dep 这个准官方解决方案。为此有一个 Go 的社区贡献者写文说 Go 是 Google 的而非社区的。Russ Cox 对此进行了<a href="https://groups.google.com/g/golang-nuts/c/6dKNSN0M_kg/m/Y1yDJRwQBgAJ" target="_blank" rel="noopener">回应</a>
+，同时引用了他 2015 年发表在 <a href="https://docs.studygolang.com/blog/open-source" target="_blank" rel="noopener">Go 官方博客上的文章</a>
+（那时候似乎就意识到会有这样的事情发生？）。这里我不做任何评价，相信每个人心里有自己的一杆秤。</p>
+<p>在整个 Go 代码仓库中，Russ Cox 提交的代码量是最多的。</p>
+<p><p class="md__image">
+  <img src="../imgs/rsc04.png"
+    alt=""  />
+</p>
+</p>
+<h2 id="03">03<a href="#03" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>推荐下 Russ Cox 的博客：<a href="https://research.swtch.com/">https://research.swtch.com/</a>，涉猎比较广。其中有一篇文章预测了<a href="https://research.swtch.com/gophercount" target="_blank" rel="noopener">世界上有多少 Go Developers</a>
+。你觉得有多少？</p>
+<p>Russ Cox 预测，截至 2019 年 11 月，估计是 115 万到 196 万。</p>
+<p>他给了一个预测的方法：</p>
+<blockquote>
+<p>Number of Go Developers    =    Number of Software Developers   ×   Fraction using Go</p>
+</blockquote>
+<p>所以我们需要回答世界上有多少软件开发人员，以及他们使用 Go 的百分比。这些数据主要通过一些第三方发布的调查、统计得到。有兴趣的可以看看他的预测方法。</p>
+<p>最后他得出：</p>
+<ul>
+<li>
+<p>2017 年 7 月，在 1680 万-2100 万的开发者中，有 3%-4.6％  Go 开发者，即 50 万 — 90 万；</p>
+</li>
+<li>
+<p>在 2018 年 7 月，在 1840 万-2300 万的开发者中，有 4.6%-7.1％ Go 开发者，即 85 万 - 163 万；</p>
+</li>
+<li>
+<p>在 2019 年 11 月，在 1890 万-2390 万的开发者中，有 6.1%-8.2％ Go 开发者，即 115 万 - 196 万；</p>
+</li>
+</ul>
+<p>你觉得中国有多少 Go 开发者？</p>
+<h2 id="04">04<a href="#04" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>Go 有这样的大牛主导开发，未来会越来越好！</p>
+<p><p class="md__image">
+  <img src="../imgs/rsc05.png"
+    alt=""  />
+</p>
+</p>
+<p>看看大牛的书房，除了各种书，我相信吸引你眼光的是那些 gopher 小玩偶吧！</p>
+<p>关于 Russ Cox，你还知道哪些事情？欢迎留言交流。</p>
+
+			</div><div class="content">
+	<br>
+	<img src="https://static.studygolang.com/static/img/polarisxu-qrcode-soso-s.png">
+</div>
+
+<div class="related-posts thin">
+	<h2>相关推荐</h2>
+	<ul>
+	
+	<li><a href="/posts/talk/go-and-business/">聊聊 Go 和创业</a></li>
+	
+	<li><a href="/posts/go/pkg/statsview/">通过这个 Runtime 统计信息可视化库学到了什么？</a></li>
+	
+	<li><a href="/posts/go/action/bytedance-interview-201112/">字节跳动面试真的也会问这样的问题？！</a></li>
+	
+	<li><a href="/posts/go/dynamic/go-opensource-11-years/">祝贺 Go 开源 11 周年</a></li>
+	
+	<li><a href="/posts/go/translation/rust-vs-go/">客观、全面的比较 Rust 与 Go</a></li>
+	
+	</ul>
+</div>
+
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://polarisxu.studygolang.com/tags/go">Go</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/rsc">rsc</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/rob">Rob</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1664 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2020-11-19 19:20 &#43;0800</p>
+			</footer>
+		</article>
+		<aside id="toc">
+			<div class="toc-title">目录</div>
+			<nav id="TableOfContents">
+  <ul>
+    <li><a href="#01">01</a></li>
+    <li><a href="#02">02</a></li>
+    <li><a href="#03">03</a></li>
+    <li><a href="#04">04</a></li>
+  </ul>
+</nav>
+		</aside>
+		<div class="post-nav thin">
+			<a class="prev-post" href="https://polarisxu.studygolang.com/posts/talk/go-and-business/">
+				<span class="post-nav-label">旧&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>聊聊 Go 和创业</span>
+			</a>
+		</div>
+		<div id="comments" class="thin"><script src="https://utteranc.es/client.js"
+	repo="polaris1119/polarisxu"
+	issue-term="pathname"
+	theme="github-light"
+	crossorigin="anonymous"
+	async>
+</script>
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2019 - 2020 <a href="https://polarisxu.studygolang.com">polarisxu</a> &#183; <a href="http://www.beian.miit.gov.cn/">京ICP备14030343号-1</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://polarisxu.studygolang.com/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+		<span id="busuanzi_container" style="color: #666;">
+			本站总访客数/访问量：<span id="busuanzi_value_site_uv"></span>/<span id="busuanzi_value_site_pv"></span>
+		</span>
+	</footer>
+
+
+
+	<script src="https://polarisxu.studygolang.com/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw=" crossorigin="anonymous"></script>
+	<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?224c227cd9239761ec770bc8c1fb134c";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+</body>
+
+</html>

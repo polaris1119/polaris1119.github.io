@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>rsc on polarisxu</title>
+    <link>https://polarisxu.studygolang.com/tags/rsc/</link>
+    <description>Recent content in rsc on polarisxu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
+    <lastBuildDate>Thu, 19 Nov 2020 19:20:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/rsc/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go 语言名人：除了 Rob Pike，很多人可能不知道他</title>
+      <link>https://polarisxu.studygolang.com/posts/talk/go-celebrity-rsc/</link>
+      <pubDate>Thu, 19 Nov 2020 19:20:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/talk/go-celebrity-rsc/</guid>
+      <description>大家好，我是站长 polarisxu。 01 说起 Go 语言，很多人知晓有三个创始人。在 2007 年 09 月 25 日，Rob Pike 发了一封邮件： 所以一般认为 Rob Pike、Ro</description>
+    </item>
+    
+  </channel>
+</rss>

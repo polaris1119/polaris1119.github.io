@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Wed, 18 Nov 2020 18:40:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 19 Nov 2020 19:20:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go 语言名人：除了 Rob Pike，很多人可能不知道他</title>
+      <link>https://polarisxu.studygolang.com/posts/talk/go-celebrity-rsc/</link>
+      <pubDate>Thu, 19 Nov 2020 19:20:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/talk/go-celebrity-rsc/</guid>
+      <description>大家好，我是站长 polarisxu。 01 说起 Go 语言，很多人知晓有三个创始人。在 2007 年 09 月 25 日，Rob Pike 发了一封邮件： 所以一般认为 Rob Pike、Ro</description>
+    </item>
+    
     <item>
       <title>聊聊 Go 和创业</title>
       <link>https://polarisxu.studygolang.com/posts/talk/go-and-business/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/translation/golang-ai-programming-language/</guid>
       <description>30 年前，Python 首次出现。但是花了 20 年时间才能获得开发人员的赏识。快进到 2019 年，它成为开发人员中第二受欢迎的语言。（来自 Stackoverflow 开发人员 2019 调查结</description>
-    </item>
-    
-    <item>
-      <title>闲聊昨晚极客时间的直播</title>
-      <link>https://polarisxu.studygolang.com/posts/go/action/talk-geek-time-live/</link>
-      <pubDate>Mon, 26 Oct 2020 18:12:51 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/action/talk-geek-time-live/</guid>
-      <description>昨天晚上（10 月 25 日）极客时间进行了一场直播，主题是：《未来 5 年将是 Go 语言的天下》。 客观说，这个主题还是挺唬人的，而直播的内容跟这个主题关系</description>
     </item>
     
   </channel>
