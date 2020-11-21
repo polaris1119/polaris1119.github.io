@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Thu, 19 Nov 2020 19:20:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/rsc/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 21 Nov 2020 21:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/rsc/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Russ  Cox 又有动态了：开源了一个 Go 工具</title>
+      <link>https://polarisxu.studygolang.com/posts/talk/go-rsc-dynamic/</link>
+      <pubDate>Sat, 21 Nov 2020 21:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/talk/go-rsc-dynamic/</guid>
+      <description>前天发了一篇文章，介绍了 Go 的名人，Go Team 现在的 Leader Russ Cox 。 01 这两天在大牛的 GitHub 上看到他开源了一个新的工具：一个实验性的，用于 Go 语言的重构工具。 项目</description>
+    </item>
+    
     <item>
       <title>Go 语言名人：除了 Rob Pike，很多人可能不知道他</title>
       <link>https://polarisxu.studygolang.com/posts/talk/go-celebrity-rsc/</link>

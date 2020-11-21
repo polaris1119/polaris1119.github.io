@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Thu, 19 Nov 2020 19:20:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 21 Nov 2020 21:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Russ  Cox 又有动态了：开源了一个 Go 工具</title>
+      <link>https://polarisxu.studygolang.com/posts/talk/go-rsc-dynamic/</link>
+      <pubDate>Sat, 21 Nov 2020 21:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/talk/go-rsc-dynamic/</guid>
+      <description>前天发了一篇文章，介绍了 Go 的名人，Go Team 现在的 Leader Russ Cox 。 01 这两天在大牛的 GitHub 上看到他开源了一个新的工具：一个实验性的，用于 Go 语言的重构工具。 项目</description>
+    </item>
+    
     <item>
       <title>Go 语言名人：除了 Rob Pike，很多人可能不知道他</title>
       <link>https://polarisxu.studygolang.com/posts/talk/go-celebrity-rsc/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/dynamic/go-embed-try/</guid>
       <description>大家好，我是站长 polarisxu。 喜欢 Go 语言有很多理由，其中有一点“因为编译为一个二进制文件，直接运行，没有其他依赖，使得部署特别容易。”</description>
-    </item>
-    
-    <item>
-      <title>AI 和 数据科学领域，Go 语言可能很快会取代 Python。最后的原因有点迷</title>
-      <link>https://polarisxu.studygolang.com/posts/go/translation/golang-ai-programming-language/</link>
-      <pubDate>Thu, 29 Oct 2020 21:40:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/translation/golang-ai-programming-language/</guid>
-      <description>30 年前，Python 首次出现。但是花了 20 年时间才能获得开发人员的赏识。快进到 2019 年，它成为开发人员中第二受欢迎的语言。（来自 Stackoverflow 开发人员 2019 调查结</description>
     </item>
     
   </channel>
