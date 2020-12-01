@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#fcfcfc">
+	<meta name="msapplication-TileColor" content="#fcfcfc">
+<meta itemprop="name" content="Hugo &#43; GitHub Pages 搭建自己的网站">
+<meta itemprop="description" content="大家好，我是站长 polarisxu。 很早之前，我使用 WordPress 搭建了个人博客：http://blog.studygolang.com，毕竟那时候 WordPress 是">
+<meta itemprop="datePublished" content="2020-12-01T11:30:00+08:00" />
+<meta itemprop="dateModified" content="2020-12-01T11:30:00+08:00" />
+<meta itemprop="wordCount" content="2487">
+
+
+
+<meta itemprop="keywords" content="Hugo,GitHub," />
+<meta property="og:title" content="Hugo &#43; GitHub Pages 搭建自己的网站" />
+<meta property="og:description" content="大家好，我是站长 polarisxu。 很早之前，我使用 WordPress 搭建了个人博客：http://blog.studygolang.com，毕竟那时候 WordPress 是" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://polarisxu.studygolang.com/posts/talk/myblog-with-hugo-github-pages/" />
+<meta property="article:published_time" content="2020-12-01T11:30:00+08:00" />
+<meta property="article:modified_time" content="2020-12-01T11:30:00+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Hugo &#43; GitHub Pages 搭建自己的网站"/>
+<meta name="twitter:description" content="大家好，我是站长 polarisxu。 很早之前，我使用 WordPress 搭建了个人博客：http://blog.studygolang.com，毕竟那时候 WordPress 是"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>Hugo &#43; GitHub Pages 搭建自己的网站</title>
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
+	
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://polarisxu.studygolang.com">polarisxu</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+  <a href="https://polarisxu.studygolang.com/posts/">文章</a>
+  <a href="https://polarisxu.studygolang.com/go-categories/">Go系列</a>
+  <a href="https://polarisxu.studygolang.com/devtool-categories/">开发工具</a>
+  <a href="https://polarisxu.studygolang.com/about/">关于</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<button id="toc-btn" class="hdr-btn desktop-only-ib" title="目录"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3" y2="6"></line><line x1="3" y1="12" x2="3" y2="12"></line><line x1="3" y1="18" x2="3" y2="18"></line></svg></button><span class="hdr-social hide-in-mobile"><a href="https://github.com/polaris1119" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a><a href="https://twitter.com/polaris1119" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="菜单"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://polarisxu.studygolang.com/posts/">文章</a></li>
+			<li><a href="https://polarisxu.studygolang.com/go-categories/">Go系列</a></li>
+			<li><a href="https://polarisxu.studygolang.com/devtool-categories/">开发工具</a></li>
+			<li><a href="https://polarisxu.studygolang.com/about/">关于</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Dec 1, 2020</span></div>
+				<h1>Hugo &#43; GitHub Pages 搭建自己的网站</h1>
+			</header>
+			<div class="content">
+				<p>大家好，我是站长 polarisxu。</p>
+<p>很早之前，我使用 WordPress 搭建了个人博客：<a href="http://blog.studygolang.com">http://blog.studygolang.com</a>，毕竟那时候 WordPress 是首选。现如今，大家似乎更喜欢静态博客，各种语言的静态博客生成器轮子不断，比如 Go 语言的 Hugo 就是一个静态博客生成器。我个人认为，静态博客生成器流行的一个很大原因，是 Markdown 的流行，开发人员习惯了使用 Markdown 进行写作。</p>
+<p>对于我，有另外一个痛点。最近在公众号写了一些文章，希望同步到博客，只是文字还好处理些，如果涉及到图片，微信公众号上传了一次，博客还得再来一次，挺费劲的。同时，为了保留最原始的文字，原始博文放在 GitHub 是一个不错的选择（用 Git 保留你的修改，不要太棒好嘛！）。</p>
+<p>既然博文都保存在了 GitHub 上，怎么方便快速的基于 GitHub 来搭建自己的博客呢？（有些人直接就让在 GitHub 阅读，虽然可以，但体验还是不太好，而且看起来没有那么高大上，是不是？）</p>
+<p>我想过使用 GitBook 来搭建，安装时，发现官方已经不维护 gitbook-cli 了，而且每次新增加文章，都得维护目录等，也是挺费劲的。于是放弃了这种方式。</p>
+<p>这时我想到了通过静态博客生成器来搞。最喜欢 Go，自然 Hugo 成为第一选择。</p>
+<p>废话不多少，记录下我搭建的过程。</p>
+<h2 id="01-安装-hugo">01 安装 Hugo<a href="#01-安装-hugo" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>你可以通过 <a href="https://github.com/gohugoio/hugo/releases">https://github.com/gohugoio/hugo/releases</a> 下载相应的安装包，我喜欢源码安装。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ go get -v github.com/gohugoio/hugo
+</code></pre></div><p>如果你也想通过源码安装，请自行准备好 Go 环境。</p>
+<p>查看版本同时验证是否安装成功：（查看该文时，最新版本可能变了）</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ hugo version
+Hugo Static Site Generator v0.76.5 darwin/amd64 BuildDate: unknown
+</code></pre></div><h2 id="02-使用-hugo">02 使用 Hugo<a href="#02-使用-hugo" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>在你本机某个目录执行如下命令，创建一个网站，我使用 polarisxu 这个名字。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ hugo new site polarisxu
+Congratulations! Your new Hugo site is created in /Users/xuxinhua/project/testhugo/polarisxu.
+
+Just a few more steps and you<span class="err">&#39;</span>re ready to go:
+
+1. Download a theme into the same-named folder.
+   Choose a theme from https://themes.gohugo.io/ or
+   create your own with the <span class="s2">&#34;hugo new theme &lt;THEMENAME&gt;&#34;</span> command.
+2. Perhaps you want to add some content. You can add single files
+   with <span class="s2">&#34;hugo new &lt;SECTIONNAME&gt;/&lt;FILENAME&gt;.&lt;FORMAT&gt;&#34;</span>.
+3. Start the built-in live server via <span class="s2">&#34;hugo server&#34;</span>.
+
+Visit https://gohugo.io/ <span class="k">for</span> quickstart guide and full documentation.
+</code></pre></div><p>进入 polarisxu 目录，查看目录结构如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ tree
+.
+├── archetypes
+│   └── default.md
+├── config.toml
+├── content
+├── data
+├── layouts
+├── static
+└── themes
+
+<span class="m">6</span> directories, <span class="m">2</span> files
+</code></pre></div><p>接下来需要为我们的网站指定一个主题，这里我们选择 <a href="https://themes.gohugo.io/hermit/">https://themes.gohugo.io/hermit/</a> 这个主题。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ git clone https://github.com/Track3/hermit.git themes/hermit
+</code></pre></div><p>将该主题增加到网站的配置文件中，这样才能生效：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">echo</span> <span class="s1">&#39;theme = &#34;hermit&#34;&#39;</span> &gt;&gt; config.toml
+</code></pre></div><p>测试下是否成功，运行：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ hugo serve
+</code></pre></div><p>打开浏览器访问：<a href="http://localhost:1313/">http://localhost:1313/</a>，看到如下内容：</p>
+<p><p class="md__image">
+  <img src="../imgs/hugo01.png"
+    alt=""  />
+</p>
+</p>
+<p>对该主题进行一些配置。一般的，主题会有例子，我们直接拷贝例子中的 config.toml 覆盖网站的 config.toml：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ cp -rf themes/hermit/exampleSite/config.toml .
+</code></pre></div><p>再次运行 <code>hugo serve</code>，页面如下：</p>
+<p><p class="md__image">
+  <img src="../imgs/hugo02.png"
+    alt=""  />
+</p>
+</p>
+<p>可见，这个页面内容可以通过 config.toml 配置，根据需要做一些修改，页面变成这样：（不同主题可能不一样）</p>
+<p><p class="md__image">
+  <img src="../imgs/hugo04.png"
+    alt=""  />
+</p>
+</p>
+<p>不过点击 「文章」 和 「关于」 都报 404。</p>
+<h3 id="增加列表页">增加列表页<a href="#增加列表页" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>在 content/posts 目录下新增一个文件：<code>_index.md</code>，内容如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-markdown" data-lang="markdown">---
+title: &#34;文章列表&#34;
+---
+</code></pre></div><p>这时（hugo serve 会自动编译）点击 Posts，页面如下：</p>
+<p><p class="md__image">
+  <img src="../imgs/hugo03.png"
+    alt=""  />
+</p>
+</p>
+<h3 id="增加-about-页面">增加 About 页面<a href="#增加-about-页面" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>同样的，在 content/posts 目录下新增文件 <code>about.md</code>，正文内容随意，类似这样：</p>
+<div class="highlight"><pre class="chroma"><code class="language-markdown" data-lang="markdown">---
+title: &#34;关于&#34;
+date: &#34;2020-12-01&#34;
+---
+
+这是关于页面，polarisxu。
+</code></pre></div><h3 id="测试文章">测试文章<a href="#测试文章" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>接着，增加一篇测试文章：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ hugo new posts/my-first-post.md
+</code></pre></div><p>这会在 content/posts 目录下生成一个 my-first-post.md 文件，里面内容如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-markdown" data-lang="markdown">---
+title: &#34;My First Post&#34;
+date: 2020-11-30T23:33:03+08:00
+draft: true
+toc: false
+images:
+tags:
+  <span class="k">-</span> untagged
+---
+</code></pre></div><p>其中 <code>---</code> 之间的数据是文章的元数据，在 Hugo 中叫做 <a href="https://gohugo.io/content-management/front-matter/" target="_blank" rel="noopener">Front Matter</a>
+。</p>
+<p>随意增加一些内容，并做一些修改：（其中 isCJKLanguage: true 用于准确计算中文字数）</p>
+<div class="highlight"><pre class="chroma"><code class="language-markdown" data-lang="markdown">---
+title: &#34;第一篇文章&#34;
+date: 2020-11-30T23:33:03+08:00
+draft: false
+toc: false
+isCJKLanguage: true
+images:
+tags: 
+  <span class="k">-</span> 文章
+---
+
+这是第一篇文章。。。
+</code></pre></div><p>查看文章详情：<a href="http://localhost:1313/posts/my-first-post/">http://localhost:1313/posts/my-first-post/</a>。</p>
+<p><p class="md__image">
+  <img src="../imgs/hugo05.png"
+    alt=""  />
+</p>
+</p>
+<p>如果文章完成，可以执行 <code>hugo</code> 命令，生成静态页面。默认会将生成的静态页面放入 public 目录中。</p>
+<p>关于 Hugo 更多的定制，比如 theme 的定制，这里不过多讲解，有兴趣的自己琢磨。比如虽然 <a href="https://polarisxu.studygolang.com/">https://polarisxu.studygolang.com/</a> 和这里的例子使用了同一个模板，但样子却有不少不同，你可以查看 <a href="https://github.com/polaris1119/polarisxu">https://github.com/polaris1119/polarisxu</a>，对比到底做了什么，折腾一番，基本会了。</p>
+<h2 id="03-使用-github-pages-部署站点">03 使用 GitHub Pages 部署站点<a href="#03-使用-github-pages-部署站点" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>这是 GitHub 为你和你的项目准备网站的，GitHub Pages 官方站点：<a href="https://pages.github.com/">https://pages.github.com/</a>，大概就是通过将网站内容放到 GitHub，通过 GitHub Pages 可以弄出一个自己的站点。它最常使用的是通过 Jekyll 这个站点生成器生成静态页面，有兴趣的自行查阅资料了解。我们应该使用 Hugo 生成静态页面，因此直接将静态页面部署到 GitHub Pages。</p>
+<h3 id="创建一个特殊的仓库">创建一个特殊的仓库<a href="#创建一个特殊的仓库" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>在 GitHub 上创建一个仓库，不过仓库名有特殊要求。如果是个人账号，比如我的 GitHub ID 是 polaris1119，则仓库名是：polaris1119.github.io；如果是组织账号，比如 studygolang 这个组织，则仓库名是：studygolang.github.io。</p>
+<h3 id="配置仓库">配置仓库<a href="#配置仓库" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>进入仓库的 Settings 页面，有一个区块叫 GitHub Pages，可以配置站点信息，比如内容来源、自定义域名、是否启用 HTTPS 等。</p>
+<p><p class="md__image">
+  <img src="../imgs/hugo06.png"
+    alt=""  />
+</p>
+</p>
+<p>说明如下：</p>
+<ul>
+<li>数据源默认使用主分支下的根目录，我个人建议改为 docs 目录；</li>
+<li>自定义域名如果留空，则默认仓库名就是你的域名，比如我这里的 polaris1119.github.io；</li>
+<li>如果配置了自定义域名，则需要在你的域名配置上 CNAME 记录。我这里就是 polarisxu 这个子域名的 CNAME 值是 polaris1119.github.io；</li>
+<li>如果配置了自定义域名，启用 HTTPS 需要等待一段时间才能生效；</li>
+</ul>
+<p>你可以在该仓库上正确的位置放置一个 index.html 文件，测试是否正常。</p>
+<blockquote>
+<p>小细节：避免 Jekyll 起作用，可以在仓库根目录放一个空文件，文件名： .nojekyll</p>
+</blockquote>
+<h3 id="部署我们的站点">部署我们的站点<a href="#部署我们的站点" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>这里有两种做法。</p>
+<p><strong>1）方法一</strong></p>
+<p>上面 Hugo 项目的代码直接推送到 GitHub Pages 这个仓库中，在通过 Hugo 生成静态页面时，指定目标目录为 docs：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ hugo -d docs
+</code></pre></div><p>这样 docs 下面的内容就是静态页面，是网站最终展示的内容。</p>
+<p><strong>2）方法二</strong></p>
+<p>Hugo 源网站内容单独放在一个仓，比如我放在了 <a href="https://github.com/polaris1119/polarisxu">https://github.com/polaris1119/polarisxu</a> 这个仓库。这样分两个仓库相对麻烦先。但也有一个好处：GitHub Pages 站点有内容大小限制：不能超过 1 GB，这样分开可以节省空间，而且 Hugo 内容和站点解耦。</p>
+<p>因此每次在 Hugo 站点项目写完文章后，需要生成静态内容，拷贝到 GitHub Pages 仓库，提交代码等。把这些步骤写成一个脚本，瞬间变简单了。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/bin/sh
+</span><span class="cp"></span>
+hugo
+
+cp -rf public/* ../polaris1119.github.io/docs/
+
+<span class="nb">cd</span> ../polaris1119.github.io/
+
+git add * <span class="o">&amp;&amp;</span> git commit -m <span class="s1">&#39;new article&#39;</span> <span class="o">&amp;&amp;</span> git push
+
+<span class="nb">cd</span> ../polarisxu/
+</code></pre></div><h2 id="04-总结">04 总结<a href="#04-总结" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>技术人员搞个自己的博客还是不错的，开始时花些时间折腾一个自己喜欢的站点，之后就是抽时间产出内容了。通过上面的介绍可知，现在搭建一个站点，完全不需要投入任何 money。</p>
+<p>怎么样？有没有冲动自己搞一个。欢迎交流~</p>
+
+			</div><div class="content">
+	<br>
+	<img src="https://static.studygolang.com/static/img/polarisxu-qrcode-soso-s.png">
+</div>
+
+<div class="related-posts thin">
+	<h2>相关推荐</h2>
+	<ul>
+	
+	<li><a href="/posts/talk/view-github-discussions/">GitHub 出的这个功能，让开源项目有了自己的社区</a></li>
+	
+	</ul>
+</div>
+
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://polarisxu.studygolang.com/tags/hugo">Hugo</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/github">GitHub</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>2487 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2020-12-01 11:30 &#43;0800</p>
+			</footer>
+		</article>
+		<aside id="toc">
+			<div class="toc-title">目录</div>
+			<nav id="TableOfContents">
+  <ul>
+    <li><a href="#01-安装-hugo">01 安装 Hugo</a></li>
+    <li><a href="#02-使用-hugo">02 使用 Hugo</a>
+      <ul>
+        <li><a href="#增加列表页">增加列表页</a></li>
+        <li><a href="#增加-about-页面">增加 About 页面</a></li>
+        <li><a href="#测试文章">测试文章</a></li>
+      </ul>
+    </li>
+    <li><a href="#03-使用-github-pages-部署站点">03 使用 GitHub Pages 部署站点</a>
+      <ul>
+        <li><a href="#创建一个特殊的仓库">创建一个特殊的仓库</a></li>
+        <li><a href="#配置仓库">配置仓库</a></li>
+        <li><a href="#部署我们的站点">部署我们的站点</a></li>
+      </ul>
+    </li>
+    <li><a href="#04-总结">04 总结</a></li>
+  </ul>
+</nav>
+		</aside>
+		<div class="post-nav thin">
+			<a class="prev-post" href="https://polarisxu.studygolang.com/posts/talk/go-rsc-dynamic/">
+				<span class="post-nav-label">旧&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>Russ Cox 又有动态了：开源了一个 Go 工具</span>
+			</a>
+		</div>
+		<div id="comments" class="thin"><script src="https://utteranc.es/client.js"
+	repo="polaris1119/polarisxu"
+	issue-term="pathname"
+	theme="github-light"
+	crossorigin="anonymous"
+	async>
+</script>
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2019 - 2020 <a href="https://polarisxu.studygolang.com">polarisxu</a> &#183; <a href="http://www.beian.miit.gov.cn/">京ICP备14030343号-1</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://polarisxu.studygolang.com/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+		<span id="busuanzi_container" style="color: #666;">
+			本站总访客数/访问量：<span id="busuanzi_value_site_uv"></span>/<span id="busuanzi_value_site_pv"></span>
+		</span>
+	</footer>
+
+
+
+	<script src="https://polarisxu.studygolang.com/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw=" crossorigin="anonymous"></script>
+	<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?224c227cd9239761ec770bc8c1fb134c";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+</body>
+
+</html>

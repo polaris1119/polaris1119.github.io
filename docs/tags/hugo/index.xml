@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>GitHub on polarisxu</title>
-    <link>https://polarisxu.studygolang.com/tags/github/</link>
-    <description>Recent content in GitHub on polarisxu</description>
+    <title>Hugo on polarisxu</title>
+    <link>https://polarisxu.studygolang.com/tags/hugo/</link>
+    <description>Recent content in Hugo on polarisxu</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Tue, 01 Dec 2020 11:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/github/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 01 Dec 2020 11:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Hugo &#43; GitHub Pages 搭建自己的网站</title>
       <link>https://polarisxu.studygolang.com/posts/talk/myblog-with-hugo-github-pages/</link>
@@ -15,15 +15,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/talk/myblog-with-hugo-github-pages/</guid>
       <description>大家好，我是站长 polarisxu。 很早之前，我使用 WordPress 搭建了个人博客：http://blog.studygolang.com，毕竟那时候 WordPress 是</description>
-    </item>
-    
-    <item>
-      <title>GitHub 出的这个功能，让开源项目有了自己的社区</title>
-      <link>https://polarisxu.studygolang.com/posts/talk/view-github-discussions/</link>
-      <pubDate>Thu, 12 Nov 2020 10:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/talk/view-github-discussions/</guid>
-      <description>大家好，我是站长 polarisxu。 为了更有利于开源项目的发展，形成自己的社区很重要，作者们可以更好地和使用者交流互动，了解他们需求、问题。</description>
     </item>
     
   </channel>

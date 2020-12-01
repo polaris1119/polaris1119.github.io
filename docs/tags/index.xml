@@ -7,7 +7,25 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Sat, 21 Nov 2020 21:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 01 Dec 2020 11:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>GitHub</title>
+      <link>https://polarisxu.studygolang.com/tags/github/</link>
+      <pubDate>Tue, 01 Dec 2020 11:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/tags/github/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Hugo</title>
+      <link>https://polarisxu.studygolang.com/tags/hugo/</link>
+      <pubDate>Tue, 01 Dec 2020 11:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/tags/hugo/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>Go</title>
       <link>https://polarisxu.studygolang.com/tags/go/</link>
@@ -77,24 +95,6 @@
       <pubDate>Tue, 17 Nov 2020 15:12:00 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/tags/%E7%BB%9F%E8%AE%A1/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>面试题</title>
-      <link>https://polarisxu.studygolang.com/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/</link>
-      <pubDate>Thu, 12 Nov 2020 18:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>GitHub</title>
-      <link>https://polarisxu.studygolang.com/tags/github/</link>
-      <pubDate>Thu, 12 Nov 2020 10:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/tags/github/</guid>
       <description></description>
     </item>
     

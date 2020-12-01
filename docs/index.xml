@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Sat, 21 Nov 2020 21:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 01 Dec 2020 11:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hugo &#43; GitHub Pages 搭建自己的网站</title>
+      <link>https://polarisxu.studygolang.com/posts/talk/myblog-with-hugo-github-pages/</link>
+      <pubDate>Tue, 01 Dec 2020 11:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/talk/myblog-with-hugo-github-pages/</guid>
+      <description>大家好，我是站长 polarisxu。 很早之前，我使用 WordPress 搭建了个人博客：http://blog.studygolang.com，毕竟那时候 WordPress 是</description>
+    </item>
+    
     <item>
       <title>Russ Cox 又有动态了：开源了一个 Go 工具</title>
       <link>https://polarisxu.studygolang.com/posts/talk/go-rsc-dynamic/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/micro/micro-3.0.0-m3o/</guid>
       <description>用过或了解过 Micro 这个框架的人，可能有所耳闻，大家对其抱怨比较多，典型的抱怨是升级后不兼容。比如网上有教程是基于 1.x，但新版本是 2.x，完全不</description>
-    </item>
-    
-    <item>
-      <title>除了 fmt.Errorf() 之外—Go 中的日常错误对象：CockroachDB errors 库（第4篇）</title>
-      <link>https://polarisxu.studygolang.com/posts/go/translation/cockroachdb-errors-everyday/</link>
-      <pubDate>Wed, 04 Nov 2020 21:00:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/translation/cockroachdb-errors-everyday/</guid>
-      <description>在 Go 中传递错误的惯用方式是使用预定义的类型错误。但是 Go 的标准库仅提供了非常简单的错误对象，errors.New() 和fmt.Errorf()</description>
     </item>
     
   </channel>

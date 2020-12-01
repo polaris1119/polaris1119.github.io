@@ -3,12 +3,37 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://polarisxu.studygolang.com/tags/go/</loc>
-    <lastmod>2020-11-21T21:30:00+08:00</lastmod>
+    <loc>https://polarisxu.studygolang.com/tags/github/</loc>
+    <lastmod>2020-12-01T11:30:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polarisxu.studygolang.com/tags/hugo/</loc>
+    <lastmod>2020-12-01T11:30:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polarisxu.studygolang.com/posts/talk/myblog-with-hugo-github-pages/</loc>
+    <lastmod>2020-12-01T11:30:00+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://polarisxu.studygolang.com/</loc>
+    <lastmod>2020-12-01T11:30:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polarisxu.studygolang.com/tags/</loc>
+    <lastmod>2020-12-01T11:30:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polarisxu.studygolang.com/posts/</loc>
+    <lastmod>2020-12-01T11:30:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polarisxu.studygolang.com/tags/go/</loc>
     <lastmod>2020-11-21T21:30:00+08:00</lastmod>
   </url>
   
@@ -23,17 +48,7 @@
   </url>
   
   <url>
-    <loc>https://polarisxu.studygolang.com/tags/</loc>
-    <lastmod>2020-11-21T21:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://polarisxu.studygolang.com/tags/tool/</loc>
-    <lastmod>2020-11-21T21:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://polarisxu.studygolang.com/posts/</loc>
     <lastmod>2020-11-21T21:30:00+08:00</lastmod>
   </url>
   
@@ -85,11 +100,6 @@
   <url>
     <loc>https://polarisxu.studygolang.com/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/</loc>
     <lastmod>2020-11-12T18:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://polarisxu.studygolang.com/tags/github/</loc>
-    <lastmod>2020-11-12T10:30:00+08:00</lastmod>
   </url>
   
   <url>
