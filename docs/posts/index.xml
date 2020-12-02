@@ -26,7 +26,11 @@
 </li>
 <li>
 <p>看 Go 仓库的提交记录；</p>
-<p>![image-20201202180414759](/Users/xuxinhua/Library/Application Support/typora-user-images/image-20201202180414759.png)</p>
+<p><p class="md__image">
+  <img src="../imgs/go-commit-log.png"
+    alt=""  />
+</p>
+</p>
 </li>
 <li>
 <p>查看 <a href="https://tip.golang.org">https://tip.golang.org</a>。这个一般在一个版本开发了一段时间看，比如现在可以看 Go1.16 的一些内容，主要可以看还未完成的 Release Notes：<a href="https://tip.golang.org/doc/go1.16">https://tip.golang.org/doc/go1.16</a>。其实这个文件是 Go 代码仓库中的 doc/go1.16.html；</p>
