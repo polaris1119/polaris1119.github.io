@@ -7,7 +7,34 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Tue, 01 Dec 2020 11:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 02 Dec 2020 19:20:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go</title>
+      <link>https://polarisxu.studygolang.com/tags/go/</link>
+      <pubDate>Wed, 02 Dec 2020 19:20:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/tags/go/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Go1.16</title>
+      <link>https://polarisxu.studygolang.com/tags/go1.16/</link>
+      <pubDate>Wed, 02 Dec 2020 19:20:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/tags/go1.16/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>动态</title>
+      <link>https://polarisxu.studygolang.com/tags/%E5%8A%A8%E6%80%81/</link>
+      <pubDate>Wed, 02 Dec 2020 19:20:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/tags/%E5%8A%A8%E6%80%81/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>GitHub</title>
       <link>https://polarisxu.studygolang.com/tags/github/</link>
@@ -23,15 +50,6 @@
       <pubDate>Tue, 01 Dec 2020 11:30:00 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/tags/hugo/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Go</title>
-      <link>https://polarisxu.studygolang.com/tags/go/</link>
-      <pubDate>Sat, 21 Nov 2020 21:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/tags/go/</guid>
       <description></description>
     </item>
     
@@ -77,24 +95,6 @@
       <pubDate>Tue, 17 Nov 2020 15:12:00 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/tags/golang/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>第三方库</title>
-      <link>https://polarisxu.studygolang.com/tags/%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93/</link>
-      <pubDate>Tue, 17 Nov 2020 15:12:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/tags/%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>统计</title>
-      <link>https://polarisxu.studygolang.com/tags/%E7%BB%9F%E8%AE%A1/</link>
-      <pubDate>Tue, 17 Nov 2020 15:12:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/tags/%E7%BB%9F%E8%AE%A1/</guid>
       <description></description>
     </item>
     

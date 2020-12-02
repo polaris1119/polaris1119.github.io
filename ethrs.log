@@ -1,0 +1,24 @@
+{"Time":"2020-12-01T06:27:33Z","Type":"INFO","Message":"Listening on 9999 for TCP bandwidth tests"}
+{"Time":"2020-12-01T06:27:33Z","Type":"INFO","Message":"Listening on 9998 for TCP conn/s tests"}
+{"Time":"2020-12-01T06:27:33Z","Type":"INFO","Message":"Listening on 9996 for TCP latency tests"}
+{"Time":"2020-12-01T06:27:33Z","Type":"INFO","Message":"Listening on 9899 for HTTP bandwidth tests"}
+{"Time":"2020-12-01T06:27:33Z","Type":"INFO","Message":"Listening on 9799 for HTTPS bandwidth tests"}
+{"Time":"2020-12-01T06:27:33Z","Type":"INFO","Message":"Listening on 8888 for control plane"}
+{"Time":"2020-12-01T06:27:44Z","Type":"INFO","Message":"Listening on 9999 for TCP bandwidth tests"}
+{"Time":"2020-12-01T06:27:44Z","Type":"INFO","Message":"Listening on 9998 for TCP conn/s tests"}
+{"Time":"2020-12-01T06:27:44Z","Type":"INFO","Message":"Listening on 9996 for TCP latency tests"}
+{"Time":"2020-12-01T06:27:44Z","Type":"INFO","Message":"Listening on 9899 for HTTP bandwidth tests"}
+{"Time":"2020-12-01T06:27:45Z","Type":"INFO","Message":"Listening on 9799 for HTTPS bandwidth tests"}
+{"Time":"2020-12-01T06:27:45Z","Type":"INFO","Message":"Listening on 8888 for control plane"}
+{"Time":"2020-12-01T06:27:51Z","Type":"INFO","Message":"Listening on 9999 for TCP bandwidth tests"}
+{"Time":"2020-12-01T06:27:51Z","Type":"INFO","Message":"Listening on 9998 for TCP conn/s tests"}
+{"Time":"2020-12-01T06:27:51Z","Type":"INFO","Message":"Listening on 9996 for TCP latency tests"}
+{"Time":"2020-12-01T06:27:51Z","Type":"INFO","Message":"Listening on 9899 for HTTP bandwidth tests"}
+{"Time":"2020-12-01T06:27:52Z","Type":"INFO","Message":"Listening on 9799 for HTTPS bandwidth tests"}
+{"Time":"2020-12-01T06:27:52Z","Type":"INFO","Message":"Listening on 8888 for control plane"}
+{"Time":"2020-12-01T06:32:04Z","Type":"INFO","Message":"Listening on 9999 for TCP bandwidth tests"}
+{"Time":"2020-12-01T06:32:04Z","Type":"INFO","Message":"Listening on 9998 for TCP conn/s tests"}
+{"Time":"2020-12-01T06:32:04Z","Type":"INFO","Message":"Listening on 9996 for TCP latency tests"}
+{"Time":"2020-12-01T06:32:04Z","Type":"INFO","Message":"Listening on 9899 for HTTP bandwidth tests"}
+{"Time":"2020-12-01T06:32:04Z","Type":"INFO","Message":"Listening on 9799 for HTTPS bandwidth tests"}
+{"Time":"2020-12-01T06:32:04Z","Type":"INFO","Message":"Listening on 8888 for control plane"}

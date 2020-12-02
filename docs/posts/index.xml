@@ -6,8 +6,113 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en</language>
 		<copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-		<lastBuildDate>Tue, 01 Dec 2020 11:30:00 +0800</lastBuildDate>
+		<lastBuildDate>Wed, 02 Dec 2020 19:20:00 +0800</lastBuildDate>
 		<atom:link href="https://polarisxu.studygolang.com/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>列举一些 Go1.16 中可能对大家有影响的变化</title>
+			<link>https://polarisxu.studygolang.com/posts/go/dynamic/go1.16-changes-2020/</link>
+			<pubDate>Wed, 02 Dec 2020 19:20:00 +0800</pubDate>
+			
+			<guid>https://polarisxu.studygolang.com/posts/go/dynamic/go1.16-changes-2020/</guid>
+			<description>大家好，我是站长 polarisxu。 先说一下我一般怎么了解 Go 最新的一些动态。 01 从哪获取信息 主要通过以下方式： 逛推特，通过搜索功能，浏览 Go 信息</description>
+			<content type="html"><![CDATA[<p>大家好，我是站长 polarisxu。</p>
+<p>先说一下我一般怎么了解 Go 最新的一些动态。</p>
+<h2 id="01-从哪获取信息">01 从哪获取信息</h2>
+<p>主要通过以下方式：</p>
+<ul>
+<li>
+<p>逛推特，通过搜索功能，浏览 Go 信息，比如搜索：<code>#golang since:2020-12-01 until:2020-12-02</code></p>
+</li>
+<li>
+<p>看 Go 仓库的提交记录；</p>
+<p>![image-20201202180414759](/Users/xuxinhua/Library/Application Support/typora-user-images/image-20201202180414759.png)</p>
+</li>
+<li>
+<p>查看 <a href="https://tip.golang.org">https://tip.golang.org</a>。这个一般在一个版本开发了一段时间看，比如现在可以看 Go1.16 的一些内容，主要可以看还未完成的 Release Notes：<a href="https://tip.golang.org/doc/go1.16">https://tip.golang.org/doc/go1.16</a>。其实这个文件是 Go 代码仓库中的 doc/go1.16.html；</p>
+</li>
+</ul>
+<p>此外，Reddit 的 r/golang 频道也会有很多信息。</p>
+<h2 id="02-go-116-的一些改动">02 Go 1.16 的一些改动</h2>
+<p>按计划，Go1.16 会在 2021 年 2 月份发布。目前 Release Notes 中已经有部分内容了。</p>
+<h3 id="module-模式会默认开启">Module 模式会默认开启</h3>
+<p>经过了这么多版本，终于默认开启了。默认开启是什么意思？即 GO111MODULE 环境变量的默认值将从 auto 改变为 on。这将解决一些目前使用 go 命令时的尴尬 。比如有些人可能说，明明我设置了 GOPROXY，但是 go get 依然没有经过它，下载依然失败。这是因为在非 modules 感知目录下运行 go get 时，自动选择了 GOPATH 模式而忽略了 GOPROXY 环境变量。如果你现在遇到这种情况，请手动将 GO111MODULE 环境变量更改为 on。</p>
+<h3 id="内嵌静态资源">内嵌静态资源</h3>
+<p>支持内嵌静态资源（文件或者文件夹）至生成的二进制文件中。这部分之前写文章介绍过，<a href="https://mp.weixin.qq.com/s/SiCTV7R2wA_I2nCQkC3GGQ" target="_blank" rel="noopener">见这里</a>
+。</p>
+<h3 id="支持最新版本-mac">支持最新版本 Mac</h3>
+<p>最新版 Mac 使用了 ARM 架构，因此 Go 1.16 增加 <code>GOOS=darwin, GOARCH=arm64</code> 支持，而这之前是用于 iOS 的，以后 iOS port 改为 <code>GOOS=ios, GOARCH=arm64</code>。</p>
+<h3 id="linux-系统下-rss-会更准确">Linux 系统下 RSS 会更准确</h3>
+<p>在 Linux 上，runtime 现在默认会迅速地（使用 MADV_DONTNEED）向操作系统释放内存，而不是在操作系统面临内存压力时（使用 MADV_FREE）惰性地释放内存。</p>
+<p>这意味着像 RSS 这样的进程级内存统计信息将更准确地反映 Go 进程所使用的物理内存数量。因此 Go1.16 中，不再需要配置 GODEBUG=madvdontneed=1 来改善内存监控行为。</p>
+<h3 id="切片扩容策略改变">切片扩容策略改变</h3>
+<p>如果一个 <code>append(x, values…)</code> 调用需要扩容，则基础切片 x 的容量将决定结果切片的容量（而不是原来的基础切片 x 的长度决定结果切片的容量）。</p>
+<p>借用<a href="https://mp.weixin.qq.com/s/JAWKZeDSNYJlVc6GPNKqlg" target="_blank" rel="noopener">公众号 Go101</a>
+ 中的例子：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">N</span> <span class="p">=</span> <span class="mi">1024</span>
+  <span class="kd">var</span> <span class="nx">a</span> <span class="p">[</span><span class="nx">N</span><span class="p">]</span><span class="kt">int</span>
+  <span class="nx">x</span> <span class="o">:=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">a</span><span class="p">[:</span><span class="nx">N</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="nx">N</span><span class="p">],</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span>
+  <span class="nx">y</span> <span class="o">:=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">a</span><span class="p">[:</span><span class="nx">N</span><span class="p">:</span><span class="nx">N</span><span class="p">],</span> <span class="mi">9</span><span class="p">)</span>
+  <span class="nb">println</span><span class="p">(</span><span class="nb">cap</span><span class="p">(</span><span class="nx">x</span><span class="p">),</span> <span class="nb">cap</span><span class="p">(</span><span class="nx">y</span><span class="p">))</span>
+<span class="p">}</span>
+</code></pre></div><p>Go 1.15 将输出 2048 1280，但是使用 Go 1.16 将输出 1280 1280。</p>
+<p>具体提交见：<a href="https://github.com/golang/go/commit/2333c6299f340a5f76a73a4fec6db23ffa388e97?branch=2333c6299f340a5f76a73a4fec6db23ffa388e97&amp;diff=unified">https://github.com/golang/go/commit/2333c6299f340a5f76a73a4fec6db23ffa388e97?branch=2333c6299f340a5f76a73a4fec6db23ffa388e97&amp;diff=unified</a>。</p>
+<h3 id="标准库">标准库</h3>
+<p>1）增加了 io/fs、embed 等库。</p>
+<p>2）template 允许跨行。例如：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="p">{{</span><span class="s">&#34;hello&#34;</span> <span class="p">|</span>
+   <span class="nx">printf</span><span class="p">}}</span>
+</code></pre></div><p>3）strconv.ParseFloat 性能提升 2 倍。原因是它改为使用 <a href="https://nigeltao.github.io/blog/2020/eisel-lemire.html" target="_blank" rel="noopener">Eisel-Lemire 算法</a>
+。这也会加速解码诸如 encoding/json 这样的文本格式。</p>
+<h3 id="简化的结构体字段标签写法">简化的结构体字段标签写法</h3>
+<p>在进行 Web 开发时，Model 类可能会有好几种标签，写起来很繁琐，因此还出现了不少这样辅助写标签的工具。Go 1.16 开始，结构体字段的标签中的值相同的键值对可以合并写成一个，方便很多，比如：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">User</span> <span class="kd">struct</span> <span class="p">{</span>
+  <span class="nx">UserName</span> <span class="kt">string</span> <span class="s">`json bson gorm:&#34;user_name,omitempty&#34;`</span>
+<span class="p">}</span>
+</code></pre></div><h3 id="知晓-init-函数的执行时间和内存消耗">知晓 init 函数的执行时间和内存消耗</h3>
+<p>关于该函数，大家都建议尽量别用，至少不能依赖它。同时不应该在其中处理耗时的事情。但之前没有很好地方法检测。Go 1.16 为 GODEBUG 环境变量增加了 inittrace=1 选项，可以输出 init 函数的执行时间和内存消耗。</p>
+<p>再次借用 <a href="https://mp.weixin.qq.com/s/Lz1PwW0mzWMNxiuJBvdcXA" target="_blank" rel="noopener">Go101 的例子</a>
+。</p>
+<p>对于下面的程序：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kd">func</span> <span class="nf">init</span><span class="p">()</span> <span class="p">{</span>
+	<span class="nb">println</span><span class="p">(</span><span class="s">&#34;hello&#34;</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nb">println</span><span class="p">(</span><span class="s">&#34;bye&#34;</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div><p>使用下面的命令运行（Linux 系统，Go tip rev:7f688d18c0）:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nv">GODEBUG</span><span class="o">=</span><span class="nv">inittrace</span><span class="o">=</span><span class="m">1</span> go run main.go 
+</code></pre></div><p>的输出为：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">init internal/bytealg @0.018 ms, <span class="m">0</span> ms clock, <span class="m">0</span> bytes, <span class="m">0</span> allocs
+init runtime @0.15 ms, 0.56 ms clock, <span class="m">0</span> bytes, <span class="m">0</span> allocs
+init errors @1.7 ms, 0.010 ms clock, <span class="m">0</span> bytes, <span class="m">0</span> allocs
+init sync @1.8 ms, 0.001 ms clock, <span class="m">16</span> bytes, <span class="m">1</span> allocs
+init internal/oserror @1.8 ms, 0.001 ms clock, <span class="m">80</span> bytes, <span class="m">5</span> allocs
+init syscall @1.9 ms, 0.010 ms clock, <span class="m">944</span> bytes, <span class="m">2</span> allocs
+init <span class="nb">time</span> @1.9 ms, 0.014 ms clock, <span class="m">400</span> bytes, <span class="m">8</span> allocs
+init context @2.0 ms, 0.002 ms clock, <span class="m">128</span> bytes, <span class="m">4</span> allocs
+init math @2.0 ms, <span class="m">0</span> ms clock, <span class="m">0</span> bytes, <span class="m">0</span> allocs
+init strconv @2.1 ms, 0.006 ms clock, <span class="m">32</span> bytes, <span class="m">2</span> allocs
+init unicode @2.1 ms, 0.086 ms clock, <span class="m">23944</span> bytes, <span class="m">27</span> allocs
+...
+init internal/bytealg @0 ms, <span class="m">0</span> ms clock, <span class="m">0</span> bytes, <span class="m">0</span> allocs
+init runtime @0.048 ms, 0.042 ms clock, <span class="m">0</span> bytes, <span class="m">0</span> allocs
+hello
+init main @0.21 ms, 0.004 ms clock, <span class="m">0</span> bytes, <span class="m">0</span> allocs
+bye
+</code></pre></div><p>可见此 GODEBUG 环境变量选项对于查找 init 函数中的瓶颈很有帮助。</p>
+<p>相关 issue: <a href="https://github.com/golang/go/issues/41378">https://github.com/golang/go/issues/41378</a>。</p>
+<h2 id="03-总结">03 总结</h2>
+<p>Go 1.16 相比 Go 1.15 改动多不少，更多内容等待明年 2 月份发布。</p>
+<p>另外推荐 Go101 这本开源书，作者对 Go 的细节掌握的很深，而且他写了双语版，这里是中文版：<a href="https://github.com/golang101/golang101">https://github.com/golang101/golang101</a>。</p>
+]]></content>
+		</item>
 		
 		<item>
 			<title>Hugo &#43; GitHub Pages 搭建自己的网站</title>

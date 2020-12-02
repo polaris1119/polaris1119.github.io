@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#fcfcfc">
+	<meta name="msapplication-TileColor" content="#fcfcfc">
+<meta itemprop="name" content="列举一些 Go1.16 中可能对大家有影响的变化">
+<meta itemprop="description" content="大家好，我是站长 polarisxu。 先说一下我一般怎么了解 Go 最新的一些动态。 01 从哪获取信息 主要通过以下方式： 逛推特，通过搜索功能，浏览 Go 信息">
+<meta itemprop="datePublished" content="2020-12-02T19:20:00+08:00" />
+<meta itemprop="dateModified" content="2020-12-02T19:20:00+08:00" />
+<meta itemprop="wordCount" content="1744">
+
+
+
+<meta itemprop="keywords" content="Go,Go1.16,动态," />
+<meta property="og:title" content="列举一些 Go1.16 中可能对大家有影响的变化" />
+<meta property="og:description" content="大家好，我是站长 polarisxu。 先说一下我一般怎么了解 Go 最新的一些动态。 01 从哪获取信息 主要通过以下方式： 逛推特，通过搜索功能，浏览 Go 信息" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/dynamic/go1.16-changes-2020/" />
+<meta property="article:published_time" content="2020-12-02T19:20:00+08:00" />
+<meta property="article:modified_time" content="2020-12-02T19:20:00+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="列举一些 Go1.16 中可能对大家有影响的变化"/>
+<meta name="twitter:description" content="大家好，我是站长 polarisxu。 先说一下我一般怎么了解 Go 最新的一些动态。 01 从哪获取信息 主要通过以下方式： 逛推特，通过搜索功能，浏览 Go 信息"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>列举一些 Go1.16 中可能对大家有影响的变化</title>
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
+	
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://polarisxu.studygolang.com">polarisxu</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+  <a href="https://polarisxu.studygolang.com/posts/">文章</a>
+  <a href="https://polarisxu.studygolang.com/go-categories/">Go系列</a>
+  <a href="https://polarisxu.studygolang.com/devtool-categories/">开发工具</a>
+  <a href="https://polarisxu.studygolang.com/about/">关于</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<button id="toc-btn" class="hdr-btn desktop-only-ib" title="目录"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3" y2="6"></line><line x1="3" y1="12" x2="3" y2="12"></line><line x1="3" y1="18" x2="3" y2="18"></line></svg></button><span class="hdr-social hide-in-mobile"><a href="https://github.com/polaris1119" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a><a href="https://twitter.com/polaris1119" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="菜单"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://polarisxu.studygolang.com/posts/">文章</a></li>
+			<li><a href="https://polarisxu.studygolang.com/go-categories/">Go系列</a></li>
+			<li><a href="https://polarisxu.studygolang.com/devtool-categories/">开发工具</a></li>
+			<li><a href="https://polarisxu.studygolang.com/about/">关于</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Dec 2, 2020</span></div>
+				<h1>列举一些 Go1.16 中可能对大家有影响的变化</h1>
+			</header>
+			<div class="content">
+				<p>大家好，我是站长 polarisxu。</p>
+<p>先说一下我一般怎么了解 Go 最新的一些动态。</p>
+<h2 id="01-从哪获取信息">01 从哪获取信息<a href="#01-从哪获取信息" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>主要通过以下方式：</p>
+<ul>
+<li>
+<p>逛推特，通过搜索功能，浏览 Go 信息，比如搜索：<code>#golang since:2020-12-01 until:2020-12-02</code></p>
+</li>
+<li>
+<p>看 Go 仓库的提交记录；</p>
+<p>![image-20201202180414759](/Users/xuxinhua/Library/Application Support/typora-user-images/image-20201202180414759.png)</p>
+</li>
+<li>
+<p>查看 <a href="https://tip.golang.org">https://tip.golang.org</a>。这个一般在一个版本开发了一段时间看，比如现在可以看 Go1.16 的一些内容，主要可以看还未完成的 Release Notes：<a href="https://tip.golang.org/doc/go1.16">https://tip.golang.org/doc/go1.16</a>。其实这个文件是 Go 代码仓库中的 doc/go1.16.html；</p>
+</li>
+</ul>
+<p>此外，Reddit 的 r/golang 频道也会有很多信息。</p>
+<h2 id="02-go-116-的一些改动">02 Go 1.16 的一些改动<a href="#02-go-116-的一些改动" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>按计划，Go1.16 会在 2021 年 2 月份发布。目前 Release Notes 中已经有部分内容了。</p>
+<h3 id="module-模式会默认开启">Module 模式会默认开启<a href="#module-模式会默认开启" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>经过了这么多版本，终于默认开启了。默认开启是什么意思？即 GO111MODULE 环境变量的默认值将从 auto 改变为 on。这将解决一些目前使用 go 命令时的尴尬 。比如有些人可能说，明明我设置了 GOPROXY，但是 go get 依然没有经过它，下载依然失败。这是因为在非 modules 感知目录下运行 go get 时，自动选择了 GOPATH 模式而忽略了 GOPROXY 环境变量。如果你现在遇到这种情况，请手动将 GO111MODULE 环境变量更改为 on。</p>
+<h3 id="内嵌静态资源">内嵌静态资源<a href="#内嵌静态资源" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>支持内嵌静态资源（文件或者文件夹）至生成的二进制文件中。这部分之前写文章介绍过，<a href="https://mp.weixin.qq.com/s/SiCTV7R2wA_I2nCQkC3GGQ" target="_blank" rel="noopener">见这里</a>
+。</p>
+<h3 id="支持最新版本-mac">支持最新版本 Mac<a href="#支持最新版本-mac" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>最新版 Mac 使用了 ARM 架构，因此 Go 1.16 增加 <code>GOOS=darwin, GOARCH=arm64</code> 支持，而这之前是用于 iOS 的，以后 iOS port 改为 <code>GOOS=ios, GOARCH=arm64</code>。</p>
+<h3 id="linux-系统下-rss-会更准确">Linux 系统下 RSS 会更准确<a href="#linux-系统下-rss-会更准确" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>在 Linux 上，runtime 现在默认会迅速地（使用 MADV_DONTNEED）向操作系统释放内存，而不是在操作系统面临内存压力时（使用 MADV_FREE）惰性地释放内存。</p>
+<p>这意味着像 RSS 这样的进程级内存统计信息将更准确地反映 Go 进程所使用的物理内存数量。因此 Go1.16 中，不再需要配置 GODEBUG=madvdontneed=1 来改善内存监控行为。</p>
+<h3 id="切片扩容策略改变">切片扩容策略改变<a href="#切片扩容策略改变" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>如果一个 <code>append(x, values…)</code> 调用需要扩容，则基础切片 x 的容量将决定结果切片的容量（而不是原来的基础切片 x 的长度决定结果切片的容量）。</p>
+<p>借用<a href="https://mp.weixin.qq.com/s/JAWKZeDSNYJlVc6GPNKqlg" target="_blank" rel="noopener">公众号 Go101</a>
+ 中的例子：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">N</span> <span class="p">=</span> <span class="mi">1024</span>
+  <span class="kd">var</span> <span class="nx">a</span> <span class="p">[</span><span class="nx">N</span><span class="p">]</span><span class="kt">int</span>
+  <span class="nx">x</span> <span class="o">:=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">a</span><span class="p">[:</span><span class="nx">N</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="nx">N</span><span class="p">],</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span>
+  <span class="nx">y</span> <span class="o">:=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">a</span><span class="p">[:</span><span class="nx">N</span><span class="p">:</span><span class="nx">N</span><span class="p">],</span> <span class="mi">9</span><span class="p">)</span>
+  <span class="nb">println</span><span class="p">(</span><span class="nb">cap</span><span class="p">(</span><span class="nx">x</span><span class="p">),</span> <span class="nb">cap</span><span class="p">(</span><span class="nx">y</span><span class="p">))</span>
+<span class="p">}</span>
+</code></pre></div><p>Go 1.15 将输出 2048 1280，但是使用 Go 1.16 将输出 1280 1280。</p>
+<p>具体提交见：<a href="https://github.com/golang/go/commit/2333c6299f340a5f76a73a4fec6db23ffa388e97?branch=2333c6299f340a5f76a73a4fec6db23ffa388e97&amp;diff=unified">https://github.com/golang/go/commit/2333c6299f340a5f76a73a4fec6db23ffa388e97?branch=2333c6299f340a5f76a73a4fec6db23ffa388e97&amp;diff=unified</a>。</p>
+<h3 id="标准库">标准库<a href="#标准库" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>1）增加了 io/fs、embed 等库。</p>
+<p>2）template 允许跨行。例如：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="p">{{</span><span class="s">&#34;hello&#34;</span> <span class="p">|</span>
+   <span class="nx">printf</span><span class="p">}}</span>
+</code></pre></div><p>3）strconv.ParseFloat 性能提升 2 倍。原因是它改为使用 <a href="https://nigeltao.github.io/blog/2020/eisel-lemire.html" target="_blank" rel="noopener">Eisel-Lemire 算法</a>
+。这也会加速解码诸如 encoding/json 这样的文本格式。</p>
+<h3 id="简化的结构体字段标签写法">简化的结构体字段标签写法<a href="#简化的结构体字段标签写法" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>在进行 Web 开发时，Model 类可能会有好几种标签，写起来很繁琐，因此还出现了不少这样辅助写标签的工具。Go 1.16 开始，结构体字段的标签中的值相同的键值对可以合并写成一个，方便很多，比如：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">User</span> <span class="kd">struct</span> <span class="p">{</span>
+  <span class="nx">UserName</span> <span class="kt">string</span> <span class="s">`json bson gorm:&#34;user_name,omitempty&#34;`</span>
+<span class="p">}</span>
+</code></pre></div><h3 id="知晓-init-函数的执行时间和内存消耗">知晓 init 函数的执行时间和内存消耗<a href="#知晓-init-函数的执行时间和内存消耗" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>关于该函数，大家都建议尽量别用，至少不能依赖它。同时不应该在其中处理耗时的事情。但之前没有很好地方法检测。Go 1.16 为 GODEBUG 环境变量增加了 inittrace=1 选项，可以输出 init 函数的执行时间和内存消耗。</p>
+<p>再次借用 <a href="https://mp.weixin.qq.com/s/Lz1PwW0mzWMNxiuJBvdcXA" target="_blank" rel="noopener">Go101 的例子</a>
+。</p>
+<p>对于下面的程序：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kd">func</span> <span class="nf">init</span><span class="p">()</span> <span class="p">{</span>
+	<span class="nb">println</span><span class="p">(</span><span class="s">&#34;hello&#34;</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nb">println</span><span class="p">(</span><span class="s">&#34;bye&#34;</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div><p>使用下面的命令运行（Linux 系统，Go tip rev:7f688d18c0）:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nv">GODEBUG</span><span class="o">=</span><span class="nv">inittrace</span><span class="o">=</span><span class="m">1</span> go run main.go 
+</code></pre></div><p>的输出为：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">init internal/bytealg @0.018 ms, <span class="m">0</span> ms clock, <span class="m">0</span> bytes, <span class="m">0</span> allocs
+init runtime @0.15 ms, 0.56 ms clock, <span class="m">0</span> bytes, <span class="m">0</span> allocs
+init errors @1.7 ms, 0.010 ms clock, <span class="m">0</span> bytes, <span class="m">0</span> allocs
+init sync @1.8 ms, 0.001 ms clock, <span class="m">16</span> bytes, <span class="m">1</span> allocs
+init internal/oserror @1.8 ms, 0.001 ms clock, <span class="m">80</span> bytes, <span class="m">5</span> allocs
+init syscall @1.9 ms, 0.010 ms clock, <span class="m">944</span> bytes, <span class="m">2</span> allocs
+init <span class="nb">time</span> @1.9 ms, 0.014 ms clock, <span class="m">400</span> bytes, <span class="m">8</span> allocs
+init context @2.0 ms, 0.002 ms clock, <span class="m">128</span> bytes, <span class="m">4</span> allocs
+init math @2.0 ms, <span class="m">0</span> ms clock, <span class="m">0</span> bytes, <span class="m">0</span> allocs
+init strconv @2.1 ms, 0.006 ms clock, <span class="m">32</span> bytes, <span class="m">2</span> allocs
+init unicode @2.1 ms, 0.086 ms clock, <span class="m">23944</span> bytes, <span class="m">27</span> allocs
+...
+init internal/bytealg @0 ms, <span class="m">0</span> ms clock, <span class="m">0</span> bytes, <span class="m">0</span> allocs
+init runtime @0.048 ms, 0.042 ms clock, <span class="m">0</span> bytes, <span class="m">0</span> allocs
+hello
+init main @0.21 ms, 0.004 ms clock, <span class="m">0</span> bytes, <span class="m">0</span> allocs
+bye
+</code></pre></div><p>可见此 GODEBUG 环境变量选项对于查找 init 函数中的瓶颈很有帮助。</p>
+<p>相关 issue: <a href="https://github.com/golang/go/issues/41378">https://github.com/golang/go/issues/41378</a>。</p>
+<h2 id="03-总结">03 总结<a href="#03-总结" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>Go 1.16 相比 Go 1.15 改动多不少，更多内容等待明年 2 月份发布。</p>
+<p>另外推荐 Go101 这本开源书，作者对 Go 的细节掌握的很深，而且他写了双语版，这里是中文版：<a href="https://github.com/golang101/golang101">https://github.com/golang101/golang101</a>。</p>
+
+			</div><div class="content">
+	<br>
+	<img src="https://static.studygolang.com/static/img/polarisxu-qrcode-soso-s.png">
+</div>
+
+<div class="related-posts thin">
+	<h2>相关推荐</h2>
+	<ul>
+	
+	<li><a href="/posts/talk/go-rsc-dynamic/">Russ Cox 又有动态了：开源了一个 Go 工具</a></li>
+	
+	<li><a href="/posts/talk/go-celebrity-rsc/">Go 语言名人：除了 Rob Pike，很多人可能不知道他</a></li>
+	
+	<li><a href="/posts/talk/go-and-business/">聊聊 Go 和创业</a></li>
+	
+	<li><a href="/posts/go/pkg/statsview/">通过这个 Runtime 统计信息可视化库学到了什么？</a></li>
+	
+	<li><a href="/posts/go/action/bytedance-interview-201112/">字节跳动面试真的也会问这样的问题？！</a></li>
+	
+	</ul>
+</div>
+
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://polarisxu.studygolang.com/tags/go">Go</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/go1.16">Go1.16</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/%E5%8A%A8%E6%80%81">动态</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1744 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2020-12-02 19:20 &#43;0800</p>
+			</footer>
+		</article>
+		<aside id="toc">
+			<div class="toc-title">目录</div>
+			<nav id="TableOfContents">
+  <ul>
+    <li><a href="#01-从哪获取信息">01 从哪获取信息</a></li>
+    <li><a href="#02-go-116-的一些改动">02 Go 1.16 的一些改动</a>
+      <ul>
+        <li><a href="#module-模式会默认开启">Module 模式会默认开启</a></li>
+        <li><a href="#内嵌静态资源">内嵌静态资源</a></li>
+        <li><a href="#支持最新版本-mac">支持最新版本 Mac</a></li>
+        <li><a href="#linux-系统下-rss-会更准确">Linux 系统下 RSS 会更准确</a></li>
+        <li><a href="#切片扩容策略改变">切片扩容策略改变</a></li>
+        <li><a href="#标准库">标准库</a></li>
+        <li><a href="#简化的结构体字段标签写法">简化的结构体字段标签写法</a></li>
+        <li><a href="#知晓-init-函数的执行时间和内存消耗">知晓 init 函数的执行时间和内存消耗</a></li>
+      </ul>
+    </li>
+    <li><a href="#03-总结">03 总结</a></li>
+  </ul>
+</nav>
+		</aside>
+		<div class="post-nav thin">
+			<a class="prev-post" href="https://polarisxu.studygolang.com/posts/talk/myblog-with-hugo-github-pages/">
+				<span class="post-nav-label">旧&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>Hugo &#43; GitHub Pages 搭建自己的网站</span>
+			</a>
+		</div>
+		<div id="comments" class="thin"><script src="https://utteranc.es/client.js"
+	repo="polaris1119/polarisxu"
+	issue-term="pathname"
+	theme="github-light"
+	crossorigin="anonymous"
+	async>
+</script>
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2019 - 2020 <a href="https://polarisxu.studygolang.com">polarisxu</a> &#183; <a href="http://www.beian.miit.gov.cn/">京ICP备14030343号-1</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://polarisxu.studygolang.com/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+		<span id="busuanzi_container" style="color: #666;">
+			本站总访客数/访问量：<span id="busuanzi_value_site_uv"></span>/<span id="busuanzi_value_site_pv"></span>
+		</span>
+	</footer>
+
+
+
+	<script src="https://polarisxu.studygolang.com/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw=" crossorigin="anonymous"></script>
+	<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?224c227cd9239761ec770bc8c1fb134c";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+</body>
+
+</html>

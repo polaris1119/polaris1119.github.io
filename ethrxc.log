@@ -1,0 +1,39 @@
+{"Time":"2020-12-01T06:33:54Z","Type":"INFO","Message":"Connecting to host studygolang.com, port 9999"}
+{"Time":"2020-12-01T06:34:02Z","Type":"INFO","Message":"Connecting to host studygolang.com:443, port 9999"}
+{"Time":"2020-12-01T06:34:02Z","Type":"INFO","Message":"[ 11] local 192.168.0.187 port 50773 connected to 39.102.120.224 port 443"}
+{"Time":"2020-12-01T06:34:03Z","Type":"INFO","Message":"- - - - - - - - - - - - - - - - - - - - - - -"}
+{"Time":"2020-12-01T06:34:03Z","Type":"INFO","Message":"[ ID]   Protocol    Interval      Bits/s"}
+{"Time":"2020-12-01T06:34:03Z","Type":"INFO","Message":"[ 11]     TCP      000-001 sec    10.75M"}
+{"Time":"2020-12-01T06:34:03Z","Type":"TestResult","RemoteAddr":"studygolang.com:443","Protocol":"TCP","BitsPerSecond":"10.75M","ConnectionsPerSecond":"","PacketsPerSecond":"","AverageLatency":""}
+{"Time":"2020-12-01T06:34:04Z","Type":"INFO","Message":"[ 11]     TCP      001-002 sec     9.09M"}
+{"Time":"2020-12-01T06:34:04Z","Type":"TestResult","RemoteAddr":"studygolang.com:443","Protocol":"TCP","BitsPerSecond":"9.09M","ConnectionsPerSecond":"","PacketsPerSecond":"","AverageLatency":""}
+{"Time":"2020-12-01T06:34:05Z","Type":"INFO","Message":"[ 11]     TCP      002-003 sec     9.60M"}
+{"Time":"2020-12-01T06:34:05Z","Type":"TestResult","RemoteAddr":"studygolang.com:443","Protocol":"TCP","BitsPerSecond":"9.60M","ConnectionsPerSecond":"","PacketsPerSecond":"","AverageLatency":""}
+{"Time":"2020-12-01T06:34:06Z","Type":"INFO","Message":"[ 11]     TCP      003-004 sec    11.26M"}
+{"Time":"2020-12-01T06:34:06Z","Type":"TestResult","RemoteAddr":"studygolang.com:443","Protocol":"TCP","BitsPerSecond":"11.26M","ConnectionsPerSecond":"","PacketsPerSecond":"","AverageLatency":""}
+{"Time":"2020-12-01T06:34:07Z","Type":"INFO","Message":"[ 11]     TCP      004-005 sec     9.34M"}
+{"Time":"2020-12-01T06:34:07Z","Type":"TestResult","RemoteAddr":"studygolang.com:443","Protocol":"TCP","BitsPerSecond":"9.34M","ConnectionsPerSecond":"","PacketsPerSecond":"","AverageLatency":""}
+{"Time":"2020-12-01T06:35:03Z","Type":"INFO","Message":"Connecting to host gocn.vip:443, port 9999"}
+{"Time":"2020-12-01T06:35:03Z","Type":"INFO","Message":"[ 11] local 192.168.0.187 port 50816 connected to 120.132.12.8 port 443"}
+{"Time":"2020-12-01T06:35:04Z","Type":"INFO","Message":"- - - - - - - - - - - - - - - - - - - - - - -"}
+{"Time":"2020-12-01T06:35:04Z","Type":"INFO","Message":"[ ID]   Protocol    Interval      Bits/s"}
+{"Time":"2020-12-01T06:35:04Z","Type":"INFO","Message":"[ 11]     TCP      000-001 sec     9.73M"}
+{"Time":"2020-12-01T06:35:04Z","Type":"TestResult","RemoteAddr":"gocn.vip:443","Protocol":"TCP","BitsPerSecond":"9.73M","ConnectionsPerSecond":"","PacketsPerSecond":"","AverageLatency":""}
+{"Time":"2020-12-01T06:35:05Z","Type":"INFO","Message":"[ 11]     TCP      001-002 sec     9.60M"}
+{"Time":"2020-12-01T06:35:05Z","Type":"TestResult","RemoteAddr":"gocn.vip:443","Protocol":"TCP","BitsPerSecond":"9.60M","ConnectionsPerSecond":"","PacketsPerSecond":"","AverageLatency":""}
+{"Time":"2020-12-01T06:35:06Z","Type":"INFO","Message":"[ 11]     TCP      002-003 sec     9.47M"}
+{"Time":"2020-12-01T06:35:06Z","Type":"TestResult","RemoteAddr":"gocn.vip:443","Protocol":"TCP","BitsPerSecond":"9.47M","ConnectionsPerSecond":"","PacketsPerSecond":"","AverageLatency":""}
+{"Time":"2020-12-01T06:35:07Z","Type":"INFO","Message":"[ 11]     TCP      003-004 sec     9.60M"}
+{"Time":"2020-12-01T06:35:07Z","Type":"TestResult","RemoteAddr":"gocn.vip:443","Protocol":"TCP","BitsPerSecond":"9.60M","ConnectionsPerSecond":"","PacketsPerSecond":"","AverageLatency":""}
+{"Time":"2020-12-01T06:35:08Z","Type":"INFO","Message":"[ 11]     TCP      004-005 sec     9.34M"}
+{"Time":"2020-12-01T06:35:08Z","Type":"TestResult","RemoteAddr":"gocn.vip:443","Protocol":"TCP","BitsPerSecond":"9.34M","ConnectionsPerSecond":"","PacketsPerSecond":"","AverageLatency":""}
+{"Time":"2020-12-01T06:35:09Z","Type":"INFO","Message":"[ 11]     TCP      005-006 sec     9.60M"}
+{"Time":"2020-12-01T06:35:09Z","Type":"TestResult","RemoteAddr":"gocn.vip:443","Protocol":"TCP","BitsPerSecond":"9.60M","ConnectionsPerSecond":"","PacketsPerSecond":"","AverageLatency":""}
+{"Time":"2020-12-01T06:35:10Z","Type":"INFO","Message":"[ 11]     TCP      006-007 sec     8.19M"}
+{"Time":"2020-12-01T06:35:10Z","Type":"TestResult","RemoteAddr":"gocn.vip:443","Protocol":"TCP","BitsPerSecond":"8.19M","ConnectionsPerSecond":"","PacketsPerSecond":"","AverageLatency":""}
+{"Time":"2020-12-01T06:35:11Z","Type":"INFO","Message":"[ 11]     TCP      007-008 sec     9.60M"}
+{"Time":"2020-12-01T06:35:11Z","Type":"TestResult","RemoteAddr":"gocn.vip:443","Protocol":"TCP","BitsPerSecond":"9.60M","ConnectionsPerSecond":"","PacketsPerSecond":"","AverageLatency":""}
+{"Time":"2020-12-01T06:35:12Z","Type":"INFO","Message":"[ 11]     TCP      008-009 sec     9.60M"}
+{"Time":"2020-12-01T06:35:12Z","Type":"TestResult","RemoteAddr":"gocn.vip:443","Protocol":"TCP","BitsPerSecond":"9.60M","ConnectionsPerSecond":"","PacketsPerSecond":"","AverageLatency":""}
+{"Time":"2020-12-01T06:35:13Z","Type":"INFO","Message":"[ 11]     TCP      009-010 sec     9.60M"}
+{"Time":"2020-12-01T06:35:13Z","Type":"TestResult","RemoteAddr":"gocn.vip:443","Protocol":"TCP","BitsPerSecond":"9.60M","ConnectionsPerSecond":"","PacketsPerSecond":"","AverageLatency":""}

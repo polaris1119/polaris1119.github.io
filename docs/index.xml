@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Tue, 01 Dec 2020 11:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 02 Dec 2020 19:20:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>列举一些 Go1.16 中可能对大家有影响的变化</title>
+      <link>https://polarisxu.studygolang.com/posts/go/dynamic/go1.16-changes-2020/</link>
+      <pubDate>Wed, 02 Dec 2020 19:20:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/dynamic/go1.16-changes-2020/</guid>
+      <description>大家好，我是站长 polarisxu。 先说一下我一般怎么了解 Go 最新的一些动态。 01 从哪获取信息 主要通过以下方式： 逛推特，通过搜索功能，浏览 Go 信息</description>
+    </item>
+    
     <item>
       <title>Hugo &#43; GitHub Pages 搭建自己的网站</title>
       <link>https://polarisxu.studygolang.com/posts/talk/myblog-with-hugo-github-pages/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/translation/rust-vs-go/</guid>
       <description>最近一年，将 Rust 和 Go 进行比较的不少，但不少都不公正，带感情色彩。而这篇文章客观、全面的分析对比了 Rust 和 Go，让你具体项目时选择最合适的。 Rust 还是 G</description>
-    </item>
-    
-    <item>
-      <title>关于 Go 语言微服务框架 Micro 的一些情况说明</title>
-      <link>https://polarisxu.studygolang.com/posts/go/micro/micro-3.0.0-m3o/</link>
-      <pubDate>Mon, 09 Nov 2020 15:50:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/micro/micro-3.0.0-m3o/</guid>
-      <description>用过或了解过 Micro 这个框架的人，可能有所耳闻，大家对其抱怨比较多，典型的抱怨是升级后不兼容。比如网上有教程是基于 1.x，但新版本是 2.x，完全不</description>
     </item>
     
   </channel>
