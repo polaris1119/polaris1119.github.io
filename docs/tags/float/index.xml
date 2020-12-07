@@ -14,7 +14,7 @@
       <pubDate>Sat, 03 Oct 2020 18:12:00 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/posts/basic/complement/</guid>
-      <description>双节发布了两道题： 题一： package main func main() { var a int8 = -1 var b int8 = -128 / a println(b) } 题二： package main func main() { const a int8 = -1 var b int8 = -128 / a println(b) } 答对的人真不多（半数以上答错了），</description>
+      <description>双节发布了两道题： 题一： package main func main() { var a int8 = -1 var b int8 = -128 / a println(b) } 题二： package main func main() { const a int8 = -1 var b int8 = -128 / a println(b) } 答对的人真不多（半数以上答错了），特别是题一，一半以上竟然是 128，难道不知道 int8 能表示的范围吗？[-128, 127]。不过为什么答案是：题一 -128，题二编译错误？ 其实这是一道计算机基础题。 先看看网友 Jayce 的解释：第一题是 -128（untyped const）</description>
     </item>
     
     <item>
@@ -23,7 +23,7 @@
       <pubDate>Tue, 29 Sep 2020 18:12:00 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/posts/basic/diagram-float-point/</guid>
-      <description>大家好，我是站长 polarisxu。 团队一直保持着分享的习惯，而我却分享的较少。忘了当时同事分享什么主题，涉及到浮点数相关知识。于是我决定分</description>
+      <description>大家好，我是站长 polarisxu。 团队一直保持着分享的习惯，而我却分享的较少。忘了当时同事分享什么主题，涉及到浮点数相关知识。于是我决定分享一期关于浮点数的，而且 Go 之父 Rob Pike 说不懂浮点数不配当码农。。。So？！ 本着「要学习就系统透彻的学」这个原则，本文通过图的方式尽可能详细的讲解浮点数，让大家能够对浮点数有一个更深层次的认识。 本文目录： 0、几个问题 开始之前请</description>
     </item>
     
   </channel>

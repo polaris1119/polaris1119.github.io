@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>开发工具 on polarisxu</title>
+    <link>https://polarisxu.studygolang.com/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/</link>
+    <description>Recent content in 开发工具 on polarisxu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
+    <lastBuildDate>Fri, 04 Dec 2020 22:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>GoLand 2020.3 正式发布了，有不少新功能，包括支持泛型</title>
+      <link>https://polarisxu.studygolang.com/posts/devtool/goland/goland-2020-3-release/</link>
+      <pubDate>Fri, 04 Dec 2020 22:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/devtool/goland/goland-2020-3-release/</guid>
+      <description>这是 2020 年第 3 个版本，也是最后一个版本。在 GoLand 2020.3 中，您可以探索 goroutines dumps，运行并导航到单个表测试（table tests），并从对 Testify 测试框架的扩展支持中获得更多信息。你还将发现许多新的代码编辑功能，包括对 time 包的支持，更智能的处理包方法，UI 改进，用于 Web 开发和使用数据库的各种新功能以及用于协作开发和结对编程的新服务。具体看看有哪些新特性。 01 调试器改进 Dump Goroutines 调试器中新</description>
+    </item>
+    
+    <item>
+      <title>从来没有这么强烈想推荐一个工具</title>
+      <link>https://polarisxu.studygolang.com/posts/devtool/cheat-sh/</link>
+      <pubDate>Tue, 03 Nov 2020 18:12:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/devtool/cheat-sh/</guid>
+      <description>大家好，我是站长 polarisxu。 在逛 GitHub Trending 时看到了这个项目：https://github.com/chubin/cheat.sh，因为之前我整理过一系列 cheatsheet，因此好奇的打开了这个项目。于是被它吸引了。。。 01 是什么 该项目的描述是： the only cheat sheet you need 简单一句话却很吸引人：这么强大，这一个 cheatsheet 就够了？ 因为在这一份清单中，包含了几乎所有开发者常见的东西，不</description>
+    </item>
+    
+    <item>
+      <title>对比三款 Go Playground：你喜欢哪款？</title>
+      <link>https://polarisxu.studygolang.com/posts/devtool/compare-three-playground/</link>
+      <pubDate>Wed, 19 Aug 2020 18:12:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/devtool/compare-three-playground/</guid>
+      <description>曾几何时，语言的在线运行（Playground）似乎成了标配。确实，Playground 能够让我们可以快速试验一些想法。Go 语言在发布之初就提供了一个，这就是 https://play.golang.org。然而，由于众所周知的原因，我们访问不了。为了方便国内广大 gopher，我搞了一个国内镜像：https://play.studygolang.com，尽情使</description>
+    </item>
+    
+    <item>
+      <title>GoLand 2020.2 Beta 版发布：go.mod 升级以及对泛型的实验性支持</title>
+      <link>https://polarisxu.studygolang.com/posts/devtool/goland/2020.2.beta/</link>
+      <pubDate>Thu, 16 Jul 2020 14:17:51 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/devtool/goland/2020.2.beta/</guid>
+      <description>GoLand 2020.2 达到 Beta。这意味着我们将结束一连串的新功能开发，将重点转移到完善我们已经完成的工作上，并开始计算发布日之前的日子！
+与我们的“抢先体验计划”版本相比，该测试版非常稳定，但请记住，可能仍然在某处存在 Bug。
+同样请注意，此 Beta 版本是 EAP 周期中的最后一个版本，不需要订阅即可使用（如果您只是想尝试 GoLand，请尝试）。测试版通常会在发布候选版本之后出现，一旦我们发现该版本足够好并且可以在您的计算机上安装了。
+在此发布周期中，我们为即将推出的 GoLand 2020.2 打包了 Go 模块的新功能，更好地呈现了代码中可能存在的问题和薄弱环节，提供了新的代码检查功能以及新的代码编辑功能，例如期待已久的 “Add Caret Per Selected Line”，改进了后台流程，使其更透明，更快，更多！
+让我们来看看即将发布的版本中的新功能。选择您感兴趣的主题，或浏览整个博客文章以了解每个新功能。
+ Go Modules Generics a.k.a. Type Parameters Code Editing Code Inspections Take Variadic Arguments Under Сontrol References from Comments Save Projects as Templates Under the Hood Processes Version Control  Go Modules 支持 GOMODCACHE 环境变量 从 Go 1.15 开始，可以使用新的 GOMODCACHE 环境变量将 Go Modules 缓存的默认位置从 $GOPATH/pkg/mod 更改为另一个文件夹。
+为此，只需在 “Preferences/Settings | Go Modules | Environment” 设置 GOMODCACHE 即可。
+IDE 将识别自定义位置，并将其用于具有依赖关系的所有后续操作。同步依赖项快速修复程序（可通过 Alt + Enter 实现）会将依赖项下载到 GOMODCACHE，外部库也将在新的自定义位置显示依赖项。
+升级 go.mod 文件 行注释（在 Windows/Linux 上为 Ctrl + /，在 macOS 上为 ⌘ + /）可用于 go.mod 文件。
+现在，当您键入 replace，exclude 和 require 语句的左括号时，GoLang 立即自动为你添加右括号。
+泛型（又称类型参数） 6月16日，Go Team 宣布了泛型（也称为类型参数）设计草案。请访问 Golang 文档以获取有关该概念的完整详细信息 。
+这是一个重大的发展，因此我们立即着手增加对它的支持。GoLand 2020.2 Beta 提供了对泛型的实验性支持，您可以通过在 Settings/Preferences | Go 启用对泛型的实验性支持。
+此初始支持提供语法高亮显示和基本参考解析，并且仅在 go2 文件中有效。
+请注意，有关泛型的工作仍在进行中，我们目前尚无法提供全面的支持。
+尽管如此，请分享您的体验和您可能有的任何建议。它确实可以帮助我们完善到目前为止已完成的工作，因此我们可以使其可靠并使用更高级的功能进行填充。
+代码编辑 想要将快速修复的结果应用于代码之前预览其结果，请使用 Alt + Enter 快捷方式调用显示上下文操作，选择所需的快速修复，然后在 macOS 上按 Alt + Space 或在 Windows 和 Linux 上为 Ctrl + Shift + I。
+新的“按选定的行添加插入（多行操作）”操作会在每个选定行的末尾插入，并取消选择这些行。在 Windows/Linux 上使用快捷键 Alt + Shift + G 或在 macOS 上使用 ⌥ + ⇧ + G 调用它。
+在 Preferences/Settings | Editor | Code Style | Go | Wrapping and Braces 中为调用参数，函数参数和复合文字元素配置换行。或者，您可以使用 Alt + Enter 键，调出 Put arguments on separate lines 和 *Put arguments on one line，*以手动拆分和合并元素。</description>
+    </item>
+    
+    <item>
+      <title>当 GoLand 遇到 Kubernetes：如何调试和运行 Go 程序</title>
+      <link>https://polarisxu.studygolang.com/posts/devtool/goland/using-kubernetes-from-goland/</link>
+      <pubDate>Mon, 11 May 2020 14:17:51 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/devtool/goland/using-kubernetes-from-goland/</guid>
+      <description>这是我们使用 Docker，Docker Compose 或 Kubernetes 运行 Go 服务的系列文章的最后一部分。在这一部分中，我们将专注于使用 Kubernetes 集群时的运行和调试。
+虽然我们不会介绍如何安装和配置 Kubernetes 集群，但是可以使用各种工具（例如 kubeadm ，minikube 和 microk8s ）来实现这一目标。如果您使用的是 Windows，则 Docker Desktop for Windows 附带内置的 Kubernetes 支持 。如果您打算使用基于 ARM 芯片的平台（例如 Raspberry Pi 4 ），则可以使用 k3s 之类的东西来入门。
+在开始之前，还应该安装 Kubernetes 插件，因为它没有与 IDE 捆绑在一起。您可以通过打开 Settings/Preferences | Plugins | Marketplace并搜索 Kubernetes 找到并安装插件。
+在 IDE 中使用 Kubernetes 运行服务 如果您到目前为止一直在关注本系列，那么您会知道所有代码都可以在此 下载和使用，使用 Kubernetes 也是这种情况。我们可以从 kubernetes 分支 开始。
+在这里我们可以找到两个不同的文件：db.yaml 和 web.yaml。这些文件包含了我们开始使用 Kubernetes 集群中的应用程序所需的所有定义。为了方便起见，他们还假定 Kubernetes 与 IDE 在同一台计算机上运行。
+打开 db.yaml：
+apiVersion:v1kind:ConfigMapmetadata:name:db-configlabels:dockerdev:dbdata:POSTGRES_DB:golandPOSTGRES_USER:golandPOSTGRES_PASSWORD:goland---apiVersion:apps/v1kind:StatefulSetmetadata:labels:dockerdev:dbname:dbspec:serviceName:dockerdev-dbselector:matchLabels:dockerdev:dbtemplate:metadata:labels:dockerdev:dbspec:containers:- name:dbimage:postgres:12.2-alpineimagePullPolicy:IfNotPresentenvFrom:- configMapRef:name:db-configports:- containerPort:5432volumeMounts:- name:db-initmountPath:/docker-entrypoint-initdb.d/init.sqlsubPath:init.sqlvolumes:- name:db-inithostPath:path:/d/GoLandProjects/dockerdev---apiVersion:v1kind:Servicemetadata:labels:dockerdev:dbname:dockerdev-db-exportedspec:type:NodePortports:- name:5432-tcpport:5432targetPort:5432nodePort:30432selector:dockerdev:db注意：在启动此示例之前，我们需要确保更改了 init.sql 文件在主机上的位置。您可以通过将路径：/d/ GoLandProjects / dockerdev 替换为先前克隆该项目的位置的路径来实现。
+完成此操作后，我们可以使用文件顶部编辑器装订线上的绿色箭头在 Kubernetes 中部署数据库。
+部署数据库将创建一个 StatefulSet 并在 pod 中运行数据库。将出现 “Services Tool” 窗口，并显示用于创建资源的命令以及该命令的输出。
+Kubernetes 集群概述 在 Kubernetes 集群中，我们将看到工作负载信息，例如正在运行的 Pods, Deployments, Stateful Sets, Daemon Sets, Jobs, Cron Jobs, Replica Sets, 和 Replication Controllers。
+我们还可以查看有关集群中服务和入口点的网络信息。
+“Configuration” 部分包含当前名称空间或群集的所有配置信息，例如有关运行名称空间，节点，群集角色，角色，配置 map 和秘钥的信息。
+最后，“Storage” 部分将向我们显示当前配置中的“持久卷”，“持久卷声明”和“存储类”。
+在 IDE 中使用 Kubernetes 集群运行 Go 应用程序 让我们在同一个 Kubernetes 集群中运行 Go 应用程序，看看它是如何工作的。
+不过，在运行该应用程序之前，我们首先需要构建该应用程序所在的 Docker 容器。示例代码库中包含一个名为 build Dockerfile 的运行配置，需要运行该配置才能在集群中使用我们的容器。
+正如您可能已经猜到的那样，此后，我们终于可以使用先前与 db.yaml 文件一起使用的绿色箭头在 Kubernetes 中运行 Go 应用程序，只有这次我们才在 web.yaml 文件中使用它。
+apiVersion:apps/v1kind:Deploymentmetadata:labels:dockerdev:webname:webspec:selector:matchLabels:dockerdev:webtemplate:metadata:labels:dockerdev:webspec:containers:- name:dockerdev-webimage:dockerdev-web:latestimagePullPolicy:Neverenv:- name:DD_DB_HOSTvalue:&amp;#34;dockerdev-db-exported&amp;#34;ports:- containerPort:8000---apiVersion:v1kind:Servicemetadata:labels:dockerdev:webname:dockerdev-web-exportedspec:type:NodePortports:- name:8000-tcpport:8000targetPort:8000nodePort:30800selector:dockerdev:webPro tip：我们可以使用 HTTP 请求文件的方式从 IDE 运行请求，以检查服务是否已启动并正在运行。
+从 Kubernetes 调试服务 在使用 GoLand 调试 Kubernetes 服务之前，我们需要对 web.yaml 文件进行一些更改。这些变化可以在我们代码库的 kubernetes-debug 分支中看到。
+我们需要进行一些与调试常规 Docker 容器非常相似的更改。
+首先，我们需要调整 Dockerfile，然后我们必须使用 Run | Run … | ‘build Dockerfile’ 来配置。</description>
+    </item>
+    
+    <item>
+      <title>在 GoLang 中使用 Docker Compose 运行 Go 应用程序</title>
+      <link>https://polarisxu.studygolang.com/posts/devtool/goland/running-go-applications-using-docker-compose-in-goland/</link>
+      <pubDate>Fri, 08 May 2020 14:17:51 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/devtool/goland/running-go-applications-using-docker-compose-in-goland/</guid>
+      <description>今天，我们将继续有关如何使用 Docker 运行 和调试 Go 应用程序 的系列文章。
+在本文中，我们将使用 Docker Compose 运行和调试我们的应用程序。对于本文，我们将使用此处的源代码 ，在开始之前切换到 compose 分支 。
+使用 Docker Compose 运行 Go 应用程序 让我们从使用 Docker Compose 运行应用程序开始。
+查看我们已经创建的项目，可以在代码仓库中找到 docker-compose.yaml 文件：
+version:&amp;#34;3.5&amp;#34;services:web:container_name:dockerdevbuild:./ports:- &amp;#34;8000:8000&amp;#34;environment:DD_DB_HOST:dbcommand:/serverdepends_on:- dbdb:container_name:dockerdev-dbimage:postgres:12.2-alpineports:- &amp;#34;5432:5432&amp;#34;environment:POSTGRES_USER:golandPOSTGRES_PASSWORD:golandPOSTGRES_DB:golandvolumes:- ./init.sql:/docker-entrypoint-initdb.d/init.sql在数据库部分，我们需要创建一个名为 init.sql 的新文件。该文件的内容用于设置服务运行所需的数据库。
+最后，让我们在 main.go 文件中运行 Sync packages of &amp;lt;project&amp;gt; 来 quick-fix，以下载 pgx 库并运行该应用程序。注意：如果你的模块缓存中还没有 pgx 的 4.5.0 版本，则需要执行此步骤。
+运行基于 Docker Compose 的应用程序类似于其他 Run Configurations。单击 docker-compose.yaml 中 services 指令旁边的双绿色箭头按钮。要仅运行一项服务，请点击要运行的服务类型旁边的绿色箭头，例如上面的示例配置中的 web 或 db。
+配置运行后，在 Docker 节点下的 Services Tool 窗口中会有一个名为 Compose 的新节点。这里会显示正在运行的每个 Docker Compose 服务套件。
+可以浏览每个服务定义，并为每个服务显示所有正在运行的实例。Docker Compose 服务中可用于容器的信息与常规 Docker 容器可使用的信息相同。
+注意：如果你要启动较重的服务（例如数据库服务器），或者这些服务需要一些初始化时间，则我们的 Go 程序服务需要考虑这些服务的启动时间。
+在我们的示例代码中，这是使用 getDBConnection 函数处理的，该函数尝试在放弃之前尝试几次以指数退避的方式连接到数据库。
+重启动 Docker Compose 服务 更改我们的代码后，我们需要重新启动服务以重新加载这些更改。目前，使用 IDE 重新启动它有点复杂，因为这样做需要你执行以下步骤：
+ 执行 Run | Edit Configurations 并复制一份现有的 Docker Compose 配置； 编辑新创建的配置以添加重新启动的服务的名称，并启用 –build 选项以强制在运行镜像之前对其进行重建；  完成这些步骤之后，你可以停止现有服务，删除现有容器，然后启动新创建的配置。
+Pro tip：你可以使用 “Delete” 功能同时停止和删除服务。
+使用 Docker Compose 调试 Go 应用程序 要使用 Docker Compose 调试应用程序，我们需要同时更改 Dockerfile 和 docker-compose.yaml 文件。我们可以切换到代码库的 compose-debug 分支 ，这样更容易理解。
+现在，docker-compose.yaml 文件如下所示：
+version:&amp;#34;3.5&amp;#34;services:web:container_name:dockerdevbuild:./ports:- &amp;#34;8000:8000&amp;#34;- &amp;#34;40000:40000&amp;#34;environment:DD_DB_HOST:dbsecurity_opt:- &amp;#34;seccomp:unconfined&amp;#34;cap_add:- SYS_PTRACEcommand:/dlv --headless --listen=:40000 --api-version=2 exec /serverdepends_on:- dbdb:container_name:dockerdev-dbimage:postgres:12.2-alpineports:- &amp;#34;5432:5432&amp;#34;environment:POSTGRES_USER:golandPOSTGRES_PASSWORD:golandPOSTGRES_DB:golandvolumes:- ./init.sql:/docker-entrypoint-initdb.d/init.sql注意：这里的重要部分是 security_opt 和 cap_add 属性，因为它们允许调试器在 Docker 环境中运行。
+运行此操作类似于运行常规 Docker Compose 配置。我们可以使用 Go Remote 配置连接到容器，调试器会话将像调试常规配置一样开始。
+今天我们的文章到此结束。我们已经讨论了如何使用 Docker Compose，以及如何从 GoLand 运行和调试我们的应用程序。
+在下一篇文章中，我们将介绍如何在 IDE 中使用 Kubernetes，以及如何使用它运行和调试我们的应用程序。
+ 原文链接：https://blog.jetbrains.com/go/2020/05/08/running-go-applications-using-docker-compose-in-goland/
+作者：Florin Pățan
+翻译：Go语言中文网 polaris
+ </description>
+    </item>
+    
+    <item>
+      <title>基于 GoLand 使用 Docker 容器进行 Go 开发</title>
+      <link>https://polarisxu.studygolang.com/posts/devtool/goland/debugging-a-go-application-inside-a-docker-container/</link>
+      <pubDate>Mon, 04 May 2020 14:17:51 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/devtool/goland/debugging-a-go-application-inside-a-docker-container/</guid>
+      <description>今天，我们开始撰写一系列有关 GoLand 内部对 Docker，Docker Compose 和 Kubernetes 的支持以及它如何帮助我们在 Go 中编写（微）服务的文章。
+我们将研究如何在 IDE 中配置项目，如何使用 Docker 或 Kubernetes 运行或调试我们的项目，以及如何将项目连接到我们选择的数据库 PostgreSQL。
+让我们从介绍普通的 Docker 工作流程开始，然后我们将构建容器并运行它。
+在继续之前，我们需要 GoLand 2020.1.1 或更高版本，该版本带有最新的 Docker 插件。我们还需要一个相当现代的 Docker 版本，例如 17.06 或更高版本。注意：虽然旧版本的 IDE 在一定程度上可以使用，但是本文使用了新功能，并且 IDE 的外观可能有所不同。
+项目设置 让我们开始设置我们的项目。
+我们可以创建一个新的 Go Modules 项目，也可以使用现有的项目。
+项目结构应类似于此仓库中的结构：https://github.com/dlsniper/dockerdev。
+本教程不会介绍如何为你的系统安装和配置 Docker。
+相反，我们将从配置 Docker 服务器开始，以便我们可以运行我们的应用程序。将 Docker 安装到系统中后，转到 Settings/Preferences | Build, Execution, Deployment | Docker，然后单击 + 按钮添加新的 Docker 服务器连接。
+默认情况下，该插件将创建与本地计算机 Docker 服务器的连接，对于我们的教程而言已经足够了。单击确定按钮以创建服务器配置。
+使用 Dockerfile 首先，让我们在项目的根目录中打开 Dockerfile。
+# Compile stage FROM golang:1.13.8 AS build-env ADD . /dockerdev WORKDIR /dockerdev RUN go build -o /server # Final stage FROM debian:buster EXPOSE 8000 WORKDIR / COPY --from=build-env /server / CMD [&amp;quot;/server&amp;quot;] 该 Dockerfile 使用多阶段构建，该方式使我们能够生成最小的 Docker 映像，因为构建应用程序二进制文件的编译阶段与构建容器的最终阶段是分开的。
+将上面的代码粘贴到 Dockerfile 中后，第一个 FROM […] 指令旁边会出现一个绿色箭头。这是运行容器的最快方法。
+但是，我们需要进行一些编辑才能运行它，因为我们需要为容器公开正确的端口以接收连接。
+为容器创建一个新的运行配置 我们可以创建一个新的运行配置，也可以编辑仓库中存在的配置。为了简单起见，直接使用现有的，因为它已经预先填写了我们需要的所有值。要对其进行编辑，请单击选项列表底部的 Edit ‘Docker – Web – Standalone’  选项。
+在这里，我们可以设置运行 Docker 容器所需的所有选项。我们的运行配置已经填上了重要内容，例如配置名称：“ Docker – Web Dev – Standalone”。容器名称设置为 docker-web-dev-standalone。最后，在“绑定端口”字段中，我们将“主机”端口和“容器”端口都设置为 8000，以便可以访问应用程序。
+现在，我们可以单击对话框底部的 “Run” 按钮，来启动我们的容器。
+了解服务工具窗口 Docker 完成构建过程后，我们可以查看 “Services Tool Window” 窗口，并在 “Containers” 部分中看到新创建的容器。我们还将在 “Images” 部分中看到使用的镜像。
+对于每个容器，有以下可用选项卡：
+ Build Log：它显示用于构建容器的日志； Log：显示容器的输出； Attached console：如果可以的话，这允许我们与容器的应用程序/shell 交互； Properties：将显示有关容器的更多信息，例如 镜像 ID 或容器 ID； Environment variables：显示容器使用的环境变量； Port bindings：显示容器暴露给主机的所有端口； Volume bindings：显示为容器安装的卷； Files：如果它支持运行 ls 命令，则允许我们浏览容器中的文件。对于像我们这样的基于 Alpine 的容器，我们可以添加 RUN apk add &amp;ndash;no-cache coreutils 指令来启用此功能；  在左侧，我们可以看到各种按钮。首先，有一个 “Redeploy” 按钮，它使我们可以再次运行容器的构建配置。</description>
+    </item>
+    
+    <item>
+      <title>还在用 2019.3 就 Out 了：GoLand 2020.1 版本正式发布</title>
+      <link>https://polarisxu.studygolang.com/posts/devtool/goland/goland-2020-1-release/</link>
+      <pubDate>Fri, 10 Apr 2020 14:17:51 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/devtool/goland/goland-2020-1-release/</guid>
+      <description>北京时间 2020 年 4 月 10 日凌晨，Jetbrains 宣布正式发布 GoLand 2020.1 版本。
+该版本主要的变化有：
+引入了对 Go 模块支持的各种升级以及代码编辑功能，这些功能几乎不需要用户交互，也不需要扩展的代码补全系列。
+除此之外，还添加了新的代码检查、快速修复和其他改进，例如新的 LightEdit 模式（可让您在文本编辑器中打开文件，而无需创建或加载项目）、智能拼写和语法检查以及用于 Web 开发和数据库处理的新功能。
+Go 语言中文网在 2020.1 还未正式发布之前，就发过关于该版本特性的文章，现在 2020.1 正式发布了，相关功能特性稳定了，我们再次介绍下相关新特性。
+Go 模块改进 2020.1 现已支持 Go 1.13 的环境变量 GOPROXY、GOPRIVATE、GOSUMDB、GONOPROXY 和 GONOSUMB。
+使用 Go Modules 项目模板配置其默认值。只需点击 Environment 字段中的 Browse 图标即可打开新的 Environment Variables 对话框。
+go.mod 文件支持 go、module、require、replace 和 exclude 关键字代码补全、依赖项名称以及本地路径替换。
+此外，也可以使用 Rename 和 Move 重构。 重命名或移动由 replace 语句引用的目录时，GoLand 将相应地更改 go.mod 文件中的路径。
+现在，您还可以通过 Project 视图调用 Find Usages，以探索 go.mod 文件中特定目录路径的使用位置。
+在 GoLand 2020.1 中，您可以通过 Alt-Enter 获取缺失的依赖项并移除未使用的依赖项。
+最后但同样重要的是，如果存在本地路径替换，则新版本将在您提交之前显示一条通知，这样您就不会意外提交它们。
+您无需学习如何使用的代码补全功能 GoLand 2020.1 将建议 if err != nil { &amp;hellip; } 来补全错误处理模式。 只需在表达式内输入 if。
+只需输入 type 关键字或 struct 和 interface，即可更快地定义结构和接口类型。
+Fill Fields 操作在格式化规则要求时会在冒号后面添加空格。 它还会在组合文字声明中语句的末尾添加逗号。
+现在，使用 map 时，代码补全会在您补全键类型后将光标移到右中括号后面。
+对于函数的返回类型，补全功能将为局部变量和零值提供适合相应返回值类型的建议。
+智能代码补全（⌥⇧Space 或 Ctrl+Shift+Space） 智能代码补全会建议一个指向结构初始值设定项的指针。
+它还会建议在断言和类型 switch 用例中首先使用兼容类型。
+在类型断言中，它提供已赋值变量的类型。
+最后，它提供了表达式中可能指针的建议列表。
+基本代码补全（⌃空格或 Ctrl+空格） 为注释添加了基本代码补全，这将使编写文档更加轻松！ 它可为当前包声明建议名称，并为函数和方法建议参数名称。除此之外，基本代码补全还可以建议文字和转换。
+代码编辑 编写多值返回函数的签名时，GoLand 2020.1 会在逗号后面的返回类型周围添加括号。当您在字符串文字中粘贴一些文本时，IDE 会转义双引号。
+Go 1.14 支持 1）支持重叠接口
+Go 1.14 添加了对嵌入重叠接口的支持，我们也添加了此功能！ 当您使用重叠接口描述类型的不同方面时，GoLand 不会将这些方面的重复方法报告为错误。
+2）自动 vendoring 模式
+如果模块根包含 vendor 目录，则会在 Go 1.14 中自动启用 vendoring 模式。 对于 GoLand 2020.1，我们决定为 Go 1.13 及更早版本实现类似的行为。 IDE 会自动将导入解析到 vendor/ 文件夹（如果模块中存在）。
+调试器更新 1）分析器标签支持
+为了帮助您在调试或核心转储分析过程中更轻松地区分 goroutine，我们为其添加了分析器标签。更多详情请参考：如何在调试过程中查找 Goroutine 。
+2）宏支持
+现在，可以将宏用作运行或调试应用程序的参数。 在 Run/Debug Configurations 对话框中，点击 Go Tool 中的 + 或 Program arguments 字段即可打开新的 Macros 对话框，其中会列出要使用的可用宏。
+此外，您现在还可以将配置文件存储在项目中。 在 Run/Debug Configurations 对话框的顶部，选择 Store 作为项目文件选项。</description>
+    </item>
+    
+    <item>
+      <title>欢迎加入 GoLand 2020.1 抢先体验计划</title>
+      <link>https://polarisxu.studygolang.com/posts/devtool/goland/welcome-to-the-goland-2020-1-eap/</link>
+      <pubDate>Tue, 24 Dec 2019 14:17:51 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/devtool/goland/welcome-to-the-goland-2020-1-eap/</guid>
+      <description>GoLand 2020.1 抢先体验计划已经启动。对于此发行版，我们着重于易用性，性能以及减少浪费在样板代码和 IDE 中的冗余操作上的时间。我们还包括对 Go Modules 支持的升级，和其他更多功能。您可以在 2020.1 的路线图博客 文章中找到简短说明。
+你可以通过 Toolbox App 获得它，也可以从网站上下载 ，也可以使用快照包（对于 Ubuntu）；或者直接在 GoLand 中通过自动更新的方式获取。Preferences / Settings | Appearance &amp;amp; Behavior | System Settings | Updates。
+如果您想知道什么是抢先体验计划，这里有一个简短的解释：
+ EAP 版本使您可以试用 Goland 仍在开发中的最新功能和增强功能。这些版本尚未经过全面测试，可能会不稳定，但是您可以在这里为我们提供帮助。通过将这些内部版本和功能用于实际项目和场景中来测试，您可以帮助我们完善它们。这样，当最终版本准备就绪时，它将为您更好地工作。
+  EAP 使您可以首先试用所有最新功能; 自构建日期起 30 天内免费使用 EAP 版本。您可以将这段时间用作 GoLand 的扩展试用版； 我们会提供 EAP 版本，直到几乎可以发布稳定版本为止。对于即将推出的 2020.1 版本，EAP 期将大致持续到 3 月底； 在每个发布周期中，我们都会为他们提供免费的 1 年 GoLand 订阅和一件独家的 GoLand T 恤 ，以表彰他们中最活跃的评估人员。 此外，我们几乎每天都提供最新版本。因此，如果您不想等待正式的 EAP 版本公告，则只需下载这些夜间版本之一，即可通过 Toolbox App 获得。请注意，每晚构建的质量通常低于我们的标准，并且没有随附发行说明。与 EAP 版本一样，它们也将在发布后 30 天内过期；  因此，让我们看一下第一个 EAP 版本中包含的内容。
+Go Modules 现在，您可以通过 go.mod 文件中的 Alt-Enter 来获取缺失的依赖项并删除未使用的依赖项。
+Go 1.14 支持 Go 1.14 增加了对嵌入重叠接口的支持，我们也是如此！当您使用重叠的接口时，GoLand 不会将重复的方法报告为错误。
+为什么将此功能添加到语言中？
+主要好处是我们可以使用嵌入定义接口，而不需要手动定义。这是一个例子：
+type Person interface { Name() string String() string } type Employee interface { Person Department() string String() string } 在 Go 1.14 之前，我们无法在 Employee 接口上添加 String() 方法，因为该方法已在 Person 接口上定义了。现在，我们可以使用接口嵌入定义它，如果 Person 接口有更新，我们自己更可控。
+代码补全/完成增强 我们对样板代码说不！GoLand 为常见的错误处理模式添加了代码完成功能。现在，当您在函数中键入if 时，您可以选择 err！= nil {…} 以自动完成它。
+为了更快地定义接口和结构，现在，当您键入type 关键字时，IDE 会为它们建议模板。当您输入 interface 或 struct 时，将显示相同的补全内容。
+现在，根据格式设置规则的要求，Fill Fields 操作会在冒号后添加空格，并在复合文字中的语句末尾添加逗号。
+现在，当您使用 map 时，完成键类型后，代码补全将光标移到右括号后面。
+智能代码补全建议使用指向结构的指针。
+最终，代码补全变得更加智能，现在在断言和 type-switch-case 中会首先建议兼容类型。
+代码编辑增强 当编写多值返回函数的签名时，GoLang 2020.1 将在逗号后面的返回类型周围自动添加括号。
+此外，当您在字符串中粘贴一些文本时，GoLand 会自动转义双引号。
+Postfix 完成模板 .else Postfix 完成模板可以快速添加 if 语句，以检查表达式是否为假。
+实时模板 我们添加了新的 consts, vars, types, 和 import 模板 。对于这些模板，默认情况下，GoLand 将在表达式周围添加括号。
+fori 模板插入经典 for 循环的样板代码。
+重构 现在，即使接口定义中省略了参数名称，Implement Methods（在 macOS 和 Windows/Linux 上为 Ctrl + I）也允许您指定参数名称。</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -14,7 +14,7 @@
       <pubDate>Fri, 09 Oct 2020 18:12:51 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/posts/go/project/go-version-manager/</guid>
-      <description>一直以来，我都习惯通过源码安装 Go。我是这么做的： 1）Git clone Go 源码 $ git clone https://github.com/golang/go 2）需要安装什么版本就切换到对应的分支，比如安装 1.15.x $ git checkout -b release-branch.go1.15 origin/release-branch.go1.15 如</description>
+      <description>一直以来，我都习惯通过源码安装 Go。我是这么做的： 1）Git clone Go 源码 $ git clone https://github.com/golang/go 2）需要安装什么版本就切换到对应的分支，比如安装 1.15.x $ git checkout -b release-branch.go1.15 origin/release-branch.go1.15 如果本地之前已经存在该分支，直接 git checkout release-branch.go1.15 即可。 3）将 go 整个目录复制到 /usr/local/go1.15，编译安装 4）创建软链： ln -s go1.15 go 之后加上环境变量等。 如果想要切换版本，只需要做类似上面的步骤，最后将 go 这个软链指向要切换的</description>
     </item>
     
   </channel>

@@ -14,7 +14,7 @@
       <pubDate>Tue, 17 Nov 2020 15:12:00 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/posts/go/pkg/statsview/</guid>
-      <description>大家好，我是站长 polarisxu。 掌握系统运行状态，知道系统哪些地方可能存在问题，方便进行优化，这是一个实际系统必备的。裸奔，对系统一无所</description>
+      <description>大家好，我是站长 polarisxu。 掌握系统运行状态，知道系统哪些地方可能存在问题，方便进行优化，这是一个实际系统必备的。裸奔，对系统一无所知，迟早是要出大事的。 在 Go 语言中，官方标准库提供了方法，让我们能够获得内存分配、GC 和 Goroutine 等情况。比如内存、GC 等情况，可以通过 runtime.MemStats 获取：https://docs.studygolang.com/pkg/runtime/#M</description>
     </item>
     
     <item>
@@ -23,7 +23,7 @@
       <pubDate>Thu, 15 Oct 2020 18:12:51 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/posts/go/pkg/statsviz/</guid>
-      <description>大家好，我是站长 polarisxu。 掌握系统运行状态，知道系统哪些地方可能存在问题，方便进行优化，这是一个实际系统必备的。裸奔，对系统一无所</description>
+      <description>大家好，我是站长 polarisxu。 掌握系统运行状态，知道系统哪些地方可能存在问题，方便进行优化，这是一个实际系统必备的。裸奔，对系统一无所知，迟早是要出大事的。 在 Go 语言中，官方标准库提供了方法，让我们能够获得内存分配、GC 和 Goroutine 等情况。比如内存、GC 等情况，可以通过 runtime.MemStats 获取：https://docs.studygolang.com/pkg/runtime/#M</description>
     </item>
     
   </channel>

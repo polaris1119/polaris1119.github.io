@@ -8,7 +8,7 @@
 	<meta name="theme-color" content="#fcfcfc">
 	<meta name="msapplication-TileColor" content="#fcfcfc">
 <meta itemprop="name" content="关于 Go 语言泛型设计的最新进展和一些问题的说明">
-<meta itemprop="description" content="前段时间 Go 官方发布了新的泛型草案，一时间在社区引起了很大的反响，各种关于泛型的文章、讨论涌现出来。8 月 21日 Ian Lance Taylor 在 golang-nuts 讨论组总结了泛型设计的">
+<meta itemprop="description" content="前段时间 Go 官方发布了新的泛型草案，一时间在社区引起了很大的反响，各种关于泛型的文章、讨论涌现出来。8 月 21日 Ian Lance Taylor 在 golang-nuts 讨论组总结了泛型设计的最新进展和一些问题的说明。 Go Team 在经过多次讨论并阅读了许多评论后，计划对泛型设计进行一些更改并澄清草案的一些问题。 1 泛型语法极有可能使用方括号 []（不用 &lt;&gt; 是因为和比较运算符大于、小于冲突，为了保持 Go1 兼容性，所以选择了 []）">
 <meta itemprop="datePublished" content="2020-08-23T18:12:00+08:00" />
 <meta itemprop="dateModified" content="2020-08-23T18:12:00+08:00" />
 <meta itemprop="wordCount" content="1313">
@@ -17,14 +17,14 @@
 
 <meta itemprop="keywords" content="Go,泛型," />
 <meta property="og:title" content="关于 Go 语言泛型设计的最新进展和一些问题的说明" />
-<meta property="og:description" content="前段时间 Go 官方发布了新的泛型草案，一时间在社区引起了很大的反响，各种关于泛型的文章、讨论涌现出来。8 月 21日 Ian Lance Taylor 在 golang-nuts 讨论组总结了泛型设计的" />
+<meta property="og:description" content="前段时间 Go 官方发布了新的泛型草案，一时间在社区引起了很大的反响，各种关于泛型的文章、讨论涌现出来。8 月 21日 Ian Lance Taylor 在 golang-nuts 讨论组总结了泛型设计的最新进展和一些问题的说明。 Go Team 在经过多次讨论并阅读了许多评论后，计划对泛型设计进行一些更改并澄清草案的一些问题。 1 泛型语法极有可能使用方括号 []（不用 &lt;&gt; 是因为和比较运算符大于、小于冲突，为了保持 Go1 兼容性，所以选择了 []）" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/dynamic/about-go-generic-progress/" />
 <meta property="article:published_time" content="2020-08-23T18:12:00+08:00" />
 <meta property="article:modified_time" content="2020-08-23T18:12:00+08:00" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="关于 Go 语言泛型设计的最新进展和一些问题的说明"/>
-<meta name="twitter:description" content="前段时间 Go 官方发布了新的泛型草案，一时间在社区引起了很大的反响，各种关于泛型的文章、讨论涌现出来。8 月 21日 Ian Lance Taylor 在 golang-nuts 讨论组总结了泛型设计的"/>
+<meta name="twitter:description" content="前段时间 Go 官方发布了新的泛型草案，一时间在社区引起了很大的反响，各种关于泛型的文章、讨论涌现出来。8 月 21日 Ian Lance Taylor 在 golang-nuts 讨论组总结了泛型设计的最新进展和一些问题的说明。 Go Team 在经过多次讨论并阅读了许多评论后，计划对泛型设计进行一些更改并澄清草案的一些问题。 1 泛型语法极有可能使用方括号 []（不用 &lt;&gt; 是因为和比较运算符大于、小于冲突，为了保持 Go1 兼容性，所以选择了 []）"/>
 
 	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -36,6 +36,8 @@
 	<title>关于 Go 语言泛型设计的最新进展和一些问题的说明</title>
 	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
 	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/styles.css">
 </head>
 
 <body id="page">
@@ -48,9 +50,10 @@
 				</div>
 				<nav class="site-nav hide-in-mobile">
 					
-  <a href="https://polarisxu.studygolang.com/posts/">文章</a>
-  <a href="https://polarisxu.studygolang.com/go-categories/">Go系列</a>
-  <a href="https://polarisxu.studygolang.com/devtool-categories/">开发工具</a>
+  <a href="https://polarisxu.studygolang.com/">首页</a>
+  <a href="https://polarisxu.studygolang.com/categories/echo%E7%B3%BB%E5%88%97/">Echo系列</a>
+  <a href="https://polarisxu.studygolang.com/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a>
+  <a href="https://polarisxu.studygolang.com/posts/">归档</a>
   <a href="https://polarisxu.studygolang.com/about/">关于</a>
 
 				</nav>
@@ -62,9 +65,10 @@
 	</header>
 	<div id="mobile-menu" class="animated fast">
 		<ul>
-			<li><a href="https://polarisxu.studygolang.com/posts/">文章</a></li>
-			<li><a href="https://polarisxu.studygolang.com/go-categories/">Go系列</a></li>
-			<li><a href="https://polarisxu.studygolang.com/devtool-categories/">开发工具</a></li>
+			<li><a href="https://polarisxu.studygolang.com/">首页</a></li>
+			<li><a href="https://polarisxu.studygolang.com/categories/echo%E7%B3%BB%E5%88%97/">Echo系列</a></li>
+			<li><a href="https://polarisxu.studygolang.com/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a></li>
+			<li><a href="https://polarisxu.studygolang.com/posts/">归档</a></li>
 			<li><a href="https://polarisxu.studygolang.com/about/">关于</a></li>
 		</ul>
 	</div>
@@ -109,6 +113,8 @@
 	<h2>相关推荐</h2>
 	<ul>
 	
+	<li><a href="/posts/devtool/goland/goland-2020-3-release/">GoLand 2020.3 正式发布了，有不少新功能，包括支持泛型</a></li>
+	
 	<li><a href="/posts/go/dynamic/go1.16-changes-2020/">列举一些 Go1.16 中可能对大家有影响的变化</a></li>
 	
 	<li><a href="/posts/talk/go-rsc-dynamic/">Russ Cox 又有动态了：开源了一个 Go 工具</a></li>
@@ -116,8 +122,6 @@
 	<li><a href="/posts/talk/go-celebrity-rsc/">Go 语言名人：除了 Rob Pike，很多人可能不知道他</a></li>
 	
 	<li><a href="/posts/talk/go-and-business/">聊聊 Go 和创业</a></li>
-	
-	<li><a href="/posts/go/pkg/statsview/">通过这个 Runtime 统计信息可视化库学到了什么？</a></li>
 	
 	</ul>
 </div>

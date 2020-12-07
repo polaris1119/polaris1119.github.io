@@ -14,7 +14,7 @@
       <pubDate>Thu, 12 Nov 2020 10:30:00 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/posts/talk/view-github-discussions/</guid>
-      <description>大家好，我是站长 polarisxu。 为了更有利于开源项目的发展，形成自己的社区很重要，作者们可以更好地和使用者交流互动，了解他们需求、问题。</description>
+      <description>大家好，我是站长 polarisxu。 为了更有利于开源项目的发展，形成自己的社区很重要，作者们可以更好地和使用者交流互动，了解他们需求、问题。虽然 GitHub 有 issue，但毕竟它主要还是用于反馈 bug、提新特性，不是一个社区的感觉。所以一般项目都会有其他的社区，比如会开通 google groups 邮件组、使用 Gitter、Discord、Slack 等。当然，国内的项目通常会使用 QQ 群、微信群</description>
     </item>
     
   </channel>

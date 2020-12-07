@@ -14,7 +14,7 @@
       <pubDate>Mon, 14 Sep 2020 11:15:51 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/posts/go/translation/running-go-code-on-ios-and-android/</guid>
-      <description>在本教程中，我们将构建一个简单的 Go 包，您可以从 iOS 应用程序（Swift）和 Android 应用程序（Kotlin）运行该软件包。 本教程不会使用go mobile 框架。相</description>
+      <description>在本教程中，我们将构建一个简单的 Go 包，您可以从 iOS 应用程序（Swift）和 Android 应用程序（Kotlin）运行该软件包。 本教程不会使用go mobile 框架。相反，它使用 Cgo 构建可导入到您的移动项目中的原始静态（iOS）和共享（Android） C 库（Go Mobile 框架在后台进行此操作）。 构建 在本教程中，我们将创建具有以下结构的简单 monorepo： . ├── android/ ├── go/ │ ├── cmd/ │ │ └── libfoo/</description>
     </item>
     
   </channel>

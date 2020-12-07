@@ -14,7 +14,7 @@
       <pubDate>Sun, 01 Nov 2020 18:12:00 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/posts/go/dynamic/go-embed-try/</guid>
-      <description>大家好，我是站长 polarisxu。 喜欢 Go 语言有很多理由，其中有一点“因为编译为一个二进制文件，直接运行，没有其他依赖，使得部署特别容易。”</description>
+      <description>大家好，我是站长 polarisxu。 喜欢 Go 语言有很多理由，其中有一点“因为编译为一个二进制文件，直接运行，没有其他依赖，使得部署特别容易。”我想是很多人喜欢的。 然而一个项目，很可能会包含一些静态资源文件，这样一来，一个 Go 二进制文件就不能解决了，需要将静态资源文件一起带上。于是有了很多第三方解决方案，将静态资源文件“嵌入”最终的 Go 二进制文件中。最知名的应该是 go-bindata</description>
     </item>
     
   </channel>

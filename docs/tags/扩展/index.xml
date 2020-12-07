@@ -14,7 +14,7 @@
       <pubDate>Mon, 16 Mar 2020 10:17:51 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/posts/go/echo/custom06-ext-server/</guid>
-      <description>这是定制篇的最后一节，讲解 Server 的自定义。 默认 Server 通常情况下，Echo 通过如下方式启动一个 HTTP Server： e := echo.New() e.GET(&amp;#34;/&amp;#34;, func(c echo.Context) error { return c.String(http.StatusOK, &amp;#34;Hello, World!&amp;#34;) }) e.Logger.Fatal(e.Start(&amp;#34;:2020&amp;#34;)) 我们打开源码</description>
+      <description>这是定制篇的最后一节，讲解 Server 的自定义。 默认 Server 通常情况下，Echo 通过如下方式启动一个 HTTP Server： e := echo.New() e.GET(&amp;#34;/&amp;#34;, func(c echo.Context) error { return c.String(http.StatusOK, &amp;#34;Hello, World!&amp;#34;) }) e.Logger.Fatal(e.Start(&amp;#34;:2020&amp;#34;)) 我们打开源码一探究竟： // Start starts an HTTP server. func (e *Echo) Start(address string) error { e.Server.Addr = address return e.StartServer(e.Server) } 原来调用的是 StartServer，参数是默认的 Server 实例，它是一个 http.Server 的指针类型。 自定义 Server 知道了 Echo#Start 最终调用的是 Echo#StartServer，而且它的参数是一个 *http.Server 类型，所以自</description>
     </item>
     
   </channel>

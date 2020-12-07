@@ -6,8 +6,208 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en</language>
 		<copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-		<lastBuildDate>Wed, 02 Dec 2020 19:20:00 +0800</lastBuildDate>
+		<lastBuildDate>Mon, 07 Dec 2020 18:12:00 +0800</lastBuildDate>
 		<atom:link href="https://polarisxu.studygolang.com/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>推荐一个网站：其实是三个网站</title>
+			<link>https://polarisxu.studygolang.com/posts/share/programming-idioms/</link>
+			<pubDate>Mon, 07 Dec 2020 18:12:00 +0800</pubDate>
+			
+			<guid>https://polarisxu.studygolang.com/posts/share/programming-idioms/</guid>
+			<description>大家好，我是站长 polarisxu。 现在这样的环境要求我们程序员掌握多门语言。然而，很多人在掌握了一门语言后，学习其他语言时，总会有前一门语言的影子；亦或有些人希望在学习新语言时能和之前的语言进行对比学习。 无意中发现一个网站，对有上述情况的人可能有些帮助，因此推荐给大家。网站地址：https://programming-idioms.org/。 从网站名称也能</description>
+			<content type="html"><![CDATA[<p>大家好，我是站长 polarisxu。</p>
+<p>现在这样的环境要求我们程序员掌握多门语言。然而，很多人在掌握了一门语言后，学习其他语言时，总会有前一门语言的影子；亦或有些人希望在学习新语言时能和之前的语言进行对比学习。</p>
+<p>无意中发现一个网站，对有上述情况的人可能有些帮助，因此推荐给大家。网站地址：<a href="https://programming-idioms.org/">https://programming-idioms.org/</a>。</p>
+<p><p class="md__image">
+  <img src="../imgs/programming-idioms-home.png"
+    alt=""  />
+</p>
+</p>
+<p>从网站名称也能猜出作者的意图，希望让大家掌握每门语言自己的习语。</p>
+<p>下面简单介绍下该网站。</p>
+<h2 id="01">01</h2>
+<p>首先这个网站的核心存储部分代码是开源的，使用 Go 语言实现。源码地址：<a href="https://github.com/Deleplace/programming-idioms">https://github.com/Deleplace/programming-idioms</a>。</p>
+<p>这个网站看起来功能不少，看菜单：</p>
+<p><p class="md__image">
+  <img src="../imgs/programming-idioms-nav.png"
+    alt=""  />
+</p>
+</p>
+<p>实际上主要是 idioms （目前 241 个），以及 31 门语言。通过这两者的组合，形成了相关的内容。比如，你可以看看 Hello World 在各个语言都是如何实现的。</p>
+<h2 id="02">02</h2>
+<p>我认为该网站最有价值的一点在于它提供的 Cheatsheets 功能。</p>
+<p><p class="md__image">
+  <img src="../imgs/programming-idioms-cheatsheets.png"
+    alt=""  />
+</p>
+</p>
+<p>通过选择两门语言来对比学习，比如 Go 和 Rust，你可以在这里查看：<a href="https://programming-idioms.org/cheatsheet/Go/Rust">https://programming-idioms.org/cheatsheet/Go/Rust</a>。这样你可以快速的通过一门自己熟悉的语言了解另外一门陌生的语言。</p>
+<p><p class="md__image">
+  <img src="../imgs/programming-idioms-go-vs-rust.png"
+    alt=""  />
+</p>
+</p>
+<h2 id="03">03</h2>
+<p>目前该站点的 Idioms 还不多，但每个人都可以贡献，通过该链接可以创建一个 idioms：<a href="https://programming-idioms.org/idiom-create">https://programming-idioms.org/idiom-create</a>。</p>
+<p>此外，通过这个站点还发现了另外两个站点。</p>
+<ul>
+<li><a href="https://hyperpolyglot.org/">https://hyperpolyglot.org/</a>。这个站点通过并排的方式显示不同语言的对比，类似上面的 Cheatsheets。比如 C 语言与 Go 语言的对比就值得一看：<a href="https://hyperpolyglot.org/c">https://hyperpolyglot.org/c</a>；</li>
+<li><a href="https://rosettacode.org/wiki/Rosetta_Code">https://rosettacode.org/wiki/Rosetta_Code</a>。这是一个编程主题网站。这个想法是要以尽可能多的不同语言提供针对同一任务的解决方案，以展示语言的相似性和差异性，并以一种解决方案为基础来帮助一个人学习另一门语言。 Rosetta Code 目前有 1,081 个任务，220 个草稿任务，有超过 810 种语言。当然没法为每种语言的每项任务提供解决方案，这需要大家一起努力，它已经形成了一个社区。实际上，这里有很多 LeetCode 上的题解。这个网站是刷算法的一个辅助网站。</li>
+</ul>
+<h2 id="04">04</h2>
+<p>你发现了其他好的站点吗？欢迎留言分享给大家，好东西别私藏哦。</p>
+]]></content>
+		</item>
+		
+		<item>
+			<title>GoLand 2020.3 正式发布了，有不少新功能，包括支持泛型</title>
+			<link>https://polarisxu.studygolang.com/posts/devtool/goland/goland-2020-3-release/</link>
+			<pubDate>Fri, 04 Dec 2020 22:30:00 +0800</pubDate>
+			
+			<guid>https://polarisxu.studygolang.com/posts/devtool/goland/goland-2020-3-release/</guid>
+			<description>这是 2020 年第 3 个版本，也是最后一个版本。在 GoLand 2020.3 中，您可以探索 goroutines dumps，运行并导航到单个表测试（table tests），并从对 Testify 测试框架的扩展支持中获得更多信息。你还将发现许多新的代码编辑功能，包括对 time 包的支持，更智能的处理包方法，UI 改进，用于 Web 开发和使用数据库的各种新功能以及用于协作开发和结对编程的新服务。具体看看有哪些新特性。 01 调试器改进 Dump Goroutines 调试器中新</description>
+			<content type="html"><![CDATA[<p>这是 2020 年第 3 个版本，也是最后一个版本。在 GoLand 2020.3 中，您可以探索 goroutines dumps，运行并导航到单个表测试（table tests），并从对 Testify 测试框架的扩展支持中获得更多信息。你还将发现许多新的代码编辑功能，包括对 time 包的支持，更智能的处理包方法，UI 改进，用于 Web 开发和使用数据库的各种新功能以及用于协作开发和结对编程的新服务。具体看看有哪些新特性。</p>
+<p><p class="md__image">
+  <img src="../imgs/goland-2020-3-release.png"
+    alt=""  />
+</p>
+</p>
+<h2 id="01-调试器改进">01 调试器改进</h2>
+<h3 id="dump-goroutines">Dump Goroutines</h3>
+<p><p class="md__image">
+  <img src="../imgs/2020-3-dump-goroutines.gif"
+    alt=""  />
+</p>
+</p>
+<p>调试器中新的转储 Goroutines（Dump Goroutines） 图标使您可以在调试会话期间轻松地在堆栈中查找包含指定字符串的 goroutine。只需单击该图标即可在单独的窗口中打开转储。</p>
+<p>为了帮助您始终关注重要信息，可以选择隐藏单个goroutine或具有相同堆栈的goroutine。右键单击goroutine，然后选择所需的操作，或按Delete键将其移至转储窗口中的特殊“隐藏”部分，这样不会分散您的注意力。</p>
+<h3 id="go-remote-configuration">Go Remote configuration</h3>
+<p><p class="md__image">
+  <img src="../imgs/2020-3-remote-debug.gif"
+    alt=""  />
+</p>
+</p>
+<p>如果不需要重新连接，GoLand 2020.3可以通过 Go Remote 配置停止进程。</p>
+<p>在配置设置中，您可以指定断开连接时调试器的默认行为，可以选择 “Stop remote Delve processes”，“使其保持运行状态”或让 GoLand 每次询问您如何继续。</p>
+<h2 id="02-测试增强">02 测试增强</h2>
+<h3 id="支持-table-tests">支持 table tests</h3>
+<p><p class="md__image">
+  <img src="../imgs/2020-3-table-tests-support.gif"
+    alt=""  />
+</p>
+</p>
+<p>您可以从 “Run” 工具窗口运行并导航到表测试。</p>
+<p>有一些限制：</p>
+<ul>
+<li>测试数据变量必须是切片，数组或 map。它必须在与调用相同的函数中定义，并且在初始化后不得修改（for 循环中的 range 子句除外）。</li>
+<li>各个测试数据条目必须是结构体字面值。调用前不得使用子测试名称表达式中使用的循环变量。</li>
+<li>子测试名称表达式可以是测试数据中的字符串字段，测试数据字符串字段的连接以及带有 ％s 和 ％d 动词的fmt.Sprintf() 调用。</li>
+</ul>
+<h3 id="扩展了对-testify-的支持">扩展了对 Testify 的支持</h3>
+<p><p class="md__image">
+  <img src="../imgs/2020-3-testify-framework.gif"
+    alt=""  />
+</p>
+</p>
+<p>现在，IDE 可以识别启动测试套件的测试功能，并提供一种启动单个 suite.Run 和 suite.T().Run，只要子测试名称是字符串常量即可。另外，可以从“Run”工具窗口重新运行子测试，以避免重新运行整个顶级测试。</p>
+<p>此外，GoLand 现在可以在一个测试用例中使用相同的方法名称分别运行 Testify 套件。</p>
+<p>最后但并非最不重要的一点是，当您准备写测试函数时（testing.T 作为第一个参数），GoLand 会在可能的情况下自动传递该参数。这适用于 testify/assert，testify/require，testify/mock 和 testify/suite 包。</p>
+<h2 id="03-代码检查">03 代码检查</h2>
+<p><p class="md__image">
+  <img src="../imgs/2020-3-incorrect-usage-println-printf.png"
+    alt=""  />
+</p>
+</p>
+<p>不正确使用类似 Println/Printf 的函数，GoLand 会有警告，之前只对标准库起作用，现在支持 github.com/pkg/errors, github.com/sirupsen/logrus 和 go.uber.org/zap 包。</p>
+<p>最重要的是，我们添加了占位符突出显示和折叠，以及添加格式字符串参数的意图。</p>
+<p><p class="md__image">
+  <img src="../imgs/2020-3-code-inspection-cancel-function.png"
+    alt=""  />
+</p>
+</p>
+<p>context.CancelFunc（不称为代码检查）报告了 context 取消的潜在不安全使用。当 context 返回的 “cancel” 函数未在所有执行路径上调用时，此功能特别有用。</p>
+<p>更多细节可以查看标准库文档：<a href="https://docs.studygolang.com/pkg/context">https://docs.studygolang.com/pkg/context</a>。</p>
+<h2 id="04-代码编辑">04 代码编辑</h2>
+<h3 id="time-包的支持">time 包的支持</h3>
+<blockquote>
+<p>Go 语言中文网注：Go 中的时间格式化和其他语言不一样，其他语言都是使用 YYYY、MM、dd 等，而 Go 使用魔法数字：2006-01-02 15:04:05 这样的固定时间。有些人可能记不住或习惯其他语言的格式。GoLand 2020.3 做了这样的转换，见下图。</p>
+</blockquote>
+<p><p class="md__image">
+  <img src="../imgs/2020-3-go-time-support.gif"
+    alt=""  />
+</p>
+</p>
+<p>我们增加了对 time 包的支持，因此您可以更轻松地使用 time 和 duration。 GoLand 将通过代码补全（⌃Space）建议使用 ISO-8601 中 YYYY，MM，DD 占位符的预定义 Layout。</p>
+<p>在某个 token 上按 ⌘P，IDE 将显示其含义。Layout 标记也有语法突出显示。代码完成还建议在字符串文字之外的标准时间 Layout。</p>
+<h3 id="更智能的包处理">更智能的包处理</h3>
+<p><p class="md__image">
+  <img src="../imgs/2020-3-go-smarter-package-handling.gif"
+    alt=""  />
+</p>
+</p>
+<p>现在，IDE 可以更聪明地为您经常使用的包的提示项配置优先级，这些包是在项目的 go.mod 文件中明确声明的。</p>
+<p>我们还添加了一个选项，可将包从项目导入路径和完成建议中完全排除。您可以通过 Alt + Enter 或在排除窗口中执行此操作。</p>
+<h3 id="支持变量-shadowing">支持变量 shadowing</h3>
+<p><p class="md__image">
+  <img src="../imgs/2020-3-shadow-variables.png"
+    alt=""  />
+</p>
+</p>
+<p>GoLang 可以更轻松地发现变量 shadowing。</p>
+<ul>
+<li>IDE 显示的变量现在可以用不同的颜色区分 shadowing 变量。</li>
+<li>导航到 shadowing 声明意图操作，使您可以立即切换到 shadowing 声明。</li>
+</ul>
+<h3 id="类型参数中的方括号">类型参数中的方括号</h3>
+<p>我们跟踪了 Go 小组对 <a href="https://groups.google.com/g/golang-nuts/c/iAD0NBz3DYw?pli=1" target="_blank" rel="noopener">泛型</a>
+ 的更新，并增加了对泛型语法方括号的支持。</p>
+<p>请注意，Settings | Go 中的 “<em>Enable generics (experimental support for type parameters)</em> ” 默认情况下处于关闭状态。您需要明确选择该复选框才能开始使用该功能。</p>
+<p>更多关于该功能的信息可以<a href="https://blog.jetbrains.com/go/2020/11/24/experimenting-with-go-type-parameters-generics-in-goland/" target="_blank" rel="noopener">查看该文章</a>
+。</p>
+<h2 id="05-其他改进">05 其他改进</h2>
+<p><p class="md__image">
+  <img src="../imgs/2020-3-bench-test-live-templates.png"
+    alt=""  />
+</p>
+</p>
+<p>在测试文件中键入 func 时，默认情况下，GoLand 会提示出 bench 和 test 函数模板。</p>
+<p><p class="md__image">
+  <img src="../imgs/2020-3-for-loop-for-bench.png"
+    alt=""  />
+</p>
+</p>
+<p>当您在基准测试中输入 for 时，IDE 建议使用 b.N 的 for 循环来完成它。</p>
+<h3 id="改进了拼写和语法检查器">改进了拼写和语法检查器</h3>
+<p><p class="md__image">
+  <img src="../imgs/2020-3-grammar-checkers.gif"
+    alt=""  />
+</p>
+</p>
+<p>现在，当您按 Alt + Enter 时，建议会立即显示在对话框中。此外，新版本的 LanguageTool 语法检查引擎还改进了英语检查功能，并增加了对 10 种其他语言的支持。</p>
+<h2 id="06-和我编码结对编程">06 和我编码（结对编程）</h2>
+<p><p class="md__image">
+  <img src="../imgs/2020-3-code-with-me-marketplace.png"
+    alt=""  />
+</p>
+</p>
+<p>GoLand 2020.3 支持 Code With Me（EAP），这是 JetBrains 的一项新服务，用于协作开发和结对编程。与我一起编写代码使您可以与他人共享您当前在 IDE中 打开的项目，并实时进行协作。</p>
+<p>关于该功能的更多信息请查看<a href="https://blog.jetbrains.com/tag/codewithme/" target="_blank" rel="noopener">这篇文章</a>
+。</p>
+<h2 id="07-其他">07 其他</h2>
+<p>其他的改进有：</p>
+<ul>
+<li>UI 改进；</li>
+<li>VSC 更新；</li>
+<li>Web 开发增强；</li>
+<li>对数据库支持增强；</li>
+</ul>
+<p>关于这块的详细信息可以到<a href="https://www.jetbrains.com/go/promo/whatsnew/" target="_blank" rel="noopener">这里查看</a>
+。</p>
+<h2 id="08-总结">08 总结</h2>
+<p>GoLand 是一个收费软件，可以试用 30 天。如果觉得不错，欢迎支持！当然免费的 VSCode 也香，对吧！</p>
+]]></content>
+		</item>
 		
 		<item>
 			<title>列举一些 Go1.16 中可能对大家有影响的变化</title>
@@ -15,7 +215,7 @@
 			<pubDate>Wed, 02 Dec 2020 19:20:00 +0800</pubDate>
 			
 			<guid>https://polarisxu.studygolang.com/posts/go/dynamic/go1.16-changes-2020/</guid>
-			<description>大家好，我是站长 polarisxu。 先说一下我一般怎么了解 Go 最新的一些动态。 01 从哪获取信息 主要通过以下方式： 逛推特，通过搜索功能，浏览 Go 信息</description>
+			<description>大家好，我是站长 polarisxu。 先说一下我一般怎么了解 Go 最新的一些动态。 01 从哪获取信息 主要通过以下方式： 逛推特，通过搜索功能，浏览 Go 信息，比如搜索：#golang since:2020-12-01 until:2020-12-02 看 Go 仓库的提交记录； 查看 https://tip.golang.org。这个一般在一个版本开发了一段时间看，比如现在可以看 Go1.16 的一些内容，主要可以看还未完成的 Release Notes：https://tip</description>
 			<content type="html"><![CDATA[<p>大家好，我是站长 polarisxu。</p>
 <p>先说一下我一般怎么了解 Go 最新的一些动态。</p>
 <h2 id="01-从哪获取信息">01 从哪获取信息</h2>
@@ -124,7 +324,7 @@ bye
 			<pubDate>Tue, 01 Dec 2020 11:30:00 +0800</pubDate>
 			
 			<guid>https://polarisxu.studygolang.com/posts/talk/myblog-with-hugo-github-pages/</guid>
-			<description>大家好，我是站长 polarisxu。 很早之前，我使用 WordPress 搭建了个人博客：http://blog.studygolang.com，毕竟那时候 WordPress 是</description>
+			<description>大家好，我是站长 polarisxu。 很早之前，我使用 WordPress 搭建了个人博客：http://blog.studygolang.com，毕竟那时候 WordPress 是首选。现如今，大家似乎更喜欢静态博客，各种语言的静态博客生成器轮子不断，比如 Go 语言的 Hugo 就是一个静态博客生成器。我个人认为，静态博客生成器流行的一个很大原因，是 Markdown 的流行，开发人员习惯了使用 Markdown 进行写作。 对于我，有另外一个痛点</description>
 			<content type="html"><![CDATA[<p>大家好，我是站长 polarisxu。</p>
 <p>很早之前，我使用 WordPress 搭建了个人博客：<a href="http://blog.studygolang.com">http://blog.studygolang.com</a>，毕竟那时候 WordPress 是首选。现如今，大家似乎更喜欢静态博客，各种语言的静态博客生成器轮子不断，比如 Go 语言的 Hugo 就是一个静态博客生成器。我个人认为，静态博客生成器流行的一个很大原因，是 Markdown 的流行，开发人员习惯了使用 Markdown 进行写作。</p>
 <p>对于我，有另外一个痛点。最近在公众号写了一些文章，希望同步到博客，只是文字还好处理些，如果涉及到图片，微信公众号上传了一次，博客还得再来一次，挺费劲的。同时，为了保留最原始的文字，原始博文放在 GitHub 是一个不错的选择（用 Git 保留你的修改，不要太棒好嘛！）。</p>
@@ -303,7 +503,7 @@ git add * <span class="o">&amp;&amp;</span> git commit -m <span class="s1">&#39;
 			<pubDate>Sat, 21 Nov 2020 21:30:00 +0800</pubDate>
 			
 			<guid>https://polarisxu.studygolang.com/posts/talk/go-rsc-dynamic/</guid>
-			<description>前天发了一篇文章，介绍了 Go 的名人，Go Team 现在的 Leader Russ Cox 。 01 这两天在大牛的 GitHub 上看到他开源了一个新的工具：一个实验性的，用于 Go 语言的重构工具。 项目</description>
+			<description>前天发了一篇文章，介绍了 Go 的名人，Go Team 现在的 Leader Russ Cox 。 01 这两天在大牛的 GitHub 上看到他开源了一个新的工具：一个实验性的，用于 Go 语言的重构工具。 项目地址：https://github.com/rsc/rf。 开源后，立马有人跟进：https://changelog.com/news/russ-coxs-experimental-new-refactoring-tool</description>
 			<content type="html"><![CDATA[<p>前天发了一篇文章，介绍了 Go 的名人，<a href="https://mp.weixin.qq.com/s/kmcJRBahAl4gtPzZUvd5bg" target="_blank" rel="noopener">Go Team 现在的 Leader Russ Cox</a>
 。</p>
 <h2 id="01">01</h2>
@@ -350,7 +550,7 @@ git add * <span class="o">&amp;&amp;</span> git commit -m <span class="s1">&#39;
 			<pubDate>Thu, 19 Nov 2020 19:20:00 +0800</pubDate>
 			
 			<guid>https://polarisxu.studygolang.com/posts/talk/go-celebrity-rsc/</guid>
-			<description>大家好，我是站长 polarisxu。 今天和大家聊聊 Go 语言名人的那些事。 01 说起 Go 语言，很多人知晓有三个创始人。在 2007 年 09 月 25 日，Rob Pike 发了一封</description>
+			<description>大家好，我是站长 polarisxu。 今天和大家聊聊 Go 语言名人的那些事。 01 说起 Go 语言，很多人知晓有三个创始人。在 2007 年 09 月 25 日，Rob Pike 发了一封邮件： 所以一般认为 Rob Pike、Robert Griesemer 和 Ken Thompson 是 Go 的创始人，而很长一段时间，Rob Pike 在引领 Go 团队，同时在一些公众场合经常出现，因此大家对 Rob Piike 更熟悉。关于他们三个的情况，网上资料挺多的，这里不说了。 今天说的是另外一个人</description>
 			<content type="html"><![CDATA[<p>大家好，我是站长 polarisxu。</p>
 <p>今天和大家聊聊 Go 语言名人的那些事。</p>
 <h2 id="01">01</h2>
@@ -436,7 +636,7 @@ git add * <span class="o">&amp;&amp;</span> git commit -m <span class="s1">&#39;
 			<pubDate>Wed, 18 Nov 2020 18:40:00 +0800</pubDate>
 			
 			<guid>https://polarisxu.studygolang.com/posts/talk/go-and-business/</guid>
-			<description>昨天 PingCAP 完成 D 轮 2.7 亿美元融资的消息，相信很多人看到了。PingCAP 今天的成就，对开源界真是极大的鼓舞。祝贺祝贺！ 01 PingCAP 成立于 2015 年，是一家企业级</description>
+			<description>昨天 PingCAP 完成 D 轮 2.7 亿美元融资的消息，相信很多人看到了。PingCAP 今天的成就，对开源界真是极大的鼓舞。祝贺祝贺！ 01 PingCAP 成立于 2015 年，是一家企业级开源分布式数据库厂商，提供包括开源分布式数据库产品、解决方案与咨询、技术支持与培训认证服务，致力于为全球行业用户提供稳定高效、安全可靠、开放兼容的新型数据基础设施，解放企业生产力，加速企业数字化转型升级。 由 PingCAP 创立的分布式</description>
 			<content type="html"><![CDATA[<p>昨天 PingCAP 完成 D 轮 2.7 亿美元融资的消息，相信很多人看到了。PingCAP 今天的成就，对开源界真是极大的鼓舞。祝贺祝贺！</p>
 <h2 id="01">01</h2>
 <p>PingCAP 成立于 2015 年，是一家企业级开源分布式数据库厂商，提供包括开源分布式数据库产品、解决方案与咨询、技术支持与培训认证服务，致力于为全球行业用户提供稳定高效、安全可靠、开放兼容的新型数据基础设施，解放企业生产力，加速企业数字化转型升级。</p>
@@ -478,7 +678,7 @@ git add * <span class="o">&amp;&amp;</span> git commit -m <span class="s1">&#39;
 			<pubDate>Tue, 17 Nov 2020 15:12:00 +0800</pubDate>
 			
 			<guid>https://polarisxu.studygolang.com/posts/go/pkg/statsview/</guid>
-			<description>大家好，我是站长 polarisxu。 掌握系统运行状态，知道系统哪些地方可能存在问题，方便进行优化，这是一个实际系统必备的。裸奔，对系统一无所</description>
+			<description>大家好，我是站长 polarisxu。 掌握系统运行状态，知道系统哪些地方可能存在问题，方便进行优化，这是一个实际系统必备的。裸奔，对系统一无所知，迟早是要出大事的。 在 Go 语言中，官方标准库提供了方法，让我们能够获得内存分配、GC 和 Goroutine 等情况。比如内存、GC 等情况，可以通过 runtime.MemStats 获取：https://docs.studygolang.com/pkg/runtime/#M</description>
 			<content type="html"><![CDATA[<p>大家好，我是站长 polarisxu。</p>
 <p>掌握系统运行状态，知道系统哪些地方可能存在问题，方便进行优化，这是一个实际系统必备的。裸奔，对系统一无所知，迟早是要出大事的。</p>
 <p>在 Go 语言中，官方标准库提供了方法，让我们能够获得内存分配、GC 和 Goroutine 等情况。比如内存、GC 等情况，可以通过 runtime.MemStats 获取：<a href="https://docs.studygolang.com/pkg/runtime/#MemStats">https://docs.studygolang.com/pkg/runtime/#MemStats</a>，Goroutine 数量可以通过 runtime.NumGoroutine() 函数获得。</p>
@@ -698,7 +898,7 @@ git add * <span class="o">&amp;&amp;</span> git commit -m <span class="s1">&#39;
 			<pubDate>Thu, 12 Nov 2020 18:30:00 +0800</pubDate>
 			
 			<guid>https://polarisxu.studygolang.com/posts/go/action/bytedance-interview-201112/</guid>
-			<description>大家好，我是站长 polarisxu。 网上看到有人分享去字节跳动的面试 Go 的经验 ，从面试题来看，应该是比较初级的职位。 这份面试经验总结中（其实谈</description>
+			<description>大家好，我是站长 polarisxu。 网上看到有人分享去字节跳动的面试 Go 的经验 ，从面试题来看，应该是比较初级的职位。 这份面试经验总结中（其实谈不上总结，只是面试题的记录，并没有总结分析答案），有一道 Go 相关的题，也是一个老生常谈的问题：以下代码有什么问题，怎么解决？ total, sum := 0, 0 for i := 1; i &amp;lt;= 10; i++ { sum += i go func() { total += i }() } fmt.Printf(&amp;#34;total:%d sum %d&amp;#34;, total, sum) 01 考点一 我相信很多人应该一眼看出了其中</description>
 			<content type="html"><![CDATA[<p>大家好，我是站长 polarisxu。</p>
 <p>网上看到有人分享去字节跳动的<a href="https://zhuanlan.zhihu.com/p/132813717" target="_blank" rel="noopener">面试 Go 的经验</a>
 ，从面试题来看，应该是比较初级的职位。</p>
@@ -859,7 +1059,7 @@ total:55 sum 55Found <span class="m">1</span> data race<span class="o">(</span>s
 			<pubDate>Thu, 12 Nov 2020 10:30:00 +0800</pubDate>
 			
 			<guid>https://polarisxu.studygolang.com/posts/talk/view-github-discussions/</guid>
-			<description>大家好，我是站长 polarisxu。 为了更有利于开源项目的发展，形成自己的社区很重要，作者们可以更好地和使用者交流互动，了解他们需求、问题。</description>
+			<description>大家好，我是站长 polarisxu。 为了更有利于开源项目的发展，形成自己的社区很重要，作者们可以更好地和使用者交流互动，了解他们需求、问题。虽然 GitHub 有 issue，但毕竟它主要还是用于反馈 bug、提新特性，不是一个社区的感觉。所以一般项目都会有其他的社区，比如会开通 google groups 邮件组、使用 Gitter、Discord、Slack 等。当然，国内的项目通常会使用 QQ 群、微信群</description>
 			<content type="html"><![CDATA[<p>大家好，我是站长 polarisxu。</p>
 <p>为了更有利于开源项目的发展，形成自己的社区很重要，作者们可以更好地和使用者交流互动，了解他们需求、问题。虽然 GitHub 有 issue，但毕竟它主要还是用于反馈 bug、提新特性，不是一个社区的感觉。所以一般项目都会有其他的社区，比如会开通 google groups 邮件组、使用 Gitter、Discord、Slack 等。当然，国内的项目通常会使用 QQ 群、微信群。（我个人认为，QQ 群、微信群对社区沉淀是很不好的，知识输出、讨论没法重用，虽然对提问者友好，可以快速得到回应）</p>
 <p>今年年初，GitHub 开始测试一个新功能：Discussions，它想为开源项目打造一个自己的社区，将之前分散的社区聚合在一起。比如一般开源社区是这样的：用 Gitter 作为开源社区聊天的地方，StackOverflow 用于寻求问题的答案，而论坛用于讨论等。有了 Discussions，我们可以在上面开展很多活动。GitHub 官方对 Discussions 的描述是这样的：</p>
@@ -905,7 +1105,7 @@ total:55 sum 55Found <span class="m">1</span> data race<span class="o">(</span>s
 			<pubDate>Tue, 10 Nov 2020 09:30:00 +0800</pubDate>
 			
 			<guid>https://polarisxu.studygolang.com/posts/go/dynamic/go-opensource-11-years/</guid>
-			<description>题图来自《了不起的程序员》 今天是 Go 语言开源 11 周年。有些人可能不太知道，简单回顾下 Go 的历史。 2007 年 Rob Pike, Robert Griesemer 和 Ken Thompson 一起创建了 Go 语言。从代码提交记录</description>
+			<description>题图来自《了不起的程序员》 今天是 Go 语言开源 11 周年。有些人可能不太知道，简单回顾下 Go 的历史。 2007 年 Rob Pike, Robert Griesemer 和 Ken Thompson 一起创建了 Go 语言。从代码提交记录看，2008 年 3 月 3 日有了 Go 最初的规范 。 2009 年 11 月 10 日，Go 语言以开放源代码的方式向全球发布，当年获得了 TIOBE 年度编程语言称号； 2011 年 3 月 16 日，Go 语言的第一个稳定版本 r56 发布； 2012 年 3 月 28 日，Go 语言的第一个正式版本 Go1 发布，并承诺</description>
 			<content type="html"><![CDATA[<p><p class="md__image">
   <img src="../imgs/go-opensource-11.png"
     alt="了不起的程序员"  />
@@ -1023,7 +1223,7 @@ total:55 sum 55Found <span class="m">1</span> data race<span class="o">(</span>s
 			<pubDate>Tue, 10 Nov 2020 00:07:00 +0800</pubDate>
 			
 			<guid>https://polarisxu.studygolang.com/posts/go/translation/rust-vs-go/</guid>
-			<description>最近一年，将 Rust 和 Go 进行比较的不少，但不少都不公正，带感情色彩。而这篇文章客观、全面的分析对比了 Rust 和 Go，让你具体项目时选择最合适的。 Rust 还是 G</description>
+			<description>最近一年，将 Rust 和 Go 进行比较的不少，但不少都不公正，带感情色彩。而这篇文章客观、全面的分析对比了 Rust 和 Go，让你具体项目时选择最合适的。 Rust 还是 Go，哪个更好？你应该为下一个项目选择哪种语言，为什么？两者在性能，简单性，安全性，功能，规模和并发性等方面如何比较？它们有什么共同点，并且在根本上有何不同？来自 For the Go of Love 系列图书的作者，友好而公正的比较 Rust 和 Golang。</description>
 			<content type="html"><![CDATA[<blockquote>
 <p>最近一年，将 Rust 和 Go 进行比较的不少，但不少都不公正，带感情色彩。而这篇文章客观、全面的分析对比了 Rust 和 Go，让你具体项目时选择最合适的。</p>
 </blockquote>
@@ -1212,7 +1412,7 @@ total:55 sum 55Found <span class="m">1</span> data race<span class="o">(</span>s
 			<pubDate>Mon, 09 Nov 2020 15:50:00 +0800</pubDate>
 			
 			<guid>https://polarisxu.studygolang.com/posts/go/micro/micro-3.0.0-m3o/</guid>
-			<description>用过或了解过 Micro 这个框架的人，可能有所耳闻，大家对其抱怨比较多，典型的抱怨是升级后不兼容。比如网上有教程是基于 1.x，但新版本是 2.x，完全不</description>
+			<description>用过或了解过 Micro 这个框架的人，可能有所耳闻，大家对其抱怨比较多，典型的抱怨是升级后不兼容。比如网上有教程是基于 1.x，但新版本是 2.x，完全不一样了，而且似乎官方文档也没有及时更新，使用了它的人“痛苦不堪”。 前些天，有人问我有无其他 Go 微服务框架推荐，说 Micro 3.0.0 开始不能用了！！ 我听了一惊：我只听说它不稳定，总是变来变去，兼容性不好，但没听说不能用。后来了解了下，原来</description>
 			<content type="html"><![CDATA[<p>用过或了解过 Micro 这个框架的人，可能有所耳闻，大家对其抱怨比较多，典型的抱怨是升级后不兼容。比如网上有教程是基于 1.x，但新版本是 2.x，完全不一样了，而且似乎官方文档也没有及时更新，使用了它的人“痛苦不堪”。</p>
 <p>前些天，有人问我有无其他 Go 微服务框架推荐，说 Micro 3.0.0 开始不能用了！！</p>
 <p>我听了一惊：我只听说它不稳定，总是变来变去，兼容性不好，但没听说不能用。后来了解了下，原来 3.0 做了巨大的改变。主要有：</p>
@@ -1265,7 +1465,7 @@ total:55 sum 55Found <span class="m">1</span> data race<span class="o">(</span>s
 			<pubDate>Wed, 04 Nov 2020 21:00:00 +0800</pubDate>
 			
 			<guid>https://polarisxu.studygolang.com/posts/go/translation/cockroachdb-errors-everyday/</guid>
-			<description>在 Go 中传递错误的惯用方式是使用预定义的类型错误。但是 Go 的标准库仅提供了非常简单的错误对象，errors.New() 和fmt.Errorf()</description>
+			<description>在 Go 中传递错误的惯用方式是使用预定义的类型错误。但是 Go 的标准库仅提供了非常简单的错误对象，errors.New() 和fmt.Errorf()。 本文介绍了 CockroachDB 的 error 库（它是 Go 标准库库 errors 的直接替代品），Go 程序员如何用它来描述和传播其代码中的错误和错误代号（code）。 Go 标准库 errors 太简单 由 fmt.Errorf() 构造的 Go 中最常见的“简单”错误对象类似于带有错误接口的包含在结构中的字符串：其</description>
 			<content type="html"><![CDATA[<p>在 Go 中传递错误的惯用方式是使用预定义的类型错误。但是 Go 的标准库仅提供了非常简单的错误对象，errors.New() 和fmt.Errorf()。</p>
 <p>本文介绍了 CockroachDB 的 error 库（它是 Go 标准库库 errors 的直接替代品），Go 程序员如何用它来描述和传播其代码中的错误和错误代号（code）。</p>
 <h2 id="go-标准库-errors-太简单">Go 标准库 errors 太简单</h2>
@@ -1656,7 +1856,7 @@ Error types: <span class="o">(</span>1<span class="o">)</span> *secondary.withSe
 			<pubDate>Tue, 03 Nov 2020 18:12:00 +0800</pubDate>
 			
 			<guid>https://polarisxu.studygolang.com/posts/devtool/cheat-sh/</guid>
-			<description>大家好，我是站长 polarisxu。 在逛 GitHub Trending 时看到了这个项目：https://github.com/chubin/cheat.sh，因为之前</description>
+			<description>大家好，我是站长 polarisxu。 在逛 GitHub Trending 时看到了这个项目：https://github.com/chubin/cheat.sh，因为之前我整理过一系列 cheatsheet，因此好奇的打开了这个项目。于是被它吸引了。。。 01 是什么 该项目的描述是： the only cheat sheet you need 简单一句话却很吸引人：这么强大，这一个 cheatsheet 就够了？ 因为在这一份清单中，包含了几乎所有开发者常见的东西，不</description>
 			<content type="html"><![CDATA[<p>大家好，我是站长 polarisxu。</p>
 <p>在逛 GitHub Trending 时看到了这个项目：<a href="https://github.com/chubin/cheat.sh">https://github.com/chubin/cheat.sh</a>，因为之前我整理过一系列 cheatsheet，因此好奇的打开了这个项目。于是被它吸引了。。。</p>
 <h2 id="01-是什么">01 是什么</h2>
@@ -1895,7 +2095,7 @@ r   recursive search
 			<pubDate>Sun, 01 Nov 2020 18:12:00 +0800</pubDate>
 			
 			<guid>https://polarisxu.studygolang.com/posts/go/dynamic/go-embed-try/</guid>
-			<description>大家好，我是站长 polarisxu。 喜欢 Go 语言有很多理由，其中有一点“因为编译为一个二进制文件，直接运行，没有其他依赖，使得部署特别容易。”</description>
+			<description>大家好，我是站长 polarisxu。 喜欢 Go 语言有很多理由，其中有一点“因为编译为一个二进制文件，直接运行，没有其他依赖，使得部署特别容易。”我想是很多人喜欢的。 然而一个项目，很可能会包含一些静态资源文件，这样一来，一个 Go 二进制文件就不能解决了，需要将静态资源文件一起带上。于是有了很多第三方解决方案，将静态资源文件“嵌入”最终的 Go 二进制文件中。最知名的应该是 go-bindata</description>
 			<content type="html"><![CDATA[<p>大家好，我是站长 polarisxu。</p>
 <p>喜欢 Go 语言有很多理由，其中有一点“因为编译为一个二进制文件，直接运行，没有其他依赖，使得部署特别容易。”我想是很多人喜欢的。</p>
 <p>然而一个项目，很可能会包含一些静态资源文件，这样一来，一个 Go 二进制文件就不能解决了，需要将静态资源文件一起带上。于是有了很多第三方解决方案，将静态资源文件“嵌入”最终的 Go 二进制文件中。最知名的应该是 <a href="https://pkg.go.dev/github.com/jteeuwen/go-bindata" target="_blank" rel="noopener">go-bindata</a>
@@ -2358,7 +2558,7 @@ r   recursive search
 			<pubDate>Fri, 30 Oct 2020 15:12:00 +0800</pubDate>
 			
 			<guid>https://polarisxu.studygolang.com/posts/go/dynamic/hackerearth-developer-survey/</guid>
-			<description>大家好，我是站长 polarisxu。 今天看到一个 2020 年开发者调查报告，看到了 Go 的前景，忍不住想跟大家分享一下。 01 这份调查报告来自 HackerEarth 。简单介绍下</description>
+			<description>大家好，我是站长 polarisxu。 今天看到一个 2020 年开发者调查报告，看到了 Go 的前景，忍不住想跟大家分享一下。 01 这份调查报告来自 HackerEarth 。简单介绍下它。 HackerEarth 的口号是：远程雇用最优秀的技术人才。拥有 400 万+ 开发人员（注册用户），上千家企业信赖，他们帮助公司准确评估，面试和雇用顶尖技术人才。 他们提供编程练习、黑客挑战，号称能够进行准确的编码评估并远程聘用最好的技术人才。根据</description>
 			<content type="html"><![CDATA[<p>大家好，我是站长 polarisxu。</p>
 <p>今天看到一个 2020 年开发者调查报告，看到了 Go 的前景，忍不住想跟大家分享一下。</p>
 <h2 id="01">01</h2>
@@ -2431,7 +2631,7 @@ r   recursive search
 			<pubDate>Thu, 29 Oct 2020 21:40:00 +0800</pubDate>
 			
 			<guid>https://polarisxu.studygolang.com/posts/go/translation/golang-ai-programming-language/</guid>
-			<description>30 年前，Python 首次出现。但是花了 20 年时间才能获得开发人员的赏识。快进到 2019 年，它成为开发人员中第二受欢迎的语言。（来自 Stackoverflow 开发人员 2019 调查结</description>
+			<description>30 年前，Python 首次出现。但是花了 20 年时间才能获得开发人员的赏识。快进到 2019 年，它成为开发人员中第二受欢迎的语言。（来自 Stackoverflow 开发人员 2019 调查结果 ） 过去，尤其是在过去的 5 年中，它的增长是巨大的。Python 成为机器学习和数据科学开发人员的首选语言。 在接下来的几年中，Python 在这些领域的主导地位无疑会持续。但是与更新的语言相比，它具有一些严重的缺点。对于 21 实际</description>
 			<content type="html"><![CDATA[<p>30 年前，Python 首次出现。但是花了 20 年时间才能获得开发人员的赏识。快进到 2019 年，它成为开发人员中第二受欢迎的语言。（来自 <a href="https://insights.stackoverflow.com/survey/2019#most-loved-dreaded-and-wanted" target="_blank" rel="noopener">Stackoverflow 开发人员 2019 调查结果</a>
 ）</p>
 <p>过去，尤其是在过去的 5 年中，它的增长是巨大的。Python 成为机器学习和数据科学开发人员的首选语言。</p>
@@ -2512,7 +2712,7 @@ r   recursive search
 			<pubDate>Mon, 26 Oct 2020 18:12:51 +0800</pubDate>
 			
 			<guid>https://polarisxu.studygolang.com/posts/go/action/talk-geek-time-live/</guid>
-			<description>昨天晚上（10 月 25 日）极客时间进行了一场直播，主题是：《未来 5 年将是 Go 语言的天下》。 客观说，这个主题还是挺唬人的，而直播的内容跟这个主题关系</description>
+			<description>昨天晚上（10 月 25 日）极客时间进行了一场直播，主题是：《未来 5 年将是 Go 语言的天下》。 客观说，这个主题还是挺唬人的，而直播的内容跟这个主题关系不大。有三个嘉宾，只有左耳朵耗子谈了 Go 的未来，他的判断，Go 会成为主流，只会 PHP 肯定行不通。 在提问环节，有人问到耗子哥关于 Python 的看法，他直言：Python 会成为新手语言。不管你认不认同，耗子哥的一些观点还是有一定道理的。 耗子</description>
 			<content type="html"><![CDATA[<p>昨天晚上（10 月 25 日）极客时间进行了一场直播，主题是：《未来 5 年将是 Go 语言的天下》。</p>
 <p>客观说，这个主题还是挺唬人的，而直播的内容跟这个主题关系不大。有三个嘉宾，只有左耳朵耗子谈了 Go 的未来，他的判断，Go 会成为主流，只会 PHP 肯定行不通。</p>
 <p>在提问环节，有人问到耗子哥关于 Python 的看法，他直言：Python 会成为新手语言。不管你认不认同，耗子哥的一些观点还是有一定道理的。</p>
@@ -2573,7 +2773,7 @@ r   recursive search
 			<pubDate>Mon, 26 Oct 2020 11:15:51 +0800</pubDate>
 			
 			<guid>https://polarisxu.studygolang.com/posts/go/translation/go-error-printing-catastrophe/</guid>
-			<description>这篇文章是关于 “CockroachDB errors 库” 的系列文章的第 3 篇，“CockroachDB errors 库”实际上是 Go 的标准 errors 包的通用、开放源码的替代品。</description>
+			<description>这篇文章是关于 “CockroachDB errors 库” 的系列文章的第 3 篇，“CockroachDB errors 库”实际上是 Go 的标准 errors 包的通用、开放源码的替代品。 Go 1.13 的标准库采用了 Dave Cheney 自 2015 年以来对错误处理的主要贡献：将 Go 错误对象构造为链表的想法。 唉，这种方式给 Go 开发人员造成了巨大的障碍：使打印错误对象变得困难、几乎不可能。 这就是我所说的 “Go error 打印灾难&amp;quot;，下面我们将准确</description>
 			<content type="html"><![CDATA[<p>这篇文章是关于 <a href="https://github.com/cockroachdb/errors" target="_blank" rel="noopener">“CockroachDB errors 库”</a>
 的系列文章的第 3 篇，“CockroachDB errors 库”实际上是 Go 的标准 errors 包的通用、开放源码的替代品。</p>
 <p>Go 1.13 的标准库采用了 Dave Cheney 自 2015 年以来对错误处理的主要贡献：将 Go 错误对象构造为链表的想法。 唉，这种方式给 Go 开发人员造成了巨大的障碍：使打印错误对象变得困难、几乎不可能。</p>
@@ -2943,7 +3143,7 @@ r   recursive search
 			<pubDate>Sat, 24 Oct 2020 11:15:51 +0800</pubDate>
 			
 			<guid>https://polarisxu.studygolang.com/posts/go/translation/go-formatting-apis/</guid>
-			<description>这篇文章是关于 “CockroachDB errors 库” 的系列文章的第 2 篇，“CockroachDB errors 库”实际上是 Go 的标准 errors 包的通用、开放源码的替代品。</description>
+			<description>这篇文章是关于 “CockroachDB errors 库” 的系列文章的第 2 篇，“CockroachDB errors 库”实际上是 Go 的标准 errors 包的通用、开放源码的替代品。 以下面的代码为例： import &amp;#34;fmt&amp;#34; type T struct { x int } func main() { v := T{123} fmt.Println(v) } 这个程序打印 {123}，尽管我们没有教 Go 如何打印我们的 T 类型。它是如何做到这一点的？ printer 的等效性 fmt 包中的逻辑在所有 printer 之间共享，因此以下调用都保证等效： fmt.Print(x) fmt.Printf(&amp;quot;%v&amp;quot;, x) os.Stdout.Write([]byte(fmt.Sprint(x))) os.Stdout.Write([]byte(fmt.Sprintf(&amp;quot;%v&amp;quot;, x))) 换句话说</description>
 			<content type="html"><![CDATA[<p>这篇文章是关于 <a href="https://github.com/cockroachdb/errors" target="_blank" rel="noopener">“CockroachDB errors 库”</a>
 的系列文章的第 2 篇，“CockroachDB errors 库”实际上是 Go 的标准 errors 包的通用、开放源码的替代品。</p>
 <p>以下面的代码为例：</p>
@@ -3207,7 +3407,7 @@ r   recursive search
 			<pubDate>Fri, 23 Oct 2020 11:15:51 +0800</pubDate>
 			
 			<guid>https://polarisxu.studygolang.com/posts/go/translation/cockroachdb-errors-std-api/</guid>
-			<description>这篇文章是关于 “CockroachDB errors 库” 的系列文章的第 1 篇，“CockroachDB errors 库”实际上是 Go 的标准 errors 包的通用、开放源码的替代品。</description>
+			<description>这篇文章是关于 “CockroachDB errors 库” 的系列文章的第 1 篇，“CockroachDB errors 库”实际上是 Go 的标准 errors 包的通用、开放源码的替代品。 那本篇文章主要谈论什么呢？ 基本的 Go 错误：error 是值 Go 生态有一些非常流行、也非常基本的学习资源（文档）： A Tour of Go: Errors 。这是 Go 的官方教程。 Go By Example: errors 。Go By Example 是一些系列文章，推荐给那些希望通过示例学习 Go 的朋友们。 Goland Docs: Errors and Exception handling</description>
 			<content type="html"><![CDATA[<p>这篇文章是关于 <a href="https://github.com/cockroachdb/errors" target="_blank" rel="noopener">“CockroachDB errors 库”</a>
 的系列文章的第 1 篇，“CockroachDB errors 库”实际上是 Go 的标准 errors 包的通用、开放源码的替代品。</p>
 <p>那本篇文章主要谈论什么呢？</p>
@@ -3475,7 +3675,7 @@ r   recursive search
 			<pubDate>Sun, 18 Oct 2020 14:18:50 +0800</pubDate>
 			
 			<guid>https://polarisxu.studygolang.com/posts/go/action/interview-slice-json/</guid>
-			<description>昨天在 Go语言爱好者周刊：第 65 期 刊首语发了一道题，以下代码输出什么？ package main import ( &amp;#34;encoding/json&amp;#34; &amp;#34;fmt&amp;#34; ) type AutoGenerated struct { Age int `json:&amp;#34;age&amp;#34;` Name string `json:&amp;#34;name&amp;#34;` Child []int `json:&amp;#34;child&amp;#34;` } func main() { jsonStr1 := `{&amp;#34;age&amp;#34;: 14,&amp;#34;name&amp;#34;: &amp;#34;potter&amp;#34;, &amp;#34;child&amp;#34;:[1,2,3]}` a := AutoGenerated{} json.Unmarshal([]byte(jsonStr1), &amp;amp;a) aa</description>
+			<description>昨天在 Go语言爱好者周刊：第 65 期 刊首语发了一道题，以下代码输出什么？ package main import ( &amp;#34;encoding/json&amp;#34; &amp;#34;fmt&amp;#34; ) type AutoGenerated struct { Age int `json:&amp;#34;age&amp;#34;` Name string `json:&amp;#34;name&amp;#34;` Child []int `json:&amp;#34;child&amp;#34;` } func main() { jsonStr1 := `{&amp;#34;age&amp;#34;: 14,&amp;#34;name&amp;#34;: &amp;#34;potter&amp;#34;, &amp;#34;child&amp;#34;:[1,2,3]}` a := AutoGenerated{} json.Unmarshal([]byte(jsonStr1), &amp;amp;a) aa := a.Child fmt.Println(aa) jsonStr2 := `{&amp;#34;age&amp;#34;: 12,&amp;#34;name&amp;#34;: &amp;#34;potter&amp;#34;, &amp;#34;child&amp;#34;:[3,4,5,7,8,9]}` json.Unmarshal([]byte(jsonStr2), &amp;amp;a) fmt.Println(aa) } 结果 80% 的人都答错了。 结果为什么是 [1 2 3] [3 4 5] 呢？ 这道题涉及到两个知识点： json 解析； slice； 1、json 解析 关于 json.Unmarshal 的文档，不少人可能没认真看。借此机会正好一起看下。https://docs.st</description>
 			<content type="html"><![CDATA[<p>昨天在 <a href="https://mp.weixin.qq.com/s/CqcOPluw5RFMYRzrnWCoHA" target="_blank" rel="noopener">Go语言爱好者周刊：第 65 期</a>
  刊首语发了一道题，以下代码输出什么？</p>
 <div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
@@ -3632,7 +3832,7 @@ nil                    对应JSON的null
 			<pubDate>Thu, 15 Oct 2020 18:12:51 +0800</pubDate>
 			
 			<guid>https://polarisxu.studygolang.com/posts/go/pkg/statsviz/</guid>
-			<description>大家好，我是站长 polarisxu。 掌握系统运行状态，知道系统哪些地方可能存在问题，方便进行优化，这是一个实际系统必备的。裸奔，对系统一无所</description>
+			<description>大家好，我是站长 polarisxu。 掌握系统运行状态，知道系统哪些地方可能存在问题，方便进行优化，这是一个实际系统必备的。裸奔，对系统一无所知，迟早是要出大事的。 在 Go 语言中，官方标准库提供了方法，让我们能够获得内存分配、GC 和 Goroutine 等情况。比如内存、GC 等情况，可以通过 runtime.MemStats 获取：https://docs.studygolang.com/pkg/runtime/#M</description>
 			<content type="html"><![CDATA[<p>大家好，我是站长 polarisxu。</p>
 <p>掌握系统运行状态，知道系统哪些地方可能存在问题，方便进行优化，这是一个实际系统必备的。裸奔，对系统一无所知，迟早是要出大事的。</p>
 <p>在 Go 语言中，官方标准库提供了方法，让我们能够获得内存分配、GC 和 Goroutine 等情况。比如内存、GC 等情况，可以通过 runtime.MemStats 获取：<a href="https://docs.studygolang.com/pkg/runtime/#MemStats">https://docs.studygolang.com/pkg/runtime/#MemStats</a>，Goroutine 数量可以通过 runtime.NumGoroutine() 函数获得。</p>
@@ -3776,7 +3976,7 @@ nil                    对应JSON的null
 			<pubDate>Fri, 09 Oct 2020 18:12:51 +0800</pubDate>
 			
 			<guid>https://polarisxu.studygolang.com/posts/go/project/usingg-gpgsync/</guid>
-			<description>大家好，我是 polarisxu。 之前我为大家推荐过 Playground，对比了三款 Go Playground 。今天发现了另外一款 Playground，它最核心的特</description>
+			<description>大家好，我是 polarisxu。 之前我为大家推荐过 Playground，对比了三款 Go Playground 。今天发现了另外一款 Playground，它最核心的特点是，可以多人协同编辑。 协同编辑，目前是很流行的一种多人协作模式。GitHub 的编辑器 Atom 就有这方面的支持。 简介 先简单看看这款 Playground：gpgsync。这是 syumai 开发的一款多人协同编辑的 Go Playground，他是</description>
 			<content type="html"><![CDATA[<p>大家好，我是 polarisxu。</p>
 <p>之前我为大家推荐过 Playground，<a href="https://mp.weixin.qq.com/s/SYngjiM8M2T6KS0OQNonCQ" target="_blank" rel="noopener">对比了三款 Go Playground</a>
 。今天发现了另外一款 Playground，它最核心的特点是，可以多人协同编辑。</p>
@@ -3834,7 +4034,7 @@ nil                    对应JSON的null
 			<pubDate>Fri, 09 Oct 2020 18:12:51 +0800</pubDate>
 			
 			<guid>https://polarisxu.studygolang.com/posts/go/project/go-version-manager/</guid>
-			<description>一直以来，我都习惯通过源码安装 Go。我是这么做的： 1）Git clone Go 源码 $ git clone https://github.com/golang/go 2）需要安装什么版本就切换到对应的分支，比如安装 1.15.x $ git checkout -b release-branch.go1.15 origin/release-branch.go1.15 如</description>
+			<description>一直以来，我都习惯通过源码安装 Go。我是这么做的： 1）Git clone Go 源码 $ git clone https://github.com/golang/go 2）需要安装什么版本就切换到对应的分支，比如安装 1.15.x $ git checkout -b release-branch.go1.15 origin/release-branch.go1.15 如果本地之前已经存在该分支，直接 git checkout release-branch.go1.15 即可。 3）将 go 整个目录复制到 /usr/local/go1.15，编译安装 4）创建软链： ln -s go1.15 go 之后加上环境变量等。 如果想要切换版本，只需要做类似上面的步骤，最后将 go 这个软链指向要切换的</description>
 			<content type="html"><![CDATA[<p>一直以来，我都习惯通过源码安装 Go。我是这么做的：</p>
 <p>1）Git clone Go 源码</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ git clone https://github.com/golang/go
@@ -3979,7 +4179,7 @@ drwxr-xr-x   <span class="m">2</span> xuxinhua  staff   <span class="m">64</span
 			<pubDate>Sat, 03 Oct 2020 18:12:00 +0800</pubDate>
 			
 			<guid>https://polarisxu.studygolang.com/posts/basic/complement/</guid>
-			<description>双节发布了两道题： 题一： package main func main() { var a int8 = -1 var b int8 = -128 / a println(b) } 题二： package main func main() { const a int8 = -1 var b int8 = -128 / a println(b) } 答对的人真不多（半数以上答错了），</description>
+			<description>双节发布了两道题： 题一： package main func main() { var a int8 = -1 var b int8 = -128 / a println(b) } 题二： package main func main() { const a int8 = -1 var b int8 = -128 / a println(b) } 答对的人真不多（半数以上答错了），特别是题一，一半以上竟然是 128，难道不知道 int8 能表示的范围吗？[-128, 127]。不过为什么答案是：题一 -128，题二编译错误？ 其实这是一道计算机基础题。 先看看网友 Jayce 的解释：第一题是 -128（untyped const）</description>
 			<content type="html"><![CDATA[<p>双节发布了两道题：</p>
 <p>题一：</p>
 <div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
@@ -4107,7 +4307,7 @@ drwxr-xr-x   <span class="m">2</span> xuxinhua  staff   <span class="m">64</span
 			<pubDate>Wed, 30 Sep 2020 11:15:51 +0800</pubDate>
 			
 			<guid>https://polarisxu.studygolang.com/posts/go/translation/when-to-use-rust-and-when-to-use-golang/</guid>
-			<description>Golang 和 Rust 之间有明显的区别。Golang 更加注重构建可以无限扩展的 Web API 和小型服务，尤其是在 goroutine 的强大支持下。Rust 也可以用于小型服务，但是从开发</description>
+			<description>Golang 和 Rust 之间有明显的区别。Golang 更加注重构建可以无限扩展的 Web API 和小型服务，尤其是在 goroutine 的强大支持下。Rust 也可以用于小型服务，但是从开发人员的经验来看，事情要困难得多。 Rust 非常适合处理大量数据和其他 CPU 密集型操作，例如执行算法。这是 Rust 超过 Golang 的最大优势。要求高性能的项目通常更适合 Rust。 在本教程中，我们将就 Golang 和 Rust 进行比较和对比，评估这两种编程语言的性能，并发</description>
 			<content type="html"><![CDATA[<p><p class="md__image">
   <img src="../imgs/use-rust-go01.png"
     alt="何时使用Rust和何时使用Golang"  />
@@ -4246,7 +4446,7 @@ drwxr-xr-x   <span class="m">2</span> xuxinhua  staff   <span class="m">64</span
 			<pubDate>Tue, 29 Sep 2020 18:12:00 +0800</pubDate>
 			
 			<guid>https://polarisxu.studygolang.com/posts/basic/diagram-float-point/</guid>
-			<description>大家好，我是站长 polarisxu。 团队一直保持着分享的习惯，而我却分享的较少。忘了当时同事分享什么主题，涉及到浮点数相关知识。于是我决定分</description>
+			<description>大家好，我是站长 polarisxu。 团队一直保持着分享的习惯，而我却分享的较少。忘了当时同事分享什么主题，涉及到浮点数相关知识。于是我决定分享一期关于浮点数的，而且 Go 之父 Rob Pike 说不懂浮点数不配当码农。。。So？！ 本着「要学习就系统透彻的学」这个原则，本文通过图的方式尽可能详细的讲解浮点数，让大家能够对浮点数有一个更深层次的认识。 本文目录： 0、几个问题 开始之前请</description>
 			<content type="html"><![CDATA[<p>大家好，我是站长 polarisxu。</p>
 <p>团队一直保持着分享的习惯，而我却分享的较少。忘了当时同事分享什么主题，涉及到浮点数相关知识。于是我决定分享一期关于浮点数的，而且 Go 之父 Rob Pike 说不懂浮点数不配当码农。。。So？！</p>
 <p><p class="md__image">
@@ -4545,7 +4745,7 @@ drwxr-xr-x   <span class="m">2</span> xuxinhua  staff   <span class="m">64</span
 			<pubDate>Sun, 27 Sep 2020 14:52:00 +0800</pubDate>
 			
 			<guid>https://polarisxu.studygolang.com/posts/go/action/interview-len-shift/</guid>
-			<description>今天在《Go语言爱好者周刊：第62期》 中贴了一道 Go101 的题，原题如下： package main const s = &amp;#34;Go101.org&amp;#34; // len(s) == 9 // 1 &amp;lt;&amp;lt; 9 == 512 // 512 / 128 == 4 var a byte = 1 &amp;lt;&amp;lt; len(s) / 128 var b byte = 1 &amp;lt;&amp;lt;</description>
+			<description>今天在《Go语言爱好者周刊：第62期》 中贴了一道 Go101 的题，原题如下： package main const s = &amp;#34;Go101.org&amp;#34; // len(s) == 9 // 1 &amp;lt;&amp;lt; 9 == 512 // 512 / 128 == 4 var a byte = 1 &amp;lt;&amp;lt; len(s) / 128 var b byte = 1 &amp;lt;&amp;lt; len(s[:]) / 128 func main() { println(a, b) } 答案是 4 0。 不少人对这个结果应该很吃惊，因为从答题结果看，不到一半的人答对了。而且，如果只给 var b byte = 1 &amp;lt;&amp;lt; len(s[:]) / 128，没有 a 对比，我想答对的人会更少。因为有对比，很多人虽然直觉是 4 4，但想到一定有陷阱，所</description>
 			<content type="html"><![CDATA[<p>今天在<a href="https://mp.weixin.qq.com/s/xvlAcDBqb77HUzTo7gjuCw" target="_blank" rel="noopener">《Go语言爱好者周刊：第62期》</a>
 中贴了一道 Go101 的题，原题如下：</p>
 <div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
@@ -4642,7 +4842,7 @@ drwxr-xr-x   <span class="m">2</span> xuxinhua  staff   <span class="m">64</span
 			<pubDate>Mon, 14 Sep 2020 11:15:51 +0800</pubDate>
 			
 			<guid>https://polarisxu.studygolang.com/posts/go/translation/running-go-code-on-ios-and-android/</guid>
-			<description>在本教程中，我们将构建一个简单的 Go 包，您可以从 iOS 应用程序（Swift）和 Android 应用程序（Kotlin）运行该软件包。 本教程不会使用go mobile 框架。相</description>
+			<description>在本教程中，我们将构建一个简单的 Go 包，您可以从 iOS 应用程序（Swift）和 Android 应用程序（Kotlin）运行该软件包。 本教程不会使用go mobile 框架。相反，它使用 Cgo 构建可导入到您的移动项目中的原始静态（iOS）和共享（Android） C 库（Go Mobile 框架在后台进行此操作）。 构建 在本教程中，我们将创建具有以下结构的简单 monorepo： . ├── android/ ├── go/ │ ├── cmd/ │ │ └── libfoo/</description>
 			<content type="html"><![CDATA[<p>在本教程中，我们将构建一个简单的 Go 包，您可以从 iOS 应用程序（Swift）和 Android 应用程序（Kotlin）运行该软件包。</p>
 <p>本教程不会使用<a href="https://github.com/golang/mobile" target="_blank" rel="noopener">go mobile</a>
  框架。相反，它使用 Cgo 构建可导入到您的移动项目中的原始静态（iOS）和共享（Android） C 库（Go Mobile 框架在后台进行此操作）。</p>
@@ -4923,7 +5123,7 @@ $ go mod init rogchap.com/libfoo
 			<pubDate>Sat, 12 Sep 2020 11:15:51 +0800</pubDate>
 			
 			<guid>https://polarisxu.studygolang.com/posts/go/translation/golang-is-not-ready-for-enterprise-systems-yet-and-heres-why/</guid>
-			<description>译注：发表这篇文章，不代表我认同作者的观点。大家都知道，在国内，Go 已经被很多大厂使用，早就可以用于企业系统。 对一门语言的爱，可以接受任何不</description>
+			<description>译注：发表这篇文章，不代表我认同作者的观点。大家都知道，在国内，Go 已经被很多大厂使用，早就可以用于企业系统。 对一门语言的爱，可以接受任何不同的观点，真理总是越辩越明，相信有不同的声音，Go 也会越来越好。欢迎大家留言发表你的看法。 介绍 企业应用程序是一个寿命长、可靠的系统，具有多年的持久数据。如今，Golang 的世界并没有提供以企业系统构建方式构建系统的可能性</description>
 			<content type="html"><![CDATA[<blockquote>
 <p>译注：发表这篇文章，不代表我认同作者的观点。大家都知道，在国内，Go 已经被很多大厂使用，早就可以用于企业系统。</p>
 <p>对一门语言的爱，可以接受任何不同的观点，真理总是越辩越明，相信有不同的声音，Go 也会越来越好。欢迎大家留言发表你的看法。</p>
@@ -5010,7 +5210,7 @@ result, _ := foo() // omitted errors from foo function
 			<pubDate>Tue, 08 Sep 2020 11:15:51 +0800</pubDate>
 			
 			<guid>https://polarisxu.studygolang.com/posts/go/translation/google-go-coredata/</guid>
-			<description>关于 Google 的核心数据： Google 是一家技术公司，其使命是组织全世界的信息，并使其普遍可访问和有用。 在这个案例研究中，Google 的核心数据解决方案团队分</description>
+			<description>关于 Google 的核心数据： Google 是一家技术公司，其使命是组织全世界的信息，并使其普遍可访问和有用。 在这个案例研究中，Google 的核心数据解决方案团队分享了他们的 Go 旅程，包括他们决定在 Go 中重写 web 索引服务，利用 Go 的内置并发性，并观察 Go 如何帮助改进开发过程。 Google 的使命是“组织世界各地的信息，并使其普遍可访问和有用。” Google 的核心数据解决方案团队是负责组织该信息的团队之一。除此之外</description>
 			<content type="html"><![CDATA[<p>关于 Google 的核心数据：</p>
 <blockquote>
 <p>Google 是一家技术公司，其使命是组织全世界的信息，并使其普遍可访问和有用。</p>
@@ -5047,7 +5247,7 @@ result, _ := foo() // omitted errors from foo function
 			<pubDate>Sun, 23 Aug 2020 18:12:00 +0800</pubDate>
 			
 			<guid>https://polarisxu.studygolang.com/posts/go/dynamic/about-go-generic-progress/</guid>
-			<description>前段时间 Go 官方发布了新的泛型草案，一时间在社区引起了很大的反响，各种关于泛型的文章、讨论涌现出来。8 月 21日 Ian Lance Taylor 在 golang-nuts 讨论组总结了泛型设计的</description>
+			<description>前段时间 Go 官方发布了新的泛型草案，一时间在社区引起了很大的反响，各种关于泛型的文章、讨论涌现出来。8 月 21日 Ian Lance Taylor 在 golang-nuts 讨论组总结了泛型设计的最新进展和一些问题的说明。 Go Team 在经过多次讨论并阅读了许多评论后，计划对泛型设计进行一些更改并澄清草案的一些问题。 1 泛型语法极有可能使用方括号 []（不用 &amp;lt;&amp;gt; 是因为和比较运算符大于、小于冲突，为了保持 Go1 兼容性，所以选择了 []）</description>
 			<content type="html"><![CDATA[<p>前段时间 Go 官方发布了新的泛型草案，一时间在社区引起了很大的反响，各种关于泛型的文章、讨论涌现出来。8 月 21日 Ian Lance Taylor 在 <a href="https://groups.google.com/g/golang-nuts/c/iAD0NBz3DYw/m/VcXSK55XAwAJ" target="_blank" rel="noopener">golang-nuts</a>
  讨论组总结了泛型设计的最新进展和一些问题的说明。</p>
 <p>Go Team 在经过多次讨论并阅读了许多评论后，计划对泛型设计进行一些更改并澄清草案的一些问题。</p>
@@ -5079,7 +5279,7 @@ result, _ := foo() // omitted errors from foo function
 			<pubDate>Wed, 19 Aug 2020 18:12:00 +0800</pubDate>
 			
 			<guid>https://polarisxu.studygolang.com/posts/devtool/compare-three-playground/</guid>
-			<description>曾几何时，语言的在线运行（Playground）似乎成了标配。确实，Playground 能够让我们可以快速试验一些想法。Go 语言在发布之初就</description>
+			<description>曾几何时，语言的在线运行（Playground）似乎成了标配。确实，Playground 能够让我们可以快速试验一些想法。Go 语言在发布之初就提供了一个，这就是 https://play.golang.org。然而，由于众所周知的原因，我们访问不了。为了方便国内广大 gopher，我搞了一个国内镜像：https://play.studygolang.com，尽情使</description>
 			<content type="html"><![CDATA[<p>曾几何时，语言的在线运行（Playground）似乎成了标配。确实，Playground 能够让我们可以快速试验一些想法。Go 语言在发布之初就提供了一个，这就是 <a href="https://play.golang.org">https://play.golang.org</a>。然而，由于众所周知的原因，我们访问不了。为了方便国内广大 gopher，我搞了一个国内镜像：<a href="https://play.studygolang.com">https://play.studygolang.com</a>，尽情使用、分享吧。</p>
 <h2 id="官方的-playground">官方的 Playground</h2>
 <p>不得不说，Go 官方的 Playground 真的比较原始。</p>
@@ -5178,7 +5378,7 @@ result, _ := foo() // omitted errors from foo function
 			<pubDate>Mon, 17 Aug 2020 11:15:51 +0800</pubDate>
 			
 			<guid>https://polarisxu.studygolang.com/posts/go/translation/goui-a-very-simple-ui-framework/</guid>
-			<description>最近，我一直想开发一些桌面（主要是 Windows，但也可以考虑 MacOS 或 Linux）应用程序。虽然 Go 不是开发 UI 应用程序时首选语言，但是该语言的简单</description>
+			<description>最近，我一直想开发一些桌面（主要是 Windows，但也可以考虑 MacOS 或 Linux）应用程序。虽然 Go 不是开发 UI 应用程序时首选语言，但是该语言的简单性和健壮性仍然使它成为我的首选语言。是的，这是我的锤子（hammer）&amp;hellip; 但这是一个该死的漂亮锤子。 以前，我曾将 Ebiten 图形库用于 Go，以便与孩子们一起编写一些游戏。但是，对于一般的“应用程序”开发（即需要“小部件</description>
 			<content type="html"><![CDATA[<p>最近，我一直想开发一些桌面（主要是 Windows，但也可以考虑 MacOS 或 Linux）应用程序。虽然 Go 不是开发 UI 应用程序时首选语言，但是该语言的简单性和健壮性仍然使它成为我的首选语言。是的，这是我的锤子（hammer）&hellip; 但这是一个该死的漂亮锤子。</p>
 <p>以前，我曾将 Ebiten 图形库用于 Go，以便与孩子们一起编写一些游戏。但是，对于一般的“应用程序”开发（即需要“小部件 widgets”，例如按钮，菜单等），Ebiten 并非真的适合。因此，我一直在寻找可以使用的 Go UI 库。然而大多数都使用 cgo，但我真的希望我的应用程序是纯 Go。这纯粹是个人喜好，我不知道使用 cgo 而不是纯 Go 会有什么影响。如果我要使用 cgo，我认为首选的 UI 库肯定是 <a href="https://fyne.io/" target="_blank" rel="noopener">Fyne</a>
 。Fyne 看起来是一个非常全面的框架，如果您不介意 cgo，我绝对会建议你看看看 Fyne。</p>
@@ -5341,7 +5541,7 @@ result, _ := foo() // omitted errors from foo function
 			<pubDate>Fri, 17 Jul 2020 11:15:51 +0800</pubDate>
 			
 			<guid>https://polarisxu.studygolang.com/posts/go/translation/easter-eggs-in-go-source-code-2l02/</guid>
-			<description>前言 前段时间，我在某个 Slack 工作区与朋友聊天： 朋友：“有人知道为什么time.minWall 的默认值是 1885 吗？” 我：“不知道，也许是从《回到未来 3</description>
+			<description>前言 前段时间，我在某个 Slack 工作区与朋友聊天： 朋友：“有人知道为什么time.minWall 的默认值是 1885 吗？” 我：“不知道，也许是从《回到未来 3》那一年开始的？” 我那么说基本是在开玩笑，因为我也不知道为什么将其设置为 1885 年。尽管其背后的事实与我在 Go 中的日常编码没有任何关系，但我还是情不自禁地询问了幕后花絮。我在团队聊天中问了我的同伴 Gophers，但似乎没人能找到</description>
 			<content type="html"><![CDATA[<h2 id="前言">前言</h2>
 <p>前段时间，我在某个 Slack 工作区与朋友聊天：</p>
 <blockquote>
@@ -5478,7 +5678,19 @@ var aLongTimeAgo = time.Unix(233431200, 0)
 同样请注意，此 Beta 版本是 EAP 周期中的最后一个版本，不需要订阅即可使用（如果您只是想尝试 GoLand，请尝试）。测试版通常会在发布候选版本之后出现，一旦我们发现该版本足够好并且可以在您的计算机上安装了。
 在此发布周期中，我们为即将推出的 GoLand 2020.2 打包了 Go 模块的新功能，更好地呈现了代码中可能存在的问题和薄弱环节，提供了新的代码检查功能以及新的代码编辑功能，例如期待已久的 “Add Caret Per Selected Line”，改进了后台流程，使其更透明，更快，更多！
 让我们来看看即将发布的版本中的新功能。选择您感兴趣的主题，或浏览整个博客文章以了解每个新功能。
- Go Modules Generics a.k.a. Type Parameters Code Editing Code Inspections Take Variadic Arguments Under Сontrol References from Comments Save Projects as Templates Under the Hood Processes Version Control  Go Modules 支持 GOMODCACHE 环境变量 从 Go 1.15 开始，可以使用新的 GOMODCACHE 环境变量将 Go Modules 缓存的默认位置从 $GOPATH/pkg/mod 更改为另一个文件夹。</description>
+ Go Modules Generics a.k.a. Type Parameters Code Editing Code Inspections Take Variadic Arguments Under Сontrol References from Comments Save Projects as Templates Under the Hood Processes Version Control  Go Modules 支持 GOMODCACHE 环境变量 从 Go 1.15 开始，可以使用新的 GOMODCACHE 环境变量将 Go Modules 缓存的默认位置从 $GOPATH/pkg/mod 更改为另一个文件夹。
+为此，只需在 “Preferences/Settings | Go Modules | Environment” 设置 GOMODCACHE 即可。
+IDE 将识别自定义位置，并将其用于具有依赖关系的所有后续操作。同步依赖项快速修复程序（可通过 Alt + Enter 实现）会将依赖项下载到 GOMODCACHE，外部库也将在新的自定义位置显示依赖项。
+升级 go.mod 文件 行注释（在 Windows/Linux 上为 Ctrl + /，在 macOS 上为 ⌘ + /）可用于 go.mod 文件。
+现在，当您键入 replace，exclude 和 require 语句的左括号时，GoLang 立即自动为你添加右括号。
+泛型（又称类型参数） 6月16日，Go Team 宣布了泛型（也称为类型参数）设计草案。请访问 Golang 文档以获取有关该概念的完整详细信息 。
+这是一个重大的发展，因此我们立即着手增加对它的支持。GoLand 2020.2 Beta 提供了对泛型的实验性支持，您可以通过在 Settings/Preferences | Go 启用对泛型的实验性支持。
+此初始支持提供语法高亮显示和基本参考解析，并且仅在 go2 文件中有效。
+请注意，有关泛型的工作仍在进行中，我们目前尚无法提供全面的支持。
+尽管如此，请分享您的体验和您可能有的任何建议。它确实可以帮助我们完善到目前为止已完成的工作，因此我们可以使其可靠并使用更高级的功能进行填充。
+代码编辑 想要将快速修复的结果应用于代码之前预览其结果，请使用 Alt + Enter 快捷方式调用显示上下文操作，选择所需的快速修复，然后在 macOS 上按 Alt + Space 或在 Windows 和 Linux 上为 Ctrl + Shift + I。
+新的“按选定的行添加插入（多行操作）”操作会在每个选定行的末尾插入，并取消选择这些行。在 Windows/Linux 上使用快捷键 Alt + Shift + G 或在 macOS 上使用 ⌥ + ⇧ + G 调用它。
+在 Preferences/Settings | Editor | Code Style | Go | Wrapping and Braces 中为调用参数，函数参数和复合文字元素配置换行。或者，您可以使用 Alt + Enter 键，调出 Put arguments on separate lines 和 *Put arguments on one line，*以手动拆分和合并元素。</description>
 			<content type="html"><![CDATA[<p>GoLand 2020.2 达到 Beta。这意味着我们将结束一连串的新功能开发，将重点转移到完善我们已经完成的工作上，并开始计算发布日之前的日子！</p>
 <p><p class="md__image">
   <img src="../imgs/goland-2020.2-1.png"
@@ -5688,7 +5900,7 @@ var aLongTimeAgo = time.Unix(233431200, 0)
 			<pubDate>Thu, 16 Jul 2020 11:15:51 +0800</pubDate>
 			
 			<guid>https://polarisxu.studygolang.com/posts/go/translation/benchmarking-grpc-in-rust-go/</guid>
-			<description>背景 如果你计划构建可靠，内存安全 ，高性能的应用程序，那么 Rust＆Go 无疑会是你的选择。 如果您希望从内部应用程序中获得更高的性能，则可能还需</description>
+			<description>背景 如果你计划构建可靠，内存安全 ，高性能的应用程序，那么 Rust＆Go 无疑会是你的选择。 如果您希望从内部应用程序中获得更高的性能，则可能还需要考虑使用 gRPC 而不是普通的 REST API。所有这些都是减少您的计算开销的解决方案。 我尝试比较各种库以了解它们的性能，并希望对你有所帮助。 关注的库 tower-grpc (Rust) 高性能 rust 库，尽管已被 tonic 替代 grpc-go (Golang) grpc 的官方 Go 模块 grpc-rust (Rust) 仍在开发中，另一个 rust grpc 库。看起来</description>
 			<content type="html"><![CDATA[<h2 id="背景">背景</h2>
 <p>如果你计划构建可靠，<a href="https://blog.gds-gov.tech/appreciating-rust-memory-safety-438301fee097" target="_blank" rel="noopener">内存安全</a>
 ，高性能的应用程序，那么 Rust＆Go 无疑会是你的选择。</p>
@@ -5929,7 +6141,7 @@ var aLongTimeAgo = time.Unix(233431200, 0)
 			<pubDate>Thu, 09 Jul 2020 18:12:00 +0800</pubDate>
 			
 			<guid>https://polarisxu.studygolang.com/posts/talk/sell-my-book/</guid>
-			<description>上周通过公众号对外公布新手开卖后，有人想要签名版。由于双作者，涉及到双签，知道可能会很麻烦，但第一次，也有可能是最后一次，和煎鱼沟通后决定搞</description>
+			<description>上周通过公众号对外公布新手开卖后，有人想要签名版。由于双作者，涉及到双签，知道可能会很麻烦，但第一次，也有可能是最后一次，和煎鱼沟通后决定搞搞。 大概谈谈我们的操作过程。 1、编辑帮我们买书，104 本；也是想办法弄到了当时最便宜的价格； 2、寄到我家里。周六、日分批到的，去封皮签名，大部分还写了一些 Go 箴言，但还有 26 本周末没到； 3、弄好后寄到深圳。用什么快递也是有讲</description>
 			<content type="html"><![CDATA[<p>上周通过公众号对外公布新手开卖后，有人想要签名版。由于双作者，涉及到双签，知道可能会很麻烦，但第一次，也有可能是最后一次，和煎鱼沟通后决定搞搞。</p>
 <p>大概谈谈我们的操作过程。</p>
 <p>1、编辑帮我们买书，104 本；也是想办法弄到了当时最便宜的价格；</p>
@@ -5984,7 +6196,7 @@ var aLongTimeAgo = time.Unix(233431200, 0)
 			<pubDate>Mon, 22 Jun 2020 11:15:51 +0800</pubDate>
 			
 			<guid>https://polarisxu.studygolang.com/posts/go/translation/go-is-awesome/</guid>
-			<description>Go 当前引起了很多关注。让我们看一下 Go 好的部分。 我最近用 Go 写了一个 SSH 服务器 ，在其中启动容器。该项目已经发展到很大规模，并且我还向 Go 发起了 PR ，以</description>
+			<description>Go 当前引起了很多关注。让我们看一下 Go 好的部分。 我最近用 Go 写了一个 SSH 服务器 ，在其中启动容器。该项目已经发展到很大规模，并且我还向 Go 发起了 PR ，以修复我发现的错误。在积累了比 “Hello world！” 更多的经验之后，现在我有信心写出我真正喜欢的 Go 语言部分。 跨平台 Go 引起我注意的原因之一是其构建系统。Java 的最初承诺是它是跨平台的，但是它需要安装运行时的事实显然是一</description>
 			<content type="html"><![CDATA[<p>Go 当前引起了很多关注。让我们看一下 Go 好的部分。</p>
 <p><p class="md__image">
   <img src="../imgs/go-is-awesome.jpg"
@@ -6130,7 +6342,7 @@ var aLongTimeAgo = time.Unix(233431200, 0)
 			<pubDate>Mon, 22 Jun 2020 11:15:51 +0800</pubDate>
 			
 			<guid>https://polarisxu.studygolang.com/posts/go/translation/go-is-terrible/</guid>
-			<description>上篇文章作者讲到了 Go 的优点，这篇文章提到一些缺点。然而，不少内容我是不认可的。欢迎留言说说你的观点。 Go 当前引起了很多关注。让我们看一下 Go 不好</description>
+			<description>上篇文章作者讲到了 Go 的优点，这篇文章提到一些缺点。然而，不少内容我是不认可的。欢迎留言说说你的观点。 Go 当前引起了很多关注。让我们看一下 Go 不好的部分。 作为开发人员，如今很难忽视 Go。因为诸如 Docker 和 Kubernetes 之类的软件，它已迅速崛起。但是，如果仅看一下该语言的流行度图表，Go 就与最流行或增长最快的编程语言相去甚远。 为何每个人似乎都在谈论和招聘 Go？从系统级工程到建立网上商</description>
 			<content type="html"><![CDATA[<blockquote>
 <p>上篇文章作者讲到了 Go 的优点，这篇文章提到一些缺点。然而，不少内容我是不认可的。欢迎留言说说你的观点。</p>
 </blockquote>
@@ -6313,7 +6525,7 @@ something.process()
 			<pubDate>Sat, 16 May 2020 15:08:51 +0800</pubDate>
 			
 			<guid>https://polarisxu.studygolang.com/posts/go/echo/action00-intro/</guid>
-			<description>实战是掌握一门技术很好的方式：纸上得来终觉浅，绝知此事要躬行！ 在初步了解了 Echo 框架的特性、功能后，我们通过具体的一个项目来掌握 Echo 框架，这个项目</description>
+			<description>实战是掌握一门技术很好的方式：纸上得来终觉浅，绝知此事要躬行！ 在初步了解了 Echo 框架的特性、功能后，我们通过具体的一个项目来掌握 Echo 框架，这个项目就是写一个博客系统。 实战篇目标 掌握 go/echo 开发项目的方法； 通过项目更深入掌握 echo； 完善完善，甚至可以作为自己的一个博客系统使用； 因此，在项目实战过程中可能引申讲解 Echo 的特性，毕竟基础篇对 Echo 的特性没有深入讲解。 依赖技术 该实战项</description>
 			<content type="html"><![CDATA[<p>实战是掌握一门技术很好的方式：纸上得来终觉浅，绝知此事要躬行！</p>
 <p>在初步了解了 Echo 框架的特性、功能后，我们通过具体的一个项目来掌握 Echo 框架，这个项目就是写一个博客系统。</p>
 <h2 id="实战篇目标">实战篇目标</h2>
@@ -6350,7 +6562,21 @@ something.process()
 在开始之前，还应该安装 Kubernetes 插件，因为它没有与 IDE 捆绑在一起。您可以通过打开 Settings/Preferences | Plugins | Marketplace并搜索 Kubernetes 找到并安装插件。
 在 IDE 中使用 Kubernetes 运行服务 如果您到目前为止一直在关注本系列，那么您会知道所有代码都可以在此 下载和使用，使用 Kubernetes 也是这种情况。我们可以从 kubernetes 分支 开始。
 在这里我们可以找到两个不同的文件：db.yaml 和 web.yaml。这些文件包含了我们开始使用 Kubernetes 集群中的应用程序所需的所有定义。为了方便起见，他们还假定 Kubernetes 与 IDE 在同一台计算机上运行。
-打开 db.yaml：</description>
+打开 db.yaml：
+apiVersion:v1kind:ConfigMapmetadata:name:db-configlabels:dockerdev:dbdata:POSTGRES_DB:golandPOSTGRES_USER:golandPOSTGRES_PASSWORD:goland---apiVersion:apps/v1kind:StatefulSetmetadata:labels:dockerdev:dbname:dbspec:serviceName:dockerdev-dbselector:matchLabels:dockerdev:dbtemplate:metadata:labels:dockerdev:dbspec:containers:- name:dbimage:postgres:12.2-alpineimagePullPolicy:IfNotPresentenvFrom:- configMapRef:name:db-configports:- containerPort:5432volumeMounts:- name:db-initmountPath:/docker-entrypoint-initdb.d/init.sqlsubPath:init.sqlvolumes:- name:db-inithostPath:path:/d/GoLandProjects/dockerdev---apiVersion:v1kind:Servicemetadata:labels:dockerdev:dbname:dockerdev-db-exportedspec:type:NodePortports:- name:5432-tcpport:5432targetPort:5432nodePort:30432selector:dockerdev:db注意：在启动此示例之前，我们需要确保更改了 init.sql 文件在主机上的位置。您可以通过将路径：/d/ GoLandProjects / dockerdev 替换为先前克隆该项目的位置的路径来实现。
+完成此操作后，我们可以使用文件顶部编辑器装订线上的绿色箭头在 Kubernetes 中部署数据库。
+部署数据库将创建一个 StatefulSet 并在 pod 中运行数据库。将出现 “Services Tool” 窗口，并显示用于创建资源的命令以及该命令的输出。
+Kubernetes 集群概述 在 Kubernetes 集群中，我们将看到工作负载信息，例如正在运行的 Pods, Deployments, Stateful Sets, Daemon Sets, Jobs, Cron Jobs, Replica Sets, 和 Replication Controllers。
+我们还可以查看有关集群中服务和入口点的网络信息。
+“Configuration” 部分包含当前名称空间或群集的所有配置信息，例如有关运行名称空间，节点，群集角色，角色，配置 map 和秘钥的信息。
+最后，“Storage” 部分将向我们显示当前配置中的“持久卷”，“持久卷声明”和“存储类”。
+在 IDE 中使用 Kubernetes 集群运行 Go 应用程序 让我们在同一个 Kubernetes 集群中运行 Go 应用程序，看看它是如何工作的。
+不过，在运行该应用程序之前，我们首先需要构建该应用程序所在的 Docker 容器。示例代码库中包含一个名为 build Dockerfile 的运行配置，需要运行该配置才能在集群中使用我们的容器。
+正如您可能已经猜到的那样，此后，我们终于可以使用先前与 db.yaml 文件一起使用的绿色箭头在 Kubernetes 中运行 Go 应用程序，只有这次我们才在 web.yaml 文件中使用它。
+apiVersion:apps/v1kind:Deploymentmetadata:labels:dockerdev:webname:webspec:selector:matchLabels:dockerdev:webtemplate:metadata:labels:dockerdev:webspec:containers:- name:dockerdev-webimage:dockerdev-web:latestimagePullPolicy:Neverenv:- name:DD_DB_HOSTvalue:&amp;#34;dockerdev-db-exported&amp;#34;ports:- containerPort:8000---apiVersion:v1kind:Servicemetadata:labels:dockerdev:webname:dockerdev-web-exportedspec:type:NodePortports:- name:8000-tcpport:8000targetPort:8000nodePort:30800selector:dockerdev:webPro tip：我们可以使用 HTTP 请求文件的方式从 IDE 运行请求，以检查服务是否已启动并正在运行。
+从 Kubernetes 调试服务 在使用 GoLand 调试 Kubernetes 服务之前，我们需要对 web.yaml 文件进行一些更改。这些变化可以在我们代码库的 kubernetes-debug 分支中看到。
+我们需要进行一些与调试常规 Docker 容器非常相似的更改。
+首先，我们需要调整 Dockerfile，然后我们必须使用 Run | Run … | ‘build Dockerfile’ 来配置。</description>
 			<content type="html"><![CDATA[<p>这是我们使用 Docker，Docker Compose 或 Kubernetes 运行 Go 服务的系列文章的最后一部分。在这一部分中，我们将专注于使用 Kubernetes 集群时的运行和调试。</p>
 <p>虽然我们不会介绍如何安装和配置 Kubernetes 集群，但是可以使用各种工具（例如 <a href="https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/" target="_blank" rel="noopener">kubeadm</a>
 ，<a href="https://kubernetes.io/docs/setup/learning-environment/minikube/" target="_blank" rel="noopener">minikube</a>
@@ -6544,7 +6770,23 @@ something.process()
 version:&amp;#34;3.5&amp;#34;services:web:container_name:dockerdevbuild:./ports:- &amp;#34;8000:8000&amp;#34;environment:DD_DB_HOST:dbcommand:/serverdepends_on:- dbdb:container_name:dockerdev-dbimage:postgres:12.2-alpineports:- &amp;#34;5432:5432&amp;#34;environment:POSTGRES_USER:golandPOSTGRES_PASSWORD:golandPOSTGRES_DB:golandvolumes:- ./init.sql:/docker-entrypoint-initdb.d/init.sql在数据库部分，我们需要创建一个名为 init.sql 的新文件。该文件的内容用于设置服务运行所需的数据库。
 最后，让我们在 main.go 文件中运行 Sync packages of &amp;lt;project&amp;gt; 来 quick-fix，以下载 pgx 库并运行该应用程序。注意：如果你的模块缓存中还没有 pgx 的 4.5.0 版本，则需要执行此步骤。
 运行基于 Docker Compose 的应用程序类似于其他 Run Configurations。单击 docker-compose.yaml 中 services 指令旁边的双绿色箭头按钮。要仅运行一项服务，请点击要运行的服务类型旁边的绿色箭头，例如上面的示例配置中的 web 或 db。
-配置运行后，在 Docker 节点下的 Services Tool 窗口中会有一个名为 Compose 的新节点。这里会显示正在运行的每个 Docker Compose 服务套件。</description>
+配置运行后，在 Docker 节点下的 Services Tool 窗口中会有一个名为 Compose 的新节点。这里会显示正在运行的每个 Docker Compose 服务套件。
+可以浏览每个服务定义，并为每个服务显示所有正在运行的实例。Docker Compose 服务中可用于容器的信息与常规 Docker 容器可使用的信息相同。
+注意：如果你要启动较重的服务（例如数据库服务器），或者这些服务需要一些初始化时间，则我们的 Go 程序服务需要考虑这些服务的启动时间。
+在我们的示例代码中，这是使用 getDBConnection 函数处理的，该函数尝试在放弃之前尝试几次以指数退避的方式连接到数据库。
+重启动 Docker Compose 服务 更改我们的代码后，我们需要重新启动服务以重新加载这些更改。目前，使用 IDE 重新启动它有点复杂，因为这样做需要你执行以下步骤：
+ 执行 Run | Edit Configurations 并复制一份现有的 Docker Compose 配置； 编辑新创建的配置以添加重新启动的服务的名称，并启用 –build 选项以强制在运行镜像之前对其进行重建；  完成这些步骤之后，你可以停止现有服务，删除现有容器，然后启动新创建的配置。
+Pro tip：你可以使用 “Delete” 功能同时停止和删除服务。
+使用 Docker Compose 调试 Go 应用程序 要使用 Docker Compose 调试应用程序，我们需要同时更改 Dockerfile 和 docker-compose.yaml 文件。我们可以切换到代码库的 compose-debug 分支 ，这样更容易理解。
+现在，docker-compose.yaml 文件如下所示：
+version:&amp;#34;3.5&amp;#34;services:web:container_name:dockerdevbuild:./ports:- &amp;#34;8000:8000&amp;#34;- &amp;#34;40000:40000&amp;#34;environment:DD_DB_HOST:dbsecurity_opt:- &amp;#34;seccomp:unconfined&amp;#34;cap_add:- SYS_PTRACEcommand:/dlv --headless --listen=:40000 --api-version=2 exec /serverdepends_on:- dbdb:container_name:dockerdev-dbimage:postgres:12.2-alpineports:- &amp;#34;5432:5432&amp;#34;environment:POSTGRES_USER:golandPOSTGRES_PASSWORD:golandPOSTGRES_DB:golandvolumes:- ./init.sql:/docker-entrypoint-initdb.d/init.sql注意：这里的重要部分是 security_opt 和 cap_add 属性，因为它们允许调试器在 Docker 环境中运行。
+运行此操作类似于运行常规 Docker Compose 配置。我们可以使用 Go Remote 配置连接到容器，调试器会话将像调试常规配置一样开始。
+今天我们的文章到此结束。我们已经讨论了如何使用 Docker Compose，以及如何从 GoLand 运行和调试我们的应用程序。
+在下一篇文章中，我们将介绍如何在 IDE 中使用 Kubernetes，以及如何使用它运行和调试我们的应用程序。
+ 原文链接：https://blog.jetbrains.com/go/2020/05/08/running-go-applications-using-docker-compose-in-goland/
+作者：Florin Pățan
+翻译：Go语言中文网 polaris
+ </description>
 			<content type="html"><![CDATA[<p>今天，我们将继续有关<a href="https://mp.weixin.qq.com/s/2tajxPBhGwgwlT4TzAgmVw" target="_blank" rel="noopener">如何使用 Docker 运行</a>
 和<a href="https://mp.weixin.qq.com/s/4-fkIWcr_3LdLFALVk4ZTA" target="_blank" rel="noopener">调试 Go 应用程序</a>
 的系列文章。</p>
@@ -6671,7 +6913,15 @@ version:&amp;#34;3.5&amp;#34;services:web:container_name:dockerdevbuild:./ports:
 相反，我们将从配置 Docker 服务器开始，以便我们可以运行我们的应用程序。将 Docker 安装到系统中后，转到 Settings/Preferences | Build, Execution, Deployment | Docker，然后单击 + 按钮添加新的 Docker 服务器连接。
 默认情况下，该插件将创建与本地计算机 Docker 服务器的连接，对于我们的教程而言已经足够了。单击确定按钮以创建服务器配置。
 使用 Dockerfile 首先，让我们在项目的根目录中打开 Dockerfile。
-# Compile stage FROM golang:1.</description>
+# Compile stage FROM golang:1.13.8 AS build-env ADD . /dockerdev WORKDIR /dockerdev RUN go build -o /server # Final stage FROM debian:buster EXPOSE 8000 WORKDIR / COPY --from=build-env /server / CMD [&amp;quot;/server&amp;quot;] 该 Dockerfile 使用多阶段构建，该方式使我们能够生成最小的 Docker 映像，因为构建应用程序二进制文件的编译阶段与构建容器的最终阶段是分开的。
+将上面的代码粘贴到 Dockerfile 中后，第一个 FROM […] 指令旁边会出现一个绿色箭头。这是运行容器的最快方法。
+但是，我们需要进行一些编辑才能运行它，因为我们需要为容器公开正确的端口以接收连接。
+为容器创建一个新的运行配置 我们可以创建一个新的运行配置，也可以编辑仓库中存在的配置。为了简单起见，直接使用现有的，因为它已经预先填写了我们需要的所有值。要对其进行编辑，请单击选项列表底部的 Edit ‘Docker – Web – Standalone’  选项。
+在这里，我们可以设置运行 Docker 容器所需的所有选项。我们的运行配置已经填上了重要内容，例如配置名称：“ Docker – Web Dev – Standalone”。容器名称设置为 docker-web-dev-standalone。最后，在“绑定端口”字段中，我们将“主机”端口和“容器”端口都设置为 8000，以便可以访问应用程序。
+现在，我们可以单击对话框底部的 “Run” 按钮，来启动我们的容器。
+了解服务工具窗口 Docker 完成构建过程后，我们可以查看 “Services Tool Window” 窗口，并在 “Containers” 部分中看到新创建的容器。我们还将在 “Images” 部分中看到使用的镜像。
+对于每个容器，有以下可用选项卡：
+ Build Log：它显示用于构建容器的日志； Log：显示容器的输出； Attached console：如果可以的话，这允许我们与容器的应用程序/shell 交互； Properties：将显示有关容器的更多信息，例如 镜像 ID 或容器 ID； Environment variables：显示容器使用的环境变量； Port bindings：显示容器暴露给主机的所有端口； Volume bindings：显示为容器安装的卷； Files：如果它支持运行 ls 命令，则允许我们浏览容器中的文件。对于像我们这样的基于 Alpine 的容器，我们可以添加 RUN apk add &amp;ndash;no-cache coreutils 指令来启用此功能；  在左侧，我们可以看到各种按钮。首先，有一个 “Redeploy” 按钮，它使我们可以再次运行容器的构建配置。</description>
 			<content type="html"><![CDATA[<p>今天，我们开始撰写一系列有关 GoLand 内部对 Docker，Docker Compose 和 Kubernetes 的支持以及它如何帮助我们在 Go 中编写（微）服务的文章。</p>
 <p>我们将研究如何在 IDE 中配置项目，如何使用 Docker 或 Kubernetes 运行或调试我们的项目，以及如何将项目连接到我们选择的数据库 PostgreSQL。</p>
 <p>让我们从介绍普通的 Docker 工作流程开始，然后我们将构建容器并运行它。</p>
@@ -6783,7 +7033,29 @@ Go 模块改进 2020.1 现已支持 Go 1.13 的环境变量 GOPROXY、GOPRIVATE�
 使用 Go Modules 项目模板配置其默认值。只需点击 Environment 字段中的 Browse 图标即可打开新的 Environment Variables 对话框。
 go.mod 文件支持 go、module、require、replace 和 exclude 关键字代码补全、依赖项名称以及本地路径替换。
 此外，也可以使用 Rename 和 Move 重构。 重命名或移动由 replace 语句引用的目录时，GoLand 将相应地更改 go.mod 文件中的路径。
-现在，您还可以通过 Project 视图调用 Find Usages，以探索 go.mod 文件中特定目录路径的使用位置。</description>
+现在，您还可以通过 Project 视图调用 Find Usages，以探索 go.mod 文件中特定目录路径的使用位置。
+在 GoLand 2020.1 中，您可以通过 Alt-Enter 获取缺失的依赖项并移除未使用的依赖项。
+最后但同样重要的是，如果存在本地路径替换，则新版本将在您提交之前显示一条通知，这样您就不会意外提交它们。
+您无需学习如何使用的代码补全功能 GoLand 2020.1 将建议 if err != nil { &amp;hellip; } 来补全错误处理模式。 只需在表达式内输入 if。
+只需输入 type 关键字或 struct 和 interface，即可更快地定义结构和接口类型。
+Fill Fields 操作在格式化规则要求时会在冒号后面添加空格。 它还会在组合文字声明中语句的末尾添加逗号。
+现在，使用 map 时，代码补全会在您补全键类型后将光标移到右中括号后面。
+对于函数的返回类型，补全功能将为局部变量和零值提供适合相应返回值类型的建议。
+智能代码补全（⌥⇧Space 或 Ctrl+Shift+Space） 智能代码补全会建议一个指向结构初始值设定项的指针。
+它还会建议在断言和类型 switch 用例中首先使用兼容类型。
+在类型断言中，它提供已赋值变量的类型。
+最后，它提供了表达式中可能指针的建议列表。
+基本代码补全（⌃空格或 Ctrl+空格） 为注释添加了基本代码补全，这将使编写文档更加轻松！ 它可为当前包声明建议名称，并为函数和方法建议参数名称。除此之外，基本代码补全还可以建议文字和转换。
+代码编辑 编写多值返回函数的签名时，GoLand 2020.1 会在逗号后面的返回类型周围添加括号。当您在字符串文字中粘贴一些文本时，IDE 会转义双引号。
+Go 1.14 支持 1）支持重叠接口
+Go 1.14 添加了对嵌入重叠接口的支持，我们也添加了此功能！ 当您使用重叠接口描述类型的不同方面时，GoLand 不会将这些方面的重复方法报告为错误。
+2）自动 vendoring 模式
+如果模块根包含 vendor 目录，则会在 Go 1.14 中自动启用 vendoring 模式。 对于 GoLand 2020.1，我们决定为 Go 1.13 及更早版本实现类似的行为。 IDE 会自动将导入解析到 vendor/ 文件夹（如果模块中存在）。
+调试器更新 1）分析器标签支持
+为了帮助您在调试或核心转储分析过程中更轻松地区分 goroutine，我们为其添加了分析器标签。更多详情请参考：如何在调试过程中查找 Goroutine 。
+2）宏支持
+现在，可以将宏用作运行或调试应用程序的参数。 在 Run/Debug Configurations 对话框中，点击 Go Tool 中的 + 或 Program arguments 字段即可打开新的 Macros 对话框，其中会列出要使用的可用宏。
+此外，您现在还可以将配置文件存储在项目中。 在 Run/Debug Configurations 对话框的顶部，选择 Store 作为项目文件选项。</description>
 			<content type="html"><![CDATA[<p>北京时间 2020 年 4 月 10 日凌晨，Jetbrains 宣布正式发布 GoLand 2020.1 版本。</p>
 <p>该版本主要的变化有：</p>
 <p>引入了对 Go 模块支持的各种升级以及代码编辑功能，这些功能几乎不需要用户交互，也不需要扩展的代码补全系列。</p>
@@ -6893,7 +7165,7 @@ go.mod 文件支持 go、module、require、replace 和 exclude 关键字代码�
 			<pubDate>Mon, 16 Mar 2020 10:17:51 +0800</pubDate>
 			
 			<guid>https://polarisxu.studygolang.com/posts/go/echo/custom04-renderer/</guid>
-			<description>Render，顾名思义，要进行页面渲染。Go 语言不但自带有强大的 http 库，还自带了 HTML 模板引擎。Echo 框架对模板引擎进行了一些额外处理，并提供了</description>
+			<description>Render，顾名思义，要进行页面渲染。Go 语言不但自带有强大的 http 库，还自带了 HTML 模板引擎。Echo 框架对模板引擎进行了一些额外处理，并提供了给用户自定义页面渲染的接口。本文就相关问题进行探讨。 模板渲染 Echo 框架的 Context 接口提供了下面的方法进行页面渲染： // echo 包中 Context 接口的方法 Render(code int, name string, data interface{}) error 其中，code 是 HTTP Status，name 是定义的模板名，data 是模板可能需要的数</description>
 			<content type="html"><![CDATA[<p>Render，顾名思义，要进行页面渲染。Go 语言不但自带有强大的 http 库，还自带了 HTML 模板引擎。Echo 框架对模板引擎进行了一些额外处理，并提供了给用户自定义页面渲染的接口。本文就相关问题进行探讨。</p>
 <h2 id="模板渲染">模板渲染</h2>
 <p>Echo 框架的 Context 接口提供了下面的方法进行页面渲染：</p>
@@ -7158,7 +7430,7 @@ go.mod 文件支持 go、module、require、replace 和 exclude 关键字代码�
 			<pubDate>Mon, 16 Mar 2020 10:17:51 +0800</pubDate>
 			
 			<guid>https://polarisxu.studygolang.com/posts/go/echo/custom05-error-handler/</guid>
-			<description>Echo 倡导通过从中间件和 Handler 返回错误来进行集中式 HTTP 错误处理。集中式错误处理程序使我们能够从统一位置将错误记录到外部服务，并向客户端发送自定义的 HTTP 响</description>
+			<description>Echo 倡导通过从中间件和 Handler 返回错误来进行集中式 HTTP 错误处理。集中式错误处理程序使我们能够从统一位置将错误记录到外部服务，并向客户端发送自定义的 HTTP 响应。本节一起学习如何定制化，进行集中式错误处理。 默认的错误处理 在定制篇 4 中，我们讲到了 Render。如果在 Handler 中调用了 Render，但是并没有给 Echo.Renderer 赋值或其他原因，导致出错，页面看到的信息如下： { &amp;#34;message&amp;#34;: &amp;#34;Internal Server Error&amp;#34; } 这是 Echo 默认的 HTTP Error H</description>
 			<content type="html"><![CDATA[<p>Echo 倡导通过从中间件和 Handler 返回错误来进行集中式 HTTP 错误处理。集中式错误处理程序使我们能够从统一位置将错误记录到外部服务，并向客户端发送自定义的 HTTP 响应。本节一起学习如何定制化，进行集中式错误处理。</p>
 <h2 id="默认的错误处理">默认的错误处理</h2>
 <p>在定制篇 4 中，我们讲到了 Render。如果在 Handler 中调用了 Render，但是并没有给 Echo.Renderer 赋值或其他原因，导致出错，页面看到的信息如下：</p>
@@ -7333,7 +7605,7 @@ go.mod 文件支持 go、module、require、replace 和 exclude 关键字代码�
 			<pubDate>Mon, 16 Mar 2020 10:17:51 +0800</pubDate>
 			
 			<guid>https://polarisxu.studygolang.com/posts/go/echo/custom06-ext-server/</guid>
-			<description>这是定制篇的最后一节，讲解 Server 的自定义。 默认 Server 通常情况下，Echo 通过如下方式启动一个 HTTP Server： e := echo.New() e.GET(&amp;#34;/&amp;#34;, func(c echo.Context) error { return c.String(http.StatusOK, &amp;#34;Hello, World!&amp;#34;) }) e.Logger.Fatal(e.Start(&amp;#34;:2020&amp;#34;)) 我们打开源码</description>
+			<description>这是定制篇的最后一节，讲解 Server 的自定义。 默认 Server 通常情况下，Echo 通过如下方式启动一个 HTTP Server： e := echo.New() e.GET(&amp;#34;/&amp;#34;, func(c echo.Context) error { return c.String(http.StatusOK, &amp;#34;Hello, World!&amp;#34;) }) e.Logger.Fatal(e.Start(&amp;#34;:2020&amp;#34;)) 我们打开源码一探究竟： // Start starts an HTTP server. func (e *Echo) Start(address string) error { e.Server.Addr = address return e.StartServer(e.Server) } 原来调用的是 StartServer，参数是默认的 Server 实例，它是一个 http.Server 的指针类型。 自定义 Server 知道了 Echo#Start 最终调用的是 Echo#StartServer，而且它的参数是一个 *http.Server 类型，所以自</description>
 			<content type="html"><![CDATA[<p>这是定制篇的最后一节，讲解 Server 的自定义。</p>
 <h2 id="默认-server">默认 Server</h2>
 <p>通常情况下，Echo 通过如下方式启动一个 HTTP Server：</p>
@@ -7619,7 +7891,7 @@ Hello HTTP/2！* Closing connection <span class="m">0</span>
 			<pubDate>Fri, 06 Mar 2020 11:50:51 +0800</pubDate>
 			
 			<guid>https://polarisxu.studygolang.com/posts/go/echo/custom03-logger/</guid>
-			<description>在知识星球简书项目中，我们分析对比了目前的一些日志库。虽然 Go 标准库有一个 log，但功能有限，所以才出现了很多第三方的日志库。在 用 Go 实现一个简</description>
+			<description>在知识星球简书项目中，我们分析对比了目前的一些日志库。虽然 Go 标准库有一个 log，但功能有限，所以才出现了很多第三方的日志库。在 用 Go 实现一个简书 8：日志记录和优秀库的学习 中，我们得出结论，推荐大家使用 zerolog 。现在我们就将 zerolog 集成进 Echo 框架中。 Echo 默认的 Logger Echo 日志记录的默认格式是 JSON，可以通过修改标头来更改，即 Echo#Logger.SetHeader(io.Write</description>
 			<content type="html"><![CDATA[<p>在知识星球简书项目中，我们分析对比了目前的一些日志库。虽然 Go 标准库有一个 log，但功能有限，所以才出现了很多第三方的日志库。在 <a href="https://studygolang.com/topics/10625" target="_blank" rel="noopener">用 Go 实现一个简书 8：日志记录和优秀库的学习</a>
  中，我们得出结论，推荐大家使用 <a href="https://github.com/rs/zerolog" target="_blank" rel="noopener">zerolog</a>
 。现在我们就将 zerolog 集成进 Echo 框架中。</p>
@@ -7773,7 +8045,7 @@ Hello HTTP/2！* Closing connection <span class="m">0</span>
 			<pubDate>Fri, 28 Feb 2020 18:53:51 +0800</pubDate>
 			
 			<guid>https://polarisxu.studygolang.com/posts/go/echo/custom02-validator/</guid>
-			<description>上一篇讲 Binder 时提到，参数自动绑定和校验是 Web 框架很重要的两个功能，可以极大的提升开发速度，并更好的保证数据的可靠性（服务端数据校验很重要）。本节</description>
+			<description>上一篇讲 Binder 时提到，参数自动绑定和校验是 Web 框架很重要的两个功能，可以极大的提升开发速度，并更好的保证数据的可靠性（服务端数据校验很重要）。本节，我们就一起看看如何自定义 Echo 的表单校验功能。 不同于 Binder，Echo 并没有内置数据校验的能力，也就是没有默认的 Validator 实现。然而，你可以很方便的集成第三方的数据校验库。跟 Binder 类似，Echo 提供了一个 Validator 接口，方便将第三方数据校</description>
 			<content type="html"><![CDATA[<p>上一篇讲 Binder 时提到，参数自动绑定和校验是 Web 框架很重要的两个功能，可以极大的提升开发速度，并更好的保证数据的可靠性（服务端数据校验很重要）。本节，我们就一起看看如何自定义 Echo 的表单校验功能。</p>
 <p>不同于 Binder，Echo 并没有内置数据校验的能力，也就是没有默认的 Validator 实现。然而，你可以很方便的集成第三方的数据校验库。跟 Binder 类似，Echo 提供了一个 Validator 接口，方便将第三方数据校验库集成进来。</p>
 <div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">Validator</span> <span class="kd">interface</span> <span class="p">{</span>
@@ -8067,7 +8339,7 @@ Email为必填字段</p>
 			<pubDate>Fri, 21 Feb 2020 19:26:51 +0800</pubDate>
 			
 			<guid>https://polarisxu.studygolang.com/posts/go/echo/custom01-binder/</guid>
-			<description>Web 开发，数据获取和校验是两个最基本的功能。在数据获取时，我们可以通过标准库的 *http.Request 提供的相关功能进行获取。然而这样效率是很低，重复工作较多，而且</description>
+			<description>Web 开发，数据获取和校验是两个最基本的功能。在数据获取时，我们可以通过标准库的 *http.Request 提供的相关功能进行获取。然而这样效率是很低，重复工作较多，而且考虑到数据自动校验，我们更应该做到自动绑定。 在讲述 Echo 的 Binder 前，先探讨一下客户端数据一般通过什么方式发送给服务端的。 客户端如何传递数据给服务端？ 这个问题其实对大部分人来说太简单了，然而，很多客户端的人却不清楚。工作中，我接触</description>
 			<content type="html"><![CDATA[<p>Web 开发，数据获取和校验是两个最基本的功能。在数据获取时，我们可以通过标准库的 <code>*http.Request</code> 提供的相关功能进行获取。然而这样效率是很低，重复工作较多，而且考虑到数据自动校验，我们更应该做到自动绑定。</p>
 <p>在讲述 Echo 的 Binder 前，先探讨一下客户端数据一般通过什么方式发送给服务端的。</p>
 <h2 id="客户端如何传递数据给服务端">客户端如何传递数据给服务端？</h2>
@@ -8506,7 +8778,7 @@ Date: Fri, <span class="m">21</span> Feb <span class="m">2020</span> 09:55:54 GM
 			<pubDate>Fri, 21 Feb 2020 19:24:51 +0800</pubDate>
 			
 			<guid>https://polarisxu.studygolang.com/posts/go/echo/custom00-intro/</guid>
-			<description>一个强大的框架，一定是可以定制的，或者说可以扩展，能够根据用户自己的需求进行改变、增强，甚至某些功能的替换。作为一个强大的框架，Echo 必然</description>
+			<description>一个强大的框架，一定是可以定制的，或者说可以扩展，能够根据用户自己的需求进行改变、增强，甚至某些功能的替换。作为一个强大的框架，Echo 必然也是可以定制、可以扩展的。本篇起，我们一起探讨如何对 Echo 框架进行定制或扩展，打造成符合你个性需求的框架。 定制化主要包含如下一些方面： 自定义 Binder，用来处理 Request 数据绑定 自定义 Validator，用来处理输入验证 自定义 Lo</description>
 			<content type="html"><![CDATA[<p>一个强大的框架，一定是可以定制的，或者说可以扩展，能够根据用户自己的需求进行改变、增强，甚至某些功能的替换。作为一个强大的框架，Echo 必然也是可以定制、可以扩展的。本篇起，我们一起探讨如何对 Echo 框架进行定制或扩展，打造成符合你个性需求的框架。</p>
 <p>定制化主要包含如下一些方面：</p>
 <ul>
@@ -8534,7 +8806,24 @@ Date: Fri, <span class="m">21</span> Feb <span class="m">2020</span> 09:55:54 GM
 你可以通过 Toolbox App 获得它，也可以从网站上下载 ，也可以使用快照包（对于 Ubuntu）；或者直接在 GoLand 中通过自动更新的方式获取。Preferences / Settings | Appearance &amp;amp; Behavior | System Settings | Updates。
 如果您想知道什么是抢先体验计划，这里有一个简短的解释：
  EAP 版本使您可以试用 Goland 仍在开发中的最新功能和增强功能。这些版本尚未经过全面测试，可能会不稳定，但是您可以在这里为我们提供帮助。通过将这些内部版本和功能用于实际项目和场景中来测试，您可以帮助我们完善它们。这样，当最终版本准备就绪时，它将为您更好地工作。
-  EAP 使您可以首先试用所有最新功能; 自构建日期起 30 天内免费使用 EAP 版本。您可以将这段时间用作 GoLand 的扩展试用版； 我们会提供 EAP 版本，直到几乎可以发布稳定版本为止。对于即将推出的 2020.1 版本，EAP 期将大致持续到 3 月底； 在每个发布周期中，我们都会为他们提供免费的 1 年 GoLand 订阅和一件独家的 GoLand T 恤 ，以表彰他们中最活跃的评估人员。 此外，我们几乎每天都提供最新版本。因此，如果您不想等待正式的 EAP 版本公告，则只需下载这些夜间版本之一，即可通过 Toolbox App 获得。请注意，每晚构建的质量通常低于我们的标准，并且没有随附发行说明。与 EAP 版本一样，它们也将在发布后 30 天内过期；  因此，让我们看一下第一个 EAP 版本中包含的内容。</description>
+  EAP 使您可以首先试用所有最新功能; 自构建日期起 30 天内免费使用 EAP 版本。您可以将这段时间用作 GoLand 的扩展试用版； 我们会提供 EAP 版本，直到几乎可以发布稳定版本为止。对于即将推出的 2020.1 版本，EAP 期将大致持续到 3 月底； 在每个发布周期中，我们都会为他们提供免费的 1 年 GoLand 订阅和一件独家的 GoLand T 恤 ，以表彰他们中最活跃的评估人员。 此外，我们几乎每天都提供最新版本。因此，如果您不想等待正式的 EAP 版本公告，则只需下载这些夜间版本之一，即可通过 Toolbox App 获得。请注意，每晚构建的质量通常低于我们的标准，并且没有随附发行说明。与 EAP 版本一样，它们也将在发布后 30 天内过期；  因此，让我们看一下第一个 EAP 版本中包含的内容。
+Go Modules 现在，您可以通过 go.mod 文件中的 Alt-Enter 来获取缺失的依赖项并删除未使用的依赖项。
+Go 1.14 支持 Go 1.14 增加了对嵌入重叠接口的支持，我们也是如此！当您使用重叠的接口时，GoLand 不会将重复的方法报告为错误。
+为什么将此功能添加到语言中？
+主要好处是我们可以使用嵌入定义接口，而不需要手动定义。这是一个例子：
+type Person interface { Name() string String() string } type Employee interface { Person Department() string String() string } 在 Go 1.14 之前，我们无法在 Employee 接口上添加 String() 方法，因为该方法已在 Person 接口上定义了。现在，我们可以使用接口嵌入定义它，如果 Person 接口有更新，我们自己更可控。
+代码补全/完成增强 我们对样板代码说不！GoLand 为常见的错误处理模式添加了代码完成功能。现在，当您在函数中键入if 时，您可以选择 err！= nil {…} 以自动完成它。
+为了更快地定义接口和结构，现在，当您键入type 关键字时，IDE 会为它们建议模板。当您输入 interface 或 struct 时，将显示相同的补全内容。
+现在，根据格式设置规则的要求，Fill Fields 操作会在冒号后添加空格，并在复合文字中的语句末尾添加逗号。
+现在，当您使用 map 时，完成键类型后，代码补全将光标移到右括号后面。
+智能代码补全建议使用指向结构的指针。
+最终，代码补全变得更加智能，现在在断言和 type-switch-case 中会首先建议兼容类型。
+代码编辑增强 当编写多值返回函数的签名时，GoLang 2020.1 将在逗号后面的返回类型周围自动添加括号。
+此外，当您在字符串中粘贴一些文本时，GoLand 会自动转义双引号。
+Postfix 完成模板 .else Postfix 完成模板可以快速添加 if 语句，以检查表达式是否为假。
+实时模板 我们添加了新的 consts, vars, types, 和 import 模板 。对于这些模板，默认情况下，GoLand 将在表达式周围添加括号。
+fori 模板插入经典 for 循环的样板代码。
+重构 现在，即使接口定义中省略了参数名称，Implement Methods（在 macOS 和 Windows/Linux 上为 Ctrl + I）也允许您指定参数名称。</description>
 			<content type="html"><![CDATA[<p>GoLand 2020.1 抢先体验计划已经启动。对于此发行版，我们着重于易用性，性能以及减少浪费在样板代码和 IDE 中的冗余操作上的时间。我们还包括对 Go Modules 支持的升级，和其他更多功能。您可以在 2020.1 的<a href="https://blog.jetbrains.com/go/2019/12/24/whats-next-goland-2020-1-roadmap/" target="_blank" rel="noopener">路线图博客</a>
 文章中找到简短说明。</p>
 <p><p class="md__image">
@@ -8691,7 +8980,7 @@ Date: Fri, <span class="m">21</span> Feb <span class="m">2020</span> 09:55:54 GM
 			<pubDate>Tue, 03 Dec 2019 20:31:51 +0800</pubDate>
 			
 			<guid>https://polarisxu.studygolang.com/posts/go/echo/basic03-example/</guid>
-			<description>通过前面的介绍，相信对 echo 有了一个初步的认识。本文我们通过一个简单的登录页面来串联 echo 的相关特性。因为该文主要关注各个特性，所以在目录结构和代码</description>
+			<description>通过前面的介绍，相信对 echo 有了一个初步的认识。本文我们通过一个简单的登录页面来串联 echo 的相关特性。因为该文主要关注各个特性，所以在目录结构和代码组织方面很随意。 本节最终效果 1）登录页面 2）登录失败 3）登录成功 main 函数骨架 使用 echo 框架，在程序入口处一般包含如下内容： func main() { // 创建 echo 实例 e := echo.New() // 配置日志 configLogger(e) // 注册静态文件路由 e.Static(&amp;#34;img&amp;#34;, &amp;#34;img&amp;#34;) e.File(&amp;#34;/favicon.ico&amp;#34;, &amp;#34;img/favicon.ico&amp;#34;) // 设置中间件 setMiddleware(e) // 注册路由 RegisterRoutes(e) // 启动服务 e.Logger.Fatal(e.Start(&amp;#34;:2019&amp;#34;)) } 日</description>
 			<content type="html"><![CDATA[<p>通过前面的介绍，相信对 echo 有了一个初步的认识。本文我们通过一个简单的登录页面来串联 echo 的相关特性。因为该文主要关注各个特性，所以在目录结构和代码组织方面很随意。</p>
 <h2 id="本节最终效果">本节最终效果</h2>
 <p>1）登录页面</p>
@@ -8842,7 +9131,7 @@ Date: Fri, <span class="m">21</span> Feb <span class="m">2020</span> 09:55:54 GM
 			<pubDate>Fri, 15 Nov 2019 08:52:00 +0800</pubDate>
 			
 			<guid>https://polarisxu.studygolang.com/posts/go/dynamic/pkg-go-dev-plan/</guid>
-			<description>北京时间 2019 年 11 月 14 日凌晨 1 点 16 分，Go 官方团队在 golang-nuts 邮件组宣布 go.dev 上线，这是一个新的 Go 开发人员中心。具体的介绍可以看我之前发布的文章 大家用Go都</description>
+			<description>北京时间 2019 年 11 月 14 日凌晨 1 点 16 分，Go 官方团队在 golang-nuts 邮件组宣布 go.dev 上线，这是一个新的 Go 开发人员中心。具体的介绍可以看我之前发布的文章 大家用Go都做什么？Go官方新发布的 Go.Dev 告诉你 。同时，go.dev 还提供了一个 Go 软件包和模块的新信息资源中心：pkg.go.dev，而在此之前，Go 已经存在了一个包资源网站：godoc.org。2020 年 1 月 31 日，在 Go 官方博客又发布了</description>
 			<content type="html"><![CDATA[<p>北京时间 2019 年 11 月 14 日凌晨 1 点 16 分，Go 官方团队在 golang-nuts 邮件组宣布 go.dev 上线，这是一个新的 Go 开发人员中心。具体的介绍可以看我之前发布的文章 <a href="https://mp.weixin.qq.com/s/vwBlrJvHXdWhqWmVFhv7-A" target="_blank" rel="noopener">大家用Go都做什么？Go官方新发布的 Go.Dev 告诉你</a>
 。同时，go.dev 还提供了一个 Go 软件包和模块的新信息资源中心：pkg.go.dev，而在此之前，Go 已经存在了一个包资源网站：godoc.org。2020 年 1 月 31 日，在 Go 官方博客又发布了一篇博文，关于 pkg.go.dev 接下来要做的事情，一时间社区讨论激烈，很多人不解。官方（Russ）对此也进行了解释。本文就官方的博文和 Google 邮件组上的相关内容进行整理总结，分享给大家。</p>
 <h2 id="一官方博文-next-steps-for-pkggodev快速解读">一、官方博文 《Next steps for pkg.go.dev》快速解读</h2>
@@ -8976,7 +9265,7 @@ Russ</p>
 			<pubDate>Mon, 28 Oct 2019 11:15:51 +0800</pubDate>
 			
 			<guid>https://polarisxu.studygolang.com/posts/go/echo/basic02-feature/</guid>
-			<description>在 Echo 的官网的首页，列出了 9 个核心功能或亮点。我这里将它说成是亮点（也许并不一定都比其他框架更好）。 一、优化的路由 高度优化的 HTTP 路由，动态内存分</description>
+			<description>在 Echo 的官网的首页，列出了 9 个核心功能或亮点。我这里将它说成是亮点（也许并不一定都比其他框架更好）。 一、优化的路由 高度优化的 HTTP 路由，动态内存分配为零，可对路由进行优先级排序。 这一点从上一篇：[搭建 Echo 开发环境](基础篇：搭建 Echo 开发环境.md) 可以看到。 Echo 路由基于 radix tree ，查询速度非常快。路由使用 sync pool 来重用内存，实现无 GC 开销下的零动态内存分配。 路由的注册和使用方式 各大</description>
 			<content type="html"><![CDATA[<p>在 Echo 的官网的首页，列出了 9 个核心功能或亮点。我这里将它说成是亮点（也许并不一定都比其他框架更好）。</p>
 <h2 id="一优化的路由">一、优化的路由</h2>
 <p><strong>高度优化的 HTTP 路由，动态内存分配为零，可对路由进行优先级排序。</strong></p>
@@ -9104,7 +9393,7 @@ Russ</p>
 			<pubDate>Mon, 21 Oct 2019 14:17:51 +0800</pubDate>
 			
 			<guid>https://polarisxu.studygolang.com/posts/go/echo/basic01-env/</guid>
-			<description>工欲善其事必先利其器。我们先搞定 Echo 环境。 Go 开发环境 这个系列基于 Go1.14.4，Linux 系统。 安装 Go 的方式有很多，可以在这里 https://studygolang.com/dl 下载对应操作</description>
+			<description>工欲善其事必先利其器。我们先搞定 Echo 环境。 Go 开发环境 这个系列基于 Go1.14.4，Linux 系统。 安装 Go 的方式有很多，可以在这里 https://studygolang.com/dl 下载对应操作系统的版本。我自己比较喜欢通过源码安装。我将我的方式告诉大家。（Windows 环境比较建议直接下载对应的包进行安装 https://studygolang.com/dl/golang/go1.14.4.windows-am</description>
 			<content type="html"><![CDATA[<p>工欲善其事必先利其器。我们先搞定 Echo 环境。</p>
 <h2 id="go-开发环境">Go 开发环境</h2>
 <p>这个系列基于 Go1.14.4，Linux 系统。</p>
@@ -9256,7 +9545,7 @@ go 1.14
 			<pubDate>Mon, 21 Oct 2019 13:42:51 +0800</pubDate>
 			
 			<guid>https://polarisxu.studygolang.com/posts/go/echo/echo/</guid>
-			<description>大家好，从今天起，我们一起来学习 Echo 框架。 这几年，随着 Go 语言的发展，各种 Web 框架也出现了。常言道：没有选择是一种无奈，有选择是一种痛苦。所以，大</description>
+			<description>大家好，从今天起，我们一起来学习 Echo 框架。 这几年，随着 Go 语言的发展，各种 Web 框架也出现了。常言道：没有选择是一种无奈，有选择是一种痛苦。所以，大家总是问：Web 框架大佬推荐哪个？ 这一年，国内推荐 Gin 的人很多，也让 Gin 的 Star 数增加到了 32k+（2019-10-17），网络上 Gin 相关的教程也很多。总体来说，Gin、Echo 等都比较轻量，易用性也差距不大，而 Gin 最大的一个优势是</description>
 			<content type="html"><![CDATA[<p>大家好，从今天起，我们一起来学习 Echo 框架。</p>
 <p>这几年，随着 Go 语言的发展，各种 Web 框架也出现了。常言道：没有选择是一种无奈，有选择是一种痛苦。所以，大家总是问：Web 框架大佬推荐哪个？</p>
 <p>这一年，国内推荐 Gin 的人很多，也让 Gin 的 Star 数增加到了 32k+（2019-10-17），网络上 Gin 相关的教程也很多。总体来说，Gin、Echo 等都比较轻量，易用性也差距不大，而 Gin 最大的一个优势是直接使用了 <a href="https://github.com/julienschmidt/httprouter" target="_blank" rel="noopener">httprouter</a>

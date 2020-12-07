@@ -14,7 +14,7 @@
       <pubDate>Fri, 21 Feb 2020 19:24:51 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/posts/go/echo/custom00-intro/</guid>
-      <description>一个强大的框架，一定是可以定制的，或者说可以扩展，能够根据用户自己的需求进行改变、增强，甚至某些功能的替换。作为一个强大的框架，Echo 必然</description>
+      <description>一个强大的框架，一定是可以定制的，或者说可以扩展，能够根据用户自己的需求进行改变、增强，甚至某些功能的替换。作为一个强大的框架，Echo 必然也是可以定制、可以扩展的。本篇起，我们一起探讨如何对 Echo 框架进行定制或扩展，打造成符合你个性需求的框架。 定制化主要包含如下一些方面： 自定义 Binder，用来处理 Request 数据绑定 自定义 Validator，用来处理输入验证 自定义 Lo</description>
     </item>
     
   </channel>

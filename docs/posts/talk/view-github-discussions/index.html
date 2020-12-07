@@ -8,7 +8,7 @@
 	<meta name="theme-color" content="#fcfcfc">
 	<meta name="msapplication-TileColor" content="#fcfcfc">
 <meta itemprop="name" content="GitHub 出的这个功能，让开源项目有了自己的社区">
-<meta itemprop="description" content="大家好，我是站长 polarisxu。 为了更有利于开源项目的发展，形成自己的社区很重要，作者们可以更好地和使用者交流互动，了解他们需求、问题。">
+<meta itemprop="description" content="大家好，我是站长 polarisxu。 为了更有利于开源项目的发展，形成自己的社区很重要，作者们可以更好地和使用者交流互动，了解他们需求、问题。虽然 GitHub 有 issue，但毕竟它主要还是用于反馈 bug、提新特性，不是一个社区的感觉。所以一般项目都会有其他的社区，比如会开通 google groups 邮件组、使用 Gitter、Discord、Slack 等。当然，国内的项目通常会使用 QQ 群、微信群">
 <meta itemprop="datePublished" content="2020-11-12T10:30:00+08:00" />
 <meta itemprop="dateModified" content="2020-11-12T10:30:00+08:00" />
 <meta itemprop="wordCount" content="1161">
@@ -17,14 +17,14 @@
 
 <meta itemprop="keywords" content="GitHub,Nitro," />
 <meta property="og:title" content="GitHub 出的这个功能，让开源项目有了自己的社区" />
-<meta property="og:description" content="大家好，我是站长 polarisxu。 为了更有利于开源项目的发展，形成自己的社区很重要，作者们可以更好地和使用者交流互动，了解他们需求、问题。" />
+<meta property="og:description" content="大家好，我是站长 polarisxu。 为了更有利于开源项目的发展，形成自己的社区很重要，作者们可以更好地和使用者交流互动，了解他们需求、问题。虽然 GitHub 有 issue，但毕竟它主要还是用于反馈 bug、提新特性，不是一个社区的感觉。所以一般项目都会有其他的社区，比如会开通 google groups 邮件组、使用 Gitter、Discord、Slack 等。当然，国内的项目通常会使用 QQ 群、微信群" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://polarisxu.studygolang.com/posts/talk/view-github-discussions/" />
 <meta property="article:published_time" content="2020-11-12T10:30:00+08:00" />
 <meta property="article:modified_time" content="2020-11-12T10:30:00+08:00" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="GitHub 出的这个功能，让开源项目有了自己的社区"/>
-<meta name="twitter:description" content="大家好，我是站长 polarisxu。 为了更有利于开源项目的发展，形成自己的社区很重要，作者们可以更好地和使用者交流互动，了解他们需求、问题。"/>
+<meta name="twitter:description" content="大家好，我是站长 polarisxu。 为了更有利于开源项目的发展，形成自己的社区很重要，作者们可以更好地和使用者交流互动，了解他们需求、问题。虽然 GitHub 有 issue，但毕竟它主要还是用于反馈 bug、提新特性，不是一个社区的感觉。所以一般项目都会有其他的社区，比如会开通 google groups 邮件组、使用 Gitter、Discord、Slack 等。当然，国内的项目通常会使用 QQ 群、微信群"/>
 
 	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -36,6 +36,8 @@
 	<title>GitHub 出的这个功能，让开源项目有了自己的社区</title>
 	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
 	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/styles.css">
 </head>
 
 <body id="page">
@@ -48,9 +50,10 @@
 				</div>
 				<nav class="site-nav hide-in-mobile">
 					
-  <a href="https://polarisxu.studygolang.com/posts/">文章</a>
-  <a href="https://polarisxu.studygolang.com/go-categories/">Go系列</a>
-  <a href="https://polarisxu.studygolang.com/devtool-categories/">开发工具</a>
+  <a href="https://polarisxu.studygolang.com/">首页</a>
+  <a href="https://polarisxu.studygolang.com/categories/echo%E7%B3%BB%E5%88%97/">Echo系列</a>
+  <a href="https://polarisxu.studygolang.com/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a>
+  <a href="https://polarisxu.studygolang.com/posts/">归档</a>
   <a href="https://polarisxu.studygolang.com/about/">关于</a>
 
 				</nav>
@@ -62,9 +65,10 @@
 	</header>
 	<div id="mobile-menu" class="animated fast">
 		<ul>
-			<li><a href="https://polarisxu.studygolang.com/posts/">文章</a></li>
-			<li><a href="https://polarisxu.studygolang.com/go-categories/">Go系列</a></li>
-			<li><a href="https://polarisxu.studygolang.com/devtool-categories/">开发工具</a></li>
+			<li><a href="https://polarisxu.studygolang.com/">首页</a></li>
+			<li><a href="https://polarisxu.studygolang.com/categories/echo%E7%B3%BB%E5%88%97/">Echo系列</a></li>
+			<li><a href="https://polarisxu.studygolang.com/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a></li>
+			<li><a href="https://polarisxu.studygolang.com/posts/">归档</a></li>
 			<li><a href="https://polarisxu.studygolang.com/about/">关于</a></li>
 		</ul>
 	</div>

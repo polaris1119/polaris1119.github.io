@@ -14,7 +14,7 @@
       <pubDate>Mon, 16 Mar 2020 10:17:51 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/posts/go/echo/custom04-renderer/</guid>
-      <description>Render，顾名思义，要进行页面渲染。Go 语言不但自带有强大的 http 库，还自带了 HTML 模板引擎。Echo 框架对模板引擎进行了一些额外处理，并提供了</description>
+      <description>Render，顾名思义，要进行页面渲染。Go 语言不但自带有强大的 http 库，还自带了 HTML 模板引擎。Echo 框架对模板引擎进行了一些额外处理，并提供了给用户自定义页面渲染的接口。本文就相关问题进行探讨。 模板渲染 Echo 框架的 Context 接口提供了下面的方法进行页面渲染： // echo 包中 Context 接口的方法 Render(code int, name string, data interface{}) error 其中，code 是 HTTP Status，name 是定义的模板名，data 是模板可能需要的数</description>
     </item>
     
     <item>
@@ -23,7 +23,7 @@
       <pubDate>Mon, 16 Mar 2020 10:17:51 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/posts/go/echo/custom05-error-handler/</guid>
-      <description>Echo 倡导通过从中间件和 Handler 返回错误来进行集中式 HTTP 错误处理。集中式错误处理程序使我们能够从统一位置将错误记录到外部服务，并向客户端发送自定义的 HTTP 响</description>
+      <description>Echo 倡导通过从中间件和 Handler 返回错误来进行集中式 HTTP 错误处理。集中式错误处理程序使我们能够从统一位置将错误记录到外部服务，并向客户端发送自定义的 HTTP 响应。本节一起学习如何定制化，进行集中式错误处理。 默认的错误处理 在定制篇 4 中，我们讲到了 Render。如果在 Handler 中调用了 Render，但是并没有给 Echo.Renderer 赋值或其他原因，导致出错，页面看到的信息如下： { &amp;#34;message&amp;#34;: &amp;#34;Internal Server Error&amp;#34; } 这是 Echo 默认的 HTTP Error H</description>
     </item>
     
   </channel>

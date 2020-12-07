@@ -14,7 +14,7 @@
       <pubDate>Tue, 03 Dec 2019 20:31:51 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/posts/go/echo/basic03-example/</guid>
-      <description>通过前面的介绍，相信对 echo 有了一个初步的认识。本文我们通过一个简单的登录页面来串联 echo 的相关特性。因为该文主要关注各个特性，所以在目录结构和代码</description>
+      <description>通过前面的介绍，相信对 echo 有了一个初步的认识。本文我们通过一个简单的登录页面来串联 echo 的相关特性。因为该文主要关注各个特性，所以在目录结构和代码组织方面很随意。 本节最终效果 1）登录页面 2）登录失败 3）登录成功 main 函数骨架 使用 echo 框架，在程序入口处一般包含如下内容： func main() { // 创建 echo 实例 e := echo.New() // 配置日志 configLogger(e) // 注册静态文件路由 e.Static(&amp;#34;img&amp;#34;, &amp;#34;img&amp;#34;) e.File(&amp;#34;/favicon.ico&amp;#34;, &amp;#34;img/favicon.ico&amp;#34;) // 设置中间件 setMiddleware(e) // 注册路由 RegisterRoutes(e) // 启动服务 e.Logger.Fatal(e.Start(&amp;#34;:2019&amp;#34;)) } 日</description>
     </item>
     
   </channel>

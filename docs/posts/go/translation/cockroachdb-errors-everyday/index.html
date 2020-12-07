@@ -8,7 +8,7 @@
 	<meta name="theme-color" content="#fcfcfc">
 	<meta name="msapplication-TileColor" content="#fcfcfc">
 <meta itemprop="name" content="除了 fmt.Errorf() 之外—Go 中的日常错误对象：CockroachDB errors 库（第4篇）">
-<meta itemprop="description" content="在 Go 中传递错误的惯用方式是使用预定义的类型错误。但是 Go 的标准库仅提供了非常简单的错误对象，errors.New() 和fmt.Errorf()">
+<meta itemprop="description" content="在 Go 中传递错误的惯用方式是使用预定义的类型错误。但是 Go 的标准库仅提供了非常简单的错误对象，errors.New() 和fmt.Errorf()。 本文介绍了 CockroachDB 的 error 库（它是 Go 标准库库 errors 的直接替代品），Go 程序员如何用它来描述和传播其代码中的错误和错误代号（code）。 Go 标准库 errors 太简单 由 fmt.Errorf() 构造的 Go 中最常见的“简单”错误对象类似于带有错误接口的包含在结构中的字符串：其">
 <meta itemprop="datePublished" content="2020-11-04T21:00:00+08:00" />
 <meta itemprop="dateModified" content="2020-11-04T21:00:00+08:00" />
 <meta itemprop="wordCount" content="4582">
@@ -17,14 +17,14 @@
 
 <meta itemprop="keywords" content="Go,CockroachDB,error," />
 <meta property="og:title" content="除了 fmt.Errorf() 之外—Go 中的日常错误对象：CockroachDB errors 库（第4篇）" />
-<meta property="og:description" content="在 Go 中传递错误的惯用方式是使用预定义的类型错误。但是 Go 的标准库仅提供了非常简单的错误对象，errors.New() 和fmt.Errorf()" />
+<meta property="og:description" content="在 Go 中传递错误的惯用方式是使用预定义的类型错误。但是 Go 的标准库仅提供了非常简单的错误对象，errors.New() 和fmt.Errorf()。 本文介绍了 CockroachDB 的 error 库（它是 Go 标准库库 errors 的直接替代品），Go 程序员如何用它来描述和传播其代码中的错误和错误代号（code）。 Go 标准库 errors 太简单 由 fmt.Errorf() 构造的 Go 中最常见的“简单”错误对象类似于带有错误接口的包含在结构中的字符串：其" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/translation/cockroachdb-errors-everyday/" />
 <meta property="article:published_time" content="2020-11-04T21:00:00+08:00" />
 <meta property="article:modified_time" content="2020-11-04T21:00:00+08:00" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="除了 fmt.Errorf() 之外—Go 中的日常错误对象：CockroachDB errors 库（第4篇）"/>
-<meta name="twitter:description" content="在 Go 中传递错误的惯用方式是使用预定义的类型错误。但是 Go 的标准库仅提供了非常简单的错误对象，errors.New() 和fmt.Errorf()"/>
+<meta name="twitter:description" content="在 Go 中传递错误的惯用方式是使用预定义的类型错误。但是 Go 的标准库仅提供了非常简单的错误对象，errors.New() 和fmt.Errorf()。 本文介绍了 CockroachDB 的 error 库（它是 Go 标准库库 errors 的直接替代品），Go 程序员如何用它来描述和传播其代码中的错误和错误代号（code）。 Go 标准库 errors 太简单 由 fmt.Errorf() 构造的 Go 中最常见的“简单”错误对象类似于带有错误接口的包含在结构中的字符串：其"/>
 
 	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -36,6 +36,8 @@
 	<title>除了 fmt.Errorf() 之外—Go 中的日常错误对象：CockroachDB errors 库（第4篇）</title>
 	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
 	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/styles.css">
 </head>
 
 <body id="page">
@@ -48,9 +50,10 @@
 				</div>
 				<nav class="site-nav hide-in-mobile">
 					
-  <a href="https://polarisxu.studygolang.com/posts/">文章</a>
-  <a href="https://polarisxu.studygolang.com/go-categories/">Go系列</a>
-  <a href="https://polarisxu.studygolang.com/devtool-categories/">开发工具</a>
+  <a href="https://polarisxu.studygolang.com/">首页</a>
+  <a href="https://polarisxu.studygolang.com/categories/echo%E7%B3%BB%E5%88%97/">Echo系列</a>
+  <a href="https://polarisxu.studygolang.com/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a>
+  <a href="https://polarisxu.studygolang.com/posts/">归档</a>
   <a href="https://polarisxu.studygolang.com/about/">关于</a>
 
 				</nav>
@@ -62,9 +65,10 @@
 	</header>
 	<div id="mobile-menu" class="animated fast">
 		<ul>
-			<li><a href="https://polarisxu.studygolang.com/posts/">文章</a></li>
-			<li><a href="https://polarisxu.studygolang.com/go-categories/">Go系列</a></li>
-			<li><a href="https://polarisxu.studygolang.com/devtool-categories/">开发工具</a></li>
+			<li><a href="https://polarisxu.studygolang.com/">首页</a></li>
+			<li><a href="https://polarisxu.studygolang.com/categories/echo%E7%B3%BB%E5%88%97/">Echo系列</a></li>
+			<li><a href="https://polarisxu.studygolang.com/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a></li>
+			<li><a href="https://polarisxu.studygolang.com/posts/">归档</a></li>
 			<li><a href="https://polarisxu.studygolang.com/about/">关于</a></li>
 		</ul>
 	</div>

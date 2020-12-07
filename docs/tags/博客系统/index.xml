@@ -14,7 +14,7 @@
       <pubDate>Sat, 16 May 2020 15:08:51 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/posts/go/echo/action00-intro/</guid>
-      <description>实战是掌握一门技术很好的方式：纸上得来终觉浅，绝知此事要躬行！ 在初步了解了 Echo 框架的特性、功能后，我们通过具体的一个项目来掌握 Echo 框架，这个项目</description>
+      <description>实战是掌握一门技术很好的方式：纸上得来终觉浅，绝知此事要躬行！ 在初步了解了 Echo 框架的特性、功能后，我们通过具体的一个项目来掌握 Echo 框架，这个项目就是写一个博客系统。 实战篇目标 掌握 go/echo 开发项目的方法； 通过项目更深入掌握 echo； 完善完善，甚至可以作为自己的一个博客系统使用； 因此，在项目实战过程中可能引申讲解 Echo 的特性，毕竟基础篇对 Echo 的特性没有深入讲解。 依赖技术 该实战项</description>
     </item>
     
   </channel>

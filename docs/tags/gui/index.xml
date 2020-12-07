@@ -14,7 +14,7 @@
       <pubDate>Mon, 17 Aug 2020 11:15:51 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/posts/go/translation/goui-a-very-simple-ui-framework/</guid>
-      <description>最近，我一直想开发一些桌面（主要是 Windows，但也可以考虑 MacOS 或 Linux）应用程序。虽然 Go 不是开发 UI 应用程序时首选语言，但是该语言的简单</description>
+      <description>最近，我一直想开发一些桌面（主要是 Windows，但也可以考虑 MacOS 或 Linux）应用程序。虽然 Go 不是开发 UI 应用程序时首选语言，但是该语言的简单性和健壮性仍然使它成为我的首选语言。是的，这是我的锤子（hammer）&amp;hellip; 但这是一个该死的漂亮锤子。 以前，我曾将 Ebiten 图形库用于 Go，以便与孩子们一起编写一些游戏。但是，对于一般的“应用程序”开发（即需要“小部件</description>
     </item>
     
   </channel>

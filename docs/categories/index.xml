@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories on polarisxu</title>
+    <link>https://polarisxu.studygolang.com/categories/</link>
+    <description>Recent content in Categories on polarisxu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
+    <lastBuildDate>Fri, 04 Dec 2020 22:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>开发工具</title>
+      <link>https://polarisxu.studygolang.com/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/</link>
+      <pubDate>Fri, 04 Dec 2020 22:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Go面试和实战</title>
+      <link>https://polarisxu.studygolang.com/categories/go%E9%9D%A2%E8%AF%95%E5%92%8C%E5%AE%9E%E6%88%98/</link>
+      <pubDate>Mon, 26 Oct 2020 18:12:51 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/categories/go%E9%9D%A2%E8%AF%95%E5%92%8C%E5%AE%9E%E6%88%98/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Echo系列</title>
+      <link>https://polarisxu.studygolang.com/categories/echo%E7%B3%BB%E5%88%97/</link>
+      <pubDate>Mon, 16 Mar 2020 10:17:51 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/categories/echo%E7%B3%BB%E5%88%97/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

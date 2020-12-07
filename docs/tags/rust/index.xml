@@ -14,7 +14,7 @@
       <pubDate>Tue, 10 Nov 2020 00:07:00 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/posts/go/translation/rust-vs-go/</guid>
-      <description>最近一年，将 Rust 和 Go 进行比较的不少，但不少都不公正，带感情色彩。而这篇文章客观、全面的分析对比了 Rust 和 Go，让你具体项目时选择最合适的。 Rust 还是 G</description>
+      <description>最近一年，将 Rust 和 Go 进行比较的不少，但不少都不公正，带感情色彩。而这篇文章客观、全面的分析对比了 Rust 和 Go，让你具体项目时选择最合适的。 Rust 还是 Go，哪个更好？你应该为下一个项目选择哪种语言，为什么？两者在性能，简单性，安全性，功能，规模和并发性等方面如何比较？它们有什么共同点，并且在根本上有何不同？来自 For the Go of Love 系列图书的作者，友好而公正的比较 Rust 和 Golang。</description>
     </item>
     
     <item>
@@ -23,7 +23,7 @@
       <pubDate>Wed, 30 Sep 2020 11:15:51 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/posts/go/translation/when-to-use-rust-and-when-to-use-golang/</guid>
-      <description>Golang 和 Rust 之间有明显的区别。Golang 更加注重构建可以无限扩展的 Web API 和小型服务，尤其是在 goroutine 的强大支持下。Rust 也可以用于小型服务，但是从开发</description>
+      <description>Golang 和 Rust 之间有明显的区别。Golang 更加注重构建可以无限扩展的 Web API 和小型服务，尤其是在 goroutine 的强大支持下。Rust 也可以用于小型服务，但是从开发人员的经验来看，事情要困难得多。 Rust 非常适合处理大量数据和其他 CPU 密集型操作，例如执行算法。这是 Rust 超过 Golang 的最大优势。要求高性能的项目通常更适合 Rust。 在本教程中，我们将就 Golang 和 Rust 进行比较和对比，评估这两种编程语言的性能，并发</description>
     </item>
     
     <item>
@@ -32,7 +32,7 @@
       <pubDate>Thu, 16 Jul 2020 11:15:51 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/posts/go/translation/benchmarking-grpc-in-rust-go/</guid>
-      <description>背景 如果你计划构建可靠，内存安全 ，高性能的应用程序，那么 Rust＆Go 无疑会是你的选择。 如果您希望从内部应用程序中获得更高的性能，则可能还需</description>
+      <description>背景 如果你计划构建可靠，内存安全 ，高性能的应用程序，那么 Rust＆Go 无疑会是你的选择。 如果您希望从内部应用程序中获得更高的性能，则可能还需要考虑使用 gRPC 而不是普通的 REST API。所有这些都是减少您的计算开销的解决方案。 我尝试比较各种库以了解它们的性能，并希望对你有所帮助。 关注的库 tower-grpc (Rust) 高性能 rust 库，尽管已被 tonic 替代 grpc-go (Golang) grpc 的官方 Go 模块 grpc-rust (Rust) 仍在开发中，另一个 rust grpc 库。看起来</description>
     </item>
     
   </channel>

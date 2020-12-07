@@ -14,7 +14,7 @@
       <pubDate>Sat, 12 Sep 2020 11:15:51 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/posts/go/translation/golang-is-not-ready-for-enterprise-systems-yet-and-heres-why/</guid>
-      <description>译注：发表这篇文章，不代表我认同作者的观点。大家都知道，在国内，Go 已经被很多大厂使用，早就可以用于企业系统。 对一门语言的爱，可以接受任何不</description>
+      <description>译注：发表这篇文章，不代表我认同作者的观点。大家都知道，在国内，Go 已经被很多大厂使用，早就可以用于企业系统。 对一门语言的爱，可以接受任何不同的观点，真理总是越辩越明，相信有不同的声音，Go 也会越来越好。欢迎大家留言发表你的看法。 介绍 企业应用程序是一个寿命长、可靠的系统，具有多年的持久数据。如今，Golang 的世界并没有提供以企业系统构建方式构建系统的可能性</description>
     </item>
     
   </channel>

@@ -14,7 +14,7 @@
       <pubDate>Fri, 21 Feb 2020 19:26:51 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/posts/go/echo/custom01-binder/</guid>
-      <description>Web 开发，数据获取和校验是两个最基本的功能。在数据获取时，我们可以通过标准库的 *http.Request 提供的相关功能进行获取。然而这样效率是很低，重复工作较多，而且</description>
+      <description>Web 开发，数据获取和校验是两个最基本的功能。在数据获取时，我们可以通过标准库的 *http.Request 提供的相关功能进行获取。然而这样效率是很低，重复工作较多，而且考虑到数据自动校验，我们更应该做到自动绑定。 在讲述 Echo 的 Binder 前，先探讨一下客户端数据一般通过什么方式发送给服务端的。 客户端如何传递数据给服务端？ 这个问题其实对大部分人来说太简单了，然而，很多客户端的人却不清楚。工作中，我接触</description>
     </item>
     
   </channel>

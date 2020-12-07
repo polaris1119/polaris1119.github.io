@@ -14,7 +14,7 @@
       <pubDate>Thu, 16 Jul 2020 11:15:51 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/posts/go/translation/benchmarking-grpc-in-rust-go/</guid>
-      <description>背景 如果你计划构建可靠，内存安全 ，高性能的应用程序，那么 Rust＆Go 无疑会是你的选择。 如果您希望从内部应用程序中获得更高的性能，则可能还需</description>
+      <description>背景 如果你计划构建可靠，内存安全 ，高性能的应用程序，那么 Rust＆Go 无疑会是你的选择。 如果您希望从内部应用程序中获得更高的性能，则可能还需要考虑使用 gRPC 而不是普通的 REST API。所有这些都是减少您的计算开销的解决方案。 我尝试比较各种库以了解它们的性能，并希望对你有所帮助。 关注的库 tower-grpc (Rust) 高性能 rust 库，尽管已被 tonic 替代 grpc-go (Golang) grpc 的官方 Go 模块 grpc-rust (Rust) 仍在开发中，另一个 rust grpc 库。看起来</description>
     </item>
     
   </channel>

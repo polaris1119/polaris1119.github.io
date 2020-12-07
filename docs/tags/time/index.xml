@@ -14,7 +14,7 @@
       <pubDate>Fri, 17 Jul 2020 11:15:51 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/posts/go/translation/easter-eggs-in-go-source-code-2l02/</guid>
-      <description>前言 前段时间，我在某个 Slack 工作区与朋友聊天： 朋友：“有人知道为什么time.minWall 的默认值是 1885 吗？” 我：“不知道，也许是从《回到未来 3</description>
+      <description>前言 前段时间，我在某个 Slack 工作区与朋友聊天： 朋友：“有人知道为什么time.minWall 的默认值是 1885 吗？” 我：“不知道，也许是从《回到未来 3》那一年开始的？” 我那么说基本是在开玩笑，因为我也不知道为什么将其设置为 1885 年。尽管其背后的事实与我在 Go 中的日常编码没有任何关系，但我还是情不自禁地询问了幕后花絮。我在团队聊天中问了我的同伴 Gophers，但似乎没人能找到</description>
     </item>
     
   </channel>

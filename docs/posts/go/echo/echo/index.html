@@ -8,7 +8,7 @@
 	<meta name="theme-color" content="#fcfcfc">
 	<meta name="msapplication-TileColor" content="#fcfcfc">
 <meta itemprop="name" content="Echo 系列教程——Go 语言 Web 框架 Echo 系列教程">
-<meta itemprop="description" content="大家好，从今天起，我们一起来学习 Echo 框架。 这几年，随着 Go 语言的发展，各种 Web 框架也出现了。常言道：没有选择是一种无奈，有选择是一种痛苦。所以，大">
+<meta itemprop="description" content="大家好，从今天起，我们一起来学习 Echo 框架。 这几年，随着 Go 语言的发展，各种 Web 框架也出现了。常言道：没有选择是一种无奈，有选择是一种痛苦。所以，大家总是问：Web 框架大佬推荐哪个？ 这一年，国内推荐 Gin 的人很多，也让 Gin 的 Star 数增加到了 32k&#43;（2019-10-17），网络上 Gin 相关的教程也很多。总体来说，Gin、Echo 等都比较轻量，易用性也差距不大，而 Gin 最大的一个优势是">
 <meta itemprop="datePublished" content="2019-10-21T13:42:51+08:00" />
 <meta itemprop="dateModified" content="2019-10-21T13:42:51+08:00" />
 <meta itemprop="wordCount" content="865">
@@ -17,14 +17,14 @@
 
 <meta itemprop="keywords" content="echo,web框架," />
 <meta property="og:title" content="Echo 系列教程——Go 语言 Web 框架 Echo 系列教程" />
-<meta property="og:description" content="大家好，从今天起，我们一起来学习 Echo 框架。 这几年，随着 Go 语言的发展，各种 Web 框架也出现了。常言道：没有选择是一种无奈，有选择是一种痛苦。所以，大" />
+<meta property="og:description" content="大家好，从今天起，我们一起来学习 Echo 框架。 这几年，随着 Go 语言的发展，各种 Web 框架也出现了。常言道：没有选择是一种无奈，有选择是一种痛苦。所以，大家总是问：Web 框架大佬推荐哪个？ 这一年，国内推荐 Gin 的人很多，也让 Gin 的 Star 数增加到了 32k&#43;（2019-10-17），网络上 Gin 相关的教程也很多。总体来说，Gin、Echo 等都比较轻量，易用性也差距不大，而 Gin 最大的一个优势是" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/echo/echo/" />
 <meta property="article:published_time" content="2019-10-21T13:42:51+08:00" />
 <meta property="article:modified_time" content="2019-10-21T13:42:51+08:00" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Echo 系列教程——Go 语言 Web 框架 Echo 系列教程"/>
-<meta name="twitter:description" content="大家好，从今天起，我们一起来学习 Echo 框架。 这几年，随着 Go 语言的发展，各种 Web 框架也出现了。常言道：没有选择是一种无奈，有选择是一种痛苦。所以，大"/>
+<meta name="twitter:description" content="大家好，从今天起，我们一起来学习 Echo 框架。 这几年，随着 Go 语言的发展，各种 Web 框架也出现了。常言道：没有选择是一种无奈，有选择是一种痛苦。所以，大家总是问：Web 框架大佬推荐哪个？ 这一年，国内推荐 Gin 的人很多，也让 Gin 的 Star 数增加到了 32k&#43;（2019-10-17），网络上 Gin 相关的教程也很多。总体来说，Gin、Echo 等都比较轻量，易用性也差距不大，而 Gin 最大的一个优势是"/>
 
 	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -36,6 +36,8 @@
 	<title>Echo 系列教程——Go 语言 Web 框架 Echo 系列教程</title>
 	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
 	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/styles.css">
 </head>
 
 <body id="page">
@@ -48,9 +50,10 @@
 				</div>
 				<nav class="site-nav hide-in-mobile">
 					
-  <a href="https://polarisxu.studygolang.com/posts/">文章</a>
-  <a href="https://polarisxu.studygolang.com/go-categories/">Go系列</a>
-  <a href="https://polarisxu.studygolang.com/devtool-categories/">开发工具</a>
+  <a href="https://polarisxu.studygolang.com/">首页</a>
+  <a href="https://polarisxu.studygolang.com/categories/echo%E7%B3%BB%E5%88%97/">Echo系列</a>
+  <a href="https://polarisxu.studygolang.com/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a>
+  <a href="https://polarisxu.studygolang.com/posts/">归档</a>
   <a href="https://polarisxu.studygolang.com/about/">关于</a>
 
 				</nav>
@@ -62,9 +65,10 @@
 	</header>
 	<div id="mobile-menu" class="animated fast">
 		<ul>
-			<li><a href="https://polarisxu.studygolang.com/posts/">文章</a></li>
-			<li><a href="https://polarisxu.studygolang.com/go-categories/">Go系列</a></li>
-			<li><a href="https://polarisxu.studygolang.com/devtool-categories/">开发工具</a></li>
+			<li><a href="https://polarisxu.studygolang.com/">首页</a></li>
+			<li><a href="https://polarisxu.studygolang.com/categories/echo%E7%B3%BB%E5%88%97/">Echo系列</a></li>
+			<li><a href="https://polarisxu.studygolang.com/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a></li>
+			<li><a href="https://polarisxu.studygolang.com/posts/">归档</a></li>
 			<li><a href="https://polarisxu.studygolang.com/about/">关于</a></li>
 		</ul>
 	</div>

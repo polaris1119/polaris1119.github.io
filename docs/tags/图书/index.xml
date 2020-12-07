@@ -14,7 +14,7 @@
       <pubDate>Tue, 10 Nov 2020 09:30:00 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/posts/go/dynamic/go-opensource-11-years/</guid>
-      <description>题图来自《了不起的程序员》 今天是 Go 语言开源 11 周年。有些人可能不太知道，简单回顾下 Go 的历史。 2007 年 Rob Pike, Robert Griesemer 和 Ken Thompson 一起创建了 Go 语言。从代码提交记录</description>
+      <description>题图来自《了不起的程序员》 今天是 Go 语言开源 11 周年。有些人可能不太知道，简单回顾下 Go 的历史。 2007 年 Rob Pike, Robert Griesemer 和 Ken Thompson 一起创建了 Go 语言。从代码提交记录看，2008 年 3 月 3 日有了 Go 最初的规范 。 2009 年 11 月 10 日，Go 语言以开放源代码的方式向全球发布，当年获得了 TIOBE 年度编程语言称号； 2011 年 3 月 16 日，Go 语言的第一个稳定版本 r56 发布； 2012 年 3 月 28 日，Go 语言的第一个正式版本 Go1 发布，并承诺</description>
     </item>
     
     <item>
@@ -23,7 +23,7 @@
       <pubDate>Thu, 09 Jul 2020 18:12:00 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/posts/talk/sell-my-book/</guid>
-      <description>上周通过公众号对外公布新手开卖后，有人想要签名版。由于双作者，涉及到双签，知道可能会很麻烦，但第一次，也有可能是最后一次，和煎鱼沟通后决定搞</description>
+      <description>上周通过公众号对外公布新手开卖后，有人想要签名版。由于双作者，涉及到双签，知道可能会很麻烦，但第一次，也有可能是最后一次，和煎鱼沟通后决定搞搞。 大概谈谈我们的操作过程。 1、编辑帮我们买书，104 本；也是想办法弄到了当时最便宜的价格； 2、寄到我家里。周六、日分批到的，去封皮签名，大部分还写了一些 Go 箴言，但还有 26 本周末没到； 3、弄好后寄到深圳。用什么快递也是有讲</description>
     </item>
     
   </channel>

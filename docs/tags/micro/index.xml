@@ -14,7 +14,7 @@
       <pubDate>Mon, 09 Nov 2020 15:50:00 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/posts/go/micro/micro-3.0.0-m3o/</guid>
-      <description>用过或了解过 Micro 这个框架的人，可能有所耳闻，大家对其抱怨比较多，典型的抱怨是升级后不兼容。比如网上有教程是基于 1.x，但新版本是 2.x，完全不</description>
+      <description>用过或了解过 Micro 这个框架的人，可能有所耳闻，大家对其抱怨比较多，典型的抱怨是升级后不兼容。比如网上有教程是基于 1.x，但新版本是 2.x，完全不一样了，而且似乎官方文档也没有及时更新，使用了它的人“痛苦不堪”。 前些天，有人问我有无其他 Go 微服务框架推荐，说 Micro 3.0.0 开始不能用了！！ 我听了一惊：我只听说它不稳定，总是变来变去，兼容性不好，但没听说不能用。后来了解了下，原来</description>
     </item>
     
   </channel>

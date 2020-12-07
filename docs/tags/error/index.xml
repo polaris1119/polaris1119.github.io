@@ -14,7 +14,7 @@
       <pubDate>Wed, 04 Nov 2020 21:00:00 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/posts/go/translation/cockroachdb-errors-everyday/</guid>
-      <description>在 Go 中传递错误的惯用方式是使用预定义的类型错误。但是 Go 的标准库仅提供了非常简单的错误对象，errors.New() 和fmt.Errorf()</description>
+      <description>在 Go 中传递错误的惯用方式是使用预定义的类型错误。但是 Go 的标准库仅提供了非常简单的错误对象，errors.New() 和fmt.Errorf()。 本文介绍了 CockroachDB 的 error 库（它是 Go 标准库库 errors 的直接替代品），Go 程序员如何用它来描述和传播其代码中的错误和错误代号（code）。 Go 标准库 errors 太简单 由 fmt.Errorf() 构造的 Go 中最常见的“简单”错误对象类似于带有错误接口的包含在结构中的字符串：其</description>
     </item>
     
     <item>
@@ -23,7 +23,7 @@
       <pubDate>Mon, 26 Oct 2020 11:15:51 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/posts/go/translation/go-error-printing-catastrophe/</guid>
-      <description>这篇文章是关于 “CockroachDB errors 库” 的系列文章的第 3 篇，“CockroachDB errors 库”实际上是 Go 的标准 errors 包的通用、开放源码的替代品。</description>
+      <description>这篇文章是关于 “CockroachDB errors 库” 的系列文章的第 3 篇，“CockroachDB errors 库”实际上是 Go 的标准 errors 包的通用、开放源码的替代品。 Go 1.13 的标准库采用了 Dave Cheney 自 2015 年以来对错误处理的主要贡献：将 Go 错误对象构造为链表的想法。 唉，这种方式给 Go 开发人员造成了巨大的障碍：使打印错误对象变得困难、几乎不可能。 这就是我所说的 “Go error 打印灾难&amp;quot;，下面我们将准确</description>
     </item>
     
     <item>
@@ -32,7 +32,7 @@
       <pubDate>Sat, 24 Oct 2020 11:15:51 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/posts/go/translation/go-formatting-apis/</guid>
-      <description>这篇文章是关于 “CockroachDB errors 库” 的系列文章的第 2 篇，“CockroachDB errors 库”实际上是 Go 的标准 errors 包的通用、开放源码的替代品。</description>
+      <description>这篇文章是关于 “CockroachDB errors 库” 的系列文章的第 2 篇，“CockroachDB errors 库”实际上是 Go 的标准 errors 包的通用、开放源码的替代品。 以下面的代码为例： import &amp;#34;fmt&amp;#34; type T struct { x int } func main() { v := T{123} fmt.Println(v) } 这个程序打印 {123}，尽管我们没有教 Go 如何打印我们的 T 类型。它是如何做到这一点的？ printer 的等效性 fmt 包中的逻辑在所有 printer 之间共享，因此以下调用都保证等效： fmt.Print(x) fmt.Printf(&amp;quot;%v&amp;quot;, x) os.Stdout.Write([]byte(fmt.Sprint(x))) os.Stdout.Write([]byte(fmt.Sprintf(&amp;quot;%v&amp;quot;, x))) 换句话说</description>
     </item>
     
     <item>
@@ -41,7 +41,7 @@
       <pubDate>Fri, 23 Oct 2020 11:15:51 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/posts/go/translation/cockroachdb-errors-std-api/</guid>
-      <description>这篇文章是关于 “CockroachDB errors 库” 的系列文章的第 1 篇，“CockroachDB errors 库”实际上是 Go 的标准 errors 包的通用、开放源码的替代品。</description>
+      <description>这篇文章是关于 “CockroachDB errors 库” 的系列文章的第 1 篇，“CockroachDB errors 库”实际上是 Go 的标准 errors 包的通用、开放源码的替代品。 那本篇文章主要谈论什么呢？ 基本的 Go 错误：error 是值 Go 生态有一些非常流行、也非常基本的学习资源（文档）： A Tour of Go: Errors 。这是 Go 的官方教程。 Go By Example: errors 。Go By Example 是一些系列文章，推荐给那些希望通过示例学习 Go 的朋友们。 Goland Docs: Errors and Exception handling</description>
     </item>
     
   </channel>

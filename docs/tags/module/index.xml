@@ -14,7 +14,7 @@
       <pubDate>Fri, 15 Nov 2019 08:52:00 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/posts/go/dynamic/pkg-go-dev-plan/</guid>
-      <description>北京时间 2019 年 11 月 14 日凌晨 1 点 16 分，Go 官方团队在 golang-nuts 邮件组宣布 go.dev 上线，这是一个新的 Go 开发人员中心。具体的介绍可以看我之前发布的文章 大家用Go都</description>
+      <description>北京时间 2019 年 11 月 14 日凌晨 1 点 16 分，Go 官方团队在 golang-nuts 邮件组宣布 go.dev 上线，这是一个新的 Go 开发人员中心。具体的介绍可以看我之前发布的文章 大家用Go都做什么？Go官方新发布的 Go.Dev 告诉你 。同时，go.dev 还提供了一个 Go 软件包和模块的新信息资源中心：pkg.go.dev，而在此之前，Go 已经存在了一个包资源网站：godoc.org。2020 年 1 月 31 日，在 Go 官方博客又发布了</description>
     </item>
     
   </channel>

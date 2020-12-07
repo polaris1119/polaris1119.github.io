@@ -14,7 +14,7 @@
       <pubDate>Fri, 06 Mar 2020 11:50:51 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/posts/go/echo/custom03-logger/</guid>
-      <description>在知识星球简书项目中，我们分析对比了目前的一些日志库。虽然 Go 标准库有一个 log，但功能有限，所以才出现了很多第三方的日志库。在 用 Go 实现一个简</description>
+      <description>在知识星球简书项目中，我们分析对比了目前的一些日志库。虽然 Go 标准库有一个 log，但功能有限，所以才出现了很多第三方的日志库。在 用 Go 实现一个简书 8：日志记录和优秀库的学习 中，我们得出结论，推荐大家使用 zerolog 。现在我们就将 zerolog 集成进 Echo 框架中。 Echo 默认的 Logger Echo 日志记录的默认格式是 JSON，可以通过修改标头来更改，即 Echo#Logger.SetHeader(io.Write</description>
     </item>
     
   </channel>

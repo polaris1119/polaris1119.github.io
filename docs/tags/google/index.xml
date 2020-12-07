@@ -14,7 +14,7 @@
       <pubDate>Tue, 08 Sep 2020 11:15:51 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/posts/go/translation/google-go-coredata/</guid>
-      <description>关于 Google 的核心数据： Google 是一家技术公司，其使命是组织全世界的信息，并使其普遍可访问和有用。 在这个案例研究中，Google 的核心数据解决方案团队分</description>
+      <description>关于 Google 的核心数据： Google 是一家技术公司，其使命是组织全世界的信息，并使其普遍可访问和有用。 在这个案例研究中，Google 的核心数据解决方案团队分享了他们的 Go 旅程，包括他们决定在 Go 中重写 web 索引服务，利用 Go 的内置并发性，并观察 Go 如何帮助改进开发过程。 Google 的使命是“组织世界各地的信息，并使其普遍可访问和有用。” Google 的核心数据解决方案团队是负责组织该信息的团队之一。除此之外</description>
     </item>
     
   </channel>

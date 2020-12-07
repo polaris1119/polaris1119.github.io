@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta name="generator" content="Hugo 0.76.5" />
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#fcfcfc">
+	<meta name="msapplication-TileColor" content="#fcfcfc">
+<meta itemprop="name" content="polarisxu">
+<meta itemprop="description" content="polarisxu,Go语言中文网,go,golang,源码分析,系列教程">
+<meta property="og:title" content="polarisxu" />
+<meta property="og:description" content="polarisxu,Go语言中文网,go,golang,源码分析,系列教程" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://polarisxu.studygolang.com/" />
+<meta property="og:updated_time" content="2020-12-07T18:12:00+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="polarisxu"/>
+<meta name="twitter:description" content="polarisxu,Go语言中文网,go,golang,源码分析,系列教程"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>polarisxu</title>
+	<link rel="alternate" type="application/rss+xml" href="https://polarisxu.studygolang.com/index.xml" title="polarisxu" />
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/styles.css">
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://polarisxu.studygolang.com">polarisxu</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+  <a href="https://polarisxu.studygolang.com/">首页</a>
+  <a href="https://polarisxu.studygolang.com/categories/echo%E7%B3%BB%E5%88%97/">Echo系列</a>
+  <a href="https://polarisxu.studygolang.com/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a>
+  <a href="https://polarisxu.studygolang.com/posts/">归档</a>
+  <a href="https://polarisxu.studygolang.com/about/">关于</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<span class="hdr-social hide-in-mobile"><a href="https://github.com/polaris1119" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a><a href="https://twitter.com/polaris1119" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="菜单"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://polarisxu.studygolang.com/">首页</a></li>
+			<li><a href="https://polarisxu.studygolang.com/categories/echo%E7%B3%BB%E5%88%97/">Echo系列</a></li>
+			<li><a href="https://polarisxu.studygolang.com/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a></li>
+			<li><a href="https://polarisxu.studygolang.com/posts/">归档</a></li>
+			<li><a href="https://polarisxu.studygolang.com/about/">关于</a></li>
+		</ul>
+	</div>
+
+
+		<main class="site-main section-inner thin animated fadeIn faster">
+    
+		
+        <div class="post animated fadeInDown">
+            <div class="post-title">
+                <h2><a href="/posts/go/dynamic/go-opensource-11-years/">祝贺 Go 开源 11 周年</a>
+                </h2>
+            </div>
+            <div class="post-content">
+                <div class="p_part"><p>题图来自《了不起的程序员》 今天是 Go 语言开源 11 周年。有些人可能不太知道，简单回顾下 Go 的历史。 2007 年 Rob Pike, Robert Griesemer 和 Ken Thompson 一起创建了 Go 语言。从代码提交记录看，2008 年 3 月 3 日有了 Go 最初的规范 。 2009 年 11 月 10 日，Go 语言以开放源代码的方式向全球发布，当年获得了 TIOBE 年度编程语言称号； 2011 年 3 月 16 日，Go 语言的第一个稳定版本 r56 发布； 2012 年 3 月 28 日，Go 语言的第一个正式版本 Go1 发布，并承诺</p></div>
+            </div>
+            <div class="post-footer">
+                <div class="meta">
+                    <div class="info"><em class="fas fa-calendar-day"></em><span
+                                class="date">2020-11-10</span>
+                        <a class="tag"
+                                   href="/tags/golang/">Golang</a><a class="tag"
+                                   href="/tags/go/">Go</a><a class="tag"
+                                   href="/tags/%E5%9B%BE%E4%B9%A6/">图书</a>
+                    </div>
+                </div>
+            </div>
+				</div>
+    
+        <div class="post animated fadeInDown">
+            <div class="post-title">
+                <h2><a href="/posts/go/translation/rust-vs-go/">客观、全面的比较 Rust 与 Go</a>
+                </h2>
+            </div>
+            <div class="post-content">
+                <div class="p_part"><p>最近一年，将 Rust 和 Go 进行比较的不少，但不少都不公正，带感情色彩。而这篇文章客观、全面的分析对比了 Rust 和 Go，让你具体项目时选择最合适的。 Rust 还是 Go，哪个更好？你应该为下一个项目选择哪种语言，为什么？两者在性能，简单性，安全性，功能，规模和并发性等方面如何比较？它们有什么共同点，并且在根本上有何不同？来自 For the Go of Love 系列图书的作者，友好而公正的比较 Rust 和 Golang。</p></div>
+            </div>
+            <div class="post-footer">
+                <div class="meta">
+                    <div class="info"><em class="fas fa-calendar-day"></em><span
+                                class="date">2020-11-10</span>
+                        <a class="tag"
+                                   href="/tags/golang/">Golang</a><a class="tag"
+                                   href="/tags/go/">Go</a><a class="tag"
+                                   href="/tags/rust/">Rust</a>
+                    </div>
+                </div>
+            </div>
+				</div>
+    
+        <div class="post animated fadeInDown">
+            <div class="post-title">
+                <h2><a href="/posts/go/micro/micro-3.0.0-m3o/">关于 Go 语言微服务框架 Micro 的一些情况说明</a>
+                </h2>
+            </div>
+            <div class="post-content">
+                <div class="p_part"><p>用过或了解过 Micro 这个框架的人，可能有所耳闻，大家对其抱怨比较多，典型的抱怨是升级后不兼容。比如网上有教程是基于 1.x，但新版本是 2.x，完全不一样了，而且似乎官方文档也没有及时更新，使用了它的人“痛苦不堪”。 前些天，有人问我有无其他 Go 微服务框架推荐，说 Micro 3.0.0 开始不能用了！！ 我听了一惊：我只听说它不稳定，总是变来变去，兼容性不好，但没听说不能用。后来了解了下，原来</p></div>
+            </div>
+            <div class="post-footer">
+                <div class="meta">
+                    <div class="info"><em class="fas fa-calendar-day"></em><span
+                                class="date">2020-11-09</span>
+                        <a class="tag"
+                                   href="/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/">微服务</a><a class="tag"
+                                   href="/tags/micro/">Micro</a><a class="tag"
+                                   href="/tags/go/">Go</a>
+                    </div>
+                </div>
+            </div>
+				</div>
+    
+        <div class="post animated fadeInDown">
+            <div class="post-title">
+                <h2><a href="/posts/go/translation/cockroachdb-errors-everyday/">除了 fmt.Errorf() 之外—Go 中的日常错误对象：CockroachDB errors 库（第4篇）</a>
+                </h2>
+            </div>
+            <div class="post-content">
+                <div class="p_part"><p>在 Go 中传递错误的惯用方式是使用预定义的类型错误。但是 Go 的标准库仅提供了非常简单的错误对象，errors.New() 和fmt.Errorf()。 本文介绍了 CockroachDB 的 error 库（它是 Go 标准库库 errors 的直接替代品），Go 程序员如何用它来描述和传播其代码中的错误和错误代号（code）。 Go 标准库 errors 太简单 由 fmt.Errorf() 构造的 Go 中最常见的“简单”错误对象类似于带有错误接口的包含在结构中的字符串：其</p></div>
+            </div>
+            <div class="post-footer">
+                <div class="meta">
+                    <div class="info"><em class="fas fa-calendar-day"></em><span
+                                class="date">2020-11-04</span>
+                        <a class="tag"
+                                   href="/tags/go/">Go</a><a class="tag"
+                                   href="/tags/cockroachdb/">CockroachDB</a><a class="tag"
+                                   href="/tags/error/">error</a>
+                    </div>
+                </div>
+            </div>
+				</div>
+    
+        <div class="post animated fadeInDown">
+            <div class="post-title">
+                <h2><a href="/posts/devtool/cheat-sh/">从来没有这么强烈想推荐一个工具</a>
+                </h2>
+            </div>
+            <div class="post-content">
+                <div class="p_part"><p>大家好，我是站长 polarisxu。 在逛 GitHub Trending 时看到了这个项目：https://github.com/chubin/cheat.sh，因为之前我整理过一系列 cheatsheet，因此好奇的打开了这个项目。于是被它吸引了。。。 01 是什么 该项目的描述是： the only cheat sheet you need 简单一句话却很吸引人：这么强大，这一个 cheatsheet 就够了？ 因为在这一份清单中，包含了几乎所有开发者常见的东西，不</p></div>
+            </div>
+            <div class="post-footer">
+                <div class="meta">
+                    <div class="info"><em class="fas fa-calendar-day"></em><span
+                                class="date">2020-11-03</span>
+                        <a class="tag"
+                                   href="/tags/cheatsheet/">cheatsheet</a><a class="tag"
+                                   href="/tags/tool/">tool</a>
+                    </div>
+                </div>
+            </div>
+				</div>
+    
+        <div class="post animated fadeInDown">
+            <div class="post-title">
+                <h2><a href="/posts/go/dynamic/go-embed-try/">提前试用将在 Go1.16 中发布的内嵌静态资源功能</a>
+                </h2>
+            </div>
+            <div class="post-content">
+                <div class="p_part"><p>大家好，我是站长 polarisxu。 喜欢 Go 语言有很多理由，其中有一点“因为编译为一个二进制文件，直接运行，没有其他依赖，使得部署特别容易。”我想是很多人喜欢的。 然而一个项目，很可能会包含一些静态资源文件，这样一来，一个 Go 二进制文件就不能解决了，需要将静态资源文件一起带上。于是有了很多第三方解决方案，将静态资源文件“嵌入”最终的 Go 二进制文件中。最知名的应该是 go-bindata</p></div>
+            </div>
+            <div class="post-footer">
+                <div class="meta">
+                    <div class="info"><em class="fas fa-calendar-day"></em><span
+                                class="date">2020-11-01</span>
+                        <a class="tag"
+                                   href="/tags/go/">Go</a><a class="tag"
+                                   href="/tags/embed/">Embed</a>
+                    </div>
+                </div>
+            </div>
+				</div>
+    
+        <div class="post animated fadeInDown">
+            <div class="post-title">
+                <h2><a href="/posts/go/dynamic/hackerearth-developer-survey/">这个调查显示 Go 竟然是 2020 年最受欢迎的编程语言</a>
+                </h2>
+            </div>
+            <div class="post-content">
+                <div class="p_part"><p>大家好，我是站长 polarisxu。 今天看到一个 2020 年开发者调查报告，看到了 Go 的前景，忍不住想跟大家分享一下。 01 这份调查报告来自 HackerEarth 。简单介绍下它。 HackerEarth 的口号是：远程雇用最优秀的技术人才。拥有 400 万+ 开发人员（注册用户），上千家企业信赖，他们帮助公司准确评估，面试和雇用顶尖技术人才。 他们提供编程练习、黑客挑战，号称能够进行准确的编码评估并远程聘用最好的技术人才。根据</p></div>
+            </div>
+            <div class="post-footer">
+                <div class="meta">
+                    <div class="info"><em class="fas fa-calendar-day"></em><span
+                                class="date">2020-10-30</span>
+                        <a class="tag"
+                                   href="/tags/survey/">Survey</a><a class="tag"
+                                   href="/tags/programming/">Programming</a>
+                    </div>
+                </div>
+            </div>
+				</div>
+    
+        <div class="post animated fadeInDown">
+            <div class="post-title">
+                <h2><a href="/posts/go/translation/golang-ai-programming-language/">AI 和 数据科学领域，Go 语言可能很快会取代 Python。最后的原因有点迷</a>
+                </h2>
+            </div>
+            <div class="post-content">
+                <div class="p_part"><p>30 年前，Python 首次出现。但是花了 20 年时间才能获得开发人员的赏识。快进到 2019 年，它成为开发人员中第二受欢迎的语言。（来自 Stackoverflow 开发人员 2019 调查结果 ） 过去，尤其是在过去的 5 年中，它的增长是巨大的。Python 成为机器学习和数据科学开发人员的首选语言。 在接下来的几年中，Python 在这些领域的主导地位无疑会持续。但是与更新的语言相比，它具有一些严重的缺点。对于 21 实际</p></div>
+            </div>
+            <div class="post-footer">
+                <div class="meta">
+                    <div class="info"><em class="fas fa-calendar-day"></em><span
+                                class="date">2020-10-29</span>
+                        <a class="tag"
+                                   href="/tags/go/">Go</a><a class="tag"
+                                   href="/tags/python/">Python</a><a class="tag"
+                                   href="/tags/ai/">AI</a><a class="tag"
+                                   href="/tags/datascience/">DataScience</a>
+                    </div>
+                </div>
+            </div>
+				</div>
+    
+        <div class="post animated fadeInDown">
+            <div class="post-title">
+                <h2><a href="/posts/go/action/talk-geek-time-live/">闲聊昨晚极客时间的直播</a>
+                </h2>
+            </div>
+            <div class="post-content">
+                <div class="p_part"><p>昨天晚上（10 月 25 日）极客时间进行了一场直播，主题是：《未来 5 年将是 Go 语言的天下》。 客观说，这个主题还是挺唬人的，而直播的内容跟这个主题关系不大。有三个嘉宾，只有左耳朵耗子谈了 Go 的未来，他的判断，Go 会成为主流，只会 PHP 肯定行不通。 在提问环节，有人问到耗子哥关于 Python 的看法，他直言：Python 会成为新手语言。不管你认不认同，耗子哥的一些观点还是有一定道理的。 耗子</p></div>
+            </div>
+            <div class="post-footer">
+                <div class="meta">
+                    <div class="info"><em class="fas fa-calendar-day"></em><span
+                                class="date">2020-10-26</span>
+                        <a class="tag"
+                                   href="/tags/go/">Go</a><a class="tag"
+                                   href="/tags/golang/">Golang</a><a class="tag"
+                                   href="/tags/%E9%9D%A2%E8%AF%95/">面试</a><a class="tag"
+                                   href="/tags/%E6%9D%82%E8%B0%88/">杂谈</a>
+                    </div>
+                </div>
+            </div>
+				</div>
+    
+        <div class="post animated fadeInDown">
+            <div class="post-title">
+                <h2><a href="/posts/go/translation/go-error-printing-catastrophe/">Go error 打印灾难 —  CockroachDB errors 库（第3篇）</a>
+                </h2>
+            </div>
+            <div class="post-content">
+                <div class="p_part"><p>这篇文章是关于 “CockroachDB errors 库” 的系列文章的第 3 篇，“CockroachDB errors 库”实际上是 Go 的标准 errors 包的通用、开放源码的替代品。 Go 1.13 的标准库采用了 Dave Cheney 自 2015 年以来对错误处理的主要贡献：将 Go 错误对象构造为链表的想法。 唉，这种方式给 Go 开发人员造成了巨大的障碍：使打印错误对象变得困难、几乎不可能。 这就是我所说的 “Go error 打印灾难&quot;，下面我们将准确</p></div>
+            </div>
+            <div class="post-footer">
+                <div class="meta">
+                    <div class="info"><em class="fas fa-calendar-day"></em><span
+                                class="date">2020-10-26</span>
+                        <a class="tag"
+                                   href="/tags/go/">Go</a><a class="tag"
+                                   href="/tags/cockroachdb/">CockroachDB</a><a class="tag"
+                                   href="/tags/error/">error</a>
+                    </div>
+                </div>
+            </div>
+				</div>
+    
+    <div class="pagination">
+        
+<ul class="pagination">
+  <li class="page-item">
+    <a href="/" class="page-link" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
+  </li>
+  <li class="page-item">
+    <a href="/" class="page-link" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="/">1</a>
+  </li>
+  <li class="page-item active">
+    <a class="page-link" href="/page/2/">2</a>
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="/page/3/">3</a>
+  </li>
+  <li class="page-item disabled">
+    <span aria-hidden="true">&nbsp;&hellip;&nbsp;</span>
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="/page/6/">6</a>
+  </li>
+  <li class="page-item">
+    <a href="/page/3/" class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
+  </li>
+  <li class="page-item">
+    <a href="/page/6/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+  </li>
+</ul>
+
+
+    </div>
+		</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2019 - 2020 <a href="https://polarisxu.studygolang.com">polarisxu</a> &#183; <a href="http://www.beian.miit.gov.cn/">京ICP备14030343号-1</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://polarisxu.studygolang.com/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+		<span id="busuanzi_container" style="color: #666;">
+			本站总访客数/访问量：<span id="busuanzi_value_site_uv"></span>/<span id="busuanzi_value_site_pv"></span>
+		</span>
+	</footer>
+
+
+
+	<script src="https://polarisxu.studygolang.com/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw=" crossorigin="anonymous"></script>
+	<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?224c227cd9239761ec770bc8c1fb134c";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+</body>
+
+</html>

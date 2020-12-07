@@ -8,7 +8,7 @@
 	<meta name="theme-color" content="#fcfcfc">
 	<meta name="msapplication-TileColor" content="#fcfcfc">
 <meta itemprop="name" content="Echo 系列教程——定制篇2：自定义 Validator，进行输入校验">
-<meta itemprop="description" content="上一篇讲 Binder 时提到，参数自动绑定和校验是 Web 框架很重要的两个功能，可以极大的提升开发速度，并更好的保证数据的可靠性（服务端数据校验很重要）。本节">
+<meta itemprop="description" content="上一篇讲 Binder 时提到，参数自动绑定和校验是 Web 框架很重要的两个功能，可以极大的提升开发速度，并更好的保证数据的可靠性（服务端数据校验很重要）。本节，我们就一起看看如何自定义 Echo 的表单校验功能。 不同于 Binder，Echo 并没有内置数据校验的能力，也就是没有默认的 Validator 实现。然而，你可以很方便的集成第三方的数据校验库。跟 Binder 类似，Echo 提供了一个 Validator 接口，方便将第三方数据校">
 <meta itemprop="datePublished" content="2020-02-28T18:53:51+08:00" />
 <meta itemprop="dateModified" content="2020-02-28T18:53:51+08:00" />
 <meta itemprop="wordCount" content="3893">
@@ -17,14 +17,14 @@
 
 <meta itemprop="keywords" content="echo,web框架,validator," />
 <meta property="og:title" content="Echo 系列教程——定制篇2：自定义 Validator，进行输入校验" />
-<meta property="og:description" content="上一篇讲 Binder 时提到，参数自动绑定和校验是 Web 框架很重要的两个功能，可以极大的提升开发速度，并更好的保证数据的可靠性（服务端数据校验很重要）。本节" />
+<meta property="og:description" content="上一篇讲 Binder 时提到，参数自动绑定和校验是 Web 框架很重要的两个功能，可以极大的提升开发速度，并更好的保证数据的可靠性（服务端数据校验很重要）。本节，我们就一起看看如何自定义 Echo 的表单校验功能。 不同于 Binder，Echo 并没有内置数据校验的能力，也就是没有默认的 Validator 实现。然而，你可以很方便的集成第三方的数据校验库。跟 Binder 类似，Echo 提供了一个 Validator 接口，方便将第三方数据校" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/echo/custom02-validator/" />
 <meta property="article:published_time" content="2020-02-28T18:53:51+08:00" />
 <meta property="article:modified_time" content="2020-02-28T18:53:51+08:00" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Echo 系列教程——定制篇2：自定义 Validator，进行输入校验"/>
-<meta name="twitter:description" content="上一篇讲 Binder 时提到，参数自动绑定和校验是 Web 框架很重要的两个功能，可以极大的提升开发速度，并更好的保证数据的可靠性（服务端数据校验很重要）。本节"/>
+<meta name="twitter:description" content="上一篇讲 Binder 时提到，参数自动绑定和校验是 Web 框架很重要的两个功能，可以极大的提升开发速度，并更好的保证数据的可靠性（服务端数据校验很重要）。本节，我们就一起看看如何自定义 Echo 的表单校验功能。 不同于 Binder，Echo 并没有内置数据校验的能力，也就是没有默认的 Validator 实现。然而，你可以很方便的集成第三方的数据校验库。跟 Binder 类似，Echo 提供了一个 Validator 接口，方便将第三方数据校"/>
 
 	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -36,6 +36,8 @@
 	<title>Echo 系列教程——定制篇2：自定义 Validator，进行输入校验</title>
 	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
 	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/styles.css">
 </head>
 
 <body id="page">
@@ -48,9 +50,10 @@
 				</div>
 				<nav class="site-nav hide-in-mobile">
 					
-  <a href="https://polarisxu.studygolang.com/posts/">文章</a>
-  <a href="https://polarisxu.studygolang.com/go-categories/">Go系列</a>
-  <a href="https://polarisxu.studygolang.com/devtool-categories/">开发工具</a>
+  <a href="https://polarisxu.studygolang.com/">首页</a>
+  <a href="https://polarisxu.studygolang.com/categories/echo%E7%B3%BB%E5%88%97/">Echo系列</a>
+  <a href="https://polarisxu.studygolang.com/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a>
+  <a href="https://polarisxu.studygolang.com/posts/">归档</a>
   <a href="https://polarisxu.studygolang.com/about/">关于</a>
 
 				</nav>
@@ -62,9 +65,10 @@
 	</header>
 	<div id="mobile-menu" class="animated fast">
 		<ul>
-			<li><a href="https://polarisxu.studygolang.com/posts/">文章</a></li>
-			<li><a href="https://polarisxu.studygolang.com/go-categories/">Go系列</a></li>
-			<li><a href="https://polarisxu.studygolang.com/devtool-categories/">开发工具</a></li>
+			<li><a href="https://polarisxu.studygolang.com/">首页</a></li>
+			<li><a href="https://polarisxu.studygolang.com/categories/echo%E7%B3%BB%E5%88%97/">Echo系列</a></li>
+			<li><a href="https://polarisxu.studygolang.com/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a></li>
+			<li><a href="https://polarisxu.studygolang.com/posts/">归档</a></li>
 			<li><a href="https://polarisxu.studygolang.com/about/">关于</a></li>
 		</ul>
 	</div>

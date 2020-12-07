@@ -13,7 +13,21 @@
 在开始之前，还应该安装 Kubernetes 插件，因为它没有与 IDE 捆绑在一起。您可以通过打开 Settings/Preferences | Plugins | Marketplace并搜索 Kubernetes 找到并安装插件。
 在 IDE 中使用 Kubernetes 运行服务 如果您到目前为止一直在关注本系列，那么您会知道所有代码都可以在此 下载和使用，使用 Kubernetes 也是这种情况。我们可以从 kubernetes 分支 开始。
 在这里我们可以找到两个不同的文件：db.yaml 和 web.yaml。这些文件包含了我们开始使用 Kubernetes 集群中的应用程序所需的所有定义。为了方便起见，他们还假定 Kubernetes 与 IDE 在同一台计算机上运行。
-打开 db.yaml：">
+打开 db.yaml：
+apiVersion:v1kind:ConfigMapmetadata:name:db-configlabels:dockerdev:dbdata:POSTGRES_DB:golandPOSTGRES_USER:golandPOSTGRES_PASSWORD:goland---apiVersion:apps/v1kind:StatefulSetmetadata:labels:dockerdev:dbname:dbspec:serviceName:dockerdev-dbselector:matchLabels:dockerdev:dbtemplate:metadata:labels:dockerdev:dbspec:containers:- name:dbimage:postgres:12.2-alpineimagePullPolicy:IfNotPresentenvFrom:- configMapRef:name:db-configports:- containerPort:5432volumeMounts:- name:db-initmountPath:/docker-entrypoint-initdb.d/init.sqlsubPath:init.sqlvolumes:- name:db-inithostPath:path:/d/GoLandProjects/dockerdev---apiVersion:v1kind:Servicemetadata:labels:dockerdev:dbname:dockerdev-db-exportedspec:type:NodePortports:- name:5432-tcpport:5432targetPort:5432nodePort:30432selector:dockerdev:db注意：在启动此示例之前，我们需要确保更改了 init.sql 文件在主机上的位置。您可以通过将路径：/d/ GoLandProjects / dockerdev 替换为先前克隆该项目的位置的路径来实现。
+完成此操作后，我们可以使用文件顶部编辑器装订线上的绿色箭头在 Kubernetes 中部署数据库。
+部署数据库将创建一个 StatefulSet 并在 pod 中运行数据库。将出现 “Services Tool” 窗口，并显示用于创建资源的命令以及该命令的输出。
+Kubernetes 集群概述 在 Kubernetes 集群中，我们将看到工作负载信息，例如正在运行的 Pods, Deployments, Stateful Sets, Daemon Sets, Jobs, Cron Jobs, Replica Sets, 和 Replication Controllers。
+我们还可以查看有关集群中服务和入口点的网络信息。
+“Configuration” 部分包含当前名称空间或群集的所有配置信息，例如有关运行名称空间，节点，群集角色，角色，配置 map 和秘钥的信息。
+最后，“Storage” 部分将向我们显示当前配置中的“持久卷”，“持久卷声明”和“存储类”。
+在 IDE 中使用 Kubernetes 集群运行 Go 应用程序 让我们在同一个 Kubernetes 集群中运行 Go 应用程序，看看它是如何工作的。
+不过，在运行该应用程序之前，我们首先需要构建该应用程序所在的 Docker 容器。示例代码库中包含一个名为 build Dockerfile 的运行配置，需要运行该配置才能在集群中使用我们的容器。
+正如您可能已经猜到的那样，此后，我们终于可以使用先前与 db.yaml 文件一起使用的绿色箭头在 Kubernetes 中运行 Go 应用程序，只有这次我们才在 web.yaml 文件中使用它。
+apiVersion:apps/v1kind:Deploymentmetadata:labels:dockerdev:webname:webspec:selector:matchLabels:dockerdev:webtemplate:metadata:labels:dockerdev:webspec:containers:- name:dockerdev-webimage:dockerdev-web:latestimagePullPolicy:Neverenv:- name:DD_DB_HOSTvalue:&#34;dockerdev-db-exported&#34;ports:- containerPort:8000---apiVersion:v1kind:Servicemetadata:labels:dockerdev:webname:dockerdev-web-exportedspec:type:NodePortports:- name:8000-tcpport:8000targetPort:8000nodePort:30800selector:dockerdev:webPro tip：我们可以使用 HTTP 请求文件的方式从 IDE 运行请求，以检查服务是否已启动并正在运行。
+从 Kubernetes 调试服务 在使用 GoLand 调试 Kubernetes 服务之前，我们需要对 web.yaml 文件进行一些更改。这些变化可以在我们代码库的 kubernetes-debug 分支中看到。
+我们需要进行一些与调试常规 Docker 容器非常相似的更改。
+首先，我们需要调整 Dockerfile，然后我们必须使用 Run | Run … | ‘build Dockerfile’ 来配置。">
 <meta itemprop="datePublished" content="2020-05-11T14:17:51+08:00" />
 <meta itemprop="dateModified" content="2020-05-11T14:17:51+08:00" />
 <meta itemprop="wordCount" content="212">
@@ -27,7 +41,21 @@
 在开始之前，还应该安装 Kubernetes 插件，因为它没有与 IDE 捆绑在一起。您可以通过打开 Settings/Preferences | Plugins | Marketplace并搜索 Kubernetes 找到并安装插件。
 在 IDE 中使用 Kubernetes 运行服务 如果您到目前为止一直在关注本系列，那么您会知道所有代码都可以在此 下载和使用，使用 Kubernetes 也是这种情况。我们可以从 kubernetes 分支 开始。
 在这里我们可以找到两个不同的文件：db.yaml 和 web.yaml。这些文件包含了我们开始使用 Kubernetes 集群中的应用程序所需的所有定义。为了方便起见，他们还假定 Kubernetes 与 IDE 在同一台计算机上运行。
-打开 db.yaml：" />
+打开 db.yaml：
+apiVersion:v1kind:ConfigMapmetadata:name:db-configlabels:dockerdev:dbdata:POSTGRES_DB:golandPOSTGRES_USER:golandPOSTGRES_PASSWORD:goland---apiVersion:apps/v1kind:StatefulSetmetadata:labels:dockerdev:dbname:dbspec:serviceName:dockerdev-dbselector:matchLabels:dockerdev:dbtemplate:metadata:labels:dockerdev:dbspec:containers:- name:dbimage:postgres:12.2-alpineimagePullPolicy:IfNotPresentenvFrom:- configMapRef:name:db-configports:- containerPort:5432volumeMounts:- name:db-initmountPath:/docker-entrypoint-initdb.d/init.sqlsubPath:init.sqlvolumes:- name:db-inithostPath:path:/d/GoLandProjects/dockerdev---apiVersion:v1kind:Servicemetadata:labels:dockerdev:dbname:dockerdev-db-exportedspec:type:NodePortports:- name:5432-tcpport:5432targetPort:5432nodePort:30432selector:dockerdev:db注意：在启动此示例之前，我们需要确保更改了 init.sql 文件在主机上的位置。您可以通过将路径：/d/ GoLandProjects / dockerdev 替换为先前克隆该项目的位置的路径来实现。
+完成此操作后，我们可以使用文件顶部编辑器装订线上的绿色箭头在 Kubernetes 中部署数据库。
+部署数据库将创建一个 StatefulSet 并在 pod 中运行数据库。将出现 “Services Tool” 窗口，并显示用于创建资源的命令以及该命令的输出。
+Kubernetes 集群概述 在 Kubernetes 集群中，我们将看到工作负载信息，例如正在运行的 Pods, Deployments, Stateful Sets, Daemon Sets, Jobs, Cron Jobs, Replica Sets, 和 Replication Controllers。
+我们还可以查看有关集群中服务和入口点的网络信息。
+“Configuration” 部分包含当前名称空间或群集的所有配置信息，例如有关运行名称空间，节点，群集角色，角色，配置 map 和秘钥的信息。
+最后，“Storage” 部分将向我们显示当前配置中的“持久卷”，“持久卷声明”和“存储类”。
+在 IDE 中使用 Kubernetes 集群运行 Go 应用程序 让我们在同一个 Kubernetes 集群中运行 Go 应用程序，看看它是如何工作的。
+不过，在运行该应用程序之前，我们首先需要构建该应用程序所在的 Docker 容器。示例代码库中包含一个名为 build Dockerfile 的运行配置，需要运行该配置才能在集群中使用我们的容器。
+正如您可能已经猜到的那样，此后，我们终于可以使用先前与 db.yaml 文件一起使用的绿色箭头在 Kubernetes 中运行 Go 应用程序，只有这次我们才在 web.yaml 文件中使用它。
+apiVersion:apps/v1kind:Deploymentmetadata:labels:dockerdev:webname:webspec:selector:matchLabels:dockerdev:webtemplate:metadata:labels:dockerdev:webspec:containers:- name:dockerdev-webimage:dockerdev-web:latestimagePullPolicy:Neverenv:- name:DD_DB_HOSTvalue:&#34;dockerdev-db-exported&#34;ports:- containerPort:8000---apiVersion:v1kind:Servicemetadata:labels:dockerdev:webname:dockerdev-web-exportedspec:type:NodePortports:- name:8000-tcpport:8000targetPort:8000nodePort:30800selector:dockerdev:webPro tip：我们可以使用 HTTP 请求文件的方式从 IDE 运行请求，以检查服务是否已启动并正在运行。
+从 Kubernetes 调试服务 在使用 GoLand 调试 Kubernetes 服务之前，我们需要对 web.yaml 文件进行一些更改。这些变化可以在我们代码库的 kubernetes-debug 分支中看到。
+我们需要进行一些与调试常规 Docker 容器非常相似的更改。
+首先，我们需要调整 Dockerfile，然后我们必须使用 Run | Run … | ‘build Dockerfile’ 来配置。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://polarisxu.studygolang.com/posts/devtool/goland/using-kubernetes-from-goland/" />
 <meta property="article:published_time" content="2020-05-11T14:17:51+08:00" />
@@ -39,7 +67,21 @@
 在开始之前，还应该安装 Kubernetes 插件，因为它没有与 IDE 捆绑在一起。您可以通过打开 Settings/Preferences | Plugins | Marketplace并搜索 Kubernetes 找到并安装插件。
 在 IDE 中使用 Kubernetes 运行服务 如果您到目前为止一直在关注本系列，那么您会知道所有代码都可以在此 下载和使用，使用 Kubernetes 也是这种情况。我们可以从 kubernetes 分支 开始。
 在这里我们可以找到两个不同的文件：db.yaml 和 web.yaml。这些文件包含了我们开始使用 Kubernetes 集群中的应用程序所需的所有定义。为了方便起见，他们还假定 Kubernetes 与 IDE 在同一台计算机上运行。
-打开 db.yaml："/>
+打开 db.yaml：
+apiVersion:v1kind:ConfigMapmetadata:name:db-configlabels:dockerdev:dbdata:POSTGRES_DB:golandPOSTGRES_USER:golandPOSTGRES_PASSWORD:goland---apiVersion:apps/v1kind:StatefulSetmetadata:labels:dockerdev:dbname:dbspec:serviceName:dockerdev-dbselector:matchLabels:dockerdev:dbtemplate:metadata:labels:dockerdev:dbspec:containers:- name:dbimage:postgres:12.2-alpineimagePullPolicy:IfNotPresentenvFrom:- configMapRef:name:db-configports:- containerPort:5432volumeMounts:- name:db-initmountPath:/docker-entrypoint-initdb.d/init.sqlsubPath:init.sqlvolumes:- name:db-inithostPath:path:/d/GoLandProjects/dockerdev---apiVersion:v1kind:Servicemetadata:labels:dockerdev:dbname:dockerdev-db-exportedspec:type:NodePortports:- name:5432-tcpport:5432targetPort:5432nodePort:30432selector:dockerdev:db注意：在启动此示例之前，我们需要确保更改了 init.sql 文件在主机上的位置。您可以通过将路径：/d/ GoLandProjects / dockerdev 替换为先前克隆该项目的位置的路径来实现。
+完成此操作后，我们可以使用文件顶部编辑器装订线上的绿色箭头在 Kubernetes 中部署数据库。
+部署数据库将创建一个 StatefulSet 并在 pod 中运行数据库。将出现 “Services Tool” 窗口，并显示用于创建资源的命令以及该命令的输出。
+Kubernetes 集群概述 在 Kubernetes 集群中，我们将看到工作负载信息，例如正在运行的 Pods, Deployments, Stateful Sets, Daemon Sets, Jobs, Cron Jobs, Replica Sets, 和 Replication Controllers。
+我们还可以查看有关集群中服务和入口点的网络信息。
+“Configuration” 部分包含当前名称空间或群集的所有配置信息，例如有关运行名称空间，节点，群集角色，角色，配置 map 和秘钥的信息。
+最后，“Storage” 部分将向我们显示当前配置中的“持久卷”，“持久卷声明”和“存储类”。
+在 IDE 中使用 Kubernetes 集群运行 Go 应用程序 让我们在同一个 Kubernetes 集群中运行 Go 应用程序，看看它是如何工作的。
+不过，在运行该应用程序之前，我们首先需要构建该应用程序所在的 Docker 容器。示例代码库中包含一个名为 build Dockerfile 的运行配置，需要运行该配置才能在集群中使用我们的容器。
+正如您可能已经猜到的那样，此后，我们终于可以使用先前与 db.yaml 文件一起使用的绿色箭头在 Kubernetes 中运行 Go 应用程序，只有这次我们才在 web.yaml 文件中使用它。
+apiVersion:apps/v1kind:Deploymentmetadata:labels:dockerdev:webname:webspec:selector:matchLabels:dockerdev:webtemplate:metadata:labels:dockerdev:webspec:containers:- name:dockerdev-webimage:dockerdev-web:latestimagePullPolicy:Neverenv:- name:DD_DB_HOSTvalue:&#34;dockerdev-db-exported&#34;ports:- containerPort:8000---apiVersion:v1kind:Servicemetadata:labels:dockerdev:webname:dockerdev-web-exportedspec:type:NodePortports:- name:8000-tcpport:8000targetPort:8000nodePort:30800selector:dockerdev:webPro tip：我们可以使用 HTTP 请求文件的方式从 IDE 运行请求，以检查服务是否已启动并正在运行。
+从 Kubernetes 调试服务 在使用 GoLand 调试 Kubernetes 服务之前，我们需要对 web.yaml 文件进行一些更改。这些变化可以在我们代码库的 kubernetes-debug 分支中看到。
+我们需要进行一些与调试常规 Docker 容器非常相似的更改。
+首先，我们需要调整 Dockerfile，然后我们必须使用 Run | Run … | ‘build Dockerfile’ 来配置。"/>
 
 	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -51,6 +93,8 @@
 	<title>当 GoLand 遇到 Kubernetes：如何调试和运行 Go 程序</title>
 	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
 	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/styles.css">
 </head>
 
 <body id="page">
@@ -63,9 +107,10 @@
 				</div>
 				<nav class="site-nav hide-in-mobile">
 					
-  <a href="https://polarisxu.studygolang.com/posts/">文章</a>
-  <a href="https://polarisxu.studygolang.com/go-categories/">Go系列</a>
-  <a href="https://polarisxu.studygolang.com/devtool-categories/">开发工具</a>
+  <a href="https://polarisxu.studygolang.com/">首页</a>
+  <a href="https://polarisxu.studygolang.com/categories/echo%E7%B3%BB%E5%88%97/">Echo系列</a>
+  <a href="https://polarisxu.studygolang.com/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a>
+  <a href="https://polarisxu.studygolang.com/posts/">归档</a>
   <a href="https://polarisxu.studygolang.com/about/">关于</a>
 
 				</nav>
@@ -77,9 +122,10 @@
 	</header>
 	<div id="mobile-menu" class="animated fast">
 		<ul>
-			<li><a href="https://polarisxu.studygolang.com/posts/">文章</a></li>
-			<li><a href="https://polarisxu.studygolang.com/go-categories/">Go系列</a></li>
-			<li><a href="https://polarisxu.studygolang.com/devtool-categories/">开发工具</a></li>
+			<li><a href="https://polarisxu.studygolang.com/">首页</a></li>
+			<li><a href="https://polarisxu.studygolang.com/categories/echo%E7%B3%BB%E5%88%97/">Echo系列</a></li>
+			<li><a href="https://polarisxu.studygolang.com/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a></li>
+			<li><a href="https://polarisxu.studygolang.com/posts/">归档</a></li>
 			<li><a href="https://polarisxu.studygolang.com/about/">关于</a></li>
 		</ul>
 	</div>
@@ -279,6 +325,8 @@
 	<h2>相关推荐</h2>
 	<ul>
 	
+	<li><a href="/posts/devtool/goland/goland-2020-3-release/">GoLand 2020.3 正式发布了，有不少新功能，包括支持泛型</a></li>
+	
 	<li><a href="/posts/devtool/goland/2020.2.beta/">GoLand 2020.2 Beta 版发布：go.mod 升级以及对泛型的实验性支持</a></li>
 	
 	<li><a href="/posts/devtool/goland/running-go-applications-using-docker-compose-in-goland/">在 GoLang 中使用 Docker Compose 运行 Go 应用程序</a></li>
@@ -286,8 +334,6 @@
 	<li><a href="/posts/devtool/goland/debugging-a-go-application-inside-a-docker-container/">基于 GoLand 使用 Docker 容器进行 Go 开发</a></li>
 	
 	<li><a href="/posts/devtool/goland/goland-2020-1-release/">还在用 2019.3 就 Out 了：GoLand 2020.1 版本正式发布</a></li>
-	
-	<li><a href="/posts/devtool/goland/welcome-to-the-goland-2020-1-eap/">欢迎加入 GoLand 2020.1 抢先体验计划</a></li>
 	
 	</ul>
 </div>

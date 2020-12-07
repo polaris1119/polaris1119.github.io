@@ -14,7 +14,7 @@
       <pubDate>Sat, 16 May 2020 15:08:51 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/posts/go/echo/action00-intro/</guid>
-      <description>实战是掌握一门技术很好的方式：纸上得来终觉浅，绝知此事要躬行！ 在初步了解了 Echo 框架的特性、功能后，我们通过具体的一个项目来掌握 Echo 框架，这个项目</description>
+      <description>实战是掌握一门技术很好的方式：纸上得来终觉浅，绝知此事要躬行！ 在初步了解了 Echo 框架的特性、功能后，我们通过具体的一个项目来掌握 Echo 框架，这个项目就是写一个博客系统。 实战篇目标 掌握 go/echo 开发项目的方法； 通过项目更深入掌握 echo； 完善完善，甚至可以作为自己的一个博客系统使用； 因此，在项目实战过程中可能引申讲解 Echo 的特性，毕竟基础篇对 Echo 的特性没有深入讲解。 依赖技术 该实战项</description>
     </item>
     
     <item>
@@ -23,7 +23,7 @@
       <pubDate>Mon, 16 Mar 2020 10:17:51 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/posts/go/echo/custom04-renderer/</guid>
-      <description>Render，顾名思义，要进行页面渲染。Go 语言不但自带有强大的 http 库，还自带了 HTML 模板引擎。Echo 框架对模板引擎进行了一些额外处理，并提供了</description>
+      <description>Render，顾名思义，要进行页面渲染。Go 语言不但自带有强大的 http 库，还自带了 HTML 模板引擎。Echo 框架对模板引擎进行了一些额外处理，并提供了给用户自定义页面渲染的接口。本文就相关问题进行探讨。 模板渲染 Echo 框架的 Context 接口提供了下面的方法进行页面渲染： // echo 包中 Context 接口的方法 Render(code int, name string, data interface{}) error 其中，code 是 HTTP Status，name 是定义的模板名，data 是模板可能需要的数</description>
     </item>
     
     <item>
@@ -32,7 +32,7 @@
       <pubDate>Mon, 16 Mar 2020 10:17:51 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/posts/go/echo/custom05-error-handler/</guid>
-      <description>Echo 倡导通过从中间件和 Handler 返回错误来进行集中式 HTTP 错误处理。集中式错误处理程序使我们能够从统一位置将错误记录到外部服务，并向客户端发送自定义的 HTTP 响</description>
+      <description>Echo 倡导通过从中间件和 Handler 返回错误来进行集中式 HTTP 错误处理。集中式错误处理程序使我们能够从统一位置将错误记录到外部服务，并向客户端发送自定义的 HTTP 响应。本节一起学习如何定制化，进行集中式错误处理。 默认的错误处理 在定制篇 4 中，我们讲到了 Render。如果在 Handler 中调用了 Render，但是并没有给 Echo.Renderer 赋值或其他原因，导致出错，页面看到的信息如下： { &amp;#34;message&amp;#34;: &amp;#34;Internal Server Error&amp;#34; } 这是 Echo 默认的 HTTP Error H</description>
     </item>
     
     <item>
@@ -41,7 +41,7 @@
       <pubDate>Mon, 16 Mar 2020 10:17:51 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/posts/go/echo/custom06-ext-server/</guid>
-      <description>这是定制篇的最后一节，讲解 Server 的自定义。 默认 Server 通常情况下，Echo 通过如下方式启动一个 HTTP Server： e := echo.New() e.GET(&amp;#34;/&amp;#34;, func(c echo.Context) error { return c.String(http.StatusOK, &amp;#34;Hello, World!&amp;#34;) }) e.Logger.Fatal(e.Start(&amp;#34;:2020&amp;#34;)) 我们打开源码</description>
+      <description>这是定制篇的最后一节，讲解 Server 的自定义。 默认 Server 通常情况下，Echo 通过如下方式启动一个 HTTP Server： e := echo.New() e.GET(&amp;#34;/&amp;#34;, func(c echo.Context) error { return c.String(http.StatusOK, &amp;#34;Hello, World!&amp;#34;) }) e.Logger.Fatal(e.Start(&amp;#34;:2020&amp;#34;)) 我们打开源码一探究竟： // Start starts an HTTP server. func (e *Echo) Start(address string) error { e.Server.Addr = address return e.StartServer(e.Server) } 原来调用的是 StartServer，参数是默认的 Server 实例，它是一个 http.Server 的指针类型。 自定义 Server 知道了 Echo#Start 最终调用的是 Echo#StartServer，而且它的参数是一个 *http.Server 类型，所以自</description>
     </item>
     
     <item>
@@ -50,7 +50,7 @@
       <pubDate>Fri, 06 Mar 2020 11:50:51 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/posts/go/echo/custom03-logger/</guid>
-      <description>在知识星球简书项目中，我们分析对比了目前的一些日志库。虽然 Go 标准库有一个 log，但功能有限，所以才出现了很多第三方的日志库。在 用 Go 实现一个简</description>
+      <description>在知识星球简书项目中，我们分析对比了目前的一些日志库。虽然 Go 标准库有一个 log，但功能有限，所以才出现了很多第三方的日志库。在 用 Go 实现一个简书 8：日志记录和优秀库的学习 中，我们得出结论，推荐大家使用 zerolog 。现在我们就将 zerolog 集成进 Echo 框架中。 Echo 默认的 Logger Echo 日志记录的默认格式是 JSON，可以通过修改标头来更改，即 Echo#Logger.SetHeader(io.Write</description>
     </item>
     
     <item>
@@ -59,7 +59,7 @@
       <pubDate>Fri, 28 Feb 2020 18:53:51 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/posts/go/echo/custom02-validator/</guid>
-      <description>上一篇讲 Binder 时提到，参数自动绑定和校验是 Web 框架很重要的两个功能，可以极大的提升开发速度，并更好的保证数据的可靠性（服务端数据校验很重要）。本节</description>
+      <description>上一篇讲 Binder 时提到，参数自动绑定和校验是 Web 框架很重要的两个功能，可以极大的提升开发速度，并更好的保证数据的可靠性（服务端数据校验很重要）。本节，我们就一起看看如何自定义 Echo 的表单校验功能。 不同于 Binder，Echo 并没有内置数据校验的能力，也就是没有默认的 Validator 实现。然而，你可以很方便的集成第三方的数据校验库。跟 Binder 类似，Echo 提供了一个 Validator 接口，方便将第三方数据校</description>
     </item>
     
     <item>
@@ -68,7 +68,7 @@
       <pubDate>Fri, 21 Feb 2020 19:26:51 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/posts/go/echo/custom01-binder/</guid>
-      <description>Web 开发，数据获取和校验是两个最基本的功能。在数据获取时，我们可以通过标准库的 *http.Request 提供的相关功能进行获取。然而这样效率是很低，重复工作较多，而且</description>
+      <description>Web 开发，数据获取和校验是两个最基本的功能。在数据获取时，我们可以通过标准库的 *http.Request 提供的相关功能进行获取。然而这样效率是很低，重复工作较多，而且考虑到数据自动校验，我们更应该做到自动绑定。 在讲述 Echo 的 Binder 前，先探讨一下客户端数据一般通过什么方式发送给服务端的。 客户端如何传递数据给服务端？ 这个问题其实对大部分人来说太简单了，然而，很多客户端的人却不清楚。工作中，我接触</description>
     </item>
     
     <item>
@@ -77,7 +77,7 @@
       <pubDate>Fri, 21 Feb 2020 19:24:51 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/posts/go/echo/custom00-intro/</guid>
-      <description>一个强大的框架，一定是可以定制的，或者说可以扩展，能够根据用户自己的需求进行改变、增强，甚至某些功能的替换。作为一个强大的框架，Echo 必然</description>
+      <description>一个强大的框架，一定是可以定制的，或者说可以扩展，能够根据用户自己的需求进行改变、增强，甚至某些功能的替换。作为一个强大的框架，Echo 必然也是可以定制、可以扩展的。本篇起，我们一起探讨如何对 Echo 框架进行定制或扩展，打造成符合你个性需求的框架。 定制化主要包含如下一些方面： 自定义 Binder，用来处理 Request 数据绑定 自定义 Validator，用来处理输入验证 自定义 Lo</description>
     </item>
     
     <item>
@@ -86,7 +86,7 @@
       <pubDate>Tue, 03 Dec 2019 20:31:51 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/posts/go/echo/basic03-example/</guid>
-      <description>通过前面的介绍，相信对 echo 有了一个初步的认识。本文我们通过一个简单的登录页面来串联 echo 的相关特性。因为该文主要关注各个特性，所以在目录结构和代码</description>
+      <description>通过前面的介绍，相信对 echo 有了一个初步的认识。本文我们通过一个简单的登录页面来串联 echo 的相关特性。因为该文主要关注各个特性，所以在目录结构和代码组织方面很随意。 本节最终效果 1）登录页面 2）登录失败 3）登录成功 main 函数骨架 使用 echo 框架，在程序入口处一般包含如下内容： func main() { // 创建 echo 实例 e := echo.New() // 配置日志 configLogger(e) // 注册静态文件路由 e.Static(&amp;#34;img&amp;#34;, &amp;#34;img&amp;#34;) e.File(&amp;#34;/favicon.ico&amp;#34;, &amp;#34;img/favicon.ico&amp;#34;) // 设置中间件 setMiddleware(e) // 注册路由 RegisterRoutes(e) // 启动服务 e.Logger.Fatal(e.Start(&amp;#34;:2019&amp;#34;)) } 日</description>
     </item>
     
     <item>
@@ -95,7 +95,7 @@
       <pubDate>Mon, 28 Oct 2019 11:15:51 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/posts/go/echo/basic02-feature/</guid>
-      <description>在 Echo 的官网的首页，列出了 9 个核心功能或亮点。我这里将它说成是亮点（也许并不一定都比其他框架更好）。 一、优化的路由 高度优化的 HTTP 路由，动态内存分</description>
+      <description>在 Echo 的官网的首页，列出了 9 个核心功能或亮点。我这里将它说成是亮点（也许并不一定都比其他框架更好）。 一、优化的路由 高度优化的 HTTP 路由，动态内存分配为零，可对路由进行优先级排序。 这一点从上一篇：[搭建 Echo 开发环境](基础篇：搭建 Echo 开发环境.md) 可以看到。 Echo 路由基于 radix tree ，查询速度非常快。路由使用 sync pool 来重用内存，实现无 GC 开销下的零动态内存分配。 路由的注册和使用方式 各大</description>
     </item>
     
   </channel>

@@ -14,7 +14,7 @@
       <pubDate>Fri, 28 Feb 2020 18:53:51 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/posts/go/echo/custom02-validator/</guid>
-      <description>上一篇讲 Binder 时提到，参数自动绑定和校验是 Web 框架很重要的两个功能，可以极大的提升开发速度，并更好的保证数据的可靠性（服务端数据校验很重要）。本节</description>
+      <description>上一篇讲 Binder 时提到，参数自动绑定和校验是 Web 框架很重要的两个功能，可以极大的提升开发速度，并更好的保证数据的可靠性（服务端数据校验很重要）。本节，我们就一起看看如何自定义 Echo 的表单校验功能。 不同于 Binder，Echo 并没有内置数据校验的能力，也就是没有默认的 Validator 实现。然而，你可以很方便的集成第三方的数据校验库。跟 Binder 类似，Echo 提供了一个 Validator 接口，方便将第三方数据校</description>
     </item>
     
   </channel>
