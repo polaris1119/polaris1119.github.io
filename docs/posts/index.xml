@@ -9789,23 +9789,5 @@ BenchmarkGin_GithubAll                	   34724	     <span class="m">34696</span
 ]]></content>
 		</item>
 		
-		<item>
-			<title></title>
-			<link>https://polarisxu.studygolang.com/posts/go/echo/action01-design/</link>
-			<pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-			
-			<guid>https://polarisxu.studygolang.com/posts/go/echo/action01-design/</guid>
-			<description>实战篇1：项目结构和数据表设计 针对项目的准备工作做一个说明。
- 为了更高效的开发、调试，本项目使用 air 进行自动重编译；   </description>
-			<content type="html"><![CDATA[<h1 id="实战篇1项目结构和数据表设计">实战篇1：项目结构和数据表设计</h1>
-<p>针对项目的准备工作做一个说明。</p>
-<ul>
-<li>为了更高效的开发、调试，本项目使用 <a href="https://mp.weixin.qq.com/s/4xwswOB17A-wup3Gqdlndw" target="_blank" rel="noopener">air</a>
- 进行自动重编译；</li>
-<li></li>
-</ul>
-]]></content>
-		</item>
-		
 	</channel>
 </rss>
