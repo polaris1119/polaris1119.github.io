@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Mon, 07 Dec 2020 18:12:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 08 Dec 2020 11:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>聊聊“世界上最好的语言”新版本特性</title>
+      <link>https://polarisxu.studygolang.com/posts/php/php8-intro/</link>
+      <pubDate>Tue, 08 Dec 2020 11:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/php/php8-intro/</guid>
+      <description>大家好，我是站长 polarisxu。 看到标题，大家应该知晓今天聊的主角是谁。是的，它就是 PHP。 PHP 曾经很辉煌，现在怎么样？不做过多评价，前几天好未来不刚组织了一届 PHP 大会吗？！正因为曾经很辉煌，很多现在的 Go 爱好者曾经都是 PHPer，应该还有不少还在用着 PHP。我觉得完全没必要非得贬低一门语言去抬高另外一门语言，自己喜欢就好。而且掌握多门语言是自己的优势。 为什么</description>
+    </item>
+    
     <item>
       <title>推荐一个网站：其实是三个网站</title>
       <link>https://polarisxu.studygolang.com/posts/share/programming-idioms/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/action/bytedance-interview-201112/</guid>
       <description>大家好，我是站长 polarisxu。 网上看到有人分享去字节跳动的面试 Go 的经验 ，从面试题来看，应该是比较初级的职位。 这份面试经验总结中（其实谈不上总结，只是面试题的记录，并没有总结分析答案），有一道 Go 相关的题，也是一个老生常谈的问题：以下代码有什么问题，怎么解决？ total, sum := 0, 0 for i := 1; i &amp;lt;= 10; i++ { sum += i go func() { total += i }() } fmt.Printf(&amp;#34;total:%d sum %d&amp;#34;, total, sum) 01 考点一 我相信很多人应该一眼看出了其中</description>
-    </item>
-    
-    <item>
-      <title>GitHub 出的这个功能，让开源项目有了自己的社区</title>
-      <link>https://polarisxu.studygolang.com/posts/talk/view-github-discussions/</link>
-      <pubDate>Thu, 12 Nov 2020 10:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/talk/view-github-discussions/</guid>
-      <description>大家好，我是站长 polarisxu。 为了更有利于开源项目的发展，形成自己的社区很重要，作者们可以更好地和使用者交流互动，了解他们需求、问题。虽然 GitHub 有 issue，但毕竟它主要还是用于反馈 bug、提新特性，不是一个社区的感觉。所以一般项目都会有其他的社区，比如会开通 google groups 邮件组、使用 Gitter、Discord、Slack 等。当然，国内的项目通常会使用 QQ 群、微信群</description>
     </item>
     
   </channel>

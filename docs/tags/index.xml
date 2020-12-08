@@ -7,7 +7,25 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Mon, 07 Dec 2020 18:12:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 08 Dec 2020 11:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>PHP</title>
+      <link>https://polarisxu.studygolang.com/tags/php/</link>
+      <pubDate>Tue, 08 Dec 2020 11:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/tags/php/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>PHP8</title>
+      <link>https://polarisxu.studygolang.com/tags/php8/</link>
+      <pubDate>Tue, 08 Dec 2020 11:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/tags/php8/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>Golang</title>
       <link>https://polarisxu.studygolang.com/tags/golang/</link>
@@ -77,24 +95,6 @@
       <pubDate>Tue, 01 Dec 2020 11:30:00 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/tags/github/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Hugo</title>
-      <link>https://polarisxu.studygolang.com/tags/hugo/</link>
-      <pubDate>Tue, 01 Dec 2020 11:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/tags/hugo/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>rsc</title>
-      <link>https://polarisxu.studygolang.com/tags/rsc/</link>
-      <pubDate>Sat, 21 Nov 2020 21:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/tags/rsc/</guid>
       <description></description>
     </item>
     

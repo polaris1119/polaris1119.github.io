@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>PHP8 on polarisxu</title>
+    <link>https://polarisxu.studygolang.com/tags/php8/</link>
+    <description>Recent content in PHP8 on polarisxu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
+    <lastBuildDate>Tue, 08 Dec 2020 11:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/php8/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>聊聊“世界上最好的语言”新版本特性</title>
+      <link>https://polarisxu.studygolang.com/posts/php/php8-intro/</link>
+      <pubDate>Tue, 08 Dec 2020 11:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/php/php8-intro/</guid>
+      <description>大家好，我是站长 polarisxu。 看到标题，大家应该知晓今天聊的主角是谁。是的，它就是 PHP。 PHP 曾经很辉煌，现在怎么样？不做过多评价，前几天好未来不刚组织了一届 PHP 大会吗？！正因为曾经很辉煌，很多现在的 Go 爱好者曾经都是 PHPer，应该还有不少还在用着 PHP。我觉得完全没必要非得贬低一门语言去抬高另外一门语言，自己喜欢就好。而且掌握多门语言是自己的优势。 为什么</description>
+    </item>
+    
+  </channel>
+</rss>

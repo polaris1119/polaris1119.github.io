@@ -2,22 +2,32 @@
 <html lang="en">
 
 <head>
-	<meta name="generator" content="Hugo 0.76.5" />
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<meta name="theme-color" content="#fcfcfc">
 	<meta name="msapplication-TileColor" content="#fcfcfc">
-<meta itemprop="name" content="polarisxu">
-<meta itemprop="description" content="polarisxu,Go语言中文网,go,golang,源码分析,系列教程">
-<meta property="og:title" content="polarisxu" />
-<meta property="og:description" content="polarisxu,Go语言中文网,go,golang,源码分析,系列教程" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://polarisxu.studygolang.com/" />
-<meta property="og:updated_time" content="2020-12-08T11:30:00+08:00" />
+<meta itemprop="name" content="《polarisxu 开发工具教程》">
+<meta itemprop="description" content="关于编辑器&amp;IDE相关的教程。
+ 玩转 VSCode 玩转 GoLand  基于 GoLand 使用 Docker 容器进行 Go 开发  在 GoLang 中使用 Docker Compose 运行 Go 应用程序  当 GoLand 遇到 Kubernetes：如何调试和运行 Go 程序  欢迎加入 GoLand 2020.1 抢先体验计划  还在用 2019.3 就 Out 了：GoLand 2020.1 版本正式发布  GoLand 2020.2 Beta 版发布：go.mod 升级以及对泛型的实验性支持     ">
+<meta itemprop="datePublished" content="2020-10-26T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2020-10-26T00:00:00+00:00" />
+<meta itemprop="wordCount" content="42">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta property="og:title" content="《polarisxu 开发工具教程》" />
+<meta property="og:description" content="关于编辑器&amp;IDE相关的教程。
+ 玩转 VSCode 玩转 GoLand  基于 GoLand 使用 Docker 容器进行 Go 开发  在 GoLang 中使用 Docker Compose 运行 Go 应用程序  当 GoLand 遇到 Kubernetes：如何调试和运行 Go 程序  欢迎加入 GoLand 2020.1 抢先体验计划  还在用 2019.3 就 Out 了：GoLand 2020.1 版本正式发布  GoLand 2020.2 Beta 版发布：go.mod 升级以及对泛型的实验性支持     " />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://polarisxu.studygolang.com/devtool-categories/" />
+<meta property="article:published_time" content="2020-10-26T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-10-26T00:00:00+00:00" />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="polarisxu"/>
-<meta name="twitter:description" content="polarisxu,Go语言中文网,go,golang,源码分析,系列教程"/>
+<meta name="twitter:title" content="《polarisxu 开发工具教程》"/>
+<meta name="twitter:description" content="关于编辑器&amp;IDE相关的教程。
+ 玩转 VSCode 玩转 GoLand  基于 GoLand 使用 Docker 容器进行 Go 开发  在 GoLang 中使用 Docker Compose 运行 Go 应用程序  当 GoLand 遇到 Kubernetes：如何调试和运行 Go 程序  欢迎加入 GoLand 2020.1 抢先体验计划  还在用 2019.3 就 Out 了：GoLand 2020.1 版本正式发布  GoLand 2020.2 Beta 版发布：go.mod 升级以及对泛型的实验性支持     "/>
 
 	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -26,9 +36,9 @@
 	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
 	<link rel="shortcut icon" href="/favicon.ico">
 
-	<title>polarisxu</title>
-	<link rel="alternate" type="application/rss+xml" href="https://polarisxu.studygolang.com/index.xml" title="polarisxu" />
+	<title>《polarisxu 开发工具教程》</title>
 	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
+	
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/styles.css">
 </head>
@@ -67,67 +77,42 @@
 	</div>
 
 
-		<main class="site-main section-inner thin animated fadeIn faster">
-    
-		
-        <div class="post animated fadeInDown">
-            <div class="post-title">
-                <h2><a href="/posts/go/echo/echo/">Echo 系列教程——Go 语言 Web 框架 Echo 系列教程</a>
-                </h2>
-            </div>
-            <div class="post-content">
-                <div class="p_part"><p>大家好，从今天起，我们一起来学习 Echo 框架。 这几年，随着 Go 语言的发展，各种 Web 框架也出现了。常言道：没有选择是一种无奈，有选择是一种痛苦。所以，大家总是问：Web 框架大佬推荐哪个？ 这一年，国内推荐 Gin 的人很多，也让 Gin 的 Star 数增加到了 32k+（2019-10-17），网络上 Gin 相关的教程也很多。总体来说，Gin、Echo 等都比较轻量，易用性也差距不大，而 Gin 最大的一个优势是</p></div>
-            </div>
-            <div class="post-footer">
-                <div class="meta">
-                    <div class="info"><em class="fas fa-calendar-day"></em><span
-                                class="date">2019-10-21</span>
-                        <a class="tag"
-                                   href="/tags/echo/">echo</a><a class="tag"
-                                   href="/tags/web%E6%A1%86%E6%9E%B6/">web框架</a>
-                    </div>
-                </div>
-            </div>
-				</div>
-    
-    <div class="pagination">
-        
-<ul class="pagination">
-  <li class="page-item">
-    <a href="/" class="page-link" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
-  </li>
-  <li class="page-item">
-    <a href="/page/6/" class="page-link" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
-  </li>
-  <li class="page-item">
-    <a class="page-link" href="/">1</a>
-  </li>
-  <li class="page-item">
-    <a class="page-link" href="/page/2/">2</a>
-  </li>
-  <li class="page-item">
-    <a class="page-link" href="/page/3/">3</a>
-  </li>
-  <li class="page-item disabled">
-    <span aria-hidden="true">&nbsp;&hellip;&nbsp;</span>
-  </li>
-  <li class="page-item">
-    <a class="page-link" href="/page/6/">6</a>
-  </li>
-  <li class="page-item active">
-    <a class="page-link" href="/page/7/">7</a>
-  </li>
-  <li class="page-item disabled">
-    <a  class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
-  </li>
-  <li class="page-item">
-    <a href="/page/7/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
-  </li>
+	<main class="site-main section-inner thin animated fadeIn faster">
+		<h1>《polarisxu 开发工具教程》</h1>
+		<div class="content">
+			<p>关于编辑器&amp;IDE相关的教程。</p>
+<ul>
+<li>玩转 VSCode</li>
+<li>玩转 GoLand
+<ul>
+<li><a href="/posts/devtool/goland/debugging-a-go-application-inside-a-docker-container.md">基于 GoLand 使用 Docker 容器进行 Go 开发</a>
+</li>
+<li><a href="/posts/devtool/goland/running-go-applications-using-docker-compose-in-goland.md">在 GoLang 中使用 Docker Compose 运行 Go 应用程序</a>
+</li>
+<li><a href="/posts/devtool/goland/using-kubernetes-from-goland.md">当 GoLand 遇到 Kubernetes：如何调试和运行 Go 程序</a>
+</li>
+<li><a href="/posts/devtool/goland/welcome-to-the-goland-2020-1-eap.md">欢迎加入 GoLand 2020.1 抢先体验计划</a>
+</li>
+<li><a href="/posts/devtool/goland/goland-2020-1-release.md">还在用 2019.3 就 Out 了：GoLand 2020.1 版本正式发布</a>
+</li>
+<li><a href="/posts/devtool/goland/2020.2.Beta.md">GoLand 2020.2 Beta 版发布：go.mod 升级以及对泛型的实验性支持</a>
+</li>
+</ul>
+</li>
 </ul>
 
+		</div>
+		<div id="comments" class="thin">
+			<script src="https://utteranc.es/client.js"
+	repo="polaris1119/polarisxu"
+	issue-term="pathname"
+	theme="github-light"
+	crossorigin="anonymous"
+	async>
+</script>
 
-    </div>
-		</main>
+		</div>
+	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
 		<p>&copy; 2019 - 2020 <a href="https://polarisxu.studygolang.com">polarisxu</a> &#183; <a href="http://www.beian.miit.gov.cn/">京ICP备14030343号-1</a></p>

@@ -3,17 +3,37 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://polarisxu.studygolang.com/tags/golang/</loc>
-    <lastmod>2020-12-07T18:12:00+08:00</lastmod>
+    <loc>https://polarisxu.studygolang.com/tags/php/</loc>
+    <lastmod>2020-12-08T11:30:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polarisxu.studygolang.com/tags/php8/</loc>
+    <lastmod>2020-12-08T11:30:00+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://polarisxu.studygolang.com/</loc>
-    <lastmod>2020-12-07T18:12:00+08:00</lastmod>
+    <lastmod>2020-12-08T11:30:00+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://polarisxu.studygolang.com/tags/</loc>
+    <lastmod>2020-12-08T11:30:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polarisxu.studygolang.com/posts/</loc>
+    <lastmod>2020-12-08T11:30:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polarisxu.studygolang.com/posts/php/php8-intro/</loc>
+    <lastmod>2020-12-08T11:30:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polarisxu.studygolang.com/tags/golang/</loc>
     <lastmod>2020-12-07T18:12:00+08:00</lastmod>
   </url>
   
@@ -24,11 +44,6 @@
   
   <url>
     <loc>https://polarisxu.studygolang.com/posts/share/programming-idioms/</loc>
-    <lastmod>2020-12-07T18:12:00+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://polarisxu.studygolang.com/posts/</loc>
     <lastmod>2020-12-07T18:12:00+08:00</lastmod>
   </url>
   
