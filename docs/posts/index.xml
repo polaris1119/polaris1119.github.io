@@ -172,7 +172,7 @@
 <p>这一点要注意，之前这样的代码：</p>
 <div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php"><span class="mi">0</span> <span class="o">==</span> <span class="s1">&#39;foobar&#39;</span> <span class="c1">// true
 </span></code></pre></div><p>现在是 false：</p>
-<div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php"><span class="mi">0</span> <span class="o">==</span> <span class="s1">&#39;foobar&#39;</span> <span class="c1">// true
+<div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php"><span class="mi">0</span> <span class="o">==</span> <span class="s1">&#39;foobar&#39;</span> <span class="c1">// false
 </span></code></pre></div><p>更多说明参见这里：<a href="https://wiki.php.net/rfc/string_to_number_comparison">https://wiki.php.net/rfc/string_to_number_comparison</a>。</p>
 <h2 id="08-注解attributes">08 注解（attributes）</h2>
 <p>现在可以用 PHP 原生语法来使用结构化的元数据，而非 PHPDoc 声明。</p>
