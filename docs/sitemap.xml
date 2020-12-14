@@ -3,6 +3,36 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://polarisxu.studygolang.com/</loc>
+    <lastmod>2020-12-14T17:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polarisxu.studygolang.com/tags/</loc>
+    <lastmod>2020-12-14T17:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polarisxu.studygolang.com/posts/go/action/weekly-question-analysis-embed-interface/</loc>
+    <lastmod>2020-12-14T17:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polarisxu.studygolang.com/tags/%E5%86%85%E5%B5%8C%E7%B1%BB%E5%9E%8B/</loc>
+    <lastmod>2020-12-14T17:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polarisxu.studygolang.com/posts/</loc>
+    <lastmod>2020-12-14T17:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polarisxu.studygolang.com/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/</loc>
+    <lastmod>2020-12-14T17:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://polarisxu.studygolang.com/tags/php/</loc>
     <lastmod>2020-12-08T11:30:00+08:00</lastmod>
   </url>
@@ -13,22 +43,7 @@
   </url>
   
   <url>
-    <loc>https://polarisxu.studygolang.com/</loc>
-    <lastmod>2020-12-08T11:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://polarisxu.studygolang.com/tags/</loc>
-    <lastmod>2020-12-08T11:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://polarisxu.studygolang.com/posts/php/php8-intro/</loc>
-    <lastmod>2020-12-08T11:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://polarisxu.studygolang.com/posts/</loc>
     <lastmod>2020-12-08T11:30:00+08:00</lastmod>
   </url>
   
@@ -159,11 +174,6 @@
   
   <url>
     <loc>https://polarisxu.studygolang.com/posts/go/action/bytedance-interview-201112/</loc>
-    <lastmod>2020-11-12T18:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://polarisxu.studygolang.com/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/</loc>
     <lastmod>2020-11-12T18:30:00+08:00</lastmod>
   </url>
   

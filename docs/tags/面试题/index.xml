@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Thu, 12 Nov 2020 18:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 14 Dec 2020 17:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>你是不是没想过，结构体竟然可以内嵌一个接口？</title>
+      <link>https://polarisxu.studygolang.com/posts/go/action/weekly-question-analysis-embed-interface/</link>
+      <pubDate>Mon, 14 Dec 2020 17:00:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/action/weekly-question-analysis-embed-interface/</guid>
+      <description>大家好，我是站长 polarisxu。 时不时有人催问周刊题目的解析，那就先先解析下第 71 期 的题目。 01 题目是，以下代码能否通过编译： package main import ( &amp;#34;fmt&amp;#34; ) type worker interface { work() } type person struct { name string worker } func main() { var w worker = person{} fmt.Println(w) } 这是大家的投票结果： 只有 35% 的人答对了。 这里答错的原因在于 worker 是一个接口，如果是一个普通的类型，相信大家会答对。一个结构体竟然可以嵌入一个接口？！ 02 我们都知晓 Go 没有继承，但可以通</description>
+    </item>
+    
     <item>
       <title>字节跳动面试真的也会问这样的问题？！</title>
       <link>https://polarisxu.studygolang.com/posts/go/action/bytedance-interview-201112/</link>
