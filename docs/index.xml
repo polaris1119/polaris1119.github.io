@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Mon, 14 Dec 2020 17:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 16 Dec 2020 20:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>新买了 Apple M1 Mac，却不知道如何安装 Go？</title>
+      <link>https://polarisxu.studygolang.com/posts/go/action/apple-m1-install-go/</link>
+      <pubDate>Wed, 16 Dec 2020 20:00:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/action/apple-m1-install-go/</guid>
+      <description>大家好，我是站长 polarisxu。 前些天有一位朋友问我： 有些朋友可能会有点奇怪，M1 有什么特别的吗？为了照顾部分童鞋，这里简单介绍下。 01 为什么会出现这个问题 大家知道不同的操作系统是很不一样的，同时不同的 CPU 架构也是很不一样的。Go 号称是跨平台的，自然要支持这些操作系统和 CPU 架构。 在 Go 中，GOOS 表示操作系统，GOARCH 表示 CPU 架构。比如你的 Linux 服务器，一般是 GO</description>
+    </item>
+    
     <item>
       <title>你是不是没想过，结构体竟然可以内嵌一个接口？</title>
       <link>https://polarisxu.studygolang.com/posts/go/action/weekly-question-analysis-embed-interface/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/talk/go-and-business/</guid>
       <description>昨天 PingCAP 完成 D 轮 2.7 亿美元融资的消息，相信很多人看到了。PingCAP 今天的成就，对开源界真是极大的鼓舞。祝贺祝贺！ 01 PingCAP 成立于 2015 年，是一家企业级开源分布式数据库厂商，提供包括开源分布式数据库产品、解决方案与咨询、技术支持与培训认证服务，致力于为全球行业用户提供稳定高效、安全可靠、开放兼容的新型数据基础设施，解放企业生产力，加速企业数字化转型升级。 由 PingCAP 创立的分布式</description>
-    </item>
-    
-    <item>
-      <title>通过这个 Runtime 统计信息可视化库学到了什么？</title>
-      <link>https://polarisxu.studygolang.com/posts/go/pkg/statsview/</link>
-      <pubDate>Tue, 17 Nov 2020 15:12:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/pkg/statsview/</guid>
-      <description>大家好，我是站长 polarisxu。 掌握系统运行状态，知道系统哪些地方可能存在问题，方便进行优化，这是一个实际系统必备的。裸奔，对系统一无所知，迟早是要出大事的。 在 Go 语言中，官方标准库提供了方法，让我们能够获得内存分配、GC 和 Goroutine 等情况。比如内存、GC 等情况，可以通过 runtime.MemStats 获取：https://docs.studygolang.com/pkg/runtime/#M</description>
     </item>
     
   </channel>

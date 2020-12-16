@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Mac on polarisxu</title>
+    <link>https://polarisxu.studygolang.com/tags/mac/</link>
+    <description>Recent content in Mac on polarisxu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
+    <lastBuildDate>Wed, 16 Dec 2020 20:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/mac/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>新买了 Apple M1 Mac，却不知道如何安装 Go？</title>
+      <link>https://polarisxu.studygolang.com/posts/go/action/apple-m1-install-go/</link>
+      <pubDate>Wed, 16 Dec 2020 20:00:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/action/apple-m1-install-go/</guid>
+      <description>大家好，我是站长 polarisxu。 前些天有一位朋友问我： 有些朋友可能会有点奇怪，M1 有什么特别的吗？为了照顾部分童鞋，这里简单介绍下。 01 为什么会出现这个问题 大家知道不同的操作系统是很不一样的，同时不同的 CPU 架构也是很不一样的。Go 号称是跨平台的，自然要支持这些操作系统和 CPU 架构。 在 Go 中，GOOS 表示操作系统，GOARCH 表示 CPU 架构。比如你的 Linux 服务器，一般是 GO</description>
+    </item>
+    
+  </channel>
+</rss>
