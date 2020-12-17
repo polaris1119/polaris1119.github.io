@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>标准库 on polarisxu</title>
+    <link>https://polarisxu.studygolang.com/tags/%E6%A0%87%E5%87%86%E5%BA%93/</link>
+    <description>Recent content in 标准库 on polarisxu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
+    <lastBuildDate>Thu, 17 Dec 2020 17:15:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/%E6%A0%87%E5%87%86%E5%BA%93/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>听说你还不知道如何查看 Go 历史文档？</title>
+      <link>https://polarisxu.studygolang.com/posts/go/dynamic/view-go-history-std-version/</link>
+      <pubDate>Thu, 17 Dec 2020 17:15:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/dynamic/view-go-history-std-version/</guid>
+      <description>大家好，我是站长 polarisxu。 这是一篇短文，写这篇文章主要是看到了两个信息： tonybai 写的《如何查看历史版本的 Go 文档？》 Go 官方发博文，2021 年初开始，godoc.org 默认将重定向到 pkg.go.dev ； tonybai 在文章中说了两种方法： 利用 go doc，可行，但非最优。比如 go doc http.Request。通过切换本地的 Go 版本实现查看不同版本的 Go 标准库文档； 使用 godoc 建立历史版本的 Web 化文档中心。</description>
+    </item>
+    
+  </channel>
+</rss>

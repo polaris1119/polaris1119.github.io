@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Wed, 16 Dec 2020 20:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 17 Dec 2020 17:15:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>听说你还不知道如何查看 Go 历史文档？</title>
+      <link>https://polarisxu.studygolang.com/posts/go/dynamic/view-go-history-std-version/</link>
+      <pubDate>Thu, 17 Dec 2020 17:15:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/dynamic/view-go-history-std-version/</guid>
+      <description>大家好，我是站长 polarisxu。 这是一篇短文，写这篇文章主要是看到了两个信息： tonybai 写的《如何查看历史版本的 Go 文档？》 Go 官方发博文，2021 年初开始，godoc.org 默认将重定向到 pkg.go.dev ； tonybai 在文章中说了两种方法： 利用 go doc，可行，但非最优。比如 go doc http.Request。通过切换本地的 Go 版本实现查看不同版本的 Go 标准库文档； 使用 godoc 建立历史版本的 Web 化文档中心。</description>
+    </item>
+    
     <item>
       <title>新买了 Apple M1 Mac，却不知道如何安装 Go？</title>
       <link>https://polarisxu.studygolang.com/posts/go/action/apple-m1-install-go/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/talk/go-celebrity-rsc/</guid>
       <description>大家好，我是站长 polarisxu。 今天和大家聊聊 Go 语言名人的那些事。 01 说起 Go 语言，很多人知晓有三个创始人。在 2007 年 09 月 25 日，Rob Pike 发了一封邮件： 所以一般认为 Rob Pike、Robert Griesemer 和 Ken Thompson 是 Go 的创始人，而很长一段时间，Rob Pike 在引领 Go 团队，同时在一些公众场合经常出现，因此大家对 Rob Piike 更熟悉。关于他们三个的情况，网上资料挺多的，这里不说了。 今天说的是另外一个人</description>
-    </item>
-    
-    <item>
-      <title>聊聊 Go 和创业</title>
-      <link>https://polarisxu.studygolang.com/posts/talk/go-and-business/</link>
-      <pubDate>Wed, 18 Nov 2020 18:40:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/talk/go-and-business/</guid>
-      <description>昨天 PingCAP 完成 D 轮 2.7 亿美元融资的消息，相信很多人看到了。PingCAP 今天的成就，对开源界真是极大的鼓舞。祝贺祝贺！ 01 PingCAP 成立于 2015 年，是一家企业级开源分布式数据库厂商，提供包括开源分布式数据库产品、解决方案与咨询、技术支持与培训认证服务，致力于为全球行业用户提供稳定高效、安全可靠、开放兼容的新型数据基础设施，解放企业生产力，加速企业数字化转型升级。 由 PingCAP 创立的分布式</description>
     </item>
     
   </channel>

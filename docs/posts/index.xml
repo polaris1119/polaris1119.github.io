@@ -6,8 +6,34 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en</language>
 		<copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-		<lastBuildDate>Wed, 16 Dec 2020 20:00:00 +0800</lastBuildDate>
+		<lastBuildDate>Thu, 17 Dec 2020 17:15:00 +0800</lastBuildDate>
 		<atom:link href="https://polarisxu.studygolang.com/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>听说你还不知道如何查看 Go 历史文档？</title>
+			<link>https://polarisxu.studygolang.com/posts/go/dynamic/view-go-history-std-version/</link>
+			<pubDate>Thu, 17 Dec 2020 17:15:00 +0800</pubDate>
+			
+			<guid>https://polarisxu.studygolang.com/posts/go/dynamic/view-go-history-std-version/</guid>
+			<description>大家好，我是站长 polarisxu。 这是一篇短文，写这篇文章主要是看到了两个信息： tonybai 写的《如何查看历史版本的 Go 文档？》 Go 官方发博文，2021 年初开始，godoc.org 默认将重定向到 pkg.go.dev ； tonybai 在文章中说了两种方法： 利用 go doc，可行，但非最优。比如 go doc http.Request。通过切换本地的 Go 版本实现查看不同版本的 Go 标准库文档； 使用 godoc 建立历史版本的 Web 化文档中心。</description>
+			<content type="html"><![CDATA[<p>大家好，我是站长 polarisxu。</p>
+<p>这是一篇短文，写这篇文章主要是看到了两个信息：</p>
+<ul>
+<li>tonybai 写的<a href="https://tonybai.com/2020/12/15/how-to-see-the-manual-of-go-history-version/" target="_blank" rel="noopener">《如何查看历史版本的 Go 文档？》</a>
+</li>
+<li>Go 官方发博文，2021 年初开始，<a href="https://docs.studygolang.com/blog/godoc.org-redirect" target="_blank" rel="noopener">godoc.org 默认将重定向到 pkg.go.dev</a>
+；</li>
+</ul>
+<p>tonybai 在文章中说了两种方法：</p>
+<ul>
+<li>利用 go doc，可行，但非最优。比如 go doc http.Request。通过切换本地的 Go 版本实现查看不同版本的 Go 标准库文档；</li>
+<li>使用 godoc 建立历史版本的 Web 化文档中心。这种方式需要额外安装 godoc：<code>go get golang.org/x/tools/cmd/godoc</code>。这种方法相当于本地启动一个旧版 Go 官网。godoc 支持一个参数 -goroot 来指定不同的 Go 版本目录树；</li>
+</ul>
+<p>但这两种方法都挺费劲的，因为需要你本地有各个版本的 Go 源码。以前没有更好的方法，但自从有了 pkg.go.dev，查看历史文档方便多了。因为 pkg.go.dev 更懂 Go module，通过它不仅可以查看标准库的历史版本文档，而且可以查看第三方库的历史版本。具体可以查看这里：<a href="https://pkg.go.dev/std?tab=versions">https://pkg.go.dev/std?tab=versions</a>。</p>
+<p>虽然 godoc.org 也可以同时查看标准库文档和第三方库文档，但没有历史版本。pkg.go.dev 经过一年多的发展，经历了开源、重构等，官方终于决定正式弃用 godoc.org，将其重定向到 pkg.go.dev。</p>
+<p>所以，是时候使用 pkg.go.dev 了，而且它可以直接访问，而不像 golang.org 不能访问。</p>
+]]></content>
+		</item>
 		
 		<item>
 			<title>新买了 Apple M1 Mac，却不知道如何安装 Go？</title>

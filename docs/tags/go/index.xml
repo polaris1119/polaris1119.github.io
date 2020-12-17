@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Wed, 16 Dec 2020 20:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 17 Dec 2020 17:15:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>听说你还不知道如何查看 Go 历史文档？</title>
+      <link>https://polarisxu.studygolang.com/posts/go/dynamic/view-go-history-std-version/</link>
+      <pubDate>Thu, 17 Dec 2020 17:15:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/dynamic/view-go-history-std-version/</guid>
+      <description>大家好，我是站长 polarisxu。 这是一篇短文，写这篇文章主要是看到了两个信息： tonybai 写的《如何查看历史版本的 Go 文档？》 Go 官方发博文，2021 年初开始，godoc.org 默认将重定向到 pkg.go.dev ； tonybai 在文章中说了两种方法： 利用 go doc，可行，但非最优。比如 go doc http.Request。通过切换本地的 Go 版本实现查看不同版本的 Go 标准库文档； 使用 godoc 建立历史版本的 Web 化文档中心。</description>
+    </item>
+    
     <item>
       <title>新买了 Apple M1 Mac，却不知道如何安装 Go？</title>
       <link>https://polarisxu.studygolang.com/posts/go/action/apple-m1-install-go/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/translation/rust-vs-go/</guid>
       <description>最近一年，将 Rust 和 Go 进行比较的不少，但不少都不公正，带感情色彩。而这篇文章客观、全面的分析对比了 Rust 和 Go，让你具体项目时选择最合适的。 Rust 还是 Go，哪个更好？你应该为下一个项目选择哪种语言，为什么？两者在性能，简单性，安全性，功能，规模和并发性等方面如何比较？它们有什么共同点，并且在根本上有何不同？来自 For the Go of Love 系列图书的作者，友好而公正的比较 Rust 和 Golang。</description>
-    </item>
-    
-    <item>
-      <title>关于 Go 语言微服务框架 Micro 的一些情况说明</title>
-      <link>https://polarisxu.studygolang.com/posts/go/micro/micro-3.0.0-m3o/</link>
-      <pubDate>Mon, 09 Nov 2020 15:50:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/micro/micro-3.0.0-m3o/</guid>
-      <description>用过或了解过 Micro 这个框架的人，可能有所耳闻，大家对其抱怨比较多，典型的抱怨是升级后不兼容。比如网上有教程是基于 1.x，但新版本是 2.x，完全不一样了，而且似乎官方文档也没有及时更新，使用了它的人“痛苦不堪”。 前些天，有人问我有无其他 Go 微服务框架推荐，说 Micro 3.0.0 开始不能用了！！ 我听了一惊：我只听说它不稳定，总是变来变去，兼容性不好，但没听说不能用。后来了解了下，原来</description>
     </item>
     
   </channel>
