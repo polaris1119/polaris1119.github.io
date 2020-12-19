@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#fcfcfc">
+	<meta name="msapplication-TileColor" content="#fcfcfc">
+<meta itemprop="name" content="感慨 Apple 的 强大">
+<meta itemprop="description" content="这段时间关注 Apple M1 芯片挺多的，对 Apple 的强大由衷的感慨。市值 2.1 万亿美金，做的动作都成为行业引领者。 当年扁平化设计出来，被各种吐槽；结果大家都扁平化了； 出暗黑模式（很程序员？），有些人不喜欢，但现在各种都支持暗黑模式； iPhone 12 不带耳机和充电器，骂声一片，目测各个手机厂商都跟进，比如三星就宣布不带了； Mac 换成自己的 M1 芯片，很多软件厂商及时跟进支持； 。。。 昨天 Go 1.16 Beta1 发布，原生">
+<meta itemprop="datePublished" content="2020-12-19T15:00:00+08:00" />
+<meta itemprop="dateModified" content="2020-12-19T15:00:00+08:00" />
+<meta itemprop="wordCount" content="873">
+
+
+
+<meta itemprop="keywords" content="M1,Apple," />
+<meta property="og:title" content="感慨 Apple 的 强大" />
+<meta property="og:description" content="这段时间关注 Apple M1 芯片挺多的，对 Apple 的强大由衷的感慨。市值 2.1 万亿美金，做的动作都成为行业引领者。 当年扁平化设计出来，被各种吐槽；结果大家都扁平化了； 出暗黑模式（很程序员？），有些人不喜欢，但现在各种都支持暗黑模式； iPhone 12 不带耳机和充电器，骂声一片，目测各个手机厂商都跟进，比如三星就宣布不带了； Mac 换成自己的 M1 芯片，很多软件厂商及时跟进支持； 。。。 昨天 Go 1.16 Beta1 发布，原生" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://polarisxu.studygolang.com/posts/apple/is-apple-m1-ready/" />
+<meta property="article:published_time" content="2020-12-19T15:00:00+08:00" />
+<meta property="article:modified_time" content="2020-12-19T15:00:00+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="感慨 Apple 的 强大"/>
+<meta name="twitter:description" content="这段时间关注 Apple M1 芯片挺多的，对 Apple 的强大由衷的感慨。市值 2.1 万亿美金，做的动作都成为行业引领者。 当年扁平化设计出来，被各种吐槽；结果大家都扁平化了； 出暗黑模式（很程序员？），有些人不喜欢，但现在各种都支持暗黑模式； iPhone 12 不带耳机和充电器，骂声一片，目测各个手机厂商都跟进，比如三星就宣布不带了； Mac 换成自己的 M1 芯片，很多软件厂商及时跟进支持； 。。。 昨天 Go 1.16 Beta1 发布，原生"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>感慨 Apple 的 强大</title>
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
+	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/styles.css">
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://polarisxu.studygolang.com">polarisxu</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+  <a href="https://polarisxu.studygolang.com/">首页</a>
+  <a href="https://polarisxu.studygolang.com/categories/echo%E7%B3%BB%E5%88%97/">Echo系列</a>
+  <a href="https://polarisxu.studygolang.com/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a>
+  <a href="https://polarisxu.studygolang.com/posts/">归档</a>
+  <a href="https://polarisxu.studygolang.com/about/">关于</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<button id="toc-btn" class="hdr-btn desktop-only-ib" title="目录"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3" y2="6"></line><line x1="3" y1="12" x2="3" y2="12"></line><line x1="3" y1="18" x2="3" y2="18"></line></svg></button><span class="hdr-social hide-in-mobile"><a href="https://github.com/polaris1119" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a><a href="https://twitter.com/polaris1119" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="菜单"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://polarisxu.studygolang.com/">首页</a></li>
+			<li><a href="https://polarisxu.studygolang.com/categories/echo%E7%B3%BB%E5%88%97/">Echo系列</a></li>
+			<li><a href="https://polarisxu.studygolang.com/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a></li>
+			<li><a href="https://polarisxu.studygolang.com/posts/">归档</a></li>
+			<li><a href="https://polarisxu.studygolang.com/about/">关于</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Dec 19, 2020</span></div>
+				<h1>感慨 Apple 的 强大</h1>
+			</header>
+			<div class="content">
+				<p>这段时间关注 Apple M1 芯片挺多的，对 Apple 的强大由衷的感慨。市值 2.1 万亿美金，做的动作都成为行业引领者。</p>
+<ul>
+<li>当年扁平化设计出来，被各种吐槽；结果大家都扁平化了；</li>
+<li>出暗黑模式（很程序员？），有些人不喜欢，但现在各种都支持暗黑模式；</li>
+<li>iPhone 12 不带耳机和充电器，骂声一片，目测各个手机厂商都跟进，比如三星就宣布不带了；</li>
+<li>Mac 换成自己的 M1 芯片，很多软件厂商及时跟进支持；</li>
+<li>。。。</li>
+</ul>
+<p>昨天 Go 1.16 Beta1 发布，原生支持 M1 芯片，今天无意中发现了一个 Twitter 账号：Is Apple Silicon Ready ?
+@ism1ready，以及对应的网站：<a href="https://isapplesiliconready.com">https://isapplesiliconready.com</a>。刚换芯片，软件厂商们立马跟进，还有人做了这么个站点，不得不感叹：Apple 就是牛逼！</p>
+<p><p class="md__image">
+  <img src="../imgs/m1-01.png"
+    alt=""  />
+</p>
+</p>
+<p>如果你买了 M1 的 Mac，可以看看这个网站，它支持多国语言。对应用做了分类，同时就支持程度分为：原生支持 M1、只支持 Rosetta 2、不可用和还没测试。同时支持搜索某个软件。</p>
+<p>有了这个网站，你可以很清晰的知晓软件对 M1 的支持程度。</p>
+<h2 id="rosetta-2">Rosetta 2<a href="#rosetta-2" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>有些人可能不清楚 Rosetta 2 是啥，这里简单普及一下。</p>
+<p>要说 Rosetta 2，先说说 Rosetta。</p>
+<p>2006 年，苹果发布了 Rosetta，原因是它由原来的 PowerPC 芯片换成了 Intel 芯片，为了过渡，使许多 PowerPC 应用程序无需修改即可在基于 Intel 的 Mac 计算机上运行。因此可以简单的理解为，Rosetta 做了转换。</p>
+<p>现在苹果又放弃了 Intel 芯片，采用 ARM 架构的 M1 芯片，同样会存在过渡问题，因此推出了 Rosetta 2，搭载苹果芯片的 Mac，可以运行专为 Intel 处理器 Mac 构建的 App。</p>
+<p>苹果官方介绍在大多数情况下，需要 Rosetta 的 App 的性能不会出现任何差异。但实际上，性能和运行速度就无法保证和在 Intel 芯片的 Mac 上一样了。毕竟原生肯定优化的更好。</p>
+<h2 id="软件原生支持情况">软件原生支持情况<a href="#软件原生支持情况" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>浏览器方面，Safari、Chrome、Edge、Firefox 都原生支持 M1 了。</p>
+<p>编程语言方面，Go 1.16 支持，已经发布了 Beta1 版本；PHP 已经支持；Java 已经支持；Python 已经支持；Ruby 已经支持；Node 已经支持。其他一些语言，可以通过 Rosetta 2 来运行。</p>
+<p>更多其他软件的支持情况可以通过该站的搜索查看。</p>
+<p>所以，整体来说，因为有 Rosetta 2 的存在，新版 Mac 的使用完全不是问题，问题是有没有钱买~哈哈哈哈</p>
+
+			</div><div class="content">
+	<br>
+	<img src="https://static.studygolang.com/static/img/polarisxu-qrcode-soso-s.png">
+</div>
+
+<div class="related-posts thin">
+	<h2>相关推荐</h2>
+	<ul>
+	
+	<li><a href="/posts/go/action/apple-m1-install-go/">新买了 Apple M1 Mac，却不知道如何安装 Go？</a></li>
+	
+	</ul>
+</div>
+
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://polarisxu.studygolang.com/tags/m1">M1</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/apple">Apple</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>873 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2020-12-19 15:00 &#43;0800</p>
+			</footer>
+		</article>
+		<aside id="toc">
+			<div class="toc-title">目录</div>
+			<nav id="TableOfContents">
+  <ul>
+    <li><a href="#rosetta-2">Rosetta 2</a></li>
+    <li><a href="#软件原生支持情况">软件原生支持情况</a></li>
+  </ul>
+</nav>
+		</aside>
+		<div class="post-nav thin">
+			<a class="prev-post" href="https://polarisxu.studygolang.com/posts/go/dynamic/view-go-history-std-version/">
+				<span class="post-nav-label">旧&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>听说你还不知道如何查看 Go 历史文档？</span>
+			</a>
+		</div>
+		<div id="comments" class="thin"><script src="https://utteranc.es/client.js"
+	repo="polaris1119/polarisxu"
+	issue-term="pathname"
+	theme="github-light"
+	crossorigin="anonymous"
+	async>
+</script>
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2019 - 2020 <a href="https://polarisxu.studygolang.com">polarisxu</a> &#183; <a href="http://www.beian.miit.gov.cn/">京ICP备14030343号-1</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://polarisxu.studygolang.com/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+		<span id="busuanzi_container" style="color: #666;">
+			本站总访客数/访问量：<span id="busuanzi_value_site_uv"></span>/<span id="busuanzi_value_site_pv"></span>
+		</span>
+	</footer>
+
+
+
+	<script src="https://polarisxu.studygolang.com/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw=" crossorigin="anonymous"></script>
+	<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?224c227cd9239761ec770bc8c1fb134c";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+</body>
+
+</html>

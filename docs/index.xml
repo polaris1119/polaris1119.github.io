@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Thu, 17 Dec 2020 17:15:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 19 Dec 2020 15:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>感慨 Apple 的 强大</title>
+      <link>https://polarisxu.studygolang.com/posts/apple/is-apple-m1-ready/</link>
+      <pubDate>Sat, 19 Dec 2020 15:00:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/apple/is-apple-m1-ready/</guid>
+      <description>这段时间关注 Apple M1 芯片挺多的，对 Apple 的强大由衷的感慨。市值 2.1 万亿美金，做的动作都成为行业引领者。 当年扁平化设计出来，被各种吐槽；结果大家都扁平化了； 出暗黑模式（很程序员？），有些人不喜欢，但现在各种都支持暗黑模式； iPhone 12 不带耳机和充电器，骂声一片，目测各个手机厂商都跟进，比如三星就宣布不带了； Mac 换成自己的 M1 芯片，很多软件厂商及时跟进支持； 。。。 昨天 Go 1.16 Beta1 发布，原生</description>
+    </item>
+    
     <item>
       <title>听说你还不知道如何查看 Go 历史文档？</title>
       <link>https://polarisxu.studygolang.com/posts/go/dynamic/view-go-history-std-version/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/talk/go-rsc-dynamic/</guid>
       <description>前天发了一篇文章，介绍了 Go 的名人，Go Team 现在的 Leader Russ Cox 。 01 这两天在大牛的 GitHub 上看到他开源了一个新的工具：一个实验性的，用于 Go 语言的重构工具。 项目地址：https://github.com/rsc/rf。 开源后，立马有人跟进：https://changelog.com/news/russ-coxs-experimental-new-refactoring-tool</description>
-    </item>
-    
-    <item>
-      <title>Go 语言名人：除了 Rob Pike，很多人可能不知道他</title>
-      <link>https://polarisxu.studygolang.com/posts/talk/go-celebrity-rsc/</link>
-      <pubDate>Thu, 19 Nov 2020 19:20:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/talk/go-celebrity-rsc/</guid>
-      <description>大家好，我是站长 polarisxu。 今天和大家聊聊 Go 语言名人的那些事。 01 说起 Go 语言，很多人知晓有三个创始人。在 2007 年 09 月 25 日，Rob Pike 发了一封邮件： 所以一般认为 Rob Pike、Robert Griesemer 和 Ken Thompson 是 Go 的创始人，而很长一段时间，Rob Pike 在引领 Go 团队，同时在一些公众场合经常出现，因此大家对 Rob Piike 更熟悉。关于他们三个的情况，网上资料挺多的，这里不说了。 今天说的是另外一个人</description>
     </item>
     
   </channel>

@@ -7,7 +7,25 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Thu, 17 Dec 2020 17:15:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 19 Dec 2020 15:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Apple</title>
+      <link>https://polarisxu.studygolang.com/tags/apple/</link>
+      <pubDate>Sat, 19 Dec 2020 15:00:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/tags/apple/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>M1</title>
+      <link>https://polarisxu.studygolang.com/tags/m1/</link>
+      <pubDate>Sat, 19 Dec 2020 15:00:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/tags/m1/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>Go</title>
       <link>https://polarisxu.studygolang.com/tags/go/</link>
@@ -32,15 +50,6 @@
       <pubDate>Thu, 17 Dec 2020 17:15:00 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/tags/%E6%A0%87%E5%87%86%E5%BA%93/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>M1</title>
-      <link>https://polarisxu.studygolang.com/tags/m1/</link>
-      <pubDate>Wed, 16 Dec 2020 20:00:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/tags/m1/</guid>
       <description></description>
     </item>
     
@@ -86,15 +95,6 @@
       <pubDate>Tue, 08 Dec 2020 11:30:00 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/tags/php8/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Golang</title>
-      <link>https://polarisxu.studygolang.com/tags/golang/</link>
-      <pubDate>Mon, 07 Dec 2020 18:12:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/tags/golang/</guid>
       <description></description>
     </item>
     
