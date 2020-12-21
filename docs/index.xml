@@ -7,14 +7,23 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Sat, 19 Dec 2020 15:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 21 Dec 2020 16:12:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>这道题竟然只有 12% 的人答对。。。</title>
+      <link>https://polarisxu.studygolang.com/posts/go/action/weekly-question-embed-time/</link>
+      <pubDate>Mon, 21 Dec 2020 16:12:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/action/weekly-question-embed-time/</guid>
+      <description>这题是有点坑，但很多人对结果还是不知所以 大家好，我是站长 polarisxu。 在 《Go 语言爱好者周刊第 74 期》 有一道题，以下代码输出什么？ package main import ( &amp;#34;encoding/json&amp;#34; &amp;#34;fmt&amp;#34; &amp;#34;time&amp;#34; ) func main() { t := struct { time.Time N int }{ time.Date(2020, 12, 20, 0, 0, 0, 0, time.UTC), 5, } m, _ := json.Marshal(t) fmt.Printf(&amp;#34;%s&amp;#34;, m) } A：{&amp;quot;Time&amp;quot;: &amp;quot;2020-12-20T00:00:00Z&amp;quot;, &amp;quot;N&amp;quot;: 5}；B：&amp;quot;2020-12-20T00:00:00Z&amp;quot;；C：{&amp;quot;N&amp;quot;:</description>
+    </item>
+    
     <item>
       <title>感慨 Apple 的 强大</title>
       <link>https://polarisxu.studygolang.com/posts/apple/is-apple-m1-ready/</link>
       <pubDate>Sat, 19 Dec 2020 15:00:00 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/posts/apple/is-apple-m1-ready/</guid>
-      <description>这段时间关注 Apple M1 芯片挺多的，对 Apple 的强大由衷的感慨。市值 2.1 万亿美金，做的动作都成为行业引领者。 当年扁平化设计出来，被各种吐槽；结果大家都扁平化了； 出暗黑模式（很程序员？），有些人不喜欢，但现在各种都支持暗黑模式； iPhone 12 不带耳机和充电器，骂声一片，目测各个手机厂商都跟进，比如三星就宣布不带了； Mac 换成自己的 M1 芯片，很多软件厂商及时跟进支持； 。。。 昨天 Go 1.16 Beta1 发布，原生</description>
+      <description>大家好，我是站长 polarisxu。 这段时间关注 Apple M1 芯片挺多的，对 Apple 的强大由衷的感慨。市值 2.1 万亿美金，做的动作都成为行业引领者。 当年扁平化设计出来，被各种吐槽；结果大家都扁平化了； 出暗黑模式（很程序员？），有些人不喜欢，但现在各种都支持暗黑模式； iPhone 12 不带耳机和充电器，骂声一片，目测各个手机厂商都跟进，比如三星就宣布不带了； Mac 换成自己的 M1 芯片，很多软件厂商及时</description>
     </item>
     
     <item>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/talk/myblog-with-hugo-github-pages/</guid>
       <description>大家好，我是站长 polarisxu。 很早之前，我使用 WordPress 搭建了个人博客：http://blog.studygolang.com，毕竟那时候 WordPress 是首选。现如今，大家似乎更喜欢静态博客，各种语言的静态博客生成器轮子不断，比如 Go 语言的 Hugo 就是一个静态博客生成器。我个人认为，静态博客生成器流行的一个很大原因，是 Markdown 的流行，开发人员习惯了使用 Markdown 进行写作。 对于我，有另外一个痛点</description>
-    </item>
-    
-    <item>
-      <title>Russ Cox 又有动态了：开源了一个 Go 工具</title>
-      <link>https://polarisxu.studygolang.com/posts/talk/go-rsc-dynamic/</link>
-      <pubDate>Sat, 21 Nov 2020 21:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/talk/go-rsc-dynamic/</guid>
-      <description>前天发了一篇文章，介绍了 Go 的名人，Go Team 现在的 Leader Russ Cox 。 01 这两天在大牛的 GitHub 上看到他开源了一个新的工具：一个实验性的，用于 Go 语言的重构工具。 项目地址：https://github.com/rsc/rf。 开源后，立马有人跟进：https://changelog.com/news/russ-coxs-experimental-new-refactoring-tool</description>
     </item>
     
   </channel>

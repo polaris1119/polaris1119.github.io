@@ -3,6 +3,41 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://polarisxu.studygolang.com/</loc>
+    <lastmod>2020-12-21T16:12:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polarisxu.studygolang.com/tags/</loc>
+    <lastmod>2020-12-21T16:12:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polarisxu.studygolang.com/tags/%E5%86%85%E5%B5%8C%E7%B1%BB%E5%9E%8B/</loc>
+    <lastmod>2020-12-21T16:12:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polarisxu.studygolang.com/tags/%E5%91%A8%E5%88%8A%E9%A2%98%E8%A7%A3/</loc>
+    <lastmod>2020-12-21T16:12:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polarisxu.studygolang.com/posts/</loc>
+    <lastmod>2020-12-21T16:12:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polarisxu.studygolang.com/posts/go/action/weekly-question-embed-time/</loc>
+    <lastmod>2020-12-21T16:12:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polarisxu.studygolang.com/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/</loc>
+    <lastmod>2020-12-21T16:12:00+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://polarisxu.studygolang.com/tags/apple/</loc>
     <lastmod>2020-12-19T15:00:00+08:00</lastmod>
   </url>
@@ -13,22 +48,7 @@
   </url>
   
   <url>
-    <loc>https://polarisxu.studygolang.com/</loc>
-    <lastmod>2020-12-19T15:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://polarisxu.studygolang.com/tags/</loc>
-    <lastmod>2020-12-19T15:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://polarisxu.studygolang.com/posts/apple/is-apple-m1-ready/</loc>
-    <lastmod>2020-12-19T15:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://polarisxu.studygolang.com/posts/</loc>
     <lastmod>2020-12-19T15:00:00+08:00</lastmod>
   </url>
   
@@ -64,16 +84,6 @@
   
   <url>
     <loc>https://polarisxu.studygolang.com/posts/go/action/weekly-question-analysis-embed-interface/</loc>
-    <lastmod>2020-12-14T17:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://polarisxu.studygolang.com/tags/%E5%86%85%E5%B5%8C%E7%B1%BB%E5%9E%8B/</loc>
-    <lastmod>2020-12-14T17:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://polarisxu.studygolang.com/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/</loc>
     <lastmod>2020-12-14T17:00:00+08:00</lastmod>
   </url>
   

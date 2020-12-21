@@ -6,8 +6,124 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en</language>
 		<copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-		<lastBuildDate>Sat, 19 Dec 2020 15:00:00 +0800</lastBuildDate>
+		<lastBuildDate>Mon, 21 Dec 2020 16:12:00 +0800</lastBuildDate>
 		<atom:link href="https://polarisxu.studygolang.com/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>这道题竟然只有 12% 的人答对。。。</title>
+			<link>https://polarisxu.studygolang.com/posts/go/action/weekly-question-embed-time/</link>
+			<pubDate>Mon, 21 Dec 2020 16:12:00 +0800</pubDate>
+			
+			<guid>https://polarisxu.studygolang.com/posts/go/action/weekly-question-embed-time/</guid>
+			<description>这题是有点坑，但很多人对结果还是不知所以 大家好，我是站长 polarisxu。 在 《Go 语言爱好者周刊第 74 期》 有一道题，以下代码输出什么？ package main import ( &amp;#34;encoding/json&amp;#34; &amp;#34;fmt&amp;#34; &amp;#34;time&amp;#34; ) func main() { t := struct { time.Time N int }{ time.Date(2020, 12, 20, 0, 0, 0, 0, time.UTC), 5, } m, _ := json.Marshal(t) fmt.Printf(&amp;#34;%s&amp;#34;, m) } A：{&amp;quot;Time&amp;quot;: &amp;quot;2020-12-20T00:00:00Z&amp;quot;, &amp;quot;N&amp;quot;: 5}；B：&amp;quot;2020-12-20T00:00:00Z&amp;quot;；C：{&amp;quot;N&amp;quot;:</description>
+			<content type="html"><![CDATA[<p>这题是有点坑，但很多人对结果还是不知所以</p>
+<p>大家好，我是站长 polarisxu。</p>
+<p>在 <a href="https://mp.weixin.qq.com/s/oDMSFjjzGbu7kkERM8ilGw" target="_blank" rel="noopener">《Go 语言爱好者周刊第 74 期》</a>
+有一道题，以下代码输出什么？</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+	<span class="s">&#34;encoding/json&#34;</span>
+	<span class="s">&#34;fmt&#34;</span>
+	<span class="s">&#34;time&#34;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="nx">t</span> <span class="o">:=</span> <span class="kd">struct</span> <span class="p">{</span>
+		<span class="nx">time</span><span class="p">.</span><span class="nx">Time</span>
+		<span class="nx">N</span> <span class="kt">int</span>
+	<span class="p">}{</span>
+		<span class="nx">time</span><span class="p">.</span><span class="nf">Date</span><span class="p">(</span><span class="mi">2020</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">time</span><span class="p">.</span><span class="nx">UTC</span><span class="p">),</span>
+		<span class="mi">5</span><span class="p">,</span>
+	<span class="p">}</span>
+
+	<span class="nx">m</span><span class="p">,</span> <span class="nx">_</span> <span class="o">:=</span> <span class="nx">json</span><span class="p">.</span><span class="nf">Marshal</span><span class="p">(</span><span class="nx">t</span><span class="p">)</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;%s&#34;</span><span class="p">,</span> <span class="nx">m</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div><p>A：<code>{&quot;Time&quot;: &quot;2020-12-20T00:00:00Z&quot;, &quot;N&quot;: 5}</code>；B：<code>&quot;2020-12-20T00:00:00Z&quot;</code>；C：<code>{&quot;N&quot;: 5}</code>；D：<code>&lt;nil&gt;</code></p>
+<p>答题结果如下：</p>
+<p><p class="md__image">
+  <img src="../imgs/weekly-question-time.png"
+    alt=""  />
+</p>
+</p>
+<p>虽然参与投票的人不是很多，但从结果还是能反馈出来一些问题的，不少人知晓了答案是 B，但还是想不明白为什么。所以写篇文章对该题进行解析。大家不用在乎是不是刁钻的题目，通过题目能学到知识才是最重要的。</p>
+<h2 id="01">01</h2>
+<p>对一个结构体实例进行 json 系列化，直觉很容易选 A。但很显然，不可能这么简单，因此需要仔细看代码。至于选 C 和 D 的人，多半是瞎猜的吧，当然选 B 也不排除有瞎猜的。</p>
+<p>为什么选 B 呢？我想借助一个例子讲解。</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+	<span class="s">&#34;encoding/json&#34;</span>
+  <span class="s">&#34;fmt&#34;</span>
+<span class="p">)</span>
+
+<span class="kd">type</span> <span class="nx">Person</span> <span class="kd">struct</span> <span class="p">{</span>
+  <span class="nx">name</span>  <span class="kt">string</span>
+  <span class="nx">hobby</span> <span class="kt">string</span>
+<span class="p">}</span>	
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">person</span> <span class="o">:=</span> <span class="nx">Person</span><span class="p">{</span><span class="nx">name</span><span class="p">:</span> <span class="s">&#34;polarisxu&#34;</span><span class="p">,</span> <span class="nx">hobby</span><span class="p">:</span> <span class="s">&#34;Golang&#34;</span><span class="p">}</span>
+  <span class="nx">m</span><span class="p">,</span> <span class="nx">_</span> <span class="o">:=</span> <span class="nx">json</span><span class="p">.</span><span class="nf">Marshal</span><span class="p">(</span><span class="nx">person</span><span class="p">)</span>
+  <span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;%s&#34;</span><span class="p">,</span> <span class="nx">m</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div><p>如果你认为输出 <code>{&quot;name&quot;:&quot;polarisxu&quot;,&quot;hobby&quot;:&quot;Golang&quot;}</code>，那你得去补补 encoding/json 包的知识了。要想输出  <code>{&quot;name&quot;:&quot;polarisxu&quot;,&quot;hobby&quot;:&quot;Golang”}</code>，一般我们会这么做：将 Person 的字段导出，同时设置上 tag。</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">Person</span> <span class="kd">struct</span> <span class="p">{</span>
+  <span class="nx">Name</span>  <span class="kt">string</span> <span class="s">`json:&#34;name&#34;`</span>
+  <span class="nx">Hobby</span> <span class="kt">string</span> <span class="s">`json:&#34;hobby&#34;`</span>
+<span class="p">}</span>
+</code></pre></div><p>但如果我们不想导出 Person 的字段呢？可以通过实现 Marshaler 来做到。</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="p">(</span><span class="nx">p</span> <span class="nx">Person</span><span class="p">)</span> <span class="nf">MarshalJSON</span><span class="p">()</span> <span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">return</span> <span class="p">[]</span><span class="nb">byte</span><span class="p">(</span><span class="s">`{&#34;name&#34;:&#34;`</span><span class="o">+</span><span class="nx">p</span><span class="p">.</span><span class="nx">name</span><span class="o">+</span><span class="s">`&#34;,&#34;hobby&#34;:&#34;`</span><span class="o">+</span><span class="nx">p</span><span class="p">.</span><span class="nx">hobby</span><span class="o">+</span><span class="s">`&#34;}`</span><span class="p">),</span> <span class="kc">nil</span>
+<span class="p">}</span>
+</code></pre></div><h2 id="02">02</h2>
+<p>回到题目上，<a href="https://docs.studygolang.com/pkg/time/#Time" target="_blank" rel="noopener">time.Time</a>
+ 是什么类型？</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">Time</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="c1">// contains filtered or unexported fields
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></div><p>这是一个没有导出任何字段的结构体类型，因此它肯定<a href="https://docs.studygolang.com/src/time/time.go?s=38148:38191#L1230" target="_blank" rel="noopener">实现了 Marshaler 接口</a>
+。</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// MarshalJSON implements the json.Marshaler interface.
+</span><span class="c1">// The time is a quoted string in RFC 3339 format, with sub-second precision added if present.
+</span><span class="c1"></span><span class="kd">func</span> <span class="p">(</span><span class="nx">t</span> <span class="nx">Time</span><span class="p">)</span> <span class="nf">MarshalJSON</span><span class="p">()</span> <span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">if</span> <span class="nx">y</span> <span class="o">:=</span> <span class="nx">t</span><span class="p">.</span><span class="nf">Year</span><span class="p">();</span> <span class="nx">y</span> <span class="p">&lt;</span> <span class="mi">0</span> <span class="o">||</span> <span class="nx">y</span> <span class="o">&gt;=</span> <span class="mi">10000</span> <span class="p">{</span>
+		<span class="c1">// RFC 3339 is clear that years are 4 digits exactly.
+</span><span class="c1"></span>		<span class="c1">// See golang.org/issue/4556#c15 for more discussion.
+</span><span class="c1"></span>		<span class="k">return</span> <span class="kc">nil</span><span class="p">,</span> <span class="nx">errors</span><span class="p">.</span><span class="nf">New</span><span class="p">(</span><span class="s">&#34;Time.MarshalJSON: year outside of range [0,9999]&#34;</span><span class="p">)</span>
+	<span class="p">}</span>
+
+	<span class="nx">b</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="nx">RFC3339Nano</span><span class="p">)</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span>
+	<span class="nx">b</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">b</span><span class="p">,</span> <span class="sc">&#39;&#34;&#39;</span><span class="p">)</span>
+	<span class="nx">b</span> <span class="p">=</span> <span class="nx">t</span><span class="p">.</span><span class="nf">AppendFormat</span><span class="p">(</span><span class="nx">b</span><span class="p">,</span> <span class="nx">RFC3339Nano</span><span class="p">)</span>
+	<span class="nx">b</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">b</span><span class="p">,</span> <span class="sc">&#39;&#34;&#39;</span><span class="p">)</span>
+	<span class="k">return</span> <span class="nx">b</span><span class="p">,</span> <span class="kc">nil</span>
+<span class="p">}</span>
+</code></pre></div><p>这么说，答案不应该就是 A 吗？别急。</p>
+<h2 id="03">03</h2>
+<p>如果 t 是这么定义的：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">t</span> <span class="o">:=</span> <span class="kd">struct</span> <span class="p">{</span>
+  <span class="nx">Time</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Time</span>
+  <span class="nx">N</span> <span class="kt">int</span>
+<span class="p">}{</span>
+  <span class="nx">time</span><span class="p">.</span><span class="nf">Date</span><span class="p">(</span><span class="mi">2020</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">time</span><span class="p">.</span><span class="nx">UTC</span><span class="p">),</span>
+  <span class="mi">5</span><span class="p">,</span>
+<span class="p">}</span>
+</code></pre></div><p>那结果就是 A。而题目中，time.Time 是内嵌的。你学习 Go 时，应该看过通过内嵌来模拟继承的功能吧！</p>
+<p>正是因为内嵌，t 的方法集包括了 time.Time 的方法集，所以，t 自动实现了 Marshaler 接口。因此答案是 B。</p>
+<p>其实这道题的情况，在日常工作中还真有可能遇到。所以，当你内嵌某个类型时，特别这个类型不是你自己定义的，需要留意这种情况。</p>
+<p>一般解决这个问题的方法有两种：1）不内嵌；2）重新实现 MarshalJSON 方法。</p>
+<p>然而这道题无法重新实现 MarshalJSON 方法，因为结构体类型是匿名的。只能通过不内嵌来得到正确的结果。</p>
+<h2 id="04">04</h2>
+<p>最后一起看下 json.Marshal 函数的文档，主要看下面这段：</p>
+<blockquote>
+<p>Marshal traverses the value v recursively. If an encountered value implements the Marshaler interface and is not a nil pointer, Marshal calls its MarshalJSON method to produce JSON. If no MarshalJSON method is present but the value implements encoding.TextMarshaler instead, Marshal calls its MarshalText method and encodes the result as a JSON string. The nil pointer exception is not strictly necessary but mimics a similar, necessary exception in the behavior of UnmarshalJSON.</p>
+</blockquote>
+<p>大意是说，如果值实现了 json.Marshaler 接口并且不是 nil 指针，则 Marshal 函数会调用其 MarshalJSON 方法以生成 JSON。如果不存在 MarshalJSON 方法，但该值实现 encoding.TextMarshaler 接口，则 Marshal 函数调用其 MarshalText 方法并将结果编码为 JSON 字符串。</p>
+<p>可见，json.Marshal 函数优先调用 MarshalJSON，然后是 MarshalText，如果都没有，才会走正常的类型编码逻辑。</p>
+]]></content>
+		</item>
 		
 		<item>
 			<title>感慨 Apple 的 强大</title>
@@ -15,8 +131,9 @@
 			<pubDate>Sat, 19 Dec 2020 15:00:00 +0800</pubDate>
 			
 			<guid>https://polarisxu.studygolang.com/posts/apple/is-apple-m1-ready/</guid>
-			<description>这段时间关注 Apple M1 芯片挺多的，对 Apple 的强大由衷的感慨。市值 2.1 万亿美金，做的动作都成为行业引领者。 当年扁平化设计出来，被各种吐槽；结果大家都扁平化了； 出暗黑模式（很程序员？），有些人不喜欢，但现在各种都支持暗黑模式； iPhone 12 不带耳机和充电器，骂声一片，目测各个手机厂商都跟进，比如三星就宣布不带了； Mac 换成自己的 M1 芯片，很多软件厂商及时跟进支持； 。。。 昨天 Go 1.16 Beta1 发布，原生</description>
-			<content type="html"><![CDATA[<p>这段时间关注 Apple M1 芯片挺多的，对 Apple 的强大由衷的感慨。市值 2.1 万亿美金，做的动作都成为行业引领者。</p>
+			<description>大家好，我是站长 polarisxu。 这段时间关注 Apple M1 芯片挺多的，对 Apple 的强大由衷的感慨。市值 2.1 万亿美金，做的动作都成为行业引领者。 当年扁平化设计出来，被各种吐槽；结果大家都扁平化了； 出暗黑模式（很程序员？），有些人不喜欢，但现在各种都支持暗黑模式； iPhone 12 不带耳机和充电器，骂声一片，目测各个手机厂商都跟进，比如三星就宣布不带了； Mac 换成自己的 M1 芯片，很多软件厂商及时</description>
+			<content type="html"><![CDATA[<p>大家好，我是站长 polarisxu。</p>
+<p>这段时间关注 Apple M1 芯片挺多的，对 Apple 的强大由衷的感慨。市值 2.1 万亿美金，做的动作都成为行业引领者。</p>
 <ul>
 <li>当年扁平化设计出来，被各种吐槽；结果大家都扁平化了；</li>
 <li>出暗黑模式（很程序员？），有些人不喜欢，但现在各种都支持暗黑模式；</li>

@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Mon, 14 Dec 2020 17:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 21 Dec 2020 16:12:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>这道题竟然只有 12% 的人答对。。。</title>
+      <link>https://polarisxu.studygolang.com/posts/go/action/weekly-question-embed-time/</link>
+      <pubDate>Mon, 21 Dec 2020 16:12:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/action/weekly-question-embed-time/</guid>
+      <description>这题是有点坑，但很多人对结果还是不知所以 大家好，我是站长 polarisxu。 在 《Go 语言爱好者周刊第 74 期》 有一道题，以下代码输出什么？ package main import ( &amp;#34;encoding/json&amp;#34; &amp;#34;fmt&amp;#34; &amp;#34;time&amp;#34; ) func main() { t := struct { time.Time N int }{ time.Date(2020, 12, 20, 0, 0, 0, 0, time.UTC), 5, } m, _ := json.Marshal(t) fmt.Printf(&amp;#34;%s&amp;#34;, m) } A：{&amp;quot;Time&amp;quot;: &amp;quot;2020-12-20T00:00:00Z&amp;quot;, &amp;quot;N&amp;quot;: 5}；B：&amp;quot;2020-12-20T00:00:00Z&amp;quot;；C：{&amp;quot;N&amp;quot;:</description>
+    </item>
+    
     <item>
       <title>你是不是没想过，结构体竟然可以内嵌一个接口？</title>
       <link>https://polarisxu.studygolang.com/posts/go/action/weekly-question-analysis-embed-interface/</link>

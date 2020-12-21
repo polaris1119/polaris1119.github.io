@@ -7,7 +7,34 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Sat, 19 Dec 2020 15:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 21 Dec 2020 16:12:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>内嵌类型</title>
+      <link>https://polarisxu.studygolang.com/tags/%E5%86%85%E5%B5%8C%E7%B1%BB%E5%9E%8B/</link>
+      <pubDate>Mon, 21 Dec 2020 16:12:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/tags/%E5%86%85%E5%B5%8C%E7%B1%BB%E5%9E%8B/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>周刊题解</title>
+      <link>https://polarisxu.studygolang.com/tags/%E5%91%A8%E5%88%8A%E9%A2%98%E8%A7%A3/</link>
+      <pubDate>Mon, 21 Dec 2020 16:12:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/tags/%E5%91%A8%E5%88%8A%E9%A2%98%E8%A7%A3/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>面试题</title>
+      <link>https://polarisxu.studygolang.com/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/</link>
+      <pubDate>Mon, 21 Dec 2020 16:12:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>Apple</title>
       <link>https://polarisxu.studygolang.com/tags/apple/</link>
@@ -63,38 +90,11 @@
     </item>
     
     <item>
-      <title>内嵌类型</title>
-      <link>https://polarisxu.studygolang.com/tags/%E5%86%85%E5%B5%8C%E7%B1%BB%E5%9E%8B/</link>
-      <pubDate>Mon, 14 Dec 2020 17:00:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/tags/%E5%86%85%E5%B5%8C%E7%B1%BB%E5%9E%8B/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>面试题</title>
-      <link>https://polarisxu.studygolang.com/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/</link>
-      <pubDate>Mon, 14 Dec 2020 17:00:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>PHP</title>
       <link>https://polarisxu.studygolang.com/tags/php/</link>
       <pubDate>Tue, 08 Dec 2020 11:30:00 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/tags/php/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>PHP8</title>
-      <link>https://polarisxu.studygolang.com/tags/php8/</link>
-      <pubDate>Tue, 08 Dec 2020 11:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/tags/php8/</guid>
       <description></description>
     </item>
     
