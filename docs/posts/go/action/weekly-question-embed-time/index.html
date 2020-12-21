@@ -8,23 +8,23 @@
 	<meta name="theme-color" content="#fcfcfc">
 	<meta name="msapplication-TileColor" content="#fcfcfc">
 <meta itemprop="name" content="这道题竟然只有 12% 的人答对。。。">
-<meta itemprop="description" content="这题是有点坑，但很多人对结果还是不知所以 大家好，我是站长 polarisxu。 在 《Go 语言爱好者周刊第 74 期》 有一道题，以下代码输出什么？ package main import ( &#34;encoding/json&#34; &#34;fmt&#34; &#34;time&#34; ) func main() { t := struct { time.Time N int }{ time.Date(2020, 12, 20, 0, 0, 0, 0, time.UTC), 5, } m, _ := json.Marshal(t) fmt.Printf(&#34;%s&#34;, m) } A：{&quot;Time&quot;: &quot;2020-12-20T00:00:00Z&quot;, &quot;N&quot;: 5}；B：&quot;2020-12-20T00:00:00Z&quot;；C：{&quot;N&quot;:">
+<meta itemprop="description" content="这题是有点坑，但很多人对结果还是不知所以。">
 <meta itemprop="datePublished" content="2020-12-21T16:12:00+08:00" />
 <meta itemprop="dateModified" content="2020-12-21T16:12:00+08:00" />
-<meta itemprop="wordCount" content="1343">
+<meta itemprop="wordCount" content="1323">
 
 
 
 <meta itemprop="keywords" content="周刊题解,面试题,内嵌类型," />
 <meta property="og:title" content="这道题竟然只有 12% 的人答对。。。" />
-<meta property="og:description" content="这题是有点坑，但很多人对结果还是不知所以 大家好，我是站长 polarisxu。 在 《Go 语言爱好者周刊第 74 期》 有一道题，以下代码输出什么？ package main import ( &#34;encoding/json&#34; &#34;fmt&#34; &#34;time&#34; ) func main() { t := struct { time.Time N int }{ time.Date(2020, 12, 20, 0, 0, 0, 0, time.UTC), 5, } m, _ := json.Marshal(t) fmt.Printf(&#34;%s&#34;, m) } A：{&quot;Time&quot;: &quot;2020-12-20T00:00:00Z&quot;, &quot;N&quot;: 5}；B：&quot;2020-12-20T00:00:00Z&quot;；C：{&quot;N&quot;:" />
+<meta property="og:description" content="这题是有点坑，但很多人对结果还是不知所以。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/action/weekly-question-embed-time/" />
 <meta property="article:published_time" content="2020-12-21T16:12:00+08:00" />
 <meta property="article:modified_time" content="2020-12-21T16:12:00+08:00" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="这道题竟然只有 12% 的人答对。。。"/>
-<meta name="twitter:description" content="这题是有点坑，但很多人对结果还是不知所以 大家好，我是站长 polarisxu。 在 《Go 语言爱好者周刊第 74 期》 有一道题，以下代码输出什么？ package main import ( &#34;encoding/json&#34; &#34;fmt&#34; &#34;time&#34; ) func main() { t := struct { time.Time N int }{ time.Date(2020, 12, 20, 0, 0, 0, 0, time.UTC), 5, } m, _ := json.Marshal(t) fmt.Printf(&#34;%s&#34;, m) } A：{&quot;Time&quot;: &quot;2020-12-20T00:00:00Z&quot;, &quot;N&quot;: 5}；B：&quot;2020-12-20T00:00:00Z&quot;；C：{&quot;N&quot;:"/>
+<meta name="twitter:description" content="这题是有点坑，但很多人对结果还是不知所以。"/>
 
 	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -81,8 +81,7 @@
 				<h1>这道题竟然只有 12% 的人答对。。。</h1>
 			</header>
 			<div class="content">
-				<p>这题是有点坑，但很多人对结果还是不知所以</p>
-<p>大家好，我是站长 polarisxu。</p>
+				<p>大家好，我是站长 polarisxu。</p>
 <p>在 <a href="https://mp.weixin.qq.com/s/oDMSFjjzGbu7kkERM8ilGw" target="_blank" rel="noopener">《Go 语言爱好者周刊第 74 期》</a>
 有一道题，以下代码输出什么？</p>
 <div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
@@ -213,7 +212,7 @@
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://polarisxu.studygolang.com/tags/%E5%91%A8%E5%88%8A%E9%A2%98%E8%A7%A3">周刊题解</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/%E9%9D%A2%E8%AF%95%E9%A2%98">面试题</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/%E5%86%85%E5%B5%8C%E7%B1%BB%E5%9E%8B">内嵌类型</a></span>
 				</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1343 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1323 字</p>
 				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2020-12-21 16:12 &#43;0800</p>
 			</footer>
 		</article>
