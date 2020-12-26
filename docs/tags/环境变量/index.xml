@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>环境变量 on polarisxu</title>
+    <link>https://polarisxu.studygolang.com/tags/%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/</link>
+    <description>Recent content in 环境变量 on polarisxu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
+    <lastBuildDate>Sat, 26 Dec 2020 10:12:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>详解 Go 中的环境变量</title>
+      <link>https://polarisxu.studygolang.com/posts/go/translation/environment-variables-in-golang/</link>
+      <pubDate>Sat, 26 Dec 2020 10:12:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/translation/environment-variables-in-golang/</guid>
+      <description>了解环境变量以及在 Golang 应用程序中使用它们的不同方法。 开始之前 本教程假定你具有： 对 Go 语言的基本了解 系统上安装了最新 Golang 版本 几分钟的时间 在本文中，我们将了解环境变量以及为什么要使用它们。并且将使用内置和第三方包在 Go 应用程序中访问它们。 什么是环境变量？ 环境变量是系统级的键-值对，正在运行的进程可以访问它。这些通常用于使同一程序在不同的部署环境（例如 PROD， DEV 或 TES</description>
+    </item>
+    
+  </channel>
+</rss>

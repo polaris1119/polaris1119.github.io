@@ -7,7 +7,34 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Mon, 21 Dec 2020 16:12:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 26 Dec 2020 10:12:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go</title>
+      <link>https://polarisxu.studygolang.com/tags/go/</link>
+      <pubDate>Sat, 26 Dec 2020 10:12:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/tags/go/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Viper</title>
+      <link>https://polarisxu.studygolang.com/tags/viper/</link>
+      <pubDate>Sat, 26 Dec 2020 10:12:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/tags/viper/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>环境变量</title>
+      <link>https://polarisxu.studygolang.com/tags/%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/</link>
+      <pubDate>Sat, 26 Dec 2020 10:12:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/tags/%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>内嵌类型</title>
       <link>https://polarisxu.studygolang.com/tags/%E5%86%85%E5%B5%8C%E7%B1%BB%E5%9E%8B/</link>
@@ -54,15 +81,6 @@
     </item>
     
     <item>
-      <title>Go</title>
-      <link>https://polarisxu.studygolang.com/tags/go/</link>
-      <pubDate>Thu, 17 Dec 2020 17:15:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/tags/go/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>pkgsite</title>
       <link>https://polarisxu.studygolang.com/tags/pkgsite/</link>
       <pubDate>Thu, 17 Dec 2020 17:15:00 +0800</pubDate>
@@ -77,24 +95,6 @@
       <pubDate>Thu, 17 Dec 2020 17:15:00 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/tags/%E6%A0%87%E5%87%86%E5%BA%93/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Mac</title>
-      <link>https://polarisxu.studygolang.com/tags/mac/</link>
-      <pubDate>Wed, 16 Dec 2020 20:00:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/tags/mac/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>PHP</title>
-      <link>https://polarisxu.studygolang.com/tags/php/</link>
-      <pubDate>Tue, 08 Dec 2020 11:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/tags/php/</guid>
       <description></description>
     </item>
     

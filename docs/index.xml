@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Mon, 21 Dec 2020 16:12:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 26 Dec 2020 10:12:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>详解 Go 中的环境变量</title>
+      <link>https://polarisxu.studygolang.com/posts/go/translation/environment-variables-in-golang/</link>
+      <pubDate>Sat, 26 Dec 2020 10:12:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/translation/environment-variables-in-golang/</guid>
+      <description>了解环境变量以及在 Golang 应用程序中使用它们的不同方法。 开始之前 本教程假定你具有： 对 Go 语言的基本了解 系统上安装了最新 Golang 版本 几分钟的时间 在本文中，我们将了解环境变量以及为什么要使用它们。并且将使用内置和第三方包在 Go 应用程序中访问它们。 什么是环境变量？ 环境变量是系统级的键-值对，正在运行的进程可以访问它。这些通常用于使同一程序在不同的部署环境（例如 PROD， DEV 或 TES</description>
+    </item>
+    
     <item>
       <title>这道题竟然只有 12% 的人答对。。。</title>
       <link>https://polarisxu.studygolang.com/posts/go/action/weekly-question-embed-time/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/dynamic/go1.16-changes-2020/</guid>
       <description>大家好，我是站长 polarisxu。 先说一下我一般怎么了解 Go 最新的一些动态。 01 从哪获取信息 主要通过以下方式： 逛推特，通过搜索功能，浏览 Go 信息，比如搜索：#golang since:2020-12-01 until:2020-12-02 看 Go 仓库的提交记录； 查看 https://tip.golang.org。这个一般在一个版本开发了一段时间看，比如现在可以看 Go1.16 的一些内容，主要可以看还未完成的 Release Notes：https://tip</description>
-    </item>
-    
-    <item>
-      <title>Hugo &#43; GitHub Pages 搭建自己的网站</title>
-      <link>https://polarisxu.studygolang.com/posts/talk/myblog-with-hugo-github-pages/</link>
-      <pubDate>Tue, 01 Dec 2020 11:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/talk/myblog-with-hugo-github-pages/</guid>
-      <description>大家好，我是站长 polarisxu。 很早之前，我使用 WordPress 搭建了个人博客：http://blog.studygolang.com，毕竟那时候 WordPress 是首选。现如今，大家似乎更喜欢静态博客，各种语言的静态博客生成器轮子不断，比如 Go 语言的 Hugo 就是一个静态博客生成器。我个人认为，静态博客生成器流行的一个很大原因，是 Markdown 的流行，开发人员习惯了使用 Markdown 进行写作。 对于我，有另外一个痛点</description>
     </item>
     
   </channel>

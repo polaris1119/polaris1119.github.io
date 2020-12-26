@@ -6,8 +6,258 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en</language>
 		<copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-		<lastBuildDate>Mon, 21 Dec 2020 16:12:00 +0800</lastBuildDate>
+		<lastBuildDate>Sat, 26 Dec 2020 10:12:00 +0800</lastBuildDate>
 		<atom:link href="https://polarisxu.studygolang.com/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>详解 Go 中的环境变量</title>
+			<link>https://polarisxu.studygolang.com/posts/go/translation/environment-variables-in-golang/</link>
+			<pubDate>Sat, 26 Dec 2020 10:12:00 +0800</pubDate>
+			
+			<guid>https://polarisxu.studygolang.com/posts/go/translation/environment-variables-in-golang/</guid>
+			<description>了解环境变量以及在 Golang 应用程序中使用它们的不同方法。 开始之前 本教程假定你具有： 对 Go 语言的基本了解 系统上安装了最新 Golang 版本 几分钟的时间 在本文中，我们将了解环境变量以及为什么要使用它们。并且将使用内置和第三方包在 Go 应用程序中访问它们。 什么是环境变量？ 环境变量是系统级的键-值对，正在运行的进程可以访问它。这些通常用于使同一程序在不同的部署环境（例如 PROD， DEV 或 TES</description>
+			<content type="html"><![CDATA[<p>了解环境变量以及在 Golang 应用程序中使用它们的不同方法。</p>
+<h2 id="开始之前">开始之前</h2>
+<p>本教程假定你具有：</p>
+<ul>
+<li>对 Go 语言的基本了解</li>
+<li>系统上安装了最新 Golang 版本</li>
+<li>几分钟的时间</li>
+</ul>
+<p>在本文中，我们将了解环境变量以及为什么要使用它们。并且将使用内置和第三方包在 Go 应用程序中访问它们。</p>
+<h2 id="什么是环境变量">什么是环境变量？</h2>
+<p>环境变量是系统级的键-值对，正在运行的进程可以访问它。这些通常用于使同一程序在不同的部署环境（例如 PROD， DEV 或 TEST）中表现不同。在环境中存储配置是 twelve-factor 应用程序的原理之一。它使应用程序具有可移植性。</p>
+<h2 id="为什么要使用环境变量">为什么要使用环境变量</h2>
+<ul>
+<li>如果您在代码中使用敏感信息，那么所有有权访问该代码的未授权用户都将拥有敏感数据，您可能不希望如此。</li>
+<li>如果您使用的代码版本控制工具如：<code>git</code>，那么可能将 DB 凭据与代码一起推送，它将公开。</li>
+<li>如果要在一处管理变量，则可以进行任何更改，而不必在应用程序代码中的所有位置都进行更改。</li>
+<li>您可以管理多个部署环境，例如 PROD，DEV 或 TEST。在部署之间可以轻松更改环境变量，而无需更改任何应用程序代码。</li>
+</ul>
+<blockquote>
+<p>永远不要忘记在 .gitignore 中包含环境变量文件</p>
+</blockquote>
+<h2 id="内置操作系统包">内置操作系统包</h2>
+<p>您不需要任何外部程序包即可访问 Golang 中的环境变量，并且可以使用标准库 <code>os</code> 包来实现。以下是与环境变量有关的函数及其用途的列表。</p>
+<ul>
+<li><code>os.Setenv()</code> 设置环境值的值。</li>
+<li><code>os.Getenv()</code> 获取指定键对应的环境变量值。</li>
+<li><code>os.Unsetenv()</code> 删除指定键命名对应的单个环境值，如果我们再尝试使用 <code>os.Getenv()</code> 来获取该环境值，将返回一个空值。</li>
+<li><code>os.ExpandEnv</code> 根据环境变量的值替换字符串中的 <code>${var}</code> 或 <code>$var</code>。如果不存在任何环境变量，则将使用空字符串替换它。</li>
+<li><code>os.LookupEnv()</code> 获取指定键对应的环境变量值。如果系统中不存在该变量，则返回值将为空，并且布尔值将为 false。否则，它将返回值（可以为空），并且布尔值为 true。</li>
+</ul>
+<blockquote>
+<p>如果不存在环境变量，则 os.Getenv() 将返回一个空字符串，使用 LookupEnv 来区分空值和未设置值。</p>
+</blockquote>
+<p>现在，让我们在代码中使用上述所有函数。在一个空文件夹中创建一个 main.go 文件。</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+  <span class="s">&#34;fmt&#34;</span>
+  <span class="s">&#34;os&#34;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// Set Environment Variables
+</span><span class="c1"></span>  <span class="nx">os</span><span class="p">.</span><span class="nf">Setenv</span><span class="p">(</span><span class="s">&#34;SITE_TITLE&#34;</span><span class="p">,</span> <span class="s">&#34;Test Site&#34;</span><span class="p">)</span>
+  <span class="nx">os</span><span class="p">.</span><span class="nf">Setenv</span><span class="p">(</span><span class="s">&#34;DB_HOST&#34;</span><span class="p">,</span> <span class="s">&#34;localhost&#34;</span><span class="p">)</span>
+  <span class="nx">os</span><span class="p">.</span><span class="nf">Setenv</span><span class="p">(</span><span class="s">&#34;DB_PORT&#34;</span><span class="p">,</span> <span class="s">&#34;27017&#34;</span><span class="p">)</span>
+  <span class="nx">os</span><span class="p">.</span><span class="nf">Setenv</span><span class="p">(</span><span class="s">&#34;DB_USERNAME&#34;</span><span class="p">,</span> <span class="s">&#34;admin&#34;</span><span class="p">)</span>
+  <span class="nx">os</span><span class="p">.</span><span class="nf">Setenv</span><span class="p">(</span><span class="s">&#34;DB_PASSWORD&#34;</span><span class="p">,</span> <span class="s">&#34;password&#34;</span><span class="p">)</span>
+  <span class="nx">os</span><span class="p">.</span><span class="nf">Setenv</span><span class="p">(</span><span class="s">&#34;DB_NAME&#34;</span><span class="p">,</span> <span class="s">&#34;testdb&#34;</span><span class="p">)</span>
+
+  <span class="c1">// Get the value of an Environment Variable
+</span><span class="c1"></span>  <span class="nx">host</span> <span class="o">:=</span> <span class="nx">os</span><span class="p">.</span><span class="nf">Getenv</span><span class="p">(</span><span class="s">&#34;SITE_TITLE&#34;</span><span class="p">)</span>
+  <span class="nx">port</span> <span class="o">:=</span> <span class="nx">os</span><span class="p">.</span><span class="nf">Getenv</span><span class="p">(</span><span class="s">&#34;DB_HOST&#34;</span><span class="p">)</span>
+  <span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;Site Title: %s, Host: %s\n&#34;</span><span class="p">,</span> <span class="nx">host</span><span class="p">,</span> <span class="nx">port</span><span class="p">)</span>
+
+  <span class="c1">// Unset an Environment Variable
+</span><span class="c1"></span>  <span class="nx">os</span><span class="p">.</span><span class="nf">Unsetenv</span><span class="p">(</span><span class="s">&#34;SITE_TITLE&#34;</span><span class="p">)</span>
+  <span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;After unset, Site Title: %s\n&#34;</span><span class="p">,</span> <span class="nx">os</span><span class="p">.</span><span class="nf">Getenv</span><span class="p">(</span><span class="s">&#34;SITE_TITLE&#34;</span><span class="p">))</span>
+
+  <span class="c1">//Checking that an environment variable is present or not.
+</span><span class="c1"></span>  <span class="nx">redisHost</span><span class="p">,</span> <span class="nx">ok</span> <span class="o">:=</span> <span class="nx">os</span><span class="p">.</span><span class="nf">LookupEnv</span><span class="p">(</span><span class="s">&#34;REDIS_HOST&#34;</span><span class="p">)</span>
+  <span class="k">if</span> <span class="p">!</span><span class="nx">ok</span> <span class="p">{</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;REDIS_HOST is not present&#34;</span><span class="p">)</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;Redis Host: %s\n&#34;</span><span class="p">,</span> <span class="nx">redisHost</span><span class="p">)</span>
+  <span class="p">}</span>
+
+  <span class="c1">// Expand a string containing environment variables in the form of $var or ${var}
+</span><span class="c1"></span>  <span class="nx">dbURL</span> <span class="o">:=</span> <span class="nx">os</span><span class="p">.</span><span class="nf">ExpandEnv</span><span class="p">(</span><span class="s">&#34;mongodb://${DB_USERNAME}:${DB_PASSWORD}@$DB_HOST:$DB_PORT/$DB_NAME&#34;</span><span class="p">)</span>
+  <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;DB URL: &#34;</span><span class="p">,</span> <span class="nx">dbURL</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div><p>下面是我们在终端中执行  <code>go run main.go</code>  的输出：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">go run main.go
+
+// output
+Site Title: Test Site, Host: localhost
+After unset, Site Title: <span class="m">27017</span>
+REDIS_HOST is not present
+DB URL:  mongodb://admin:password@localhost:27017/testdb
+</code></pre></div><p>还有两个函数 <code>os.Clearenv</code> 和 <code>os.Environ()</code>，让我们在单独的程序中使用它们。</p>
+<ul>
+<li><code>os.Clearenv</code>  删除所有环境变量，清理测试环境可能很有用</li>
+<li><code>os.Environ()</code> 以 key = value 的形式返回包含所有环境变量的字符串的一部分。</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+  <span class="s">&#34;fmt&#34;</span>
+  <span class="s">&#34;os&#34;</span>
+  <span class="s">&#34;strings&#34;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+
+  <span class="c1">// Environ returns a slice of string containing all the environment variables in the form of key=value.
+</span><span class="c1"></span>  <span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">env</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">os</span><span class="p">.</span><span class="nf">Environ</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// env is
+</span><span class="c1"></span>    <span class="nx">envPair</span> <span class="o">:=</span> <span class="nx">strings</span><span class="p">.</span><span class="nf">SplitN</span><span class="p">(</span><span class="nx">env</span><span class="p">,</span> <span class="s">&#34;=&#34;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="nx">key</span> <span class="o">:=</span> <span class="nx">envPair</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="nx">value</span> <span class="o">:=</span> <span class="nx">envPair</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;%s : %s\n&#34;</span><span class="p">,</span> <span class="nx">key</span><span class="p">,</span> <span class="nx">value</span><span class="p">)</span>
+  <span class="p">}</span>
+
+  <span class="c1">// Delete all environment variables
+</span><span class="c1"></span>  <span class="nx">os</span><span class="p">.</span><span class="nf">Clearenv</span><span class="p">()</span>
+
+  <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Number of environment variables: &#34;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nf">Environ</span><span class="p">()))</span>
+<span class="p">}</span>
+</code></pre></div><p>上面的函数将列出系统中所有可用的环境变量，包括 <code>NAME</code> 和 <code>DB_HOST</code>。一旦运行<code>os.Clearenv()</code>，它将清除正在运行的进程的所有环境变量。</p>
+<h2 id="godotenv-包">GoDotEnv 包</h2>
+<p>Ruby dotenv 项目启发了 <a href="https://github.com/joho/godotenv" target="_blank" rel="noopener">GoDotEnv</a>
+ 包，它从 <code>.env</code> 文件加载环境变量。</p>
+<p>让我们创建一个 <code>.env</code> 文件，其中包含所有配置。</p>
+<div class="highlight"><pre class="chroma"><code class="language-ini" data-lang="ini"><span class="c1"># .env file</span>
+<span class="c1"># This is a sample config file</span>
+
+<span class="na">SITE_TITLE</span><span class="o">=</span><span class="s">Test Site </span>
+
+<span class="na">DB_HOST</span><span class="o">=</span><span class="s">localhost</span>
+<span class="na">DB_PORT</span><span class="o">=</span><span class="s">27017</span>
+<span class="na">DB_USERNAME</span><span class="o">=</span><span class="s">admin</span>
+<span class="na">DB_PASSWORD</span><span class="o">=</span><span class="s">password</span>
+<span class="na">DB_NAME</span><span class="o">=</span><span class="s">testdb</span>
+</code></pre></div><p>然后在 main.go 文件中，我们将使用 godotenv 加载环境变量。</p>
+<blockquote>
+<p>我们也可以一次加载多个 env 文件。godotenv 还支持 YAML。</p>
+</blockquote>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// main.go
+</span><span class="c1"></span><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+  <span class="s">&#34;fmt&#34;</span>
+  <span class="s">&#34;log&#34;</span>
+  <span class="s">&#34;os&#34;</span>
+
+  <span class="s">&#34;github.com/joho/godotenv&#34;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+
+  <span class="c1">// load .env file from given path
+</span><span class="c1"></span>  <span class="c1">// we keep it empty it will load .env from current directory
+</span><span class="c1"></span>  <span class="nx">err</span> <span class="o">:=</span> <span class="nx">godotenv</span><span class="p">.</span><span class="nf">Load</span><span class="p">(</span><span class="s">&#34;.env&#34;</span><span class="p">)</span>
+
+  <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+    <span class="nx">log</span><span class="p">.</span><span class="nf">Fatalf</span><span class="p">(</span><span class="s">&#34;Error loading .env file&#34;</span><span class="p">)</span>
+  <span class="p">}</span>
+
+  <span class="c1">// getting env variables SITE_TITLE and DB_HOST
+</span><span class="c1"></span>  <span class="nx">siteTitle</span> <span class="o">:=</span> <span class="nx">os</span><span class="p">.</span><span class="nf">Getenv</span><span class="p">(</span><span class="s">&#34;SITE_TITLE&#34;</span><span class="p">)</span>
+  <span class="nx">dbHost</span> <span class="o">:=</span> <span class="nx">os</span><span class="p">.</span><span class="nf">Getenv</span><span class="p">(</span><span class="s">&#34;DB_HOST&#34;</span><span class="p">)</span>
+
+  <span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;godotenv : %s = %s \n&#34;</span><span class="p">,</span> <span class="s">&#34;Site Title&#34;</span><span class="p">,</span> <span class="nx">siteTitle</span><span class="p">)</span>
+  <span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;godotenv : %s = %s \n&#34;</span><span class="p">,</span> <span class="s">&#34;DB Host&#34;</span><span class="p">,</span> <span class="nx">dbHost</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div><p>打开终端并运行  <code>main.go</code>：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">go run main.go
+
+// output
+godotenv : Site <span class="nv">Title</span> <span class="o">=</span> Test Site
+godotenv : DB <span class="nv">Host</span> <span class="o">=</span> localhost
+</code></pre></div><h2 id="viper-包">Viper 包</h2>
+<blockquote>
+<p>Viper 是 Go 应用程序的配置的完整解决方案。它旨在在应用程序中工作，并且可以处理所有类型的配置需求和格式。</p>
+</blockquote>
+<p><a href="https://github.com/spf13/viper" target="_blank" rel="noopener">Viper</a>
+ 支持多种文件格式来加载环境变量，例如，从 JSON，TOML，YAML，HCL，envfile 和 Java 属性配置文件（properties）中读取。因此，在此示例中，我们将研究如何从 YAML 文件中加载环境变量。</p>
+<blockquote>
+<p>YAML 是一种人类可读的数据序列化语言。它通常用于配置文件和用于存储或传输数据的应用程序。</p>
+</blockquote>
+<p>让我们在一个空文件夹中创建 config.yaml 和 main.go。</p>
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="c"># config.yaml</span><span class="w">
+</span><span class="w"></span><span class="nt">SITE</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">TITLE</span><span class="p">:</span><span class="w"> </span><span class="l">Test Site</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="nt">DB</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">HOST</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;localhost&#34;</span><span class="w">
+</span><span class="w">  </span><span class="nt">PORT</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;27017&#34;</span><span class="w">
+</span><span class="w">  </span><span class="nt">USERNAME</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;admin&#34;</span><span class="w">
+</span><span class="w">  </span><span class="nt">PASWORD</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;password&#34;</span><span class="w">
+</span><span class="w">  </span><span class="nt">NAME</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;testdb&#34;</span><span class="w">
+</span></code></pre></div><p>在下面的代码中，我们使用 Viper 从 config.yaml 中加载环境变量。我们可以从所需的任何路径加载配置文件。如果配置文件中没有任何环境变量，我们还可以为任何环境变量设置默认值。</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// main.go
+</span><span class="c1"></span><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+  <span class="s">&#34;fmt&#34;</span>
+  <span class="s">&#34;log&#34;</span>
+  <span class="s">&#34;os&#34;</span>
+
+  <span class="s">&#34;github.com/spf13/viper&#34;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+
+  <span class="c1">// Set the file name of the configurations file
+</span><span class="c1"></span>  <span class="nx">viper</span><span class="p">.</span><span class="nf">SetConfigName</span><span class="p">(</span><span class="s">&#34;config&#34;</span><span class="p">)</span>
+
+  <span class="c1">// Set the path to look for the configurations file
+</span><span class="c1"></span>  <span class="nx">viper</span><span class="p">.</span><span class="nf">AddConfigPath</span><span class="p">(</span><span class="s">&#34;.&#34;</span><span class="p">)</span>
+
+  <span class="c1">// Enable VIPER to read Environment Variables
+</span><span class="c1"></span>  <span class="nx">viper</span><span class="p">.</span><span class="nf">AutomaticEnv</span><span class="p">()</span>
+
+  <span class="nx">viper</span><span class="p">.</span><span class="nf">SetConfigType</span><span class="p">(</span><span class="s">&#34;yml&#34;</span><span class="p">)</span>
+
+  <span class="k">if</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">viper</span><span class="p">.</span><span class="nf">ReadInConfig</span><span class="p">();</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;Error reading config file, %s&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+  <span class="p">}</span>
+
+  <span class="c1">// Set undefined variables
+</span><span class="c1"></span>  <span class="nx">viper</span><span class="p">.</span><span class="nf">SetDefault</span><span class="p">(</span><span class="s">&#34;DB.HOST&#34;</span><span class="p">,</span> <span class="s">&#34;127.0.0.1&#34;</span><span class="p">)</span>
+
+  <span class="c1">// getting env variables DB.PORT
+</span><span class="c1"></span>  <span class="c1">// viper.Get() returns an empty interface{}
+</span><span class="c1"></span>  <span class="c1">// so we have to do the type assertion, to get the value
+</span><span class="c1"></span>  <span class="nx">DBPort</span><span class="p">,</span> <span class="nx">ok</span> <span class="o">:=</span> <span class="nx">viper</span><span class="p">.</span><span class="nf">Get</span><span class="p">(</span><span class="s">&#34;DB.PORT&#34;</span><span class="p">).(</span><span class="kt">string</span><span class="p">)</span>
+
+  <span class="c1">// if type assert is not valid it will throw an error
+</span><span class="c1"></span>  <span class="k">if</span> <span class="p">!</span><span class="nx">ok</span> <span class="p">{</span>
+    <span class="nx">log</span><span class="p">.</span><span class="nf">Fatalf</span><span class="p">(</span><span class="s">&#34;Invalid type assertion&#34;</span><span class="p">)</span>
+  <span class="p">}</span>
+
+  <span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;viper : %s = %s \n&#34;</span><span class="p">,</span> <span class="s">&#34;Database Port&#34;</span><span class="p">,</span> <span class="nx">DBPort</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div><p>打开终端并运行 <code>main.go</code>：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">go run main.go
+
+// output
+viper : Database <span class="nv">Port</span> <span class="o">=</span> <span class="m">27017</span>
+</code></pre></div><h2 id="结论">结论</h2>
+<p>使用环境变量是在我们的应用程序中处理配置的绝佳方法。总体而言，它为您提供了轻松的配置，更好的安全性，多个部署环境以及更少的生产错误。</p>
+<p>现在您可以在 go 应用程序中管理环境变量，并且可以在我们的 <a href="https://github.com/LoginRadius/engineering-blog-samples/tree/master/GoLang/EnvironmentVariables" target="_blank" rel="noopener">Github Repo</a>
+ 上找到本教程中使用的完整代码。</p>
+<blockquote>
+<p>原文链接：<a href="https://www.loginradius.com/engineering/blog/environment-variables-in-golang/">https://www.loginradius.com/engineering/blog/environment-variables-in-golang/</a></p>
+<p>作者：Puneet Singh</p>
+<p>编译：polarisxu</p>
+</blockquote>
+]]></content>
+		</item>
 		
 		<item>
 			<title>这道题竟然只有 12% 的人答对。。。</title>
