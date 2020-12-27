@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#fcfcfc">
+	<meta name="msapplication-TileColor" content="#fcfcfc">
+<meta itemprop="name" content="Go 1.16 的这个新变化需要适应下：go get 和 go install 的变化">
+<meta itemprop="description" content="大家好，我是站长 polarisxu。 一直以来，我们通常都是通过 go get 来下载并安装包的。但从 Go 1.16 起，不推荐通过 go get 来安装包（主要是说安装可执行文件），也就是说，go get 应该只是用来下载包，而且将来版本可能会给该命令始终加上 -d 标志。 你可能会问，这对我使用有什么影响呢？ 让我们看一个实际的例子。 01 安装 Delve 的例子 我们在本地通过源码安装 Go 的调试器 Delve，可以这么做： $ go get">
+<meta itemprop="datePublished" content="2020-12-27T22:30:00+08:00" />
+<meta itemprop="dateModified" content="2020-12-27T22:30:00+08:00" />
+<meta itemprop="wordCount" content="1456">
+
+
+
+<meta itemprop="keywords" content="Go,1.16,安装," />
+<meta property="og:title" content="Go 1.16 的这个新变化需要适应下：go get 和 go install 的变化" />
+<meta property="og:description" content="大家好，我是站长 polarisxu。 一直以来，我们通常都是通过 go get 来下载并安装包的。但从 Go 1.16 起，不推荐通过 go get 来安装包（主要是说安装可执行文件），也就是说，go get 应该只是用来下载包，而且将来版本可能会给该命令始终加上 -d 标志。 你可能会问，这对我使用有什么影响呢？ 让我们看一个实际的例子。 01 安装 Delve 的例子 我们在本地通过源码安装 Go 的调试器 Delve，可以这么做： $ go get" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/dynamic/go-get-install/" />
+<meta property="article:published_time" content="2020-12-27T22:30:00+08:00" />
+<meta property="article:modified_time" content="2020-12-27T22:30:00+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Go 1.16 的这个新变化需要适应下：go get 和 go install 的变化"/>
+<meta name="twitter:description" content="大家好，我是站长 polarisxu。 一直以来，我们通常都是通过 go get 来下载并安装包的。但从 Go 1.16 起，不推荐通过 go get 来安装包（主要是说安装可执行文件），也就是说，go get 应该只是用来下载包，而且将来版本可能会给该命令始终加上 -d 标志。 你可能会问，这对我使用有什么影响呢？ 让我们看一个实际的例子。 01 安装 Delve 的例子 我们在本地通过源码安装 Go 的调试器 Delve，可以这么做： $ go get"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>Go 1.16 的这个新变化需要适应下：go get 和 go install 的变化</title>
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
+	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/styles.css">
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://polarisxu.studygolang.com">polarisxu</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+  <a href="https://polarisxu.studygolang.com/">首页</a>
+  <a href="https://polarisxu.studygolang.com/categories/echo%E7%B3%BB%E5%88%97/">Echo系列</a>
+  <a href="https://polarisxu.studygolang.com/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a>
+  <a href="https://polarisxu.studygolang.com/posts/">归档</a>
+  <a href="https://polarisxu.studygolang.com/about/">关于</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<button id="toc-btn" class="hdr-btn desktop-only-ib" title="目录"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3" y2="6"></line><line x1="3" y1="12" x2="3" y2="12"></line><line x1="3" y1="18" x2="3" y2="18"></line></svg></button><span class="hdr-social hide-in-mobile"><a href="https://github.com/polaris1119" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a><a href="https://twitter.com/polaris1119" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="菜单"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://polarisxu.studygolang.com/">首页</a></li>
+			<li><a href="https://polarisxu.studygolang.com/categories/echo%E7%B3%BB%E5%88%97/">Echo系列</a></li>
+			<li><a href="https://polarisxu.studygolang.com/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a></li>
+			<li><a href="https://polarisxu.studygolang.com/posts/">归档</a></li>
+			<li><a href="https://polarisxu.studygolang.com/about/">关于</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Dec 27, 2020</span></div>
+				<h1>Go 1.16 的这个新变化需要适应下：go get 和 go install 的变化</h1>
+			</header>
+			<div class="content">
+				<p>大家好，我是站长 polarisxu。</p>
+<p>一直以来，我们通常都是通过 <code>go get</code> 来下载并安装包的。但从 Go 1.16 起，不推荐通过 go get 来安装包（主要是说安装可执行文件），也就是说，go get 应该只是用来下载包，而且将来版本可能会给该命令始终加上 <code>-d</code> 标志。 你可能会问，这对我使用有什么影响呢？</p>
+<p>让我们看一个实际的例子。</p>
+<h2 id="01-安装-delve-的例子">01 安装 Delve 的例子<a href="#01-安装-delve-的例子" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>我们在本地通过源码安装 Go 的调试器 Delve，可以这么做：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ go get github.com/go-delve/delve/cmd/dlv
+</code></pre></div><p>因为 go get 会下载、编译并安装包（如果有 main 包）。</p>
+<p>Go 1.16 建议这么使用 go get：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ go get -d github.com/go-delve/delve/cmd/dlv
+</code></pre></div><p>这只会下载 delve，并不会构建和安装，而且将来 go get 只会用来下载。因此，你还需要手动执行安装。</p>
+<h2 id="02-go-install-的变化">02 go install 的变化<a href="#02-go-install-的变化" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<h3 id="gopath-年代">GOPATH 年代<a href="#gopath-年代" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>早在 GOPATH 年代，go install 的作用如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">Install compiles and installs the packages named by the import paths.
+
+The -i flag installs the dependencies of the named packages as well.
+</code></pre></div><p>也就是说，go install 会将包编译成 <code>.a</code> 文件并安装到 <code>$GOPATH/pkg/$GOOS_$GOARCH</code> 下；如果是 main 包，会编译并生成可执行文件安装到 <code>$GOPATH/bin</code> 目录下（如果设置了 <code>$GOBIN</code>，则会安装到 <code>$GOBIN</code> 下 ）。这也是和 go build 不同之处。</p>
+<h3 id="go-module-年代">Go Module 年代<a href="#go-module-年代" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>到了 Go Module 年代，情况发生了变化。大家似乎完全忘记了 go install 的存在（也有可能在 GOPATH 年代，大家就从来不用 go install），因为 go get、go build 就解决问题了。</p>
+<p>特别是，从 Go Module 开始，工作目录没有了 src/pkg/bin 这三个目录，使得 go build 比 go install 更受欢迎。（GOPATH 年代，我更喜欢 go install，因为它会在项目生成和 GOROOT 一样的 src/pkg/bin，保持一致）。</p>
+<p>看看 Module 年代，go install 命令的作用：（基于 Go1.15.x）</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">Install compiles and installs the packages named by the import paths.
+
+Executables are installed in the directory named by the GOBIN environment
+variable, which defaults to <span class="nv">$GOPATH</span>/bin or <span class="nv">$HOME</span>/go/bin <span class="k">if</span> the GOPATH
+environment variable is not set. Executables in <span class="nv">$GOROOT</span>
+are installed in <span class="nv">$GOROOT</span>/bin or <span class="nv">$GOTOOLDIR</span> instead of <span class="nv">$GOBIN</span>.
+
+When module-aware mode is disabled, other packages are installed in the
+directory <span class="nv">$GOPATH</span>/pkg/<span class="nv">$GOOS_$GOARCH</span>. When module-aware mode is enabled,
+other packages are built and cached but not installed.
+
+The -i flag installs the dependencies of the named packages as well.
+</code></pre></div><p>Module 没启用时，和 GOPATH 年代的作用是一样的。当启用 Module 模式时，go install 对普通包（非 main 包）不再安装（即没有了 <code>pkg/$GOOS_$GOARCH</code>），这和 go build 一样了。而对于 main 包，会将生成的可执行文件安装到 <code>$GOBIN</code> 目录下（<code>$GOBIN</code> 的默认值是 <code>$GOPATH/bin</code>，如果 <code>$GOPATH</code> 没有设置，则是 <code>$HOME/go/bin</code>）。</p>
+<p>那么，Module 模式下，什么情况下你可能会使用 go install 呢？</p>
+<p>如果你有这样的习惯会使用 go install。</p>
+<blockquote>
+<p>$GOBIN 在 PATH 环境变量下，这样，GOBIN 下面的可执行文件可以方便的运行。比如你的工作 module 是：github.com/polaris1119/test ，可以通过 <code>go install github.com/polaris1119/test</code> 将 test 安装到 GOBIN 下，然后直接执行 test 运行。</p>
+</blockquote>
+<h3 id="go-116-及以后">Go 1.16 及以后<a href="#go-116-及以后" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>从 Go 1.16 起，go install 可以接受带有版本后缀的参数（例如 go install <a href="mailto:example.com/cmd@v1.0.0">example.com/cmd@v1.0.0</a>）。这将导致 go install 以模块感知模式构建和安装包，而忽略当前目录或任何父目录（如果有）中的 go.mod 文件。这对于在不影响主模块依赖性的情况下安装可执行文件很有用。</p>
+<p>如本文开头提到的，go get 不建议用来构建和安装包了。</p>
+<p>所以，Go 1.16 及以后，go get 和 go install 应该什么时候使用呢？</p>
+<ul>
+<li>如果要安装第三方库的可执行文件，比如上面的 Delve，使用 go install，但需要带上版本后缀，比如 @latest；（不清楚为什么设计成必须带上版本号）</li>
+<li>普通的库，继续使用 go get，建议加上 -d 标志；</li>
+</ul>
+<p>注意，虽然 go install 一个普通的第三方包（不过必须带上版本后缀）也会下载对应的包，但不会修改 go.mod，这和 go get 是不同的。</p>
+<h2 id="03-总结">03 总结<a href="#03-总结" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>总结一下这个变化：（Go 1.16 还不会有影响，将来就会有影响，所以可以提前习惯下）</p>
+<ul>
+<li>日常的开发，还和之前一样使用 go get 即可；</li>
+<li>但如果是要源码安装一些第三方可执行文件，比如 vscode-go 插件依赖的可执行文件，则应该使用 go install；</li>
+<li>如果你本地编译习惯了我文中提到的方式，继续使用 go install 即可，虽然绝大部分人喜欢使用 go build。</li>
+</ul>
+
+			</div><div class="content">
+	<br>
+	<img src="https://static.studygolang.com/static/img/polarisxu-qrcode-soso-s.png">
+</div>
+
+<div class="related-posts thin">
+	<h2>相关推荐</h2>
+	<ul>
+	
+	<li><a href="/posts/go/translation/environment-variables-in-golang/">详解 Go 中的环境变量</a></li>
+	
+	<li><a href="/posts/go/dynamic/view-go-history-std-version/">听说你还不知道如何查看 Go 历史文档？</a></li>
+	
+	<li><a href="/posts/go/action/apple-m1-install-go/">新买了 Apple M1 Mac，却不知道如何安装 Go？</a></li>
+	
+	<li><a href="/posts/go/dynamic/go1.16-changes-2020/">列举一些 Go1.16 中可能对大家有影响的变化</a></li>
+	
+	<li><a href="/posts/talk/go-rsc-dynamic/">Russ Cox 又有动态了：开源了一个 Go 工具</a></li>
+	
+	</ul>
+</div>
+
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://polarisxu.studygolang.com/tags/go">Go</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/1.16">1.16</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/%E5%AE%89%E8%A3%85">安装</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1456 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2020-12-27 22:30 &#43;0800</p>
+			</footer>
+		</article>
+		<aside id="toc">
+			<div class="toc-title">目录</div>
+			<nav id="TableOfContents">
+  <ul>
+    <li><a href="#01-安装-delve-的例子">01 安装 Delve 的例子</a></li>
+    <li><a href="#02-go-install-的变化">02 go install 的变化</a>
+      <ul>
+        <li><a href="#gopath-年代">GOPATH 年代</a></li>
+        <li><a href="#go-module-年代">Go Module 年代</a></li>
+        <li><a href="#go-116-及以后">Go 1.16 及以后</a></li>
+      </ul>
+    </li>
+    <li><a href="#03-总结">03 总结</a></li>
+  </ul>
+</nav>
+		</aside>
+		<div class="post-nav thin">
+			<a class="prev-post" href="https://polarisxu.studygolang.com/posts/go/translation/environment-variables-in-golang/">
+				<span class="post-nav-label">旧&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>详解 Go 中的环境变量</span>
+			</a>
+		</div>
+		<div id="comments" class="thin"><script src="https://utteranc.es/client.js"
+	repo="polaris1119/polarisxu"
+	issue-term="pathname"
+	theme="github-light"
+	crossorigin="anonymous"
+	async>
+</script>
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2019 - 2020 <a href="https://polarisxu.studygolang.com">polarisxu</a> &#183; <a href="http://www.beian.miit.gov.cn/">京ICP备14030343号-1</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://polarisxu.studygolang.com/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+		<span id="busuanzi_container" style="color: #666;">
+			本站总访客数/访问量：<span id="busuanzi_value_site_uv"></span>/<span id="busuanzi_value_site_pv"></span>
+		</span>
+	</footer>
+
+
+
+	<script src="https://polarisxu.studygolang.com/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw=" crossorigin="anonymous"></script>
+	<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?224c227cd9239761ec770bc8c1fb134c";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+</body>
+
+</html>

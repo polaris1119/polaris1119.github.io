@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Sat, 26 Dec 2020 10:12:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 27 Dec 2020 22:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go 1.16 的这个新变化需要适应下：go get 和 go install 的变化</title>
+      <link>https://polarisxu.studygolang.com/posts/go/dynamic/go-get-install/</link>
+      <pubDate>Sun, 27 Dec 2020 22:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/dynamic/go-get-install/</guid>
+      <description>大家好，我是站长 polarisxu。 一直以来，我们通常都是通过 go get 来下载并安装包的。但从 Go 1.16 起，不推荐通过 go get 来安装包（主要是说安装可执行文件），也就是说，go get 应该只是用来下载包，而且将来版本可能会给该命令始终加上 -d 标志。 你可能会问，这对我使用有什么影响呢？ 让我们看一个实际的例子。 01 安装 Delve 的例子 我们在本地通过源码安装 Go 的调试器 Delve，可以这么做： $ go get</description>
+    </item>
+    
     <item>
       <title>详解 Go 中的环境变量</title>
       <link>https://polarisxu.studygolang.com/posts/go/translation/environment-variables-in-golang/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/action/bytedance-interview-201112/</guid>
       <description>大家好，我是站长 polarisxu。 网上看到有人分享去字节跳动的面试 Go 的经验 ，从面试题来看，应该是比较初级的职位。 这份面试经验总结中（其实谈不上总结，只是面试题的记录，并没有总结分析答案），有一道 Go 相关的题，也是一个老生常谈的问题：以下代码有什么问题，怎么解决？ total, sum := 0, 0 for i := 1; i &amp;lt;= 10; i++ { sum += i go func() { total += i }() } fmt.Printf(&amp;#34;total:%d sum %d&amp;#34;, total, sum) 01 考点一 我相信很多人应该一眼看出了其中</description>
-    </item>
-    
-    <item>
-      <title>祝贺 Go 开源 11 周年</title>
-      <link>https://polarisxu.studygolang.com/posts/go/dynamic/go-opensource-11-years/</link>
-      <pubDate>Tue, 10 Nov 2020 09:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/dynamic/go-opensource-11-years/</guid>
-      <description>题图来自《了不起的程序员》 今天是 Go 语言开源 11 周年。有些人可能不太知道，简单回顾下 Go 的历史。 2007 年 Rob Pike, Robert Griesemer 和 Ken Thompson 一起创建了 Go 语言。从代码提交记录看，2008 年 3 月 3 日有了 Go 最初的规范 。 2009 年 11 月 10 日，Go 语言以开放源代码的方式向全球发布，当年获得了 TIOBE 年度编程语言称号； 2011 年 3 月 16 日，Go 语言的第一个稳定版本 r56 发布； 2012 年 3 月 28 日，Go 语言的第一个正式版本 Go1 发布，并承诺</description>
     </item>
     
   </channel>

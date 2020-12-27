@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>1.16 on polarisxu</title>
+    <link>https://polarisxu.studygolang.com/tags/1.16/</link>
+    <description>Recent content in 1.16 on polarisxu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
+    <lastBuildDate>Sun, 27 Dec 2020 22:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/1.16/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go 1.16 的这个新变化需要适应下：go get 和 go install 的变化</title>
+      <link>https://polarisxu.studygolang.com/posts/go/dynamic/go-get-install/</link>
+      <pubDate>Sun, 27 Dec 2020 22:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/dynamic/go-get-install/</guid>
+      <description>大家好，我是站长 polarisxu。 一直以来，我们通常都是通过 go get 来下载并安装包的。但从 Go 1.16 起，不推荐通过 go get 来安装包（主要是说安装可执行文件），也就是说，go get 应该只是用来下载包，而且将来版本可能会给该命令始终加上 -d 标志。 你可能会问，这对我使用有什么影响呢？ 让我们看一个实际的例子。 01 安装 Delve 的例子 我们在本地通过源码安装 Go 的调试器 Delve，可以这么做： $ go get</description>
+    </item>
+    
+  </channel>
+</rss>
