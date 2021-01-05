@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Mon, 04 Jan 2021 18:25:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 05 Jan 2021 18:25:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>从一份 2020 年大厂加班榜说起</title>
+      <link>https://polarisxu.studygolang.com/posts/talk/2020-996-rank/</link>
+      <pubDate>Tue, 05 Jan 2021 18:25:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/talk/2020-996-rank/</guid>
+      <description>大家好，我是站长 polarisxu。 这几天圈内讨论最多的事非 pdd 事件莫属，于是再一次引出 996 问题的讨论，这似乎是国内码农永远的痛？！ 新华网都发声了：（https://finance.sina.cn/tech/2021-01-05/detail-iiznezxt0681211.d.html） 互联网内卷真是不要太严重。 今天不再讨论 pdd 的事情。谈一下互联网加班的问题，因</description>
+    </item>
+    
     <item>
       <title>2021 年了，你可能没注意到的微信公众号的一些变化</title>
       <link>https://polarisxu.studygolang.com/posts/wechat/2021-01-wechat-changes/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/action/weekly-question-analysis-embed-interface/</guid>
       <description>大家好，我是站长 polarisxu。 时不时有人催问周刊题目的解析，那就先先解析下第 71 期 的题目。 01 题目是，以下代码能否通过编译： package main import ( &amp;#34;fmt&amp;#34; ) type worker interface { work() } type person struct { name string worker } func main() { var w worker = person{} fmt.Println(w) } 这是大家的投票结果： 只有 35% 的人答对了。 这里答错的原因在于 worker 是一个接口，如果是一个普通的类型，相信大家会答对。一个结构体竟然可以嵌入一个接口？！ 02 我们都知晓 Go 没有继承，但可以通</description>
-    </item>
-    
-    <item>
-      <title>体验下“世界上最好的语言”新版本的特性</title>
-      <link>https://polarisxu.studygolang.com/posts/php/php8-intro/</link>
-      <pubDate>Tue, 08 Dec 2020 11:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/php/php8-intro/</guid>
-      <description>大家好，我是站长 polarisxu。 看到标题，大家应该知晓今天聊的主角是谁。是的，它就是 PHP。 PHP 曾经很辉煌，现在怎么样？不做过多评价，前几天好未来不刚组织了一届 PHP 大会吗？！正因为曾经很辉煌，很多现在的 Go 爱好者曾经都是 PHPer，应该还有不少还在用着 PHP。我觉得完全没必要非得贬低一门语言去抬高另外一门语言，自己喜欢就好。而且掌握多门语言是自己的优势。 为什么</description>
     </item>
     
   </channel>

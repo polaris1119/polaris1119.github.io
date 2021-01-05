@@ -7,7 +7,25 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Mon, 04 Jan 2021 18:25:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 05 Jan 2021 18:25:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>996</title>
+      <link>https://polarisxu.studygolang.com/tags/996/</link>
+      <pubDate>Tue, 05 Jan 2021 18:25:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/tags/996/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>创业</title>
+      <link>https://polarisxu.studygolang.com/tags/%E5%88%9B%E4%B8%9A/</link>
+      <pubDate>Tue, 05 Jan 2021 18:25:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/tags/%E5%88%9B%E4%B8%9A/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>Wechat</title>
       <link>https://polarisxu.studygolang.com/tags/wechat/</link>
@@ -77,24 +95,6 @@
       <pubDate>Sun, 27 Dec 2020 22:30:00 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/tags/%E5%AE%89%E8%A3%85/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Viper</title>
-      <link>https://polarisxu.studygolang.com/tags/viper/</link>
-      <pubDate>Sat, 26 Dec 2020 10:12:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/tags/viper/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>环境变量</title>
-      <link>https://polarisxu.studygolang.com/tags/%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/</link>
-      <pubDate>Sat, 26 Dec 2020 10:12:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/tags/%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/</guid>
       <description></description>
     </item>
     

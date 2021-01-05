@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#fcfcfc">
+	<meta name="msapplication-TileColor" content="#fcfcfc">
+<meta itemprop="name" content="从一份 2020 年大厂加班榜说起">
+<meta itemprop="description" content="大家好，我是站长 polarisxu。 这几天圈内讨论最多的事非 pdd 事件莫属，于是再一次引出 996 问题的讨论，这似乎是国内码农永远的痛？！ 新华网都发声了：（https://finance.sina.cn/tech/2021-01-05/detail-iiznezxt0681211.d.html） 互联网内卷真是不要太严重。 今天不再讨论 pdd 的事情。谈一下互联网加班的问题，因">
+<meta itemprop="datePublished" content="2021-01-05T18:25:00+08:00" />
+<meta itemprop="dateModified" content="2021-01-05T18:25:00+08:00" />
+<meta itemprop="wordCount" content="1693">
+
+
+
+<meta itemprop="keywords" content="996,创业," />
+<meta property="og:title" content="从一份 2020 年大厂加班榜说起" />
+<meta property="og:description" content="大家好，我是站长 polarisxu。 这几天圈内讨论最多的事非 pdd 事件莫属，于是再一次引出 996 问题的讨论，这似乎是国内码农永远的痛？！ 新华网都发声了：（https://finance.sina.cn/tech/2021-01-05/detail-iiznezxt0681211.d.html） 互联网内卷真是不要太严重。 今天不再讨论 pdd 的事情。谈一下互联网加班的问题，因" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://polarisxu.studygolang.com/posts/talk/2020-996-rank/" />
+<meta property="article:published_time" content="2021-01-05T18:25:00+08:00" />
+<meta property="article:modified_time" content="2021-01-05T18:25:00+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="从一份 2020 年大厂加班榜说起"/>
+<meta name="twitter:description" content="大家好，我是站长 polarisxu。 这几天圈内讨论最多的事非 pdd 事件莫属，于是再一次引出 996 问题的讨论，这似乎是国内码农永远的痛？！ 新华网都发声了：（https://finance.sina.cn/tech/2021-01-05/detail-iiznezxt0681211.d.html） 互联网内卷真是不要太严重。 今天不再讨论 pdd 的事情。谈一下互联网加班的问题，因"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>从一份 2020 年大厂加班榜说起</title>
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
+	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/styles.css">
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://polarisxu.studygolang.com">polarisxu</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+  <a href="https://polarisxu.studygolang.com/">首页</a>
+  <a href="https://polarisxu.studygolang.com/categories/echo%E7%B3%BB%E5%88%97/">Echo系列</a>
+  <a href="https://polarisxu.studygolang.com/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a>
+  <a href="https://polarisxu.studygolang.com/posts/">归档</a>
+  <a href="https://polarisxu.studygolang.com/about/">关于</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<button id="toc-btn" class="hdr-btn desktop-only-ib" title="目录"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3" y2="6"></line><line x1="3" y1="12" x2="3" y2="12"></line><line x1="3" y1="18" x2="3" y2="18"></line></svg></button><span class="hdr-social hide-in-mobile"><a href="https://github.com/polaris1119" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a><a href="https://twitter.com/polaris1119" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="菜单"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://polarisxu.studygolang.com/">首页</a></li>
+			<li><a href="https://polarisxu.studygolang.com/categories/echo%E7%B3%BB%E5%88%97/">Echo系列</a></li>
+			<li><a href="https://polarisxu.studygolang.com/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a></li>
+			<li><a href="https://polarisxu.studygolang.com/posts/">归档</a></li>
+			<li><a href="https://polarisxu.studygolang.com/about/">关于</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Jan 5, 2021</span></div>
+				<h1>从一份 2020 年大厂加班榜说起</h1>
+			</header>
+			<div class="content">
+				<p>大家好，我是站长 polarisxu。</p>
+<p>这几天圈内讨论最多的事非 pdd 事件莫属，于是再一次引出 996 问题的讨论，这似乎是国内码农永远的痛？！</p>
+<p>新华网都发声了：（https://finance.sina.cn/tech/2021-01-05/detail-iiznezxt0681211.d.html）</p>
+<p><p class="md__image">
+  <img src="../imgs/996-xinhuanet.png"
+    alt=""  />
+</p>
+</p>
+<p>互联网内卷真是不要太严重。</p>
+<p>今天不再讨论 pdd 的事情。谈一下互联网加班的问题，因为在群里里看到这样一张图片：</p>
+<p><p class="md__image">
+  <img src="../imgs/2020-996-rank.png"
+    alt=""  />
+</p>
+</p>
+<p>这是一份 2020 年大厂加班榜，据说数据是广大网友提交的。</p>
+<p>我读者中应该有不少在以上大厂的，这个数据还算真实吗？！</p>
+<p>我想借这份榜单谈谈我职场这么多年的一些体会。先说我几个经历的事情。</p>
+<h2 id="01">01<a href="#01" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>我研究生毕业后去的开心网，经历过开心“最恐怖”的加班时刻。当时因为人人网上市，开心压力很大，员工都理解。但公司做了一个决定：做上市前的冲刺，开全员会议，宣布一周 7 天工作制。。。宣布完，就有一些人提离职！</p>
+<p>我那时候应该刚毕业，心里想着就是好好工作，提升自己。我印象中加班最狠的一次：凌晨 2 点上线。因为是一个全新的、大项目上线，上线必然会有问题需要处理。我记得处理到 4、5 点。然后回去睡了一会（因为住公司附近，走路上下班）。8 点多起床接着上班，因为白天用户更多，需要对可能的问题及时处理。也许真的是因为年轻，那两天，整个人飘飘的感觉，很兴奋，一点睡意都没有，但吃饭也很少，感觉不到饿。现在想想，其实挺可怕的。。。</p>
+<p>当然，最后开心网上市计划泡汤了。当初宣布 7 天工作制就是一个错误的决定，基本上没执行下去不说，弄得大家很不舒服。</p>
+<h2 id="02">02<a href="#02" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>创业这么多年，期间自己角色也在变。从 360 离开，加入一个创业公司，是想体验下创业的感觉。那时候，公司每个人都是创业的心态，每天 9 点到公司，晚上基本没有 10 点之前下班过，一周 6 天，远远超过 996 了。而且周日在家，我基本也是随时处理问题。那时，我并没有觉得累。（说明下：北京上下班单程平均时间近 1 个小时，我差不多在这个水平。也就是说，每天基本 7 点 50 左右出门，晚上到家一般 23 点之后）</p>
+<p>我经常想，是什么让我可以那么多精力投入在工作上而不会觉得累？！我现在觉得是对创业的新鲜感，对做成后可能的回报的憧憬，而且那时人员少，大家很简单，工作时间虽然长，但心情比较愉快，不会有领导 PUA。</p>
+<h2 id="03">03<a href="#03" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>后来，我成为了负责人，心态有一些不一样了。</p>
+<p>因为我属于很守时类型的人，讨厌迟到，无论是读书时代还是工作，很少迟到。</p>
+<p>当我是普通员工时，我做好自己，不太会关心别人是什么情况，迟不迟到跟我没关系。但当我是负责人时，看到下属迟到，一两次还好，经常迟到的，心里会很不舒服。我知道有些人虽然迟到了，但晚上下班也会比较晚。因此我总是安慰自己，要看到大家的好。</p>
+<p>但我不是公司老板，公司老板如果看到我的团队总是迟到等，他会怎么想？要知道，很多老板更多看到的是问题。他会发现总有人迟到，而不是发现总有人加班。我一直希望给技术团队一个相对自由的时间、环境。所以，很多事情老板并不管。但有一个前提是大家做的不错。</p>
+<p>实话说，关于工作时长，我是要求过团队的。为了避免老板干预我的团队，我自然需要作出一些要求。不过现在看，时间的要求跟榜单上比还是少了很多。难道这就是我们创业不成功的原因？哈哈哈~</p>
+<hr>
+<p>每个人都会焦虑！现在这个时代更是如此，更何况各种内卷严重。。。</p>
+<ul>
+<li>开心网当时那个状态、压力，老板肯定特别焦虑，压力很大。但通过全员 7 天工作制就能解决压力吗？老板的焦虑就没了吗？如果最后上市成功了，老板你什么回报，普通员工什么回报？而且不少员工应该是没有期权，还有不少有期权跟没有也没太多区别。这样的情况下，凭什么老板的焦虑要用员工的时间来分担。</li>
+<li>自发的行为和强制是有本质区别的。如何让员工更自发的去奋斗？这也许是 HR 要长期思考的问题吧。</li>
+<li>作为管理者或老板，看到员工的问题也许是无法避免的。但应该有同理心。为什么大家都说外企很轻松？难道轻松的外企就不优秀吗？前段时间看了微软第三任 CEO 萨提亚-纳德拉的《刷新：重新发现商业与未来》，对萨提亚反复强调的“同理心是微软企业文化的重要内容”印象深刻，微软在他的带领下取得了辉煌的成绩。</li>
+</ul>
+<p>借用新华网的话，奋斗不能只靠激情。年轻人要奋斗，要快乐的奋斗，健康的奋斗！</p>
+
+			</div><div class="content">
+	<br>
+	<img src="https://static.studygolang.com/static/img/polarisxu-qrcode-soso-s.png">
+</div>
+
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://polarisxu.studygolang.com/tags/996">996</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/%E5%88%9B%E4%B8%9A">创业</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1693 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2021-01-05 18:25 &#43;0800</p>
+			</footer>
+		</article>
+		<aside id="toc">
+			<div class="toc-title">目录</div>
+			<nav id="TableOfContents">
+  <ul>
+    <li><a href="#01">01</a></li>
+    <li><a href="#02">02</a></li>
+    <li><a href="#03">03</a></li>
+  </ul>
+</nav>
+		</aside>
+		<div class="post-nav thin">
+			<a class="prev-post" href="https://polarisxu.studygolang.com/posts/wechat/2021-01-wechat-changes/">
+				<span class="post-nav-label">旧&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>2021 年了，你可能没注意到的微信公众号的一些变化</span>
+			</a>
+		</div>
+		<div id="comments" class="thin"><script src="https://utteranc.es/client.js"
+	repo="polaris1119/polarisxu"
+	issue-term="pathname"
+	theme="github-light"
+	crossorigin="anonymous"
+	async>
+</script>
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2019 - 2021 <a href="https://polarisxu.studygolang.com">polarisxu</a> &#183; <a href="http://www.beian.miit.gov.cn/">京ICP备14030343号-1</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://polarisxu.studygolang.com/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+		<span id="busuanzi_container" style="color: #666;">
+			本站总访客数/访问量：<span id="busuanzi_value_site_uv"></span>/<span id="busuanzi_value_site_pv"></span>
+		</span>
+	</footer>
+
+
+
+	<script src="https://polarisxu.studygolang.com/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw=" crossorigin="anonymous"></script>
+	<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?224c227cd9239761ec770bc8c1fb134c";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+</body>
+
+</html>
