@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>embed on polarisxu</title>
-    <link>https://polarisxu.studygolang.com/tags/embed/</link>
-    <description>Recent content in embed on polarisxu</description>
+    <title>HTTP on polarisxu</title>
+    <link>https://polarisxu.studygolang.com/tags/http/</link>
+    <description>Recent content in HTTP on polarisxu</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Sun, 10 Jan 2021 22:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/embed/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 10 Jan 2021 22:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/http/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>基于 Go1.16 实现静态文件的 HTTP Cache</title>
       <link>https://polarisxu.studygolang.com/posts/go/action/hashfs-http-cache/</link>
@@ -15,15 +15,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/action/hashfs-http-cache/</guid>
       <description>大家好，我是站长 polarisxu。 之前写过一篇文章：《提前试用将在 Go1.16 中发布的内嵌静态资源功能》 ，如果之前没阅读，建议继续看本文前先阅读下该文。 现在 Go 1.16 Beta 已经发布，离正式版发布不远了，在 GitHub 发现了一个库，它实现了 io/fs.FS 接口，它能够计算文件的 SHA256 哈希值并附加到文件名中以允许进行 HTTP Cache：即控制静态文件的版本。本文对其进行介绍并顺带讲解一些涉及到的其他内容。 温馨提示</description>
-    </item>
-    
-    <item>
-      <title>提前试用将在 Go1.16 中发布的内嵌静态资源功能</title>
-      <link>https://polarisxu.studygolang.com/posts/go/dynamic/go-embed-try/</link>
-      <pubDate>Sun, 01 Nov 2020 18:12:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/dynamic/go-embed-try/</guid>
-      <description>大家好，我是站长 polarisxu。 喜欢 Go 语言有很多理由，其中有一点“因为编译为一个二进制文件，直接运行，没有其他依赖，使得部署特别容易。”我想是很多人喜欢的。 然而一个项目，很可能会包含一些静态资源文件，这样一来，一个 Go 二进制文件就不能解决了，需要将静态资源文件一起带上。于是有了很多第三方解决方案，将静态资源文件“嵌入”最终的 Go 二进制文件中。最知名的应该是 go-bindata</description>
     </item>
     
   </channel>

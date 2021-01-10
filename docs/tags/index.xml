@@ -7,7 +7,34 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Tue, 05 Jan 2021 18:25:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 10 Jan 2021 22:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>embed</title>
+      <link>https://polarisxu.studygolang.com/tags/embed/</link>
+      <pubDate>Sun, 10 Jan 2021 22:00:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/tags/embed/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Go</title>
+      <link>https://polarisxu.studygolang.com/tags/go/</link>
+      <pubDate>Sun, 10 Jan 2021 22:00:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/tags/go/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>HTTP</title>
+      <link>https://polarisxu.studygolang.com/tags/http/</link>
+      <pubDate>Sun, 10 Jan 2021 22:00:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/tags/http/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>996</title>
       <link>https://polarisxu.studygolang.com/tags/996/</link>
@@ -68,33 +95,6 @@
       <pubDate>Thu, 31 Dec 2020 16:40:00 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/tags/%E6%80%BB%E7%BB%93/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>1.16</title>
-      <link>https://polarisxu.studygolang.com/tags/1.16/</link>
-      <pubDate>Sun, 27 Dec 2020 22:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/tags/1.16/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Go</title>
-      <link>https://polarisxu.studygolang.com/tags/go/</link>
-      <pubDate>Sun, 27 Dec 2020 22:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/tags/go/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>安装</title>
-      <link>https://polarisxu.studygolang.com/tags/%E5%AE%89%E8%A3%85/</link>
-      <pubDate>Sun, 27 Dec 2020 22:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/tags/%E5%AE%89%E8%A3%85/</guid>
       <description></description>
     </item>
     

@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Sun, 27 Dec 2020 22:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 10 Jan 2021 22:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>基于 Go1.16 实现静态文件的 HTTP Cache</title>
+      <link>https://polarisxu.studygolang.com/posts/go/action/hashfs-http-cache/</link>
+      <pubDate>Sun, 10 Jan 2021 22:00:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/action/hashfs-http-cache/</guid>
+      <description>大家好，我是站长 polarisxu。 之前写过一篇文章：《提前试用将在 Go1.16 中发布的内嵌静态资源功能》 ，如果之前没阅读，建议继续看本文前先阅读下该文。 现在 Go 1.16 Beta 已经发布，离正式版发布不远了，在 GitHub 发现了一个库，它实现了 io/fs.FS 接口，它能够计算文件的 SHA256 哈希值并附加到文件名中以允许进行 HTTP Cache：即控制静态文件的版本。本文对其进行介绍并顺带讲解一些涉及到的其他内容。 温馨提示</description>
+    </item>
+    
     <item>
       <title>Go 1.16 的这个新变化需要适应下：go get 和 go install 的变化</title>
       <link>https://polarisxu.studygolang.com/posts/go/dynamic/go-get-install/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/pkg/statsview/</guid>
       <description>大家好，我是站长 polarisxu。 掌握系统运行状态，知道系统哪些地方可能存在问题，方便进行优化，这是一个实际系统必备的。裸奔，对系统一无所知，迟早是要出大事的。 在 Go 语言中，官方标准库提供了方法，让我们能够获得内存分配、GC 和 Goroutine 等情况。比如内存、GC 等情况，可以通过 runtime.MemStats 获取：https://docs.studygolang.com/pkg/runtime/#M</description>
-    </item>
-    
-    <item>
-      <title>字节跳动面试真的也会问这样的问题？！</title>
-      <link>https://polarisxu.studygolang.com/posts/go/action/bytedance-interview-201112/</link>
-      <pubDate>Thu, 12 Nov 2020 18:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/action/bytedance-interview-201112/</guid>
-      <description>大家好，我是站长 polarisxu。 网上看到有人分享去字节跳动的面试 Go 的经验 ，从面试题来看，应该是比较初级的职位。 这份面试经验总结中（其实谈不上总结，只是面试题的记录，并没有总结分析答案），有一道 Go 相关的题，也是一个老生常谈的问题：以下代码有什么问题，怎么解决？ total, sum := 0, 0 for i := 1; i &amp;lt;= 10; i++ { sum += i go func() { total += i }() } fmt.Printf(&amp;#34;total:%d sum %d&amp;#34;, total, sum) 01 考点一 我相信很多人应该一眼看出了其中</description>
     </item>
     
   </channel>

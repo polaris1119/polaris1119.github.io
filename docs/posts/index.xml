@@ -6,8 +6,357 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en</language>
 		<copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-		<lastBuildDate>Tue, 05 Jan 2021 18:25:00 +0800</lastBuildDate>
+		<lastBuildDate>Sun, 10 Jan 2021 22:00:00 +0800</lastBuildDate>
 		<atom:link href="https://polarisxu.studygolang.com/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>基于 Go1.16 实现静态文件的 HTTP Cache</title>
+			<link>https://polarisxu.studygolang.com/posts/go/action/hashfs-http-cache/</link>
+			<pubDate>Sun, 10 Jan 2021 22:00:00 +0800</pubDate>
+			
+			<guid>https://polarisxu.studygolang.com/posts/go/action/hashfs-http-cache/</guid>
+			<description>大家好，我是站长 polarisxu。 之前写过一篇文章：《提前试用将在 Go1.16 中发布的内嵌静态资源功能》 ，如果之前没阅读，建议继续看本文前先阅读下该文。 现在 Go 1.16 Beta 已经发布，离正式版发布不远了，在 GitHub 发现了一个库，它实现了 io/fs.FS 接口，它能够计算文件的 SHA256 哈希值并附加到文件名中以允许进行 HTTP Cache：即控制静态文件的版本。本文对其进行介绍并顺带讲解一些涉及到的其他内容。 温馨提示</description>
+			<content type="html"><![CDATA[<p>大家好，我是站长 polarisxu。</p>
+<p>之前写过一篇文章：<a href="https://mp.weixin.qq.com/s/SiCTV7R2wA_I2nCQkC3GGQ" target="_blank" rel="noopener">《提前试用将在 Go1.16 中发布的内嵌静态资源功能》</a>
+，如果之前没阅读，建议继续看本文前先阅读下该文。</p>
+<p>现在 Go 1.16 Beta 已经发布，离正式版发布不远了，在 GitHub 发现了一个库，它实现了 io/fs.FS 接口，它能够计算文件的 SHA256 哈希值并附加到文件名中以允许进行 HTTP Cache：即控制静态文件的版本。本文对其进行介绍并顺带讲解一些涉及到的其他内容。</p>
+<blockquote>
+<p>温馨提示：本文内容基于 Go 1.16 Beta，之前版本不支持！</p>
+</blockquote>
+<h2 id="01-hashfs-包">01 hashfs 包</h2>
+<p>包地址：<a href="https://github.com/benbjohnson/hashfs">https://github.com/benbjohnson/hashfs</a>，有效代码函数不到 200。</p>
+<p>对于给定的一个文件，比如 scripts/main.js，hashfs.FS 文件系统处理后会生成一个带 hash 的文件，类似 scripts/main-b633a..d628.js（中间有省略），客户端请求该文件时，可以选择让客户端缓存。hash 算法使用的是 SHA256。当文件内容发生变化时，hash 值也会变。</p>
+<p>该包默认提供对 net/http 的兼容。通过例子看看具体怎么使用。</p>
+<h2 id="02-基于-nethttp-的使用">02 基于 net/http 的使用</h2>
+<p>创建一个目录，使用 module：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ mkdir ~/embed
+$ <span class="nb">cd</span> ~/embed
+$ go mod init gtihub.com/polaris1119/embed
+</code></pre></div><p>为了基于同一个项目演示不同使用方式，创建如下目录结构：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">├── cmd
+│   ├── std
+│   │   └── main.go
+├── embed.go
+├── go.mod
+├── go.sum
+├── static
+│   └── main.js	// 主要处理该文件的嵌入、hash
+├── template
+│   └── index.html
+</code></pre></div><p>其中 embed.go 的作用在本文开头文章提到过，内容如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">embed</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+	<span class="s">&#34;embed&#34;</span>
+
+	<span class="s">&#34;github.com/benbjohnson/hashfs&#34;</span>
+<span class="p">)</span>
+
+<span class="c1">//go:embed static
+</span><span class="c1"></span><span class="kd">var</span> <span class="nx">embedFS</span> <span class="nx">embed</span><span class="p">.</span><span class="nx">FS</span>
+
+<span class="c1">// 带 hash 功能的 fs.FS
+</span><span class="c1"></span><span class="kd">var</span> <span class="nx">Fsys</span> <span class="p">=</span> <span class="nx">hashfs</span><span class="p">.</span><span class="nf">NewFS</span><span class="p">(</span><span class="nx">embedFS</span><span class="p">)</span>
+</code></pre></div><blockquote>
+<p>再说一句，因为 //go:embed 只能相对当前源文件所在目录，所以单独创建这个文件以便和 static 在同一级目录。</p>
+</blockquote>
+<p>index.html 和 main.js 的内容很简单。</p>
+<p>index.html：</p>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>测试 Embed Hash<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;/assets/{{.mainjs}}&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>测试 Embed Hash<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">hr</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+      以下内容来自 JS：
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">p</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;content&#34;</span> <span class="na">style</span><span class="o">=</span><span class="s">&#34;color: red;&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</code></pre></div><p>该模板中有一个变量：mainjs。</p>
+<p>main.js：</p>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="nb">window</span><span class="p">.</span><span class="nx">onload</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;#content&#39;</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="s2">&#34;我是 JS 内容&#34;</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><p>如果一切正常，看到的页面如下：</p>
+<p><p class="md__image">
+  <img src="../imgs/hashfs.png"
+    alt=""  />
+</p>
+</p>
+<p>在 cmd/std/main.go 中写上如下代码：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+	<span class="s">&#34;fmt&#34;</span>
+	<span class="s">&#34;html/template&#34;</span>
+	<span class="s">&#34;log&#34;</span>
+	<span class="s">&#34;net/http&#34;</span>
+
+	<span class="s">&#34;github.com/benbjohnson/hashfs&#34;</span>
+	<span class="s">&#34;github.com/polaris1119/embed&#34;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="nx">http</span><span class="p">.</span><span class="nf">Handle</span><span class="p">(</span><span class="s">&#34;/assets/&#34;</span><span class="p">,</span> <span class="nx">http</span><span class="p">.</span><span class="nf">StripPrefix</span><span class="p">(</span><span class="s">&#34;/assets/&#34;</span><span class="p">,</span> <span class="nx">hashfs</span><span class="p">.</span><span class="nf">FileServer</span><span class="p">(</span><span class="nx">embed</span><span class="p">.</span><span class="nx">Fsys</span><span class="p">)))</span>
+
+	<span class="nx">http</span><span class="p">.</span><span class="nf">HandleFunc</span><span class="p">(</span><span class="s">&#34;/&#34;</span><span class="p">,</span> <span class="kd">func</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="p">{</span>
+		<span class="nx">tpl</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">template</span><span class="p">.</span><span class="nf">New</span><span class="p">(</span><span class="s">&#34;index.html&#34;</span><span class="p">).</span><span class="nf">ParseFiles</span><span class="p">(</span><span class="s">&#34;template/index.html&#34;</span><span class="p">)</span>
+		<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+			<span class="nx">fmt</span><span class="p">.</span><span class="nf">Fprint</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="nx">err</span><span class="p">.</span><span class="nf">Error</span><span class="p">())</span>
+			<span class="k">return</span>
+		<span class="p">}</span>
+
+		<span class="nx">err</span> <span class="p">=</span> <span class="nx">tpl</span><span class="p">.</span><span class="nf">Execute</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kd">interface</span><span class="p">{}{</span>
+			<span class="s">&#34;mainjs&#34;</span><span class="p">:</span> <span class="nx">embed</span><span class="p">.</span><span class="nx">Fsys</span><span class="p">.</span><span class="nf">HashName</span><span class="p">(</span><span class="s">&#34;static/main.js&#34;</span><span class="p">),</span>
+		<span class="p">})</span>
+		<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+			<span class="nx">fmt</span><span class="p">.</span><span class="nf">Fprint</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="nx">err</span><span class="p">.</span><span class="nf">Error</span><span class="p">())</span>
+			<span class="k">return</span>
+		<span class="p">}</span>
+	<span class="p">})</span>
+
+	<span class="nx">log</span><span class="p">.</span><span class="nf">Fatal</span><span class="p">(</span><span class="nx">http</span><span class="p">.</span><span class="nf">ListenAndServe</span><span class="p">(</span><span class="s">&#34;:8080&#34;</span><span class="p">,</span> <span class="kc">nil</span><span class="p">))</span>
+<span class="p">}</span>
+</code></pre></div><ul>
+<li>特意为静态资源加上 <code>/assets/</code> 前缀，后文解释；</li>
+<li><code>hashfs.FileServer(embed.Fsys))</code> 是 hashfs 包对 net/http 的支持，即 hashfs.FileServer 是一个 http.Handler；</li>
+<li><code>embed.Fsys.HashName(&quot;static/main.js&quot;)</code> 将文件生成为带 hash 的；</li>
+</ul>
+<p>执行 <code>go run ./cmd/std/main.go</code>，打开浏览器访问：http://localhost:8080 即可看到上面截图的页面，审查元素可以看到如下信息，缓存一年。（见代码：<a href="https://github.com/benbjohnson/hashfs/blob/main/hashfs.go#L200">https://github.com/benbjohnson/hashfs/blob/main/hashfs.go#L200</a>）</p>
+<p><p class="md__image">
+  <img src="../imgs/hashfs01.png"
+    alt=""  />
+</p>
+</p>
+<p>当你再次刷新浏览器，看到 js 文件直接从缓存获取的。</p>
+<p><p class="md__image">
+  <img src="../imgs/hashfs02.png"
+    alt=""  />
+</p>
+</p>
+<p>当 main.js 的内容发生变化，main-xxx.js 中的 hash 部分也会变化，你可以自行试验。（注意，因为资源内嵌了，修改了 js 的内容，需要重新 go run）。</p>
+<h2 id="03-关于服务静态文件">03 关于服务静态文件</h2>
+<p>这块有必要单独拿出来说下，因为比较容易搞错。比如上面的一行代码改为这样：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">http</span><span class="p">.</span><span class="nf">Handle</span><span class="p">(</span><span class="s">&#34;/assets&#34;</span><span class="p">,</span> <span class="nx">http</span><span class="p">.</span><span class="nf">StripPrefix</span><span class="p">(</span><span class="s">&#34;/assets&#34;</span><span class="p">,</span> <span class="nx">hashfs</span><span class="p">.</span><span class="nf">FileServer</span><span class="p">(</span><span class="nx">embed</span><span class="p">.</span><span class="nx">Fsys</span><span class="p">)))</span>
+</code></pre></div><p>再次运行结果就不对（没有 “我是 JS 内容”）。（注意禁用浏览器缓存，否则看不到效果）</p>
+<p>如果是 Echo 框架，则可以：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">e</span><span class="p">.</span><span class="nf">Static</span><span class="p">(</span><span class="s">&#34;/assets&#34;</span><span class="p">,</span> <span class="s">&#34;.&#34;</span><span class="p">)</span>
+</code></pre></div><p>Gin 框架，也可以：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">router</span><span class="p">.</span><span class="nf">Static</span><span class="p">(</span><span class="s">&#34;/assets&#34;</span><span class="p">,</span> <span class="s">&#34;.&#34;</span><span class="p">)</span>
+</code></pre></div><p>关于其中的细节，大家有兴趣可以查阅相关源码。这里只要记住，服务目录，末尾加上 <code>/</code>，（目录嘛，应该有 <code>/</code>），即：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">http</span><span class="p">.</span><span class="nf">Handle</span><span class="p">(</span><span class="s">&#34;/assets/&#34;</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+</code></pre></div><h2 id="04-基于-echo-的使用">04 基于 Echo 的使用</h2>
+<p>在 cmd 目录下创建 echo/main.go 文件：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+	<span class="s">&#34;bytes&#34;</span>
+	<span class="s">&#34;fmt&#34;</span>
+	<span class="s">&#34;io&#34;</span>
+	<span class="s">&#34;mime&#34;</span>
+	<span class="s">&#34;net/http&#34;</span>
+	<span class="s">&#34;net/url&#34;</span>
+	<span class="s">&#34;os&#34;</span>
+	<span class="s">&#34;path&#34;</span>
+	<span class="s">&#34;strconv&#34;</span>
+	<span class="s">&#34;text/template&#34;</span>
+
+	<span class="s">&#34;github.com/benbjohnson/hashfs&#34;</span>
+	<span class="s">&#34;github.com/labstack/echo/v4&#34;</span>
+	<span class="s">&#34;github.com/polaris1119/embed&#34;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="nx">e</span> <span class="o">:=</span> <span class="nx">echo</span><span class="p">.</span><span class="nf">New</span><span class="p">()</span>
+
+	<span class="nx">e</span><span class="p">.</span><span class="nf">GET</span><span class="p">(</span><span class="s">&#34;/assets/*&#34;</span><span class="p">,</span> <span class="kd">func</span><span class="p">(</span><span class="nx">ctx</span> <span class="nx">echo</span><span class="p">.</span><span class="nx">Context</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
+		<span class="nx">filename</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">url</span><span class="p">.</span><span class="nf">PathUnescape</span><span class="p">(</span><span class="nx">ctx</span><span class="p">.</span><span class="nf">Param</span><span class="p">(</span><span class="s">&#34;*&#34;</span><span class="p">))</span>
+		<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+			<span class="k">return</span> <span class="nx">err</span>
+		<span class="p">}</span>
+
+		<span class="nx">isHashed</span> <span class="o">:=</span> <span class="kc">false</span>
+		<span class="k">if</span> <span class="nx">base</span><span class="p">,</span> <span class="nx">hash</span> <span class="o">:=</span> <span class="nx">hashfs</span><span class="p">.</span><span class="nf">ParseName</span><span class="p">(</span><span class="nx">filename</span><span class="p">);</span> <span class="nx">hash</span> <span class="o">!=</span> <span class="s">&#34;&#34;</span> <span class="p">{</span>
+			<span class="k">if</span> <span class="nx">embed</span><span class="p">.</span><span class="nx">Fsys</span><span class="p">.</span><span class="nf">HashName</span><span class="p">(</span><span class="nx">base</span><span class="p">)</span> <span class="o">==</span> <span class="nx">filename</span> <span class="p">{</span>
+				<span class="nx">filename</span> <span class="p">=</span> <span class="nx">base</span>
+				<span class="nx">isHashed</span> <span class="p">=</span> <span class="kc">true</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+
+		<span class="nx">f</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">embed</span><span class="p">.</span><span class="nx">Fsys</span><span class="p">.</span><span class="nf">Open</span><span class="p">(</span><span class="nx">filename</span><span class="p">)</span>
+		<span class="k">if</span> <span class="nx">os</span><span class="p">.</span><span class="nf">IsNotExist</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+			<span class="k">return</span> <span class="nx">echo</span><span class="p">.</span><span class="nx">ErrNotFound</span>
+		<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+			<span class="k">return</span> <span class="nx">echo</span><span class="p">.</span><span class="nx">ErrInternalServerError</span>
+		<span class="p">}</span>
+		<span class="k">defer</span> <span class="nx">f</span><span class="p">.</span><span class="nf">Close</span><span class="p">()</span>
+
+		<span class="c1">// Fetch file info. Disallow directories from being displayed.
+</span><span class="c1"></span>		<span class="nx">fi</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">f</span><span class="p">.</span><span class="nf">Stat</span><span class="p">()</span>
+		<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+			<span class="k">return</span> <span class="nx">echo</span><span class="p">.</span><span class="nx">ErrInternalServerError</span>
+		<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="nx">fi</span><span class="p">.</span><span class="nf">IsDir</span><span class="p">()</span> <span class="p">{</span>
+			<span class="k">return</span> <span class="nx">echo</span><span class="p">.</span><span class="nx">ErrForbidden</span>
+		<span class="p">}</span>
+
+		<span class="nx">contentType</span> <span class="o">:=</span> <span class="s">&#34;text/plain&#34;</span>
+		<span class="c1">// Determine content type based on file extension.
+</span><span class="c1"></span>		<span class="k">if</span> <span class="nx">ext</span> <span class="o">:=</span> <span class="nx">path</span><span class="p">.</span><span class="nf">Ext</span><span class="p">(</span><span class="nx">filename</span><span class="p">);</span> <span class="nx">ext</span> <span class="o">!=</span> <span class="s">&#34;&#34;</span> <span class="p">{</span>
+			<span class="nx">contentType</span> <span class="p">=</span> <span class="nx">mime</span><span class="p">.</span><span class="nf">TypeByExtension</span><span class="p">(</span><span class="nx">ext</span><span class="p">)</span>
+		<span class="p">}</span>
+
+		<span class="c1">// Cache the file aggressively if the file contains a hash.
+</span><span class="c1"></span>		<span class="k">if</span> <span class="nx">isHashed</span> <span class="p">{</span>
+			<span class="nx">ctx</span><span class="p">.</span><span class="nf">Response</span><span class="p">().</span><span class="nf">Header</span><span class="p">().</span><span class="nf">Set</span><span class="p">(</span><span class="s">&#34;Cache-Control&#34;</span><span class="p">,</span> <span class="s">`public, max-age=31536000`</span><span class="p">)</span>
+		<span class="p">}</span>
+
+		<span class="c1">// Set content length.
+</span><span class="c1"></span>		<span class="nx">ctx</span><span class="p">.</span><span class="nf">Response</span><span class="p">().</span><span class="nf">Header</span><span class="p">().</span><span class="nf">Set</span><span class="p">(</span><span class="s">&#34;Content-Length&#34;</span><span class="p">,</span> <span class="nx">strconv</span><span class="p">.</span><span class="nf">FormatInt</span><span class="p">(</span><span class="nx">fi</span><span class="p">.</span><span class="nf">Size</span><span class="p">(),</span> <span class="mi">10</span><span class="p">))</span>
+
+		<span class="c1">// Flush header and write content.
+</span><span class="c1"></span>		<span class="nx">buf</span> <span class="o">:=</span> <span class="nb">new</span><span class="p">(</span><span class="nx">bytes</span><span class="p">.</span><span class="nx">Buffer</span><span class="p">)</span>
+		<span class="k">if</span> <span class="nx">ctx</span><span class="p">.</span><span class="nf">Request</span><span class="p">().</span><span class="nx">Method</span> <span class="o">!=</span> <span class="s">&#34;HEAD&#34;</span> <span class="p">{</span>
+			<span class="nx">io</span><span class="p">.</span><span class="nf">Copy</span><span class="p">(</span><span class="nx">buf</span><span class="p">,</span> <span class="nx">f</span><span class="p">)</span>
+		<span class="p">}</span>
+		<span class="k">return</span> <span class="nx">ctx</span><span class="p">.</span><span class="nf">Blob</span><span class="p">(</span><span class="nx">http</span><span class="p">.</span><span class="nx">StatusOK</span><span class="p">,</span> <span class="nx">contentType</span><span class="p">,</span> <span class="nx">buf</span><span class="p">.</span><span class="nf">Bytes</span><span class="p">())</span>
+	<span class="p">})</span>
+
+	<span class="nx">e</span><span class="p">.</span><span class="nf">GET</span><span class="p">(</span><span class="s">&#34;/&#34;</span><span class="p">,</span> <span class="kd">func</span><span class="p">(</span><span class="nx">ctx</span> <span class="nx">echo</span><span class="p">.</span><span class="nx">Context</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
+		<span class="nx">tpl</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">template</span><span class="p">.</span><span class="nf">New</span><span class="p">(</span><span class="s">&#34;index.html&#34;</span><span class="p">).</span><span class="nf">ParseFiles</span><span class="p">(</span><span class="s">&#34;template/index.html&#34;</span><span class="p">)</span>
+		<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+			<span class="k">return</span> <span class="nx">err</span>
+		<span class="p">}</span>
+
+		<span class="kd">var</span> <span class="nx">buf</span> <span class="p">=</span> <span class="nb">new</span><span class="p">(</span><span class="nx">bytes</span><span class="p">.</span><span class="nx">Buffer</span><span class="p">)</span>
+		<span class="nx">err</span> <span class="p">=</span> <span class="nx">tpl</span><span class="p">.</span><span class="nf">Execute</span><span class="p">(</span><span class="nx">buf</span><span class="p">,</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kd">interface</span><span class="p">{}{</span>
+			<span class="s">&#34;mainjs&#34;</span><span class="p">:</span> <span class="nx">embed</span><span class="p">.</span><span class="nx">Fsys</span><span class="p">.</span><span class="nf">HashName</span><span class="p">(</span><span class="s">&#34;static/main.js&#34;</span><span class="p">),</span>
+		<span class="p">})</span>
+		<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+			<span class="k">return</span> <span class="nx">err</span>
+		<span class="p">}</span>
+		<span class="k">return</span> <span class="nx">ctx</span><span class="p">.</span><span class="nf">HTML</span><span class="p">(</span><span class="nx">http</span><span class="p">.</span><span class="nx">StatusOK</span><span class="p">,</span> <span class="nx">buf</span><span class="p">.</span><span class="nf">String</span><span class="p">())</span>
+	<span class="p">})</span>
+
+	<span class="nx">e</span><span class="p">.</span><span class="nx">Logger</span><span class="p">.</span><span class="nf">Fatal</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nf">Start</span><span class="p">(</span><span class="s">&#34;:8080&#34;</span><span class="p">))</span>
+<span class="p">}</span>
+</code></pre></div><ul>
+<li>服务静态文件的代码： <code>e.GET(&quot;/assets/*&quot;, func(ctx echo.Context) error {</code>，主要参照了 <a href="https://github.com/benbjohnson/hashfs/blob/main/hashfs.go#L162">https://github.com/benbjohnson/hashfs/blob/main/hashfs.go#L162</a> 的实现；</li>
+<li>首页的路由和 net/http 基本一样，关注 mainjs 模板变量；</li>
+</ul>
+<p>简单解释下服务静态文件的实现原理：</p>
+<ul>
+<li>获取请求的路径（<code>*</code> 部分）;</li>
+<li>通过 hashfs.ParseName 解析出文件的 base 和 hash 两部分；</li>
+<li>使用 fs.FS 打开文件，判断文件类型、大小，并将内容返回给客户端，如果有缓存，设置 HTTP Cache；</li>
+</ul>
+<p>运行 go run ./cmd/echo/main.go，不出意外和 net/http 版本一样的效果。</p>
+<h2 id="05-基于-gin-的使用">05 基于 Gin 的使用</h2>
+<p>其实知道了如何基于 Echo 框架使用，其他框架参照着实现即可。因为 Gin 框架用户多，因此也实现下。</p>
+<p>在 cmd 目录下创建文件：gin/main.go</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+	<span class="s">&#34;bytes&#34;</span>
+	<span class="s">&#34;io&#34;</span>
+	<span class="s">&#34;mime&#34;</span>
+	<span class="s">&#34;net/http&#34;</span>
+	<span class="s">&#34;net/url&#34;</span>
+	<span class="s">&#34;os&#34;</span>
+	<span class="s">&#34;path&#34;</span>
+	<span class="s">&#34;strconv&#34;</span>
+	<span class="s">&#34;strings&#34;</span>
+
+	<span class="s">&#34;github.com/benbjohnson/hashfs&#34;</span>
+	<span class="s">&#34;github.com/gin-gonic/gin&#34;</span>
+	<span class="s">&#34;github.com/polaris1119/embed&#34;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="nx">r</span> <span class="o">:=</span> <span class="nx">gin</span><span class="p">.</span><span class="nf">Default</span><span class="p">()</span>
+
+	<span class="nx">r</span><span class="p">.</span><span class="nf">GET</span><span class="p">(</span><span class="s">&#34;/assets/*filepath&#34;</span><span class="p">,</span> <span class="kd">func</span><span class="p">(</span><span class="nx">ctx</span> <span class="o">*</span><span class="nx">gin</span><span class="p">.</span><span class="nx">Context</span><span class="p">)</span> <span class="p">{</span>
+		<span class="nx">filename</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">url</span><span class="p">.</span><span class="nf">PathUnescape</span><span class="p">(</span><span class="nx">ctx</span><span class="p">.</span><span class="nf">Param</span><span class="p">(</span><span class="s">&#34;filepath&#34;</span><span class="p">))</span>
+		<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+			<span class="nx">ctx</span><span class="p">.</span><span class="nf">AbortWithError</span><span class="p">(</span><span class="nx">http</span><span class="p">.</span><span class="nx">StatusInternalServerError</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+			<span class="k">return</span>
+		<span class="p">}</span>
+		<span class="nx">filename</span> <span class="p">=</span> <span class="nx">strings</span><span class="p">.</span><span class="nf">TrimPrefix</span><span class="p">(</span><span class="nx">filename</span><span class="p">,</span> <span class="s">&#34;/&#34;</span><span class="p">)</span>
+
+		<span class="nx">isHashed</span> <span class="o">:=</span> <span class="kc">false</span>
+		<span class="k">if</span> <span class="nx">base</span><span class="p">,</span> <span class="nx">hash</span> <span class="o">:=</span> <span class="nx">hashfs</span><span class="p">.</span><span class="nf">ParseName</span><span class="p">(</span><span class="nx">filename</span><span class="p">);</span> <span class="nx">hash</span> <span class="o">!=</span> <span class="s">&#34;&#34;</span> <span class="p">{</span>
+			<span class="k">if</span> <span class="nx">embed</span><span class="p">.</span><span class="nx">Fsys</span><span class="p">.</span><span class="nf">HashName</span><span class="p">(</span><span class="nx">base</span><span class="p">)</span> <span class="o">==</span> <span class="nx">filename</span> <span class="p">{</span>
+				<span class="nx">filename</span> <span class="p">=</span> <span class="nx">base</span>
+				<span class="nx">isHashed</span> <span class="p">=</span> <span class="kc">true</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+
+		<span class="nx">f</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">embed</span><span class="p">.</span><span class="nx">Fsys</span><span class="p">.</span><span class="nf">Open</span><span class="p">(</span><span class="nx">filename</span><span class="p">)</span>
+		<span class="k">if</span> <span class="nx">os</span><span class="p">.</span><span class="nf">IsNotExist</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+			<span class="nx">ctx</span><span class="p">.</span><span class="nf">AbortWithError</span><span class="p">(</span><span class="nx">http</span><span class="p">.</span><span class="nx">StatusNotFound</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+			<span class="k">return</span>
+		<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+			<span class="nx">ctx</span><span class="p">.</span><span class="nf">AbortWithError</span><span class="p">(</span><span class="nx">http</span><span class="p">.</span><span class="nx">StatusInternalServerError</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+			<span class="k">return</span>
+		<span class="p">}</span>
+		<span class="k">defer</span> <span class="nx">f</span><span class="p">.</span><span class="nf">Close</span><span class="p">()</span>
+
+		<span class="c1">// Fetch file info. Disallow directories from being displayed.
+</span><span class="c1"></span>		<span class="nx">fi</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">f</span><span class="p">.</span><span class="nf">Stat</span><span class="p">()</span>
+		<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+			<span class="nx">ctx</span><span class="p">.</span><span class="nf">AbortWithError</span><span class="p">(</span><span class="nx">http</span><span class="p">.</span><span class="nx">StatusInternalServerError</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+			<span class="k">return</span>
+		<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="nx">fi</span><span class="p">.</span><span class="nf">IsDir</span><span class="p">()</span> <span class="p">{</span>
+			<span class="nx">ctx</span><span class="p">.</span><span class="nf">AbortWithError</span><span class="p">(</span><span class="nx">http</span><span class="p">.</span><span class="nx">StatusForbidden</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+			<span class="k">return</span>
+		<span class="p">}</span>
+
+		<span class="nx">contentType</span> <span class="o">:=</span> <span class="s">&#34;text/plain&#34;</span>
+		<span class="c1">// Determine content type based on file extension.
+</span><span class="c1"></span>		<span class="k">if</span> <span class="nx">ext</span> <span class="o">:=</span> <span class="nx">path</span><span class="p">.</span><span class="nf">Ext</span><span class="p">(</span><span class="nx">filename</span><span class="p">);</span> <span class="nx">ext</span> <span class="o">!=</span> <span class="s">&#34;&#34;</span> <span class="p">{</span>
+			<span class="nx">contentType</span> <span class="p">=</span> <span class="nx">mime</span><span class="p">.</span><span class="nf">TypeByExtension</span><span class="p">(</span><span class="nx">ext</span><span class="p">)</span>
+		<span class="p">}</span>
+
+		<span class="c1">// Cache the file aggressively if the file contains a hash.
+</span><span class="c1"></span>		<span class="k">if</span> <span class="nx">isHashed</span> <span class="p">{</span>
+			<span class="nx">ctx</span><span class="p">.</span><span class="nx">Writer</span><span class="p">.</span><span class="nf">Header</span><span class="p">().</span><span class="nf">Set</span><span class="p">(</span><span class="s">&#34;Cache-Control&#34;</span><span class="p">,</span> <span class="s">`public, max-age=31536000`</span><span class="p">)</span>
+		<span class="p">}</span>
+
+		<span class="c1">// Set content length.
+</span><span class="c1"></span>		<span class="nx">ctx</span><span class="p">.</span><span class="nx">Writer</span><span class="p">.</span><span class="nf">Header</span><span class="p">().</span><span class="nf">Set</span><span class="p">(</span><span class="s">&#34;Content-Length&#34;</span><span class="p">,</span> <span class="nx">strconv</span><span class="p">.</span><span class="nf">FormatInt</span><span class="p">(</span><span class="nx">fi</span><span class="p">.</span><span class="nf">Size</span><span class="p">(),</span> <span class="mi">10</span><span class="p">))</span>
+
+		<span class="c1">// Flush header and write content.
+</span><span class="c1"></span>		<span class="nx">buf</span> <span class="o">:=</span> <span class="nb">new</span><span class="p">(</span><span class="nx">bytes</span><span class="p">.</span><span class="nx">Buffer</span><span class="p">)</span>
+		<span class="k">if</span> <span class="nx">ctx</span><span class="p">.</span><span class="nx">Request</span><span class="p">.</span><span class="nx">Method</span> <span class="o">!=</span> <span class="s">&#34;HEAD&#34;</span> <span class="p">{</span>
+			<span class="nx">io</span><span class="p">.</span><span class="nf">Copy</span><span class="p">(</span><span class="nx">buf</span><span class="p">,</span> <span class="nx">f</span><span class="p">)</span>
+		<span class="p">}</span>
+		<span class="nx">ctx</span><span class="p">.</span><span class="nf">Data</span><span class="p">(</span><span class="nx">http</span><span class="p">.</span><span class="nx">StatusOK</span><span class="p">,</span> <span class="nx">contentType</span><span class="p">,</span> <span class="nx">buf</span><span class="p">.</span><span class="nf">Bytes</span><span class="p">())</span>
+	<span class="p">})</span>
+
+	<span class="nx">r</span><span class="p">.</span><span class="nf">LoadHTMLGlob</span><span class="p">(</span><span class="s">&#34;template/*&#34;</span><span class="p">)</span>
+	<span class="nx">r</span><span class="p">.</span><span class="nf">GET</span><span class="p">(</span><span class="s">&#34;/&#34;</span><span class="p">,</span> <span class="kd">func</span><span class="p">(</span><span class="nx">ctx</span> <span class="o">*</span><span class="nx">gin</span><span class="p">.</span><span class="nx">Context</span><span class="p">)</span> <span class="p">{</span>
+		<span class="nx">ctx</span><span class="p">.</span><span class="nf">HTML</span><span class="p">(</span><span class="nx">http</span><span class="p">.</span><span class="nx">StatusOK</span><span class="p">,</span> <span class="s">&#34;index.html&#34;</span><span class="p">,</span> <span class="nx">gin</span><span class="p">.</span><span class="nx">H</span><span class="p">{</span>
+			<span class="s">&#34;mainjs&#34;</span><span class="p">:</span> <span class="nx">embed</span><span class="p">.</span><span class="nx">Fsys</span><span class="p">.</span><span class="nf">HashName</span><span class="p">(</span><span class="s">&#34;static/main.js&#34;</span><span class="p">),</span>
+		<span class="p">})</span>
+	<span class="p">})</span>
+	<span class="nx">r</span><span class="p">.</span><span class="nf">Run</span><span class="p">(</span><span class="s">&#34;:8080&#34;</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div><p>服务静态文件的内容和 Echo 框架基本一样，除了各自框架特有的。</p>
+<blockquote>
+<p>因为 Gin 框架提供了 LoadHTMLGlob，首页路由的处理函数代码很简单。</p>
+</blockquote>
+<p>运行 go run ./cmd/gin/main.go，不出意外和 net/http 版本一样的效果。</p>
+<h2 id="06-总结">06 总结</h2>
+<p>举一反三，在学习过程中可以让你更好的掌握某个知识点。</p>
+<p>之前有读者问到 module 如何使用 vendor（没网情况下使用）。今天试验这个就是用了 vendor。其实它的使用很简单，在项目下执行：go mod vendor 即可。不过需要注意的是，加入了新的依赖，就应该执行一次 go mod vendor。</p>
+<p>今天介绍的这个库在这个时代用到的可能性不高，不过也有可能会用得到。更重要的是希望这篇文章可以作为一个小项目实践下。希望你能从头自己编码实现。</p>
+<p>另外还留了一个问题给你：index.html 文件没有内嵌，请你自己完成。（提示：html/template 增加了对 io/fs.Fs 的支持）</p>
+<p>本项目完整代码：<a href="https://github.com/polaris1119/embed">https://github.com/polaris1119/embed</a>。</p>
+]]></content>
+		</item>
 		
 		<item>
 			<title>从一份 2020 年大厂加班榜说起</title>
