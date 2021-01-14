@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Sun, 10 Jan 2021 22:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 14 Jan 2021 17:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>用 Go 如何实现精准统计文章字数</title>
+      <link>https://polarisxu.studygolang.com/posts/go/action/stat-words/</link>
+      <pubDate>Thu, 14 Jan 2021 17:00:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/action/stat-words/</guid>
+      <description>大家好，我是站长 polarisxu。 今天要聊的内容应该可以当做一道面试题，你可以先想想该怎么实现。 统计字数是一个很常见的需求，很多人印象最深的应该是微博早些时候限制 140 字，而且边输入会边统计剩余字数。现在很多社区文章也会有字数统计的功能，而且可以依据字数来预估阅读时间。比如 Go语言中文网就有这样的功能。 01 需求分析 下手之前先分析下这个需求。从我个人经验看，在实际</description>
+    </item>
+    
     <item>
       <title>基于 Go1.16 实现静态文件的 HTTP Cache</title>
       <link>https://polarisxu.studygolang.com/posts/go/action/hashfs-http-cache/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/talk/go-and-business/</guid>
       <description>昨天 PingCAP 完成 D 轮 2.7 亿美元融资的消息，相信很多人看到了。PingCAP 今天的成就，对开源界真是极大的鼓舞。祝贺祝贺！ 01 PingCAP 成立于 2015 年，是一家企业级开源分布式数据库厂商，提供包括开源分布式数据库产品、解决方案与咨询、技术支持与培训认证服务，致力于为全球行业用户提供稳定高效、安全可靠、开放兼容的新型数据基础设施，解放企业生产力，加速企业数字化转型升级。 由 PingCAP 创立的分布式</description>
-    </item>
-    
-    <item>
-      <title>通过这个 Runtime 统计信息可视化库学到了什么？</title>
-      <link>https://polarisxu.studygolang.com/posts/go/pkg/statsview/</link>
-      <pubDate>Tue, 17 Nov 2020 15:12:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/pkg/statsview/</guid>
-      <description>大家好，我是站长 polarisxu。 掌握系统运行状态，知道系统哪些地方可能存在问题，方便进行优化，这是一个实际系统必备的。裸奔，对系统一无所知，迟早是要出大事的。 在 Go 语言中，官方标准库提供了方法，让我们能够获得内存分配、GC 和 Goroutine 等情况。比如内存、GC 等情况，可以通过 runtime.MemStats 获取：https://docs.studygolang.com/pkg/runtime/#M</description>
     </item>
     
   </channel>

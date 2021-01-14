@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Mon, 11 Jan 2021 20:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 14 Jan 2021 17:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>用 Go 如何实现精准统计文章字数</title>
+      <link>https://polarisxu.studygolang.com/posts/go/action/stat-words/</link>
+      <pubDate>Thu, 14 Jan 2021 17:00:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/action/stat-words/</guid>
+      <description>大家好，我是站长 polarisxu。 今天要聊的内容应该可以当做一道面试题，你可以先想想该怎么实现。 统计字数是一个很常见的需求，很多人印象最深的应该是微博早些时候限制 140 字，而且边输入会边统计剩余字数。现在很多社区文章也会有字数统计的功能，而且可以依据字数来预估阅读时间。比如 Go语言中文网就有这样的功能。 01 需求分析 下手之前先分析下这个需求。从我个人经验看，在实际</description>
+    </item>
+    
     <item>
       <title>我为什么运营微信公众号</title>
       <link>https://polarisxu.studygolang.com/posts/wechat/why-wechat/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/apple/is-apple-m1-ready/</guid>
       <description>大家好，我是站长 polarisxu。 这段时间关注 Apple M1 芯片挺多的，对 Apple 的强大由衷的感慨。市值 2.1 万亿美金，做的动作都成为行业引领者。 当年扁平化设计出来，被各种吐槽；结果大家都扁平化了； 出暗黑模式（很程序员？），有些人不喜欢，但现在各种都支持暗黑模式； iPhone 12 不带耳机和充电器，骂声一片，目测各个手机厂商都跟进，比如三星就宣布不带了； Mac 换成自己的 M1 芯片，很多软件厂商及时</description>
-    </item>
-    
-    <item>
-      <title>听说你还不知道如何查看 Go 历史文档？</title>
-      <link>https://polarisxu.studygolang.com/posts/go/dynamic/view-go-history-std-version/</link>
-      <pubDate>Thu, 17 Dec 2020 17:15:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/dynamic/view-go-history-std-version/</guid>
-      <description>大家好，我是站长 polarisxu。 这是一篇短文，写这篇文章主要是看到了两个信息： tonybai 写的《如何查看历史版本的 Go 文档？》 Go 官方发博文，2021 年初开始，godoc.org 默认将重定向到 pkg.go.dev ； tonybai 在文章中说了两种方法： 利用 go doc，可行，但非最优。比如 go doc http.Request。通过切换本地的 Go 版本实现查看不同版本的 Go 标准库文档； 使用 godoc 建立历史版本的 Web 化文档中心。</description>
     </item>
     
   </channel>

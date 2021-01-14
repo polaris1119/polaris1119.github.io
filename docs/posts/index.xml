@@ -6,8 +6,260 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en</language>
 		<copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-		<lastBuildDate>Mon, 11 Jan 2021 20:00:00 +0800</lastBuildDate>
+		<lastBuildDate>Thu, 14 Jan 2021 17:00:00 +0800</lastBuildDate>
 		<atom:link href="https://polarisxu.studygolang.com/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>用 Go 如何实现精准统计文章字数</title>
+			<link>https://polarisxu.studygolang.com/posts/go/action/stat-words/</link>
+			<pubDate>Thu, 14 Jan 2021 17:00:00 +0800</pubDate>
+			
+			<guid>https://polarisxu.studygolang.com/posts/go/action/stat-words/</guid>
+			<description>大家好，我是站长 polarisxu。 今天要聊的内容应该可以当做一道面试题，你可以先想想该怎么实现。 统计字数是一个很常见的需求，很多人印象最深的应该是微博早些时候限制 140 字，而且边输入会边统计剩余字数。现在很多社区文章也会有字数统计的功能，而且可以依据字数来预估阅读时间。比如 Go语言中文网就有这样的功能。 01 需求分析 下手之前先分析下这个需求。从我个人经验看，在实际</description>
+			<content type="html"><![CDATA[<p>大家好，我是站长 polarisxu。</p>
+<p>今天要聊的内容应该可以当做一道面试题，你可以先想想该怎么实现。</p>
+<p>统计字数是一个很常见的需求，很多人印象最深的应该是微博早些时候限制 140 字，而且边输入会边统计剩余字数。现在很多社区文章也会有字数统计的功能，而且可以依据字数来预估阅读时间。比如 Go语言中文网就有这样的功能。</p>
+<h2 id="01-需求分析">01 需求分析</h2>
+<p>下手之前先分析下这个需求。从我个人经验看，在实际面试中，针对一个面试题，你的分析过程，循序渐进的解决方案，可以很好的展示你的思考过程。正所谓分析问题、解决问题。这会给你加分的。</p>
+<p>我们采用类似词法分析的思路分析这个需求。</p>
+<p>一篇文章通常包含如下元素，我们也称之为 token：</p>
+<ul>
+<li>普通文字</li>
+<li>标点符号</li>
+<li>图片</li>
+<li>链接（包含各种协议的链接）</li>
+<li>代码</li>
+</ul>
+<p>其中普通文字通常会分为欧美和中日韩（CJK），因为 CJK 属于表意文字，和欧美字母的文字差异很大。同时这里还涉及到编码的问题。本文假设使用 UTF-8 编码。</p>
+<p>对于标点符号，中文标点和英文标点也会很不一样。</p>
+<p>此外还有全角和半角的问题。</p>
+<p>根据以上分析，对于该需求作如下假定：</p>
+<ul>
+<li>空格（包括换行）不算字数；</li>
+<li>HTML 标签需要剔除；</li>
+<li>编码方式：假定为 UTF-8 编码；</li>
+<li>标点符号算不算做字数。如果算，像括号这样的按 2 个字算；</li>
+<li>链接怎么算？一个链接约定为 1 个字可能更合适，大概阅读时只是把它当链接，而不太会关心链接由什么字母组成；</li>
+<li>图片不算做字数，但如果计算阅读时间，可能需要适当考虑图片的影响；</li>
+<li>对于技术文章，代码是最麻烦的。统计代码字数感觉是没多大意义的。统计代码行数可能更有意义；</li>
+</ul>
+<p>本文的解决方案针对以上的假定进行。</p>
+<h2 id="02-go-语言实现">02 Go 语言实现</h2>
+<p>先看最简单的。</p>
+<h3 id="纯英文">纯英文</h3>
+<p>根据以上分析，如果文章只包含普通文本且是英文，也就是说，每个字（单词）根据空格分隔，统计是最简单的。</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">TotalWords</span><span class="p">(</span><span class="nx">s</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
+	<span class="nx">n</span> <span class="o">:=</span> <span class="mi">0</span>
+	<span class="nx">inWord</span> <span class="o">:=</span> <span class="kc">false</span>
+	<span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">r</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">s</span> <span class="p">{</span>
+		<span class="nx">wasInWord</span> <span class="o">:=</span> <span class="nx">inWord</span>
+		<span class="nx">inWord</span> <span class="p">=</span> <span class="p">!</span><span class="nx">unicode</span><span class="p">.</span><span class="nf">IsSpace</span><span class="p">(</span><span class="nx">r</span><span class="p">)</span>
+		<span class="k">if</span> <span class="nx">inWord</span> <span class="o">&amp;&amp;</span> <span class="p">!</span><span class="nx">wasInWord</span> <span class="p">{</span>
+			<span class="nx">n</span><span class="o">++</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="nx">n</span>
+<span class="p">}</span>
+</code></pre></div><p>还有一种更简单的方式：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nb">len</span><span class="p">(</span><span class="nx">strings</span><span class="p">.</span><span class="nf">Fields</span><span class="p">(</span><span class="nx">s</span><span class="p">))</span>
+</code></pre></div><p>不过看 strings.Fields 的实现，性能会不如第一种方式。</p>
+<p>回顾上面的需求分析，会发现这个实现是有 Bug 的。比如下面的例子：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">s1</span> <span class="o">:=</span> <span class="s">&#34;Hello,playground&#34;</span>
+<span class="nx">s2</span> <span class="o">:=</span> <span class="s">&#34;Hello, playground&#34;</span>
+</code></pre></div><p>用上面的实现，s1 的字数是 1，s2 的字数是 2。它们都忽略了标点符号。而且因为写法的多样性（不规范统一），导致计算字数会有误差。所以我们需要对写法进行规范。</p>
+<h3 id="规范排版">规范排版</h3>
+<p>其实和写代码要有规范一样，文章也是有规范的。比如出版社对于一本书的排版会有明确的规定。为了让我们的文章看起来更舒服，也应该遵循一定的规范。</p>
+<p>这里推荐一个 GitHub 上的排版指南：<a href="https://github.com/studygolang/GCTT/blob/master/chinese-copywriting-guidlines.md" target="_blank" rel="noopener">《中文文案排版指北》</a>
+，它的宗旨，统一中文文案、排版的相关用法，降低团队成员之间的沟通成本，增强网站气质。这个规范开头关于空格的一段话很有意思：</p>
+<blockquote>
+<p>有研究显示，打字的时候不喜欢在中文和英文之间加空格的人，感情路都走得很辛苦，有七成的比例会在 34 岁的时候跟自己不爱的人结婚，而其余三成的人最后只能把遗产留给自己的猫。毕竟爱情跟书写都需要适时地留白。</p>
+</blockquote>
+<p>建议大家可以看看这个指北，一些知名的网站就是按照这个做的。</p>
+<p>因为 GCTT 的排版在这个规范做，但人为约束不是最好的方法，所以我开发了一个 Go 工具：<a href="https://github.com/studygolang/autocorrect">https://github.com/studygolang/autocorrect</a>，用于自动给中英文之间加入合理的空格并纠正专用名词大小写。</p>
+<p>所以为了让字数统计更准确，我们假定文章是按一定的规范书写的。比如上面的例子，规范的写法是 <code>s2 := &quot;Hello, playground&quot;</code>。不过这里标点不算作字数。</p>
+<p>刚去微博上试了一下，发现微博的字数计算方式有点诡异，竟然是 9 个字。</p>
+<p><p class="md__image">
+  <img src="../imgs/stat-words-weibo.png"
+    alt=""  />
+</p>
+</p>
+<p>测试一下发现，它直接把两个英文字母算作一个字（两个字节算一个字）。而汉字是正常的。大家可以想想微博是怎么实现的。</p>
+<h3 id="中英文混合">中英文混合</h3>
+<p>中文不像英文，单词之间没有空格分隔，因此开始的那两种方式不适合。</p>
+<p>如果是纯中文，我们怎么计算字数呢？</p>
+<p>在 Go 语言中，字符串使用 UTF-8 编码，一个字符用 rune 表示。因此在标准库中查找相关计算方法。</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">RuneCountInString</span><span class="p">(</span><span class="nx">s</span> <span class="kt">string</span><span class="p">)</span> <span class="p">(</span><span class="nx">n</span> <span class="kt">int</span><span class="p">)</span>
+</code></pre></div><p>这个方法能计算字符串包含的 rune（字符）数，对于纯中文，就是汉字数。</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">str</span> <span class="o">:=</span> <span class="s">&#34;你好世界&#34;</span>
+<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">utf8</span><span class="p">.</span><span class="nf">RuneCountInString</span><span class="p">(</span><span class="nx">str</span><span class="p">))</span>
+</code></pre></div><p>以上代码输出 4。</p>
+<p>然而，因为很多时候文章会中英文混合，因此我们先采用上面的纯英文的处理方式，即：<code>strings.Fields()</code>，将文章用空格分隔，然后处理每一部分。</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">TotalWords</span><span class="p">(</span><span class="nx">s</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
+	<span class="nx">wordCount</span> <span class="o">:=</span> <span class="mi">0</span>
+  
+	<span class="nx">plainWords</span> <span class="o">:=</span> <span class="nx">strings</span><span class="p">.</span><span class="nf">Fields</span><span class="p">(</span><span class="nx">s</span><span class="p">)</span>
+	<span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">word</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">plainWords</span> <span class="p">{</span>
+		<span class="nx">runeCount</span> <span class="o">:=</span> <span class="nx">utf8</span><span class="p">.</span><span class="nf">RuneCountInString</span><span class="p">(</span><span class="nx">word</span><span class="p">)</span>
+		<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nx">word</span><span class="p">)</span> <span class="o">==</span> <span class="nx">runeCount</span> <span class="p">{</span>
+			<span class="nx">wordCount</span><span class="o">++</span>
+		<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+			<span class="nx">wordCount</span> <span class="o">+=</span> <span class="nx">runeCount</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+
+	<span class="k">return</span> <span class="nx">wordCount</span>
+<span class="p">}</span>
+</code></pre></div><p>增加如下的测试用例：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">TestTotalWords</span><span class="p">(</span><span class="nx">t</span> <span class="o">*</span><span class="nx">testing</span><span class="p">.</span><span class="nx">T</span><span class="p">)</span> <span class="p">{</span>
+	<span class="nx">tests</span> <span class="o">:=</span> <span class="p">[]</span><span class="kd">struct</span> <span class="p">{</span>
+		<span class="nx">name</span>  <span class="kt">string</span>
+		<span class="nx">input</span> <span class="kt">string</span>
+		<span class="nx">want</span>  <span class="kt">int</span>
+	<span class="p">}{</span>
+		<span class="p">{</span><span class="s">&#34;en1&#34;</span><span class="p">,</span> <span class="s">&#34;hello,playground&#34;</span><span class="p">,</span> <span class="mi">2</span><span class="p">},</span>
+		<span class="p">{</span><span class="s">&#34;en2&#34;</span><span class="p">,</span> <span class="s">&#34;hello, playground&#34;</span><span class="p">,</span> <span class="mi">2</span><span class="p">},</span>
+		<span class="p">{</span><span class="s">&#34;cn1&#34;</span><span class="p">,</span> <span class="s">&#34;你好世界&#34;</span><span class="p">,</span> <span class="mi">4</span><span class="p">},</span>
+		<span class="p">{</span><span class="s">&#34;encn1&#34;</span><span class="p">,</span> <span class="s">&#34;Hello你好世界&#34;</span><span class="p">,</span> <span class="mi">5</span><span class="p">},</span>
+		<span class="p">{</span><span class="s">&#34;encn2&#34;</span><span class="p">,</span> <span class="s">&#34;Hello 你好世界&#34;</span><span class="p">,</span> <span class="mi">5</span><span class="p">},</span>
+	<span class="p">}</span>
+	<span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">tt</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">tests</span> <span class="p">{</span>
+		<span class="nx">t</span><span class="p">.</span><span class="nf">Run</span><span class="p">(</span><span class="nx">tt</span><span class="p">.</span><span class="nx">name</span><span class="p">,</span> <span class="kd">func</span><span class="p">(</span><span class="nx">t</span> <span class="o">*</span><span class="nx">testing</span><span class="p">.</span><span class="nx">T</span><span class="p">)</span> <span class="p">{</span>
+			<span class="k">if</span> <span class="nx">got</span> <span class="o">:=</span> <span class="nx">wordscount</span><span class="p">.</span><span class="nf">TotalWords</span><span class="p">(</span><span class="nx">tt</span><span class="p">.</span><span class="nx">input</span><span class="p">);</span> <span class="nx">got</span> <span class="o">!=</span> <span class="nx">tt</span><span class="p">.</span><span class="nx">want</span> <span class="p">{</span>
+				<span class="nx">t</span><span class="p">.</span><span class="nf">Errorf</span><span class="p">(</span><span class="s">&#34;TotalWords() = %v, want %v&#34;</span><span class="p">,</span> <span class="nx">got</span><span class="p">,</span> <span class="nx">tt</span><span class="p">.</span><span class="nx">want</span><span class="p">)</span>
+			<span class="p">}</span>
+		<span class="p">})</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><p>发现 en1 和 encn1 测试不通过，因为没有按照上面说的规范书写。因此我们通过程序增加必要的空格。</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// AutoSpace 自动给中英文之间加上空格
+</span><span class="c1"></span><span class="kd">func</span> <span class="nf">AutoSpace</span><span class="p">(</span><span class="nx">str</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">string</span> <span class="p">{</span>
+	<span class="nx">out</span> <span class="o">:=</span> <span class="s">&#34;&#34;</span>
+
+	<span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">r</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">str</span> <span class="p">{</span>
+		<span class="nx">out</span> <span class="p">=</span> <span class="nf">addSpaceAtBoundary</span><span class="p">(</span><span class="nx">out</span><span class="p">,</span> <span class="nx">r</span><span class="p">)</span>
+	<span class="p">}</span>
+
+	<span class="k">return</span> <span class="nx">out</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">addSpaceAtBoundary</span><span class="p">(</span><span class="nx">prefix</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">nextChar</span> <span class="kt">rune</span><span class="p">)</span> <span class="kt">string</span> <span class="p">{</span>
+	<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nx">prefix</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="nb">string</span><span class="p">(</span><span class="nx">nextChar</span><span class="p">)</span>
+	<span class="p">}</span>
+
+	<span class="nx">r</span><span class="p">,</span> <span class="nx">size</span> <span class="o">:=</span> <span class="nx">utf8</span><span class="p">.</span><span class="nf">DecodeLastRuneInString</span><span class="p">(</span><span class="nx">prefix</span><span class="p">)</span>
+	<span class="k">if</span> <span class="nf">isLatin</span><span class="p">(</span><span class="nx">size</span><span class="p">)</span> <span class="o">!=</span> <span class="nf">isLatin</span><span class="p">(</span><span class="nx">utf8</span><span class="p">.</span><span class="nf">RuneLen</span><span class="p">(</span><span class="nx">nextChar</span><span class="p">))</span> <span class="o">&amp;&amp;</span>
+		<span class="nf">isAllowSpace</span><span class="p">(</span><span class="nx">nextChar</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nf">isAllowSpace</span><span class="p">(</span><span class="nx">r</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="nx">prefix</span> <span class="o">+</span> <span class="s">&#34; &#34;</span> <span class="o">+</span> <span class="nb">string</span><span class="p">(</span><span class="nx">nextChar</span><span class="p">)</span>
+	<span class="p">}</span>
+
+	<span class="k">return</span> <span class="nx">prefix</span> <span class="o">+</span> <span class="nb">string</span><span class="p">(</span><span class="nx">nextChar</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">isLatin</span><span class="p">(</span><span class="nx">size</span> <span class="kt">int</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
+	<span class="k">return</span> <span class="nx">size</span> <span class="o">==</span> <span class="mi">1</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">isAllowSpace</span><span class="p">(</span><span class="nx">r</span> <span class="kt">rune</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
+	<span class="k">return</span> <span class="p">!</span><span class="nx">unicode</span><span class="p">.</span><span class="nf">IsSpace</span><span class="p">(</span><span class="nx">r</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">!</span><span class="nx">unicode</span><span class="p">.</span><span class="nf">IsPunct</span><span class="p">(</span><span class="nx">r</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div><p>这样可以在 TotalWords 函数开头增加 AutoSpace 进行规范化。这时结果就正常了。</p>
+<h3 id="处理标点和其他类型">处理标点和其他类型</h3>
+<p>以上例子标点没计算在内，而且如果英文和中文标点混合在一起，情况又复杂了。</p>
+<p>为了更好地实现开始的需求分析，重构以上代码，设计如下的结构：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">Counter</span> <span class="kd">struct</span> <span class="p">{</span>
+	<span class="nx">Total</span>     <span class="kt">int</span> <span class="c1">// 总字数 = Words + Puncts
+</span><span class="c1"></span>	<span class="nx">Words</span>     <span class="kt">int</span> <span class="c1">// 只包含字符数
+</span><span class="c1"></span>	<span class="nx">Puncts</span>    <span class="kt">int</span> <span class="c1">// 标点数
+</span><span class="c1"></span>	<span class="nx">Links</span>     <span class="kt">int</span> <span class="c1">// 链接数
+</span><span class="c1"></span>	<span class="nx">Pics</span>      <span class="kt">int</span> <span class="c1">// 图片数
+</span><span class="c1"></span>	<span class="nx">CodeLines</span> <span class="kt">int</span> <span class="c1">// 代码行数
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></div><p>同时将 TotalWords 重构为 Counter 的 Stat 方法，同时记录标点数：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="p">(</span><span class="nx">wc</span> <span class="o">*</span><span class="nx">Counter</span><span class="p">)</span> <span class="nf">Stat</span><span class="p">(</span><span class="nx">str</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+	<span class="nx">wc</span><span class="p">.</span><span class="nx">Links</span> <span class="p">=</span> <span class="nb">len</span><span class="p">(</span><span class="nx">rxStrict</span><span class="p">.</span><span class="nf">FindAllString</span><span class="p">(</span><span class="nx">str</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+	<span class="nx">wc</span><span class="p">.</span><span class="nx">Pics</span> <span class="p">=</span> <span class="nb">len</span><span class="p">(</span><span class="nx">imgReg</span><span class="p">.</span><span class="nf">FindAllString</span><span class="p">(</span><span class="nx">str</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+
+	<span class="c1">// 剔除 HTML
+</span><span class="c1"></span>	<span class="nx">str</span> <span class="p">=</span> <span class="nf">StripHTML</span><span class="p">(</span><span class="nx">str</span><span class="p">)</span>
+
+	<span class="nx">str</span> <span class="p">=</span> <span class="nf">AutoSpace</span><span class="p">(</span><span class="nx">str</span><span class="p">)</span>
+
+	<span class="c1">// 普通的链接去除（非 HTML 标签链接）
+</span><span class="c1"></span>	<span class="nx">str</span> <span class="p">=</span> <span class="nx">rxStrict</span><span class="p">.</span><span class="nf">ReplaceAllString</span><span class="p">(</span><span class="nx">str</span><span class="p">,</span> <span class="s">&#34; &#34;</span><span class="p">)</span>
+	<span class="nx">plainWords</span> <span class="o">:=</span> <span class="nx">strings</span><span class="p">.</span><span class="nf">Fields</span><span class="p">(</span><span class="nx">str</span><span class="p">)</span>
+
+	<span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">plainWord</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">plainWords</span> <span class="p">{</span>
+		<span class="nx">words</span> <span class="o">:=</span> <span class="nx">strings</span><span class="p">.</span><span class="nf">FieldsFunc</span><span class="p">(</span><span class="nx">plainWord</span><span class="p">,</span> <span class="kd">func</span><span class="p">(</span><span class="nx">r</span> <span class="kt">rune</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
+			<span class="k">if</span> <span class="nx">unicode</span><span class="p">.</span><span class="nf">IsPunct</span><span class="p">(</span><span class="nx">r</span><span class="p">)</span> <span class="p">{</span>
+				<span class="nx">wc</span><span class="p">.</span><span class="nx">Puncts</span><span class="o">++</span>
+				<span class="k">return</span> <span class="kc">true</span>
+			<span class="p">}</span>
+			<span class="k">return</span> <span class="kc">false</span>
+		<span class="p">})</span>
+
+		<span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">word</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">words</span> <span class="p">{</span>
+			<span class="nx">runeCount</span> <span class="o">:=</span> <span class="nx">utf8</span><span class="p">.</span><span class="nf">RuneCountInString</span><span class="p">(</span><span class="nx">word</span><span class="p">)</span>
+			<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nx">word</span><span class="p">)</span> <span class="o">==</span> <span class="nx">runeCount</span> <span class="p">{</span>
+				<span class="nx">wc</span><span class="p">.</span><span class="nx">Words</span><span class="o">++</span>
+			<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+				<span class="nx">wc</span><span class="p">.</span><span class="nx">Words</span> <span class="o">+=</span> <span class="nx">runeCount</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+
+	<span class="nx">wc</span><span class="p">.</span><span class="nx">Total</span> <span class="p">=</span> <span class="nx">wc</span><span class="p">.</span><span class="nx">Words</span> <span class="o">+</span> <span class="nx">wc</span><span class="p">.</span><span class="nx">Puncts</span>
+<span class="p">}</span>
+
+<span class="kd">var</span> <span class="p">(</span>
+	<span class="nx">rxStrict</span> <span class="p">=</span> <span class="nx">xurls</span><span class="p">.</span><span class="nf">Strict</span><span class="p">()</span>
+	<span class="nx">imgReg</span>   <span class="p">=</span> <span class="nx">regexp</span><span class="p">.</span><span class="nf">MustCompile</span><span class="p">(</span><span class="s">`&lt;img [^&gt;]*&gt;`</span><span class="p">)</span>
+	<span class="nx">stripHTMLReplacer</span> <span class="p">=</span> <span class="nx">strings</span><span class="p">.</span><span class="nf">NewReplacer</span><span class="p">(</span><span class="s">&#34;\n&#34;</span><span class="p">,</span> <span class="s">&#34; &#34;</span><span class="p">,</span> <span class="s">&#34;&lt;/p&gt;&#34;</span><span class="p">,</span> <span class="s">&#34;\n&#34;</span><span class="p">,</span> <span class="s">&#34;&lt;br&gt;&#34;</span><span class="p">,</span> <span class="s">&#34;\n&#34;</span><span class="p">,</span> <span class="s">&#34;&lt;br /&gt;&#34;</span><span class="p">,</span> <span class="s">&#34;\n&#34;</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="c1">// StripHTML accepts a string, strips out all HTML tags and returns it.
+</span><span class="c1"></span><span class="kd">func</span> <span class="nf">StripHTML</span><span class="p">(</span><span class="nx">s</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">string</span> <span class="p">{</span>
+	<span class="c1">// Shortcut strings with no tags in them
+</span><span class="c1"></span>	<span class="k">if</span> <span class="p">!</span><span class="nx">strings</span><span class="p">.</span><span class="nf">ContainsAny</span><span class="p">(</span><span class="nx">s</span><span class="p">,</span> <span class="s">&#34;&lt;&gt;&#34;</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="nx">s</span>
+	<span class="p">}</span>
+	<span class="nx">s</span> <span class="p">=</span> <span class="nx">stripHTMLReplacer</span><span class="p">.</span><span class="nf">Replace</span><span class="p">(</span><span class="nx">s</span><span class="p">)</span>
+
+	<span class="c1">// Walk through the string removing all tags
+</span><span class="c1"></span>	<span class="nx">b</span> <span class="o">:=</span> <span class="nf">GetBuffer</span><span class="p">()</span>
+	<span class="k">defer</span> <span class="nf">PutBuffer</span><span class="p">(</span><span class="nx">b</span><span class="p">)</span>
+	<span class="kd">var</span> <span class="nx">inTag</span><span class="p">,</span> <span class="nx">isSpace</span><span class="p">,</span> <span class="nx">wasSpace</span> <span class="kt">bool</span>
+	<span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">r</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">s</span> <span class="p">{</span>
+		<span class="k">if</span> <span class="p">!</span><span class="nx">inTag</span> <span class="p">{</span>
+			<span class="nx">isSpace</span> <span class="p">=</span> <span class="kc">false</span>
+		<span class="p">}</span>
+
+		<span class="k">switch</span> <span class="p">{</span>
+		<span class="k">case</span> <span class="nx">r</span> <span class="o">==</span> <span class="sc">&#39;&lt;&#39;</span><span class="p">:</span>
+			<span class="nx">inTag</span> <span class="p">=</span> <span class="kc">true</span>
+		<span class="k">case</span> <span class="nx">r</span> <span class="o">==</span> <span class="sc">&#39;&gt;&#39;</span><span class="p">:</span>
+			<span class="nx">inTag</span> <span class="p">=</span> <span class="kc">false</span>
+		<span class="k">case</span> <span class="nx">unicode</span><span class="p">.</span><span class="nf">IsSpace</span><span class="p">(</span><span class="nx">r</span><span class="p">):</span>
+			<span class="nx">isSpace</span> <span class="p">=</span> <span class="kc">true</span>
+			<span class="k">fallthrough</span>
+		<span class="k">default</span><span class="p">:</span>
+			<span class="k">if</span> <span class="p">!</span><span class="nx">inTag</span> <span class="o">&amp;&amp;</span> <span class="p">(!</span><span class="nx">isSpace</span> <span class="o">||</span> <span class="p">(</span><span class="nx">isSpace</span> <span class="o">&amp;&amp;</span> <span class="p">!</span><span class="nx">wasSpace</span><span class="p">))</span> <span class="p">{</span>
+				<span class="nx">b</span><span class="p">.</span><span class="nf">WriteRune</span><span class="p">(</span><span class="nx">r</span><span class="p">)</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+
+		<span class="nx">wasSpace</span> <span class="p">=</span> <span class="nx">isSpace</span>
+
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="nx">b</span><span class="p">.</span><span class="nf">String</span><span class="p">()</span>
+<span class="p">}</span>
+</code></pre></div><p>代码过多的细节不讨论。此外，关于文章内的代码行数统计未实现（目前没有想到特别好的方法，如果你有，欢迎交流）。</p>
+<h2 id="03-总结">03 总结</h2>
+<p>通过本文的分析发现，精准统计字数没那么容易，这里涉及到很多的细节。</p>
+<p>当然，实际应用中，字数不需要那么特别精准，而且对于非正常文字（比如链接、代码）怎么处理，会有不同的约定。</p>
+<p>本文涉及到的完整代码放在 GitHub：<a href="https://github.com/polaris1119/wordscount">https://github.com/polaris1119/wordscount</a>。</p>
+]]></content>
+		</item>
 		
 		<item>
 			<title>我为什么运营微信公众号</title>
