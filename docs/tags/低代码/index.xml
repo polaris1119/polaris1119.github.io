@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>低代码 on polarisxu</title>
+    <link>https://polarisxu.studygolang.com/tags/%E4%BD%8E%E4%BB%A3%E7%A0%81/</link>
+    <description>Recent content in 低代码 on polarisxu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
+    <lastBuildDate>Sat, 16 Jan 2021 20:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/%E4%BD%8E%E4%BB%A3%E7%A0%81/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>钉钉 6.0 发布会上提到的 Low-Code 是个什么鬼？</title>
+      <link>https://polarisxu.studygolang.com/posts/talk/low-code/</link>
+      <pubDate>Sat, 16 Jan 2021 20:00:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/talk/low-code/</guid>
+      <description>2021 年 1 月 14 日钉钉 6.0 发布会上提到了“云钉一体”战略，其中讲解了 「Low-Code」 这个词。不知道大家看到这个词是啥感觉？这是说我写的代码 low 吗？ 阿里似乎比较喜欢带节奏，比如中台，不管大小公司都模仿；前段时间看网上有说他们去中台。。。心好累！ Low-Code 这玩意竟然很早就有了，很多人不知晓，多半是因为一直不温不火！不知道大家是否知晓，反正我之前是不知道，是这两天才看的很多资料</description>
+    </item>
+    
+  </channel>
+</rss>

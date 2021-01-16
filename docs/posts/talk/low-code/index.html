@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#fcfcfc">
+	<meta name="msapplication-TileColor" content="#fcfcfc">
+<meta itemprop="name" content="钉钉 6.0 发布会上提到的 Low-Code 是个什么鬼？">
+<meta itemprop="description" content="2021 年 1 月 14 日钉钉 6.0 发布会上提到了“云钉一体”战略，其中讲解了 「Low-Code」 这个词。不知道大家看到这个词是啥感觉？这是说我写的代码 low 吗？ 阿里似乎比较喜欢带节奏，比如中台，不管大小公司都模仿；前段时间看网上有说他们去中台。。。心好累！ Low-Code 这玩意竟然很早就有了，很多人不知晓，多半是因为一直不温不火！不知道大家是否知晓，反正我之前是不知道，是这两天才看的很多资料">
+<meta itemprop="datePublished" content="2021-01-16T20:00:00+08:00" />
+<meta itemprop="dateModified" content="2021-01-16T20:00:00+08:00" />
+<meta itemprop="wordCount" content="1657">
+
+
+
+<meta itemprop="keywords" content="低代码,low-code," />
+<meta property="og:title" content="钉钉 6.0 发布会上提到的 Low-Code 是个什么鬼？" />
+<meta property="og:description" content="2021 年 1 月 14 日钉钉 6.0 发布会上提到了“云钉一体”战略，其中讲解了 「Low-Code」 这个词。不知道大家看到这个词是啥感觉？这是说我写的代码 low 吗？ 阿里似乎比较喜欢带节奏，比如中台，不管大小公司都模仿；前段时间看网上有说他们去中台。。。心好累！ Low-Code 这玩意竟然很早就有了，很多人不知晓，多半是因为一直不温不火！不知道大家是否知晓，反正我之前是不知道，是这两天才看的很多资料" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://polarisxu.studygolang.com/posts/talk/low-code/" />
+<meta property="article:published_time" content="2021-01-16T20:00:00+08:00" />
+<meta property="article:modified_time" content="2021-01-16T20:00:00+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="钉钉 6.0 发布会上提到的 Low-Code 是个什么鬼？"/>
+<meta name="twitter:description" content="2021 年 1 月 14 日钉钉 6.0 发布会上提到了“云钉一体”战略，其中讲解了 「Low-Code」 这个词。不知道大家看到这个词是啥感觉？这是说我写的代码 low 吗？ 阿里似乎比较喜欢带节奏，比如中台，不管大小公司都模仿；前段时间看网上有说他们去中台。。。心好累！ Low-Code 这玩意竟然很早就有了，很多人不知晓，多半是因为一直不温不火！不知道大家是否知晓，反正我之前是不知道，是这两天才看的很多资料"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>钉钉 6.0 发布会上提到的 Low-Code 是个什么鬼？</title>
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
+	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/styles.css">
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://polarisxu.studygolang.com">polarisxu</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+  <a href="https://polarisxu.studygolang.com/">首页</a>
+  <a href="https://polarisxu.studygolang.com/categories/echo%E7%B3%BB%E5%88%97/">Echo系列</a>
+  <a href="https://polarisxu.studygolang.com/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a>
+  <a href="https://polarisxu.studygolang.com/posts/">归档</a>
+  <a href="https://polarisxu.studygolang.com/about/">关于</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<button id="toc-btn" class="hdr-btn desktop-only-ib" title="目录"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3" y2="6"></line><line x1="3" y1="12" x2="3" y2="12"></line><line x1="3" y1="18" x2="3" y2="18"></line></svg></button><span class="hdr-social hide-in-mobile"><a href="https://github.com/polaris1119" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a><a href="https://twitter.com/polaris1119" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="菜单"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://polarisxu.studygolang.com/">首页</a></li>
+			<li><a href="https://polarisxu.studygolang.com/categories/echo%E7%B3%BB%E5%88%97/">Echo系列</a></li>
+			<li><a href="https://polarisxu.studygolang.com/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a></li>
+			<li><a href="https://polarisxu.studygolang.com/posts/">归档</a></li>
+			<li><a href="https://polarisxu.studygolang.com/about/">关于</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Jan 16, 2021</span></div>
+				<h1>钉钉 6.0 发布会上提到的 Low-Code 是个什么鬼？</h1>
+			</header>
+			<div class="content">
+				<p>2021 年 1 月 14 日钉钉 6.0 发布会上提到了“云钉一体”战略，其中讲解了 「Low-Code」 这个词。不知道大家看到这个词是啥感觉？这是说我写的代码 low 吗？</p>
+<p>阿里似乎比较喜欢带节奏，比如中台，不管大小公司都模仿；前段时间看网上有说他们去中台。。。心好累！</p>
+<p>Low-Code 这玩意竟然很早就有了，很多人不知晓，多半是因为一直不温不火！不知道大家是否知晓，反正我之前是不知道，是这两天才看的很多资料。所以，这是一篇概念普及性的文章。</p>
+<h2 id="01-low-code-是什么">01 low-code 是什么？<a href="#01-low-code-是什么" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>low-code 一般翻译为低代码，表示的是用很少甚至不用代码就能开发软件。看一张图：</p>
+<p><p class="md__image">
+  <img src="../imgs/low-code.png"
+    alt=""  />
+</p>
+</p>
+<p>35 岁，不懂代码，2小时能开发出「疫情防控应用」，最喜欢的语言不是 PHP，而是「拖拉拽」。。。</p>
+<p>Low-Code 是什么，大家应该有一个初步的概念了。维基百科是这么描述的（关于 low-code development platform）：</p>
+<blockquote>
+<p>A <strong>low-code development platform</strong> (<strong>LCDP</strong>) provides a development environment used to create application software through graphical user interfaces and configuration instead of traditional hand-coded computer programming。</p>
+</blockquote>
+<p>也就是说，低代码开发平台（LCDP）本身也是一种软件，它为开发者提供了一个创建应用软件的开发环境。对于程序员而言，低代码开发平台的性质与 IDEA、VS 等代码 IDE 类似，都是服务于开发者的生产力工具。但与传统代码 IDE 不同的是，低代码开发平台提供的是更高维和易用的可视化 IDE。大多数情况下，开发者并不需要使用传统的手写代码方式进行编程，而是可以通过图形化拖拽、参数配置等更高效的方式完成开发工作。</p>
+<p>所以，钉钉就是要打造一个这样的平台。</p>
+<blockquote>
+<p>Low-Code 这个词最早是 Forrester 在 2014 年提出来的。</p>
+</blockquote>
+<h2 id="02-能做什么">02 能做什么？<a href="#02-能做什么" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>在参考文献「1」中，阿里内部目前很看好它，认为这是一场革命。它把普通的编程比作文章，把低代码比作视频，视频越来越受欢迎，虽然文章依然有其存在市场，但视频已成为大部分人获取信息的主要渠道。</p>
+<p>说起拖拽编程，很多人可能会不屑：想想 Dreamware、Visual Basic 等，提供了强大的拖拽，但实际上大家很少用拖拽。不过低代码跟之前的还是不太一样，它可以给非程序员使用。</p>
+<p>计算机领域有一句至理名言：任何问题都可以通过增加一个间接的中间层来解决。低代码的思路亦是如此：与当年的操作系统和现在的云平台一样，都是想通过建立一个黑盒化的中间层抽象来降低开发者的工作量与心智负担。</p>
+<p>具体来说，低代码适用于哪些场景？</p>
+<ul>
+<li>自动化表单系统。低代码平台提供基础组件，企业可以基于此，通过拖拽的方式创建自己的表单系统，比如常见的 OA 的各种表单、审批。基本上表单收集信息、展示这类型的应用都可以通过低代码（甚至无代码）实现。</li>
+<li>低代码开发 Saas 系统。</li>
+<li>低代码开发 Pass 系统。</li>
+</ul>
+<h2 id="03-展望">03 展望<a href="#03-展望" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>除了这次钉钉的高调发布会，腾讯云也有低代码系统，他们总体的思路都是“云端一体”，解决了云，还希望解决本地“端”的问题。</p>
+<p>虽然技术都有成熟度曲线，但不同的技术，成熟度曲线的跨度等是不一样的。Saas、Pass、Faas、Serverless 等一堆技术，它们都有一定程度的应用，但没有银弹，没有那种技术是一统江湖的。像微服务、中台不是银弹一样，鼓吹低代码是新一代技术革命，我觉得有点过了。</p>
+<p>总的来看，我觉得低代码比较适合的场景还是偏向服务企业，开发企业内部的应用。实话说，这部分的系统，也是很多程序员不愿意开发的。但这部分又是企业数字化很重要的部分，因此低代码还是能发挥很大的作用，特别是对于传统企业数字化转型更是如此。</p>
+<p>而且，我认为低代码开发平台属于大企业会做的事情（有一些创业公司可能会做这个方向），他们服务中小企业，说白了是一个 2B 的生意，大量 2C 的公司以及大厂们，要么用不上低代码，要么自己搭建一套这样的系统。同时，这些低代码平台会吸引更多的开发者参与进来，开发基础组件，打造生态。所以，低代码咋一看，似乎要革程序员的命，实际上程序员们呵呵一笑~</p>
+<p>你怎么看？欢迎留言交流！</p>
+<h2 id="参考资料">参考资料<a href="#参考资料" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<ul>
+<li>「1」：https://www.cnblogs.com/aliyun-emas/p/14004815.html</li>
+<li>「2」：https://www.zhihu.com/question/439292804</li>
+<li>「3」：https://en.wikipedia.org/wiki/Low-code_development_platform</li>
+</ul>
+
+			</div><div class="content">
+	<br>
+	<img src="https://static.studygolang.com/static/img/polarisxu-qrcode-soso-s.png">
+</div>
+
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://polarisxu.studygolang.com/tags/%E4%BD%8E%E4%BB%A3%E7%A0%81">低代码</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/low-code">low-code</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1657 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2021-01-16 20:00 &#43;0800</p>
+			</footer>
+		</article>
+		<aside id="toc">
+			<div class="toc-title">目录</div>
+			<nav id="TableOfContents">
+  <ul>
+    <li><a href="#01-low-code-是什么">01 low-code 是什么？</a></li>
+    <li><a href="#02-能做什么">02 能做什么？</a></li>
+    <li><a href="#03-展望">03 展望</a></li>
+    <li><a href="#参考资料">参考资料</a></li>
+  </ul>
+</nav>
+		</aside>
+		<div class="post-nav thin">
+			<a class="prev-post" href="https://polarisxu.studygolang.com/posts/go/action/stat-words/">
+				<span class="post-nav-label">旧&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>用 Go 如何实现精准统计文章字数</span>
+			</a>
+		</div>
+		<div id="comments" class="thin"><script src="https://utteranc.es/client.js"
+	repo="polaris1119/polarisxu"
+	issue-term="pathname"
+	theme="github-light"
+	crossorigin="anonymous"
+	async>
+</script>
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2019 - 2021 <a href="https://polarisxu.studygolang.com">polarisxu</a> &#183; <a href="http://www.beian.miit.gov.cn/">京ICP备14030343号-1</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://polarisxu.studygolang.com/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+		<span id="busuanzi_container" style="color: #666;">
+			本站总访客数/访问量：<span id="busuanzi_value_site_uv"></span>/<span id="busuanzi_value_site_pv"></span>
+		</span>
+	</footer>
+
+
+
+	<script src="https://polarisxu.studygolang.com/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw=" crossorigin="anonymous"></script>
+	<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?224c227cd9239761ec770bc8c1fb134c";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+</body>
+
+</html>
