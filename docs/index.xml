@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Sat, 16 Jan 2021 20:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 18 Jan 2021 11:25:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>第 78 期周刊题目解析：答题正确率有点低</title>
+      <link>https://polarisxu.studygolang.com/posts/go/action/weekly-question-78/</link>
+      <pubDate>Mon, 18 Jan 2021 11:25:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/action/weekly-question-78/</guid>
+      <description>大家好，我是站长 polarisxu。 昨天在 Go语言爱好者周刊第 78 期 出了一道题，以下代码输出什么？ package main import ( &amp;#34;fmt&amp;#34; &amp;#34;time&amp;#34; ) func main() { ch1 := make(chan int) go fmt.Println(&amp;lt;-ch1) ch1 &amp;lt;- 5 time.Sleep(1 * time.Second) } A：5；B：编译不通过；C：运行时死锁 如果你没有做这道题，往下看之前，先思考下。 今天看了下答题结果，正确率有点低，才 35%： 可见不少人的基础还是不扎实。 此题如果改为这样： package main import ( &amp;#34;fmt&amp;#34; &amp;#34;time&amp;#34; ) func main() { ch1 := make(chan int) go func(){ fmt.Println(&amp;lt;-ch1) }() ch1 &amp;lt;- 5 time.Sleep(1 * time.Second)</description>
+    </item>
+    
     <item>
       <title>钉钉 6.0 发布会上提到的 Low-Code 是个什么鬼？</title>
       <link>https://polarisxu.studygolang.com/posts/talk/low-code/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/translation/environment-variables-in-golang/</guid>
       <description>了解环境变量以及在 Golang 应用程序中使用它们的不同方法。 开始之前 本教程假定你具有： 对 Go 语言的基本了解 系统上安装了最新 Golang 版本 几分钟的时间 在本文中，我们将了解环境变量以及为什么要使用它们。并且将使用内置和第三方包在 Go 应用程序中访问它们。 什么是环境变量？ 环境变量是系统级的键-值对，正在运行的进程可以访问它。这些通常用于使同一程序在不同的部署环境（例如 PROD， DEV 或 TES</description>
-    </item>
-    
-    <item>
-      <title>这道题竟然只有 12% 的人答对。。。</title>
-      <link>https://polarisxu.studygolang.com/posts/go/action/weekly-question-embed-time/</link>
-      <pubDate>Mon, 21 Dec 2020 16:12:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/action/weekly-question-embed-time/</guid>
-      <description>这题是有点坑，但很多人对结果还是不知所以。</description>
     </item>
     
   </channel>
