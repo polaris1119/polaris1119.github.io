@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Mon, 18 Jan 2021 11:25:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 20 Jan 2021 22:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>“公众号如何涨粉&#34;</title>
+      <link>https://polarisxu.studygolang.com/posts/wechat/wechat-add-follow/</link>
+      <pubDate>Wed, 20 Jan 2021 22:00:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/wechat/wechat-add-follow/</guid>
+      <description>大家好，我是站长 polarisxu。 这是公众号系列原创文章的第 3 篇。上篇文章有人留言问公众号如何涨粉，这篇文章就聊聊这个话题。 微信是一个相对封闭的生态，不像其他平台，比如今日头条靠推荐（虽然微信公众号现在也加入了一些推荐机制）。因为是封闭的，加上触达机制，微信公众号的粉丝价值特别高。比如我的知乎账号有 9 万粉丝，但目前一分钱收入都没有，而公众号不到 1 万粉丝，就</description>
+    </item>
+    
     <item>
       <title>第 78 期周刊题目解析：答题正确率有点低</title>
       <link>https://polarisxu.studygolang.com/posts/go/action/weekly-question-78/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/dynamic/go-get-install/</guid>
       <description>大家好，我是站长 polarisxu。 一直以来，我们通常都是通过 go get 来下载并安装包的。但从 Go 1.16 起，不推荐通过 go get 来安装包（主要是说安装可执行文件），也就是说，go get 应该只是用来下载包，而且将来版本可能会给该命令始终加上 -d 标志。 你可能会问，这对我使用有什么影响呢？ 让我们看一个实际的例子。 01 安装 Delve 的例子 我们在本地通过源码安装 Go 的调试器 Delve，可以这么做： $ go get</description>
-    </item>
-    
-    <item>
-      <title>详解 Go 中的环境变量</title>
-      <link>https://polarisxu.studygolang.com/posts/go/translation/environment-variables-in-golang/</link>
-      <pubDate>Sat, 26 Dec 2020 10:12:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/translation/environment-variables-in-golang/</guid>
-      <description>了解环境变量以及在 Golang 应用程序中使用它们的不同方法。 开始之前 本教程假定你具有： 对 Go 语言的基本了解 系统上安装了最新 Golang 版本 几分钟的时间 在本文中，我们将了解环境变量以及为什么要使用它们。并且将使用内置和第三方包在 Go 应用程序中访问它们。 什么是环境变量？ 环境变量是系统级的键-值对，正在运行的进程可以访问它。这些通常用于使同一程序在不同的部署环境（例如 PROD， DEV 或 TES</description>
     </item>
     
   </channel>
