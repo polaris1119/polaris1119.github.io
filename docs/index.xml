@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Wed, 20 Jan 2021 22:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 21 Jan 2021 22:40:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Unicode 和 UTF-8 是什么关系？本文为你解惑</title>
+      <link>https://polarisxu.studygolang.com/posts/basic/char-set-encoding/</link>
+      <pubDate>Thu, 21 Jan 2021 22:40:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/basic/char-set-encoding/</guid>
+      <description>十几年前，国内 UTF-8 还不太流行，新手开发过程中，乱码问题是很常见的。记得我刚毕业那会，公司的系统是这样的：数据库 MySQL 使用的是 Latin-1 编码（IOS8859-1），程序源码使用的是 GBK，这样的情况，乱码真是满天飞~好在对数据库操作做了封装，编码问题在中间层处理了。那时候听到关于乱码问题的一个终极解决方案是：保证各个地方编码一致。 现如今，Unicode 相当普及，中文使用 UTF-8 编</description>
+    </item>
+    
     <item>
       <title>公众号如何涨粉</title>
       <link>https://polarisxu.studygolang.com/posts/wechat/wechat-add-follow/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/talk/2020-summary/</guid>
       <description>大家好，我是站长 polarisxu。 第一次正式写年终总结，也许是一个好的开始，希望以后年年写。 可能每个年终总结都会感慨，2020 年是不平凡的一年，疫情持续了一年，原以为好些了，最近似乎有变严重了。大家多保重。口罩戴了一年，不知道什么时候才能去掉，希望这天早点到来。 年终总结，是对我自己的一个回顾，但发出来，我希望能够对大家有点帮助或启发。 这份总结主要会聊五个方</description>
-    </item>
-    
-    <item>
-      <title>Go 1.16 的这个新变化需要适应下：go get 和 go install 的变化</title>
-      <link>https://polarisxu.studygolang.com/posts/go/dynamic/go-get-install/</link>
-      <pubDate>Sun, 27 Dec 2020 22:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/dynamic/go-get-install/</guid>
-      <description>大家好，我是站长 polarisxu。 一直以来，我们通常都是通过 go get 来下载并安装包的。但从 Go 1.16 起，不推荐通过 go get 来安装包（主要是说安装可执行文件），也就是说，go get 应该只是用来下载包，而且将来版本可能会给该命令始终加上 -d 标志。 你可能会问，这对我使用有什么影响呢？ 让我们看一个实际的例子。 01 安装 Delve 的例子 我们在本地通过源码安装 Go 的调试器 Delve，可以这么做： $ go get</description>
     </item>
     
   </channel>
