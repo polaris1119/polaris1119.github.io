@@ -90,7 +90,7 @@
     alt=""  />
 </p>
 </p>
-<p>##1、什么是字符集</p>
+<h2 id="1什么是字符集">1、什么是字符集<a href="#1什么是字符集" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>字符集，从字面看，是多个字符的集合。字符是各种文字和符号的总称，包括各国家文字、标点符号、图形符号、数字等。因此不同的字符组合在一起就可以认为是不同的字符集。当然不是瞎组合。国人常见字符集如下：</p>
 <p><p class="md__image">
   <img src="..//Users/xuxinhua/project/polarisxu/basic/imgs/charset01.png"
@@ -101,7 +101,6 @@
 <p>大家都知晓，计算机只认 0 和 1 组成的二进制数。所以整数通过进制转换转为二进制就可以被计算机处理。然而像文本、音频、视频等这样的信息，如何转为二进制被计算机处理呢？这就需要进行编码。</p>
 <p><strong>编码</strong>（encode）是把数据从一种形式转换为另外一种形式的过程，它是一套算法。解码（decode）就是编码的逆过程。</p>
 <p>比如对于 ASCII 字符集中的字符 1，转换为二进制是 00110001，这就是一次编码；将 00110001 显示为 1，涉及到一次解码。</p>
-<p>1-&gt;00110001 图</p>
 <p><strong>字符编码</strong>，顾名思义，是对字符进行编码，是字符和二进制数据之间转换的算法，它们之间必须一一对应，这是本文需要讨论的主题。一个二进制叫做位，8 位称为“字节”，根据计算一个字节一共可组合出 256（2 的 8 次方）种不同的状态。</p>
 <p>关于字符集和字符编码，使用 ASCII 进行总结说明：</p>
 <blockquote>
@@ -117,7 +116,7 @@
 <p>Unicode provides a unique number for every character, no matter what the platform, program, or language is.</p>
 </blockquote>
 <p>即 Unicode 为每一个字符提供了一个唯一的数字编码（代号），叫做 Code Point（码点）。这里可以查找你要查询某个字符的码点（Code Point）：<a href="https://www.unicode.org/cgi-bin/GetUnihanData.pl">https://www.unicode.org/cgi-bin/GetUnihanData.pl</a>。注意这里的码点不是字符编码，只是字符集而已。</p>
-<p>所以，Unicode 字符集一个最主要的工作就是维护这样一个表，可以把它想象成是一个数据库表，里面存储着每一个字符对应的唯一 ID（即 Code Point），统一用 U+XXXX 来表示（X 为 16 进制的字符，因为字符很多，并不一定所有的字符都是 4 个 16 进制数，比如笑哭的 Emoji 表情，Code Point 是 U+1F602），如 「徐」U+5F90、【新】U+65B0。现在这个数据表已经拥有 100 多万的字符，还在不停的更新。</p>
+<p>所以，Unicode 字符集一个最主要的工作就是维护这样一个表，可以把它想象成是一个数据库表，里面存储着每一个字符对应的唯一 ID（即 Code Point），统一用 U+XXXX 来表示（X 为 16 进制的字符，因为字符很多，并不一定所有的字符都是 4 个 16 进制数，比如笑哭的 Emoji 表情，Code Point 是 U+1F602），如 「徐」U+5F90、「新」U+65B0。现在这个数据表已经拥有 100 多万的字符，还在不停的更新。</p>
 <p>为什么会出现 Unicode 呢？因为之前的编码方式，大多只考虑自己国家，不同国家的编码方式不同，导致使用中国 GBK 编码的文档，在日本用本地编码打开就乱码了。标准总是在混乱中诞生的，于是一些国际组织制定出了全球统一的编码格式。这就是 Unicode。</p>
 <blockquote>
 <p>大家可能见到过 USC，这是 ISO 制定的一种计算机行业标准，和 Unicode 目的是一样的。他们双方意识到不应该出现两种不同的国际标准。因此你可以认为它们是一样的。</p>
@@ -199,7 +198,7 @@
 </tbody>
 </table>
 <p>具体如何编码和解码呢？以中文“徐”为例，说明这个过程。</p>
-<p>「徐」的 Unicode 码点是 0x5F90（二进制：101 1111 1001 0000），对照上面的表发现 0x5F90 位于第三行的范围，所以格式是 1110xxxx 10xxxxxx 10xxxxxx。接着从“徐” Unicode 码点的二进制数最后一位开始，按从右向左依次填充这个格式中的 x，多出的 x 用 0 补上。这样就得到了“徐”这个汉字的 UTF-8 编码：11101011 1011110 10010000，转成十六进制是 0xE5 0xBE 0x90。</p>
+<p>「徐」的 Unicode 码点是 0x5F90（二进制：101 1111 1001 0000），对照上面的表发现 0x5F90 位于第三行的范围，所以格式是 1110xxxx 10xxxxxx 10xxxxxx。接着从「徐」Unicode 码点的二进制数最后一位开始，按从右向左依次填充这个格式中的 x，多出的 x 用 0 补上。这样就得到了「徐」这个汉字的 UTF-8 编码：11101011 1011110 10010000，转成十六进制是 0xE5 0xBE 0x90。</p>
 <p>解码的过程也十分简单：如果一个字节（编码的二进制表示）的第一位是 0 ，则说明这个字节对应一个字符；如果一个字节的第一位是 1，那么连续有多少个 1，就表示该字符占用多少个字节。还是以「徐」字为例，它的 UTF-8 编码的二进制表示是：11101011 1011110 10010000，根据规则，第一个字节的第一位是 1，且有三个 1，因此占用 3 个字节。根据上面表中第三行，将第一个字节开头的 1110 去掉，第二、第三个字节开头的 10 去掉，剩下的组合在一起，即：1011 11110 010000，这就是 0x5F90。</p>
 <p>关于 UTF-8 的规范参考 <a href="https://tools.ietf.org/html/rfc3629" target="_blank" rel="noopener">rfc3629</a>
 ，这是 Ken Thompson 和 Rob Pike 等制定的，这两位也是 Go 语言的作者。</p>
@@ -303,7 +302,7 @@
 徐新华
 徐新华
 徐新华
-</code></pre></div><p>此外，关于字符串其他方面的处理，比如编码转换等，可以到 <a href="https://pkg.go.dev/golang.org/x/text">https://pkg.go.dev/golang.org/x/text</a> 这个里找。</p>
+</code></pre></div><p>此外，关于字符串其他方面的处理，比如编码转换等，可以到 <a href="https://pkg.go.dev/golang.org/x/text">https://pkg.go.dev/golang.org/x/text</a> 里找。</p>
 <h2 id="7大小端问题little-endian-和-big-endian">7、大小端问题（Little endian 和 Big endian）<a href="#7大小端问题little-endian-和-big-endian" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>最后聊一下大小端的问题。</p>
 <p>一个字符使用多字节存储时，涉及到哪个在前哪个在后。以汉字「徐」为例，Unicode 码点是 5F90，需要用两个字节存储，一个字节是<code>5F</code>，另一个字节是<code>90</code>。存储的时候，<code>5F</code>在前，<code>90</code> 在后，这就是 Big endian 方式；<code>90</code>在前，<code>5F</code>在后，这是 Little endian 方式。</p>
@@ -343,6 +342,7 @@
 			<div class="toc-title">目录</div>
 			<nav id="TableOfContents">
   <ul>
+    <li><a href="#1什么是字符集">1、什么是字符集</a></li>
     <li><a href="#2什么是字符编码">2、什么是字符编码</a></li>
     <li><a href="#3unicode-和-utf-系列">3、Unicode 和 UTF 系列</a>
       <ul>
