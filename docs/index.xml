@@ -7,14 +7,23 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Thu, 21 Jan 2021 22:40:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 25 Jan 2021 11:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>微信 8.0 的这个功能和 Go 的 error 一样？</title>
+      <link>https://polarisxu.studygolang.com/posts/wechat/wechat-8.0/</link>
+      <pubDate>Mon, 25 Jan 2021 11:00:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/wechat/wechat-8.0/</guid>
+      <description>大家好，我是站长 polarisxu。 今天早上发了一个朋友圈，吐槽了一下微信 8.0 的一个功能，不少人有同感，其中一位朋友提到了 Go 的 error。 微信 8.0 通过好友请求时，仅聊天还是朋友圈，你必须选择一个。挺烦的。有一个朋友留言说：这就跟 err 一样，某些地方强迫你有意识的做选择，在这里就是强迫你对自己的隐私做选择。 Go 中的 error，社区的反应特别的激烈，喜欢的人夸，不喜欢的人</description>
+    </item>
+    
     <item>
       <title>Unicode 和 UTF-8 是什么关系？本文为你解惑</title>
       <link>https://polarisxu.studygolang.com/posts/basic/char-set-encoding/</link>
       <pubDate>Thu, 21 Jan 2021 22:40:00 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/posts/basic/char-set-encoding/</guid>
-      <description>十几年前，国内 UTF-8 还不太流行，新手开发过程中，乱码问题是很常见的。记得我刚毕业那会，公司的系统是这样的：数据库 MySQL 使用的是 Latin-1 编码（IOS8859-1），程序源码使用的是 GBK，这样的情况，乱码真是满天飞~好在对数据库操作做了封装，编码问题在中间层处理了。那时候听到关于乱码问题的一个终极解决方案是：保证各个地方编码一致。 现如今，Unicode 相当普及，中文使用 UTF-8 编</description>
+      <description>十几年前，国内 UTF-8 还不太流行，新手开发过程中，乱码问题是很常见的。记得我刚毕业那会，公司的系统是这样的：数据库 MySQL 使用的是 Latin-1 编码（ISO8859-1），程序源码使用的是 GBK，这样的情况，乱码真是满天飞~好在对数据库操作做了封装，编码问题在中间层处理了。那时候听到关于乱码问题的一个终极解决方案是：保证各个地方编码一致。 现如今，Unicode 相当普及，中文使用 UTF-8 编</description>
     </item>
     
     <item>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/wechat/2021-01-wechat-changes/</guid>
       <description>大家好，我是站长 polarisxu。 2021 年计划聊一些微信公众号的事情。今天先聊聊微信公众号（订阅号）的一些变化，作为这个系列的开篇。 01 基础知识 先简单普及一些基础知识：订阅号和服务号，主要介绍下它们关键的一些不同点，着重介绍下订阅号的一些知识。 订阅号 如果你开通自己的公众号，一定是选择订阅号。个人主体只能注册订阅号，目前一个身份证只能注册一个订阅号（以前是 5 个）。</description>
-    </item>
-    
-    <item>
-      <title>2020 年终总结：希望对你有所帮助</title>
-      <link>https://polarisxu.studygolang.com/posts/talk/2020-summary/</link>
-      <pubDate>Thu, 31 Dec 2020 16:40:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/talk/2020-summary/</guid>
-      <description>大家好，我是站长 polarisxu。 第一次正式写年终总结，也许是一个好的开始，希望以后年年写。 可能每个年终总结都会感慨，2020 年是不平凡的一年，疫情持续了一年，原以为好些了，最近似乎有变严重了。大家多保重。口罩戴了一年，不知道什么时候才能去掉，希望这天早点到来。 年终总结，是对我自己的一个回顾，但发出来，我希望能够对大家有点帮助或启发。 这份总结主要会聊五个方</description>
     </item>
     
   </channel>

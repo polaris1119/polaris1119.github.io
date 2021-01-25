@@ -17,5 +17,14 @@
       <description>大家好，我是站长 polarisxu。 昨天在 Go语言爱好者周刊第 78 期 出了一道题，以下代码输出什么？ package main import ( &amp;#34;fmt&amp;#34; &amp;#34;time&amp;#34; ) func main() { ch1 := make(chan int) go fmt.Println(&amp;lt;-ch1) ch1 &amp;lt;- 5 time.Sleep(1 * time.Second) } A：5；B：编译不通过；C：运行时死锁 如果你没有做这道题，往下看之前，先思考下。 今天看了下答题结果，正确率有点低，才 35%： 可见不少人的基础还是不扎实。 此题如果改为这样： package main import ( &amp;#34;fmt&amp;#34; &amp;#34;time&amp;#34; ) func main() { ch1 := make(chan int) go func(){ fmt.Println(&amp;lt;-ch1) }() ch1 &amp;lt;- 5 time.Sleep(1 * time.Second)</description>
     </item>
     
+    <item>
+      <title>如何在调试过程中查找 Goroutine</title>
+      <link>https://polarisxu.studygolang.com/posts/go/translation/how-to-find-goroutines-during-debugging/</link>
+      <pubDate>Fri, 18 Sep 2020 18:00:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/translation/how-to-find-goroutines-during-debugging/</guid>
+      <description>Goroutines 是大多数用 Go 编写的程序的重要组成部分。但是，使用大量 goroutines 会使程序难以调试。那怎么办？在此博文中，我们将介绍如何使用自定义数据为 goroutine 加上标签，这是 GoLand 2020.1（现已包含在 EAP 中）的最新功能之一。 目录 在 IDE 下使用 在命令行下使用 性能影响 使用自定义库启用调试标签 让我们以向 Web 服务器发出请求的应用程序为例： package main import ( &amp;#34;io&amp;#34; &amp;#34;io/ioutil&amp;#34; &amp;#34;math/rand&amp;#34; &amp;#34;net/http&amp;#34; &amp;#34;strconv&amp;#34; &amp;#34;strings&amp;#34; &amp;#34;time&amp;#34; ) func fakeTraffic() { // Wait for the server to start time.Sleep(1 * time.Second) pages := []string{&amp;#34;/&amp;#34;, &amp;#34;/login&amp;#34;, &amp;#34;/logout&amp;#34;, &amp;#34;/products&amp;#34;, &amp;#34;/product/{productID}&amp;#34;, &amp;#34;/basket&amp;#34;, &amp;#34;/about&amp;#34;}</description>
+    </item>
+    
   </channel>
 </rss>

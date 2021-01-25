@@ -8,7 +8,7 @@
 	<meta name="theme-color" content="#fcfcfc">
 	<meta name="msapplication-TileColor" content="#fcfcfc">
 <meta itemprop="name" content="Unicode 和 UTF-8 是什么关系？本文为你解惑">
-<meta itemprop="description" content="十几年前，国内 UTF-8 还不太流行，新手开发过程中，乱码问题是很常见的。记得我刚毕业那会，公司的系统是这样的：数据库 MySQL 使用的是 Latin-1 编码（IOS8859-1），程序源码使用的是 GBK，这样的情况，乱码真是满天飞~好在对数据库操作做了封装，编码问题在中间层处理了。那时候听到关于乱码问题的一个终极解决方案是：保证各个地方编码一致。 现如今，Unicode 相当普及，中文使用 UTF-8 编">
+<meta itemprop="description" content="十几年前，国内 UTF-8 还不太流行，新手开发过程中，乱码问题是很常见的。记得我刚毕业那会，公司的系统是这样的：数据库 MySQL 使用的是 Latin-1 编码（ISO8859-1），程序源码使用的是 GBK，这样的情况，乱码真是满天飞~好在对数据库操作做了封装，编码问题在中间层处理了。那时候听到关于乱码问题的一个终极解决方案是：保证各个地方编码一致。 现如今，Unicode 相当普及，中文使用 UTF-8 编">
 <meta itemprop="datePublished" content="2021-01-21T22:40:00+08:00" />
 <meta itemprop="dateModified" content="2021-01-21T22:40:00+08:00" />
 <meta itemprop="wordCount" content="5332">
@@ -17,14 +17,14 @@
 
 <meta itemprop="keywords" content="Unicode,UTF8," />
 <meta property="og:title" content="Unicode 和 UTF-8 是什么关系？本文为你解惑" />
-<meta property="og:description" content="十几年前，国内 UTF-8 还不太流行，新手开发过程中，乱码问题是很常见的。记得我刚毕业那会，公司的系统是这样的：数据库 MySQL 使用的是 Latin-1 编码（IOS8859-1），程序源码使用的是 GBK，这样的情况，乱码真是满天飞~好在对数据库操作做了封装，编码问题在中间层处理了。那时候听到关于乱码问题的一个终极解决方案是：保证各个地方编码一致。 现如今，Unicode 相当普及，中文使用 UTF-8 编" />
+<meta property="og:description" content="十几年前，国内 UTF-8 还不太流行，新手开发过程中，乱码问题是很常见的。记得我刚毕业那会，公司的系统是这样的：数据库 MySQL 使用的是 Latin-1 编码（ISO8859-1），程序源码使用的是 GBK，这样的情况，乱码真是满天飞~好在对数据库操作做了封装，编码问题在中间层处理了。那时候听到关于乱码问题的一个终极解决方案是：保证各个地方编码一致。 现如今，Unicode 相当普及，中文使用 UTF-8 编" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://polarisxu.studygolang.com/posts/basic/char-set-encoding/" />
 <meta property="article:published_time" content="2021-01-21T22:40:00+08:00" />
 <meta property="article:modified_time" content="2021-01-21T22:40:00+08:00" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Unicode 和 UTF-8 是什么关系？本文为你解惑"/>
-<meta name="twitter:description" content="十几年前，国内 UTF-8 还不太流行，新手开发过程中，乱码问题是很常见的。记得我刚毕业那会，公司的系统是这样的：数据库 MySQL 使用的是 Latin-1 编码（IOS8859-1），程序源码使用的是 GBK，这样的情况，乱码真是满天飞~好在对数据库操作做了封装，编码问题在中间层处理了。那时候听到关于乱码问题的一个终极解决方案是：保证各个地方编码一致。 现如今，Unicode 相当普及，中文使用 UTF-8 编"/>
+<meta name="twitter:description" content="十几年前，国内 UTF-8 还不太流行，新手开发过程中，乱码问题是很常见的。记得我刚毕业那会，公司的系统是这样的：数据库 MySQL 使用的是 Latin-1 编码（ISO8859-1），程序源码使用的是 GBK，这样的情况，乱码真是满天飞~好在对数据库操作做了封装，编码问题在中间层处理了。那时候听到关于乱码问题的一个终极解决方案是：保证各个地方编码一致。 现如今，Unicode 相当普及，中文使用 UTF-8 编"/>
 
 	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -81,7 +81,7 @@
 				<h1>Unicode 和 UTF-8 是什么关系？本文为你解惑</h1>
 			</header>
 			<div class="content">
-				<p>十几年前，国内 UTF-8 还不太流行，新手开发过程中，乱码问题是很常见的。记得我刚毕业那会，公司的系统是这样的：数据库 MySQL 使用的是 Latin-1 编码（IOS8859-1），程序源码使用的是 GBK，这样的情况，乱码真是满天飞~好在对数据库操作做了封装，编码问题在中间层处理了。那时候听到关于乱码问题的一个终极解决方案是：保证各个地方编码一致。</p>
+				<p>十几年前，国内 UTF-8 还不太流行，新手开发过程中，乱码问题是很常见的。记得我刚毕业那会，公司的系统是这样的：数据库 MySQL 使用的是 Latin-1 编码（ISO8859-1），程序源码使用的是 GBK，这样的情况，乱码真是满天飞~好在对数据库操作做了封装，编码问题在中间层处理了。那时候听到关于乱码问题的一个终极解决方案是：保证各个地方编码一致。</p>
 <p>现如今，Unicode 相当普及，中文使用 UTF-8 编码虽然比 GBK 编码占用更多的空间，但一般都不会在乎。特别是使用了 Go 语言后，乱码问题更是没有了。在 Go 语言标准库中有 unicode 包，它下面还有 utf8 和 utf16 两个子包。也许有此疑问：又是 Unicode、又是 UTF-8、UTF-16，它们是什么关系？</p>
 <p>本文试着为大家解决关于字符集和字符编码的困惑。</p>
 <p>本文目录：</p>
@@ -198,8 +198,8 @@
 </tbody>
 </table>
 <p>具体如何编码和解码呢？以中文“徐”为例，说明这个过程。</p>
-<p>「徐」的 Unicode 码点是 0x5F90（二进制：101 1111 1001 0000），对照上面的表发现 0x5F90 位于第三行的范围，所以格式是 1110xxxx 10xxxxxx 10xxxxxx。接着从「徐」Unicode 码点的二进制数最后一位开始，按从右向左依次填充这个格式中的 x，多出的 x 用 0 补上。这样就得到了「徐」这个汉字的 UTF-8 编码：11101011 1011110 10010000，转成十六进制是 0xE5 0xBE 0x90。</p>
-<p>解码的过程也十分简单：如果一个字节（编码的二进制表示）的第一位是 0 ，则说明这个字节对应一个字符；如果一个字节的第一位是 1，那么连续有多少个 1，就表示该字符占用多少个字节。还是以「徐」字为例，它的 UTF-8 编码的二进制表示是：11101011 1011110 10010000，根据规则，第一个字节的第一位是 1，且有三个 1，因此占用 3 个字节。根据上面表中第三行，将第一个字节开头的 1110 去掉，第二、第三个字节开头的 10 去掉，剩下的组合在一起，即：1011 11110 010000，这就是 0x5F90。</p>
+<p>「徐」的 Unicode 码点是 0x5F90（二进制：101 1111 1001 0000），对照上面的表发现 0x5F90 位于第三行的范围，所以格式是 1110xxxx 10xxxxxx 10xxxxxx。接着从「徐」Unicode 码点的二进制数最后一位开始，按从右向左依次填充这个格式中的 x，多出的 x 用 0 补上。这样就得到了「徐」这个汉字的 UTF-8 编码：11100101 10111110 10010000，转成十六进制是 0xE5 0xBE 0x90。</p>
+<p>解码的过程也十分简单：如果一个字节（编码的二进制表示）的第一位是 0 ，则说明这个字节对应一个字符；如果一个字节的第一位是 1，那么连续有多少个 1，就表示该字符占用多少个字节。还是以「徐」字为例，它的 UTF-8 编码的二进制表示是：11100101 10111110 10010000，根据规则，第一个字节的第一位是 1，且有三个 1，因此占用 3 个字节。根据上面表中第三行，将第一个字节开头的 1110 去掉，第二、第三个字节开头的 10 去掉，剩下的组合在一起，即：1011 11110 010000，这就是 0x5F90。</p>
 <p>关于 UTF-8 的规范参考 <a href="https://tools.ietf.org/html/rfc3629" target="_blank" rel="noopener">rfc3629</a>
 ，这是 Ken Thompson 和 Rob Pike 等制定的，这两位也是 Go 语言的作者。</p>
 <h2 id="5utf-16">5、UTF-16<a href="#5utf-16" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
@@ -358,6 +358,9 @@
 </nav>
 		</aside>
 		<div class="post-nav thin">
+			<a class="next-post" href="https://polarisxu.studygolang.com/posts/wechat/wechat-8.0/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;新</span><br><span>微信 8.0 的这个功能和 Go 的 error 一样？</span>
+			</a>
 			<a class="prev-post" href="https://polarisxu.studygolang.com/posts/wechat/wechat-add-follow/">
 				<span class="post-nav-label">旧&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>公众号如何涨粉</span>
 			</a>

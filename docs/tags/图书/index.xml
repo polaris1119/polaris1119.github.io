@@ -26,5 +26,14 @@
       <description>上周通过公众号对外公布新手开卖后，有人想要签名版。由于双作者，涉及到双签，知道可能会很麻烦，但第一次，也有可能是最后一次，和煎鱼沟通后决定搞搞。 大概谈谈我们的操作过程。 1、编辑帮我们买书，104 本；也是想办法弄到了当时最便宜的价格； 2、寄到我家里。周六、日分批到的，去封皮签名，大部分还写了一些 Go 箴言，但还有 26 本周末没到； 3、弄好后寄到深圳。用什么快递也是有讲</description>
     </item>
     
+    <item>
+      <title>重磅！史上第一本带你做项目的 Go 图书开卖</title>
+      <link>https://polarisxu.studygolang.com/posts/talk/my-first-action-book/</link>
+      <pubDate>Thu, 02 Jul 2020 20:00:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/talk/my-first-action-book/</guid>
+      <description>2020 年过去了一半，这半年对所有人来说都不寻常。但也是这场疫情，让我完成了一件大事：出了一本 Go 语言图书，书名是：《Go 语言编程之旅：一起用 Go 做项目》。 海报 先上海报： 全书共分为 6 章，分别是命令行应用、HTTP 应用、RPC 应用、WebSocket 应用、进程内缓存和 Go 语言中的大杀器，其中前 5 章是 Go 语言开发中最常见的项目类型。本书对项目开发、细节分析、运行时分析等核心内</description>
+    </item>
+    
   </channel>
 </rss>

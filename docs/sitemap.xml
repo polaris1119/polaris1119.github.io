@@ -3,13 +3,33 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://polarisxu.studygolang.com/tags/error/</loc>
+    <lastmod>2021-01-25T11:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://polarisxu.studygolang.com/</loc>
-    <lastmod>2021-01-21T22:40:00+08:00</lastmod>
+    <lastmod>2021-01-25T11:00:00+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://polarisxu.studygolang.com/tags/</loc>
-    <lastmod>2021-01-21T22:40:00+08:00</lastmod>
+    <lastmod>2021-01-25T11:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polarisxu.studygolang.com/tags/%E5%BE%AE%E4%BF%A1/</loc>
+    <lastmod>2021-01-25T11:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polarisxu.studygolang.com/posts/wechat/wechat-8.0/</loc>
+    <lastmod>2021-01-25T11:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polarisxu.studygolang.com/posts/</loc>
+    <lastmod>2021-01-25T11:00:00+08:00</lastmod>
   </url>
   
   <url>
@@ -24,11 +44,6 @@
   
   <url>
     <loc>https://polarisxu.studygolang.com/tags/utf8/</loc>
-    <lastmod>2021-01-21T22:40:00+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://polarisxu.studygolang.com/posts/</loc>
     <lastmod>2021-01-21T22:40:00+08:00</lastmod>
   </url>
   
@@ -134,11 +149,6 @@
   
   <url>
     <loc>https://polarisxu.studygolang.com/tags/wechat/</loc>
-    <lastmod>2021-01-04T18:25:00+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://polarisxu.studygolang.com/tags/%E5%BE%AE%E4%BF%A1/</loc>
     <lastmod>2021-01-04T18:25:00+08:00</lastmod>
   </url>
   
@@ -443,11 +453,6 @@
   </url>
   
   <url>
-    <loc>https://polarisxu.studygolang.com/tags/error/</loc>
-    <lastmod>2020-11-04T21:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://polarisxu.studygolang.com/posts/go/translation/cockroachdb-errors-everyday/</loc>
     <lastmod>2020-11-04T21:00:00+08:00</lastmod>
   </url>
@@ -623,6 +628,16 @@
   </url>
   
   <url>
+    <loc>https://polarisxu.studygolang.com/tags/debug/</loc>
+    <lastmod>2020-09-18T18:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polarisxu.studygolang.com/posts/go/translation/how-to-find-goroutines-during-debugging/</loc>
+    <lastmod>2020-09-18T18:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://polarisxu.studygolang.com/tags/mobile/</loc>
     <lastmod>2020-09-14T11:15:51+08:00</lastmod>
   </url>
@@ -723,6 +738,11 @@
   </url>
   
   <url>
+    <loc>https://polarisxu.studygolang.com/posts/talk/my-first-action-book/</loc>
+    <lastmod>2020-07-02T20:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://polarisxu.studygolang.com/tags/awesome/</loc>
     <lastmod>2020-06-22T11:15:51+08:00</lastmod>
   </url>
@@ -750,11 +770,6 @@
   <url>
     <loc>https://polarisxu.studygolang.com/tags/%E5%8D%9A%E5%AE%A2%E7%B3%BB%E7%BB%9F/</loc>
     <lastmod>2020-05-16T15:08:51+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://polarisxu.studygolang.com/tags/debug/</loc>
-    <lastmod>2020-05-11T14:17:51+08:00</lastmod>
   </url>
   
   <url>

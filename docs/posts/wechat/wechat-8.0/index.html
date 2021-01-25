@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#fcfcfc">
+	<meta name="msapplication-TileColor" content="#fcfcfc">
+<meta itemprop="name" content="微信 8.0 的这个功能和 Go 的 error 一样？">
+<meta itemprop="description" content="大家好，我是站长 polarisxu。 今天早上发了一个朋友圈，吐槽了一下微信 8.0 的一个功能，不少人有同感，其中一位朋友提到了 Go 的 error。 微信 8.0 通过好友请求时，仅聊天还是朋友圈，你必须选择一个。挺烦的。有一个朋友留言说：这就跟 err 一样，某些地方强迫你有意识的做选择，在这里就是强迫你对自己的隐私做选择。 Go 中的 error，社区的反应特别的激烈，喜欢的人夸，不喜欢的人">
+<meta itemprop="datePublished" content="2021-01-25T11:00:00+08:00" />
+<meta itemprop="dateModified" content="2021-01-25T11:00:00+08:00" />
+<meta itemprop="wordCount" content="1478">
+
+
+
+<meta itemprop="keywords" content="微信,error," />
+<meta property="og:title" content="微信 8.0 的这个功能和 Go 的 error 一样？" />
+<meta property="og:description" content="大家好，我是站长 polarisxu。 今天早上发了一个朋友圈，吐槽了一下微信 8.0 的一个功能，不少人有同感，其中一位朋友提到了 Go 的 error。 微信 8.0 通过好友请求时，仅聊天还是朋友圈，你必须选择一个。挺烦的。有一个朋友留言说：这就跟 err 一样，某些地方强迫你有意识的做选择，在这里就是强迫你对自己的隐私做选择。 Go 中的 error，社区的反应特别的激烈，喜欢的人夸，不喜欢的人" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://polarisxu.studygolang.com/posts/wechat/wechat-8.0/" />
+<meta property="article:published_time" content="2021-01-25T11:00:00+08:00" />
+<meta property="article:modified_time" content="2021-01-25T11:00:00+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="微信 8.0 的这个功能和 Go 的 error 一样？"/>
+<meta name="twitter:description" content="大家好，我是站长 polarisxu。 今天早上发了一个朋友圈，吐槽了一下微信 8.0 的一个功能，不少人有同感，其中一位朋友提到了 Go 的 error。 微信 8.0 通过好友请求时，仅聊天还是朋友圈，你必须选择一个。挺烦的。有一个朋友留言说：这就跟 err 一样，某些地方强迫你有意识的做选择，在这里就是强迫你对自己的隐私做选择。 Go 中的 error，社区的反应特别的激烈，喜欢的人夸，不喜欢的人"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>微信 8.0 的这个功能和 Go 的 error 一样？</title>
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
+	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/styles.css">
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://polarisxu.studygolang.com">polarisxu</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+  <a href="https://polarisxu.studygolang.com/">首页</a>
+  <a href="https://polarisxu.studygolang.com/categories/echo%E7%B3%BB%E5%88%97/">Echo系列</a>
+  <a href="https://polarisxu.studygolang.com/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a>
+  <a href="https://polarisxu.studygolang.com/posts/">归档</a>
+  <a href="https://polarisxu.studygolang.com/about/">关于</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<button id="toc-btn" class="hdr-btn desktop-only-ib" title="目录"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3" y2="6"></line><line x1="3" y1="12" x2="3" y2="12"></line><line x1="3" y1="18" x2="3" y2="18"></line></svg></button><span class="hdr-social hide-in-mobile"><a href="https://github.com/polaris1119" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a><a href="https://twitter.com/polaris1119" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="菜单"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://polarisxu.studygolang.com/">首页</a></li>
+			<li><a href="https://polarisxu.studygolang.com/categories/echo%E7%B3%BB%E5%88%97/">Echo系列</a></li>
+			<li><a href="https://polarisxu.studygolang.com/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a></li>
+			<li><a href="https://polarisxu.studygolang.com/posts/">归档</a></li>
+			<li><a href="https://polarisxu.studygolang.com/about/">关于</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Jan 25, 2021</span></div>
+				<h1>微信 8.0 的这个功能和 Go 的 error 一样？</h1>
+			</header>
+			<div class="content">
+				<p>大家好，我是站长 polarisxu。</p>
+<p>今天早上发了一个朋友圈，吐槽了一下微信 8.0 的一个功能，不少人有同感，其中一位朋友提到了 Go 的 error。</p>
+<p><p class="md__image">
+  <img src="../imgs/wechat8.0-01.png"
+    alt=""  />
+</p>
+</p>
+<ul>
+<li>微信 8.0 通过好友请求时，仅聊天还是朋友圈，你必须选择一个。挺烦的。有一个朋友留言说：这就跟 err 一样，某些地方强迫你有意识的做选择，在这里就是强迫你对自己的隐私做选择。</li>
+</ul>
+<p>Go 中的 error，社区的反应特别的激烈，喜欢的人夸，不喜欢的人喷，出现了两级分化。就像这位朋友说的，Go 希望开发者明确知晓有可能有错误发生。Go 的初衷也许是好的，但这也导致了代码中经常出现这样的情况：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">x</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nf">foo</span><span class="p">()</span>
+<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+	<span class="k">return</span> <span class="nx">err</span>
+<span class="p">}</span>
+
+<span class="nx">y</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nf">bar</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span>
+<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+	<span class="k">return</span> <span class="nx">err</span>
+<span class="p">}</span>
+
+<span class="nx">z</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nf">baz</span><span class="p">(</span><span class="nx">y</span><span class="p">)</span>
+<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+	<span class="k">return</span> <span class="nx">err</span>
+<span class="p">}</span>
+<span class="o">...</span>
+</code></pre></div><p>这样的代码必然会遭到很多人吐槽！据说 Go2.0 对错误处理会重新考虑，但 2.0 到现在也只是一个“概念”，虽知道哪天会来~</p>
+<p>回到微信 8.0，虽然不是专业产品经理，对产品知识略晓皮毛，但作为用户还是想吐槽下。</p>
+<p>微信 8.0 的发布，加上微信 10 周年公开课，网上各种解读、好评。这样的话也许大家也见过：</p>
+<blockquote>
+<p>我相信又有很多人要教龙哥做产品了。。。</p>
+</blockquote>
+<p>作为一个用户，我觉得不是教龙哥做产品，而是反馈下使用体验，不一定对，但却是真实使用感受！</p>
+<p>读高中时经常调侃一句话：</p>
+<blockquote>
+<p>名人说的话是名言，凡人说的话是废话</p>
+</blockquote>
+<p>的确如此，人家之所以是名人，那是人家的本事，能成为名人必然有其不寻常之处。</p>
+<p>达利欧在《原则》一书提到「可信度加权」：对那些能力更强的决策者的观点赋予更大的权重，给予更多的重视。大白话说就是成功的人士、成功的产品自带光环，做什么都很香，毕竟他们之前做的都很好，这次大概率做的也是很好的。听起来确实没毛病！</p>
+<p>但马克思告诉我们要辩证的看待问题。我用的不爽，就不能认为它做的不好？</p>
+<p>有人要说，这个很小众，毕竟大部人处理好友的请求数量很少，偶尔要处理让他们明确选择，对隐私进行保护。但我想说的是，这些好友很少的人，大概率加的好友都是真的好友，又有多少会不让看朋友圈呢？而对于有较多好友请求要处理的人来说，情况很糟糕！有些人可能不知道，微信 8.0 之前，微信好友中，最多有 5000 人可以看到朋友圈，超过 5000，再有人加你好友，微信会提示，然后自动选择仅聊天，因为之前好友是默认可以看朋友圈的。</p>
+<p>现在放开了 5000 人的限制。你看，5000 人好友，这个需求难道就不小众，微信却考虑到了，满足了！而且，这么牛逼的产品，追求极致应该是必然的，小众需求也会有所考虑：<strong>毕竟微信的理念是简单，你需要它才出现</strong>。</p>
+<p>因此，对于这个功能，我的一些不一定成熟的看法：</p>
+<ul>
+<li>处理好友请求很少的人，可以统计他们有多少会选择仅好友？我猜测大部分人都会选择朋友圈；</li>
+<li>微信的渗透很强，很多农村老人都用，他们能理解「仅聊天」、「朋友圈」？求求你让我方便的加上一个好友吧；</li>
+<li>好友超过 5000 的人，大概率新加好友也会很多，每个好友请求都要操作这么多步，真的好累！</li>
+</ul>
+<p>我这里预测，该功能会改进。要么回到之前，默认「朋友圈」；要么做到个性化，根据不同人群的习惯，给一个不同的默认选项。比如每次加好友的选择；是否从来不看朋友圈，设置关闭了朋友圈；是否从来不发朋友圈等等。</p>
+<p>另外 8.0 还有一个功能：状态。功能本身我不说，但这个入口按钮的位置，给我一种感觉：要加一个状态的功能，入口放哪好呢？随便找一个显眼的位置放一下吧！总感觉特别突兀~</p>
+<p><p class="md__image">
+  <img src="../imgs/wechat8.0-02.png"
+    alt=""  />
+</p>
+</p>
+<p>看到我一个朋友也发了一条朋友圈吐槽，UI 像狗皮膏药。。。</p>
+<p><p class="md__image">
+  <img src="../imgs/wechat8.0-03.png"
+    alt=""  />
+</p>
+</p>
+<p>之前的悬浮窗口，8.0 改掉了，龙哥就评价说悬浮窗口像狗皮膏药，你看，微信的设计也不可能全部是完美的。</p>
+<p>我没有能力教龙哥做产品，但就像 Go 社区对 error 不满意一样发声，作为微信用户，不爽的地方也是可以发声的。发表自己的意见，不一定对，但也是提升自己思考能力的机会！</p>
+
+			</div><div class="content">
+	<br>
+	<img src="https://static.studygolang.com/static/img/polarisxu-qrcode-soso-s.png">
+</div>
+
+<div class="related-posts thin">
+	<h2>相关推荐</h2>
+	<ul>
+	
+	<li><a href="/posts/wechat/2021-01-wechat-changes/">2021 年了，你可能没注意到的微信公众号的一些变化</a></li>
+	
+	<li><a href="/posts/go/translation/cockroachdb-errors-everyday/">除了 fmt.Errorf() 之外—Go 中的日常错误对象：CockroachDB errors 库（第4篇）</a></li>
+	
+	<li><a href="/posts/go/translation/go-error-printing-catastrophe/">Go error 打印灾难 —  CockroachDB errors 库（第3篇）</a></li>
+	
+	<li><a href="/posts/go/translation/go-formatting-apis/">Go 格式化 API —  CockroachDB errors 库（第2篇）</a></li>
+	
+	<li><a href="/posts/go/translation/cockroachdb-errors-std-api/">Go 标准错误 API — CockroachDB errors 库（第1篇）</a></li>
+	
+	</ul>
+</div>
+
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://polarisxu.studygolang.com/tags/%E5%BE%AE%E4%BF%A1">微信</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/error">error</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1478 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2021-01-25 11:00 &#43;0800</p>
+			</footer>
+		</article>
+		<aside id="toc">
+			<div class="toc-title">目录</div>
+			<nav id="TableOfContents"></nav>
+		</aside>
+		<div class="post-nav thin">
+			<a class="prev-post" href="https://polarisxu.studygolang.com/posts/basic/char-set-encoding/">
+				<span class="post-nav-label">旧&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>Unicode 和 UTF-8 是什么关系？本文为你解惑</span>
+			</a>
+		</div>
+		<div id="comments" class="thin"><script src="https://utteranc.es/client.js"
+	repo="polaris1119/polarisxu"
+	issue-term="pathname"
+	theme="github-light"
+	crossorigin="anonymous"
+	async>
+</script>
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2019 - 2021 <a href="https://polarisxu.studygolang.com">polarisxu</a> &#183; <a href="http://www.beian.miit.gov.cn/">京ICP备14030343号-1</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://polarisxu.studygolang.com/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+		<span id="busuanzi_container" style="color: #666;">
+			本站总访客数/访问量：<span id="busuanzi_value_site_uv"></span>/<span id="busuanzi_value_site_pv"></span>
+		</span>
+	</footer>
+
+
+
+	<script src="https://polarisxu.studygolang.com/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw=" crossorigin="anonymous"></script>
+	<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?224c227cd9239761ec770bc8c1fb134c";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+</body>
+
+</html>

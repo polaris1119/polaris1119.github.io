@@ -6,8 +6,81 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en</language>
 		<copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-		<lastBuildDate>Thu, 21 Jan 2021 22:40:00 +0800</lastBuildDate>
+		<lastBuildDate>Mon, 25 Jan 2021 11:00:00 +0800</lastBuildDate>
 		<atom:link href="https://polarisxu.studygolang.com/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>微信 8.0 的这个功能和 Go 的 error 一样？</title>
+			<link>https://polarisxu.studygolang.com/posts/wechat/wechat-8.0/</link>
+			<pubDate>Mon, 25 Jan 2021 11:00:00 +0800</pubDate>
+			
+			<guid>https://polarisxu.studygolang.com/posts/wechat/wechat-8.0/</guid>
+			<description>大家好，我是站长 polarisxu。 今天早上发了一个朋友圈，吐槽了一下微信 8.0 的一个功能，不少人有同感，其中一位朋友提到了 Go 的 error。 微信 8.0 通过好友请求时，仅聊天还是朋友圈，你必须选择一个。挺烦的。有一个朋友留言说：这就跟 err 一样，某些地方强迫你有意识的做选择，在这里就是强迫你对自己的隐私做选择。 Go 中的 error，社区的反应特别的激烈，喜欢的人夸，不喜欢的人</description>
+			<content type="html"><![CDATA[<p>大家好，我是站长 polarisxu。</p>
+<p>今天早上发了一个朋友圈，吐槽了一下微信 8.0 的一个功能，不少人有同感，其中一位朋友提到了 Go 的 error。</p>
+<p><p class="md__image">
+  <img src="../imgs/wechat8.0-01.png"
+    alt=""  />
+</p>
+</p>
+<ul>
+<li>微信 8.0 通过好友请求时，仅聊天还是朋友圈，你必须选择一个。挺烦的。有一个朋友留言说：这就跟 err 一样，某些地方强迫你有意识的做选择，在这里就是强迫你对自己的隐私做选择。</li>
+</ul>
+<p>Go 中的 error，社区的反应特别的激烈，喜欢的人夸，不喜欢的人喷，出现了两级分化。就像这位朋友说的，Go 希望开发者明确知晓有可能有错误发生。Go 的初衷也许是好的，但这也导致了代码中经常出现这样的情况：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">x</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nf">foo</span><span class="p">()</span>
+<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+	<span class="k">return</span> <span class="nx">err</span>
+<span class="p">}</span>
+
+<span class="nx">y</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nf">bar</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span>
+<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+	<span class="k">return</span> <span class="nx">err</span>
+<span class="p">}</span>
+
+<span class="nx">z</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nf">baz</span><span class="p">(</span><span class="nx">y</span><span class="p">)</span>
+<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+	<span class="k">return</span> <span class="nx">err</span>
+<span class="p">}</span>
+<span class="o">...</span>
+</code></pre></div><p>这样的代码必然会遭到很多人吐槽！据说 Go2.0 对错误处理会重新考虑，但 2.0 到现在也只是一个“概念”，虽知道哪天会来~</p>
+<p>回到微信 8.0，虽然不是专业产品经理，对产品知识略晓皮毛，但作为用户还是想吐槽下。</p>
+<p>微信 8.0 的发布，加上微信 10 周年公开课，网上各种解读、好评。这样的话也许大家也见过：</p>
+<blockquote>
+<p>我相信又有很多人要教龙哥做产品了。。。</p>
+</blockquote>
+<p>作为一个用户，我觉得不是教龙哥做产品，而是反馈下使用体验，不一定对，但却是真实使用感受！</p>
+<p>读高中时经常调侃一句话：</p>
+<blockquote>
+<p>名人说的话是名言，凡人说的话是废话</p>
+</blockquote>
+<p>的确如此，人家之所以是名人，那是人家的本事，能成为名人必然有其不寻常之处。</p>
+<p>达利欧在《原则》一书提到「可信度加权」：对那些能力更强的决策者的观点赋予更大的权重，给予更多的重视。大白话说就是成功的人士、成功的产品自带光环，做什么都很香，毕竟他们之前做的都很好，这次大概率做的也是很好的。听起来确实没毛病！</p>
+<p>但马克思告诉我们要辩证的看待问题。我用的不爽，就不能认为它做的不好？</p>
+<p>有人要说，这个很小众，毕竟大部人处理好友的请求数量很少，偶尔要处理让他们明确选择，对隐私进行保护。但我想说的是，这些好友很少的人，大概率加的好友都是真的好友，又有多少会不让看朋友圈呢？而对于有较多好友请求要处理的人来说，情况很糟糕！有些人可能不知道，微信 8.0 之前，微信好友中，最多有 5000 人可以看到朋友圈，超过 5000，再有人加你好友，微信会提示，然后自动选择仅聊天，因为之前好友是默认可以看朋友圈的。</p>
+<p>现在放开了 5000 人的限制。你看，5000 人好友，这个需求难道就不小众，微信却考虑到了，满足了！而且，这么牛逼的产品，追求极致应该是必然的，小众需求也会有所考虑：<strong>毕竟微信的理念是简单，你需要它才出现</strong>。</p>
+<p>因此，对于这个功能，我的一些不一定成熟的看法：</p>
+<ul>
+<li>处理好友请求很少的人，可以统计他们有多少会选择仅好友？我猜测大部分人都会选择朋友圈；</li>
+<li>微信的渗透很强，很多农村老人都用，他们能理解「仅聊天」、「朋友圈」？求求你让我方便的加上一个好友吧；</li>
+<li>好友超过 5000 的人，大概率新加好友也会很多，每个好友请求都要操作这么多步，真的好累！</li>
+</ul>
+<p>我这里预测，该功能会改进。要么回到之前，默认「朋友圈」；要么做到个性化，根据不同人群的习惯，给一个不同的默认选项。比如每次加好友的选择；是否从来不看朋友圈，设置关闭了朋友圈；是否从来不发朋友圈等等。</p>
+<p>另外 8.0 还有一个功能：状态。功能本身我不说，但这个入口按钮的位置，给我一种感觉：要加一个状态的功能，入口放哪好呢？随便找一个显眼的位置放一下吧！总感觉特别突兀~</p>
+<p><p class="md__image">
+  <img src="../imgs/wechat8.0-02.png"
+    alt=""  />
+</p>
+</p>
+<p>看到我一个朋友也发了一条朋友圈吐槽，UI 像狗皮膏药。。。</p>
+<p><p class="md__image">
+  <img src="../imgs/wechat8.0-03.png"
+    alt=""  />
+</p>
+</p>
+<p>之前的悬浮窗口，8.0 改掉了，龙哥就评价说悬浮窗口像狗皮膏药，你看，微信的设计也不可能全部是完美的。</p>
+<p>我没有能力教龙哥做产品，但就像 Go 社区对 error 不满意一样发声，作为微信用户，不爽的地方也是可以发声的。发表自己的意见，不一定对，但也是提升自己思考能力的机会！</p>
+]]></content>
+		</item>
 		
 		<item>
 			<title>Unicode 和 UTF-8 是什么关系？本文为你解惑</title>
@@ -15,8 +88,8 @@
 			<pubDate>Thu, 21 Jan 2021 22:40:00 +0800</pubDate>
 			
 			<guid>https://polarisxu.studygolang.com/posts/basic/char-set-encoding/</guid>
-			<description>十几年前，国内 UTF-8 还不太流行，新手开发过程中，乱码问题是很常见的。记得我刚毕业那会，公司的系统是这样的：数据库 MySQL 使用的是 Latin-1 编码（IOS8859-1），程序源码使用的是 GBK，这样的情况，乱码真是满天飞~好在对数据库操作做了封装，编码问题在中间层处理了。那时候听到关于乱码问题的一个终极解决方案是：保证各个地方编码一致。 现如今，Unicode 相当普及，中文使用 UTF-8 编</description>
-			<content type="html"><![CDATA[<p>十几年前，国内 UTF-8 还不太流行，新手开发过程中，乱码问题是很常见的。记得我刚毕业那会，公司的系统是这样的：数据库 MySQL 使用的是 Latin-1 编码（IOS8859-1），程序源码使用的是 GBK，这样的情况，乱码真是满天飞~好在对数据库操作做了封装，编码问题在中间层处理了。那时候听到关于乱码问题的一个终极解决方案是：保证各个地方编码一致。</p>
+			<description>十几年前，国内 UTF-8 还不太流行，新手开发过程中，乱码问题是很常见的。记得我刚毕业那会，公司的系统是这样的：数据库 MySQL 使用的是 Latin-1 编码（ISO8859-1），程序源码使用的是 GBK，这样的情况，乱码真是满天飞~好在对数据库操作做了封装，编码问题在中间层处理了。那时候听到关于乱码问题的一个终极解决方案是：保证各个地方编码一致。 现如今，Unicode 相当普及，中文使用 UTF-8 编</description>
+			<content type="html"><![CDATA[<p>十几年前，国内 UTF-8 还不太流行，新手开发过程中，乱码问题是很常见的。记得我刚毕业那会，公司的系统是这样的：数据库 MySQL 使用的是 Latin-1 编码（ISO8859-1），程序源码使用的是 GBK，这样的情况，乱码真是满天飞~好在对数据库操作做了封装，编码问题在中间层处理了。那时候听到关于乱码问题的一个终极解决方案是：保证各个地方编码一致。</p>
 <p>现如今，Unicode 相当普及，中文使用 UTF-8 编码虽然比 GBK 编码占用更多的空间，但一般都不会在乎。特别是使用了 Go 语言后，乱码问题更是没有了。在 Go 语言标准库中有 unicode 包，它下面还有 utf8 和 utf16 两个子包。也许有此疑问：又是 Unicode、又是 UTF-8、UTF-16，它们是什么关系？</p>
 <p>本文试着为大家解决关于字符集和字符编码的困惑。</p>
 <p>本文目录：</p>
@@ -133,8 +206,8 @@
 </tbody>
 </table>
 <p>具体如何编码和解码呢？以中文“徐”为例，说明这个过程。</p>
-<p>「徐」的 Unicode 码点是 0x5F90（二进制：101 1111 1001 0000），对照上面的表发现 0x5F90 位于第三行的范围，所以格式是 1110xxxx 10xxxxxx 10xxxxxx。接着从「徐」Unicode 码点的二进制数最后一位开始，按从右向左依次填充这个格式中的 x，多出的 x 用 0 补上。这样就得到了「徐」这个汉字的 UTF-8 编码：11101011 1011110 10010000，转成十六进制是 0xE5 0xBE 0x90。</p>
-<p>解码的过程也十分简单：如果一个字节（编码的二进制表示）的第一位是 0 ，则说明这个字节对应一个字符；如果一个字节的第一位是 1，那么连续有多少个 1，就表示该字符占用多少个字节。还是以「徐」字为例，它的 UTF-8 编码的二进制表示是：11101011 1011110 10010000，根据规则，第一个字节的第一位是 1，且有三个 1，因此占用 3 个字节。根据上面表中第三行，将第一个字节开头的 1110 去掉，第二、第三个字节开头的 10 去掉，剩下的组合在一起，即：1011 11110 010000，这就是 0x5F90。</p>
+<p>「徐」的 Unicode 码点是 0x5F90（二进制：101 1111 1001 0000），对照上面的表发现 0x5F90 位于第三行的范围，所以格式是 1110xxxx 10xxxxxx 10xxxxxx。接着从「徐」Unicode 码点的二进制数最后一位开始，按从右向左依次填充这个格式中的 x，多出的 x 用 0 补上。这样就得到了「徐」这个汉字的 UTF-8 编码：11100101 10111110 10010000，转成十六进制是 0xE5 0xBE 0x90。</p>
+<p>解码的过程也十分简单：如果一个字节（编码的二进制表示）的第一位是 0 ，则说明这个字节对应一个字符；如果一个字节的第一位是 1，那么连续有多少个 1，就表示该字符占用多少个字节。还是以「徐」字为例，它的 UTF-8 编码的二进制表示是：11100101 10111110 10010000，根据规则，第一个字节的第一位是 1，且有三个 1，因此占用 3 个字节。根据上面表中第三行，将第一个字节开头的 1110 去掉，第二、第三个字节开头的 10 去掉，剩下的组合在一起，即：1011 11110 010000，这就是 0x5F90。</p>
 <p>关于 UTF-8 的规范参考 <a href="https://tools.ietf.org/html/rfc3629" target="_blank" rel="noopener">rfc3629</a>
 ，这是 Ken Thompson 和 Rob Pike 等制定的，这两位也是 Go 语言的作者。</p>
 <h2 id="5utf-16">5、UTF-16</h2>
@@ -7138,6 +7211,190 @@ drwxr-xr-x   <span class="m">2</span> xuxinhua  staff   <span class="m">64</span
 		</item>
 		
 		<item>
+			<title>如何在调试过程中查找 Goroutine</title>
+			<link>https://polarisxu.studygolang.com/posts/go/translation/how-to-find-goroutines-during-debugging/</link>
+			<pubDate>Fri, 18 Sep 2020 18:00:00 +0800</pubDate>
+			
+			<guid>https://polarisxu.studygolang.com/posts/go/translation/how-to-find-goroutines-during-debugging/</guid>
+			<description>Goroutines 是大多数用 Go 编写的程序的重要组成部分。但是，使用大量 goroutines 会使程序难以调试。那怎么办？在此博文中，我们将介绍如何使用自定义数据为 goroutine 加上标签，这是 GoLand 2020.1（现已包含在 EAP 中）的最新功能之一。 目录 在 IDE 下使用 在命令行下使用 性能影响 使用自定义库启用调试标签 让我们以向 Web 服务器发出请求的应用程序为例： package main import ( &amp;#34;io&amp;#34; &amp;#34;io/ioutil&amp;#34; &amp;#34;math/rand&amp;#34; &amp;#34;net/http&amp;#34; &amp;#34;strconv&amp;#34; &amp;#34;strings&amp;#34; &amp;#34;time&amp;#34; ) func fakeTraffic() { // Wait for the server to start time.Sleep(1 * time.Second) pages := []string{&amp;#34;/&amp;#34;, &amp;#34;/login&amp;#34;, &amp;#34;/logout&amp;#34;, &amp;#34;/products&amp;#34;, &amp;#34;/product/{productID}&amp;#34;, &amp;#34;/basket&amp;#34;, &amp;#34;/about&amp;#34;}</description>
+			<content type="html"><![CDATA[<p>Goroutines 是大多数用 Go 编写的程序的重要组成部分。但是，使用大量 goroutines 会使程序难以调试。那怎么办？在此博文中，我们将介绍如何使用自定义数据为 goroutine 加上标签，这是 GoLand 2020.1（现已包含在 <a href="https://blog.jetbrains.com/go/tag/2020-1/" target="_blank" rel="noopener">EAP</a>
+ 中）的最新功能之一。</p>
+<h2 id="目录">目录</h2>
+<ul>
+<li>在 IDE 下使用</li>
+<li>在命令行下使用</li>
+<li>性能影响</li>
+<li>使用自定义库启用调试标签</li>
+</ul>
+<p>让我们以向 Web 服务器发出请求的应用程序为例：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+ 
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&#34;io&#34;</span>
+    <span class="s">&#34;io/ioutil&#34;</span>
+    <span class="s">&#34;math/rand&#34;</span>
+    <span class="s">&#34;net/http&#34;</span>
+    <span class="s">&#34;strconv&#34;</span>
+    <span class="s">&#34;strings&#34;</span>
+    <span class="s">&#34;time&#34;</span>
+<span class="p">)</span>
+ 
+<span class="kd">func</span> <span class="nf">fakeTraffic</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Wait for the server to start
+</span><span class="c1"></span>    <span class="nx">time</span><span class="p">.</span><span class="nf">Sleep</span><span class="p">(</span><span class="mi">1</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">)</span>
+ 
+    <span class="nx">pages</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&#34;/&#34;</span><span class="p">,</span> <span class="s">&#34;/login&#34;</span><span class="p">,</span> <span class="s">&#34;/logout&#34;</span><span class="p">,</span> <span class="s">&#34;/products&#34;</span><span class="p">,</span> <span class="s">&#34;/product/{productID}&#34;</span><span class="p">,</span> <span class="s">&#34;/basket&#34;</span><span class="p">,</span> <span class="s">&#34;/about&#34;</span><span class="p">}</span>
+ 
+    <span class="nx">activeConns</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kd">struct</span><span class="p">{},</span> <span class="mi">10</span><span class="p">)</span>
+ 
+    <span class="nx">c</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">http</span><span class="p">.</span><span class="nx">Client</span><span class="p">{</span>
+        <span class="nx">Timeout</span><span class="p">:</span> <span class="mi">10</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">,</span>
+    <span class="p">}</span>
+ 
+    <span class="nx">i</span> <span class="o">:=</span> <span class="nb">int64</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+ 
+    <span class="k">for</span> <span class="p">{</span>
+        <span class="nx">activeConns</span> <span class="o">&lt;-</span> <span class="kd">struct</span><span class="p">{}{}</span>
+        <span class="nx">i</span><span class="o">++</span>
+ 
+        <span class="nx">page</span> <span class="o">:=</span> <span class="nx">pages</span><span class="p">[</span><span class="nx">rand</span><span class="p">.</span><span class="nf">Intn</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="nx">pages</span><span class="p">))]</span>
+ 
+        <span class="c1">// We need to launch this using a closure function to
+</span><span class="c1"></span>        <span class="c1">// ensure that we capture the correct value for the
+</span><span class="c1"></span>        <span class="c1">// two parameters we need: page and i
+</span><span class="c1"></span>        <span class="k">go</span> <span class="kd">func</span><span class="p">(</span><span class="nx">p</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">rid</span> <span class="kt">int64</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nf">makeRequest</span><span class="p">(</span><span class="nx">activeConns</span><span class="p">,</span> <span class="nx">c</span><span class="p">,</span> <span class="nx">p</span><span class="p">,</span> <span class="nx">rid</span><span class="p">)</span>
+        <span class="p">}(</span><span class="nx">page</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+ 
+<span class="kd">func</span> <span class="nf">makeRequest</span><span class="p">(</span><span class="nx">done</span> <span class="kd">chan</span> <span class="kd">struct</span><span class="p">{},</span> <span class="nx">c</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Client</span><span class="p">,</span> <span class="nx">page</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">i</span> <span class="kt">int64</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">defer</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">// Unblock the next request from the queue
+</span><span class="c1"></span>        <span class="o">&lt;-</span><span class="nx">done</span>
+    <span class="p">}()</span>
+ 
+    <span class="nx">page</span> <span class="p">=</span> <span class="nx">strings</span><span class="p">.</span><span class="nf">Replace</span><span class="p">(</span><span class="nx">page</span><span class="p">,</span> <span class="s">&#34;{productID}&#34;</span><span class="p">,</span> <span class="s">&#34;abc-&#34;</span><span class="o">+</span><span class="nx">strconv</span><span class="p">.</span><span class="nf">Itoa</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="nx">i</span><span class="p">)),</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="nx">r</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">http</span><span class="p">.</span><span class="nf">NewRequest</span><span class="p">(</span><span class="nx">http</span><span class="p">.</span><span class="nx">MethodGet</span><span class="p">,</span> <span class="s">&#34;http://localhost:8080&#34;</span><span class="o">+</span><span class="nx">page</span><span class="p">,</span> <span class="kc">nil</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+        <span class="k">return</span>
+    <span class="p">}</span>
+ 
+    <span class="nx">resp</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">c</span><span class="p">.</span><span class="nf">Do</span><span class="p">(</span><span class="nx">r</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+        <span class="k">return</span>
+    <span class="p">}</span>
+    <span class="k">defer</span> <span class="nx">resp</span><span class="p">.</span><span class="nx">Body</span><span class="p">.</span><span class="nf">Close</span><span class="p">()</span>
+ 
+    <span class="nx">_</span><span class="p">,</span> <span class="nx">_</span> <span class="p">=</span> <span class="nx">io</span><span class="p">.</span><span class="nf">Copy</span><span class="p">(</span><span class="nx">ioutil</span><span class="p">.</span><span class="nx">Discard</span><span class="p">,</span> <span class="nx">resp</span><span class="p">.</span><span class="nx">Body</span><span class="p">)</span>
+ 
+    <span class="nx">time</span><span class="p">.</span><span class="nf">Sleep</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nf">Duration</span><span class="p">(</span><span class="mi">10</span><span class="o">+</span><span class="nx">rand</span><span class="p">.</span><span class="nf">Intn</span><span class="p">(</span><span class="mi">40</span><span class="p">))</span> <span class="o">+</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Millisecond</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div><h2 id="在-ide-下使用">在 IDE 下使用</h2>
+<p>如果我们在调试器（debugger）中分析此代码，我们如何知道 makeRequest goroutines 在做什么？当我们看这样的清单时，这些 goroutine 的执行上下文什么？</p>
+<p><p class="md__image">
+  <img src="https://d3nmt5vlzunoa1.cloudfront.net/go/files/2020/03/debugger-classic-without-labels-optimized.png"
+    alt="debugger without labels"  />
+</p>
+</p>
+<p>这就是 GoLand 新版本支持读取 goroutines 标签的缘由。</p>
+<p>我们调整下上面的代码：（polaris 注：pprof 是标准库的 runtime/pprof ）</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="k">go</span> <span class="kd">func</span><span class="p">(</span><span class="nx">p</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">rid</span> <span class="kt">int64</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">labels</span> <span class="o">:=</span> <span class="nx">pprof</span><span class="p">.</span><span class="nf">Labels</span><span class="p">(</span><span class="s">&#34;request&#34;</span><span class="p">,</span> <span class="s">&#34;automated&#34;</span><span class="p">,</span> <span class="s">&#34;page&#34;</span><span class="p">,</span> <span class="nx">p</span><span class="p">,</span> <span class="s">&#34;rid&#34;</span><span class="p">,</span> <span class="nx">strconv</span><span class="p">.</span><span class="nf">Itoa</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="nx">rid</span><span class="p">)))</span>
+    <span class="nx">pprof</span><span class="p">.</span><span class="nf">Do</span><span class="p">(</span><span class="nx">context</span><span class="p">.</span><span class="nf">Background</span><span class="p">(),</span> <span class="nx">labels</span><span class="p">,</span> <span class="kd">func</span><span class="p">(</span><span class="nx">_</span> <span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nf">makeRequest</span><span class="p">(</span><span class="nx">activeConns</span><span class="p">,</span> <span class="nx">c</span><span class="p">,</span> <span class="nx">p</span><span class="p">,</span> <span class="nx">rid</span><span class="p">)</span>
+    <span class="p">})</span>
+<span class="p">}(</span><span class="nx">page</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span>
+</code></pre></div><p>现在，当在调试器中运行相同的代码时，我们将看到以下视图：</p>
+<p><p class="md__image">
+  <img src="https://d3nmt5vlzunoa1.cloudfront.net/go/files/2020/03/debugger-classic-with-labels-optimized.png"
+    alt="debugger with labels"  />
+</p>
+</p>
+<p>看起来好多了。现在，我们可以看到在标签中设置的所有信息。而且，最重要的是，我们还可以看到通过函数调用在后台启动的其他 goroutine，它们都会自动携带标签。</p>
+<p>由于 HTTP HandleFunc 这种形式的处理程序非常受欢迎，并且可以与其他处理程序类型进行比较，因此让我们看一下如何调整下面的代码以设置标签。</p>
+<p>我们的原始代码将 m 用作 <code>*http.ServeMux</code>（或 <code>*github.com/gorilla/mux.Router</code>），看起来像这样：<code>m.HandleFunc(&quot;/&quot;, homeHandler)</code>。</p>
+<p>应用标签代码后，它将变为如下所示：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">m</span><span class="p">.</span><span class="nf">HandleFunc</span><span class="p">(</span><span class="s">&#34;/&#34;</span><span class="p">,</span> <span class="kd">func</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">labels</span> <span class="o">:=</span> <span class="nx">pprof</span><span class="p">.</span><span class="nf">Labels</span><span class="p">(</span><span class="s">&#34;path&#34;</span><span class="p">,</span> <span class="nx">r</span><span class="p">.</span><span class="nx">RequestURI</span><span class="p">,</span> <span class="s">&#34;request&#34;</span><span class="p">,</span> <span class="s">&#34;real&#34;</span><span class="p">)</span>
+    <span class="nx">pprof</span><span class="p">.</span><span class="nf">Do</span><span class="p">(</span><span class="nx">context</span><span class="p">.</span><span class="nf">Background</span><span class="p">(),</span> <span class="nx">labels</span><span class="p">,</span> <span class="kd">func</span><span class="p">(</span><span class="nx">_</span> <span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nf">homeHandler</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="nx">r</span><span class="p">)</span>
+    <span class="p">})</span>
+<span class="p">})</span>
+</code></pre></div><p>这将标记处理每个 HTTP 请求的 goroutine，如下所示。</p>
+<p><p class="md__image">
+  <img src="https://d3nmt5vlzunoa1.cloudfront.net/go/files/2020/03/debugger-http-with-labels-optimized.png"
+    alt="debugging http middleware with labels"  />
+</p>
+</p>
+<p>由于可以访问请求对象，因此可以使用比示例代码中更复杂的数据填充标签。</p>
+<h2 id="在命令行下使用">在命令行下使用</h2>
+<p>如果直接在命令行中使用 Delve，则需要使用 <a href="https://github.com/go-delve/delve/commit/186786235fc9c2bd9b16c26bb4b0aef60ffb731c" target="_blank" rel="noopener">1867862</a>
+ 或更高版本的 Delve。这些更改将包含在下一个版本中，而当前v1.4.0 版本中未包含。</p>
+<p>要查看标签，请在调试会话期间调用 <code>goroutines -l</code> 命令，以查看到与 IDE 中相同的数据。</p>
+<p><p class="md__image">
+  <img src="https://d3nmt5vlzunoa1.cloudfront.net/go/files/2020/03/debugger-dlv-with-labels-optimized.png"
+    alt="debugger dlv from command line with labels"  />
+</p>
+</p>
+<h2 id="性能影响">性能影响</h2>
+<p>随之而来的自然问题是：使用上述代码对性能会有影响吗？</p>
+<p>答案是肯定的，设置这些标签确实会降低性能。通常，它的影响很小，但是仍然会存在，因此最好使用一些基准测试代码在自己的硬件上进行测试。</p>
+<p>考虑到这种影响，就会出现下一个问题：如果涉及性能，则意味着每次需要进行调试时，我都需要应用和撤消代码。这会影响我的开发速度，这能做得更好吗？</p>
+<h2 id="使用自定义库启用调试标签">使用自定义库启用调试标签</h2>
+<p>要回答上述问题并允许我们的调试代码在不影响性能的情况下进行编译，请使用 <a href="https://github.com/dlsniper/debugger" target="_blank" rel="noopener">github.com/dlsniper/debugger</a>
+ 库并更改我们的 makeRequest 代码以包括以下函数调用：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">makeRequest</span><span class="p">(</span><span class="nx">done</span> <span class="kd">chan</span> <span class="kd">struct</span><span class="p">{},</span> <span class="nx">c</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Client</span><span class="p">,</span> <span class="nx">page</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">i</span> <span class="kt">int64</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">defer</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">// Unblock the next request from the queue
+</span><span class="c1"></span>        <span class="o">&lt;-</span><span class="nx">done</span>
+    <span class="p">}()</span>
+ 
+    <span class="nx">debugger</span><span class="p">.</span><span class="nf">SetLabels</span><span class="p">(</span><span class="kd">func</span><span class="p">()</span> <span class="p">[]</span><span class="kt">string</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span>
+            <span class="s">&#34;request&#34;</span><span class="p">,</span> <span class="s">&#34;automated&#34;</span><span class="p">,</span>
+            <span class="s">&#34;page&#34;</span><span class="p">,</span> <span class="nx">page</span><span class="p">,</span>
+            <span class="s">&#34;rid&#34;</span><span class="p">,</span> <span class="nx">strconv</span><span class="p">.</span><span class="nf">Itoa</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="nx">i</span><span class="p">)),</span>
+        <span class="p">}</span>
+    <span class="p">})</span>
+	<span class="c1">// ..
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></div><p>在调试器中运行此代码之前，我们需要进行其他更改。我们需要在运行配置的 Go 工具参数字段中添加 <code>-tags debugger</code>。否则，该库将加载生产代码，标签将不起作用。</p>
+<p><p class="md__image">
+  <img src="https://d3nmt5vlzunoa1.cloudfront.net/go/files/2020/03/debugger-run-configuration-optimized.png"
+    alt="debugger - run configuration"  />
+</p>
+</p>
+<p>此处显示的库支持标准的 http.HandlerFunc 签名，以方便在现有应用程序中使用。</p>
+<p>回到我们的代码，如下所示：<code>m.HandleFunc(&quot;/&quot;, homeHandler)</code>。</p>
+<p>要将标签添加到这些处理程序，我们可以将代码更改为如下所示：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">m</span><span class="p">.</span><span class="nf">HandleFunc</span><span class="p">(</span><span class="s">&#34;/&#34;</span><span class="p">,</span> <span class="nx">debugger</span><span class="p">.</span><span class="nf">Middleware</span><span class="p">(</span><span class="nx">homeHandler</span><span class="p">,</span> <span class="kd">func</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="p">[]</span><span class="kt">string</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span>
+        <span class="s">&#34;request&#34;</span><span class="p">,</span> <span class="s">&#34;real&#34;</span><span class="p">,</span>
+        <span class="s">&#34;path&#34;</span><span class="p">,</span> <span class="nx">r</span><span class="p">.</span><span class="nx">RequestURI</span><span class="p">,</span>
+    <span class="p">}</span>
+<span class="p">}))</span>
+</code></pre></div><p><strong>专业提示：</strong></p>
+<p>在单个函数或方法中对 <a href="https://pkg.go.dev/github.com/dlsniper/debugger?tab=doc#SetLabels" target="_blank" rel="noopener">debugger.SetLabels</a>
+ 函数进行多次调用，可以更轻松地跟踪执行进度并过滤掉不需要的数据。</p>
+<p><strong>专业提示：</strong></p>
+<p>可以复制运行配置，从而可以在有和没有调试器构建标记（build tag）的情况下使用代码。</p>
+<p><strong>注意：</strong></p>
+<p>如上所示，设置标签会导致性能下降。因此，仅在对性能要求不高的环境中使用 <code>-tags=debugger</code> 构建的二进制文件，或确保通过改善调试体验来抵消性能损失。</p>
+<p>今天就这样。我们学习了如何使用 GoLand 调试复杂的 Go 应用程序并在 goroutine 中添加标签，从而使生活变得更轻松。</p>
+<p>这篇文章中的所有代码都可以在 <a href="https://github.com/dlsniper/debugger" target="_blank" rel="noopener">github.com/dlsniper/debugger</a>
+ 上找到。用于测试该库的示例代码可在  <a href="https://github.com/dlsniper/serverdemo" target="_blank" rel="noopener">github.com/dlsniper/serverdemo</a>
+ 上找到。</p>
+<blockquote>
+<p>作者：<a href="https://blog.jetbrains.com/go/author/florin-patanjetbrains-com/" target="_blank" rel="noopener">Florin Pățan</a>
+</p>
+<p>原文链接：https://blog.jetbrains.com/go/2020/03/03/how-to-find-goroutines-during-debugging/</p>
+<p>翻译：polaris</p>
+</blockquote>
+]]></content>
+		</item>
+		
+		<item>
 			<title>在 iOS 和 Android 上运行 Go 代码</title>
 			<link>https://polarisxu.studygolang.com/posts/go/translation/running-go-code-on-ios-and-android/</link>
 			<pubDate>Mon, 14 Sep 2020 11:15:51 +0800</pubDate>
@@ -8488,6 +8745,38 @@ IDE 将识别自定义位置，并将其用于具有依赖关系的所有后续�
 <p><strong>福利</strong></p>
 <p>上次朋友支持我们的新书，搞了一个抽奖，我看到了就参与一下，结果我竟然中奖了。大家调侃有黑幕，调侃应该双倍重抽。所以，我今天送两本《Go语言编程之旅》，感谢大家的支持！</p>
 <p><strong>参与抽奖的请关注下我的公众号，你不会后悔，如果未关注，中奖了无效哦！</strong></p>
+]]></content>
+		</item>
+		
+		<item>
+			<title>重磅！史上第一本带你做项目的 Go 图书开卖</title>
+			<link>https://polarisxu.studygolang.com/posts/talk/my-first-action-book/</link>
+			<pubDate>Thu, 02 Jul 2020 20:00:00 +0800</pubDate>
+			
+			<guid>https://polarisxu.studygolang.com/posts/talk/my-first-action-book/</guid>
+			<description>2020 年过去了一半，这半年对所有人来说都不寻常。但也是这场疫情，让我完成了一件大事：出了一本 Go 语言图书，书名是：《Go 语言编程之旅：一起用 Go 做项目》。 海报 先上海报： 全书共分为 6 章，分别是命令行应用、HTTP 应用、RPC 应用、WebSocket 应用、进程内缓存和 Go 语言中的大杀器，其中前 5 章是 Go 语言开发中最常见的项目类型。本书对项目开发、细节分析、运行时分析等核心内</description>
+			<content type="html"><![CDATA[<p>2020 年过去了一半，这半年对所有人来说都不寻常。但也是这场疫情，让我完成了一件大事：出了一本 Go 语言图书，书名是：《Go 语言编程之旅：一起用 Go 做项目》。</p>
+<h2 id="海报">海报</h2>
+<p>先上海报：</p>
+<p><p class="md__image">
+  <img src="https://img30.360buyimg.com/vc/jfs/t1/143768/33/1853/1056513/5efd2c6aEa179705e/48099b6c7b9e9c05.jpg"
+    alt=""  />
+</p>
+</p>
+<p>全书共分为 6 章，分别是命令行应用、HTTP 应用、RPC 应用、WebSocket 应用、进程内缓存和 Go 语言中的大杀器，其中前 5 章是 Go 语言开发中最常见的项目类型。本书对项目开发、细节分析、运行时分析等核心内容进行了较为深入的剖析，提供了相对完整的项目实践经验。在项目迭代过程中，难免会遇到问题，因此本书针对 Go 语言的大杀器（分析工具）及常见问题进行了全面讲解，帮助读者对各类问题进行排查。本书适合有一定 Go 语言基础的读者以及相关开发人员阅读。</p>
+<h2 id="写书那些事">写书那些事</h2>
+<p>2019 年 8 月份，博文视点的安娜加我微信，想我出一本 Go 语言的图书。因为时间关系，我并没有打算出。安娜直接约我见面聊，到我公司找我，还送我一本书。之后在微信上多次问我有无意向。有点心动，但担心烂尾。</p>
+<p>之前跟 《Go 语言高级编程》的作者柴大交流，他写书时，因为怕烂尾，邀请了曹大一起，两个人相互鼓励、交流、讨论能更好的的完成。正好 2019 年年初认识了煎鱼，之后交流也比较多，他产出很高，写的文章质量不错，于是我和他沟通一起出书的事情。</p>
+<p><p class="md__image">
+  <img src="../imgs/book-01.png"
+    alt=""  />
+</p>
+</p>
+<p>事实证明我没看错人，煎鱼很靠谱，很自律，产出高、质量高，由于我比较忙，因此他主动承担了更多内容，不是找了他，这本书现在肯定不会面世。因此，他理所当然成为了第一作者。由衷感谢，合作愉快。2019 年 12 月中旬我还去了一趟深圳，和煎鱼一起吃了顿饭，交流了很多。年轻人很有想法，前途无量！</p>
+<p>所以，看了很多煎鱼文章的，欢迎购买支持；如果你在学习 Go 语言的过程中，Go 语言中文网对你有点帮助，我运营的社区对你有帮助，欢迎购买支持；如果苦于学了 Go 没法实践，这本书也许可以帮助你，那就下单购买吧。</p>
+<p>目前京东 7.5 折。</p>
+<h2 id="感谢">感谢</h2>
+<p>最后感谢我的伙伴煎鱼，感谢博文编辑美丽的安娜，感谢曹大、无闻、杨文大佬推荐，感谢傲飞、大彬、晓东花费宝贵的时间进行 Review。同时要感谢我的老婆，春节期间对我无微不至的照顾，让我全身心投入该书的写作中。</p>
 ]]></content>
 		</item>
 		
