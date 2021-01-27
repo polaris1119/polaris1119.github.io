@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>开发者 on polarisxu</title>
+    <link>https://polarisxu.studygolang.com/tags/%E5%BC%80%E5%8F%91%E8%80%85/</link>
+    <description>Recent content in 开发者 on polarisxu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
+    <lastBuildDate>Wed, 27 Jan 2021 10:20:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/%E5%BC%80%E5%8F%91%E8%80%85/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>百度终于重视码农了：专门为开发者准备的搜索</title>
+      <link>https://polarisxu.studygolang.com/posts/talk/baidu-kaifa-search/</link>
+      <pubDate>Wed, 27 Jan 2021 10:20:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/talk/baidu-kaifa-search/</guid>
+      <description>大家好，我是站长 polarisxu。 百度，这个国内最大的搜索引擎，大家对其是又爱又恨，特别是程序员。所以，有一些程序员会直接不用百度，甚至觉得程序员就不应该用百度，用百度是 low 的行为。 的确，百度在搜索技术相关的东西，会让人很抓狂。比如搜索世界上最好的语言 php： 我的天，全是广告。。。 反观谷歌： 第一个就是 PHP 官网。 据相关调研预测，到 2026 年国内编程教育覆盖人数也将超过</description>
+    </item>
+    
+  </channel>
+</rss>

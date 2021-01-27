@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#fcfcfc">
+	<meta name="msapplication-TileColor" content="#fcfcfc">
+<meta itemprop="name" content="百度终于重视码农了：专门为开发者准备的搜索">
+<meta itemprop="description" content="大家好，我是站长 polarisxu。 百度，这个国内最大的搜索引擎，大家对其是又爱又恨，特别是程序员。所以，有一些程序员会直接不用百度，甚至觉得程序员就不应该用百度，用百度是 low 的行为。 的确，百度在搜索技术相关的东西，会让人很抓狂。比如搜索世界上最好的语言 php： 我的天，全是广告。。。 反观谷歌： 第一个就是 PHP 官网。 据相关调研预测，到 2026 年国内编程教育覆盖人数也将超过">
+<meta itemprop="datePublished" content="2021-01-27T10:20:00+08:00" />
+<meta itemprop="dateModified" content="2021-01-27T10:20:00+08:00" />
+<meta itemprop="wordCount" content="890">
+
+
+
+<meta itemprop="keywords" content="开发者,百度," />
+<meta property="og:title" content="百度终于重视码农了：专门为开发者准备的搜索" />
+<meta property="og:description" content="大家好，我是站长 polarisxu。 百度，这个国内最大的搜索引擎，大家对其是又爱又恨，特别是程序员。所以，有一些程序员会直接不用百度，甚至觉得程序员就不应该用百度，用百度是 low 的行为。 的确，百度在搜索技术相关的东西，会让人很抓狂。比如搜索世界上最好的语言 php： 我的天，全是广告。。。 反观谷歌： 第一个就是 PHP 官网。 据相关调研预测，到 2026 年国内编程教育覆盖人数也将超过" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://polarisxu.studygolang.com/posts/talk/baidu-kaifa-search/" />
+<meta property="article:published_time" content="2021-01-27T10:20:00+08:00" />
+<meta property="article:modified_time" content="2021-01-27T10:20:00+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="百度终于重视码农了：专门为开发者准备的搜索"/>
+<meta name="twitter:description" content="大家好，我是站长 polarisxu。 百度，这个国内最大的搜索引擎，大家对其是又爱又恨，特别是程序员。所以，有一些程序员会直接不用百度，甚至觉得程序员就不应该用百度，用百度是 low 的行为。 的确，百度在搜索技术相关的东西，会让人很抓狂。比如搜索世界上最好的语言 php： 我的天，全是广告。。。 反观谷歌： 第一个就是 PHP 官网。 据相关调研预测，到 2026 年国内编程教育覆盖人数也将超过"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>百度终于重视码农了：专门为开发者准备的搜索</title>
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
+	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/styles.css">
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://polarisxu.studygolang.com">polarisxu</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+  <a href="https://polarisxu.studygolang.com/">首页</a>
+  <a href="https://polarisxu.studygolang.com/categories/echo%E7%B3%BB%E5%88%97/">Echo系列</a>
+  <a href="https://polarisxu.studygolang.com/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a>
+  <a href="https://polarisxu.studygolang.com/posts/">归档</a>
+  <a href="https://polarisxu.studygolang.com/about/">关于</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<button id="toc-btn" class="hdr-btn desktop-only-ib" title="目录"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3" y2="6"></line><line x1="3" y1="12" x2="3" y2="12"></line><line x1="3" y1="18" x2="3" y2="18"></line></svg></button><span class="hdr-social hide-in-mobile"><a href="https://github.com/polaris1119" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a><a href="https://twitter.com/polaris1119" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="菜单"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://polarisxu.studygolang.com/">首页</a></li>
+			<li><a href="https://polarisxu.studygolang.com/categories/echo%E7%B3%BB%E5%88%97/">Echo系列</a></li>
+			<li><a href="https://polarisxu.studygolang.com/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a></li>
+			<li><a href="https://polarisxu.studygolang.com/posts/">归档</a></li>
+			<li><a href="https://polarisxu.studygolang.com/about/">关于</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Jan 27, 2021</span></div>
+				<h1>百度终于重视码农了：专门为开发者准备的搜索</h1>
+			</header>
+			<div class="content">
+				<p>大家好，我是站长 polarisxu。</p>
+<p>百度，这个国内最大的搜索引擎，大家对其是又爱又恨，特别是程序员。所以，有一些程序员会直接不用百度，甚至觉得程序员就不应该用百度，用百度是 low 的行为。</p>
+<p>的确，百度在搜索技术相关的东西，会让人很抓狂。比如搜索世界上最好的语言 php：</p>
+<p><p class="md__image">
+  <img src="../imgs/baidu-php.png"
+    alt=""  />
+</p>
+</p>
+<p>我的天，全是广告。。。</p>
+<p>反观谷歌：</p>
+<p><p class="md__image">
+  <img src="../imgs/google-php.png"
+    alt=""  />
+</p>
+</p>
+<p>第一个就是 PHP 官网。</p>
+<p>据相关调研预测，到 2026 年国内编程教育覆盖人数也将超过 1 亿。如此庞大的用户群体，不能无视他们的搜索体验。终于，今天看到百度出了一个专门针对开发者的搜索引擎：<a href="https://kaifa.baidu.com">https://kaifa.baidu.com</a>。作为开发者，同时也是站长，我想谈谈自己的一些看法，欢迎交流。</p>
+<p>首先，这是一个好消息，你看搜索 php 的结果：</p>
+<p><p class="md__image">
+  <img src="../imgs/kaifa-php.png"
+    alt=""  />
+</p>
+</p>
+<p>官网终于排在第一了，而且没有任何广告，至少现在没有。</p>
+<p>在搜索结果的顶部，有「站点」、「语言」、「系统」三个筛选项，右侧有百科对应的词条，右下角是来自 gitee 平台的相关项目。隐约感觉，gitee 要大火？！</p>
+<p>但是，细心的读者会发现，目前的版本存在一些局限，比如搜索结果固定来自几个站点：「博客园」、「CSDN」、「知乎」。。。而实际上很多个人独立技术博客的质量很高，这里却搜索不到，可见目前这个所谓的开发者搜索，只是简单的搜索这几个站点的内容。</p>
+<p>此外，对于像 「Go语言中文网」 这样的站点来说，相当不友好，在 baidu.com 上搜索 golang，排除广告的话，它排第一，但在这个开发者搜索中却搜索不到它的任何内容。</p>
+<p>当然，我相信这只是起步。以上的一些问题，特别是内容丰富性方面，只要百度用心，肯定可以做的更好：比如基于 AI 技术，分析出全网站点，哪些是技术类的，提升权重等。</p>
+<p>如果这个搜索引擎真的做起来了，码农们都使用它，文中开头的哪些培训机构是不是不在百度投广告了？真有那一天，不知道百度能否顶住诱惑，像谷歌一样，有节制的展示广告。</p>
+<p>不过，要做起来其实挺难的，虽然 PC 时代的搜索，搜狗也还好，360 也好，都没有对百度形成冲击，但现在头条搜索、微信搜索，它们在另一个维度上和百度竞争，对百度的冲击还是不小。</p>
+<p>优质内容 + 好的体验，如果百度能做到，对于开发者这个人群来说，PC 搜索是更适合的，就看百度是否真要这部分市场了。</p>
+
+			</div><div class="content">
+	<br>
+	<img src="https://static.studygolang.com/static/img/polarisxu-qrcode-soso-s.png">
+</div>
+
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://polarisxu.studygolang.com/tags/%E5%BC%80%E5%8F%91%E8%80%85">开发者</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/%E7%99%BE%E5%BA%A6">百度</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>890 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2021-01-27 10:20 &#43;0800</p>
+			</footer>
+		</article>
+		<aside id="toc">
+			<div class="toc-title">目录</div>
+			<nav id="TableOfContents"></nav>
+		</aside>
+		<div class="post-nav thin">
+			<a class="prev-post" href="https://polarisxu.studygolang.com/posts/wechat/wechat-8.0/">
+				<span class="post-nav-label">旧&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>微信 8.0 的这个功能和 Go 的 error 一样？</span>
+			</a>
+		</div>
+		<div id="comments" class="thin"><script src="https://utteranc.es/client.js"
+	repo="polaris1119/polarisxu"
+	issue-term="pathname"
+	theme="github-light"
+	crossorigin="anonymous"
+	async>
+</script>
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2019 - 2021 <a href="https://polarisxu.studygolang.com">polarisxu</a> &#183; <a href="http://www.beian.miit.gov.cn/">京ICP备14030343号-1</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://polarisxu.studygolang.com/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+		<span id="busuanzi_container" style="color: #666;">
+			本站总访客数/访问量：<span id="busuanzi_value_site_uv"></span>/<span id="busuanzi_value_site_pv"></span>
+		</span>
+	</footer>
+
+
+
+	<script src="https://polarisxu.studygolang.com/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw=" crossorigin="anonymous"></script>
+	<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?224c227cd9239761ec770bc8c1fb134c";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+</body>
+
+</html>
