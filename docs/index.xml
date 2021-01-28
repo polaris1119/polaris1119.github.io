@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Wed, 27 Jan 2021 10:20:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 28 Jan 2021 15:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>从网友对 MySQL 手册的一个疑问聊起</title>
+      <link>https://polarisxu.studygolang.com/posts/go/action/mysql-bit-go/</link>
+      <pubDate>Thu, 28 Jan 2021 15:00:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/action/mysql-bit-go/</guid>
+      <description>在 Go 语言中文网微信群有人提出了这样的疑问，如下图（文档地址：https://dev.mysql.com/doc/internals/en/date-and-time-data-type-representation.html） 不理解为什么 DATE 是通过 YYYY×16×32 + MM×32 + DD 表示，主要不理解为什么 16、32。我做了讲解，但似乎他还是不太理解。干脆我写篇</description>
+    </item>
+    
     <item>
       <title>百度终于重视码农了：专门为开发者准备的搜索</title>
       <link>https://polarisxu.studygolang.com/posts/talk/baidu-kaifa-search/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/action/hashfs-http-cache/</guid>
       <description>大家好，我是站长 polarisxu。 之前写过一篇文章：《提前试用将在 Go1.16 中发布的内嵌静态资源功能》 ，如果之前没阅读，建议继续看本文前先阅读下该文。 现在 Go 1.16 Beta 已经发布，离正式版发布不远了，在 GitHub 发现了一个库，它实现了 io/fs.FS 接口，它能够计算文件的 SHA256 哈希值并附加到文件名中以允许进行 HTTP Cache：即控制静态文件的版本。本文对其进行介绍并顺带讲解一些涉及到的其他内容。 温馨提示</description>
-    </item>
-    
-    <item>
-      <title>从一份 2020 年大厂加班榜说起</title>
-      <link>https://polarisxu.studygolang.com/posts/talk/2020-996-rank/</link>
-      <pubDate>Tue, 05 Jan 2021 18:25:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/talk/2020-996-rank/</guid>
-      <description>大家好，我是站长 polarisxu。 这几天圈内讨论最多的事非 pdd 事件莫属，于是再一次引出 996 问题的讨论，这似乎是国内码农永远的痛？！ 新华网都发声了：（https://finance.sina.cn/tech/2021-01-05/detail-iiznezxt0681211.d.html） 互联网内卷真是不要太严重。 今天不再讨论 pdd 的事情。谈一下互联网加班的问题，因</description>
     </item>
     
   </channel>

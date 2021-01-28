@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#fcfcfc">
+	<meta name="msapplication-TileColor" content="#fcfcfc">
+<meta itemprop="name" content="从网友对 MySQL 手册的一个疑问聊起">
+<meta itemprop="description" content="在 Go 语言中文网微信群有人提出了这样的疑问，如下图（文档地址：https://dev.mysql.com/doc/internals/en/date-and-time-data-type-representation.html） 不理解为什么 DATE 是通过 YYYY×16×32 &#43; MM×32 &#43; DD 表示，主要不理解为什么 16、32。我做了讲解，但似乎他还是不太理解。干脆我写篇">
+<meta itemprop="datePublished" content="2021-01-28T15:00:00+08:00" />
+<meta itemprop="dateModified" content="2021-01-28T15:00:00+08:00" />
+<meta itemprop="wordCount" content="1234">
+
+
+
+<meta itemprop="keywords" content="MySQL,Go,bit," />
+<meta property="og:title" content="从网友对 MySQL 手册的一个疑问聊起" />
+<meta property="og:description" content="在 Go 语言中文网微信群有人提出了这样的疑问，如下图（文档地址：https://dev.mysql.com/doc/internals/en/date-and-time-data-type-representation.html） 不理解为什么 DATE 是通过 YYYY×16×32 &#43; MM×32 &#43; DD 表示，主要不理解为什么 16、32。我做了讲解，但似乎他还是不太理解。干脆我写篇" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/action/mysql-bit-go/" />
+<meta property="article:published_time" content="2021-01-28T15:00:00+08:00" />
+<meta property="article:modified_time" content="2021-01-28T15:00:00+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="从网友对 MySQL 手册的一个疑问聊起"/>
+<meta name="twitter:description" content="在 Go 语言中文网微信群有人提出了这样的疑问，如下图（文档地址：https://dev.mysql.com/doc/internals/en/date-and-time-data-type-representation.html） 不理解为什么 DATE 是通过 YYYY×16×32 &#43; MM×32 &#43; DD 表示，主要不理解为什么 16、32。我做了讲解，但似乎他还是不太理解。干脆我写篇"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>从网友对 MySQL 手册的一个疑问聊起</title>
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
+	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/styles.css">
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://polarisxu.studygolang.com">polarisxu</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+  <a href="https://polarisxu.studygolang.com/">首页</a>
+  <a href="https://polarisxu.studygolang.com/categories/echo%E7%B3%BB%E5%88%97/">Echo系列</a>
+  <a href="https://polarisxu.studygolang.com/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a>
+  <a href="https://polarisxu.studygolang.com/posts/">归档</a>
+  <a href="https://polarisxu.studygolang.com/about/">关于</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<button id="toc-btn" class="hdr-btn desktop-only-ib" title="目录"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3" y2="6"></line><line x1="3" y1="12" x2="3" y2="12"></line><line x1="3" y1="18" x2="3" y2="18"></line></svg></button><span class="hdr-social hide-in-mobile"><a href="https://github.com/polaris1119" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a><a href="https://twitter.com/polaris1119" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="菜单"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://polarisxu.studygolang.com/">首页</a></li>
+			<li><a href="https://polarisxu.studygolang.com/categories/echo%E7%B3%BB%E5%88%97/">Echo系列</a></li>
+			<li><a href="https://polarisxu.studygolang.com/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a></li>
+			<li><a href="https://polarisxu.studygolang.com/posts/">归档</a></li>
+			<li><a href="https://polarisxu.studygolang.com/about/">关于</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Jan 28, 2021</span></div>
+				<h1>从网友对 MySQL 手册的一个疑问聊起</h1>
+			</header>
+			<div class="content">
+				<p>在 Go 语言中文网微信群有人提出了这样的疑问，如下图（文档地址：<a href="https://dev.mysql.com/doc/internals/en/date-and-time-data-type-representation.html">https://dev.mysql.com/doc/internals/en/date-and-time-data-type-representation.html</a>）</p>
+<p><p class="md__image">
+  <img src="../imgs/mysql-bit01.png"
+    alt=""  />
+</p>
+</p>
+<p>不理解为什么 DATE 是通过 YYYY×16×32 + MM×32 + DD 表示，主要不理解为什么 16、32。我做了讲解，但似乎他还是不太理解。干脆我写篇文章详细讲解下，希望对不清楚的人能有所帮助，答案不是重点，关键在于分析的过程。</p>
+<h2 id="01">01<a href="#01" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>讲一个真实的事情。几年前，某大厂的一个 iOS 开发，说之前接触过 PHP，了解一些后端，于是简单聊了聊（半面试形式）。聊到的一些点，让我感觉他的基础很薄弱，于是我试探性的问：int 类型一般占多大空间？（这样的问题我一般不会问，以免让人感觉“鄙视”他）</p>
+<p>他回答：32。我就知道他对这块稀里糊涂的。于是追问一句：单位是什么？他不确定的答道：是字节吧？！</p>
+<p>回到 MySQL 中的问题，DATE 用 3 字节的整数类型存储，怎么存？如果不考虑空间，DATE 类型最简单的存储方式可能是，直接将 YYYYMMDD 当做整数存储，比如：20210128。这个数是否可以用 3 个字节存储呢？</p>
+<p>1 个字节（byte）是 8 位（bit），3 个字节有 24 位，如果表示无符号整数，最大能表示 (2 &laquo; 24) - 1（移位操作优先级低于减法），即 16777215。很显然它比 20210128 小，因此我们不能直接使用 YYYYMMDD  当做整数存储。</p>
+<p>如果直接把 YYYYMMDD 形式当做整数，中间会有很多“空洞”，也就是很多数字没有用到，是不连续的，空间利用率太低。比如下图，20210101 比它头一天 20201231 大 8870。</p>
+<p><p class="md__image">
+  <img src="../imgs/mysql-bit02.png"
+    alt=""  />
+</p>
+</p>
+<p>因此，我们可以采用“压缩”的方式，让日期集合更“紧凑”。MySQL 这里采用的方法就是。具体为什么是 YYYY×16×32 + MM×32 + DD 呢？</p>
+<h2 id="02">02<a href="#02" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>日期 DD 的范围是：1~31，用 5 个位就可以表示。月份的范围是：1~12，用 4 个位就可以表示，但前面 5 个位被 DD 占用了，因此 MM 得从第 6 位开始，所以需要左移（&laquo;） 5 位，即乘以 32，所以 MM×32 是这么来的。这样一来，MM 和 DD 一共占据了 5 + 4 = 9 位，3 个字节（24 位）还剩 15 位，也就是说有 15 位可以存放年（YYYY），15 位能表示到 32767 年，远超 2021 年。因此，对于 YYYY 来说，需要左移 5 + 4 位，也就是 YYYY×32×16。</p>
+<p><p class="md__image">
+  <img src="../imgs/mysql-bit03.png"
+    alt=""  />
+</p>
+</p>
+<p>至于 TIME，因为用秒表示的值可以存入 3 个字节，因此直接将 TIME 转为秒。即  DD×24×3600 + HH×3600 + MM×60 + SS</p>
+<p>而 DATETIME 使用了 8 个字节存储，4 个字节存日期，4 个字节存时间。因为空间比较充足，这里的“压缩”没有采用而二进制位，而是直接用十进制的方式。YYYY×10000 + MM×100 + DD，年月日不会重叠，而且没有超过 4 字节能表示的范围，时间一样的道理。</p>
+<h2 id="03">03<a href="#03" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>如果你问我：为什么 24 位无符号整数最大值是（2&laquo;24) - 1 = 16777215，我建议你可以好好看看《深入理解计算机系统》。</p>
+<p>MySQL 这里使用的技巧值得学习。</p>
+<p>最后留一个问题：开头文档中第一点，YEAR 这个类型，使用一个字节存储，你觉得该怎么做？！</p>
+
+			</div><div class="content">
+	<br>
+	<img src="https://static.studygolang.com/static/img/polarisxu-qrcode-soso-s.png">
+</div>
+
+<div class="related-posts thin">
+	<h2>相关推荐</h2>
+	<ul>
+	
+	<li><a href="/posts/go/action/stat-words/">用 Go 如何实现精准统计文章字数</a></li>
+	
+	<li><a href="/posts/go/action/hashfs-http-cache/">基于 Go1.16 实现静态文件的 HTTP Cache</a></li>
+	
+	<li><a href="/posts/go/dynamic/go-get-install/">Go 1.16 的这个新变化需要适应下：go get 和 go install 的变化</a></li>
+	
+	<li><a href="/posts/go/translation/environment-variables-in-golang/">详解 Go 中的环境变量</a></li>
+	
+	<li><a href="/posts/go/dynamic/view-go-history-std-version/">听说你还不知道如何查看 Go 历史文档？</a></li>
+	
+	</ul>
+</div>
+
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://polarisxu.studygolang.com/tags/mysql">MySQL</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/go">Go</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/bit">bit</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1234 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2021-01-28 15:00 &#43;0800</p>
+			</footer>
+		</article>
+		<aside id="toc">
+			<div class="toc-title">目录</div>
+			<nav id="TableOfContents">
+  <ul>
+    <li><a href="#01">01</a></li>
+    <li><a href="#02">02</a></li>
+    <li><a href="#03">03</a></li>
+  </ul>
+</nav>
+		</aside>
+		<div class="post-nav thin">
+			<a class="prev-post" href="https://polarisxu.studygolang.com/posts/talk/baidu-kaifa-search/">
+				<span class="post-nav-label">旧&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>百度终于重视码农了：专门为开发者准备的搜索</span>
+			</a>
+		</div>
+		<div id="comments" class="thin"><script src="https://utteranc.es/client.js"
+	repo="polaris1119/polarisxu"
+	issue-term="pathname"
+	theme="github-light"
+	crossorigin="anonymous"
+	async>
+</script>
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2019 - 2021 <a href="https://polarisxu.studygolang.com">polarisxu</a> &#183; <a href="http://www.beian.miit.gov.cn/">京ICP备14030343号-1</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://polarisxu.studygolang.com/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+		<span id="busuanzi_container" style="color: #666;">
+			本站总访客数/访问量：<span id="busuanzi_value_site_uv"></span>/<span id="busuanzi_value_site_pv"></span>
+		</span>
+	</footer>
+
+
+
+	<script src="https://polarisxu.studygolang.com/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw=" crossorigin="anonymous"></script>
+	<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?224c227cd9239761ec770bc8c1fb134c";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+</body>
+
+</html>

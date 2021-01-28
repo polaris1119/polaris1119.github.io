@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>MySQL on polarisxu</title>
+    <link>https://polarisxu.studygolang.com/tags/mysql/</link>
+    <description>Recent content in MySQL on polarisxu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
+    <lastBuildDate>Thu, 28 Jan 2021 15:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/mysql/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>从网友对 MySQL 手册的一个疑问聊起</title>
+      <link>https://polarisxu.studygolang.com/posts/go/action/mysql-bit-go/</link>
+      <pubDate>Thu, 28 Jan 2021 15:00:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/action/mysql-bit-go/</guid>
+      <description>在 Go 语言中文网微信群有人提出了这样的疑问，如下图（文档地址：https://dev.mysql.com/doc/internals/en/date-and-time-data-type-representation.html） 不理解为什么 DATE 是通过 YYYY×16×32 + MM×32 + DD 表示，主要不理解为什么 16、32。我做了讲解，但似乎他还是不太理解。干脆我写篇</description>
+    </item>
+    
+  </channel>
+</rss>
