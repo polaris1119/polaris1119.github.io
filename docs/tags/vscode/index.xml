@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>VSCode on polarisxu</title>
+    <link>https://polarisxu.studygolang.com/tags/vscode/</link>
+    <description>Recent content in VSCode on polarisxu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
+    <lastBuildDate>Wed, 03 Feb 2021 20:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/vscode/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go 开发者 Top 6 IDE：你知道几个，又用哪个？</title>
+      <link>https://polarisxu.studygolang.com/posts/devtool/go-top-ide/</link>
+      <pubDate>Wed, 03 Feb 2021 20:00:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/devtool/go-top-ide/</guid>
+      <description>声明：这里的 IDE 包括普通的文本编辑器和真正的 IDE。或者应该叫做开发工具。 这个 Top 排行，没有直接数据支持，凭直觉的，哈哈哈哈哈。（其实也结合了部分网上资料，比如 2019 年官方的调查结果）。 1、VSCode 这是微软出品的，超级棒的文本编辑器。我出过 VSCode 系列相关教程 ，目前我主要使用 VSCode 进行开发。VSCode 本身不是专门针对 Go 的编辑器，所以需要通过插件来支持 Go，这就是 Go for Visual Studio</description>
+    </item>
+    
+  </channel>
+</rss>

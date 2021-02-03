@@ -3,27 +3,52 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://polarisxu.studygolang.com/tags/go/</loc>
+    <lastmod>2021-02-03T20:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polarisxu.studygolang.com/posts/devtool/go-top-ide/</loc>
+    <lastmod>2021-02-03T20:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polarisxu.studygolang.com/tags/goland/</loc>
+    <lastmod>2021-02-03T20:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polarisxu.studygolang.com/tags/ide/</loc>
+    <lastmod>2021-02-03T20:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polarisxu.studygolang.com/</loc>
+    <lastmod>2021-02-03T20:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polarisxu.studygolang.com/tags/</loc>
+    <lastmod>2021-02-03T20:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polarisxu.studygolang.com/tags/vscode/</loc>
+    <lastmod>2021-02-03T20:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polarisxu.studygolang.com/posts/</loc>
+    <lastmod>2021-02-03T20:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://polarisxu.studygolang.com/tags/markdown/</loc>
     <lastmod>2021-02-02T11:00:00+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://polarisxu.studygolang.com/</loc>
-    <lastmod>2021-02-02T11:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://polarisxu.studygolang.com/tags/</loc>
-    <lastmod>2021-02-02T11:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://polarisxu.studygolang.com/tags/%E5%85%AC%E4%BC%97%E5%8F%B7/</loc>
-    <lastmod>2021-02-02T11:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://polarisxu.studygolang.com/posts/</loc>
     <lastmod>2021-02-02T11:00:00+08:00</lastmod>
   </url>
   
@@ -34,11 +59,6 @@
   
   <url>
     <loc>https://polarisxu.studygolang.com/tags/bit/</loc>
-    <lastmod>2021-01-28T15:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://polarisxu.studygolang.com/tags/go/</loc>
     <lastmod>2021-01-28T15:00:00+08:00</lastmod>
   </url>
   
@@ -334,11 +354,6 @@
   
   <url>
     <loc>https://polarisxu.studygolang.com/categories/</loc>
-    <lastmod>2020-12-04T22:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://polarisxu.studygolang.com/tags/goland/</loc>
     <lastmod>2020-12-04T22:30:00+08:00</lastmod>
   </url>
   

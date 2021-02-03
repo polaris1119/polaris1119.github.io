@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#fcfcfc">
+	<meta name="msapplication-TileColor" content="#fcfcfc">
+<meta itemprop="name" content="Go 开发者 Top 6 IDE：你知道几个，又用哪个？">
+<meta itemprop="description" content="声明：这里的 IDE 包括普通的文本编辑器和真正的 IDE。或者应该叫做开发工具。 这个 Top 排行，没有直接数据支持，凭直觉的，哈哈哈哈哈。（其实也结合了部分网上资料，比如 2019 年官方的调查结果）。 1、VSCode 这是微软出品的，超级棒的文本编辑器。我出过 VSCode 系列相关教程 ，目前我主要使用 VSCode 进行开发。VSCode 本身不是专门针对 Go 的编辑器，所以需要通过插件来支持 Go，这就是 Go for Visual Studio">
+<meta itemprop="datePublished" content="2021-02-03T20:00:00+08:00" />
+<meta itemprop="dateModified" content="2021-02-03T20:00:00+08:00" />
+<meta itemprop="wordCount" content="1333">
+
+
+
+<meta itemprop="keywords" content="Go,IDE,VSCode,GoLand," />
+<meta property="og:title" content="Go 开发者 Top 6 IDE：你知道几个，又用哪个？" />
+<meta property="og:description" content="声明：这里的 IDE 包括普通的文本编辑器和真正的 IDE。或者应该叫做开发工具。 这个 Top 排行，没有直接数据支持，凭直觉的，哈哈哈哈哈。（其实也结合了部分网上资料，比如 2019 年官方的调查结果）。 1、VSCode 这是微软出品的，超级棒的文本编辑器。我出过 VSCode 系列相关教程 ，目前我主要使用 VSCode 进行开发。VSCode 本身不是专门针对 Go 的编辑器，所以需要通过插件来支持 Go，这就是 Go for Visual Studio" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://polarisxu.studygolang.com/posts/devtool/go-top-ide/" />
+<meta property="article:published_time" content="2021-02-03T20:00:00+08:00" />
+<meta property="article:modified_time" content="2021-02-03T20:00:00+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Go 开发者 Top 6 IDE：你知道几个，又用哪个？"/>
+<meta name="twitter:description" content="声明：这里的 IDE 包括普通的文本编辑器和真正的 IDE。或者应该叫做开发工具。 这个 Top 排行，没有直接数据支持，凭直觉的，哈哈哈哈哈。（其实也结合了部分网上资料，比如 2019 年官方的调查结果）。 1、VSCode 这是微软出品的，超级棒的文本编辑器。我出过 VSCode 系列相关教程 ，目前我主要使用 VSCode 进行开发。VSCode 本身不是专门针对 Go 的编辑器，所以需要通过插件来支持 Go，这就是 Go for Visual Studio"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>Go 开发者 Top 6 IDE：你知道几个，又用哪个？</title>
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
+	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/styles.css">
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://polarisxu.studygolang.com">polarisxu</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+  <a href="https://polarisxu.studygolang.com/">首页</a>
+  <a href="https://polarisxu.studygolang.com/categories/echo%E7%B3%BB%E5%88%97/">Echo系列</a>
+  <a href="https://polarisxu.studygolang.com/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a>
+  <a href="https://polarisxu.studygolang.com/posts/">归档</a>
+  <a href="https://polarisxu.studygolang.com/about/">关于</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<button id="toc-btn" class="hdr-btn desktop-only-ib" title="目录"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3" y2="6"></line><line x1="3" y1="12" x2="3" y2="12"></line><line x1="3" y1="18" x2="3" y2="18"></line></svg></button><span class="hdr-social hide-in-mobile"><a href="https://github.com/polaris1119" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a><a href="https://twitter.com/polaris1119" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="菜单"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://polarisxu.studygolang.com/">首页</a></li>
+			<li><a href="https://polarisxu.studygolang.com/categories/echo%E7%B3%BB%E5%88%97/">Echo系列</a></li>
+			<li><a href="https://polarisxu.studygolang.com/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a></li>
+			<li><a href="https://polarisxu.studygolang.com/posts/">归档</a></li>
+			<li><a href="https://polarisxu.studygolang.com/about/">关于</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Feb 3, 2021</span></div>
+				<h1>Go 开发者 Top 6 IDE：你知道几个，又用哪个？</h1>
+			</header>
+			<div class="content">
+				<blockquote>
+<p>声明：这里的 IDE 包括普通的文本编辑器和真正的 IDE。或者应该叫做开发工具。</p>
+</blockquote>
+<p>这个 Top 排行，没有直接数据支持，凭直觉的，哈哈哈哈哈。（其实也结合了部分网上资料，比如 2019 年官方的调查结果）。</p>
+<h2 id="1vscode">1、VSCode<a href="#1vscode" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>这是微软出品的，超级棒的文本编辑器。我出过 <a href="https://mp.weixin.qq.com/s/twGr49fAqRG8UguZ_9TiiA" target="_blank" rel="noopener">VSCode 系列相关教程</a>
+，目前我主要使用 VSCode 进行开发。VSCode 本身不是专门针对 Go 的编辑器，所以需要通过插件来支持 Go，这就是 Go for Visual Studio Code 插件，前些天更新到了 v0.22.0，默认启用了 gopls。关于什么是 gopls，可以参考我写的<a href="https://mp.weixin.qq.com/s/vMWvSs2h3LwpghS27VQ9rg" target="_blank" rel="noopener">这篇文章</a>
+。</p>
+<p>注意，目前该插件是 Go Team 维护的。官方支持，值得拥有！</p>
+<p><p class="md__image">
+  <img src="../imgs/top-go-ide-vscode.png"
+    alt=""  />
+</p>
+</p>
+<p>有了 gopls，VSCode 写 Go 代码的感觉特别棒，我认为一定程度上可以媲美 GoLand，而且它是开源免费的呢。</p>
+<h2 id="2goland">2、GoLand<a href="#2goland" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>JetBrains 以 Intellij IDEA 和针对特定语言的 IDE 而闻名。而 GoLand 是为 Go 开发者提供的 JetBrains 解决方案。</p>
+<p>GoLand 是一个专门为 Go 开发者构建的跨平台 IDE。它是一个商业 IDE，也就是要钱的，不过正因为要钱，它的功能特别强大。</p>
+<p><p class="md__image">
+  <img src="../imgs/top-go-ide-goland.png"
+    alt=""  />
+</p>
+</p>
+<p>比如有动态错误检测和修复建议、一步撤销重构、智能代码完成、未使用代码检测和文档提示等。</p>
+<p>此外，它还具有强大的调试功能，用户友好的代码导航，以及对 Git、GitHub 和 Mercurial 开箱即用的支持。</p>
+<p>目前个人用户第一年 89 美金，后续续费会便宜些。</p>
+<p>可能很多人抱怨贵，但 JetBrains 还是很不错的，如果你有开源项目，可以申请免费 Licence；如果你是学生，也可以申请。</p>
+<h2 id="3liteide">3、LiteIDE<a href="#3liteide" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>有些人可能不知道这款 IDE，这是国人开发的，专门为 Go 语言打造的 IDE。在 2012 年我刚接触 Go 语言时，这款 IDE 就跟着出现了。</p>
+<p>官方的介绍：这是一款简单，开源，跨平台的 Go IDE，主页地址：<a href="http://liteide.org">http://liteide.org</a>。</p>
+<p><p class="md__image">
+  <img src="../imgs/top-go-ide-liteide.png"
+    alt=""  />
+</p>
+</p>
+<p>因为 LiteIDE 是为 Go 设计的，所以它为开发者提供了许多开箱即用的有用特性。其中包括可配置的构建命令、高级代码编辑器、代码管理、gdb 和 Delve 调试器支持、自动完成和 WordApi 主题化、基于 MIME 类型的系统等等。</p>
+<p>作者是七叶，更新很积极，应该拥有一批忠实的用户。</p>
+<h2 id="4vim">4、Vim<a href="#4vim" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>作为编辑器之神，自然会支持 Go，这是通过 <a href="https://github.com/fatih/vim-go" target="_blank" rel="noopener">vim-go</a>
+ 这个插件实现的。</p>
+<p><p class="md__image">
+  <img src="../imgs/top-go-ide-vim.png"
+    alt=""  />
+</p>
+</p>
+<p>vim-go 插件是免费的，易于安装，维护良好，经常在 Github 上更新。安装后，vim-go 将为你的 Vim 文本编辑器配备 Go 包编译、折叠和语法高亮显示、集成的 delve 支持，以及在用 Golang 编写应用程序时可能需要的其他功能，Vim 可扩展性特别强。</p>
+<p>此外，作者维护了较好的<a href="https://github.com/fatih/vim-go/wiki" target="_blank" rel="noopener">文档</a>
+，有问题可以得到较好的支持。</p>
+<h2 id="5sublime-text">5、Sublime Text<a href="#5sublime-text" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>曾经 Sublime Text 风光无限，自从 VSCode 出来后，受到了极大的冲击。如果你是 Sublime Text 爱好者，通过 GoSublime 插件可以进行 Go 开发。</p>
+<p><p class="md__image">
+  <img src="../imgs/top-go-ide-sublime.png"
+    alt=""  />
+</p>
+</p>
+<p>值得注意的是，你可能需要一些额外的插件来充分发挥 Sublime Text 作为 Go IDE 的作用。比如 <a href="https://github.com/golang/sublime-build" target="_blank" rel="noopener">Golang Build package</a>
+，它是用于 Go Build 系统集成的官方 Sublime Text package。</p>
+<h2 id="6atom">6、Atom<a href="#6atom" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>这是 GitHub 出品的。它是一个轻量级框架，通过大量插件，来丰富其功能。</p>
+<p>如果你是 Atom 的爱好者，可以通过 <a href="https://atom.io/packages/go-plus" target="_blank" rel="noopener">Go-plus</a>
+ 插件来支持 Go 开发。</p>
+<p><p class="md__image">
+  <img src="../imgs/top-go-ide-atom.png"
+    alt=""  />
+</p>
+</p>
+<p>该插件提供了构建流程、lints、vet 和覆盖测试等工具。此外还有自动完成、格式化、测试和文档功能。</p>
+<h2 id="总结">总结<a href="#总结" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>除了上面介绍的 6 款（它们都是跨平台的），在<a href="https://blog.codota.com/top-7-golang-ides-for-go-developers/" target="_blank" rel="noopener">这篇文章</a>
+看到了另外一款：<a href="https://www.zeusedit.com/languages/go.html" target="_blank" rel="noopener">Zeus IDE</a>
+。这个国内应该很多人都没听过，这是 Windows 上的一款 IDE，Windows 的用户可以试试。</p>
+<p><p class="md__image">
+  <img src="../imgs/top-go-ide-zeus.png"
+    alt=""  />
+</p>
+</p>
+<p>注意，Eclipse 上的 Go 插件已经不维护了，所以大家别用 Eclipse 开发 Go 了。</p>
+<p>最后问一句，有人使用 Emacs 开发 Go 吗？</p>
+
+			</div><div class="content">
+	<br>
+	<img src="https://static.studygolang.com/static/img/polarisxu-qrcode-soso-s.png">
+</div>
+
+<div class="related-posts thin">
+	<h2>相关推荐</h2>
+	<ul>
+	
+	<li><a href="/posts/go/action/mysql-bit-go/">从网友对 MySQL 手册的一个疑问聊起</a></li>
+	
+	<li><a href="/posts/go/action/stat-words/">用 Go 如何实现精准统计文章字数</a></li>
+	
+	<li><a href="/posts/go/action/hashfs-http-cache/">基于 Go1.16 实现静态文件的 HTTP Cache</a></li>
+	
+	<li><a href="/posts/go/dynamic/go-get-install/">Go 1.16 的这个新变化需要适应下：go get 和 go install 的变化</a></li>
+	
+	<li><a href="/posts/go/translation/environment-variables-in-golang/">详解 Go 中的环境变量</a></li>
+	
+	</ul>
+</div>
+
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://polarisxu.studygolang.com/tags/go">Go</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/ide">IDE</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/vscode">VSCode</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/goland">GoLand</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1333 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2021-02-03 20:00 &#43;0800</p>
+			</footer>
+		</article>
+		<aside id="toc">
+			<div class="toc-title">目录</div>
+			<nav id="TableOfContents">
+  <ul>
+    <li><a href="#1vscode">1、VSCode</a></li>
+    <li><a href="#2goland">2、GoLand</a></li>
+    <li><a href="#3liteide">3、LiteIDE</a></li>
+    <li><a href="#4vim">4、Vim</a></li>
+    <li><a href="#5sublime-text">5、Sublime Text</a></li>
+    <li><a href="#6atom">6、Atom</a></li>
+    <li><a href="#总结">总结</a></li>
+  </ul>
+</nav>
+		</aside>
+		<div class="post-nav thin">
+			<a class="prev-post" href="https://polarisxu.studygolang.com/posts/wechat/article-pretty/">
+				<span class="post-nav-label">旧&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>除了心灵美，颜值也很重要</span>
+			</a>
+		</div>
+		<div id="comments" class="thin"><script src="https://utteranc.es/client.js"
+	repo="polaris1119/polarisxu"
+	issue-term="pathname"
+	theme="github-light"
+	crossorigin="anonymous"
+	async>
+</script>
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2019 - 2021 <a href="https://polarisxu.studygolang.com">polarisxu</a> &#183; <a href="http://www.beian.miit.gov.cn/">京ICP备14030343号-1</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://polarisxu.studygolang.com/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+		<span id="busuanzi_container" style="color: #666;">
+			本站总访客数/访问量：<span id="busuanzi_value_site_uv"></span>/<span id="busuanzi_value_site_pv"></span>
+		</span>
+	</footer>
+
+
+
+	<script src="https://polarisxu.studygolang.com/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw=" crossorigin="anonymous"></script>
+	<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?224c227cd9239761ec770bc8c1fb134c";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+</body>
+
+</html>

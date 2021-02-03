@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Thu, 28 Jan 2021 15:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 03 Feb 2021 20:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go 开发者 Top 6 IDE：你知道几个，又用哪个？</title>
+      <link>https://polarisxu.studygolang.com/posts/devtool/go-top-ide/</link>
+      <pubDate>Wed, 03 Feb 2021 20:00:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/devtool/go-top-ide/</guid>
+      <description>声明：这里的 IDE 包括普通的文本编辑器和真正的 IDE。或者应该叫做开发工具。 这个 Top 排行，没有直接数据支持，凭直觉的，哈哈哈哈哈。（其实也结合了部分网上资料，比如 2019 年官方的调查结果）。 1、VSCode 这是微软出品的，超级棒的文本编辑器。我出过 VSCode 系列相关教程 ，目前我主要使用 VSCode 进行开发。VSCode 本身不是专门针对 Go 的编辑器，所以需要通过插件来支持 Go，这就是 Go for Visual Studio</description>
+    </item>
+    
     <item>
       <title>从网友对 MySQL 手册的一个疑问聊起</title>
       <link>https://polarisxu.studygolang.com/posts/go/action/mysql-bit-go/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/talk/go-rsc-dynamic/</guid>
       <description>前天发了一篇文章，介绍了 Go 的名人，Go Team 现在的 Leader Russ Cox 。 01 这两天在大牛的 GitHub 上看到他开源了一个新的工具：一个实验性的，用于 Go 语言的重构工具。 项目地址：https://github.com/rsc/rf。 开源后，立马有人跟进：https://changelog.com/news/russ-coxs-experimental-new-refactoring-tool</description>
-    </item>
-    
-    <item>
-      <title>Go 语言名人：除了 Rob Pike，很多人可能不知道他</title>
-      <link>https://polarisxu.studygolang.com/posts/talk/go-celebrity-rsc/</link>
-      <pubDate>Thu, 19 Nov 2020 19:20:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/talk/go-celebrity-rsc/</guid>
-      <description>大家好，我是站长 polarisxu。 今天和大家聊聊 Go 语言名人的那些事。 01 说起 Go 语言，很多人知晓有三个创始人。在 2007 年 09 月 25 日，Rob Pike 发了一封邮件： 所以一般认为 Rob Pike、Robert Griesemer 和 Ken Thompson 是 Go 的创始人，而很长一段时间，Rob Pike 在引领 Go 团队，同时在一些公众场合经常出现，因此大家对 Rob Piike 更熟悉。关于他们三个的情况，网上资料挺多的，这里不说了。 今天说的是另外一个人</description>
     </item>
     
   </channel>

@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Tue, 02 Feb 2021 11:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 03 Feb 2021 20:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go 开发者 Top 6 IDE：你知道几个，又用哪个？</title>
+      <link>https://polarisxu.studygolang.com/posts/devtool/go-top-ide/</link>
+      <pubDate>Wed, 03 Feb 2021 20:00:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/devtool/go-top-ide/</guid>
+      <description>声明：这里的 IDE 包括普通的文本编辑器和真正的 IDE。或者应该叫做开发工具。 这个 Top 排行，没有直接数据支持，凭直觉的，哈哈哈哈哈。（其实也结合了部分网上资料，比如 2019 年官方的调查结果）。 1、VSCode 这是微软出品的，超级棒的文本编辑器。我出过 VSCode 系列相关教程 ，目前我主要使用 VSCode 进行开发。VSCode 本身不是专门针对 Go 的编辑器，所以需要通过插件来支持 Go，这就是 Go for Visual Studio</description>
+    </item>
+    
     <item>
       <title>除了心灵美，颜值也很重要</title>
       <link>https://polarisxu.studygolang.com/posts/wechat/article-pretty/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/action/stat-words/</guid>
       <description>大家好，我是站长 polarisxu。 今天要聊的内容应该可以当做一道面试题，你可以先想想该怎么实现。 统计字数是一个很常见的需求，很多人印象最深的应该是微博早些时候限制 140 字，而且边输入会边统计剩余字数。现在很多社区文章也会有字数统计的功能，而且可以依据字数来预估阅读时间。比如 Go语言中文网就有这样的功能。 01 需求分析 下手之前先分析下这个需求。从我个人经验看，在实际</description>
-    </item>
-    
-    <item>
-      <title>我为什么运营微信公众号</title>
-      <link>https://polarisxu.studygolang.com/posts/wechat/why-wechat/</link>
-      <pubDate>Mon, 11 Jan 2021 20:00:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/wechat/why-wechat/</guid>
-      <description>大家好，我是站长 polarisxu。 这个话题有些人可能不喜欢，但我近期发现，越来越多的 Gopher 开始注册自己的微信公众号了，有些甚至花钱购买留言号。虽然我不是公众号运营的牛人，但这一两年还是有一些心得，因此写一些关于微信公众号的文章，希望对刚入门的 Gopher 有所帮助。 今天先谈谈我为什么运营微信公众号。 虽然 Go 语言中文网公众号很早就注册了（2014 年），但一直没有怎么运营。直到</description>
     </item>
     
   </channel>
