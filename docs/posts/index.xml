@@ -6,8 +6,141 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en</language>
 		<copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-		<lastBuildDate>Wed, 03 Feb 2021 20:00:00 +0800</lastBuildDate>
+		<lastBuildDate>Thu, 04 Feb 2021 15:00:00 +0800</lastBuildDate>
 		<atom:link href="https://polarisxu.studygolang.com/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>怎么知道某个 API 是在哪个 Go 版本添加的？这个功能如何实现的</title>
+			<link>https://polarisxu.studygolang.com/posts/go/how-realize-go-std-version-show/</link>
+			<pubDate>Thu, 04 Feb 2021 15:00:00 +0800</pubDate>
+			
+			<guid>https://polarisxu.studygolang.com/posts/go/how-realize-go-std-version-show/</guid>
+			<description>大家好，我是站长 polarisxu。 因为 Go 的兼容性做的很好，很多人不太关心 Go 的具体版本。然而有时候可能会涉及到版本的问题，比如你想使用 strings.Builder，Go 版本就必须 &amp;gt;= 1.10，但以下代码在 Go1.10 却编译不通过。 package main import ( &amp;#34;fmt&amp;#34; &amp;#34;strings&amp;#34; ) func main() { var b strings.Builder b.WriteString(&amp;#34;polarisxu&amp;#34;) fmt.Println(b.Cap()) } 编译会报错： $ go version go version go1.10.8 darwin/amd64 $ go run main.go # command-line-arguments ./main.go:11:15: b.Cap undefined (type strings.Builder has no field or method Cap) 提示 strings.Builder 类型没有 Cap 字段或方法。 所以，你知道标准库中</description>
+			<content type="html"><![CDATA[<p>大家好，我是站长 polarisxu。</p>
+<p>因为 Go 的兼容性做的很好，很多人不太关心 Go 的具体版本。然而有时候可能会涉及到版本的问题，比如你想使用 strings.Builder，Go 版本就必须 &gt;= 1.10，但以下代码在 Go1.10 却编译不通过。</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+	<span class="s">&#34;fmt&#34;</span>
+  <span class="s">&#34;strings&#34;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">b</span> <span class="nx">strings</span><span class="p">.</span><span class="nx">Builder</span>
+  <span class="nx">b</span><span class="p">.</span><span class="nf">WriteString</span><span class="p">(</span><span class="s">&#34;polarisxu&#34;</span><span class="p">)</span>
+  <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">b</span><span class="p">.</span><span class="nf">Cap</span><span class="p">())</span>
+<span class="p">}</span>
+</code></pre></div><p>编译会报错：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ go version
+go version go1.10.8 darwin/amd64
+$ go run main.go
+<span class="c1"># command-line-arguments</span>
+./main.go:11:15: b.Cap undefined <span class="o">(</span><span class="nb">type</span> strings.Builder has no field or method Cap<span class="o">)</span>
+</code></pre></div><p>提示 strings.Builder 类型没有 Cap 字段或方法。</p>
+<p>所以，你知道标准库中哪个 API 是什么版本引入的吗？或者更实际的是，我当前的版本是否能使用某个 API。</p>
+<h2 id="01-常见的两种方式">01 常见的两种方式</h2>
+<p>在 Go 官网有最新稳定版本的标准库文档。从 Go1.11 版本开始，在标准库中，每个类型、函数或方法有加入的版本信息，如果没有，表示 Go1.0 就有了，具体 issue 见：<a href="https://github.com/golang/go/issues/5778">https://github.com/golang/go/issues/5778</a>。但目前常量和变量没有版本信息，具体 issue 见：<a href="https://github.com/golang/go/issues/29204">https://github.com/golang/go/issues/29204</a>。</p>
+<p><p class="md__image">
+  <img src="../imgs/std-show-version01.png"
+    alt=""  />
+</p>
+</p>
+<p>第二种方法，不是看具体某个 API 对应的版本，而是至少知晓，你当前使用的 Go 版本有没有某个 API，这就是 pkg.go.dev，具体通过这个网站 <a href="https://pkg.go.dev/std?tab=versions">https://pkg.go.dev/std?tab=versions</a> 选择你对应的版本，然后查找是否有对应的 API。</p>
+<p>当然了，你使用 GoLand 之类的编辑器，某个 API 是否有，它会自动提示。</p>
+<h2 id="02-标准库显示版本是如何实现的">02 标准库显示版本是如何实现的</h2>
+<p>保持好奇心很重要，这是求知的动力之一。看到官网标准库显示了版本信息，我就想看看它是怎么实现的。</p>
+<p>怎么查找实现的代码？</p>
+<p>我的第一反应是看标准库注释里有没有写。</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// A Builder is used to efficiently build a string using Write methods.
+</span><span class="c1">// It minimizes memory copying. The zero value is ready to use.
+</span><span class="c1">// Do not copy a non-zero Builder.
+</span><span class="c1"></span><span class="kd">type</span> <span class="nx">Builder</span> <span class="kd">struct</span> <span class="p">{</span>
+	<span class="nx">addr</span> <span class="o">*</span><span class="nx">Builder</span> <span class="c1">// of receiver, to detect copies by value
+</span><span class="c1"></span>	<span class="nx">buf</span>  <span class="p">[]</span><span class="kt">byte</span>
+<span class="p">}</span>
+</code></pre></div><p>没有看到任何版本相关信息。这时你会如何查找？</p>
+<p>我的方式是这样的。</p>
+<p>1）在页面审查元素，看到 <code>&lt;span title=&quot;Added in Go 1.10&quot;&gt;1.10&lt;/span&gt;</code> 节点。</p>
+<p><p class="md__image">
+  <img src="../imgs/std-show-version02.png"
+    alt=""  />
+</p>
+</p>
+<p>2）Go 官网源码在这里：<a href="https://github.com/golang/website">https://github.com/golang/website</a>，在该源码中搜索 <code>Added in</code>，找到了 package.html 模板文件。</p>
+<p><p class="md__image">
+  <img src="../imgs/std-show-version03.png"
+    alt=""  />
+</p>
+</p>
+<p>3）上图中， $since 变量代表了 Go 版本，而它是通过 since 函数得到的： <code>{{$since := since &quot;func&quot; &quot;&quot; .Name $.PDoc.ImportPath}}</code>，很显然这是一个自定义模板函数，因此查找它。website 项目没有找到，因此到 <a href="https://github.com/golang/tools" target="_blank" rel="noopener">tools</a>
+ 项目去找：因为 godoc 在这个项目中。</p>
+<p><p class="md__image">
+  <img src="../imgs/std-show-version04.png"
+    alt=""  />
+</p>
+</p>
+<p>通过这个可以找到 sinceVersionFunc 所在文件：versions.go，然后就能找到如下的代码：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// InitVersionInfo parses the $GOROOT/api/go*.txt API definition files to discover
+</span><span class="c1">// which API features were added in which Go releases.
+</span><span class="c1"></span><span class="kd">func</span> <span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">Corpus</span><span class="p">)</span> <span class="nf">InitVersionInfo</span><span class="p">()</span> <span class="p">{</span>
+	<span class="kd">var</span> <span class="nx">err</span> <span class="kt">error</span>
+	<span class="nx">c</span><span class="p">.</span><span class="nx">pkgAPIInfo</span><span class="p">,</span> <span class="nx">err</span> <span class="p">=</span> <span class="nf">parsePackageAPIInfo</span><span class="p">()</span>
+	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+		<span class="c1">// TODO: consider making this fatal, after the Go 1.11 cycle.
+</span><span class="c1"></span>		<span class="nx">log</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;godoc: error parsing API version files: %v&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">parsePackageAPIInfo</span><span class="p">()</span> <span class="p">(</span><span class="nx">apiVersions</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
+	<span class="kd">var</span> <span class="nx">apiGlob</span> <span class="kt">string</span>
+	<span class="k">if</span> <span class="nx">os</span><span class="p">.</span><span class="nf">Getenv</span><span class="p">(</span><span class="s">&#34;GOROOT&#34;</span><span class="p">)</span> <span class="o">==</span> <span class="s">&#34;&#34;</span> <span class="p">{</span>
+		<span class="nx">apiGlob</span> <span class="p">=</span> <span class="nx">filepath</span><span class="p">.</span><span class="nf">Join</span><span class="p">(</span><span class="nx">build</span><span class="p">.</span><span class="nx">Default</span><span class="p">.</span><span class="nx">GOROOT</span><span class="p">,</span> <span class="s">&#34;api&#34;</span><span class="p">,</span> <span class="s">&#34;go*.txt&#34;</span><span class="p">)</span>
+	<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+		<span class="nx">apiGlob</span> <span class="p">=</span> <span class="nx">filepath</span><span class="p">.</span><span class="nf">Join</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nf">Getenv</span><span class="p">(</span><span class="s">&#34;GOROOT&#34;</span><span class="p">),</span> <span class="s">&#34;api&#34;</span><span class="p">,</span> <span class="s">&#34;go*.txt&#34;</span><span class="p">)</span>
+	<span class="p">}</span>
+
+	<span class="nx">files</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">filepath</span><span class="p">.</span><span class="nf">Glob</span><span class="p">(</span><span class="nx">apiGlob</span><span class="p">)</span>
+	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="kc">nil</span><span class="p">,</span> <span class="nx">err</span>
+	<span class="p">}</span>
+
+	<span class="nx">vp</span> <span class="o">:=</span> <span class="nb">new</span><span class="p">(</span><span class="nx">versionParser</span><span class="p">)</span>
+	<span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">f</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">files</span> <span class="p">{</span>
+		<span class="k">if</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">vp</span><span class="p">.</span><span class="nf">parseFile</span><span class="p">(</span><span class="nx">f</span><span class="p">);</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+			<span class="k">return</span> <span class="kc">nil</span><span class="p">,</span> <span class="nx">err</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="nx">vp</span><span class="p">.</span><span class="nx">res</span><span class="p">,</span> <span class="kc">nil</span>
+<span class="p">}</span>
+</code></pre></div><p>通过以上代码可以看出来版本信息是通过读取 GOROOT 下 api/go*.txt 文件获取的。</p>
+<p><p class="md__image">
+  <img src="../imgs/std-show-version05.png"
+    alt=""  />
+</p>
+</p>
+<p>api 目录下的这些文件维护了每个版本新增的内容。</p>
+<p>最终从这些文件中读取的内容会用以下的类型表示：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// pkgAPIVersions contains information about which version of Go added
+</span><span class="c1">// certain package symbols.
+</span><span class="c1">//
+</span><span class="c1">// Only things added after Go1 are tracked. Version strings are of the
+</span><span class="c1">// form &#34;1.1&#34;, &#34;1.2&#34;, etc.
+</span><span class="c1"></span><span class="kd">type</span> <span class="nx">pkgAPIVersions</span> <span class="kd">struct</span> <span class="p">{</span>
+	<span class="nx">typeSince</span>   <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">string</span>            <span class="c1">// &#34;Server&#34; -&gt; &#34;1.7&#34;
+</span><span class="c1"></span>	<span class="nx">methodSince</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">string</span> <span class="c1">// &#34;*Server&#34; -&gt;&#34;Shutdown&#34;-&gt;1.8
+</span><span class="c1"></span>	<span class="nx">funcSince</span>   <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">string</span>            <span class="c1">// &#34;NewServer&#34; -&gt; &#34;1.7&#34;
+</span><span class="c1"></span>	<span class="nx">fieldSince</span>  <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">string</span> <span class="c1">// &#34;ClientTrace&#34; -&gt; &#34;Got1xxResponse&#34; -&gt; &#34;1.11&#34;
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></div><p>这里有类型、方法、函数和（类型）字段，但没有变量和常量，这也就是说变量和常量的版本号显示还未实现。</p>
+<p>最后，在 website 项目的 main 函数中有这么一句：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// Initialize the version info before readTemplates, which saves
+</span><span class="c1">// the map value in a method value.
+</span><span class="c1"></span><span class="nx">corpus</span><span class="p">.</span><span class="nf">InitVersionInfo</span><span class="p">()</span>
+</code></pre></div><p>用于初始化版本信息。</p>
+<h2 id="03-总结">03 总结</h2>
+<p>希望你平时生活、学习和工作过程中，能多一些好奇。本文是一个引子，内容不太重要，过程希望能够对你有所启发。当然，如果你计划学习学习 Go 语言官网的实现，也许本文的帮助会更大。</p>
+]]></content>
+		</item>
 		
 		<item>
 			<title>Go 开发者 Top 6 IDE：你知道几个，又用哪个？</title>

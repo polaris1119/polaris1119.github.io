@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#fcfcfc">
+	<meta name="msapplication-TileColor" content="#fcfcfc">
+<meta itemprop="name" content="怎么知道某个 API 是在哪个 Go 版本添加的？这个功能如何实现的">
+<meta itemprop="description" content="大家好，我是站长 polarisxu。 因为 Go 的兼容性做的很好，很多人不太关心 Go 的具体版本。然而有时候可能会涉及到版本的问题，比如你想使用 strings.Builder，Go 版本就必须 &gt;= 1.10，但以下代码在 Go1.10 却编译不通过。 package main import ( &#34;fmt&#34; &#34;strings&#34; ) func main() { var b strings.Builder b.WriteString(&#34;polarisxu&#34;) fmt.Println(b.Cap()) } 编译会报错： $ go version go version go1.10.8 darwin/amd64 $ go run main.go # command-line-arguments ./main.go:11:15: b.Cap undefined (type strings.Builder has no field or method Cap) 提示 strings.Builder 类型没有 Cap 字段或方法。 所以，你知道标准库中">
+<meta itemprop="datePublished" content="2021-02-04T15:00:00+08:00" />
+<meta itemprop="dateModified" content="2021-02-04T15:00:00+08:00" />
+<meta itemprop="wordCount" content="1362">
+
+
+
+<meta itemprop="keywords" content="标准库,Go," />
+<meta property="og:title" content="怎么知道某个 API 是在哪个 Go 版本添加的？这个功能如何实现的" />
+<meta property="og:description" content="大家好，我是站长 polarisxu。 因为 Go 的兼容性做的很好，很多人不太关心 Go 的具体版本。然而有时候可能会涉及到版本的问题，比如你想使用 strings.Builder，Go 版本就必须 &gt;= 1.10，但以下代码在 Go1.10 却编译不通过。 package main import ( &#34;fmt&#34; &#34;strings&#34; ) func main() { var b strings.Builder b.WriteString(&#34;polarisxu&#34;) fmt.Println(b.Cap()) } 编译会报错： $ go version go version go1.10.8 darwin/amd64 $ go run main.go # command-line-arguments ./main.go:11:15: b.Cap undefined (type strings.Builder has no field or method Cap) 提示 strings.Builder 类型没有 Cap 字段或方法。 所以，你知道标准库中" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/how-realize-go-std-version-show/" />
+<meta property="article:published_time" content="2021-02-04T15:00:00+08:00" />
+<meta property="article:modified_time" content="2021-02-04T15:00:00+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="怎么知道某个 API 是在哪个 Go 版本添加的？这个功能如何实现的"/>
+<meta name="twitter:description" content="大家好，我是站长 polarisxu。 因为 Go 的兼容性做的很好，很多人不太关心 Go 的具体版本。然而有时候可能会涉及到版本的问题，比如你想使用 strings.Builder，Go 版本就必须 &gt;= 1.10，但以下代码在 Go1.10 却编译不通过。 package main import ( &#34;fmt&#34; &#34;strings&#34; ) func main() { var b strings.Builder b.WriteString(&#34;polarisxu&#34;) fmt.Println(b.Cap()) } 编译会报错： $ go version go version go1.10.8 darwin/amd64 $ go run main.go # command-line-arguments ./main.go:11:15: b.Cap undefined (type strings.Builder has no field or method Cap) 提示 strings.Builder 类型没有 Cap 字段或方法。 所以，你知道标准库中"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>怎么知道某个 API 是在哪个 Go 版本添加的？这个功能如何实现的</title>
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
+	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/styles.css">
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://polarisxu.studygolang.com">polarisxu</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+  <a href="https://polarisxu.studygolang.com/">首页</a>
+  <a href="https://polarisxu.studygolang.com/categories/echo%E7%B3%BB%E5%88%97/">Echo系列</a>
+  <a href="https://polarisxu.studygolang.com/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a>
+  <a href="https://polarisxu.studygolang.com/posts/">归档</a>
+  <a href="https://polarisxu.studygolang.com/about/">关于</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<button id="toc-btn" class="hdr-btn desktop-only-ib" title="目录"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3" y2="6"></line><line x1="3" y1="12" x2="3" y2="12"></line><line x1="3" y1="18" x2="3" y2="18"></line></svg></button><span class="hdr-social hide-in-mobile"><a href="https://github.com/polaris1119" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a><a href="https://twitter.com/polaris1119" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="菜单"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://polarisxu.studygolang.com/">首页</a></li>
+			<li><a href="https://polarisxu.studygolang.com/categories/echo%E7%B3%BB%E5%88%97/">Echo系列</a></li>
+			<li><a href="https://polarisxu.studygolang.com/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a></li>
+			<li><a href="https://polarisxu.studygolang.com/posts/">归档</a></li>
+			<li><a href="https://polarisxu.studygolang.com/about/">关于</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Feb 4, 2021</span></div>
+				<h1>怎么知道某个 API 是在哪个 Go 版本添加的？这个功能如何实现的</h1>
+			</header>
+			<div class="content">
+				<p>大家好，我是站长 polarisxu。</p>
+<p>因为 Go 的兼容性做的很好，很多人不太关心 Go 的具体版本。然而有时候可能会涉及到版本的问题，比如你想使用 strings.Builder，Go 版本就必须 &gt;= 1.10，但以下代码在 Go1.10 却编译不通过。</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+	<span class="s">&#34;fmt&#34;</span>
+  <span class="s">&#34;strings&#34;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">b</span> <span class="nx">strings</span><span class="p">.</span><span class="nx">Builder</span>
+  <span class="nx">b</span><span class="p">.</span><span class="nf">WriteString</span><span class="p">(</span><span class="s">&#34;polarisxu&#34;</span><span class="p">)</span>
+  <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">b</span><span class="p">.</span><span class="nf">Cap</span><span class="p">())</span>
+<span class="p">}</span>
+</code></pre></div><p>编译会报错：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ go version
+go version go1.10.8 darwin/amd64
+$ go run main.go
+<span class="c1"># command-line-arguments</span>
+./main.go:11:15: b.Cap undefined <span class="o">(</span><span class="nb">type</span> strings.Builder has no field or method Cap<span class="o">)</span>
+</code></pre></div><p>提示 strings.Builder 类型没有 Cap 字段或方法。</p>
+<p>所以，你知道标准库中哪个 API 是什么版本引入的吗？或者更实际的是，我当前的版本是否能使用某个 API。</p>
+<h2 id="01-常见的两种方式">01 常见的两种方式<a href="#01-常见的两种方式" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>在 Go 官网有最新稳定版本的标准库文档。从 Go1.11 版本开始，在标准库中，每个类型、函数或方法有加入的版本信息，如果没有，表示 Go1.0 就有了，具体 issue 见：<a href="https://github.com/golang/go/issues/5778">https://github.com/golang/go/issues/5778</a>。但目前常量和变量没有版本信息，具体 issue 见：<a href="https://github.com/golang/go/issues/29204">https://github.com/golang/go/issues/29204</a>。</p>
+<p><p class="md__image">
+  <img src="../imgs/std-show-version01.png"
+    alt=""  />
+</p>
+</p>
+<p>第二种方法，不是看具体某个 API 对应的版本，而是至少知晓，你当前使用的 Go 版本有没有某个 API，这就是 pkg.go.dev，具体通过这个网站 <a href="https://pkg.go.dev/std?tab=versions">https://pkg.go.dev/std?tab=versions</a> 选择你对应的版本，然后查找是否有对应的 API。</p>
+<p>当然了，你使用 GoLand 之类的编辑器，某个 API 是否有，它会自动提示。</p>
+<h2 id="02-标准库显示版本是如何实现的">02 标准库显示版本是如何实现的<a href="#02-标准库显示版本是如何实现的" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>保持好奇心很重要，这是求知的动力之一。看到官网标准库显示了版本信息，我就想看看它是怎么实现的。</p>
+<p>怎么查找实现的代码？</p>
+<p>我的第一反应是看标准库注释里有没有写。</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// A Builder is used to efficiently build a string using Write methods.
+</span><span class="c1">// It minimizes memory copying. The zero value is ready to use.
+</span><span class="c1">// Do not copy a non-zero Builder.
+</span><span class="c1"></span><span class="kd">type</span> <span class="nx">Builder</span> <span class="kd">struct</span> <span class="p">{</span>
+	<span class="nx">addr</span> <span class="o">*</span><span class="nx">Builder</span> <span class="c1">// of receiver, to detect copies by value
+</span><span class="c1"></span>	<span class="nx">buf</span>  <span class="p">[]</span><span class="kt">byte</span>
+<span class="p">}</span>
+</code></pre></div><p>没有看到任何版本相关信息。这时你会如何查找？</p>
+<p>我的方式是这样的。</p>
+<p>1）在页面审查元素，看到 <code>&lt;span title=&quot;Added in Go 1.10&quot;&gt;1.10&lt;/span&gt;</code> 节点。</p>
+<p><p class="md__image">
+  <img src="../imgs/std-show-version02.png"
+    alt=""  />
+</p>
+</p>
+<p>2）Go 官网源码在这里：<a href="https://github.com/golang/website">https://github.com/golang/website</a>，在该源码中搜索 <code>Added in</code>，找到了 package.html 模板文件。</p>
+<p><p class="md__image">
+  <img src="../imgs/std-show-version03.png"
+    alt=""  />
+</p>
+</p>
+<p>3）上图中， $since 变量代表了 Go 版本，而它是通过 since 函数得到的： <code>{{$since := since &quot;func&quot; &quot;&quot; .Name $.PDoc.ImportPath}}</code>，很显然这是一个自定义模板函数，因此查找它。website 项目没有找到，因此到 <a href="https://github.com/golang/tools" target="_blank" rel="noopener">tools</a>
+ 项目去找：因为 godoc 在这个项目中。</p>
+<p><p class="md__image">
+  <img src="../imgs/std-show-version04.png"
+    alt=""  />
+</p>
+</p>
+<p>通过这个可以找到 sinceVersionFunc 所在文件：versions.go，然后就能找到如下的代码：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// InitVersionInfo parses the $GOROOT/api/go*.txt API definition files to discover
+</span><span class="c1">// which API features were added in which Go releases.
+</span><span class="c1"></span><span class="kd">func</span> <span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">Corpus</span><span class="p">)</span> <span class="nf">InitVersionInfo</span><span class="p">()</span> <span class="p">{</span>
+	<span class="kd">var</span> <span class="nx">err</span> <span class="kt">error</span>
+	<span class="nx">c</span><span class="p">.</span><span class="nx">pkgAPIInfo</span><span class="p">,</span> <span class="nx">err</span> <span class="p">=</span> <span class="nf">parsePackageAPIInfo</span><span class="p">()</span>
+	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+		<span class="c1">// TODO: consider making this fatal, after the Go 1.11 cycle.
+</span><span class="c1"></span>		<span class="nx">log</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;godoc: error parsing API version files: %v&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">parsePackageAPIInfo</span><span class="p">()</span> <span class="p">(</span><span class="nx">apiVersions</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
+	<span class="kd">var</span> <span class="nx">apiGlob</span> <span class="kt">string</span>
+	<span class="k">if</span> <span class="nx">os</span><span class="p">.</span><span class="nf">Getenv</span><span class="p">(</span><span class="s">&#34;GOROOT&#34;</span><span class="p">)</span> <span class="o">==</span> <span class="s">&#34;&#34;</span> <span class="p">{</span>
+		<span class="nx">apiGlob</span> <span class="p">=</span> <span class="nx">filepath</span><span class="p">.</span><span class="nf">Join</span><span class="p">(</span><span class="nx">build</span><span class="p">.</span><span class="nx">Default</span><span class="p">.</span><span class="nx">GOROOT</span><span class="p">,</span> <span class="s">&#34;api&#34;</span><span class="p">,</span> <span class="s">&#34;go*.txt&#34;</span><span class="p">)</span>
+	<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+		<span class="nx">apiGlob</span> <span class="p">=</span> <span class="nx">filepath</span><span class="p">.</span><span class="nf">Join</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nf">Getenv</span><span class="p">(</span><span class="s">&#34;GOROOT&#34;</span><span class="p">),</span> <span class="s">&#34;api&#34;</span><span class="p">,</span> <span class="s">&#34;go*.txt&#34;</span><span class="p">)</span>
+	<span class="p">}</span>
+
+	<span class="nx">files</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">filepath</span><span class="p">.</span><span class="nf">Glob</span><span class="p">(</span><span class="nx">apiGlob</span><span class="p">)</span>
+	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="kc">nil</span><span class="p">,</span> <span class="nx">err</span>
+	<span class="p">}</span>
+
+	<span class="nx">vp</span> <span class="o">:=</span> <span class="nb">new</span><span class="p">(</span><span class="nx">versionParser</span><span class="p">)</span>
+	<span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">f</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">files</span> <span class="p">{</span>
+		<span class="k">if</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">vp</span><span class="p">.</span><span class="nf">parseFile</span><span class="p">(</span><span class="nx">f</span><span class="p">);</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+			<span class="k">return</span> <span class="kc">nil</span><span class="p">,</span> <span class="nx">err</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="nx">vp</span><span class="p">.</span><span class="nx">res</span><span class="p">,</span> <span class="kc">nil</span>
+<span class="p">}</span>
+</code></pre></div><p>通过以上代码可以看出来版本信息是通过读取 GOROOT 下 api/go*.txt 文件获取的。</p>
+<p><p class="md__image">
+  <img src="../imgs/std-show-version05.png"
+    alt=""  />
+</p>
+</p>
+<p>api 目录下的这些文件维护了每个版本新增的内容。</p>
+<p>最终从这些文件中读取的内容会用以下的类型表示：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// pkgAPIVersions contains information about which version of Go added
+</span><span class="c1">// certain package symbols.
+</span><span class="c1">//
+</span><span class="c1">// Only things added after Go1 are tracked. Version strings are of the
+</span><span class="c1">// form &#34;1.1&#34;, &#34;1.2&#34;, etc.
+</span><span class="c1"></span><span class="kd">type</span> <span class="nx">pkgAPIVersions</span> <span class="kd">struct</span> <span class="p">{</span>
+	<span class="nx">typeSince</span>   <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">string</span>            <span class="c1">// &#34;Server&#34; -&gt; &#34;1.7&#34;
+</span><span class="c1"></span>	<span class="nx">methodSince</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">string</span> <span class="c1">// &#34;*Server&#34; -&gt;&#34;Shutdown&#34;-&gt;1.8
+</span><span class="c1"></span>	<span class="nx">funcSince</span>   <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">string</span>            <span class="c1">// &#34;NewServer&#34; -&gt; &#34;1.7&#34;
+</span><span class="c1"></span>	<span class="nx">fieldSince</span>  <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">string</span> <span class="c1">// &#34;ClientTrace&#34; -&gt; &#34;Got1xxResponse&#34; -&gt; &#34;1.11&#34;
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></div><p>这里有类型、方法、函数和（类型）字段，但没有变量和常量，这也就是说变量和常量的版本号显示还未实现。</p>
+<p>最后，在 website 项目的 main 函数中有这么一句：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// Initialize the version info before readTemplates, which saves
+</span><span class="c1">// the map value in a method value.
+</span><span class="c1"></span><span class="nx">corpus</span><span class="p">.</span><span class="nf">InitVersionInfo</span><span class="p">()</span>
+</code></pre></div><p>用于初始化版本信息。</p>
+<h2 id="03-总结">03 总结<a href="#03-总结" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>希望你平时生活、学习和工作过程中，能多一些好奇。本文是一个引子，内容不太重要，过程希望能够对你有所启发。当然，如果你计划学习学习 Go 语言官网的实现，也许本文的帮助会更大。</p>
+
+			</div><div class="content">
+	<br>
+	<img src="https://static.studygolang.com/static/img/polarisxu-qrcode-soso-s.png">
+</div>
+
+<div class="related-posts thin">
+	<h2>相关推荐</h2>
+	<ul>
+	
+	<li><a href="/posts/go/dynamic/view-go-history-std-version/">听说你还不知道如何查看 Go 历史文档？</a></li>
+	
+	<li><a href="/posts/devtool/go-top-ide/">Go 开发者 Top 6 IDE：你知道几个，又用哪个？</a></li>
+	
+	<li><a href="/posts/go/action/mysql-bit-go/">从网友对 MySQL 手册的一个疑问聊起</a></li>
+	
+	<li><a href="/posts/go/action/stat-words/">用 Go 如何实现精准统计文章字数</a></li>
+	
+	<li><a href="/posts/go/action/hashfs-http-cache/">基于 Go1.16 实现静态文件的 HTTP Cache</a></li>
+	
+	</ul>
+</div>
+
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://polarisxu.studygolang.com/tags/%E6%A0%87%E5%87%86%E5%BA%93">标准库</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/go">Go</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1362 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2021-02-04 15:00 &#43;0800</p>
+			</footer>
+		</article>
+		<aside id="toc">
+			<div class="toc-title">目录</div>
+			<nav id="TableOfContents">
+  <ul>
+    <li><a href="#01-常见的两种方式">01 常见的两种方式</a></li>
+    <li><a href="#02-标准库显示版本是如何实现的">02 标准库显示版本是如何实现的</a></li>
+    <li><a href="#03-总结">03 总结</a></li>
+  </ul>
+</nav>
+		</aside>
+		<div class="post-nav thin">
+			<a class="prev-post" href="https://polarisxu.studygolang.com/posts/devtool/go-top-ide/">
+				<span class="post-nav-label">旧&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>Go 开发者 Top 6 IDE：你知道几个，又用哪个？</span>
+			</a>
+		</div>
+		<div id="comments" class="thin"><script src="https://utteranc.es/client.js"
+	repo="polaris1119/polarisxu"
+	issue-term="pathname"
+	theme="github-light"
+	crossorigin="anonymous"
+	async>
+</script>
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2019 - 2021 <a href="https://polarisxu.studygolang.com">polarisxu</a> &#183; <a href="http://www.beian.miit.gov.cn/">京ICP备14030343号-1</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://polarisxu.studygolang.com/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+		<span id="busuanzi_container" style="color: #666;">
+			本站总访客数/访问量：<span id="busuanzi_value_site_uv"></span>/<span id="busuanzi_value_site_pv"></span>
+		</span>
+	</footer>
+
+
+
+	<script src="https://polarisxu.studygolang.com/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw=" crossorigin="anonymous"></script>
+	<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?224c227cd9239761ec770bc8c1fb134c";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+</body>
+
+</html>

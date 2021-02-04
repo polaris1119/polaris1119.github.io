@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Wed, 03 Feb 2021 20:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 04 Feb 2021 15:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>怎么知道某个 API 是在哪个 Go 版本添加的？这个功能如何实现的</title>
+      <link>https://polarisxu.studygolang.com/posts/go/how-realize-go-std-version-show/</link>
+      <pubDate>Thu, 04 Feb 2021 15:00:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/how-realize-go-std-version-show/</guid>
+      <description>大家好，我是站长 polarisxu。 因为 Go 的兼容性做的很好，很多人不太关心 Go 的具体版本。然而有时候可能会涉及到版本的问题，比如你想使用 strings.Builder，Go 版本就必须 &amp;gt;= 1.10，但以下代码在 Go1.10 却编译不通过。 package main import ( &amp;#34;fmt&amp;#34; &amp;#34;strings&amp;#34; ) func main() { var b strings.Builder b.WriteString(&amp;#34;polarisxu&amp;#34;) fmt.Println(b.Cap()) } 编译会报错： $ go version go version go1.10.8 darwin/amd64 $ go run main.go # command-line-arguments ./main.go:11:15: b.Cap undefined (type strings.Builder has no field or method Cap) 提示 strings.Builder 类型没有 Cap 字段或方法。 所以，你知道标准库中</description>
+    </item>
+    
     <item>
       <title>Go 开发者 Top 6 IDE：你知道几个，又用哪个？</title>
       <link>https://polarisxu.studygolang.com/posts/devtool/go-top-ide/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/dynamic/go1.16-changes-2020/</guid>
       <description>大家好，我是站长 polarisxu。 先说一下我一般怎么了解 Go 最新的一些动态。 01 从哪获取信息 主要通过以下方式： 逛推特，通过搜索功能，浏览 Go 信息，比如搜索：#golang since:2020-12-01 until:2020-12-02 看 Go 仓库的提交记录； 查看 https://tip.golang.org。这个一般在一个版本开发了一段时间看，比如现在可以看 Go1.16 的一些内容，主要可以看还未完成的 Release Notes：https://tip</description>
-    </item>
-    
-    <item>
-      <title>Russ Cox 又有动态了：开源了一个 Go 工具</title>
-      <link>https://polarisxu.studygolang.com/posts/talk/go-rsc-dynamic/</link>
-      <pubDate>Sat, 21 Nov 2020 21:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/talk/go-rsc-dynamic/</guid>
-      <description>前天发了一篇文章，介绍了 Go 的名人，Go Team 现在的 Leader Russ Cox 。 01 这两天在大牛的 GitHub 上看到他开源了一个新的工具：一个实验性的，用于 Go 语言的重构工具。 项目地址：https://github.com/rsc/rf。 开源后，立马有人跟进：https://changelog.com/news/russ-coxs-experimental-new-refactoring-tool</description>
     </item>
     
   </channel>

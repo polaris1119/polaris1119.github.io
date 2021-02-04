@@ -4,7 +4,32 @@
   
   <url>
     <loc>https://polarisxu.studygolang.com/tags/go/</loc>
-    <lastmod>2021-02-03T20:00:00+08:00</lastmod>
+    <lastmod>2021-02-04T15:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polarisxu.studygolang.com/</loc>
+    <lastmod>2021-02-04T15:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polarisxu.studygolang.com/tags/</loc>
+    <lastmod>2021-02-04T15:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polarisxu.studygolang.com/posts/go/how-realize-go-std-version-show/</loc>
+    <lastmod>2021-02-04T15:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polarisxu.studygolang.com/posts/</loc>
+    <lastmod>2021-02-04T15:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polarisxu.studygolang.com/tags/%E6%A0%87%E5%87%86%E5%BA%93/</loc>
+    <lastmod>2021-02-04T15:00:00+08:00</lastmod>
   </url>
   
   <url>
@@ -23,22 +48,7 @@
   </url>
   
   <url>
-    <loc>https://polarisxu.studygolang.com/</loc>
-    <lastmod>2021-02-03T20:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://polarisxu.studygolang.com/tags/</loc>
-    <lastmod>2021-02-03T20:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://polarisxu.studygolang.com/tags/vscode/</loc>
-    <lastmod>2021-02-03T20:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://polarisxu.studygolang.com/posts/</loc>
     <lastmod>2021-02-03T20:00:00+08:00</lastmod>
   </url>
   
@@ -299,11 +309,6 @@
   
   <url>
     <loc>https://polarisxu.studygolang.com/posts/go/dynamic/view-go-history-std-version/</loc>
-    <lastmod>2020-12-17T17:15:00+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://polarisxu.studygolang.com/tags/%E6%A0%87%E5%87%86%E5%BA%93/</loc>
     <lastmod>2020-12-17T17:15:00+08:00</lastmod>
   </url>
   
