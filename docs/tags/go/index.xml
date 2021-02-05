@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Thu, 04 Feb 2021 15:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 05 Feb 2021 22:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>10 年 Java 经验者：你应该尝试 Go 的 7 个理由</title>
+      <link>https://polarisxu.studygolang.com/posts/go/translation/7-reasons-you-should-try-use-go/</link>
+      <pubDate>Fri, 05 Feb 2021 22:00:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/translation/7-reasons-you-should-try-use-go/</guid>
+      <description>本文作者是一位工作了 20+ 年的工程师，其中 10+ 年使用 Java，7+ 年使用 C#，最近 3+ 年使用 Go。文章的观点是作者的个人总结，提倡你尝试并使用 Go 语言。目前作者已经不使用 Java 和 C# 了。 原因一：开发速度 如今，当我要编写一款软件时（我肯定可以用上面提到的三种语言编写它），我将始终选择 Go。 因为我可以花较短时间用 Go 开发完，而且代码更具可读性，不那么抽象，更“切合实际”。 在编写 Go</description>
+    </item>
+    
     <item>
       <title>怎么知道某个 API 是在哪个 Go 版本添加的？这个功能如何实现的</title>
       <link>https://polarisxu.studygolang.com/posts/go/how-realize-go-std-version-show/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/action/apple-m1-install-go/</guid>
       <description>大家好，我是站长 polarisxu。 前些天有一位朋友问我： 有些朋友可能会有点奇怪，M1 有什么特别的吗？为了照顾部分童鞋，这里简单介绍下。 01 为什么会出现这个问题 大家知道不同的操作系统是很不一样的，同时不同的 CPU 架构也是很不一样的。Go 号称是跨平台的，自然要支持这些操作系统和 CPU 架构。 在 Go 中，GOOS 表示操作系统，GOARCH 表示 CPU 架构。比如你的 Linux 服务器，一般是 GO</description>
-    </item>
-    
-    <item>
-      <title>列举一些 Go1.16 中可能对大家有影响的变化</title>
-      <link>https://polarisxu.studygolang.com/posts/go/dynamic/go1.16-changes-2020/</link>
-      <pubDate>Wed, 02 Dec 2020 19:20:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/dynamic/go1.16-changes-2020/</guid>
-      <description>大家好，我是站长 polarisxu。 先说一下我一般怎么了解 Go 最新的一些动态。 01 从哪获取信息 主要通过以下方式： 逛推特，通过搜索功能，浏览 Go 信息，比如搜索：#golang since:2020-12-01 until:2020-12-02 看 Go 仓库的提交记录； 查看 https://tip.golang.org。这个一般在一个版本开发了一段时间看，比如现在可以看 Go1.16 的一些内容，主要可以看还未完成的 Release Notes：https://tip</description>
     </item>
     
   </channel>
