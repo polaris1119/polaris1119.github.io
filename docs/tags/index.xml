@@ -7,7 +7,25 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Thu, 04 Feb 2021 15:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 05 Feb 2021 15:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>clubhouse</title>
+      <link>https://polarisxu.studygolang.com/tags/clubhouse/</link>
+      <pubDate>Fri, 05 Feb 2021 15:00:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/tags/clubhouse/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>微信</title>
+      <link>https://polarisxu.studygolang.com/tags/%E5%BE%AE%E4%BF%A1/</link>
+      <pubDate>Fri, 05 Feb 2021 15:00:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/tags/%E5%BE%AE%E4%BF%A1/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>Go</title>
       <link>https://polarisxu.studygolang.com/tags/go/</link>
@@ -77,24 +95,6 @@
       <pubDate>Thu, 28 Jan 2021 15:00:00 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/tags/bit/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>MySQL</title>
-      <link>https://polarisxu.studygolang.com/tags/mysql/</link>
-      <pubDate>Thu, 28 Jan 2021 15:00:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/tags/mysql/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>开发者</title>
-      <link>https://polarisxu.studygolang.com/tags/%E5%BC%80%E5%8F%91%E8%80%85/</link>
-      <pubDate>Wed, 27 Jan 2021 10:20:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/tags/%E5%BC%80%E5%8F%91%E8%80%85/</guid>
       <description></description>
     </item>
     

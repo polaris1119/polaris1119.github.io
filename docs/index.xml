@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Thu, 04 Feb 2021 15:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 05 Feb 2021 15:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>微信支持个人免费制作红包封面了：不过跟 clubhouse 一样，只能 iOS</title>
+      <link>https://polarisxu.studygolang.com/posts/wechat/myself-wechat-red-cover/</link>
+      <pubDate>Fri, 05 Feb 2021 15:00:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/wechat/myself-wechat-red-cover/</guid>
+      <description>大家好，我是站长 polarisxu。 01 这段时间，我隐约感觉 iOS 用户各种“晒”，而 Android 用户一脸懵逼，总感觉不是一个圈子的。以下两件事特别明显： 微信 8.0 发布时，iOS 用户炸弹玩得飞起，Android 用户只能弱弱的问：这是怎么弄的？几天之后，Android 用户才有。 嘿，你有 clubhouse 邀请码吗？这些天 clubhouse 真是火的不要不要的，各种互助群。邀请码太难搞，但即使有办法搞到邀请码，如果你不</description>
+    </item>
+    
     <item>
       <title>怎么知道某个 API 是在哪个 Go 版本添加的？这个功能如何实现的</title>
       <link>https://polarisxu.studygolang.com/posts/go/how-realize-go-std-version-show/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/action/weekly-question-78/</guid>
       <description>大家好，我是站长 polarisxu。 昨天在 Go语言爱好者周刊第 78 期 出了一道题，以下代码输出什么？ package main import ( &amp;#34;fmt&amp;#34; &amp;#34;time&amp;#34; ) func main() { ch1 := make(chan int) go fmt.Println(&amp;lt;-ch1) ch1 &amp;lt;- 5 time.Sleep(1 * time.Second) } A：5；B：编译不通过；C：运行时死锁 如果你没有做这道题，往下看之前，先思考下。 今天看了下答题结果，正确率有点低，才 35%： 可见不少人的基础还是不扎实。 此题如果改为这样： package main import ( &amp;#34;fmt&amp;#34; &amp;#34;time&amp;#34; ) func main() { ch1 := make(chan int) go func(){ fmt.Println(&amp;lt;-ch1) }() ch1 &amp;lt;- 5 time.Sleep(1 * time.Second)</description>
-    </item>
-    
-    <item>
-      <title>钉钉 6.0 发布会上提到的 Low-Code 是个什么鬼？</title>
-      <link>https://polarisxu.studygolang.com/posts/talk/low-code/</link>
-      <pubDate>Sat, 16 Jan 2021 20:00:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/talk/low-code/</guid>
-      <description>2021 年 1 月 14 日钉钉 6.0 发布会上提到了“云钉一体”战略，其中讲解了 「Low-Code」 这个词。不知道大家看到这个词是啥感觉？这是说我写的代码 low 吗？ 阿里似乎比较喜欢带节奏，比如中台，不管大小公司都模仿；前段时间看网上有说他们去中台。。。心好累！ Low-Code 这玩意竟然很早就有了，很多人不知晓，多半是因为一直不温不火！不知道大家是否知晓，反正我之前是不知道，是这两天才看的很多资料</description>
     </item>
     
   </channel>
