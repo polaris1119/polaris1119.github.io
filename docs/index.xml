@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Fri, 05 Feb 2021 22:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 07 Feb 2021 11:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>聊聊近期出版或将出版的几本 Go 图书</title>
+      <link>https://polarisxu.studygolang.com/posts/go/book/2021-go-book/</link>
+      <pubDate>Sun, 07 Feb 2021 11:00:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/book/2021-go-book/</guid>
+      <description>大家好，我是站长 polarisxu。 大家觉得 Go 的图书多吗？其实是很少的。今天聊下近期将要出版的基本 Go 图书。 01 《Go语言设计与实现》 这是一本 Go 语言进阶图书。作者历时两年，在他的网站可以免费阅读：https://draveness.me/golang/。他朋友圈透露，该书已经交稿，应该很快会出版。这本书绝对是 2021 年度最值得期待的 Go 图书。 作为支持，书出版时，我会送出</description>
+    </item>
+    
     <item>
       <title>10 年 Java 经验者：你应该尝试 Go 的 7 个理由</title>
       <link>https://polarisxu.studygolang.com/posts/go/translation/7-reasons-you-should-try-use-go/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/basic/char-set-encoding/</guid>
       <description>十几年前，国内 UTF-8 还不太流行，新手开发过程中，乱码问题是很常见的。记得我刚毕业那会，公司的系统是这样的：数据库 MySQL 使用的是 Latin-1 编码（ISO8859-1），程序源码使用的是 GBK，这样的情况，乱码真是满天飞~好在对数据库操作做了封装，编码问题在中间层处理了。那时候听到关于乱码问题的一个终极解决方案是：保证各个地方编码一致。 现如今，Unicode 相当普及，中文使用 UTF-8 编</description>
-    </item>
-    
-    <item>
-      <title>公众号如何涨粉</title>
-      <link>https://polarisxu.studygolang.com/posts/wechat/wechat-add-follow/</link>
-      <pubDate>Wed, 20 Jan 2021 22:00:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/wechat/wechat-add-follow/</guid>
-      <description>大家好，我是站长 polarisxu。 这是公众号系列原创文章的第 3 篇。上篇文章有人留言问公众号如何涨粉，这篇文章就聊聊这个话题。 微信是一个相对封闭的生态，不像其他平台，比如今日头条靠推荐（虽然微信公众号现在也加入了一些推荐机制）。因为是封闭的，加上触达机制，微信公众号的粉丝价值特别高。比如我的知乎账号有 9 万粉丝，但目前一分钱收入都没有，而公众号不到 1 万粉丝，就</description>
     </item>
     
   </channel>

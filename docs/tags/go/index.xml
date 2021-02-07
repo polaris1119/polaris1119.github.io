@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Fri, 05 Feb 2021 22:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 07 Feb 2021 11:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>聊聊近期出版或将出版的几本 Go 图书</title>
+      <link>https://polarisxu.studygolang.com/posts/go/book/2021-go-book/</link>
+      <pubDate>Sun, 07 Feb 2021 11:00:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/book/2021-go-book/</guid>
+      <description>大家好，我是站长 polarisxu。 大家觉得 Go 的图书多吗？其实是很少的。今天聊下近期将要出版的基本 Go 图书。 01 《Go语言设计与实现》 这是一本 Go 语言进阶图书。作者历时两年，在他的网站可以免费阅读：https://draveness.me/golang/。他朋友圈透露，该书已经交稿，应该很快会出版。这本书绝对是 2021 年度最值得期待的 Go 图书。 作为支持，书出版时，我会送出</description>
+    </item>
+    
     <item>
       <title>10 年 Java 经验者：你应该尝试 Go 的 7 个理由</title>
       <link>https://polarisxu.studygolang.com/posts/go/translation/7-reasons-you-should-try-use-go/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/dynamic/view-go-history-std-version/</guid>
       <description>大家好，我是站长 polarisxu。 这是一篇短文，写这篇文章主要是看到了两个信息： tonybai 写的《如何查看历史版本的 Go 文档？》 Go 官方发博文，2021 年初开始，godoc.org 默认将重定向到 pkg.go.dev ； tonybai 在文章中说了两种方法： 利用 go doc，可行，但非最优。比如 go doc http.Request。通过切换本地的 Go 版本实现查看不同版本的 Go 标准库文档； 使用 godoc 建立历史版本的 Web 化文档中心。</description>
-    </item>
-    
-    <item>
-      <title>新买了 Apple M1 Mac，却不知道如何安装 Go？</title>
-      <link>https://polarisxu.studygolang.com/posts/go/action/apple-m1-install-go/</link>
-      <pubDate>Wed, 16 Dec 2020 20:00:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/action/apple-m1-install-go/</guid>
-      <description>大家好，我是站长 polarisxu。 前些天有一位朋友问我： 有些朋友可能会有点奇怪，M1 有什么特别的吗？为了照顾部分童鞋，这里简单介绍下。 01 为什么会出现这个问题 大家知道不同的操作系统是很不一样的，同时不同的 CPU 架构也是很不一样的。Go 号称是跨平台的，自然要支持这些操作系统和 CPU 架构。 在 Go 中，GOOS 表示操作系统，GOARCH 表示 CPU 架构。比如你的 Linux 服务器，一般是 GO</description>
     </item>
     
   </channel>
