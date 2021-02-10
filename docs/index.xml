@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Wed, 10 Feb 2021 21:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 10 Feb 2021 23:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go 终于可以开发原生 Mac APP 了</title>
+      <link>https://polarisxu.studygolang.com/posts/go/translation/use-mac-apis-and-build-mac-apps-with-go/</link>
+      <pubDate>Wed, 10 Feb 2021 23:00:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/translation/use-mac-apis-and-build-mac-apps-with-go/</guid>
+      <description>本文是 macdriver 作者写的，这是一个 Go 语言的 Objective-C 桥接器，使得 Go 可以使用 Mac API。如果做过 Apple 相关应用开发，可以试试这个。 如果你使用 Apple 设备并且是 Go 程 序员，或者正在考虑学习 Go，那么我们会获得一些非常酷的新功能。今天，我发布了 macdriver 的 Alpha 版，这是一个 Go 语言的 Objective-C 桥，具有与常见 Mac API 的绑定。 那些关注我的上一篇有关 Large Type in 80 lines of Go 的文章的人可能已经找到了 macdriver。 largetype 程序是 macdriver 的示例项</description>
+    </item>
+    
     <item>
       <title>明天除夕，闲聊几件事</title>
       <link>https://polarisxu.studygolang.com/posts/talk/2021-02-10-talking/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/talk/baidu-kaifa-search/</guid>
       <description>大家好，我是站长 polarisxu。 百度，这个国内最大的搜索引擎，大家对其是又爱又恨，特别是程序员。所以，有一些程序员会直接不用百度，甚至觉得程序员就不应该用百度，用百度是 low 的行为。 的确，百度在搜索技术相关的东西，会让人很抓狂。比如搜索世界上最好的语言 php： 我的天，全是广告。。。 反观谷歌： 第一个就是 PHP 官网。 据相关调研预测，到 2026 年国内编程教育覆盖人数也将超过</description>
-    </item>
-    
-    <item>
-      <title>微信 8.0 的这个功能和 Go 的 error 一样？</title>
-      <link>https://polarisxu.studygolang.com/posts/wechat/wechat-8.0/</link>
-      <pubDate>Mon, 25 Jan 2021 11:00:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/wechat/wechat-8.0/</guid>
-      <description>大家好，我是站长 polarisxu。 今天早上发了一个朋友圈，吐槽了一下微信 8.0 的一个功能，不少人有同感，其中一位朋友提到了 Go 的 error。 微信 8.0 通过好友请求时，仅聊天还是朋友圈，你必须选择一个。挺烦的。有一个朋友留言说：这就跟 err 一样，某些地方强迫你有意识的做选择，在这里就是强迫你对自己的隐私做选择。 Go 中的 error，社区的反应特别的激烈，喜欢的人夸，不喜欢的人</description>
     </item>
     
   </channel>

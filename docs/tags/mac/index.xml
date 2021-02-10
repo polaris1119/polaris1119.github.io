@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Wed, 16 Dec 2020 20:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/mac/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 10 Feb 2021 23:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/mac/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go 终于可以开发原生 Mac APP 了</title>
+      <link>https://polarisxu.studygolang.com/posts/go/translation/use-mac-apis-and-build-mac-apps-with-go/</link>
+      <pubDate>Wed, 10 Feb 2021 23:00:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/translation/use-mac-apis-and-build-mac-apps-with-go/</guid>
+      <description>本文是 macdriver 作者写的，这是一个 Go 语言的 Objective-C 桥接器，使得 Go 可以使用 Mac API。如果做过 Apple 相关应用开发，可以试试这个。 如果你使用 Apple 设备并且是 Go 程 序员，或者正在考虑学习 Go，那么我们会获得一些非常酷的新功能。今天，我发布了 macdriver 的 Alpha 版，这是一个 Go 语言的 Objective-C 桥，具有与常见 Mac API 的绑定。 那些关注我的上一篇有关 Large Type in 80 lines of Go 的文章的人可能已经找到了 macdriver。 largetype 程序是 macdriver 的示例项</description>
+    </item>
+    
     <item>
       <title>新买了 Apple M1 Mac，却不知道如何安装 Go？</title>
       <link>https://polarisxu.studygolang.com/posts/go/action/apple-m1-install-go/</link>

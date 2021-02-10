@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Wed, 10 Feb 2021 21:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 10 Feb 2021 23:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go 终于可以开发原生 Mac APP 了</title>
+      <link>https://polarisxu.studygolang.com/posts/go/translation/use-mac-apis-and-build-mac-apps-with-go/</link>
+      <pubDate>Wed, 10 Feb 2021 23:00:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/translation/use-mac-apis-and-build-mac-apps-with-go/</guid>
+      <description>本文是 macdriver 作者写的，这是一个 Go 语言的 Objective-C 桥接器，使得 Go 可以使用 Mac API。如果做过 Apple 相关应用开发，可以试试这个。 如果你使用 Apple 设备并且是 Go 程 序员，或者正在考虑学习 Go，那么我们会获得一些非常酷的新功能。今天，我发布了 macdriver 的 Alpha 版，这是一个 Go 语言的 Objective-C 桥，具有与常见 Mac API 的绑定。 那些关注我的上一篇有关 Large Type in 80 lines of Go 的文章的人可能已经找到了 macdriver。 largetype 程序是 macdriver 的示例项</description>
+    </item>
+    
     <item>
       <title>明天除夕，闲聊几件事</title>
       <link>https://polarisxu.studygolang.com/posts/talk/2021-02-10-talking/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/dynamic/go-get-install/</guid>
       <description>大家好，我是站长 polarisxu。 一直以来，我们通常都是通过 go get 来下载并安装包的。但从 Go 1.16 起，不推荐通过 go get 来安装包（主要是说安装可执行文件），也就是说，go get 应该只是用来下载包，而且将来版本可能会给该命令始终加上 -d 标志。 你可能会问，这对我使用有什么影响呢？ 让我们看一个实际的例子。 01 安装 Delve 的例子 我们在本地通过源码安装 Go 的调试器 Delve，可以这么做： $ go get</description>
-    </item>
-    
-    <item>
-      <title>详解 Go 中的环境变量</title>
-      <link>https://polarisxu.studygolang.com/posts/go/translation/environment-variables-in-golang/</link>
-      <pubDate>Sat, 26 Dec 2020 10:12:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/translation/environment-variables-in-golang/</guid>
-      <description>了解环境变量以及在 Golang 应用程序中使用它们的不同方法。 开始之前 本教程假定你具有： 对 Go 语言的基本了解 系统上安装了最新 Golang 版本 几分钟的时间 在本文中，我们将了解环境变量以及为什么要使用它们。并且将使用内置和第三方包在 Go 应用程序中访问它们。 什么是环境变量？ 环境变量是系统级的键-值对，正在运行的进程可以访问它。这些通常用于使同一程序在不同的部署环境（例如 PROD， DEV 或 TES</description>
     </item>
     
   </channel>
