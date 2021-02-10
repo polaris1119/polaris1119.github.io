@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Sun, 07 Feb 2021 11:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 10 Feb 2021 21:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>明天除夕，闲聊几件事</title>
+      <link>https://polarisxu.studygolang.com/posts/talk/2021-02-10-talking/</link>
+      <pubDate>Wed, 10 Feb 2021 21:00:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/talk/2021-02-10-talking/</guid>
+      <description>大家好，我是站长 polarisxu。 明天就除夕了，农历 2020 年马上也过完了，提前祝大家新年快乐！ 今天上午折腾了一上午 Gopher 晚会文章发布的问题，写好的文章莫名违规，怎么修改都不行。最后网站发布了原文 ，公众号发布临时写的文章 ，做一件事真的太难了！（没看到这个 gopher 晚会消息可以看看） 下午带小孩去雪地嘉年华玩了一下午，发现北京人似乎没少，往年过年，北京几乎是空城，可见在北京过年</description>
+    </item>
+    
     <item>
       <title>聊聊近期出版或将出版的几本 Go 图书</title>
       <link>https://polarisxu.studygolang.com/posts/go/book/2021-go-book/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/translation/environment-variables-in-golang/</guid>
       <description>了解环境变量以及在 Golang 应用程序中使用它们的不同方法。 开始之前 本教程假定你具有： 对 Go 语言的基本了解 系统上安装了最新 Golang 版本 几分钟的时间 在本文中，我们将了解环境变量以及为什么要使用它们。并且将使用内置和第三方包在 Go 应用程序中访问它们。 什么是环境变量？ 环境变量是系统级的键-值对，正在运行的进程可以访问它。这些通常用于使同一程序在不同的部署环境（例如 PROD， DEV 或 TES</description>
-    </item>
-    
-    <item>
-      <title>听说你还不知道如何查看 Go 历史文档？</title>
-      <link>https://polarisxu.studygolang.com/posts/go/dynamic/view-go-history-std-version/</link>
-      <pubDate>Thu, 17 Dec 2020 17:15:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/dynamic/view-go-history-std-version/</guid>
-      <description>大家好，我是站长 polarisxu。 这是一篇短文，写这篇文章主要是看到了两个信息： tonybai 写的《如何查看历史版本的 Go 文档？》 Go 官方发博文，2021 年初开始，godoc.org 默认将重定向到 pkg.go.dev ； tonybai 在文章中说了两种方法： 利用 go doc，可行，但非最优。比如 go doc http.Request。通过切换本地的 Go 版本实现查看不同版本的 Go 标准库文档； 使用 godoc 建立历史版本的 Web 化文档中心。</description>
     </item>
     
   </channel>
