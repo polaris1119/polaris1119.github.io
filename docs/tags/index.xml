@@ -7,13 +7,22 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Wed, 10 Feb 2021 23:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 14 Feb 2021 23:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Go</title>
       <link>https://polarisxu.studygolang.com/tags/go/</link>
-      <pubDate>Wed, 10 Feb 2021 23:00:00 +0800</pubDate>
+      <pubDate>Sun, 14 Feb 2021 23:30:00 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/tags/go/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Rust</title>
+      <link>https://polarisxu.studygolang.com/tags/rust/</link>
+      <pubDate>Sun, 14 Feb 2021 23:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/tags/rust/</guid>
       <description></description>
     </item>
     
@@ -32,15 +41,6 @@
       <pubDate>Wed, 10 Feb 2021 23:00:00 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/tags/mac/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Rust</title>
-      <link>https://polarisxu.studygolang.com/tags/rust/</link>
-      <pubDate>Wed, 10 Feb 2021 21:00:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/tags/rust/</guid>
       <description></description>
     </item>
     

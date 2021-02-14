@@ -14,7 +14,7 @@
 <meta property="og:description" content="polarisxu,Go语言中文网,go,golang,源码分析,系列教程" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://polarisxu.studygolang.com/" />
-<meta property="og:updated_time" content="2021-02-10T23:00:00+08:00" />
+<meta property="og:updated_time" content="2021-02-14T23:30:00+08:00" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="polarisxu"/>
 <meta name="twitter:description" content="polarisxu,Go语言中文网,go,golang,源码分析,系列教程"/>
@@ -70,6 +70,26 @@
 		<main class="site-main section-inner thin animated fadeIn faster">
     
 		
+        <div class="post animated fadeInDown">
+            <div class="post-title">
+                <h2><a href="/posts/talk/sell-my-book/">从签名售书说起</a>
+                </h2>
+            </div>
+            <div class="post-content">
+                <div class="p_part"><p>上周通过公众号对外公布新手开卖后，有人想要签名版。由于双作者，涉及到双签，知道可能会很麻烦，但第一次，也有可能是最后一次，和煎鱼沟通后决定搞搞。 大概谈谈我们的操作过程。 1、编辑帮我们买书，104 本；也是想办法弄到了当时最便宜的价格； 2、寄到我家里。周六、日分批到的，去封皮签名，大部分还写了一些 Go 箴言，但还有 26 本周末没到； 3、弄好后寄到深圳。用什么快递也是有讲</p></div>
+            </div>
+            <div class="post-footer">
+                <div class="meta">
+                    <div class="info"><em class="fas fa-calendar-day"></em><span
+                                class="date">2020-07-09</span>
+                        <a class="tag"
+                                   href="/tags/go/">Go</a><a class="tag"
+                                   href="/tags/%E5%9B%BE%E4%B9%A6/">图书</a>
+                    </div>
+                </div>
+            </div>
+				</div>
+    
         <div class="post animated fadeInDown">
             <div class="post-title">
                 <h2><a href="/posts/talk/my-first-action-book/">重磅！史上第一本带你做项目的 Go 图书开卖</a>
@@ -335,27 +355,6 @@ Go 1.14 添加了对嵌入重叠接口的支持，我们也添加了此功能！
             </div>
             <div class="post-content">
                 <div class="p_part"><p>Render，顾名思义，要进行页面渲染。Go 语言不但自带有强大的 http 库，还自带了 HTML 模板引擎。Echo 框架对模板引擎进行了一些额外处理，并提供了给用户自定义页面渲染的接口。本文就相关问题进行探讨。 模板渲染 Echo 框架的 Context 接口提供了下面的方法进行页面渲染： // echo 包中 Context 接口的方法 Render(code int, name string, data interface{}) error 其中，code 是 HTTP Status，name 是定义的模板名，data 是模板可能需要的数</p></div>
-            </div>
-            <div class="post-footer">
-                <div class="meta">
-                    <div class="info"><em class="fas fa-calendar-day"></em><span
-                                class="date">2020-03-16</span>
-                        <a class="tag"
-                                   href="/tags/echo/">echo</a><a class="tag"
-                                   href="/tags/web%E6%A1%86%E6%9E%B6/">web框架</a><a class="tag"
-                                   href="/tags/%E6%A8%A1%E6%9D%BF%E5%BC%95%E6%93%8E/">模板引擎</a>
-                    </div>
-                </div>
-            </div>
-				</div>
-    
-        <div class="post animated fadeInDown">
-            <div class="post-title">
-                <h2><a href="/posts/go/echo/custom05-error-handler/">Echo 系列教程——定制篇5：自定义 HTTP Error Handler，让 HTTP 错误处理更友好</a>
-                </h2>
-            </div>
-            <div class="post-content">
-                <div class="p_part"><p>Echo 倡导通过从中间件和 Handler 返回错误来进行集中式 HTTP 错误处理。集中式错误处理程序使我们能够从统一位置将错误记录到外部服务，并向客户端发送自定义的 HTTP 响应。本节一起学习如何定制化，进行集中式错误处理。 默认的错误处理 在定制篇 4 中，我们讲到了 Render。如果在 Handler 中调用了 Render，但是并没有给 Echo.Renderer 赋值或其他原因，导致出错，页面看到的信息如下： { &#34;message&#34;: &#34;Internal Server Error&#34; } 这是 Echo 默认的 HTTP Error H</p></div>
             </div>
             <div class="post-footer">
                 <div class="meta">

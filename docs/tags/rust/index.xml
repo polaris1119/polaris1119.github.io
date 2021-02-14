@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Wed, 10 Feb 2021 21:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/rust/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 14 Feb 2021 23:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/rust/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Rust 的第一印象</title>
+      <link>https://polarisxu.studygolang.com/posts/rust/rust-first-impression/</link>
+      <pubDate>Sun, 14 Feb 2021 23:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/rust/rust-first-impression/</guid>
+      <description>大家好，我是站长 polarisxu。 有些朋友应该知道，我最近在看 Rust，在朋友圈我发了一些关于 Rust 相关的东西。2021 年，会陆续写一些 Rust 相关的文章。今天先来一篇。 这篇文章不谈具体的语法，主要从总体上介绍下 Rust，更确切说是 Rust 给我的第一印象，文章（包括后续 Rust 的文章）会和 Go 对比着来，方便 Go 朋友们一起学习、交流。 01 官网 对于中国开发者来说，我认为 Rust 的官网相比 Go 官网</description>
+    </item>
+    
     <item>
       <title>明天除夕，闲聊几件事</title>
       <link>https://polarisxu.studygolang.com/posts/talk/2021-02-10-talking/</link>
