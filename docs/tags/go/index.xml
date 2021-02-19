@@ -9,6 +9,15 @@
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
     <lastBuildDate>Sun, 14 Feb 2021 23:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Go1.17 快报：将移除 GOPATH</title>
+      <link>https://polarisxu.studygolang.com/posts/go/dynamic/go1.17-will-remove-gopath/</link>
+      <pubDate>Sun, 14 Feb 2021 23:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/dynamic/go1.17-will-remove-gopath/</guid>
+      <description>大家好，我是站长 polarisxu。 是的，没看错，Go 1.16 刚正式发布，但这里说的是 Go1.17 将会包含的改变（不出意外的话），会出一系列文章。 关于 Go 1.16 的变化。Reddit 上有一张图总结的挺好的： 相关的知识点，我之前也写过很好几篇文章，有兴趣的可以看看： Go 1.16 的这个新变化需要适应下：go get 和 go install 的变化 提前试用将在 Go1.16 中发布的内嵌静态资源功能 基于 Go1.16 实现静态文件的 HTTP Cache 图书《Go 语</description>
+    </item>
+    
+    <item>
       <title>Rust 的第一印象</title>
       <link>https://polarisxu.studygolang.com/posts/rust/rust-first-impression/</link>
       <pubDate>Sun, 14 Feb 2021 23:30:00 +0800</pubDate>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/action/stat-words/</guid>
       <description>大家好，我是站长 polarisxu。 今天要聊的内容应该可以当做一道面试题，你可以先想想该怎么实现。 统计字数是一个很常见的需求，很多人印象最深的应该是微博早些时候限制 140 字，而且边输入会边统计剩余字数。现在很多社区文章也会有字数统计的功能，而且可以依据字数来预估阅读时间。比如 Go语言中文网就有这样的功能。 01 需求分析 下手之前先分析下这个需求。从我个人经验看，在实际</description>
-    </item>
-    
-    <item>
-      <title>基于 Go1.16 实现静态文件的 HTTP Cache</title>
-      <link>https://polarisxu.studygolang.com/posts/go/action/hashfs-http-cache/</link>
-      <pubDate>Sun, 10 Jan 2021 22:00:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/action/hashfs-http-cache/</guid>
-      <description>大家好，我是站长 polarisxu。 之前写过一篇文章：《提前试用将在 Go1.16 中发布的内嵌静态资源功能》 ，如果之前没阅读，建议继续看本文前先阅读下该文。 现在 Go 1.16 Beta 已经发布，离正式版发布不远了，在 GitHub 发现了一个库，它实现了 io/fs.FS 接口，它能够计算文件的 SHA256 哈希值并附加到文件名中以允许进行 HTTP Cache：即控制静态文件的版本。本文对其进行介绍并顺带讲解一些涉及到的其他内容。 温馨提示</description>
     </item>
     
   </channel>

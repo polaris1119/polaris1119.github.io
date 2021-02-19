@@ -9,6 +9,15 @@
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
     <lastBuildDate>Sun, 14 Feb 2021 23:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Go1.17 快报：将移除 GOPATH</title>
+      <link>https://polarisxu.studygolang.com/posts/go/dynamic/go1.17-will-remove-gopath/</link>
+      <pubDate>Sun, 14 Feb 2021 23:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/dynamic/go1.17-will-remove-gopath/</guid>
+      <description>大家好，我是站长 polarisxu。 是的，没看错，Go 1.16 刚正式发布，但这里说的是 Go1.17 将会包含的改变（不出意外的话），会出一系列文章。 关于 Go 1.16 的变化。Reddit 上有一张图总结的挺好的： 相关的知识点，我之前也写过很好几篇文章，有兴趣的可以看看： Go 1.16 的这个新变化需要适应下：go get 和 go install 的变化 提前试用将在 Go1.16 中发布的内嵌静态资源功能 基于 Go1.16 实现静态文件的 HTTP Cache 图书《Go 语</description>
+    </item>
+    
+    <item>
       <title>Rust 的第一印象</title>
       <link>https://polarisxu.studygolang.com/posts/rust/rust-first-impression/</link>
       <pubDate>Sun, 14 Feb 2021 23:30:00 +0800</pubDate>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/wechat/article-pretty/</guid>
       <description>大家好，我是站长 polarisxu。 好吧，这篇文章不是聊美女的，而是聊排版的。让你失望了！ 记得高中语文作文，老师总是一再强调，字要工整。如果字迹不清楚，看起来很费劲，即使内容很好，阅卷老师可能也没耐心读，给人的印象就很不好。 现在我们在网络上写文章，同样存在“字要工整”的问题，这就是排版。现在受欢迎的软件，一个个颜值都很高。我们的文章，也必须是高颜值。本文就介</description>
-    </item>
-    
-    <item>
-      <title>从网友对 MySQL 手册的一个疑问聊起</title>
-      <link>https://polarisxu.studygolang.com/posts/go/action/mysql-bit-go/</link>
-      <pubDate>Thu, 28 Jan 2021 15:00:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/action/mysql-bit-go/</guid>
-      <description>在 Go 语言中文网微信群有人提出了这样的疑问，如下图（文档地址：https://dev.mysql.com/doc/internals/en/date-and-time-data-type-representation.html） 不理解为什么 DATE 是通过 YYYY×16×32 + MM×32 + DD 表示，主要不理解为什么 16、32。我做了讲解，但似乎他还是不太理解。干脆我写篇</description>
     </item>
     
   </channel>
