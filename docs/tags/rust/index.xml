@@ -20,7 +20,7 @@
     <item>
       <title>Go1.17 快报：将移除 GOPATH</title>
       <link>https://polarisxu.studygolang.com/posts/go/dynamic/go1.17-will-remove-gopath/</link>
-      <pubDate>Sun, 14 Feb 2021 23:30:00 +0800</pubDate>
+      <pubDate>Fri, 19 Feb 2021 09:20:00 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/posts/go/dynamic/go1.17-will-remove-gopath/</guid>
       <description>大家好，我是站长 polarisxu。 是的，没看错，Go 1.16 刚正式发布，但这里说的是 Go1.17 将会包含的改变（不出意外的话），我会出一系列文章介绍 Go1.17 的变化。 关于 Go 1.16 的变化。Reddit 上有一张图总结的挺好的： 相关的知识点，我之前也写过很好几篇文章，有兴趣的可以看看： Go 1.16 的这个新变化需要适应下：go get 和 go install 的变化 提前试用将在 Go1.16 中发布的内嵌静态资源功能 基于 Go1.16 实现静态文件的 HTTP</description>
