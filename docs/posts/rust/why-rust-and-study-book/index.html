@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#fcfcfc">
+	<meta name="msapplication-TileColor" content="#fcfcfc">
+<meta itemprop="name" content="为什么学 Rust 及相关学习资料推荐">
+<meta itemprop="description" content="大家好，我是站长 polarisxu。 春节结束，我的 Rust 之旅才刚刚开始。经过春节期间的学习，发现 Rust 真的是有点复杂，好吧，我觉得很复杂。如果你跟我一样，决定学习 Rust，那一定要有心理准备，要啃一块硬骨头，毕竟跟 Go 语言比起来，复杂太多了。 01 为什么要学 Rust 呢？ 看看 Google 上的结果： 爱总是能找到一堆理由，不爱亦如此。比如也有反对你学习 Rust 的，比如这篇：《我为什么反对使用 Rust">
+<meta itemprop="datePublished" content="2021-02-20T17:30:00+08:00" />
+<meta itemprop="dateModified" content="2021-02-20T17:30:00+08:00" />
+<meta itemprop="wordCount" content="2403">
+
+
+
+<meta itemprop="keywords" content="Rust,图书," />
+<meta property="og:title" content="为什么学 Rust 及相关学习资料推荐" />
+<meta property="og:description" content="大家好，我是站长 polarisxu。 春节结束，我的 Rust 之旅才刚刚开始。经过春节期间的学习，发现 Rust 真的是有点复杂，好吧，我觉得很复杂。如果你跟我一样，决定学习 Rust，那一定要有心理准备，要啃一块硬骨头，毕竟跟 Go 语言比起来，复杂太多了。 01 为什么要学 Rust 呢？ 看看 Google 上的结果： 爱总是能找到一堆理由，不爱亦如此。比如也有反对你学习 Rust 的，比如这篇：《我为什么反对使用 Rust" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://polarisxu.studygolang.com/posts/rust/why-rust-and-study-book/" />
+<meta property="article:published_time" content="2021-02-20T17:30:00+08:00" />
+<meta property="article:modified_time" content="2021-02-20T17:30:00+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="为什么学 Rust 及相关学习资料推荐"/>
+<meta name="twitter:description" content="大家好，我是站长 polarisxu。 春节结束，我的 Rust 之旅才刚刚开始。经过春节期间的学习，发现 Rust 真的是有点复杂，好吧，我觉得很复杂。如果你跟我一样，决定学习 Rust，那一定要有心理准备，要啃一块硬骨头，毕竟跟 Go 语言比起来，复杂太多了。 01 为什么要学 Rust 呢？ 看看 Google 上的结果： 爱总是能找到一堆理由，不爱亦如此。比如也有反对你学习 Rust 的，比如这篇：《我为什么反对使用 Rust"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>为什么学 Rust 及相关学习资料推荐</title>
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
+	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/styles.css">
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://polarisxu.studygolang.com">polarisxu</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+  <a href="https://polarisxu.studygolang.com/">首页</a>
+  <a href="https://polarisxu.studygolang.com/categories/echo%E7%B3%BB%E5%88%97/">Echo系列</a>
+  <a href="https://polarisxu.studygolang.com/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a>
+  <a href="https://polarisxu.studygolang.com/posts/">归档</a>
+  <a href="https://polarisxu.studygolang.com/about/">关于</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<button id="toc-btn" class="hdr-btn desktop-only-ib" title="目录"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3" y2="6"></line><line x1="3" y1="12" x2="3" y2="12"></line><line x1="3" y1="18" x2="3" y2="18"></line></svg></button><span class="hdr-social hide-in-mobile"><a href="https://github.com/polaris1119" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a><a href="https://twitter.com/polaris1119" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="菜单"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://polarisxu.studygolang.com/">首页</a></li>
+			<li><a href="https://polarisxu.studygolang.com/categories/echo%E7%B3%BB%E5%88%97/">Echo系列</a></li>
+			<li><a href="https://polarisxu.studygolang.com/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a></li>
+			<li><a href="https://polarisxu.studygolang.com/posts/">归档</a></li>
+			<li><a href="https://polarisxu.studygolang.com/about/">关于</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Feb 20, 2021</span></div>
+				<h1>为什么学 Rust 及相关学习资料推荐</h1>
+			</header>
+			<div class="content">
+				<p>大家好，我是站长 polarisxu。</p>
+<p>春节结束，我的 Rust 之旅才刚刚开始。经过春节期间的学习，发现 Rust 真的是有点复杂，好吧，我觉得很复杂。如果你跟我一样，决定学习 Rust，那一定要有心理准备，要啃一块硬骨头，毕竟跟 Go 语言比起来，复杂太多了。</p>
+<h2 id="01-为什么要学-rust-呢">01 为什么要学 Rust 呢？<a href="#01-为什么要学-rust-呢" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>看看 Google 上的结果：</p>
+<p><p class="md__image">
+  <img src="../imgs/why-should-learn-rust.png"
+    alt=""  />
+</p>
+</p>
+<p>爱总是能找到一堆理由，不爱亦如此。比如也有反对你学习 Rust 的，比如这篇：<a href="https://www.infoq.cn/article/65tlwzqz2capvldohgix" target="_blank" rel="noopener">《我为什么反对使用 Rust？》</a>
+。</p>
+<p>所以为什么学，为什么不学，由你自己定。但有两个事实供参考。</p>
+<p><strong>1、StackOverflow 调查中，连续 5 次夺得最受程序员喜爱的语言评比第一名。</strong></p>
+<p>比如 2020 年的调查结果，65,000 名参与调查程序员中，最爱 Rust 的竟然占比高达 86.1%，远超第二名。咋一看很奇怪，其实这里有一个误区，问的问题这样的：多少开发人员正在使用该语言或技术进行开发，并且表示有兴趣继续开发该语言或技术。也就是说，使用 Rust 的开发这种，有 86.1% 的人有兴趣继续使用。实际上，这个调查中，一共只有 5% 的人使用 Rust。</p>
+<p><p class="md__image">
+  <img src="../imgs/stackoverflow-loved-rank.png"
+    alt=""  />
+</p>
+</p>
+<p>我的理解是，那些入门 Rust 的人或喜欢 Rust 的人大概率继续喜欢（入门了就大概率成为了忠实粉，是不是不想白学。哈哈哈哈，毕竟辛苦不容易。玩笑下~），但让更多人入门 Rust 是个问题。。。</p>
+<p>StackOverflow 专门做了一个调查，为什么 Rust 用户喜欢 Rust，这里直接放上译文：<a href="https://rustcc.cn/article?id=3ce10a05-9506-475d-8c8a-3ad74130ad83">https://rustcc.cn/article?id=3ce10a05-9506-475d-8c8a-3ad74130ad83</a>。</p>
+<p><strong>2、Microsoft、Google 和 AWS 等似乎都在挺 Rust。</strong></p>
+<p>比如 <a href="https://www.oschina.net/news/128818/microsoft-rust-team" target="_blank" rel="noopener">微软组建 Rust 开发人员团队</a>
+、<a href="https://www.oschina.net/news/121772/amazon-software-engineer-rust" target="_blank" rel="noopener">加大支持力度，AWS 计划招聘更多 Rust 开发人员</a>
+、<a href="https://www.infoq.cn/article/mqz2zrqt9pyu0ojoavra" target="_blank" rel="noopener">微软正用 Rust 重写 Windows 组件</a>
+、<a href="https://www.infoq.cn/article/uup3gzeGpAtd7KIS8pzf" target="_blank" rel="noopener">用 Rust 重构核心开源软件吧，谷歌愿意给你钱</a>
+ 等。</p>
+<p>在 <a href="https://mp.weixin.qq.com/s/_VIUKpr20_h6jBNarnmk2g" target="_blank" rel="noopener">Rust 的第一印象</a>
+就提到，Rust 基金会成立，这几个都是基金会成员，国内的华为也是。</p>
+<p>从这些信息看出，这些公司都希望使用 Rust 替代 C++。所以，如果你掌握了 C++，Rust 对你来说是不错的选择，而且入门也会更容易。</p>
+<p>至于我个人来说，为什么学习 Rust，主要有如下考虑：</p>
+<ul>
+<li>应该尝试学习不同的语言，而且 Rust 是现代的编程语言，有很多常规语言中没有的东西；</li>
+<li>程序员修炼之道中有个建议，就是想要抵抗技术过时的风险，就得每年学一门语言；</li>
+<li>想通过对 Rust 的学习，和 Go 对比着来梳理、输出，加深对两门语言的理解；</li>
+</ul>
+<p>所以，我学习 Rust 并没有想过将它用在工作中（但实际会不会用，谁知道呢），完全是出于好奇，让自己多掌握一门技能，提升自己。</p>
+<h2 id="02-相关学习资料推荐">02 相关学习资料推荐<a href="#02-相关学习资料推荐" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>我自己学习才几天，但连续看了一些资料，这里列举一些：</p>
+<p><strong>1、官方文档</strong></p>
+<p>官方有一本 The Rust Programming Language，国内也有人翻译了，免费阅读版本：<a href="https://kaisery.github.io/trpl-zh-cn/">https://kaisery.github.io/trpl-zh-cn/</a>，因为官方这本书就是可以免费阅读的，虽然也出版了。官方出版了，国内出版社也引进了，这就是《Rust 权威指南》。</p>
+<p>我最开始就是看的这本书，但看了一大半有点看不下去了。我个人感觉这本书不太适合入门。据说第一版本更是不适合，现在是改版之后的，稍微好些。</p>
+<p><strong>2、Rust 编程之道</strong></p>
+<p>这是国内张汉东老师出的，我初略看完了。为什么是初略？有些章节仔细认真阅读了，有些略过，因为内容太多了。但这本书看下来，会比官方的 “Rust 圣经” 更易看懂。借用书中前言的一段话：</p>
+<blockquote>
+<p>Rust 官方虽然提供了 Rust Book（即上面说的圣经），但是内容的组织非常不友好，基本就是对知识点的罗列，系统性比较差。后来官方也意识到了这个问题，推出了第 2 版的Rust Book，内容组织方面改善了很多，对学习者也非常友好，但系统性还是差了点。后来又看了国内 Rust 社区组织群友们合著的 Rust Primer，以及国外的Programming Rust，我才对 Rust 建立了基本的认知体系。</p>
+</blockquote>
+<p><strong>3、Rust Primer</strong></p>
+<p>给初学者的 Rust 中文教程。这是国内 Rust 社区组织编写的，在线阅读地址：<a href="https://rustcc.gitbooks.io/rustprimer/content/">https://rustcc.gitbooks.io/rustprimer/content/</a>。这本书我还没有看。</p>
+<p><strong>4、Programming Rust</strong></p>
+<p>这是 O’REILLY 出版的一本书，图灵社区引进翻译了，但从评论看，似乎翻译的不好：<a href="https://www.ituring.com.cn/book/2101">https://www.ituring.com.cn/book/2101</a>。挺奇怪的，译者感觉主要涉及的领域是 Web 前端，不知道为什么会翻译这本书。从评论看，如果要看这本书，似乎英文版更合适。当然我自己没看过，完全从大家的评论分析的。</p>
+<p><strong>5、Mastering Rust</strong></p>
+<p>这本书目前已经更新第二版了，而且中文版也出版了，即：《精通 Rust 第二版》。目前我还在看这本，看了一半，整体感觉写的挺好的。但翻译中有一些错误（在所难免，整体还是可以）。所以我建议大家看该书时，遇到一些名词或感觉不对的，和英文原版对照着确认下。</p>
+<p><strong>6、Rust Programming Cookbook</strong></p>
+<p>Cookbook 系列，中文版《Rust 语言编程实战》2021 年刚上线售卖。</p>
+<p><strong>7、深入浅出 Rust</strong></p>
+<p>这也是国人写的一本书，没有看过，不做评论。</p>
+<p>此外，国外还有其他一些 Rust 相关的图书，比如 Rust 函数式编程、Rust 构建微服务系统、Rust 进行 WebAssembly 编程、用 Rust 实现数据结构和算法、Rust 并发编程、Rust 机器学习实践、Rust 系统编程等等，可以在 <a href="https://www.amazon.com/s?k=rust&amp;i=stripbooks&amp;rh=n%3A283155%2Cn%3A5&amp;dc&amp;qid=1613572146&amp;rnid=283155&amp;ref=sr_nr_n_4" target="_blank" rel="noopener">Amazon</a>
+ 上查到。另外 《Rust In Action》也快出版了。</p>
+<p>可见，Rust 相关的资料这两年还是出了不少。</p>
+<p>因为 Rust 内容很多，入门不易，容易劝退，比较建议大家从中文资料入手。所以，我个人推荐看以下图书：</p>
+<ul>
+<li>精通 Rust 第二版，对照着英文看。英文版可以关注公众号 <strong>polarisxu</strong> ，回复 <strong>rust01</strong> 获取；</li>
+<li>Rust 编程之道</li>
+<li>Rust Primer</li>
+</ul>
+<p>可以选择一本，然后遇到不明白的，可以查其他的，结合者学习。同时，官方的文档应该查阅，比如标准库文档。</p>
+<p>此外，有一个群友推荐了一个 B 站上的 Rust 视频教程：<a href="https://www.bilibili.com/video/BV1hp4y1k7SV">https://www.bilibili.com/video/BV1hp4y1k7SV</a>，喜欢视频的朋友可以看看。如果你有好的资料推荐，欢迎留言，也欢迎对以上资料做评价。</p>
+<p>是的，我创建了一个 Rust 的微信群，用来学习&amp;吐槽 Rust，想进群的加我微信：<strong>gopherstudio</strong>，备注 rust。</p>
+
+			</div><div class="content">
+	<br>
+	<img src="https://static.studygolang.com/static/img/polarisxu-qrcode-soso-s.png">
+</div>
+
+<div class="related-posts thin">
+	<h2>相关推荐</h2>
+	<ul>
+	
+	<li><a href="/posts/go/dynamic/go1.17-will-remove-gopath/">Go1.17 快报：将移除 GOPATH</a></li>
+	
+	<li><a href="/posts/rust/rust-first-impression/">Rust 的第一印象</a></li>
+	
+	<li><a href="/posts/talk/2021-02-10-talking/">明天除夕，闲聊几件事</a></li>
+	
+	<li><a href="/posts/go/book/2021-go-book/">聊聊近期出版或将出版的几本 Go 图书</a></li>
+	
+	<li><a href="/posts/go/dynamic/go-opensource-11-years/">祝贺 Go 开源 11 周年</a></li>
+	
+	</ul>
+</div>
+
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://polarisxu.studygolang.com/tags/rust">Rust</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/%E5%9B%BE%E4%B9%A6">图书</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>2403 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2021-02-20 17:30 &#43;0800</p>
+			</footer>
+		</article>
+		<aside id="toc">
+			<div class="toc-title">目录</div>
+			<nav id="TableOfContents">
+  <ul>
+    <li><a href="#01-为什么要学-rust-呢">01 为什么要学 Rust 呢？</a></li>
+    <li><a href="#02-相关学习资料推荐">02 相关学习资料推荐</a></li>
+  </ul>
+</nav>
+		</aside>
+		<div class="post-nav thin">
+			<a class="prev-post" href="https://polarisxu.studygolang.com/posts/go/dynamic/go1.17-will-remove-gopath/">
+				<span class="post-nav-label">旧&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>Go1.17 快报：将移除 GOPATH</span>
+			</a>
+		</div>
+		<div id="comments" class="thin"><script src="https://utteranc.es/client.js"
+	repo="polaris1119/polarisxu"
+	issue-term="pathname"
+	theme="github-light"
+	crossorigin="anonymous"
+	async>
+</script>
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2019 - 2021 <a href="https://polarisxu.studygolang.com">polarisxu</a> &#183; <a href="http://www.beian.miit.gov.cn/">京ICP备14030343号-1</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://polarisxu.studygolang.com/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+		<span id="busuanzi_container" style="color: #666;">
+			本站总访客数/访问量：<span id="busuanzi_value_site_uv"></span>/<span id="busuanzi_value_site_pv"></span>
+		</span>
+	</footer>
+
+
+
+	<script src="https://polarisxu.studygolang.com/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw=" crossorigin="anonymous"></script>
+	<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?224c227cd9239761ec770bc8c1fb134c";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+</body>
+
+</html>

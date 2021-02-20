@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Sun, 14 Feb 2021 23:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/rust/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 20 Feb 2021 17:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/rust/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>为什么学 Rust 及相关学习资料推荐</title>
+      <link>https://polarisxu.studygolang.com/posts/rust/why-rust-and-study-book/</link>
+      <pubDate>Sat, 20 Feb 2021 17:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/rust/why-rust-and-study-book/</guid>
+      <description>大家好，我是站长 polarisxu。 春节结束，我的 Rust 之旅才刚刚开始。经过春节期间的学习，发现 Rust 真的是有点复杂，好吧，我觉得很复杂。如果你跟我一样，决定学习 Rust，那一定要有心理准备，要啃一块硬骨头，毕竟跟 Go 语言比起来，复杂太多了。 01 为什么要学 Rust 呢？ 看看 Google 上的结果： 爱总是能找到一堆理由，不爱亦如此。比如也有反对你学习 Rust 的，比如这篇：《我为什么反对使用 Rust</description>
+    </item>
+    
     <item>
       <title>Go1.17 快报：将移除 GOPATH</title>
       <link>https://polarisxu.studygolang.com/posts/go/dynamic/go1.17-will-remove-gopath/</link>
