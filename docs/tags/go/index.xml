@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Fri, 19 Feb 2021 09:20:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 23 Feb 2021 18:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>从 go-chi 框架撤回所有主版本聊 Go1.16 的新特性</title>
+      <link>https://polarisxu.studygolang.com/posts/go/action/go-chi-use-retract/</link>
+      <pubDate>Tue, 23 Feb 2021 18:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/action/go-chi-use-retract/</guid>
+      <description>大家好，我是站长 polarisxu。 在 Reddit 上看到一条消息： go-chi is retracting all major versions with go1.16 new retract directive. go.mod 的变更如下： 这利用了 Go 1.16 中 Module 的新特性。在这之前，先一起学习下该特性。 01 retract：撤回版本 也许不少人没有开发过自己的 Module（模块），但了解模块版本撤回还是有必要的，说不定哪天就能用到。因此建议你能够跟着本文操作一遍。 一般地，模块作者需要一种方法来指示不应该使用某个已发布</description>
+    </item>
+    
     <item>
       <title>Go1.17 快报：将移除 GOPATH</title>
       <link>https://polarisxu.studygolang.com/posts/go/dynamic/go1.17-will-remove-gopath/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/action/mysql-bit-go/</guid>
       <description>在 Go 语言中文网微信群有人提出了这样的疑问，如下图（文档地址：https://dev.mysql.com/doc/internals/en/date-and-time-data-type-representation.html） 不理解为什么 DATE 是通过 YYYY×16×32 + MM×32 + DD 表示，主要不理解为什么 16、32。我做了讲解，但似乎他还是不太理解。干脆我写篇</description>
-    </item>
-    
-    <item>
-      <title>用 Go 如何实现精准统计文章字数</title>
-      <link>https://polarisxu.studygolang.com/posts/go/action/stat-words/</link>
-      <pubDate>Thu, 14 Jan 2021 17:00:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/action/stat-words/</guid>
-      <description>大家好，我是站长 polarisxu。 今天要聊的内容应该可以当做一道面试题，你可以先想想该怎么实现。 统计字数是一个很常见的需求，很多人印象最深的应该是微博早些时候限制 140 字，而且边输入会边统计剩余字数。现在很多社区文章也会有字数统计的功能，而且可以依据字数来预估阅读时间。比如 Go语言中文网就有这样的功能。 01 需求分析 下手之前先分析下这个需求。从我个人经验看，在实际</description>
     </item>
     
   </channel>
