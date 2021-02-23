@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#fcfcfc">
+	<meta name="msapplication-TileColor" content="#fcfcfc">
+<meta itemprop="name" content="克制挺难的">
+<meta itemprop="description" content="大家好，我是站长 polarisxu。 昨天文章谈了 chi 这个 Go 框架，Kade 留言说，以为 chi 不会用 go mod，没想到去年就用了，但它支持的方式是从 v4.1.2 调到了 v1.5.0，也就是说之前都没有 go.mod，v1.5.0 开始加上了 go.mod。当 Go1.16 发布后，有了 ratract，他立马将其他所有版本都撤回了。面对社区的反对意见，他强硬的说：我在这个项目花了几年时间，尽管许多人不同">
+<meta itemprop="datePublished" content="2021-02-24T00:00:00+08:00" />
+<meta itemprop="dateModified" content="2021-02-24T00:00:00+08:00" />
+<meta itemprop="wordCount" content="991">
+
+
+
+<meta itemprop="keywords" content="Go," />
+<meta property="og:title" content="克制挺难的" />
+<meta property="og:description" content="大家好，我是站长 polarisxu。 昨天文章谈了 chi 这个 Go 框架，Kade 留言说，以为 chi 不会用 go mod，没想到去年就用了，但它支持的方式是从 v4.1.2 调到了 v1.5.0，也就是说之前都没有 go.mod，v1.5.0 开始加上了 go.mod。当 Go1.16 发布后，有了 ratract，他立马将其他所有版本都撤回了。面对社区的反对意见，他强硬的说：我在这个项目花了几年时间，尽管许多人不同" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://polarisxu.studygolang.com/posts/talk/restraint-is-hard/" />
+<meta property="article:published_time" content="2021-02-24T00:00:00+08:00" />
+<meta property="article:modified_time" content="2021-02-24T00:00:00+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="克制挺难的"/>
+<meta name="twitter:description" content="大家好，我是站长 polarisxu。 昨天文章谈了 chi 这个 Go 框架，Kade 留言说，以为 chi 不会用 go mod，没想到去年就用了，但它支持的方式是从 v4.1.2 调到了 v1.5.0，也就是说之前都没有 go.mod，v1.5.0 开始加上了 go.mod。当 Go1.16 发布后，有了 ratract，他立马将其他所有版本都撤回了。面对社区的反对意见，他强硬的说：我在这个项目花了几年时间，尽管许多人不同"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>克制挺难的</title>
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
+	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/styles.css">
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://polarisxu.studygolang.com">polarisxu</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+  <a href="https://polarisxu.studygolang.com/">首页</a>
+  <a href="https://polarisxu.studygolang.com/categories/echo%E7%B3%BB%E5%88%97/">Echo系列</a>
+  <a href="https://polarisxu.studygolang.com/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a>
+  <a href="https://polarisxu.studygolang.com/posts/">归档</a>
+  <a href="https://polarisxu.studygolang.com/about/">关于</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<button id="toc-btn" class="hdr-btn desktop-only-ib" title="目录"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3" y2="6"></line><line x1="3" y1="12" x2="3" y2="12"></line><line x1="3" y1="18" x2="3" y2="18"></line></svg></button><span class="hdr-social hide-in-mobile"><a href="https://github.com/polaris1119" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a><a href="https://twitter.com/polaris1119" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="菜单"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://polarisxu.studygolang.com/">首页</a></li>
+			<li><a href="https://polarisxu.studygolang.com/categories/echo%E7%B3%BB%E5%88%97/">Echo系列</a></li>
+			<li><a href="https://polarisxu.studygolang.com/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a></li>
+			<li><a href="https://polarisxu.studygolang.com/posts/">归档</a></li>
+			<li><a href="https://polarisxu.studygolang.com/about/">关于</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Feb 24, 2021</span></div>
+				<h1>克制挺难的</h1>
+			</header>
+			<div class="content">
+				<p>大家好，我是站长 polarisxu。</p>
+<p>昨天文章谈了 chi 这个 Go 框架，Kade 留言说，以为 chi 不会用 go mod，没想到去年就用了，但它支持的方式是从 v4.1.2 调到了 v1.5.0，也就是说之前都没有 go.mod，v1.5.0 开始加上了 go.mod。当 Go1.16 发布后，有了 ratract，他立马将其他所有版本都撤回了。面对社区的反对意见，他强硬的说：我在这个项目花了几年时间，尽管许多人不同意，但大家并没有赞助或付费，你不喜欢，完全可以自己 fork 一份，维护自己的一个版本。</p>
+<p>说他固执也好，强势也好，能这样坚持自己的人应该不是太多。</p>
+<p>之所以今天谈“克制”，是因为看到了两条消息：</p>
+<p>1）考虑要离开 Go 语言，因为泛型计划正式加入该语言了？<a href="https://www.youtube.com/watch?v=rzo8u03vC7Y" target="_blank" rel="noopener">油管有一个视频</a>
+，标题是：You&rsquo;ll be Back (to Go) - Go generics is coming in Go 1.18</p>
+<p><p class="md__image">
+  <img src="..//Users/xuxinhua/opensource/polarisxu/content/posts/talk/imgs/go-song.png"
+    alt=""  />
+</p>
+</p>
+<p>2）<a href="https://www.arp242.net/go-easy.html" target="_blank" rel="noopener">Go is not an easy language</a>
+，文章作者强调，Simple != Easy。</p>
+<p>加之昨天的文章和这段时间学习 Rust，我发现做任何事情，想要克制挺难的。</p>
+<p>记得 Go 刚出来时，源文件不支持 UTF-8 带 BOM，国内有一哥们给官方提了一个 patch，结果被 Rob 拒了，这哥们一气之下，离开了 Go 阵营，还发了一篇长长的文章，说 Go Team 固执、独裁。UTF-8 是 Rob 和 Ken 发明的，他们有话语权。可是，行业，特别是 Windows 阵营的，UTF-8 默认带 BOM。于是乎，现在 Go 源码也支持带 BOM 了。。。Go Team 妥协了。（不知道 Rob 是否知晓此事~）</p>
+<p>Go 一直强调“大道至简”，“少即是多”，正因为如此，使得它很适合入门学习。然而，别有误解，入门简单，不代表精通容易。说它不容易，大概率是说想掌握好它没那么容易。毕竟是一门编程语言，涉及到的内容不少，如果很容易就掌握、精通，程序员门槛是不是也太低了。</p>
+<p>在保持简单、保持少这方面，Go Team 还是很克制的。比如一直没有增加三元操作符。就泛型而言，社区呼声实在太高，而且这个在某些情况下确实是极大提高表现力的，即使这样，官方也很谨慎，一次次“放鸽子”，确保是一个更好的方案。但依然没法做到让所有人满意，总是有人喜欢有人不喜欢。Go Team 一直在克制，避免 Go 连 Simple 都不是。</p>
+<blockquote>
+<p>乔布斯、马斯克就是特别能够坚持原则的人，制定高标准，并严格执行！</p>
+</blockquote>
+<p>互联网做产品，也经常讲要克制，别什么都要。但有多少人能真正做到？！做加法容易，做减法难。</p>
+<p>有自己的原则，并坚持自己的原则，不会轻易受外界的影响，我说这是“克制”，是坚持自己认为是对的（如果真被打脸了，能及时调整）。这，真的挺难的吧！</p>
+<p>你是一个克制的人吗？</p>
+
+			</div><div class="content">
+	<br>
+	<img src="https://static.studygolang.com/static/img/polarisxu-qrcode-soso-s.png">
+</div>
+
+<div class="related-posts thin">
+	<h2>相关推荐</h2>
+	<ul>
+	
+	<li><a href="/posts/go/action/go-chi-use-retract/">从 go-chi 框架撤回所有主版本聊 Go1.16 的新特性</a></li>
+	
+	<li><a href="/posts/go/dynamic/go1.17-will-remove-gopath/">Go1.17 快报：将移除 GOPATH</a></li>
+	
+	<li><a href="/posts/rust/rust-first-impression/">Rust 的第一印象</a></li>
+	
+	<li><a href="/posts/go/translation/use-mac-apis-and-build-mac-apps-with-go/">Go 终于可以开发原生 Mac APP 了</a></li>
+	
+	<li><a href="/posts/talk/2021-02-10-talking/">明天除夕，闲聊几件事</a></li>
+	
+	</ul>
+</div>
+
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://polarisxu.studygolang.com/tags/go">Go</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>991 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2021-02-24 00:00 &#43;0800</p>
+			</footer>
+		</article>
+		<aside id="toc">
+			<div class="toc-title">目录</div>
+			<nav id="TableOfContents"></nav>
+		</aside>
+		<div class="post-nav thin">
+			<a class="prev-post" href="https://polarisxu.studygolang.com/posts/go/action/go-chi-use-retract/">
+				<span class="post-nav-label">旧&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>从 go-chi 框架撤回所有主版本聊 Go1.16 的新特性</span>
+			</a>
+		</div>
+		<div id="comments" class="thin"><script src="https://utteranc.es/client.js"
+	repo="polaris1119/polarisxu"
+	issue-term="pathname"
+	theme="github-light"
+	crossorigin="anonymous"
+	async>
+</script>
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2019 - 2021 <a href="https://polarisxu.studygolang.com">polarisxu</a> &#183; <a href="http://www.beian.miit.gov.cn/">京ICP备14030343号-1</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://polarisxu.studygolang.com/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+		<span id="busuanzi_container" style="color: #666;">
+			本站总访客数/访问量：<span id="busuanzi_value_site_uv"></span>/<span id="busuanzi_value_site_pv"></span>
+		</span>
+	</footer>
+
+
+
+	<script src="https://polarisxu.studygolang.com/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw=" crossorigin="anonymous"></script>
+	<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?224c227cd9239761ec770bc8c1fb134c";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+</body>
+
+</html>

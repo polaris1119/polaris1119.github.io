@@ -3,12 +3,32 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://polarisxu.studygolang.com/tags/chi/</loc>
-    <lastmod>2021-02-23T18:30:00+08:00</lastmod>
+    <loc>https://polarisxu.studygolang.com/tags/go/</loc>
+    <lastmod>2021-02-24T00:00:00+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://polarisxu.studygolang.com/tags/go/</loc>
+    <loc>https://polarisxu.studygolang.com/</loc>
+    <lastmod>2021-02-24T00:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polarisxu.studygolang.com/tags/</loc>
+    <lastmod>2021-02-24T00:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polarisxu.studygolang.com/posts/talk/restraint-is-hard/</loc>
+    <lastmod>2021-02-24T00:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polarisxu.studygolang.com/posts/</loc>
+    <lastmod>2021-02-24T00:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polarisxu.studygolang.com/tags/chi/</loc>
     <lastmod>2021-02-23T18:30:00+08:00</lastmod>
   </url>
   
@@ -18,22 +38,7 @@
   </url>
   
   <url>
-    <loc>https://polarisxu.studygolang.com/</loc>
-    <lastmod>2021-02-23T18:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://polarisxu.studygolang.com/tags/</loc>
-    <lastmod>2021-02-23T18:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://polarisxu.studygolang.com/posts/go/action/go-chi-use-retract/</loc>
-    <lastmod>2021-02-23T18:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://polarisxu.studygolang.com/posts/</loc>
     <lastmod>2021-02-23T18:30:00+08:00</lastmod>
   </url>
   

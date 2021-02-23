@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Tue, 23 Feb 2021 18:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 24 Feb 2021 00:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>克制挺难的</title>
+      <link>https://polarisxu.studygolang.com/posts/talk/restraint-is-hard/</link>
+      <pubDate>Wed, 24 Feb 2021 00:00:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/talk/restraint-is-hard/</guid>
+      <description>大家好，我是站长 polarisxu。 昨天文章谈了 chi 这个 Go 框架，Kade 留言说，以为 chi 不会用 go mod，没想到去年就用了，但它支持的方式是从 v4.1.2 调到了 v1.5.0，也就是说之前都没有 go.mod，v1.5.0 开始加上了 go.mod。当 Go1.16 发布后，有了 ratract，他立马将其他所有版本都撤回了。面对社区的反对意见，他强硬的说：我在这个项目花了几年时间，尽管许多人不同</description>
+    </item>
+    
     <item>
       <title>从 go-chi 框架撤回所有主版本聊 Go1.16 的新特性</title>
       <link>https://polarisxu.studygolang.com/posts/go/action/go-chi-use-retract/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/devtool/go-top-ide/</guid>
       <description>声明：这里的 IDE 包括普通的文本编辑器和真正的 IDE。或者应该叫做开发工具。 这个 Top 排行，没有直接数据支持，凭直觉的，哈哈哈哈哈。（其实也结合了部分网上资料，比如 2019 年官方的调查结果）。 1、VSCode 这是微软出品的，超级棒的文本编辑器。我出过 VSCode 系列相关教程 ，目前我主要使用 VSCode 进行开发。VSCode 本身不是专门针对 Go 的编辑器，所以需要通过插件来支持 Go，这就是 Go for Visual Studio</description>
-    </item>
-    
-    <item>
-      <title>从网友对 MySQL 手册的一个疑问聊起</title>
-      <link>https://polarisxu.studygolang.com/posts/go/action/mysql-bit-go/</link>
-      <pubDate>Thu, 28 Jan 2021 15:00:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/action/mysql-bit-go/</guid>
-      <description>在 Go 语言中文网微信群有人提出了这样的疑问，如下图（文档地址：https://dev.mysql.com/doc/internals/en/date-and-time-data-type-representation.html） 不理解为什么 DATE 是通过 YYYY×16×32 + MM×32 + DD 表示，主要不理解为什么 16、32。我做了讲解，但似乎他还是不太理解。干脆我写篇</description>
     </item>
     
   </channel>
