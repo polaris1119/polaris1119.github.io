@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Rustup on polarisxu</title>
+    <link>https://polarisxu.studygolang.com/tags/rustup/</link>
+    <description>Recent content in Rustup on polarisxu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
+    <lastBuildDate>Thu, 25 Feb 2021 15:10:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/rustup/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go 官方应该搞一个类似 Rustup 的管理工具</title>
+      <link>https://polarisxu.studygolang.com/posts/go/go-need-like-rustup-tool/</link>
+      <pubDate>Thu, 25 Feb 2021 15:10:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/go-need-like-rustup-tool/</guid>
+      <description>大家好，我是站长 polarisxu。 搭建开发环境复杂，会让很多新手抓狂。比如看到有人吐槽 Python 环境复杂，而搭建 PHP 环境，出现了很多一键安装包，像 lnmp 等。可见大家开始上手时，希望能够在环境上少一些折腾，别还没入门就劝退。 在早期，搭建 Go 语言开发环境，什么 GOROOT、GOPATH、GOBIN，很多新手一头雾水，经常稀里糊涂配置上了，写项目 go install 一下，找不到编译好的程序跑哪</description>
+    </item>
+    
+  </channel>
+</rss>
