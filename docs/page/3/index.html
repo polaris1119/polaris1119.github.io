@@ -14,7 +14,7 @@
 <meta property="og:description" content="polarisxu,Go语言中文网,go,golang,源码分析,系列教程" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://polarisxu.studygolang.com/" />
-<meta property="og:updated_time" content="2021-02-25T15:10:00+08:00" />
+<meta property="og:updated_time" content="2021-02-27T20:30:00+08:00" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="polarisxu"/>
 <meta name="twitter:description" content="polarisxu,Go语言中文网,go,golang,源码分析,系列教程"/>
@@ -70,6 +70,27 @@
 		<main class="site-main section-inner thin animated fadeIn faster">
     
 		
+        <div class="post animated fadeInDown">
+            <div class="post-title">
+                <h2><a href="/posts/go/action/weekly-question-78/">第 78 期周刊题目解析：答题正确率有点低</a>
+                </h2>
+            </div>
+            <div class="post-content">
+                <div class="p_part"><p>大家好，我是站长 polarisxu。 昨天在 Go语言爱好者周刊第 78 期 出了一道题，以下代码输出什么？ package main import ( &#34;fmt&#34; &#34;time&#34; ) func main() { ch1 := make(chan int) go fmt.Println(&lt;-ch1) ch1 &lt;- 5 time.Sleep(1 * time.Second) } A：5；B：编译不通过；C：运行时死锁 如果你没有做这道题，往下看之前，先思考下。 今天看了下答题结果，正确率有点低，才 35%： 可见不少人的基础还是不扎实。 此题如果改为这样： package main import ( &#34;fmt&#34; &#34;time&#34; ) func main() { ch1 := make(chan int) go func(){ fmt.Println(&lt;-ch1) }() ch1 &lt;- 5 time.Sleep(1 * time.Second)</p></div>
+            </div>
+            <div class="post-footer">
+                <div class="meta">
+                    <div class="info"><em class="fas fa-calendar-day"></em><span
+                                class="date">2021-01-18</span>
+                        <a class="tag"
+                                   href="/tags/%E5%91%A8%E5%88%8A/">周刊</a><a class="tag"
+                                   href="/tags/goroutine/">goroutine</a><a class="tag"
+                                   href="/tags/channel/">channel</a>
+                    </div>
+                </div>
+            </div>
+				</div>
+    
         <div class="post animated fadeInDown">
             <div class="post-title">
                 <h2><a href="/posts/talk/low-code/">钉钉 6.0 发布会上提到的 Low-Code 是个什么鬼？</a>
@@ -247,27 +268,6 @@
                                    href="/tags/%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/">环境变量</a><a class="tag"
                                    href="/tags/go/">Go</a><a class="tag"
                                    href="/tags/viper/">Viper</a>
-                    </div>
-                </div>
-            </div>
-				</div>
-    
-        <div class="post animated fadeInDown">
-            <div class="post-title">
-                <h2><a href="/posts/go/action/weekly-question-embed-time/">这道题竟然只有 12% 的人答对。。。</a>
-                </h2>
-            </div>
-            <div class="post-content">
-                <div class="p_part"><p>这题是有点坑，但很多人对结果还是不知所以。</p></div>
-            </div>
-            <div class="post-footer">
-                <div class="meta">
-                    <div class="info"><em class="fas fa-calendar-day"></em><span
-                                class="date">2020-12-21</span>
-                        <a class="tag"
-                                   href="/tags/%E5%91%A8%E5%88%8A%E9%A2%98%E8%A7%A3/">周刊题解</a><a class="tag"
-                                   href="/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/">面试题</a><a class="tag"
-                                   href="/tags/%E5%86%85%E5%B5%8C%E7%B1%BB%E5%9E%8B/">内嵌类型</a>
                     </div>
                 </div>
             </div>

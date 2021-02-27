@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Thu, 25 Feb 2021 15:10:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 27 Feb 2021 20:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>金三银四，聊聊换工作的那些事</title>
+      <link>https://polarisxu.studygolang.com/posts/talk/2021-change-job/</link>
+      <pubDate>Sat, 27 Feb 2021 20:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/talk/2021-change-job/</guid>
+      <description>大家好，我是站长 polarisxu。 下周就进入 3 月份了，正所谓金三银四，是换工作的黄金时间。 实际上从春节开工到现在十天左右时间，「Go语言中文网」上新发的招聘信息不少，从 「Go招聘」公众号上也看到了不少招聘信息。 那到底该不该换工作呢？什么情况下换工作？今天一起聊聊这个话题。 马云曾说，员工离职，原因很多种，但只有两点最真实： 钱，没给到位； 心，委屈了。 这些归根到</description>
+    </item>
+    
     <item>
       <title>Go 官方应该搞一个类似 Rustup 的管理工具</title>
       <link>https://polarisxu.studygolang.com/posts/go/go-need-like-rustup-tool/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/book/2021-go-book/</guid>
       <description>大家好，我是站长 polarisxu。 大家觉得 Go 的图书多吗？其实是很少的。今天聊下近期将要出版的基本 Go 图书。 01 《Go语言设计与实现》 这是一本 Go 语言进阶图书。作者历时两年，在他的网站可以免费阅读：https://draveness.me/golang/。他朋友圈透露，该书已经交稿，应该很快会出版。这本书绝对是 2021 年度最值得期待的 Go 图书。 作为支持，书出版时，我会送出</description>
-    </item>
-    
-    <item>
-      <title>10 年 Java 经验者：你应该尝试 Go 的 7 个理由</title>
-      <link>https://polarisxu.studygolang.com/posts/go/translation/7-reasons-you-should-try-use-go/</link>
-      <pubDate>Fri, 05 Feb 2021 22:00:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/translation/7-reasons-you-should-try-use-go/</guid>
-      <description>本文作者是一位工作了 20+ 年的工程师，其中 10+ 年使用 Java，7+ 年使用 C#，最近 3+ 年使用 Go。文章的观点是作者的个人总结，提倡你尝试并使用 Go 语言。目前作者已经不使用 Java 和 C# 了。 原因一：开发速度 如今，当我要编写一款软件时（我肯定可以用上面提到的三种语言编写它），我将始终选择 Go。 因为我可以花较短时间用 Go 开发完，而且代码更具可读性，不那么抽象，更“切合实际”。 在编写 Go</description>
     </item>
     
   </channel>
