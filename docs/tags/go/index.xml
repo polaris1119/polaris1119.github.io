@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Thu, 25 Feb 2021 15:10:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 01 Mar 2021 18:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>那些 Go 语言实现的语言现在发展怎么样了？</title>
+      <link>https://polarisxu.studygolang.com/posts/go/programming-language-implemented-by-go/</link>
+      <pubDate>Mon, 01 Mar 2021 18:00:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/programming-language-implemented-by-go/</guid>
+      <description>大家好，我是站长 polarisxu。 Go 是一门通用编程语言，Go1.5 实现了自举，也就是说，Go 语言是用它自身实现的。经过十来年的发展，开源界使用 Go 语言实现的编程语言不少，那它们发展的怎么样？本文进行一下梳理。 01 Go+ 这是国内七牛老大许式伟主导的，对 Go 语言的扩展，专为数据科学领域打造。目标是取代 Python 在数据科学领域的位置。 项目地址：https://github.com</description>
+    </item>
+    
     <item>
       <title>Go 官方应该搞一个类似 Rustup 的管理工具</title>
       <link>https://polarisxu.studygolang.com/posts/go/go-need-like-rustup-tool/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/translation/7-reasons-you-should-try-use-go/</guid>
       <description>本文作者是一位工作了 20+ 年的工程师，其中 10+ 年使用 Java，7+ 年使用 C#，最近 3+ 年使用 Go。文章的观点是作者的个人总结，提倡你尝试并使用 Go 语言。目前作者已经不使用 Java 和 C# 了。 原因一：开发速度 如今，当我要编写一款软件时（我肯定可以用上面提到的三种语言编写它），我将始终选择 Go。 因为我可以花较短时间用 Go 开发完，而且代码更具可读性，不那么抽象，更“切合实际”。 在编写 Go</description>
-    </item>
-    
-    <item>
-      <title>怎么知道某个 API 是在哪个 Go 版本添加的？这个功能如何实现的</title>
-      <link>https://polarisxu.studygolang.com/posts/go/how-realize-go-std-version-show/</link>
-      <pubDate>Thu, 04 Feb 2021 15:00:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/how-realize-go-std-version-show/</guid>
-      <description>大家好，我是站长 polarisxu。 因为 Go 的兼容性做的很好，很多人不太关心 Go 的具体版本。然而有时候可能会涉及到版本的问题，比如你想使用 strings.Builder，Go 版本就必须 &amp;gt;= 1.10，但以下代码在 Go1.10 却编译不通过。 package main import ( &amp;#34;fmt&amp;#34; &amp;#34;strings&amp;#34; ) func main() { var b strings.Builder b.WriteString(&amp;#34;polarisxu&amp;#34;) fmt.Println(b.Cap()) } 编译会报错： $ go version go version go1.10.8 darwin/amd64 $ go run main.go # command-line-arguments ./main.go:11:15: b.Cap undefined (type strings.Builder has no field or method Cap) 提示 strings.Builder 类型没有 Cap 字段或方法。 所以，你知道标准库中</description>
     </item>
     
   </channel>
