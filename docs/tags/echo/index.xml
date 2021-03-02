@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Sat, 16 May 2020 15:08:51 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/echo/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 02 Mar 2021 22:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/echo/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>构建微服务的 10 大 Go 框架/库</title>
+      <link>https://polarisxu.studygolang.com/posts/go/translation/top-10-framework-golang-library-to-build-microservice/</link>
+      <pubDate>Tue, 02 Mar 2021 22:00:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/translation/top-10-framework-golang-library-to-build-microservice/</guid>
+      <description>现在，很多开源库都支持构建应用程序。我应该向你推荐一些库，它们可以帮助启动具有简单设计、干净代码和良好性能的项目。 01 CLI 命令(spf13/cobra) 你想要构建一些 CLI 命令吗？ Cobra 既是一个用于创建强大的现代 CLI 应用程序的库，也是一个用于生成应用程序和命令文件的程序。 我使用这个库来管理命令应用程序，执行运行程序，初始化配置，并启动 Rest API。 基于 cobra 的应用组织结构： ├──</description>
+    </item>
+    
     <item>
       <title>Echo 系列教程——实战篇0：使用 Echo 开发一个博客系统</title>
       <link>https://polarisxu.studygolang.com/posts/go/echo/action00-intro/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/echo/basic03-example/</guid>
       <description>通过前面的介绍，相信对 echo 有了一个初步的认识。本文我们通过一个简单的登录页面来串联 echo 的相关特性。因为该文主要关注各个特性，所以在目录结构和代码组织方面很随意。 本节最终效果 1）登录页面 2）登录失败 3）登录成功 main 函数骨架 使用 echo 框架，在程序入口处一般包含如下内容： func main() { // 创建 echo 实例 e := echo.New() // 配置日志 configLogger(e) // 注册静态文件路由 e.Static(&amp;#34;img&amp;#34;, &amp;#34;img&amp;#34;) e.File(&amp;#34;/favicon.ico&amp;#34;, &amp;#34;img/favicon.ico&amp;#34;) // 设置中间件 setMiddleware(e) // 注册路由 RegisterRoutes(e) // 启动服务 e.Logger.Fatal(e.Start(&amp;#34;:2019&amp;#34;)) } 日</description>
-    </item>
-    
-    <item>
-      <title>Echo 系列教程——基础篇2：Echo 核心亮点介绍</title>
-      <link>https://polarisxu.studygolang.com/posts/go/echo/basic02-feature/</link>
-      <pubDate>Mon, 28 Oct 2019 11:15:51 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/echo/basic02-feature/</guid>
-      <description>在 Echo 的官网的首页，列出了 9 个核心功能或亮点。我这里将它说成是亮点（也许并不一定都比其他框架更好）。 一、优化的路由 高度优化的 HTTP 路由，动态内存分配为零，可对路由进行优先级排序。 这一点从上一篇：[搭建 Echo 开发环境](基础篇：搭建 Echo 开发环境.md) 可以看到。 Echo 路由基于 radix tree ，查询速度非常快。路由使用 sync pool 来重用内存，实现无 GC 开销下的零动态内存分配。 路由的注册和使用方式 各大</description>
     </item>
     
   </channel>
