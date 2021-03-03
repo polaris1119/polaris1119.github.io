@@ -7,7 +7,25 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Tue, 02 Mar 2021 22:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 03 Mar 2021 11:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>GitHub</title>
+      <link>https://polarisxu.studygolang.com/tags/github/</link>
+      <pubDate>Wed, 03 Mar 2021 11:00:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/tags/github/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>杂谈</title>
+      <link>https://polarisxu.studygolang.com/tags/%E6%9D%82%E8%B0%88/</link>
+      <pubDate>Wed, 03 Mar 2021 11:00:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/tags/%E6%9D%82%E8%B0%88/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>echo</title>
       <link>https://polarisxu.studygolang.com/tags/echo/</link>
@@ -77,24 +95,6 @@
       <pubDate>Thu, 25 Feb 2021 15:10:00 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/tags/rustup/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Chi</title>
-      <link>https://polarisxu.studygolang.com/tags/chi/</link>
-      <pubDate>Tue, 23 Feb 2021 18:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/tags/chi/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Module</title>
-      <link>https://polarisxu.studygolang.com/tags/module/</link>
-      <pubDate>Tue, 23 Feb 2021 18:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/tags/module/</guid>
       <description></description>
     </item>
     

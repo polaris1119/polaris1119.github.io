@@ -6,8 +6,54 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en</language>
 		<copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-		<lastBuildDate>Tue, 02 Mar 2021 22:00:00 +0800</lastBuildDate>
+		<lastBuildDate>Wed, 03 Mar 2021 11:00:00 +0800</lastBuildDate>
 		<atom:link href="https://polarisxu.studygolang.com/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>妹子你是认真的吗？.sh 文件只能在 Shanghai 机器跑</title>
+			<link>https://polarisxu.studygolang.com/posts/talk/sh-is-shanghai/</link>
+			<pubDate>Wed, 03 Mar 2021 11:00:00 +0800</pubDate>
+			
+			<guid>https://polarisxu.studygolang.com/posts/talk/sh-is-shanghai/</guid>
+			<description>大家好，我是 polarisxu。 看到这样一条消息： 妹子你太有才了，想象力一流呀~网友纷纷评论：今日最佳。 基于此，网友没脑洞大开，说出来只有程序员才能听懂的“段子”： 压缩一下可以放在广州或兰州跑； .bat 文件大概率是 BAT 出身的程序员写的吧；亦或是只有 BAT 公司才能用？ 如果 .py 文件该作何解释？ .php 文件呢？ .rb 果然是日本人发明的，只能在日本才能打开； 。。。 当然，也有人说妹子就是故意</description>
+			<content type="html"><![CDATA[<p>大家好，我是 polarisxu。</p>
+<p>看到这样一条消息：</p>
+<p><p class="md__image">
+  <img src="../imgs/sh-joke.png"
+    alt=""  />
+</p>
+</p>
+<p>妹子你太有才了，想象力一流呀~网友纷纷评论：今日最佳。</p>
+<p>基于此，网友没脑洞大开，说出来只有程序员才能听懂的“段子”：</p>
+<ul>
+<li>压缩一下可以放在广州或兰州跑；</li>
+<li>.bat 文件大概率是 BAT 出身的程序员写的吧；亦或是只有 BAT 公司才能用？</li>
+<li>如果 .py 文件该作何解释？</li>
+<li>.php 文件呢？</li>
+<li>.rb 果然是日本人发明的，只能在日本才能打开；</li>
+<li>。。。</li>
+</ul>
+<p>当然，也有人说妹子就是故意卖个萌，活跃下群气氛，如果你这都不懂，注定单身。。。</p>
+<p>其实，隔行如隔山，一个运营，对于程序员的那些细节，不懂很正常。其实我们碰到一些行外的东西，也可能出现第一反应，以为是那个。</p>
+<p>其中有一个哥们说，一直以为 jpg 是 japanese girl 的缩写。。。我只能说：老哥，你的英语学的真好。</p>
+<p>这年头，缩写满天飞，让人琢磨不透，难怪前些人国家国定不能用缩写，必须全称。现在社交软件是我们每天都需要用的交流工具，各种缩写让人无语，不知道都怀疑自己是不是 out 了。</p>
+<p>你不信？随便给你几个，看你知道什么意思不？</p>
+<ul>
+<li>hgr</li>
+<li>gc</li>
+<li>gzs</li>
+<li>rnb</li>
+<li>。。。</li>
+</ul>
+<p>面对这样乱七八糟的缩写怎么办？程序员真是一个伟大的群体，遇到问题总会想着用程序解决。这不，有网友写了一个工具，叫：「能不能好好说话？」，GitHub 地址：<a href="https://github.com/itorr/nbnhhsh">https://github.com/itorr/nbnhhsh</a>（项目名称也是有点意思），还提供了一个可以直接查询的界面：<a href="https://lab.magiconch.com/nbnhhsh/">https://lab.magiconch.com/nbnhhsh/</a>。</p>
+<p><p class="md__image">
+  <img src="../imgs/nbnhhsh.png"
+    alt=""  />
+</p>
+</p>
+<p>今天你有好好说话吗？dddd~</p>
+]]></content>
+		</item>
 		
 		<item>
 			<title>构建微服务的 10 大 Go 框架/库</title>
@@ -321,7 +367,7 @@ The swagger spec at <span class="s2">&#34;api/docs/swagger.yaml&#34;</span> is v
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">migrate -database <span class="s2">&#34;mysql://user:pass@tcp(localhost:3600)/user&#34;</span> -path<span class="o">=</span>database/migrations up
 </code></pre></div><p>降版本：</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">migrate -database <span class="s2">&#34;mysql://user:pass@tcp(localhost:3600)/user&#34;</span> -path<span class="o">=</span>database/migrations down
-</code></pre></div><p>项目地址：&lt; <a href="https://github.com/golang-migrate/migrate%3E">https://github.com/golang-migrate/migrate&gt;</a>。</p>
+</code></pre></div><p>项目地址：<a href="https://github.com/golang-migrate/migrate">https://github.com/golang-migrate/migrate</a>。</p>
 <h2 id="09messaging-nsq">09、Messaging (NSQ)</h2>
 <p><p class="md__image">
   <img src="../imgs/nsq.png"
