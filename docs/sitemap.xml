@@ -3,27 +3,42 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://polarisxu.studygolang.com/</loc>
+    <lastmod>2021-03-08T15:30:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polarisxu.studygolang.com/posts/dialogue/vs-wuwen/</loc>
+    <lastmod>2021-03-08T15:30:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polarisxu.studygolang.com/tags/</loc>
+    <lastmod>2021-03-08T15:30:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polarisxu.studygolang.com/tags/%E5%AF%B9%E8%AF%9D/</loc>
+    <lastmod>2021-03-08T15:30:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polarisxu.studygolang.com/posts/</loc>
+    <lastmod>2021-03-08T15:30:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polarisxu.studygolang.com/tags/%E6%97%A0%E9%97%BB/</loc>
+    <lastmod>2021-03-08T15:30:00+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://polarisxu.studygolang.com/tags/github/</loc>
     <lastmod>2021-03-03T11:00:00+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://polarisxu.studygolang.com/</loc>
-    <lastmod>2021-03-03T11:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://polarisxu.studygolang.com/tags/</loc>
-    <lastmod>2021-03-03T11:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://polarisxu.studygolang.com/posts/talk/sh-is-shanghai/</loc>
-    <lastmod>2021-03-03T11:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://polarisxu.studygolang.com/posts/</loc>
     <lastmod>2021-03-03T11:00:00+08:00</lastmod>
   </url>
   
@@ -1125,6 +1140,10 @@
   <url>
     <loc>https://polarisxu.studygolang.com/posts/go/echo/echo/</loc>
     <lastmod>2019-10-21T13:42:51+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polarisxu.studygolang.com/posts/systemprogramming/go/01/</loc>
   </url>
   
 </urlset>

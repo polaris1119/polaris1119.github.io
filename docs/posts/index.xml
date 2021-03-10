@@ -6,8 +6,84 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en</language>
 		<copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-		<lastBuildDate>Wed, 03 Mar 2021 11:00:00 +0800</lastBuildDate>
+		<lastBuildDate>Mon, 08 Mar 2021 15:30:00 +0800</lastBuildDate>
 		<atom:link href="https://polarisxu.studygolang.com/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>polarisxu 对话无闻</title>
+			<link>https://polarisxu.studygolang.com/posts/dialogue/vs-wuwen/</link>
+			<pubDate>Mon, 08 Mar 2021 15:30:00 +0800</pubDate>
+			
+			<guid>https://polarisxu.studygolang.com/posts/dialogue/vs-wuwen/</guid>
+			<description>大家好，我是站长 polarisxu。 今天起，我计划起一个系列，叫做「对话 xxx」，主要访谈、撰写一些圈里人的成长故事，希望他们的故事对大家有一些启发。 今天要对话的这位是国内 Go 开源界的名人，GitHub followers 有 11.1k+，主导了开发了好几个 Go 开源项目，它就是无闻，昵称 unknwon（注意，不是 unknown）。早期学习 Go 的小伙伴，知道他可能更多是来自他的视频教程</description>
+			<content type="html"><![CDATA[<p>大家好，我是站长 polarisxu。</p>
+<p>今天起，我计划起一个系列，叫做「对话 xxx」，主要访谈、撰写一些圈里人的成长故事，希望他们的故事对大家有一些启发。</p>
+<p>今天要对话的这位是国内 Go 开源界的名人，GitHub followers 有 11.1k+，主导了开发了好几个 Go 开源项目，它就是无闻，昵称 unknwon（注意，不是 unknown）。早期学习 Go 的小伙伴，知道他可能更多是来自他的视频教程。不管什么方式，希望本文对有些读者有帮助。</p>
+<h2 id="01-与-go-结缘">01 与 Go 结缘</h2>
+<p>早在无闻读高中时，我们就认识了（没见过面，网上认识）。因为我接触 Go 比较早，2012~2013 年就创建了 Go 社区。具体怎么联系上的，不记得了。</p>
+<p>2013 年上半年，他开始制作 Go 语言视频教程，我印象特别深的是，那年清明节左右，我在度蜜月，还每天和他交流 Go 语言，主要探讨视频制作的知识点，他很严谨，怕知识点讲解有误，和我交流、探讨确认。一口气，他制作了 <a href="https://github.com/Unknwon/go-fundamental-programming" target="_blank" rel="noopener">《Go编程基础》</a>
+、<a href="https://github.com/Unknwon/go-rock-libraries-showcases" target="_blank" rel="noopener">《Go 名库讲解》</a>
+、<a href="https://github.com/Unknwon/go-web-foundation/tree/v1" target="_blank" rel="noopener">《Go Web基础》</a>
+等视频教程。所以早期学习 Go 的小伙伴，很多都是看无闻的视频入门的。</p>
+<p>但很多人也许不知道，他的这些视频是边学 Go 边制作的，这就是所谓的通过输出做到更好的输入，教别人是最有效的学习方法。</p>
+<p>当然在这背后还隐藏着其他不为人知的故事。</p>
+<h3 id="其一vba-起家">其一：VBA 起家</h3>
+<p>无闻是一个文科生，是不是很惊讶？2010 年就出国，在国外读的高中。因为 2 点半就放学，很无聊，然后研究 Excel。有些人也许不知道，Excel 是支持编程的，那就是 VBA（Visual Basic for Applications），这是一种宏语言。基于 VBA 做了一个简单的账本。这算是编程的入门。</p>
+<p>学了 VBA 后，不满足于它，可能也对编程产生了兴趣，同时由于 VBA 算是 VB 的子集，所以又去学习了 VB 6.0。用 VB 6.0 做了一些工具，在网上也得到了一些前辈友善的指导，这让他拓展了很大的知识面。</p>
+<p>接着，无闻还学习了易语言，对，没错，就是那个中文语言。易语言是 C++ 实现的，但它和 VB 一样，提供了很多方便的编程接口，包括提供方便的图形化编辑环境，使得有 VB 基础的学习易语言比较容易。</p>
+<h3 id="其二做视频教程学习-go">其二：做视频教程，学习 Go</h3>
+<p>2011 年开始学习 C#，在学习 C# 的过程中，就一边学习一边做视频教程。所以，Go 视频教程才会做的比较好。</p>
+<p>那时正是 Web 2.0 比较火的时候，Web 开发是比较受欢迎的。无闻发现，PHP 是那时候 Web 开发最欢迎的。于是准备学习 PHP，相关图书都买好了（寄到国外的哦）。但无意中，他在 GitHub 上看到了 <a href="https://github.com/astaxie/build-web-application-with-golang">https://github.com/astaxie/build-web-application-with-golang</a> 这本书，捣鼓了一下 Go，发现它的运行方式和易语言很像（都是编译为二进制文件）。因为自己有强迫症，而 Go 语言的工具链很好的解决了这些问题，不再有选择的痛苦，大家写的代码风格几乎一样。</p>
+<p>于是 2013 年无闻开始学 Go 语言，并做了上面的视频教程和翻译一些 Go 资料，比如国外另外一本讲解很全面的 Go 语言图书：《The Way to Go》，无闻向作者要到了授权，翻译成中文，在 GitHub 上免费提供给大家阅读，目前已经有 25.1k+ Star：<a href="https://github.com/unknwon/the-way-to-go_ZH_CN">https://github.com/unknwon/the-way-to-go_ZH_CN</a>。</p>
+<p>我总结一下无闻的 Go 学习之路：</p>
+<ul>
+<li>通过 VBA 进入编程世界；</li>
+<li>因为易语言和 C# 的视频制作经验，爱上 Go 并制作了优秀的视频教程；</li>
+<li>通过制作更多的 Go 视频教程，翻译优秀教程以及名库讲解，打好自己的 Go 基础，同时回馈 Go 社区；</li>
+</ul>
+<h2 id="02-开源之旅">02 开源之旅</h2>
+<p>做开源可能是一种巧合，因为对 Git 的喜爱，加上 GitHub 私有库是收费的（现在他已经是 GitHub PRO，而且在 GitHub 上赞助其他人），同时 Go 语言的生态都是基于 GitHub。所以，那时候只是知道将自己的代码放在 GitHub 上公开，并不知晓这原来就是开源。</p>
+<p>后来对开源接触越来越多，发现开源项目都比较优秀，有一些管理相关的模板。</p>
+<p>对于 <a href="https://github.com/gogs/gogs" target="_blank" rel="noopener">gogs</a>
+ 这个开源项目，主要对 Ruby 不太喜欢，不太喜欢笨重的环境，虽然有 GitLab，但想要用 Go 实现一个。因此和朋友一起开始搞 gogs。</p>
+<p>在做 gogs 时，无闻对数据库还是一无所知的状态。有着强烈学习的意愿，开发 gogs 的过程中，涉及到很多的基础东西，都从头实现了一遍。比如：</p>
+<ul>
+<li>github.com/go-macaron/macaron：一个 Web 框架，以及其他一些框架的设施，都是自己从头实现；</li>
+<li>github.com/go-ini/ini：超赞的 Go 语言 INI 文件操作库；</li>
+<li>github.com/go-macaron/i18n：gogs 是一个国际项目，自然需要国际化；</li>
+<li>github.com/unknwon/cae：类似 PHP 风格的压缩和归档库；</li>
+<li>github.com/unknwon/com：一些经常使用的便利函数；</li>
+<li>github.com/go-clog/clog：基于 channel 的日志库；</li>
+<li>。。。</li>
+</ul>
+<p>除了 gogs，还有其他一些知名的项目，比如 <a href="https://gowalker.org/" target="_blank" rel="noopener">gowalker</a>
+、gopm（已关停）等。所有这些，都是它在学习、实践过程中遇到了问题，然后自己将它解决掉。可能解决方案不是最好的，甚至市面上已经有其他解决方案了，但自己实现它，给无闻带来的收益是巨大的。</p>
+<p>大家可能没有注意，他的开源项目，很多都有漂亮的网站或独立文档站，而且基本这些站也是自己实现的。因为开源项目，文档很重要，于是他用 Go 实现了一个，这就是 <a href="https://github.com/peachdocs/peach" target="_blank" rel="noopener">peach</a>
+：一个用于多语言，实时同步和可搜索文档的 Web 服务器。</p>
+<p><p class="md__image">
+  <img src="../imgs/peach.png"
+    alt=""  />
+</p>
+</p>
+<p>他实现这些，顺便把前端相关技术也学习了。</p>
+<p>参与开源，不一定一上来就是参与者，也可以是反馈者，通过反馈慢慢融入这个项目，实际上将问题反馈清楚也是一种挑战。</p>
+<p>无闻的理念：自己学习阶段，通过造轮子，把自己往“死”里整，什么新技术都尽量用上，多想想这项技术解决了什么问题，通过项目提升自己能力。</p>
+<h2 id="03-划重点">03 划重点</h2>
+<p>通过对无闻步入编程世界，回顾了他学习 Go 语言的经历，以及进行 Go 开源的心得体会，我认为有以下几点值得大家借鉴，特别是对于后浪们，比如还是在校学生。</p>
+<h3 id="一越早学习越好">一、越早学习越好</h3>
+<p>在股票基金投资中，很强调时间，因为复利效应很可怕。学习也是一样。对于编程学习来说，你开始的越早，就越早的走在同辈的前列，比如无闻，虽然是文科生，但高中就开始接触编程，并自发的进行各种学习、研究，做视频、做项目，进行主动学习。我特别欣赏那些还在读书的人能够积极融入各种社区的圈子。不管是开源项目，还是社区的一些活动、群等，其中有大学生的话，我会特别注意他，觉得他前途无量。</p>
+<p>想想我的大学生活，只是沉浸在校园生活中，对业界发生的事情一无所知。这注定起点就比那些早早接触外界的人低。所以，我强烈建议你现在就开始认真学习，无闻经历也许可以借鉴。</p>
+<p>而且，你越早学习，越早了解外界，越早工作，你的能力、薪资等大概率会比同龄人强。何况都说程序员吃青春饭，所以更应该提前学习。尽早多接触外界，外界的人和事。</p>
+<h3 id="二兴趣是最好的老师">二、兴趣是最好的老师</h3>
+<p>工作很多时候是为了生活，但你不能全无兴趣。而且，我认为兴趣也是可以培养的，要善于发现生活的美。只要你不讨厌它，慢慢的，你大概率可以喜欢它。大家可以想想生活中，你看到一个女生，觉得一般，时间长了，接触多了，有没有觉得还挺好看的，属于耐看型？哈哈哈哈，对吧，需要培养！</p>
+<p>无闻能够做这么多项目，我相信一定是对这些事情是有兴趣的，而且做成了很有成就感，更进一步增加了兴趣。抱着喜欢它去学习，而不是太功利的，目标就是通过它找到一个好工作。其实只要你学好了，学透了，好工作是自然的。</p>
+<h3 id="三通过输出倒逼输入">三、通过输出倒逼输入</h3>
+<p>学习别只是看。无闻的经历很明显，他通过边学习边做视频，进步很快。你不一定非得做视频，但至少应该做做笔记，写写文章。写出来的东西，一定通过网络发布，比如微信公众号，这样督促自己更严谨。</p>
+<p>其次，一定要实践。你别跟我说：不知道用 Go 写点什么。那是你根本没有思考，对自己不够狠。能写的东西很多。再不济，参与一些你喜欢的开源项目也可以，比如提提 typo 也是可以的，关键要迈出第一步。</p>
+<p>认清自己，看自己的长处。通过输出，倒逼自己输入，让输入更高效！</p>
+<p>希望通过「对话无闻」能够对大家有帮助！</p>
+]]></content>
+		</item>
 		
 		<item>
 			<title>妹子你是认真的吗？.sh 文件只能在 Shanghai 机器跑</title>
@@ -14222,6 +14298,77 @@ BenchmarkGin_GithubAll                	   34724	     <span class="m">34696</span
 <p>通过一个项目讲解 Echo 的实战</p>
 <h3 id="四源码学习篇">四、源码学习篇</h3>
 <p>分析 Echo 的源码，了解它的设计，看看能领悟、学习到什么</p>
+]]></content>
+		</item>
+		
+		<item>
+			<title></title>
+			<link>https://polarisxu.studygolang.com/posts/systemprogramming/go/01/</link>
+			<pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+			
+			<guid>https://polarisxu.studygolang.com/posts/systemprogramming/go/01/</guid>
+			<description>用 Go 进行系统编程
+大家好，我是站长 polarisxu。
+今天起我们开始一个系列：用 Go 进行系统编程，主要介绍系统编程相关的知识。
+01 准备 本系列教程基于 Unix 系统（更确切是 Linux 系统），如果你使用的是 Windows 系统，请安装 Windows Subsystem for Linux（WSL）。安装步骤如下：
+ 以管理员身份打开 PowerShell，运行如下命令：  Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux  按提示重启电脑； 根据你的喜好从 Microsoft Store 安装 Linux distribution；  Go 语言版本基于最新的 Go1.16。
+02 什么是系统编程（System programming） 维基百科的解释 ：
+ 系统编程是指从事计算机系统软件的编码活动。
+ 那什么是系统软件呢？维基百科的解释 ：
+ System software is software designed to provide a platform for other software.
+ 即服务于其他软件的软件就是系统软件，比如操作系统、游戏引擎、工业自动化等。相应的，面向用户的就是应用软件了。（有时界限没那么清晰）
+系统编程是 Unix计 算机上编程的一个特殊领域。请注意，系统编程不限于 Unix 计算机，只是这个系列主要关注 Unix 系统。大多数与系统管理任务有关的命令，例如磁盘格式化，网络接口配置，模块加载和内核性能跟踪，都是使用系统编程技术来实现的。此外，可以在所有 Unix 系统上找到的 /etc 目录包含纯文本文件，这些文本文件处理 Unix 机器及其服务的配置，并且也可以使用系统软件进行操作。
+一般可以将系统软件的各个领域和相关的系统调用分为以下几组：
+ 文件 I/O：这部分处理文件读取和写入操作，这是操作系统最重要的任务。文件输入和输出必须快速高效，并且最重要的是要可靠。 高级文件 I/O：除了基本的输入和输出系统调用之外，还有其他更高级的方法来读取或写入文件，包括异步 I/O 和非阻塞 I/O。 系统文件和配置：这些系统软件允许处理系统文件（例如 /etc/passwd）并获取系统特定信息（例如系统时间和 DNS 配置）等。 文件和目录：这部分包括函数和系统调用，它们允许程序员创建和删除目录并获取信息，例如文件或目录的所有者和权限。 进程控制：可以创建 Unix 进程并与之交互； 服务器进程：这套工具包括允许您开发服务器进程的技术，这些服务器进程是在后台执行而无需活动终端的进程。 Go 并不能很好地以传统的 Unix 方式编写服务器进程。诸如 Apache 之类的 Unix 服务器使用 fork(2) 创建一个或多个子进程（此过程称为 fork，是指从父进程克隆一个子进程），并从同一点继续执行相同的可执行文件，最重要的是，共享内存。尽管 Go 不提供与 fork(2) 函数等效的功能，但这不是大问题，因为你可以使用 goroutines 来做到 fork(2) 的大多数用法； 进程间通讯：这组功能允许在同一台 Unix 机器上运行的进程使用管道，FIFO，消息队列，信号量和共享内存等特性相互通信； 信号处理：信号为流程提供了一种处理异步事件的方法，该方法非常方便。几乎所有服务器进程都有额外的代码，这些代码使它们能够使用该组的系统调用来处理Unix信号； 网络编程：这是开发基于 TCP/IP 协议的程序。其实这部分严格来说不是系统编程。但是，大多数 TCP/IP 服务器和客户端都在处理系统资源，用户，文件和目录。因此，在大多数情况下，如果不进行某种系统编程就无法创建网络应用程序；  03 为什么写这个系列 04 参考 本系列教程主要参考如下资料：
+ Unix 环境高级编程（第三版） System Programming with Go Go System Programming Mastering Go（Second Edition）  </description>
+			<content type="html"><![CDATA[<p>用 Go 进行系统编程</p>
+<p>大家好，我是站长 polarisxu。</p>
+<p>今天起我们开始一个系列：用 Go 进行系统编程，主要介绍系统编程相关的知识。</p>
+<h2 id="01-准备">01 准备</h2>
+<p>本系列教程基于 Unix 系统（更确切是 Linux 系统），如果你使用的是 Windows 系统，请安装 Windows Subsystem for Linux（WSL）。安装步骤如下：</p>
+<ul>
+<li>以管理员身份打开 PowerShell，运行如下命令：</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
+</code></pre></div><ul>
+<li>按提示重启电脑；</li>
+<li>根据你的喜好从 Microsoft Store 安装 Linux distribution；</li>
+</ul>
+<p>Go 语言版本基于最新的 Go1.16。</p>
+<h2 id="02-什么是系统编程system-programming">02 什么是系统编程（System programming）</h2>
+<p><a href="https://en.wikipedia.org/wiki/Systems_programming" target="_blank" rel="noopener">维基百科的解释</a>
+：</p>
+<blockquote>
+<p>系统编程是指从事计算机系统软件的编码活动。</p>
+</blockquote>
+<p>那什么是系统软件呢？<a href="https://en.wikipedia.org/wiki/System_software" target="_blank" rel="noopener">维基百科的解释</a>
+：</p>
+<blockquote>
+<p>System software is software designed to provide a platform for other software.</p>
+</blockquote>
+<p>即服务于其他软件的软件就是系统软件，比如操作系统、游戏引擎、工业自动化等。相应的，面向用户的就是应用软件了。（有时界限没那么清晰）</p>
+<p>系统编程是 Unix计 算机上编程的一个特殊领域。请注意，系统编程不限于 Unix 计算机，只是这个系列主要关注 Unix 系统。大多数与系统管理任务有关的命令，例如磁盘格式化，网络接口配置，模块加载和内核性能跟踪，都是使用系统编程技术来实现的。此外，可以在所有 Unix 系统上找到的 /etc 目录包含纯文本文件，这些文本文件处理 Unix 机器及其服务的配置，并且也可以使用系统软件进行操作。</p>
+<p>一般可以将系统软件的各个领域和相关的系统调用分为以下几组：</p>
+<ul>
+<li>文件 I/O：这部分处理文件读取和写入操作，这是操作系统最重要的任务。文件输入和输出必须快速高效，并且最重要的是要可靠。</li>
+<li>高级文件 I/O：除了基本的输入和输出系统调用之外，还有其他更高级的方法来读取或写入文件，包括异步 I/O 和非阻塞 I/O。</li>
+<li>系统文件和配置：这些系统软件允许处理系统文件（例如 /etc/passwd）并获取系统特定信息（例如系统时间和 DNS 配置）等。</li>
+<li>文件和目录：这部分包括函数和系统调用，它们允许程序员创建和删除目录并获取信息，例如文件或目录的所有者和权限。</li>
+<li>进程控制：可以创建 Unix 进程并与之交互；</li>
+<li>服务器进程：这套工具包括允许您开发服务器进程的技术，这些服务器进程是在后台执行而无需活动终端的进程。 Go 并不能很好地以传统的 Unix 方式编写服务器进程。诸如 Apache 之类的 Unix 服务器使用 fork(2) 创建一个或多个子进程（此过程称为 fork，是指从父进程克隆一个子进程），并从同一点继续执行相同的可执行文件，最重要的是，共享内存。尽管 Go 不提供与 fork(2) 函数等效的功能，但这不是大问题，因为你可以使用 goroutines 来做到 fork(2) 的大多数用法；</li>
+<li>进程间通讯：这组功能允许在同一台 Unix 机器上运行的进程使用管道，FIFO，消息队列，信号量和共享内存等特性相互通信；</li>
+<li>信号处理：信号为流程提供了一种处理异步事件的方法，该方法非常方便。几乎所有服务器进程都有额外的代码，这些代码使它们能够使用该组的系统调用来处理Unix信号；</li>
+<li>网络编程：这是开发基于 TCP/IP 协议的程序。其实这部分严格来说不是系统编程。但是，大多数 TCP/IP 服务器和客户端都在处理系统资源，用户，文件和目录。因此，在大多数情况下，如果不进行某种系统编程就无法创建网络应用程序；</li>
+</ul>
+<h2 id="03-为什么写这个系列">03 为什么写这个系列</h2>
+<h2 id="04-参考">04 参考</h2>
+<p>本系列教程主要参考如下资料：</p>
+<ul>
+<li>Unix 环境高级编程（第三版）</li>
+<li>System Programming with Go</li>
+<li>Go System Programming</li>
+<li>Mastering Go（Second Edition）</li>
+</ul>
 ]]></content>
 		</item>
 		

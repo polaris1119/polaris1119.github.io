@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>无闻 on polarisxu</title>
+    <link>https://polarisxu.studygolang.com/tags/%E6%97%A0%E9%97%BB/</link>
+    <description>Recent content in 无闻 on polarisxu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
+    <lastBuildDate>Mon, 08 Mar 2021 15:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/%E6%97%A0%E9%97%BB/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>polarisxu 对话无闻</title>
+      <link>https://polarisxu.studygolang.com/posts/dialogue/vs-wuwen/</link>
+      <pubDate>Mon, 08 Mar 2021 15:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/dialogue/vs-wuwen/</guid>
+      <description>大家好，我是站长 polarisxu。 今天起，我计划起一个系列，叫做「对话 xxx」，主要访谈、撰写一些圈里人的成长故事，希望他们的故事对大家有一些启发。 今天要对话的这位是国内 Go 开源界的名人，GitHub followers 有 11.1k+，主导了开发了好几个 Go 开源项目，它就是无闻，昵称 unknwon（注意，不是 unknown）。早期学习 Go 的小伙伴，知道他可能更多是来自他的视频教程</description>
+    </item>
+    
+  </channel>
+</rss>
