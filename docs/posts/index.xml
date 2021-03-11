@@ -6,8 +6,53 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en</language>
 		<copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-		<lastBuildDate>Wed, 10 Mar 2021 14:30:00 +0800</lastBuildDate>
+		<lastBuildDate>Thu, 11 Mar 2021 18:12:00 +0800</lastBuildDate>
 		<atom:link href="https://polarisxu.studygolang.com/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>快一个月，Go1.16 才发现了比较严重的 Bug，但这个 Bug 有点 Low。。。</title>
+			<link>https://polarisxu.studygolang.com/posts/go/dynamic/go1.16.1-release/</link>
+			<pubDate>Thu, 11 Mar 2021 18:12:00 +0800</pubDate>
+			
+			<guid>https://polarisxu.studygolang.com/posts/go/dynamic/go1.16.1-release/</guid>
+			<description>大家好，我是站长 polarisxu。 Go 1.16 是 2021 年 2 月 16 日发布的。新版本发布，大家一般会等等，坐等 1.16.1 发布。没想到快一个月了才等到。 和之前一样，小版本是修复 Bug，会同时发布两个版本，这次是 Go1.16.1 和 Go1.15.9。那具体什么 Bug 呢？ Bug 1：encoding/xml 这个 Bug 不是 1.16 引入的，而是之前版本就存在。所以，Go 1.15.9 也修复了该 Bug。 在通过 xml.NewTokenDecoder 获得一个 Decoder 指针时，如果参数 TokenReader 是</description>
+			<content type="html"><![CDATA[<p>大家好，我是站长 polarisxu。</p>
+<p>Go 1.16 是 2021 年 2 月 16 日发布的。新版本发布，大家一般会等等，坐等 1.16.1 发布。没想到快一个月了才等到。</p>
+<p>和之前一样，小版本是修复 Bug，会同时发布两个版本，这次是 Go1.16.1 和 Go1.15.9。那具体什么 Bug 呢？</p>
+<h2 id="bug-1encodingxml">Bug 1：encoding/xml</h2>
+<p>这个 Bug 不是 1.16 引入的，而是之前版本就存在。所以，Go 1.15.9 也修复了该 Bug。</p>
+<p>在通过 xml.NewTokenDecoder 获得一个 Decoder 指针时，如果参数 TokenReader 是自定义的，可能会出现死循环。</p>
+<blockquote>
+<p>The Decode, DecodeElement, and Skip methods of an xml.Decoder provided by xml.NewTokenDecoder may enter an infinite loop when operating on a custom xml.TokenReader which returns an EOF in the middle of an open XML element.</p>
+</blockquote>
+<p>详情见 issue：<a href="https://github.com/golang/go/issues/44915">https://github.com/golang/go/issues/44915</a>。</p>
+<h2 id="bug-2archivezip">Bug 2：archive/zip</h2>
+<p>当调用该包中的 Render.Open 方法时，如果 zip 包含以 <code>../</code> 开头的文件，该方法会 panic。这个方法是 Go1.16 新增的，因为返回了 io/fs.File 类型。</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">Reader</span><span class="p">)</span> <span class="nf">Open</span><span class="p">(</span><span class="nx">name</span> <span class="kt">string</span><span class="p">)</span> <span class="p">(</span><span class="nx">fs</span><span class="p">.</span><span class="nx">File</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+</code></pre></div><p>当跟踪修复该 Bug 的代码时，有点掉价。。。（见：<a href="https://github.com/golang/go/commit/634d28d78ccbeb6e86f8bfeba030ea8be518f8fa">https://github.com/golang/go/commit/634d28d78ccbeb6e86f8bfeba030ea8be518f8fa</a>）</p>
+<p><p class="md__image">
+  <img src="..//Users/xuxinhua/opensource/polarisxu/content/posts/go/dynamic/imgs/go1.16.1.png"
+    alt=""  />
+</p>
+</p>
+<p>完整的修复前的代码：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">toValidName</span><span class="p">(</span><span class="nx">name</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">string</span> <span class="p">{</span>
+	<span class="nx">name</span> <span class="p">=</span> <span class="nx">strings</span><span class="p">.</span><span class="nf">ReplaceAll</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="s">`\`</span><span class="p">,</span> <span class="s">`/`</span><span class="p">)</span>
+	<span class="nx">p</span> <span class="o">:=</span> <span class="nx">path</span><span class="p">.</span><span class="nf">Clean</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span>
+	<span class="k">if</span> <span class="nx">strings</span><span class="p">.</span><span class="nf">HasPrefix</span><span class="p">(</span><span class="nx">p</span><span class="p">,</span> <span class="s">&#34;/&#34;</span><span class="p">)</span> <span class="p">{</span>
+		<span class="nx">p</span> <span class="p">=</span> <span class="nx">p</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="s">&#34;/&#34;</span><span class="p">):]</span>
+	<span class="p">}</span>
+	<span class="k">for</span> <span class="nx">strings</span><span class="p">.</span><span class="nf">HasPrefix</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="s">&#34;../&#34;</span><span class="p">)</span> <span class="p">{</span>
+		<span class="nx">p</span> <span class="p">=</span> <span class="nx">p</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="s">&#34;../&#34;</span><span class="p">):]</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="nx">p</span>
+<span class="p">}</span>
+</code></pre></div><p>通过 for 循环处理 p 中的 <code>../</code>，结果 for 里面用的却是 name 变量，这个 bug 有点 low。。。可见大神们也有犯低级错误的时候。所以，如果你团队成员偶尔犯了低级错误，别太责备，让他抄写对应 Bug 100 遍即可，哈哈哈哈！</p>
+<p>以上两个 Bug 都定义为安全问题。Go Team 正在为 Go 版本中的漏洞提出一个新的安全策略。有兴趣的可以参与讨论：<a href="https://github.com/golang/go/issues/44918">https://github.com/golang/go/issues/44918</a>。</p>
+<hr>
+<p>如果你使用了 Go1.16，而且可能用了 zip 包，建议大家升级到 Go1.16.1 版本。而 xml，可能很多人都没用到？！Go 语言中文网已经为你准备好了下载地址：<a href="https://studygolang.com/dl">https://studygolang.com/dl</a>，当然也可以使用喜欢的方式升级。</p>
+]]></content>
+		</item>
 		
 		<item>
 			<title>RedMonk 编程语言排行榜，说 Go 正走向衰退，你认可吗？</title>
@@ -15,8 +60,9 @@
 			<pubDate>Wed, 10 Mar 2021 14:30:00 +0800</pubDate>
 			
 			<guid>https://polarisxu.studygolang.com/posts/go/language-rankings-1-21/</guid>
-			<description>2021 年 3 月 1 日，RedMonk 发布了 2021 年 1 月 编程语言排行榜（实际是 1 月 和 2 月的数据）。 先介绍下这个排名的依据。RedMonk 从 GitHub 和 Stack Overflow 中提取语言排名，并将它们合并为一个排名，试图反映代码（GitHub）和问答（Stack Overflow）的吸引力。这个想法并不是为了提供一个统计上有效的当前使用情况的表示，而是为了将语言的问答和使用联系起来，努力提取对潜在的未来</description>
-			<content type="html"><![CDATA[<p>2021 年 3 月 1 日，RedMonk 发布了 2021 年 1 月 编程语言排行榜（实际是 1 月 和 2 月的数据）。</p>
+			<description>大家好，我是站长 polarisxu。 2021 年 3 月 1 日，RedMonk 发布了 2021 年 1 月 编程语言排行榜（实际是 1 月 和 2 月的数据）。 先介绍下这个排名的依据。RedMonk 从 GitHub 和 Stack Overflow 中提取语言排名，并将它们合并为一个排名，试图反映代码（GitHub）和问答（Stack Overflow）的吸引力。这个想法并不是为了提供一个统计上有效的当前使用情况的表示，而是为了将语言的问答</description>
+			<content type="html"><![CDATA[<p>大家好，我是站长 polarisxu。</p>
+<p>2021 年 3 月 1 日，RedMonk 发布了 2021 年 1 月 编程语言排行榜（实际是 1 月 和 2 月的数据）。</p>
 <p>先介绍下这个排名的依据。RedMonk 从 GitHub 和 Stack Overflow 中提取语言排名，并将它们合并为一个排名，试图反映代码（GitHub）和问答（Stack Overflow）的吸引力。这个想法并不是为了提供一个统计上有效的当前使用情况的表示，而是为了将语言的问答和使用联系起来，努力提取对潜在的未来使用趋势的洞察。</p>
 <h2 id="01">01</h2>
 <p>那这个排名具体是怎么得来的呢？</p>

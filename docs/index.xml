@@ -7,14 +7,23 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Wed, 10 Mar 2021 14:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 11 Mar 2021 18:12:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>快一个月，Go1.16 才发现了比较严重的 Bug，但这个 Bug 有点 Low。。。</title>
+      <link>https://polarisxu.studygolang.com/posts/go/dynamic/go1.16.1-release/</link>
+      <pubDate>Thu, 11 Mar 2021 18:12:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/dynamic/go1.16.1-release/</guid>
+      <description>大家好，我是站长 polarisxu。 Go 1.16 是 2021 年 2 月 16 日发布的。新版本发布，大家一般会等等，坐等 1.16.1 发布。没想到快一个月了才等到。 和之前一样，小版本是修复 Bug，会同时发布两个版本，这次是 Go1.16.1 和 Go1.15.9。那具体什么 Bug 呢？ Bug 1：encoding/xml 这个 Bug 不是 1.16 引入的，而是之前版本就存在。所以，Go 1.15.9 也修复了该 Bug。 在通过 xml.NewTokenDecoder 获得一个 Decoder 指针时，如果参数 TokenReader 是</description>
+    </item>
+    
     <item>
       <title>RedMonk 编程语言排行榜，说 Go 正走向衰退，你认可吗？</title>
       <link>https://polarisxu.studygolang.com/posts/go/language-rankings-1-21/</link>
       <pubDate>Wed, 10 Mar 2021 14:30:00 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/posts/go/language-rankings-1-21/</guid>
-      <description>2021 年 3 月 1 日，RedMonk 发布了 2021 年 1 月 编程语言排行榜（实际是 1 月 和 2 月的数据）。 先介绍下这个排名的依据。RedMonk 从 GitHub 和 Stack Overflow 中提取语言排名，并将它们合并为一个排名，试图反映代码（GitHub）和问答（Stack Overflow）的吸引力。这个想法并不是为了提供一个统计上有效的当前使用情况的表示，而是为了将语言的问答和使用联系起来，努力提取对潜在的未来</description>
+      <description>大家好，我是站长 polarisxu。 2021 年 3 月 1 日，RedMonk 发布了 2021 年 1 月 编程语言排行榜（实际是 1 月 和 2 月的数据）。 先介绍下这个排名的依据。RedMonk 从 GitHub 和 Stack Overflow 中提取语言排名，并将它们合并为一个排名，试图反映代码（GitHub）和问答（Stack Overflow）的吸引力。这个想法并不是为了提供一个统计上有效的当前使用情况的表示，而是为了将语言的问答</description>
     </item>
     
     <item>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/action/go-chi-use-retract/</guid>
       <description>大家好，我是站长 polarisxu。 在 Reddit 上看到一条消息： go-chi is retracting all major versions with go1.16 new retract directive. go.mod 的变更如下： 这利用了 Go 1.16 中 Module 的新特性。在这之前，先一起学习下该特性。 01 retract：撤回版本 也许不少人没有开发过自己的 Module（模块），但了解模块版本撤回还是有必要的，说不定哪天就能用到。因此建议你能够跟着本文操作一遍。 一般地，模块作者需要一种方法来指示不应该使用某个已发布</description>
-    </item>
-    
-    <item>
-      <title>为什么学 Rust 及相关学习资料推荐</title>
-      <link>https://polarisxu.studygolang.com/posts/rust/why-rust-and-study-book/</link>
-      <pubDate>Sat, 20 Feb 2021 17:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/rust/why-rust-and-study-book/</guid>
-      <description>大家好，我是站长 polarisxu。 春节结束，我的 Rust 之旅才刚刚开始。经过春节期间的学习，发现 Rust 真的是有点复杂，好吧，我觉得很复杂。如果你跟我一样，决定学习 Rust，那一定要有心理准备，要啃一块硬骨头，毕竟跟 Go 语言比起来，复杂太多了。 01 为什么要学 Rust 呢？ 看看 Google 上的结果： 爱总是能找到一堆理由，不爱亦如此。比如也有反对你学习 Rust 的，比如这篇：《我为什么反对使用 Rust</description>
     </item>
     
   </channel>

@@ -7,14 +7,23 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Wed, 10 Mar 2021 14:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 11 Mar 2021 18:12:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>快一个月，Go1.16 才发现了比较严重的 Bug，但这个 Bug 有点 Low。。。</title>
+      <link>https://polarisxu.studygolang.com/posts/go/dynamic/go1.16.1-release/</link>
+      <pubDate>Thu, 11 Mar 2021 18:12:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/dynamic/go1.16.1-release/</guid>
+      <description>大家好，我是站长 polarisxu。 Go 1.16 是 2021 年 2 月 16 日发布的。新版本发布，大家一般会等等，坐等 1.16.1 发布。没想到快一个月了才等到。 和之前一样，小版本是修复 Bug，会同时发布两个版本，这次是 Go1.16.1 和 Go1.15.9。那具体什么 Bug 呢？ Bug 1：encoding/xml 这个 Bug 不是 1.16 引入的，而是之前版本就存在。所以，Go 1.15.9 也修复了该 Bug。 在通过 xml.NewTokenDecoder 获得一个 Decoder 指针时，如果参数 TokenReader 是</description>
+    </item>
+    
     <item>
       <title>RedMonk 编程语言排行榜，说 Go 正走向衰退，你认可吗？</title>
       <link>https://polarisxu.studygolang.com/posts/go/language-rankings-1-21/</link>
       <pubDate>Wed, 10 Mar 2021 14:30:00 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/posts/go/language-rankings-1-21/</guid>
-      <description>2021 年 3 月 1 日，RedMonk 发布了 2021 年 1 月 编程语言排行榜（实际是 1 月 和 2 月的数据）。 先介绍下这个排名的依据。RedMonk 从 GitHub 和 Stack Overflow 中提取语言排名，并将它们合并为一个排名，试图反映代码（GitHub）和问答（Stack Overflow）的吸引力。这个想法并不是为了提供一个统计上有效的当前使用情况的表示，而是为了将语言的问答和使用联系起来，努力提取对潜在的未来</description>
+      <description>大家好，我是站长 polarisxu。 2021 年 3 月 1 日，RedMonk 发布了 2021 年 1 月 编程语言排行榜（实际是 1 月 和 2 月的数据）。 先介绍下这个排名的依据。RedMonk 从 GitHub 和 Stack Overflow 中提取语言排名，并将它们合并为一个排名，试图反映代码（GitHub）和问答（Stack Overflow）的吸引力。这个想法并不是为了提供一个统计上有效的当前使用情况的表示，而是为了将语言的问答</description>
     </item>
     
     <item>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/translation/use-mac-apis-and-build-mac-apps-with-go/</guid>
       <description>本文是 macdriver 作者写的，这是一个 Go 语言的 Objective-C 桥接器，使得 Go 可以使用 Mac API。如果做过 Apple 相关应用开发，可以试试这个。 如果你使用 Apple 设备并且是 Go 程 序员，或者正在考虑学习 Go，那么我们会获得一些非常酷的新功能。今天，我发布了 macdriver 的 Alpha 版，这是一个 Go 语言的 Objective-C 桥，具有与常见 Mac API 的绑定。 那些关注我的上一篇有关 Large Type in 80 lines of Go 的文章的人可能已经找到了 macdriver。 largetype 程序是 macdriver 的示例项</description>
-    </item>
-    
-    <item>
-      <title>明天除夕，闲聊几件事</title>
-      <link>https://polarisxu.studygolang.com/posts/talk/2021-02-10-talking/</link>
-      <pubDate>Wed, 10 Feb 2021 21:00:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/talk/2021-02-10-talking/</guid>
-      <description>大家好，我是站长 polarisxu。 明天就除夕了，农历 2020 年马上也过完了，提前祝大家新年快乐！ 今天上午折腾了一上午 Gopher 晚会文章发布的问题，写好的文章莫名违规，怎么修改都不行。最后网站发布了原文 ，公众号发布临时写的文章 ，做一件事真的太难了！（没看到这个 gopher 晚会消息可以看看） 下午带小孩去雪地嘉年华玩了一下午，发现北京人似乎没少，往年过年，北京几乎是空城，可见在北京过年</description>
     </item>
     
   </channel>
