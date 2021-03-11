@@ -14,7 +14,7 @@
 <meta property="og:description" content="polarisxu,Go语言中文网,go,golang,源码分析,系列教程" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://polarisxu.studygolang.com/" />
-<meta property="og:updated_time" content="2021-03-11T18:12:00+08:00" />
+<meta property="og:updated_time" content="2021-03-12T00:10:00+08:00" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="polarisxu"/>
 <meta name="twitter:description" content="polarisxu,Go语言中文网,go,golang,源码分析,系列教程"/>
@@ -70,6 +70,27 @@
 		<main class="site-main section-inner thin animated fadeIn faster">
     
 		
+        <div class="post animated fadeInDown">
+            <div class="post-title">
+                <h2><a href="/posts/go/echo/basic03-example/">Echo 系列教程——基础篇3：通过一个例子串联各特性</a>
+                </h2>
+            </div>
+            <div class="post-content">
+                <div class="p_part"><p>通过前面的介绍，相信对 echo 有了一个初步的认识。本文我们通过一个简单的登录页面来串联 echo 的相关特性。因为该文主要关注各个特性，所以在目录结构和代码组织方面很随意。 本节最终效果 1）登录页面 2）登录失败 3）登录成功 main 函数骨架 使用 echo 框架，在程序入口处一般包含如下内容： func main() { // 创建 echo 实例 e := echo.New() // 配置日志 configLogger(e) // 注册静态文件路由 e.Static(&#34;img&#34;, &#34;img&#34;) e.File(&#34;/favicon.ico&#34;, &#34;img/favicon.ico&#34;) // 设置中间件 setMiddleware(e) // 注册路由 RegisterRoutes(e) // 启动服务 e.Logger.Fatal(e.Start(&#34;:2019&#34;)) } 日</p></div>
+            </div>
+            <div class="post-footer">
+                <div class="meta">
+                    <div class="info"><em class="fas fa-calendar-day"></em><span
+                                class="date">2019-12-03</span>
+                        <a class="tag"
+                                   href="/tags/echo/">echo</a><a class="tag"
+                                   href="/tags/web%E6%A1%86%E6%9E%B6/">web框架</a><a class="tag"
+                                   href="/tags/%E4%BE%8B%E5%AD%90/">例子</a>
+                    </div>
+                </div>
+            </div>
+				</div>
+    
         <div class="post animated fadeInDown">
             <div class="post-title">
                 <h2><a href="/posts/go/dynamic/pkg-go-dev-plan/">更懂 module 的包资源中心：关于 pkg.go.dev 的前世今生和未来</a>

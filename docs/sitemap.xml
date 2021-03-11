@@ -3,6 +3,36 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://polarisxu.studygolang.com/</loc>
+    <lastmod>2021-03-12T00:10:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polarisxu.studygolang.com/tags/</loc>
+    <lastmod>2021-03-12T00:10:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polarisxu.studygolang.com/tags/%E5%BE%AE%E4%BF%A1/</loc>
+    <lastmod>2021-03-12T00:10:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polarisxu.studygolang.com/posts/wechat/mac-wechat-3.0/</loc>
+    <lastmod>2021-03-12T00:10:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polarisxu.studygolang.com/posts/</loc>
+    <lastmod>2021-03-12T00:10:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polarisxu.studygolang.com/tags/%E8%A7%86%E9%A2%91%E5%8F%B7/</loc>
+    <lastmod>2021-03-12T00:10:00+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://polarisxu.studygolang.com/tags/bug/</loc>
     <lastmod>2021-03-11T18:12:00+08:00</lastmod>
   </url>
@@ -13,22 +43,7 @@
   </url>
   
   <url>
-    <loc>https://polarisxu.studygolang.com/</loc>
-    <lastmod>2021-03-11T18:12:00+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://polarisxu.studygolang.com/tags/</loc>
-    <lastmod>2021-03-11T18:12:00+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://polarisxu.studygolang.com/posts/go/dynamic/go1.16.1-release/</loc>
-    <lastmod>2021-03-11T18:12:00+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://polarisxu.studygolang.com/posts/</loc>
     <lastmod>2021-03-11T18:12:00+08:00</lastmod>
   </url>
   
@@ -214,11 +229,6 @@
   
   <url>
     <loc>https://polarisxu.studygolang.com/tags/clubhouse/</loc>
-    <lastmod>2021-02-05T15:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://polarisxu.studygolang.com/tags/%E5%BE%AE%E4%BF%A1/</loc>
     <lastmod>2021-02-05T15:00:00+08:00</lastmod>
   </url>
   
