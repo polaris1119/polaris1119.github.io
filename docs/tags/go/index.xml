@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Tue, 02 Mar 2021 22:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 10 Mar 2021 14:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>RedMonk 编程语言排行榜，说 Go 正走向衰退，你认可吗？</title>
+      <link>https://polarisxu.studygolang.com/posts/go/language-rankings-1-21/</link>
+      <pubDate>Wed, 10 Mar 2021 14:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/language-rankings-1-21/</guid>
+      <description>2021 年 3 月 1 日，RedMonk 发布了 2021 年 1 月 编程语言排行榜（实际是 1 月 和 2 月的数据）。 先介绍下这个排名的依据。RedMonk 从 GitHub 和 Stack Overflow 中提取语言排名，并将它们合并为一个排名，试图反映代码（GitHub）和问答（Stack Overflow）的吸引力。这个想法并不是为了提供一个统计上有效的当前使用情况的表示，而是为了将语言的问答和使用联系起来，努力提取对潜在的未来</description>
+    </item>
+    
     <item>
       <title>构建微服务的 10 大 Go 框架/库</title>
       <link>https://polarisxu.studygolang.com/posts/go/translation/top-10-framework-golang-library-to-build-microservice/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/talk/2021-02-10-talking/</guid>
       <description>大家好，我是站长 polarisxu。 明天就除夕了，农历 2020 年马上也过完了，提前祝大家新年快乐！ 今天上午折腾了一上午 Gopher 晚会文章发布的问题，写好的文章莫名违规，怎么修改都不行。最后网站发布了原文 ，公众号发布临时写的文章 ，做一件事真的太难了！（没看到这个 gopher 晚会消息可以看看） 下午带小孩去雪地嘉年华玩了一下午，发现北京人似乎没少，往年过年，北京几乎是空城，可见在北京过年</description>
-    </item>
-    
-    <item>
-      <title>聊聊近期出版或将出版的几本 Go 图书</title>
-      <link>https://polarisxu.studygolang.com/posts/go/book/2021-go-book/</link>
-      <pubDate>Sun, 07 Feb 2021 11:00:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/book/2021-go-book/</guid>
-      <description>大家好，我是站长 polarisxu。 大家觉得 Go 的图书多吗？其实是很少的。今天聊下近期将要出版的基本 Go 图书。 01 《Go语言设计与实现》 这是一本 Go 语言进阶图书。作者历时两年，在他的网站可以免费阅读：https://draveness.me/golang/。他朋友圈透露，该书已经交稿，应该很快会出版。这本书绝对是 2021 年度最值得期待的 Go 图书。 作为支持，书出版时，我会送出</description>
     </item>
     
   </channel>

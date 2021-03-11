@@ -14,7 +14,7 @@
 <meta property="og:description" content="polarisxu,Go语言中文网,go,golang,源码分析,系列教程" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://polarisxu.studygolang.com/" />
-<meta property="og:updated_time" content="2021-03-08T15:30:00+08:00" />
+<meta property="og:updated_time" content="2021-03-10T14:30:00+08:00" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="polarisxu"/>
 <meta name="twitter:description" content="polarisxu,Go语言中文网,go,golang,源码分析,系列教程"/>
@@ -70,6 +70,27 @@
 		<main class="site-main section-inner thin animated fadeIn faster">
     
 		
+        <div class="post animated fadeInDown">
+            <div class="post-title">
+                <h2><a href="/posts/go/echo/custom04-renderer/">Echo 系列教程——定制篇4：自定义 Renderer，增强或替换模板引擎</a>
+                </h2>
+            </div>
+            <div class="post-content">
+                <div class="p_part"><p>Render，顾名思义，要进行页面渲染。Go 语言不但自带有强大的 http 库，还自带了 HTML 模板引擎。Echo 框架对模板引擎进行了一些额外处理，并提供了给用户自定义页面渲染的接口。本文就相关问题进行探讨。 模板渲染 Echo 框架的 Context 接口提供了下面的方法进行页面渲染： // echo 包中 Context 接口的方法 Render(code int, name string, data interface{}) error 其中，code 是 HTTP Status，name 是定义的模板名，data 是模板可能需要的数</p></div>
+            </div>
+            <div class="post-footer">
+                <div class="meta">
+                    <div class="info"><em class="fas fa-calendar-day"></em><span
+                                class="date">2020-03-16</span>
+                        <a class="tag"
+                                   href="/tags/echo/">echo</a><a class="tag"
+                                   href="/tags/web%E6%A1%86%E6%9E%B6/">web框架</a><a class="tag"
+                                   href="/tags/%E6%A8%A1%E6%9D%BF%E5%BC%95%E6%93%8E/">模板引擎</a>
+                    </div>
+                </div>
+            </div>
+				</div>
+    
         <div class="post animated fadeInDown">
             <div class="post-title">
                 <h2><a href="/posts/go/echo/custom05-error-handler/">Echo 系列教程——定制篇5：自定义 HTTP Error Handler，让 HTTP 错误处理更友好</a>
@@ -275,27 +296,6 @@ fori 模板插入经典 for 循环的样板代码。
                                    href="/tags/go/">Go</a><a class="tag"
                                    href="/tags/pkg/">pkg</a><a class="tag"
                                    href="/tags/module/">module</a>
-                    </div>
-                </div>
-            </div>
-				</div>
-    
-        <div class="post animated fadeInDown">
-            <div class="post-title">
-                <h2><a href="/posts/go/echo/basic02-feature/">Echo 系列教程——基础篇2：Echo 核心亮点介绍</a>
-                </h2>
-            </div>
-            <div class="post-content">
-                <div class="p_part"><p>在 Echo 的官网的首页，列出了 9 个核心功能或亮点。我这里将它说成是亮点（也许并不一定都比其他框架更好）。 一、优化的路由 高度优化的 HTTP 路由，动态内存分配为零，可对路由进行优先级排序。 这一点从上一篇：[搭建 Echo 开发环境](基础篇：搭建 Echo 开发环境.md) 可以看到。 Echo 路由基于 radix tree ，查询速度非常快。路由使用 sync pool 来重用内存，实现无 GC 开销下的零动态内存分配。 路由的注册和使用方式 各大</p></div>
-            </div>
-            <div class="post-footer">
-                <div class="meta">
-                    <div class="info"><em class="fas fa-calendar-day"></em><span
-                                class="date">2019-10-28</span>
-                        <a class="tag"
-                                   href="/tags/echo/">echo</a><a class="tag"
-                                   href="/tags/web%E6%A1%86%E6%9E%B6/">web框架</a><a class="tag"
-                                   href="/tags/%E4%BA%AE%E7%82%B9/">亮点</a>
                     </div>
                 </div>
             </div>

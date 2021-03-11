@@ -7,7 +7,25 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Mon, 08 Mar 2021 15:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 10 Mar 2021 14:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go</title>
+      <link>https://polarisxu.studygolang.com/tags/go/</link>
+      <pubDate>Wed, 10 Mar 2021 14:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/tags/go/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>排行榜</title>
+      <link>https://polarisxu.studygolang.com/tags/%E6%8E%92%E8%A1%8C%E6%A6%9C/</link>
+      <pubDate>Wed, 10 Mar 2021 14:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/tags/%E6%8E%92%E8%A1%8C%E6%A6%9C/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>对话</title>
       <link>https://polarisxu.studygolang.com/tags/%E5%AF%B9%E8%AF%9D/</link>
@@ -54,15 +72,6 @@
     </item>
     
     <item>
-      <title>Go</title>
-      <link>https://polarisxu.studygolang.com/tags/go/</link>
-      <pubDate>Tue, 02 Mar 2021 22:00:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/tags/go/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>微服务</title>
       <link>https://polarisxu.studygolang.com/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/</link>
       <pubDate>Tue, 02 Mar 2021 22:00:00 +0800</pubDate>
@@ -86,15 +95,6 @@
       <pubDate>Mon, 01 Mar 2021 18:00:00 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/tags/tengo/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>求职</title>
-      <link>https://polarisxu.studygolang.com/tags/%E6%B1%82%E8%81%8C/</link>
-      <pubDate>Sat, 27 Feb 2021 20:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/tags/%E6%B1%82%E8%81%8C/</guid>
       <description></description>
     </item>
     
