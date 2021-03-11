@@ -14,7 +14,7 @@
       <pubDate>Thu, 11 Mar 2021 18:12:00 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/posts/go/dynamic/go1.16.1-release/</guid>
-      <description>大家好，我是站长 polarisxu。 Go 1.16 是 2021 年 2 月 16 日发布的。新版本发布，大家一般会等等，坐等 1.16.1 发布。没想到快一个月了才等到。 和之前一样，小版本是修复 Bug，会同时发布两个版本，这次是 Go1.16.1 和 Go1.15.9。那具体什么 Bug 呢？ Bug 1：encoding/xml 这个 Bug 不是 1.16 引入的，而是之前版本就存在。所以，Go 1.15.9 也修复了该 Bug。 在通过 xml.NewTokenDecoder 获得一个 Decoder 指针时，如果参数 TokenReader 是</description>
+      <description>大家好，我是站长 polarisxu。 Go 1.16 是 2021 年 2 月 16 日发布的。新版本发布，大家一般会等等，坐等 1.16.1 发布。没想到快一个月了才等到。 和之前一样，小版本是修复 Bug，会同时发布两个版本，这次是 Go1.16.1 和 Go1.15.9。那具体什么 Bug 呢？ Bug 1：encoding/xml 包相关 这个 Bug 不是 1.16 引入的，而是之前版本就存在。所以，Go 1.15.9 也修复了该 Bug。 具体是：在通过 xml.NewTokenDecoder 获得一个 Decoder 指针时</description>
     </item>
     
     <item>

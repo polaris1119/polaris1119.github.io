@@ -15,18 +15,18 @@
 			<pubDate>Thu, 11 Mar 2021 18:12:00 +0800</pubDate>
 			
 			<guid>https://polarisxu.studygolang.com/posts/go/dynamic/go1.16.1-release/</guid>
-			<description>大家好，我是站长 polarisxu。 Go 1.16 是 2021 年 2 月 16 日发布的。新版本发布，大家一般会等等，坐等 1.16.1 发布。没想到快一个月了才等到。 和之前一样，小版本是修复 Bug，会同时发布两个版本，这次是 Go1.16.1 和 Go1.15.9。那具体什么 Bug 呢？ Bug 1：encoding/xml 这个 Bug 不是 1.16 引入的，而是之前版本就存在。所以，Go 1.15.9 也修复了该 Bug。 在通过 xml.NewTokenDecoder 获得一个 Decoder 指针时，如果参数 TokenReader 是</description>
+			<description>大家好，我是站长 polarisxu。 Go 1.16 是 2021 年 2 月 16 日发布的。新版本发布，大家一般会等等，坐等 1.16.1 发布。没想到快一个月了才等到。 和之前一样，小版本是修复 Bug，会同时发布两个版本，这次是 Go1.16.1 和 Go1.15.9。那具体什么 Bug 呢？ Bug 1：encoding/xml 包相关 这个 Bug 不是 1.16 引入的，而是之前版本就存在。所以，Go 1.15.9 也修复了该 Bug。 具体是：在通过 xml.NewTokenDecoder 获得一个 Decoder 指针时</description>
 			<content type="html"><![CDATA[<p>大家好，我是站长 polarisxu。</p>
 <p>Go 1.16 是 2021 年 2 月 16 日发布的。新版本发布，大家一般会等等，坐等 1.16.1 发布。没想到快一个月了才等到。</p>
 <p>和之前一样，小版本是修复 Bug，会同时发布两个版本，这次是 Go1.16.1 和 Go1.15.9。那具体什么 Bug 呢？</p>
-<h2 id="bug-1encodingxml">Bug 1：encoding/xml</h2>
+<h2 id="bug-1encodingxml-包相关">Bug 1：encoding/xml 包相关</h2>
 <p>这个 Bug 不是 1.16 引入的，而是之前版本就存在。所以，Go 1.15.9 也修复了该 Bug。</p>
-<p>在通过 xml.NewTokenDecoder 获得一个 Decoder 指针时，如果参数 TokenReader 是自定义的，可能会出现死循环。</p>
+<p>具体是：在通过 xml.NewTokenDecoder 获得一个 Decoder 指针时，如果参数 TokenReader 是自定义的，可能会出现死循环。</p>
 <blockquote>
 <p>The Decode, DecodeElement, and Skip methods of an xml.Decoder provided by xml.NewTokenDecoder may enter an infinite loop when operating on a custom xml.TokenReader which returns an EOF in the middle of an open XML element.</p>
 </blockquote>
 <p>详情见 issue：<a href="https://github.com/golang/go/issues/44915">https://github.com/golang/go/issues/44915</a>。</p>
-<h2 id="bug-2archivezip">Bug 2：archive/zip</h2>
+<h2 id="bug-2archivezip-包相关">Bug 2：archive/zip 包相关</h2>
 <p>当调用该包中的 Render.Open 方法时，如果 zip 包含以 <code>../</code> 开头的文件，该方法会 panic。这个方法是 Go1.16 新增的，因为返回了 io/fs.File 类型。</p>
 <div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">Reader</span><span class="p">)</span> <span class="nf">Open</span><span class="p">(</span><span class="nx">name</span> <span class="kt">string</span><span class="p">)</span> <span class="p">(</span><span class="nx">fs</span><span class="p">.</span><span class="nx">File</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
 </code></pre></div><p>当跟踪修复该 Bug 的代码时，有点掉价。。。（见：<a href="https://github.com/golang/go/commit/634d28d78ccbeb6e86f8bfeba030ea8be518f8fa">https://github.com/golang/go/commit/634d28d78ccbeb6e86f8bfeba030ea8be518f8fa</a>）</p>
