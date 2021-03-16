@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#fcfcfc">
+	<meta name="msapplication-TileColor" content="#fcfcfc">
+<meta itemprop="name" content="周末看完这本 gRPC 的书后，我决定送 10 本给读者">
+<meta itemprop="description" content="大家好，我是站长 polarisxu。 牛年春晚，Go语言中文网组织的活动，送了 10 本 《gRPC与云原生应用开发：以Go和Java为例》。上周末，我翻了下这本书，决定对该书做一个介绍，同时再送 10 本给我的读者。 01 gRPC 是什么？ 这是一本关于 gRPC 的书，所以简单介绍下 gRPC 是什么，相信很多人不陌生。 2015 年 2 月 26 日，谷歌宣布开源 gRPC，并称其「基于公司多年的分布式系统构建经验」。因为">
+<meta itemprop="datePublished" content="2021-03-16T10:00:00+08:00" />
+<meta itemprop="dateModified" content="2021-03-16T10:00:00+08:00" />
+<meta itemprop="wordCount" content="1864">
+
+
+
+<meta itemprop="keywords" content="gRPC,图书," />
+<meta property="og:title" content="周末看完这本 gRPC 的书后，我决定送 10 本给读者" />
+<meta property="og:description" content="大家好，我是站长 polarisxu。 牛年春晚，Go语言中文网组织的活动，送了 10 本 《gRPC与云原生应用开发：以Go和Java为例》。上周末，我翻了下这本书，决定对该书做一个介绍，同时再送 10 本给我的读者。 01 gRPC 是什么？ 这是一本关于 gRPC 的书，所以简单介绍下 gRPC 是什么，相信很多人不陌生。 2015 年 2 月 26 日，谷歌宣布开源 gRPC，并称其「基于公司多年的分布式系统构建经验」。因为" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://polarisxu.studygolang.com/posts/grpc/grpc-cncf-with-go-and-java/" />
+<meta property="article:published_time" content="2021-03-16T10:00:00+08:00" />
+<meta property="article:modified_time" content="2021-03-16T10:00:00+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="周末看完这本 gRPC 的书后，我决定送 10 本给读者"/>
+<meta name="twitter:description" content="大家好，我是站长 polarisxu。 牛年春晚，Go语言中文网组织的活动，送了 10 本 《gRPC与云原生应用开发：以Go和Java为例》。上周末，我翻了下这本书，决定对该书做一个介绍，同时再送 10 本给我的读者。 01 gRPC 是什么？ 这是一本关于 gRPC 的书，所以简单介绍下 gRPC 是什么，相信很多人不陌生。 2015 年 2 月 26 日，谷歌宣布开源 gRPC，并称其「基于公司多年的分布式系统构建经验」。因为"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>周末看完这本 gRPC 的书后，我决定送 10 本给读者</title>
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
+	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/styles.css">
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://polarisxu.studygolang.com">polarisxu</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+  <a href="https://polarisxu.studygolang.com/">首页</a>
+  <a href="https://polarisxu.studygolang.com/categories/echo%E7%B3%BB%E5%88%97/">Echo系列</a>
+  <a href="https://polarisxu.studygolang.com/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a>
+  <a href="https://polarisxu.studygolang.com/posts/">归档</a>
+  <a href="https://polarisxu.studygolang.com/about/">关于</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<button id="toc-btn" class="hdr-btn desktop-only-ib" title="目录"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3" y2="6"></line><line x1="3" y1="12" x2="3" y2="12"></line><line x1="3" y1="18" x2="3" y2="18"></line></svg></button><span class="hdr-social hide-in-mobile"><a href="https://github.com/polaris1119" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a><a href="https://twitter.com/polaris1119" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="菜单"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://polarisxu.studygolang.com/">首页</a></li>
+			<li><a href="https://polarisxu.studygolang.com/categories/echo%E7%B3%BB%E5%88%97/">Echo系列</a></li>
+			<li><a href="https://polarisxu.studygolang.com/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a></li>
+			<li><a href="https://polarisxu.studygolang.com/posts/">归档</a></li>
+			<li><a href="https://polarisxu.studygolang.com/about/">关于</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Mar 16, 2021</span></div>
+				<h1>周末看完这本 gRPC 的书后，我决定送 10 本给读者</h1>
+			</header>
+			<div class="content">
+				<p>大家好，我是站长 polarisxu。</p>
+<p>牛年春晚，Go语言中文网组织的活动，送了 10 本 《gRPC与云原生应用开发：以Go和Java为例》。上周末，我翻了下这本书，决定对该书做一个介绍，同时再送 10 本给我的读者。</p>
+<p><p class="md__image">
+  <img src="../imgs/grpc-book.png"
+    alt=""  />
+</p>
+</p>
+<h2 id="01-grpc-是什么">01 gRPC 是什么？<a href="#01-grpc-是什么" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>这是一本关于 gRPC 的书，所以简单介绍下 gRPC 是什么，相信很多人不陌生。</p>
+<p>2015 年 2 月 26 日，谷歌宣布开源 gRPC，并称其「基于公司多年的分布式系统构建经验」。因为在这之前，谷歌使用一个名为 Stubby 的通用 RPC 基础设施连接其数据中心内部和跨中心运行的大量微型服务已有十多年，可以认为 gRPC 是 Stubby 的下一个版本。自那之后，人们给 gRPC 贴上了许多漂亮的「标签」：<strong>极速、高性能、微服务间通信首选、多语言支持、双向流模式、protobuf、HTTP/2 等等。</strong></p>
+<p>借用官方的一张图展示 gRPC 多端交互：</p>
+<p><p class="md__image">
+  <img src="../imgs/grpc-diagram.svg"
+    alt="Concept Diagram"  />
+</p>
+</p>
+<p>关于 gRPC，官方一句话描述是：</p>
+<blockquote>
+<p>A high performance, open source universal RPC framework</p>
+</blockquote>
+<p>gRPC 官网：<a href="https://grpc.io/">https://grpc.io/</a>，目前已经是 CNCF 的孵化项目。</p>
+<h2 id="02-grpc-的应用场景">02 gRPC 的应用场景<a href="#02-grpc-的应用场景" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>总的来说，gRPC 可以高效地连接数据中心内部和跨数据中心的服务，并为负载平衡、跟踪、健康检查和身份验证提供可插拔的支持。它也适用于最后一英里的分布式计算连接设备，移动应用程序和浏览器的后端服务。主要使用场景有：</p>
+<ul>
+<li>在微服务风格的体系结构中有效连接多语言服务；</li>
+<li>连接移动设备、浏览器客户端和后端服务；</li>
+<li>开发与云服务器通信的移动客户端；</li>
+<li>构建高可扩展、低延迟的分布式系统和微服务；</li>
+<li>设计一个新的协议，需要准确，高效和语言独立；</li>
+<li>分层设计，以支持扩展，例如身份验证、负载平衡、日志记录和监控等；</li>
+<li>。。。</li>
+</ul>
+<h2 id="03-grpc-的主要优点">03 gRPC 的主要优点<a href="#03-grpc-的主要优点" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>相比 RESTful 服务或其他 RPC 框架，gRPC 有哪些突出的优点？</p>
+<p>1）极速</p>
+<p>gRPC 使用 protocol buffers（简称 protobuf）作为消息编码格式。protobuf 的特点是语言中立、平台无关、高可扩展，它可以序列化和反序列化结构化数据。</p>
+<p>与采用文本格式的 JSON 相比，采用二进制格式的 protobuf 在速度上可以达到<strong>前者的 5 倍</strong>！</p>
+<p>2）使用 HTTP/2</p>
+<p>gRPC 使用 HTTP/2 作为传输协议。我们来看看 HTTP/2 与 HTTP/1.X 相比有何优势。</p>
+<ul>
+<li>二进制传输</li>
+<li>多路复用，即可以在一个 TCP 连接上并行发送多个数据请求</li>
+<li>双向同时通信，即可以同时发送客户端请求和服务器端响应</li>
+<li>头部压缩技术，降低网络使用率</li>
+</ul>
+<p>3）多语言支持、社区活跃</p>
+<p>目前，gRPC 支持 11 种语言，GitHub 项目总星数近 6 万，其中 Go 实现和J ava 实现的星数最多。</p>
+<ul>
+<li>Go</li>
+<li>Java</li>
+<li>C#</li>
+<li>C++</li>
+<li>Dart</li>
+<li>Kotlin/JVM</li>
+<li>Node</li>
+<li>Objective-C</li>
+<li>PHP</li>
+<li>Python</li>
+<li>Ruby</li>
+</ul>
+<p>此外，gRPC 还支持多平台，比如 Web、Android，以及 Flutter、iOS 等。</p>
+<h2 id="04-grpc-与云原生应用开发">04 gRPC 与云原生应用开发<a href="#04-grpc-与云原生应用开发" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>拿到这本书时，我是有点吃惊的：我去，这么薄呢！？翻开一看，才 160 页，而实际正文大概 150 也左右。但当我阅读该书时，发现虽然篇幅不长，但包含的内容还是挺多的。</p>
+<p>本书一共 8 章，章节内容如下：</p>
+<p><strong>第 1 章 gRPC 入门</strong></p>
+<p>介绍 gRPC 的基础知识，并将它与 REST、GraphQL 和其他 RPC 技术等类似的进程间通信风格进行对比。</p>
+<p><strong>第 2 章 开始使用 gRPC</strong></p>
+<p>通过一个具体例子，完整的体验 gRPC 应用程序，而且是同时使用 Go 和 Java 实现。</p>
+<p><strong>第 3 章 gRPC 的通信模式</strong></p>
+<p>通过真实的示例探索 gRPC 的通信模式，包括一元 RPC 模式、服务器端流 RPC 模式、客户端流 RPC 模式、双向流 RPC 模式。</p>
+<p><strong>第 4 章 gRPC 的底层原理</strong></p>
+<p>作为一个合格的码农，我们不能停留在简单使用上，否则换工作面试后怎么办？！即使不面试，作为一个“上进”的码农，我们也应该了解了解 gRPC 的底层原理，而这章就设计相关知识。</p>
+<p><strong>第 5 章 超越基础知识</strong></p>
+<p>这一章属于应用的进阶。讲解了 gRPC 的一些非常重要的高级特性，如拦截器、截止时间、元数据、多路复用、负载均衡等。</p>
+<p><strong>第 6 章 安全的 gRPC</strong></p>
+<p>互联网时代，安全是很重要的。本章带你全面理解如何保护通信通道、如何认证以及如何控制用户对 gRPC 应用程序的访问。</p>
+<p><strong>第 7 章 在生产环境中运行 gRPC</strong></p>
+<p>学习完前面的章节，你大概已经搞定了 gRPC 服务。接下来就该测试、上线部署了。本周讲解 gRPC 应用程序的整个开发生命周期，包括测试 gRPC 应用程序、与 CI/CD 集成、在 Docker 和 Kubernetes 上部署与运行。</p>
+<p><strong>第 8 章 gRPC 的生态系统</strong></p>
+<p>最后一章介绍 gRPC 相关的支撑组件，得益于 gRPC 的可扩展性，社区有很不错的组件可用，这些构成了 gRPC 的生态。在实际项目中，这些生态组件会很有用哦。</p>
+<p>附上一张我整理的评价微服务框架好坏的思维导图，供参考：</p>
+<p><p class="md__image">
+  <img src="../imgs/microserivce-framework-is-goods.png"
+    alt=""  />
+</p>
+</p>
+<h2 id="05-重点来了送书">05 重点来了：送书<a href="#05-重点来了送书" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>相信你是冲着白嫖来的，但我希望你看了上面我啰嗦的内容。</p>
+<p>如何得到该书？借用书中的一个小点：<strong>留言说说 gPRC 中的 g 代表什么</strong>。2021 年 3 月 17 日 22 点前，从留言点赞最多的 20 位中随机选 10 位幸运小伙伴。（我会<strong>优先送给本公众号的忠实读者</strong>，包括经常阅读我的文章，转发、点赞、在看、留言、打赏等互动行为，因为后台是可以看到的哦！所以，<strong>对本文来个四连吧，很可能中奖的就是你了</strong>！）</p>
+<p>最后也欢迎大家直接通过下方链接购买本书。支持本书，支持中文翻译者。</p>
+
+			</div><div class="content">
+	<br>
+	<img src="https://static.studygolang.com/static/img/polarisxu-qrcode-soso-s.png">
+</div>
+
+<div class="related-posts thin">
+	<h2>相关推荐</h2>
+	<ul>
+	
+	<li><a href="/posts/rust/why-rust-and-study-book/">为什么学 Rust 及相关学习资料推荐</a></li>
+	
+	<li><a href="/posts/go/book/2021-go-book/">聊聊近期出版或将出版的几本 Go 图书</a></li>
+	
+	<li><a href="/posts/go/dynamic/go-opensource-11-years/">祝贺 Go 开源 11 周年</a></li>
+	
+	<li><a href="/posts/go/translation/benchmarking-grpc-in-rust-go/">对 gRPC 的 Rust 和 Go 版本进行基准测试</a></li>
+	
+	<li><a href="/posts/talk/sell-my-book/">从签名售书说起</a></li>
+	
+	</ul>
+</div>
+
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://polarisxu.studygolang.com/tags/grpc">gRPC</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/%E5%9B%BE%E4%B9%A6">图书</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1864 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2021-03-16 10:00 &#43;0800</p>
+			</footer>
+		</article>
+		<aside id="toc">
+			<div class="toc-title">目录</div>
+			<nav id="TableOfContents">
+  <ul>
+    <li><a href="#01-grpc-是什么">01 gRPC 是什么？</a></li>
+    <li><a href="#02-grpc-的应用场景">02 gRPC 的应用场景</a></li>
+    <li><a href="#03-grpc-的主要优点">03 gRPC 的主要优点</a></li>
+    <li><a href="#04-grpc-与云原生应用开发">04 gRPC 与云原生应用开发</a></li>
+    <li><a href="#05-重点来了送书">05 重点来了：送书</a></li>
+  </ul>
+</nav>
+		</aside>
+		<div class="post-nav thin">
+			<a class="prev-post" href="https://polarisxu.studygolang.com/posts/wechat/mac-wechat-3.0/">
+				<span class="post-nav-label">旧&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>微信 Mac 版 3.0 支持浏览朋友圈：划水更方便了</span>
+			</a>
+		</div>
+		<div id="comments" class="thin"><script src="https://utteranc.es/client.js"
+	repo="polaris1119/polarisxu"
+	issue-term="pathname"
+	theme="github-light"
+	crossorigin="anonymous"
+	async>
+</script>
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2019 - 2021 <a href="https://polarisxu.studygolang.com">polarisxu</a> &#183; <a href="https://beian.miit.gov.cn/">京ICP备14030343号-1</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://polarisxu.studygolang.com/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+		<span id="busuanzi_container" style="color: #666;">
+			本站总访客数/访问量：<span id="busuanzi_value_site_uv"></span>/<span id="busuanzi_value_site_pv"></span>
+		</span>
+	</footer>
+
+
+
+	<script src="https://polarisxu.studygolang.com/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw=" crossorigin="anonymous"></script>
+	<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?224c227cd9239761ec770bc8c1fb134c";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+</body>
+
+</html>

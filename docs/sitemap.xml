@@ -3,13 +3,33 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://polarisxu.studygolang.com/tags/grpc/</loc>
+    <lastmod>2021-03-16T10:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://polarisxu.studygolang.com/</loc>
-    <lastmod>2021-03-12T00:10:00+08:00</lastmod>
+    <lastmod>2021-03-16T10:00:00+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://polarisxu.studygolang.com/tags/</loc>
-    <lastmod>2021-03-12T00:10:00+08:00</lastmod>
+    <lastmod>2021-03-16T10:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polarisxu.studygolang.com/posts/grpc/grpc-cncf-with-go-and-java/</loc>
+    <lastmod>2021-03-16T10:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polarisxu.studygolang.com/tags/%E5%9B%BE%E4%B9%A6/</loc>
+    <lastmod>2021-03-16T10:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polarisxu.studygolang.com/posts/</loc>
+    <lastmod>2021-03-16T10:00:00+08:00</lastmod>
   </url>
   
   <url>
@@ -19,11 +39,6 @@
   
   <url>
     <loc>https://polarisxu.studygolang.com/posts/wechat/mac-wechat-3.0/</loc>
-    <lastmod>2021-03-12T00:10:00+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://polarisxu.studygolang.com/posts/</loc>
     <lastmod>2021-03-12T00:10:00+08:00</lastmod>
   </url>
   
@@ -169,11 +184,6 @@
   
   <url>
     <loc>https://polarisxu.studygolang.com/posts/rust/why-rust-and-study-book/</loc>
-    <lastmod>2021-02-20T17:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://polarisxu.studygolang.com/tags/%E5%9B%BE%E4%B9%A6/</loc>
     <lastmod>2021-02-20T17:30:00+08:00</lastmod>
   </url>
   
@@ -950,11 +960,6 @@
   <url>
     <loc>https://polarisxu.studygolang.com/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/</loc>
     <lastmod>2020-07-16T14:17:51+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://polarisxu.studygolang.com/tags/grpc/</loc>
-    <lastmod>2020-07-16T11:15:51+08:00</lastmod>
   </url>
   
   <url>

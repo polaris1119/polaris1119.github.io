@@ -14,7 +14,7 @@
 <meta property="og:description" content="polarisxu,Go语言中文网,go,golang,源码分析,系列教程" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://polarisxu.studygolang.com/" />
-<meta property="og:updated_time" content="2021-03-12T00:10:00+08:00" />
+<meta property="og:updated_time" content="2021-03-16T10:00:00+08:00" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="polarisxu"/>
 <meta name="twitter:description" content="polarisxu,Go语言中文网,go,golang,源码分析,系列教程"/>
@@ -70,6 +70,28 @@
 		<main class="site-main section-inner thin animated fadeIn faster">
     
 		
+        <div class="post animated fadeInDown">
+            <div class="post-title">
+                <h2><a href="/posts/go/translation/goui-a-very-simple-ui-framework/">GoUI：一个非常简单的 GUI 框架</a>
+                </h2>
+            </div>
+            <div class="post-content">
+                <div class="p_part"><p>最近，我一直想开发一些桌面（主要是 Windows，但也可以考虑 MacOS 或 Linux）应用程序。虽然 Go 不是开发 UI 应用程序时首选语言，但是该语言的简单性和健壮性仍然使它成为我的首选语言。是的，这是我的锤子（hammer）&hellip; 但这是一个该死的漂亮锤子。 以前，我曾将 Ebiten 图形库用于 Go，以便与孩子们一起编写一些游戏。但是，对于一般的“应用程序”开发（即需要“小部件</p></div>
+            </div>
+            <div class="post-footer">
+                <div class="meta">
+                    <div class="info"><em class="fas fa-calendar-day"></em><span
+                                class="date">2020-08-17</span>
+                        <a class="tag"
+                                   href="/tags/go/">Go</a><a class="tag"
+                                   href="/tags/golang/">Golang</a><a class="tag"
+                                   href="/tags/goui/">GoUI</a><a class="tag"
+                                   href="/tags/gui/">GUI</a>
+                    </div>
+                </div>
+            </div>
+				</div>
+    
         <div class="post animated fadeInDown">
             <div class="post-title">
                 <h2><a href="/posts/go/translation/easter-eggs-in-go-source-code-2l02/">Go 源代码中的复活节彩蛋</a>
@@ -288,50 +310,6 @@ apiVersion:apps/v1kind:Deploymentmetadata:labels:dockerdev:webname:webspec:selec
                                    href="/tags/goland/">GoLand</a><a class="tag"
                                    href="/tags/kubernetes/">Kubernetes</a><a class="tag"
                                    href="/tags/debug/">Debug</a>
-                    </div>
-                </div>
-            </div>
-				</div>
-    
-        <div class="post animated fadeInDown">
-            <div class="post-title">
-                <h2><a href="/posts/devtool/goland/running-go-applications-using-docker-compose-in-goland/">在 GoLang 中使用 Docker Compose 运行 Go 应用程序</a>
-                </h2>
-            </div>
-            <div class="post-content">
-                <div class="p_part"><p>今天，我们将继续有关如何使用 Docker 运行 和调试 Go 应用程序 的系列文章。
-在本文中，我们将使用 Docker Compose 运行和调试我们的应用程序。对于本文，我们将使用此处的源代码 ，在开始之前切换到 compose 分支 。
-使用 Docker Compose 运行 Go 应用程序 让我们从使用 Docker Compose 运行应用程序开始。
-查看我们已经创建的项目，可以在代码仓库中找到 docker-compose.yaml 文件：
-version:&#34;3.5&#34;services:web:container_name:dockerdevbuild:./ports:- &#34;8000:8000&#34;environment:DD_DB_HOST:dbcommand:/serverdepends_on:- dbdb:container_name:dockerdev-dbimage:postgres:12.2-alpineports:- &#34;5432:5432&#34;environment:POSTGRES_USER:golandPOSTGRES_PASSWORD:golandPOSTGRES_DB:golandvolumes:- ./init.sql:/docker-entrypoint-initdb.d/init.sql在数据库部分，我们需要创建一个名为 init.sql 的新文件。该文件的内容用于设置服务运行所需的数据库。
-最后，让我们在 main.go 文件中运行 Sync packages of &lt;project&gt; 来 quick-fix，以下载 pgx 库并运行该应用程序。注意：如果你的模块缓存中还没有 pgx 的 4.5.0 版本，则需要执行此步骤。
-运行基于 Docker Compose 的应用程序类似于其他 Run Configurations。单击 docker-compose.yaml 中 services 指令旁边的双绿色箭头按钮。要仅运行一项服务，请点击要运行的服务类型旁边的绿色箭头，例如上面的示例配置中的 web 或 db。
-配置运行后，在 Docker 节点下的 Services Tool 窗口中会有一个名为 Compose 的新节点。这里会显示正在运行的每个 Docker Compose 服务套件。
-可以浏览每个服务定义，并为每个服务显示所有正在运行的实例。Docker Compose 服务中可用于容器的信息与常规 Docker 容器可使用的信息相同。
-注意：如果你要启动较重的服务（例如数据库服务器），或者这些服务需要一些初始化时间，则我们的 Go 程序服务需要考虑这些服务的启动时间。
-在我们的示例代码中，这是使用 getDBConnection 函数处理的，该函数尝试在放弃之前尝试几次以指数退避的方式连接到数据库。
-重启动 Docker Compose 服务 更改我们的代码后，我们需要重新启动服务以重新加载这些更改。目前，使用 IDE 重新启动它有点复杂，因为这样做需要你执行以下步骤：
- 执行 Run | Edit Configurations 并复制一份现有的 Docker Compose 配置； 编辑新创建的配置以添加重新启动的服务的名称，并启用 –build 选项以强制在运行镜像之前对其进行重建；  完成这些步骤之后，你可以停止现有服务，删除现有容器，然后启动新创建的配置。
-Pro tip：你可以使用 “Delete” 功能同时停止和删除服务。
-使用 Docker Compose 调试 Go 应用程序 要使用 Docker Compose 调试应用程序，我们需要同时更改 Dockerfile 和 docker-compose.yaml 文件。我们可以切换到代码库的 compose-debug 分支 ，这样更容易理解。
-现在，docker-compose.yaml 文件如下所示：
-version:&#34;3.5&#34;services:web:container_name:dockerdevbuild:./ports:- &#34;8000:8000&#34;- &#34;40000:40000&#34;environment:DD_DB_HOST:dbsecurity_opt:- &#34;seccomp:unconfined&#34;cap_add:- SYS_PTRACEcommand:/dlv --headless --listen=:40000 --api-version=2 exec /serverdepends_on:- dbdb:container_name:dockerdev-dbimage:postgres:12.2-alpineports:- &#34;5432:5432&#34;environment:POSTGRES_USER:golandPOSTGRES_PASSWORD:golandPOSTGRES_DB:golandvolumes:- ./init.sql:/docker-entrypoint-initdb.d/init.sql注意：这里的重要部分是 security_opt 和 cap_add 属性，因为它们允许调试器在 Docker 环境中运行。
-运行此操作类似于运行常规 Docker Compose 配置。我们可以使用 Go Remote 配置连接到容器，调试器会话将像调试常规配置一样开始。
-今天我们的文章到此结束。我们已经讨论了如何使用 Docker Compose，以及如何从 GoLand 运行和调试我们的应用程序。
-在下一篇文章中，我们将介绍如何在 IDE 中使用 Kubernetes，以及如何使用它运行和调试我们的应用程序。
- 原文链接：https://blog.jetbrains.com/go/2020/05/08/running-go-applications-using-docker-compose-in-goland/
-作者：Florin Pățan
-翻译：Go语言中文网 polaris
- </p></div>
-            </div>
-            <div class="post-footer">
-                <div class="meta">
-                    <div class="info"><em class="fas fa-calendar-day"></em><span
-                                class="date">2020-05-08</span>
-                        <a class="tag"
-                                   href="/tags/goland/">GoLand</a><a class="tag"
-                                   href="/tags/docker/">Docker</a><a class="tag"
-                                   href="/tags/compose/">Compose</a>
                     </div>
                 </div>
             </div>

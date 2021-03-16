@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Thu, 16 Jul 2020 11:15:51 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/grpc/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 16 Mar 2021 10:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/grpc/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>周末看完这本 gRPC 的书后，我决定送 10 本给读者</title>
+      <link>https://polarisxu.studygolang.com/posts/grpc/grpc-cncf-with-go-and-java/</link>
+      <pubDate>Tue, 16 Mar 2021 10:00:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/grpc/grpc-cncf-with-go-and-java/</guid>
+      <description>大家好，我是站长 polarisxu。 牛年春晚，Go语言中文网组织的活动，送了 10 本 《gRPC与云原生应用开发：以Go和Java为例》。上周末，我翻了下这本书，决定对该书做一个介绍，同时再送 10 本给我的读者。 01 gRPC 是什么？ 这是一本关于 gRPC 的书，所以简单介绍下 gRPC 是什么，相信很多人不陌生。 2015 年 2 月 26 日，谷歌宣布开源 gRPC，并称其「基于公司多年的分布式系统构建经验」。因为</description>
+    </item>
+    
     <item>
       <title>对 gRPC 的 Rust 和 Go 版本进行基准测试</title>
       <link>https://polarisxu.studygolang.com/posts/go/translation/benchmarking-grpc-in-rust-go/</link>
