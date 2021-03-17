@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>性能 on polarisxu</title>
+    <link>https://polarisxu.studygolang.com/tags/%E6%80%A7%E8%83%BD/</link>
+    <description>Recent content in 性能 on polarisxu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
+    <lastBuildDate>Wed, 17 Mar 2021 20:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/%E6%80%A7%E8%83%BD/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>优化Go应用性能就是在浪费时间？</title>
+      <link>https://polarisxu.studygolang.com/posts/go/translation/golang-slower/</link>
+      <pubDate>Wed, 17 Mar 2021 20:00:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/translation/golang-slower/</guid>
+      <description>原文标题：Writing slower Go programs。作者认为应该优化可读性，而不是优化性能。你认可吗？一起看下该文。本文不代表 Go语言中文网 的观点。 什么？写更慢的 Go 程序？难道我们不应该关注如何让 Go 程序更快吗？ 实际不是的。为了性能而优化 Go 代码几乎肯定在浪费你的时间，原因有以下几点： 性能并不重要（Performance doesn&amp;rsquo;t matter）； Go 本身就够快； 可读性胜过速度； 以</description>
+    </item>
+    
+  </channel>
+</rss>

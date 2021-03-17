@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Tue, 16 Mar 2021 10:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 17 Mar 2021 20:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>优化Go应用性能就是在浪费时间？</title>
+      <link>https://polarisxu.studygolang.com/posts/go/translation/golang-slower/</link>
+      <pubDate>Wed, 17 Mar 2021 20:00:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/translation/golang-slower/</guid>
+      <description>原文标题：Writing slower Go programs。作者认为应该优化可读性，而不是优化性能。你认可吗？一起看下该文。本文不代表 Go语言中文网 的观点。 什么？写更慢的 Go 程序？难道我们不应该关注如何让 Go 程序更快吗？ 实际不是的。为了性能而优化 Go 代码几乎肯定在浪费你的时间，原因有以下几点： 性能并不重要（Performance doesn&amp;rsquo;t matter）； Go 本身就够快； 可读性胜过速度； 以</description>
+    </item>
+    
     <item>
       <title>周末看完这本 gRPC 的书后，我决定送 10 本给读者</title>
       <link>https://polarisxu.studygolang.com/posts/grpc/grpc-cncf-with-go-and-java/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/talk/2021-change-job/</guid>
       <description>大家好，我是站长 polarisxu。 下周就进入 3 月份了，正所谓金三银四，是换工作的黄金时间。 实际上从春节开工到现在十天左右时间，「Go语言中文网」上新发的招聘信息不少，从 「Go招聘」公众号上也看到了不少招聘信息。 那到底该不该换工作呢？什么情况下换工作？今天一起聊聊这个话题。 马云曾说，员工离职，原因很多种，但只有两点最真实： 钱，没给到位； 心，委屈了。 这些归根到</description>
-    </item>
-    
-    <item>
-      <title>Go 官方应该搞一个类似 Rustup 的管理工具</title>
-      <link>https://polarisxu.studygolang.com/posts/go/go-need-like-rustup-tool/</link>
-      <pubDate>Thu, 25 Feb 2021 15:10:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/go-need-like-rustup-tool/</guid>
-      <description>大家好，我是站长 polarisxu。 搭建开发环境复杂，会让很多新手抓狂。比如看到有人吐槽 Python 环境复杂，而搭建 PHP 环境，出现了很多一键安装包，像 lnmp 等。可见大家开始上手时，希望能够在环境上少一些折腾，别还没入门就劝退。 在早期，搭建 Go 语言开发环境，什么 GOROOT、GOPATH、GOBIN，很多新手一头雾水，经常稀里糊涂配置上了，写项目 go install 一下，找不到编译好的程序跑哪</description>
     </item>
     
   </channel>

@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Thu, 11 Mar 2021 18:12:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 17 Mar 2021 20:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>优化Go应用性能就是在浪费时间？</title>
+      <link>https://polarisxu.studygolang.com/posts/go/translation/golang-slower/</link>
+      <pubDate>Wed, 17 Mar 2021 20:00:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/translation/golang-slower/</guid>
+      <description>原文标题：Writing slower Go programs。作者认为应该优化可读性，而不是优化性能。你认可吗？一起看下该文。本文不代表 Go语言中文网 的观点。 什么？写更慢的 Go 程序？难道我们不应该关注如何让 Go 程序更快吗？ 实际不是的。为了性能而优化 Go 代码几乎肯定在浪费你的时间，原因有以下几点： 性能并不重要（Performance doesn&amp;rsquo;t matter）； Go 本身就够快； 可读性胜过速度； 以</description>
+    </item>
+    
     <item>
       <title>快一个月，Go1.16 才发现了比较严重的 Bug，但这个 Bug 有点 Low。。。</title>
       <link>https://polarisxu.studygolang.com/posts/go/dynamic/go1.16.1-release/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/rust/rust-first-impression/</guid>
       <description>大家好，我是站长 polarisxu。 有些朋友应该知道，我最近在看 Rust，在朋友圈我发了一些关于 Rust 相关的东西。2021 年，会陆续写一些 Rust 相关的文章。今天先来一篇。 这篇文章不谈具体的语法，主要从总体上介绍下 Rust，更确切说是 Rust 给我的第一印象，文章（包括后续 Rust 的文章）会和 Go 对比着来，方便 Go 朋友们一起学习、交流。 01 官网 对于中国开发者来说，我认为 Rust 的官网相比 Go 官网</description>
-    </item>
-    
-    <item>
-      <title>Go 终于可以开发原生 Mac APP 了</title>
-      <link>https://polarisxu.studygolang.com/posts/go/translation/use-mac-apis-and-build-mac-apps-with-go/</link>
-      <pubDate>Wed, 10 Feb 2021 23:00:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/translation/use-mac-apis-and-build-mac-apps-with-go/</guid>
-      <description>本文是 macdriver 作者写的，这是一个 Go 语言的 Objective-C 桥接器，使得 Go 可以使用 Mac API。如果做过 Apple 相关应用开发，可以试试这个。 如果你使用 Apple 设备并且是 Go 程 序员，或者正在考虑学习 Go，那么我们会获得一些非常酷的新功能。今天，我发布了 macdriver 的 Alpha 版，这是一个 Go 语言的 Objective-C 桥，具有与常见 Mac API 的绑定。 那些关注我的上一篇有关 Large Type in 80 lines of Go 的文章的人可能已经找到了 macdriver。 largetype 程序是 macdriver 的示例项</description>
     </item>
     
   </channel>
