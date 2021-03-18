@@ -10,7 +10,7 @@
 		<atom:link href="https://polarisxu.studygolang.com/posts/index.xml" rel="self" type="application/rss+xml" />
 		
 		<item>
-			<title>“map 和 switch 如何选？match 又是什么？&#34;</title>
+			<title>map 和 switch 如何选？match 又是什么？</title>
 			<link>https://polarisxu.studygolang.com/posts/go/choose-map-or-switch/</link>
 			<pubDate>Wed, 17 Mar 2021 23:00:00 +0800</pubDate>
 			
