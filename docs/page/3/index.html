@@ -14,7 +14,7 @@
 <meta property="og:description" content="polarisxu,Go语言中文网,go,golang,源码分析,系列教程" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://polarisxu.studygolang.com/" />
-<meta property="og:updated_time" content="2021-03-17T20:00:00+08:00" />
+<meta property="og:updated_time" content="2021-03-17T23:00:00+08:00" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="polarisxu"/>
 <meta name="twitter:description" content="polarisxu,Go语言中文网,go,golang,源码分析,系列教程"/>
@@ -70,6 +70,26 @@
 		<main class="site-main section-inner thin animated fadeIn faster">
     
 		
+        <div class="post animated fadeInDown">
+            <div class="post-title">
+                <h2><a href="/posts/go/translation/7-reasons-you-should-try-use-go/">10 年 Java 经验者：你应该尝试 Go 的 7 个理由</a>
+                </h2>
+            </div>
+            <div class="post-content">
+                <div class="p_part"><p>本文作者是一位工作了 20+ 年的工程师，其中 10+ 年使用 Java，7+ 年使用 C#，最近 3+ 年使用 Go。文章的观点是作者的个人总结，提倡你尝试并使用 Go 语言。目前作者已经不使用 Java 和 C# 了。 原因一：开发速度 如今，当我要编写一款软件时（我肯定可以用上面提到的三种语言编写它），我将始终选择 Go。 因为我可以花较短时间用 Go 开发完，而且代码更具可读性，不那么抽象，更“切合实际”。 在编写 Go</p></div>
+            </div>
+            <div class="post-footer">
+                <div class="meta">
+                    <div class="info"><em class="fas fa-calendar-day"></em><span
+                                class="date">2021-02-05</span>
+                        <a class="tag"
+                                   href="/tags/go/">Go</a><a class="tag"
+                                   href="/tags/java/">Java</a>
+                    </div>
+                </div>
+            </div>
+				</div>
+    
         <div class="post animated fadeInDown">
             <div class="post-title">
                 <h2><a href="/posts/wechat/myself-wechat-red-cover/">微信支持个人免费制作红包封面了：不过跟 clubhouse 一样，只能 iOS</a>
@@ -248,27 +268,6 @@
                         <a class="tag"
                                    href="/tags/%E5%85%AC%E4%BC%97%E5%8F%B7/">公众号</a><a class="tag"
                                    href="/tags/%E7%B2%89%E4%B8%9D/">粉丝</a>
-                    </div>
-                </div>
-            </div>
-				</div>
-    
-        <div class="post animated fadeInDown">
-            <div class="post-title">
-                <h2><a href="/posts/go/action/weekly-question-78/">第 78 期周刊题目解析：答题正确率有点低</a>
-                </h2>
-            </div>
-            <div class="post-content">
-                <div class="p_part"><p>大家好，我是站长 polarisxu。 昨天在 Go语言爱好者周刊第 78 期 出了一道题，以下代码输出什么？ package main import ( &#34;fmt&#34; &#34;time&#34; ) func main() { ch1 := make(chan int) go fmt.Println(&lt;-ch1) ch1 &lt;- 5 time.Sleep(1 * time.Second) } A：5；B：编译不通过；C：运行时死锁 如果你没有做这道题，往下看之前，先思考下。 今天看了下答题结果，正确率有点低，才 35%： 可见不少人的基础还是不扎实。 此题如果改为这样： package main import ( &#34;fmt&#34; &#34;time&#34; ) func main() { ch1 := make(chan int) go func(){ fmt.Println(&lt;-ch1) }() ch1 &lt;- 5 time.Sleep(1 * time.Second)</p></div>
-            </div>
-            <div class="post-footer">
-                <div class="meta">
-                    <div class="info"><em class="fas fa-calendar-day"></em><span
-                                class="date">2021-01-18</span>
-                        <a class="tag"
-                                   href="/tags/%E5%91%A8%E5%88%8A/">周刊</a><a class="tag"
-                                   href="/tags/goroutine/">goroutine</a><a class="tag"
-                                   href="/tags/channel/">channel</a>
                     </div>
                 </div>
             </div>

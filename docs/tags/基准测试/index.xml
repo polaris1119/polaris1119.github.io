@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Thu, 16 Jul 2020 11:15:51 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/%E5%9F%BA%E5%87%86%E6%B5%8B%E8%AF%95/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 17 Mar 2021 23:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/%E5%9F%BA%E5%87%86%E6%B5%8B%E8%AF%95/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>“map 和 switch 如何选？match 又是什么？&#34;</title>
+      <link>https://polarisxu.studygolang.com/posts/go/choose-map-or-switch/</link>
+      <pubDate>Wed, 17 Mar 2021 23:00:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/choose-map-or-switch/</guid>
+      <description>大家好，我是站长 polarisxu。 看到标题别惊讶，虽然 map 和 switch 似乎没啥关系，但有些场景它们俩都可以用。 场景一：根据不同的错误码显示对应错误消息，比如 200 -&amp;gt; 正常。 场景二：根据不同状态显示对应的文案。这个场景很常见，比如数据库保存状态，用的 tinyint 类型，显示给用户的是文本，所以需要进行转换。 具体怎么选？我们看一下代码，怎么选择应该一目了然。 const ( UnPay = iota HadPay Delivery Finish ) var orderState = map[int]string{ UnPay: &amp;</description>
+    </item>
+    
     <item>
       <title>对 gRPC 的 Rust 和 Go 版本进行基准测试</title>
       <link>https://polarisxu.studygolang.com/posts/go/translation/benchmarking-grpc-in-rust-go/</link>

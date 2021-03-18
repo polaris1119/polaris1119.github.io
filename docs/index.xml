@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Wed, 17 Mar 2021 20:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 17 Mar 2021 23:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>“map 和 switch 如何选？match 又是什么？&#34;</title>
+      <link>https://polarisxu.studygolang.com/posts/go/choose-map-or-switch/</link>
+      <pubDate>Wed, 17 Mar 2021 23:00:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/choose-map-or-switch/</guid>
+      <description>大家好，我是站长 polarisxu。 看到标题别惊讶，虽然 map 和 switch 似乎没啥关系，但有些场景它们俩都可以用。 场景一：根据不同的错误码显示对应错误消息，比如 200 -&amp;gt; 正常。 场景二：根据不同状态显示对应的文案。这个场景很常见，比如数据库保存状态，用的 tinyint 类型，显示给用户的是文本，所以需要进行转换。 具体怎么选？我们看一下代码，怎么选择应该一目了然。 const ( UnPay = iota HadPay Delivery Finish ) var orderState = map[int]string{ UnPay: &amp;</description>
+    </item>
+    
     <item>
       <title>优化Go应用性能就是在浪费时间？</title>
       <link>https://polarisxu.studygolang.com/posts/go/translation/golang-slower/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/programming-language-implemented-by-go/</guid>
       <description>大家好，我是站长 polarisxu。 Go 是一门通用编程语言，Go1.5 实现了自举，也就是说，Go 语言是用它自身实现的。经过十来年的发展，开源界使用 Go 语言实现的编程语言不少，那它们发展的怎么样？本文进行一下梳理。 01 Go+ 这是国内七牛老大许式伟主导的，对 Go 语言的扩展，专为数据科学领域打造。目标是取代 Python 在数据科学领域的位置。 项目地址：https://github.com</description>
-    </item>
-    
-    <item>
-      <title>金三银四，聊聊换工作的那些事</title>
-      <link>https://polarisxu.studygolang.com/posts/talk/2021-change-job/</link>
-      <pubDate>Sat, 27 Feb 2021 20:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/talk/2021-change-job/</guid>
-      <description>大家好，我是站长 polarisxu。 下周就进入 3 月份了，正所谓金三银四，是换工作的黄金时间。 实际上从春节开工到现在十天左右时间，「Go语言中文网」上新发的招聘信息不少，从 「Go招聘」公众号上也看到了不少招聘信息。 那到底该不该换工作呢？什么情况下换工作？今天一起聊聊这个话题。 马云曾说，员工离职，原因很多种，但只有两点最真实： 钱，没给到位； 心，委屈了。 这些归根到</description>
     </item>
     
   </channel>

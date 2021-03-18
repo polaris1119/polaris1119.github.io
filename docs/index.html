@@ -14,7 +14,7 @@
 <meta property="og:description" content="polarisxu,Go语言中文网,go,golang,源码分析,系列教程" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://polarisxu.studygolang.com/" />
-<meta property="og:updated_time" content="2021-03-17T20:00:00+08:00" />
+<meta property="og:updated_time" content="2021-03-17T23:00:00+08:00" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="polarisxu"/>
 <meta name="twitter:description" content="polarisxu,Go语言中文网,go,golang,源码分析,系列教程"/>
@@ -70,6 +70,26 @@
 		<main class="site-main section-inner thin animated fadeIn faster">
     
 		
+        <div class="post animated fadeInDown">
+            <div class="post-title">
+                <h2><a href="/posts/go/choose-map-or-switch/">“map 和 switch 如何选？match 又是什么？&#34;</a>
+                </h2>
+            </div>
+            <div class="post-content">
+                <div class="p_part"><p>大家好，我是站长 polarisxu。 看到标题别惊讶，虽然 map 和 switch 似乎没啥关系，但有些场景它们俩都可以用。 场景一：根据不同的错误码显示对应错误消息，比如 200 -&gt; 正常。 场景二：根据不同状态显示对应的文案。这个场景很常见，比如数据库保存状态，用的 tinyint 类型，显示给用户的是文本，所以需要进行转换。 具体怎么选？我们看一下代码，怎么选择应该一目了然。 const ( UnPay = iota HadPay Delivery Finish ) var orderState = map[int]string{ UnPay: &</p></div>
+            </div>
+            <div class="post-footer">
+                <div class="meta">
+                    <div class="info"><em class="fas fa-calendar-day"></em><span
+                                class="date">2021-03-17</span>
+                        <a class="tag"
+                                   href="/tags/go/">Go</a><a class="tag"
+                                   href="/tags/%E5%9F%BA%E5%87%86%E6%B5%8B%E8%AF%95/">基准测试</a>
+                    </div>
+                </div>
+            </div>
+				</div>
+    
         <div class="post animated fadeInDown">
             <div class="post-title">
                 <h2><a href="/posts/go/translation/golang-slower/">优化Go应用性能就是在浪费时间？</a>
@@ -247,26 +267,6 @@
                                    href="/tags/go/">Go</a><a class="tag"
                                    href="/tags/goplus/">Goplus</a><a class="tag"
                                    href="/tags/tengo/">Tengo</a>
-                    </div>
-                </div>
-            </div>
-				</div>
-    
-        <div class="post animated fadeInDown">
-            <div class="post-title">
-                <h2><a href="/posts/talk/2021-change-job/">金三银四，聊聊换工作的那些事</a>
-                </h2>
-            </div>
-            <div class="post-content">
-                <div class="p_part"><p>大家好，我是站长 polarisxu。 下周就进入 3 月份了，正所谓金三银四，是换工作的黄金时间。 实际上从春节开工到现在十天左右时间，「Go语言中文网」上新发的招聘信息不少，从 「Go招聘」公众号上也看到了不少招聘信息。 那到底该不该换工作呢？什么情况下换工作？今天一起聊聊这个话题。 马云曾说，员工离职，原因很多种，但只有两点最真实： 钱，没给到位； 心，委屈了。 这些归根到</p></div>
-            </div>
-            <div class="post-footer">
-                <div class="meta">
-                    <div class="info"><em class="fas fa-calendar-day"></em><span
-                                class="date">2021-02-27</span>
-                        <a class="tag"
-                                   href="/tags/%E8%81%8C%E5%9C%BA/">职场</a><a class="tag"
-                                   href="/tags/%E6%B1%82%E8%81%8C/">求职</a>
                     </div>
                 </div>
             </div>
