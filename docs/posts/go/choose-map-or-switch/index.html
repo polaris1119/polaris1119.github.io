@@ -223,7 +223,7 @@ ok  	test/map	2.153s
 </code></pre></div><p>特别是当需要映射的内容很多时，更应该使用的 map 方式，毕竟看到一大堆 case 会疯掉。</p>
 <p>题外话：可能正是因为类似的需求很常见，而 switch 似乎太繁琐，于是 Rust 中没有 switch，而是提供了 match 表达式，Rust 代码如下：</p>
 <div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="k">enum</span> <span class="nc">State</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span><span class="w">  </span><span class="n">Unpay</span><span class="p">,</span><span class="w">
+</span><span class="w">	</span><span class="n">Unpay</span><span class="p">,</span><span class="w">
 </span><span class="w">	</span><span class="n">HadPay</span><span class="p">,</span><span class="w">
 </span><span class="w">	</span><span class="n">Delivery</span><span class="p">,</span><span class="w">
 </span><span class="w">	</span><span class="n">Finish</span><span class="p">,</span><span class="w">
@@ -262,13 +262,13 @@ ok  	test/map	2.153s
 	
 	<li><a href="/posts/go/translation/benchmarking-grpc-in-rust-go/">对 gRPC 的 Rust 和 Go 版本进行基准测试</a></li>
 	
+	<li><a href="/posts/go/go-version-detail/">发现 go version 的一个另类用法：你肯定想不到</a></li>
+	
 	<li><a href="/posts/go/translation/golang-slower/">优化Go应用性能就是在浪费时间？</a></li>
 	
 	<li><a href="/posts/go/dynamic/go1.16.1-release/">快一个月，Go1.16 才发现了比较严重的 Bug，但这个 Bug 有点 Low。。。</a></li>
 	
 	<li><a href="/posts/go/language-rankings-1-21/">RedMonk 编程语言排行榜，说 Go 正走向衰退，你认可吗？</a></li>
-	
-	<li><a href="/posts/go/translation/top-10-framework-golang-library-to-build-microservice/">构建微服务的 10 大 Go 框架/库</a></li>
 	
 	</ul>
 </div>
@@ -287,6 +287,9 @@ ok  	test/map	2.153s
 			<nav id="TableOfContents"></nav>
 		</aside>
 		<div class="post-nav thin">
+			<a class="next-post" href="https://polarisxu.studygolang.com/posts/go/go-version-detail/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;新</span><br><span>发现 go version 的一个另类用法：你肯定想不到</span>
+			</a>
 			<a class="prev-post" href="https://polarisxu.studygolang.com/posts/go/translation/golang-slower/">
 				<span class="post-nav-label">旧&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>优化Go应用性能就是在浪费时间？</span>
 			</a>

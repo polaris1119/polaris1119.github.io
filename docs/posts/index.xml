@@ -6,8 +6,122 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en</language>
 		<copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-		<lastBuildDate>Wed, 17 Mar 2021 23:00:00 +0800</lastBuildDate>
+		<lastBuildDate>Fri, 19 Mar 2021 17:50:00 +0800</lastBuildDate>
 		<atom:link href="https://polarisxu.studygolang.com/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>发现 go version 的一个另类用法：你肯定想不到</title>
+			<link>https://polarisxu.studygolang.com/posts/go/go-version-detail/</link>
+			<pubDate>Fri, 19 Mar 2021 17:50:00 +0800</pubDate>
+			
+			<guid>https://polarisxu.studygolang.com/posts/go/go-version-detail/</guid>
+			<description>大家好，我是站长 polarisxu。 对于 go version，大家应该不陌生。在很多入门教程，安装 Go 后，一般会建议执行 go version 看看是否安装成功；亦或遇到问题，别人会问你 Go 哪个版本，你也会通过 go version 命令查看。所以，go version 的一个作用是查看本地使用的 Go 版本。 但实际上，go version 还有其他用途，甚至可以说，输出本地 Go 版本号只是它功能的一个特例。先 go help version 看看： $ go help version usage: go version [-m] [-v] [file ...] Version</description>
+			<content type="html"><![CDATA[<p>大家好，我是站长 polarisxu。</p>
+<p>对于 go version，大家应该不陌生。在很多入门教程，安装 Go 后，一般会建议执行 go version 看看是否安装成功；亦或遇到问题，别人会问你 Go 哪个版本，你也会通过 go version 命令查看。所以，go version 的一个作用是查看本地使用的 Go 版本。</p>
+<p>但实际上，go version 还有其他用途，甚至可以说，输出本地 Go 版本号只是它功能的一个特例。先 go help version 看看：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ go <span class="nb">help</span> version
+usage: go version <span class="o">[</span>-m<span class="o">]</span> <span class="o">[</span>-v<span class="o">]</span> <span class="o">[</span>file ...<span class="o">]</span>
+
+Version prints the build information <span class="k">for</span> Go executables.
+
+Go version reports the Go version used to build each of the named
+executable files.
+
+If no files are named on the <span class="nb">command</span> line, go version prints its own
+version information.
+
+If a directory is named, go version walks that directory, recursively,
+looking <span class="k">for</span> recognized Go binaries and reporting their versions.
+By default, go version does not report unrecognized files found
+during a directory scan. The -v flag causes it to report unrecognized files.
+
+The -m flag causes go version to print each executable<span class="err">&#39;</span>s embedded
+module version information, when available. In the output, the module
+information consists of multiple lines following the version line, each
+indented by a leading tab character.
+
+See also: go doc runtime/debug.BuildInfo.
+</code></pre></div><p>可见这个命令主要是用于输出 Go 可执行文件的编译信息的，只是如果没有提供可执行文件，则输出当前安装的 Go 版本信息。</p>
+<p>我们通过一个具体例子来看看 -v、-m 的作用。</p>
+<h2 id="01-初始化例子">01 初始化例子</h2>
+<p>创建一个 go module 和如下目录结构：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ go mod init github.com/polaris1119/gopher
+
+$ tree .
+.
+├── cmd
+│   ├── bar
+│   │   └── main.go
+│   └── foo
+│       └── main.go
+└── go.mod
+</code></pre></div><p>其中 main.go 就是一个简单的 Hello World。执行 go install 安装。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nb">export</span> <span class="nv">GOBIN</span><span class="o">=</span>~/gopher/bin
+$ go install github.com/polaris1119/gopher/cmd/...
+</code></pre></div><ul>
+<li>export GOBIN 是为了将编译的结果放在当前目录的 bin 目录下，而不是默认的 <code>$GOPATH/bin</code> 下</li>
+</ul>
+<p>成功后，执行 go version bin：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ go version bin
+bin/bar: go1.16.2
+bin/foo: go1.16.2
+</code></pre></div><p>而我本地的版本是 1.16.2。可见 <code>go version [file …]</code> 后的 file 可以是目录，这时会递归输出里面的文件的 Go 版本信息。</p>
+<h2 id="02--v-选项">02 -v 选项</h2>
+<p>我们在 bin 目录下增加一个文本文件 api.txt 和一个可执行文件（php）。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ tree bin
+bin
+├── api.txt
+├── bar
+├── foo
+└── php
+</code></pre></div><p>再次运行 go version：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ go version bin
+bin/bar: go1.16.2
+bin/foo: go1.16.2
+</code></pre></div><p>结果一样。试试加上 -v 参数。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ go version -v bin
+bin/api.txt: not executable file
+bin/bar: go1.16.2
+bin/foo: go1.16.2
+bin/php: go version not found
+</code></pre></div><p>可见 -v 参数能够输出无法识别的文件。</p>
+<h2 id="03--m-选项">03 -m 选项</h2>
+<p>加上 -m 选项执行：（只看单个二进制文件，也可以跟上面一样是目录）</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ go version -m bin/foo
+bin/foo: go1.16.2
+	path	github.com/polaris1119/gopher/cmd/foo
+	mod	github.com/polaris1119/gopher	<span class="o">(</span>devel<span class="o">)</span>
+</code></pre></div><p>显示出当前二进制包路径和 mod 信息：包名和 devel。devel 表示这个二进制是开发版本。比如我们安装了 dlv，可以看看它的 Go 版本信息：（以下是我本地之前安装的）</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ go version -m ~/go/bin/dlv
+/Users/xuxinhua/go/bin/dlv: go1.16beta1
+	path	github.com/go-delve/delve/cmd/dlv
+	mod	github.com/go-delve/delve	v1.6.0	h1:NImdy7K9essqNU8sazLhbX/oCicpmlapmjgA3qL1LZM<span class="o">=</span>
+	。。。
+</code></pre></div><p>它没有 devel，而是具体的版本号（这里是 v1.6.0），<code>h1:NImdy7K9essqNU8sazLhbX/oCicpmlapmjgA3qL1LZM=</code> 这一串和 go.sum 中是一样的，<code>h1:</code> 是固定的，后面一串是 hash，是 Go modules 将目标模块版本的 zip 文件解包后，针对所有包内文件依次进行 hash，然后再把它们的 hash 结果按照固定格式和算法生成总的 hash 值。</p>
+<p>下面，我们修改一下 cmd/foo/main.go 文件：（如果没有引入依赖，可以 go mod tidy 引入下）</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+  <span class="s">&#34;fmt&#34;</span>
+  <span class="s">&#34;github.com/polaris1119/foo&#34;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">foo</span><span class="p">.</span><span class="nf">Bar</span><span class="p">())</span>
+<span class="p">}</span>
+</code></pre></div><p>然后 go install 安装：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ go install github.com/polaris1119/gopher/cmd/...
+</code></pre></div><p>再次 -m 选项看看：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ go version -m bin/foo
+bin/foo: go1.16.2
+	path	github.com/polaris1119/gopher/cmd/foo
+	mod	github.com/polaris1119/gopher	<span class="o">(</span>devel<span class="o">)</span>
+	dep	github.com/polaris1119/foo	v0.4.0	h1:fgXsULdtXQmElR8Qor10s29CQbeA1pjSa/Cj0kB2Aas<span class="o">=</span>
+</code></pre></div><p>dep 表明该二进制程序依赖了 github.com/polaris1119/foo 这个包，版本是 v0.4.0 ，h1 hash 是 fgXsULdtXQmElR8Qor10s29CQbeA1pjSa/Cj0kB2Aas=，这个信息和 go.mod 中是一致的。</p>
+<h2 id="04-总结">04 总结</h2>
+<p>现在如果有一个 Go 语言实现的二进制程序，我们可以通过 go version 命令分析出它使用的 Go 版本信息，以及依赖包的信息。有些时候也许需要了解这些信息。</p>
+]]></content>
+		</item>
 		
 		<item>
 			<title>map 和 switch 如何选？match 又是什么？</title>
@@ -158,7 +272,7 @@ ok  	test/map	2.153s
 </code></pre></div><p>特别是当需要映射的内容很多时，更应该使用的 map 方式，毕竟看到一大堆 case 会疯掉。</p>
 <p>题外话：可能正是因为类似的需求很常见，而 switch 似乎太繁琐，于是 Rust 中没有 switch，而是提供了 match 表达式，Rust 代码如下：</p>
 <div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="k">enum</span> <span class="nc">State</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span><span class="w">  </span><span class="n">Unpay</span><span class="p">,</span><span class="w">
+</span><span class="w">	</span><span class="n">Unpay</span><span class="p">,</span><span class="w">
 </span><span class="w">	</span><span class="n">HadPay</span><span class="p">,</span><span class="w">
 </span><span class="w">	</span><span class="n">Delivery</span><span class="p">,</span><span class="w">
 </span><span class="w">	</span><span class="n">Finish</span><span class="p">,</span><span class="w">

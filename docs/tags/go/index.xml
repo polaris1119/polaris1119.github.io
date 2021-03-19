@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Wed, 17 Mar 2021 23:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 19 Mar 2021 17:50:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>发现 go version 的一个另类用法：你肯定想不到</title>
+      <link>https://polarisxu.studygolang.com/posts/go/go-version-detail/</link>
+      <pubDate>Fri, 19 Mar 2021 17:50:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/go-version-detail/</guid>
+      <description>大家好，我是站长 polarisxu。 对于 go version，大家应该不陌生。在很多入门教程，安装 Go 后，一般会建议执行 go version 看看是否安装成功；亦或遇到问题，别人会问你 Go 哪个版本，你也会通过 go version 命令查看。所以，go version 的一个作用是查看本地使用的 Go 版本。 但实际上，go version 还有其他用途，甚至可以说，输出本地 Go 版本号只是它功能的一个特例。先 go help version 看看： $ go help version usage: go version [-m] [-v] [file ...] Version</description>
+    </item>
+    
     <item>
       <title>map 和 switch 如何选？match 又是什么？</title>
       <link>https://polarisxu.studygolang.com/posts/go/choose-map-or-switch/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/action/go-chi-use-retract/</guid>
       <description>大家好，我是站长 polarisxu。 在 Reddit 上看到一条消息： go-chi is retracting all major versions with go1.16 new retract directive. go.mod 的变更如下： 这利用了 Go 1.16 中 Module 的新特性。在这之前，先一起学习下该特性。 01 retract：撤回版本 也许不少人没有开发过自己的 Module（模块），但了解模块版本撤回还是有必要的，说不定哪天就能用到。因此建议你能够跟着本文操作一遍。 一般地，模块作者需要一种方法来指示不应该使用某个已发布</description>
-    </item>
-    
-    <item>
-      <title>Go1.17 快报：将移除 GOPATH</title>
-      <link>https://polarisxu.studygolang.com/posts/go/dynamic/go1.17-will-remove-gopath/</link>
-      <pubDate>Fri, 19 Feb 2021 09:20:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/dynamic/go1.17-will-remove-gopath/</guid>
-      <description>大家好，我是站长 polarisxu。 是的，没看错，Go 1.16 刚正式发布，但这里说的是 Go1.17 将会包含的改变（不出意外的话），我会出一系列文章介绍 Go1.17 的变化。 关于 Go 1.16 的变化。Reddit 上有一张图总结的挺好的： 相关的知识点，我之前也写过很好几篇文章，有兴趣的可以看看： Go 1.16 的这个新变化需要适应下：go get 和 go install 的变化 提前试用将在 Go1.16 中发布的内嵌静态资源功能 基于 Go1.16 实现静态文件的 HTTP</description>
     </item>
     
   </channel>
