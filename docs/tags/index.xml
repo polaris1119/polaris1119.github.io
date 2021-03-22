@@ -7,7 +7,25 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Fri, 19 Mar 2021 17:50:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 22 Mar 2021 18:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>云盘</title>
+      <link>https://polarisxu.studygolang.com/tags/%E4%BA%91%E7%9B%98/</link>
+      <pubDate>Mon, 22 Mar 2021 18:00:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/tags/%E4%BA%91%E7%9B%98/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>竞争</title>
+      <link>https://polarisxu.studygolang.com/tags/%E7%AB%9E%E4%BA%89/</link>
+      <pubDate>Mon, 22 Mar 2021 18:00:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/tags/%E7%AB%9E%E4%BA%89/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>Go</title>
       <link>https://polarisxu.studygolang.com/tags/go/</link>
@@ -77,24 +95,6 @@
       <pubDate>Fri, 12 Mar 2021 00:10:00 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/tags/%E8%A7%86%E9%A2%91%E5%8F%B7/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Bug</title>
-      <link>https://polarisxu.studygolang.com/tags/bug/</link>
-      <pubDate>Thu, 11 Mar 2021 18:12:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/tags/bug/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>排行榜</title>
-      <link>https://polarisxu.studygolang.com/tags/%E6%8E%92%E8%A1%8C%E6%A6%9C/</link>
-      <pubDate>Wed, 10 Mar 2021 14:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/tags/%E6%8E%92%E8%A1%8C%E6%A6%9C/</guid>
       <description></description>
     </item>
     

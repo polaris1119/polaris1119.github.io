@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>云盘 on polarisxu</title>
+    <link>https://polarisxu.studygolang.com/tags/%E4%BA%91%E7%9B%98/</link>
+    <description>Recent content in 云盘 on polarisxu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
+    <lastBuildDate>Mon, 22 Mar 2021 18:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/%E4%BA%91%E7%9B%98/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>阿里云盘公测随想：如何看待竞争</title>
+      <link>https://polarisxu.studygolang.com/posts/talk/competition-aliyundriver/</link>
+      <pubDate>Mon, 22 Mar 2021 18:00:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/talk/competition-aliyundriver/</guid>
+      <description>大家好，我是站长 polarisxu。 昨天（2021 年 3 月 22 日）阿里云盘公测，声称下载速度 50-100 M/s，网友测试，5G 下确实能达到。而且官方表示，“无论免费收费，未来都不限速”。 朋友圈有人发了这么一段话： 阿里云盘今天公测，下载速度 50-100 MB/s，官方表示：“无论免费收费，未来都不限速” 百度网盘目前用户数已超 7 亿，阿里云盘目前用户数不足千万 阿里云平台目前有 2800+ 的 CDN 节点，全</description>
+    </item>
+    
+  </channel>
+</rss>

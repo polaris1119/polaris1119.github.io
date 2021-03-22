@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Fri, 19 Mar 2021 17:50:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 22 Mar 2021 18:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>阿里云盘公测随想：如何看待竞争</title>
+      <link>https://polarisxu.studygolang.com/posts/talk/competition-aliyundriver/</link>
+      <pubDate>Mon, 22 Mar 2021 18:00:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/talk/competition-aliyundriver/</guid>
+      <description>大家好，我是站长 polarisxu。 昨天（2021 年 3 月 22 日）阿里云盘公测，声称下载速度 50-100 M/s，网友测试，5G 下确实能达到。而且官方表示，“无论免费收费，未来都不限速”。 朋友圈有人发了这么一段话： 阿里云盘今天公测，下载速度 50-100 MB/s，官方表示：“无论免费收费，未来都不限速” 百度网盘目前用户数已超 7 亿，阿里云盘目前用户数不足千万 阿里云平台目前有 2800+ 的 CDN 节点，全</description>
+    </item>
+    
     <item>
       <title>发现 go version 的一个另类用法：你肯定想不到</title>
       <link>https://polarisxu.studygolang.com/posts/go/go-version-detail/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/talk/sh-is-shanghai/</guid>
       <description>大家好，我是 polarisxu。 看到这样一条消息： 妹子你太有才了，想象力一流呀~网友纷纷评论：今日最佳。 基于此，网友们脑洞大开，说出来只有程序员才能听懂的“段子”： 压缩一下可以放在广州或兰州跑； .bat 文件大概率是 BAT 出身的程序员写的吧；亦或是只有 BAT 公司才能用？ 如果 .py 文件该作何解释？ .php 文件呢？ .rb 果然是日本人发明的，只能在日本才能打开； 。。。 当然，也有人说妹子就是故意</description>
-    </item>
-    
-    <item>
-      <title>构建微服务的 10 大 Go 框架/库</title>
-      <link>https://polarisxu.studygolang.com/posts/go/translation/top-10-framework-golang-library-to-build-microservice/</link>
-      <pubDate>Tue, 02 Mar 2021 22:00:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/translation/top-10-framework-golang-library-to-build-microservice/</guid>
-      <description>现在，很多开源库都支持构建应用程序。我应该向你推荐一些库，它们可以帮助启动具有简单设计、干净代码和良好性能的项目。 01 CLI 命令(spf13/cobra) 你想要构建一些 CLI 命令吗？ Cobra 既是一个用于创建强大的现代 CLI 应用程序的库，也是一个用于生成应用程序和命令文件的程序。 我使用这个库来管理命令应用程序，执行运行程序，初始化配置，并启动 Rest API。 基于 cobra 的应用组织结构： ├──</description>
     </item>
     
   </channel>
