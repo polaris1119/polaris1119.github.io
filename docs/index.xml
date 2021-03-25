@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Mon, 22 Mar 2021 18:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 25 Mar 2021 11:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>送 gRPC 书后续：自我反思和人性的思考</title>
+      <link>https://polarisxu.studygolang.com/posts/talk/double-win-after-grpc/</link>
+      <pubDate>Thu, 25 Mar 2021 11:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/talk/double-win-after-grpc/</guid>
+      <description>大家好，我是站长 polarisxu。 上周在公众号搞了一个送书活动 ，感谢大家的参与，留言数 170+，而微信公众号最多只能放出来 100 个留言，因此有些晚留言的，可能留言没放出来，下次再有活动，大家可以早点参与，我公众号发文时间一般是 18:12。 根据文中的相关规则，第二天就开奖了，中奖的用户一一留言回复了，他们的书也已经收到了。 不过陆续还有人问：这个开奖了吗？据说还有</description>
+    </item>
+    
     <item>
       <title>阿里云盘公测随想：如何看待竞争</title>
       <link>https://polarisxu.studygolang.com/posts/talk/competition-aliyundriver/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/dialogue/vs-wuwen/</guid>
       <description>大家好，我是站长 polarisxu。 今天起，我计划起一个系列，叫做「对话 xxx」，主要访谈、撰写一些圈里人的成长故事，希望他们的故事对大家有一些启发。 今天要对话的这位是国内 Go 开源界的名人，GitHub followers 有 11.1k+，主导了开发了好几个 Go 开源项目，它就是无闻，昵称 unknwon（注意，不是 unknown）。早期学习 Go 的小伙伴，知道他可能更多是来自他的视频教程</description>
-    </item>
-    
-    <item>
-      <title>妹子你是认真的吗？.sh 文件只能在 Shanghai 机器跑</title>
-      <link>https://polarisxu.studygolang.com/posts/talk/sh-is-shanghai/</link>
-      <pubDate>Wed, 03 Mar 2021 11:00:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/talk/sh-is-shanghai/</guid>
-      <description>大家好，我是 polarisxu。 看到这样一条消息： 妹子你太有才了，想象力一流呀~网友纷纷评论：今日最佳。 基于此，网友们脑洞大开，说出来只有程序员才能听懂的“段子”： 压缩一下可以放在广州或兰州跑； .bat 文件大概率是 BAT 出身的程序员写的吧；亦或是只有 BAT 公司才能用？ 如果 .py 文件该作何解释？ .php 文件呢？ .rb 果然是日本人发明的，只能在日本才能打开； 。。。 当然，也有人说妹子就是故意</description>
     </item>
     
   </channel>

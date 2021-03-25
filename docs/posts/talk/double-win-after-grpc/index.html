@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#fcfcfc">
+	<meta name="msapplication-TileColor" content="#fcfcfc">
+<meta itemprop="name" content="送 gRPC 书后续：自我反思和人性的思考">
+<meta itemprop="description" content="大家好，我是站长 polarisxu。 上周在公众号搞了一个送书活动 ，感谢大家的参与，留言数 170&#43;，而微信公众号最多只能放出来 100 个留言，因此有些晚留言的，可能留言没放出来，下次再有活动，大家可以早点参与，我公众号发文时间一般是 18:12。 根据文中的相关规则，第二天就开奖了，中奖的用户一一留言回复了，他们的书也已经收到了。 不过陆续还有人问：这个开奖了吗？据说还有">
+<meta itemprop="datePublished" content="2021-03-25T11:30:00+08:00" />
+<meta itemprop="dateModified" content="2021-03-25T11:30:00+08:00" />
+<meta itemprop="wordCount" content="1278">
+
+
+
+<meta itemprop="keywords" content="gRPC,双赢," />
+<meta property="og:title" content="送 gRPC 书后续：自我反思和人性的思考" />
+<meta property="og:description" content="大家好，我是站长 polarisxu。 上周在公众号搞了一个送书活动 ，感谢大家的参与，留言数 170&#43;，而微信公众号最多只能放出来 100 个留言，因此有些晚留言的，可能留言没放出来，下次再有活动，大家可以早点参与，我公众号发文时间一般是 18:12。 根据文中的相关规则，第二天就开奖了，中奖的用户一一留言回复了，他们的书也已经收到了。 不过陆续还有人问：这个开奖了吗？据说还有" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://polarisxu.studygolang.com/posts/talk/double-win-after-grpc/" />
+<meta property="article:published_time" content="2021-03-25T11:30:00+08:00" />
+<meta property="article:modified_time" content="2021-03-25T11:30:00+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="送 gRPC 书后续：自我反思和人性的思考"/>
+<meta name="twitter:description" content="大家好，我是站长 polarisxu。 上周在公众号搞了一个送书活动 ，感谢大家的参与，留言数 170&#43;，而微信公众号最多只能放出来 100 个留言，因此有些晚留言的，可能留言没放出来，下次再有活动，大家可以早点参与，我公众号发文时间一般是 18:12。 根据文中的相关规则，第二天就开奖了，中奖的用户一一留言回复了，他们的书也已经收到了。 不过陆续还有人问：这个开奖了吗？据说还有"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>送 gRPC 书后续：自我反思和人性的思考</title>
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
+	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/styles.css">
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://polarisxu.studygolang.com">polarisxu</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+  <a href="https://polarisxu.studygolang.com/">首页</a>
+  <a href="https://polarisxu.studygolang.com/categories/echo%E7%B3%BB%E5%88%97/">Echo系列</a>
+  <a href="https://polarisxu.studygolang.com/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a>
+  <a href="https://polarisxu.studygolang.com/posts/">归档</a>
+  <a href="https://polarisxu.studygolang.com/about/">关于</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<button id="toc-btn" class="hdr-btn desktop-only-ib" title="目录"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3" y2="6"></line><line x1="3" y1="12" x2="3" y2="12"></line><line x1="3" y1="18" x2="3" y2="18"></line></svg></button><span class="hdr-social hide-in-mobile"><a href="https://github.com/polaris1119" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a><a href="https://twitter.com/polaris1119" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="菜单"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://polarisxu.studygolang.com/">首页</a></li>
+			<li><a href="https://polarisxu.studygolang.com/categories/echo%E7%B3%BB%E5%88%97/">Echo系列</a></li>
+			<li><a href="https://polarisxu.studygolang.com/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a></li>
+			<li><a href="https://polarisxu.studygolang.com/posts/">归档</a></li>
+			<li><a href="https://polarisxu.studygolang.com/about/">关于</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Mar 25, 2021</span></div>
+				<h1>送 gRPC 书后续：自我反思和人性的思考</h1>
+			</header>
+			<div class="content">
+				<p>大家好，我是站长 polarisxu。</p>
+<p>上周在公众号搞了一个<a href="https://mp.weixin.qq.com/s/sWDeK2de5pTLU1wrXYGAIA" target="_blank" rel="noopener">送书活动</a>
+，感谢大家的参与，留言数 170+，而微信公众号最多只能放出来 100 个留言，因此有些晚留言的，可能留言没放出来，下次再有活动，大家可以早点参与，我公众号发文时间一般是 <strong>18:12</strong>。</p>
+<p>根据文中的相关规则，第二天就开奖了，中奖的用户一一留言回复了，他们的书也已经收到了。</p>
+<p>不过陆续还有人问：这个开奖了吗？据说还有群里讨论这个抽奖的公平性。我做了一些解释，但想想还是写篇文章聊聊这件事。</p>
+<h2 id="01-自我反思">01 自我反思<a href="#01-自我反思" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>首先，有人询问、有人质疑，说明我有做的不足之处，至少考虑不周，这也算是积累经验。</p>
+<p>关于规则，那篇文章说，点赞排行前 20 中抽取 10 位，具体怎么抽，会考虑对我的支持，比如阅读文章、打赏、点赞、转发等。这没有什么大问题，但有一点，开奖后，没有留言置顶，导致没有中奖的人不清楚有没有抽奖，担心是不是我忘记了。</p>
+<p>此外，对中奖的用户，我回复留言后，没有将我的留言公开，所以，没中奖的看不到谁中奖了。</p>
+<p>所以导致大家有疑问、有质疑。透明公开会更好。</p>
+<p>但任何事情，要有心理预期，不可能让所有人满意，尽自己努力做到最好即可，因为。。。</p>
+<h2 id="02-人性">02 人性<a href="#02-人性" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>最近在学习理财相关的知识，有这么一个小故事，我稍微改了一下：</p>
+<blockquote>
+<p>比如土拨鼠有一个书：《Go语言编程之旅》，他卖给大象，报价 60 元，大象会觉得贵；但如果这本书是大象的，他卖个土拨鼠，大概率觉得 60 有点便宜，至少不会认为 60 贵。。。</p>
+</blockquote>
+<p>相信大家明白其中意思了。</p>
+<p>对于任何抽奖，大家普遍会有这样的心理：</p>
+<blockquote>
+<p>中奖者，自然觉得自己很幸运，没啥说的；但未中奖者，多半会怀疑抽奖的公平性，怀疑是不是有内幕？！</p>
+</blockquote>
+<p>上周我这个抽奖，完全无任何套路，不需要关注一堆公众号，留言就有相当于参与了，就有可能中，完全是给粉丝的福利，所以我没有搞内幕的必要。</p>
+<p>但人性使然，所以也无可厚非。更何况有些人可能努力了，比如让朋友帮点赞，结果却没中，内心肯定会失落，很理解。我只能说，以后我还会送书，也许还有机会，但我送书，肯定是希望送给忠实读者的。这就是另外一点。。。</p>
+<h2 id="03-双赢">03 双赢<a href="#03-双赢" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>所谓公平，这个很难说。这就好比上文讲的那个小故事，每个人对公平也会有自己的看法。不说别的，子女们还总是认为父母对自己不公平。</p>
+<p>至于抽奖的公平性，我更想通过「共赢」来谈。</p>
+<p>首先，我做这个抽奖的初衷或目的是什么？实话说，搞这么一次抽奖（特别是牛年 Go 春晚的抽奖），其实挺费神的。不说别的，联系中奖者，让他们提供收货地址都挺费劲：</p>
+<p><p class="md__image">
+  <img src="../imgs/double-win-01.png"
+    alt=""  />
+</p>
+</p>
+<p>而且回复他后，一天过去了也没后续，我只能想办法通过其他方式提醒他。10 个中奖的，不止一个有这种问题你。。。</p>
+<p>我花费时间和精力做这些，自然希望中奖者是我的忠实读者，真正支持我的读者。这是互惠互利的事情，任何「赢输」或「输赢」模式肯定都不合适，而应该是「<strong>双赢</strong>」。这也是我在中奖规则中着重说明的，你经常看我的文章，点个赞，点个在看，留个言，觉得不错转发一下，都是对我最好的支持，我自然更可能把福利给到你。比如这位读者：</p>
+<p><p class="md__image">
+  <img src="../imgs/double-win-02.png"
+    alt=""  />
+</p>
+</p>
+<p>包括 Go 语言中文网站的活跃用户，有福利，我也会优先想到他们：</p>
+<p><p class="md__image">
+  <img src="../imgs/double-win-03.png"
+    alt=""  />
+</p>
+</p>
+<p>所以，我认为的公平是建立在「<strong>双赢</strong>」基础上的。</p>
+<p>欢迎大家「点赞」、「在看」、「转发」和「留言」，<strong>四连的是真爱</strong>。</p>
+
+			</div><div class="content">
+	<br>
+	<img src="https://static.studygolang.com/static/img/polarisxu-qrcode-soso-s.png">
+</div>
+
+<div class="related-posts thin">
+	<h2>相关推荐</h2>
+	<ul>
+	
+	<li><a href="/posts/grpc/grpc-cncf-with-go-and-java/">周末看完这本 gRPC 的书后，我决定送 10 本给读者</a></li>
+	
+	<li><a href="/posts/go/translation/benchmarking-grpc-in-rust-go/">对 gRPC 的 Rust 和 Go 版本进行基准测试</a></li>
+	
+	</ul>
+</div>
+
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://polarisxu.studygolang.com/tags/grpc">gRPC</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/%E5%8F%8C%E8%B5%A2">双赢</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1278 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2021-03-25 11:30 &#43;0800</p>
+			</footer>
+		</article>
+		<aside id="toc">
+			<div class="toc-title">目录</div>
+			<nav id="TableOfContents">
+  <ul>
+    <li><a href="#01-自我反思">01 自我反思</a></li>
+    <li><a href="#02-人性">02 人性</a></li>
+    <li><a href="#03-双赢">03 双赢</a></li>
+  </ul>
+</nav>
+		</aside>
+		<div class="post-nav thin">
+			<a class="prev-post" href="https://polarisxu.studygolang.com/posts/talk/competition-aliyundriver/">
+				<span class="post-nav-label">旧&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>阿里云盘公测随想：如何看待竞争</span>
+			</a>
+		</div>
+		<div id="comments" class="thin"><script src="https://utteranc.es/client.js"
+	repo="polaris1119/polarisxu"
+	issue-term="pathname"
+	theme="github-light"
+	crossorigin="anonymous"
+	async>
+</script>
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2019 - 2021 <a href="https://polarisxu.studygolang.com">polarisxu</a> &#183; <a href="https://beian.miit.gov.cn/">京ICP备14030343号-1</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://polarisxu.studygolang.com/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+		<span id="busuanzi_container" style="color: #666;">
+			本站总访客数/访问量：<span id="busuanzi_value_site_uv"></span>/<span id="busuanzi_value_site_pv"></span>
+		</span>
+	</footer>
+
+
+
+	<script src="https://polarisxu.studygolang.com/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw=" crossorigin="anonymous"></script>
+	<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?224c227cd9239761ec770bc8c1fb134c";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+</body>
+
+</html>
