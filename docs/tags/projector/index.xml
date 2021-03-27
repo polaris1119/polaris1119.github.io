@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Projector on polarisxu</title>
+    <link>https://polarisxu.studygolang.com/tags/projector/</link>
+    <description>Recent content in Projector on polarisxu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
+    <lastBuildDate>Sat, 27 Mar 2021 15:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/projector/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>GoLand 也可以远程开发了：试用报告</title>
+      <link>https://polarisxu.studygolang.com/posts/devtool/goland/goland-remote-projector/</link>
+      <pubDate>Sat, 27 Mar 2021 15:00:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/devtool/goland/goland-remote-projector/</guid>
+      <description>大家好，我是站长 polarisxu。 JetBrains 官方今天发了一篇文章：《使用 Projector 远程访问 IDE》 ，了解到 JetBrains 搞了一个远程开发 IDE。很多人知道 VSCode 可以进行远程开发，现在 JetBrains 系列 IDE 也支持了（自然 GoLand 也支持），于是安装试用了下，给大家做一个汇报。 01 Projector 是什么 Projector 是一种远程运行和访问 Swing GUI 应用程序的技术（Swing 是 Java 的 GUI API，JetBrains 系列 IDE 都是使用 Swing 绘制的 UI），目前 1.0 版本可</description>
+    </item>
+    
+  </channel>
+</rss>

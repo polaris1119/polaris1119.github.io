@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Thu, 25 Mar 2021 11:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 27 Mar 2021 15:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>GoLand 也可以远程开发了：试用报告</title>
+      <link>https://polarisxu.studygolang.com/posts/devtool/goland/goland-remote-projector/</link>
+      <pubDate>Sat, 27 Mar 2021 15:00:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/devtool/goland/goland-remote-projector/</guid>
+      <description>大家好，我是站长 polarisxu。 JetBrains 官方今天发了一篇文章：《使用 Projector 远程访问 IDE》 ，了解到 JetBrains 搞了一个远程开发 IDE。很多人知道 VSCode 可以进行远程开发，现在 JetBrains 系列 IDE 也支持了（自然 GoLand 也支持），于是安装试用了下，给大家做一个汇报。 01 Projector 是什么 Projector 是一种远程运行和访问 Swing GUI 应用程序的技术（Swing 是 Java 的 GUI API，JetBrains 系列 IDE 都是使用 Swing 绘制的 UI），目前 1.0 版本可</description>
+    </item>
+    
     <item>
       <title>送 gRPC 书后续：自我反思和人性的思考</title>
       <link>https://polarisxu.studygolang.com/posts/talk/double-win-after-grpc/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/language-rankings-1-21/</guid>
       <description>大家好，我是站长 polarisxu。 2021 年 3 月 1 日，RedMonk 发布了 2021 年 1 月 编程语言排行榜（实际是 1 月 和 2 月的数据）。 先介绍下这个排名的依据。RedMonk 从 GitHub 和 Stack Overflow 中提取语言排名，并将它们合并为一个排名，试图反映代码（GitHub）和问答（Stack Overflow）的吸引力。这个想法并不是为了提供一个统计上有效的当前使用情况的表示，而是为了将语言的问答</description>
-    </item>
-    
-    <item>
-      <title>polarisxu 对话无闻</title>
-      <link>https://polarisxu.studygolang.com/posts/dialogue/vs-wuwen/</link>
-      <pubDate>Mon, 08 Mar 2021 15:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/dialogue/vs-wuwen/</guid>
-      <description>大家好，我是站长 polarisxu。 今天起，我计划起一个系列，叫做「对话 xxx」，主要访谈、撰写一些圈里人的成长故事，希望他们的故事对大家有一些启发。 今天要对话的这位是国内 Go 开源界的名人，GitHub followers 有 11.1k+，主导了开发了好几个 Go 开源项目，它就是无闻，昵称 unknwon（注意，不是 unknown）。早期学习 Go 的小伙伴，知道他可能更多是来自他的视频教程</description>
     </item>
     
   </channel>

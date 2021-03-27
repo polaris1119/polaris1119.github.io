@@ -3,27 +3,42 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://polarisxu.studygolang.com/tags/goland/</loc>
+    <lastmod>2021-03-27T15:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polarisxu.studygolang.com/posts/devtool/goland/goland-remote-projector/</loc>
+    <lastmod>2021-03-27T15:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polarisxu.studygolang.com/</loc>
+    <lastmod>2021-03-27T15:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polarisxu.studygolang.com/tags/projector/</loc>
+    <lastmod>2021-03-27T15:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polarisxu.studygolang.com/tags/</loc>
+    <lastmod>2021-03-27T15:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polarisxu.studygolang.com/posts/</loc>
+    <lastmod>2021-03-27T15:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://polarisxu.studygolang.com/tags/grpc/</loc>
     <lastmod>2021-03-25T11:30:00+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://polarisxu.studygolang.com/</loc>
-    <lastmod>2021-03-25T11:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://polarisxu.studygolang.com/tags/</loc>
-    <lastmod>2021-03-25T11:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://polarisxu.studygolang.com/tags/%E5%8F%8C%E8%B5%A2/</loc>
-    <lastmod>2021-03-25T11:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://polarisxu.studygolang.com/posts/</loc>
     <lastmod>2021-03-25T11:30:00+08:00</lastmod>
   </url>
   
@@ -314,11 +329,6 @@
   
   <url>
     <loc>https://polarisxu.studygolang.com/posts/devtool/go-top-ide/</loc>
-    <lastmod>2021-02-03T20:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://polarisxu.studygolang.com/tags/goland/</loc>
     <lastmod>2021-02-03T20:00:00+08:00</lastmod>
   </url>
   

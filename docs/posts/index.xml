@@ -6,8 +6,154 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en</language>
 		<copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-		<lastBuildDate>Thu, 25 Mar 2021 11:30:00 +0800</lastBuildDate>
+		<lastBuildDate>Sat, 27 Mar 2021 15:00:00 +0800</lastBuildDate>
 		<atom:link href="https://polarisxu.studygolang.com/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>GoLand 也可以远程开发了：试用报告</title>
+			<link>https://polarisxu.studygolang.com/posts/devtool/goland/goland-remote-projector/</link>
+			<pubDate>Sat, 27 Mar 2021 15:00:00 +0800</pubDate>
+			
+			<guid>https://polarisxu.studygolang.com/posts/devtool/goland/goland-remote-projector/</guid>
+			<description>大家好，我是站长 polarisxu。 JetBrains 官方今天发了一篇文章：《使用 Projector 远程访问 IDE》 ，了解到 JetBrains 搞了一个远程开发 IDE。很多人知道 VSCode 可以进行远程开发，现在 JetBrains 系列 IDE 也支持了（自然 GoLand 也支持），于是安装试用了下，给大家做一个汇报。 01 Projector 是什么 Projector 是一种远程运行和访问 Swing GUI 应用程序的技术（Swing 是 Java 的 GUI API，JetBrains 系列 IDE 都是使用 Swing 绘制的 UI），目前 1.0 版本可</description>
+			<content type="html"><![CDATA[<p>大家好，我是站长 polarisxu。</p>
+<p>JetBrains 官方今天发了一篇文章：<a href="https://mp.weixin.qq.com/s/cb8lHQlctpbFTrPKW5YCFA" target="_blank" rel="noopener">《使用 Projector 远程访问 IDE》</a>
+，了解到 JetBrains 搞了一个远程开发 IDE。很多人知道 VSCode 可以进行远程开发，现在 JetBrains 系列 IDE 也支持了（自然 GoLand 也支持），于是安装试用了下，给大家做一个汇报。</p>
+<h2 id="01-projector-是什么">01 Projector 是什么</h2>
+<p>Projector 是一种远程运行和访问 Swing GUI 应用程序的技术（Swing 是 Java 的 GUI API，JetBrains 系列 IDE 都是使用 Swing 绘制的 UI），目前 1.0 版本可用，不过还是预览版（初始版本）。</p>
+<p><p class="md__image">
+  <img src="../imgs/projector01.png"
+    alt="图片来自官方"  />
+</p>
+</p>
+<p>也就是说，Projector  可以通过网络远程运行 JetBrains IDE 和 Swing 应用。</p>
+<p>Projector 还是一种自托管技术，可在服务器上运行基于 IntelliJ 的 IDE 和基于 Swing 的应用，让您可以使用浏览器和本机应用从任何位置进行访问。</p>
+<p>为什么要开发 Projector 呢？官方解释，在有些特殊情况下，比如瘦客户端，需要采用特殊的方法。具体来说有如下应用场景：</p>
+<ul>
+<li>高度安全的企业环境。</li>
+<li>真正的大型项目。</li>
+<li>禁止源代码本地复制。</li>
+<li>用户硬件约束。</li>
+<li>瘦客户端。</li>
+<li>需要在 Windows 机器甚至是 ChromeOS 等非传统操作系统上的 GNU/Linux 环境中运行 IDE。</li>
+<li>需要在关闭计算机后让应用在服务器上继续运行。</li>
+<li>远程调试服务器端（devtest、devprod）。</li>
+<li>具有调试源和预配置 IDE 的 VM 或 Docker 映像。</li>
+<li>需要远程访问的配置。</li>
+</ul>
+<p>可见，有些时候如果能远程开发，确实还挺方便的。</p>
+<p>注意，Projector 目前不支持协作开发。</p>
+<p>特别值得一提的是，Projector 是开源的，它采用 C-S 架构（其实也支持 B-S 架构），IDE 运行在服务器，客户端通过网络链接到服务器上的 IDE，有点远程桌面的感觉。</p>
+<p>因此，Projector 至少包含两部分：</p>
+<ul>
+<li>服务端，即 projector-server，地址：<a href="https://github.com/JetBrains/projector-server">https://github.com/JetBrains/projector-server</a></li>
+<li>客户端，即 projector-client，地址：<a href="https://github.com/JetBrains/projector-client">https://github.com/JetBrains/projector-client</a></li>
+</ul>
+<p>现在是容器时代，为了方便，官方提供了 Server 的 Docker 版本，地址：<a href="https://github.com/JetBrains/projector-docker">https://github.com/JetBrains/projector-docker</a>，我试用就基于 Docker 进行的。</p>
+<h2 id="02-安装">02 安装</h2>
+<p>关于服务器端安装有多种方式，但这里我只介绍我采用的基于 Docker 的方式。毕竟 Docker 是在云环境中运行 Projector 的最简单的方法。</p>
+<p>官方构建好了可以直接使用的镜像，不过没有发布到 DockerHub，而是使用自定义 Docker Registry。因为我使用 GoLand，所以执行如下命令：（记得先安装好 Docker）</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ docker pull registry.jetbrains.team/p/prj/containers/projector-goland
+</code></pre></div><p>其他 IDE 怎么安装，官方在 GitHub 上有列出：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">docker pull registry.jetbrains.team/p/prj/containers/projector-clion
+docker pull registry.jetbrains.team/p/prj/containers/projector-datagrip
+docker pull registry.jetbrains.team/p/prj/containers/projector-goland
+docker pull registry.jetbrains.team/p/prj/containers/projector-idea-c
+docker pull registry.jetbrains.team/p/prj/containers/projector-idea-u
+docker pull registry.jetbrains.team/p/prj/containers/projector-phpstorm
+docker pull registry.jetbrains.team/p/prj/containers/projector-pycharm-c
+docker pull registry.jetbrains.team/p/prj/containers/projector-pycharm-p
+docker pull registry.jetbrains.team/p/prj/containers/projector-webstorm
+</code></pre></div><p>安装完成后，可以通过下面命令运行 Server：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">docker run --rm -p 8887:8887 -it registry.jetbrains.team/p/prj/containers/projector-goland
+</code></pre></div><p>打开浏览器，访问 <code>http://localhost:8887/</code> 即可试用了。这是将 Server 安装在了本地，如果将 Server 安装在性能更好的服务器上，该怎么访问呢？</p>
+<p>简单的，可以通过 Nginx 做反向代理，配置好域名。我进行了相关尝试，将 Server 安装在 Linux 服务器，本地使用 Mac。Nginx 的配置如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-nginx" data-lang="nginx"><span class="k">server</span> <span class="p">{</span>
+        <span class="kn">listen</span> <span class="mi">80</span><span class="p">;</span>
+        <span class="kn">server_name</span> <span class="s">goland.studygolang.com</span><span class="p">;</span>
+
+        <span class="kn">location</span> <span class="s">/</span> <span class="p">{</span>
+                <span class="kn">proxy_pass</span> <span class="s">http://127.0.0.1:8887</span><span class="p">;</span><span class="c1">#必须
+</span><span class="c1"></span>                <span class="kn">proxy_set_header</span> <span class="s">X-Real-IP</span> <span class="nv">$remote_addr</span><span class="p">;</span>
+                <span class="kn">proxy_set_header</span> <span class="s">Host</span> <span class="nv">$host</span><span class="p">;</span>
+                <span class="kn">proxy_set_header</span> <span class="s">X-Forwarded-For</span> <span class="nv">$proxy_add_x_forwarded_for</span><span class="p">;</span>
+                <span class="kn">proxy_http_version</span> <span class="mi">1</span><span class="s">.1</span><span class="p">;</span><span class="c1">#必须
+</span><span class="c1"></span>                <span class="kn">proxy_set_header</span> <span class="s">Upgrade</span> <span class="nv">$http_upgrade</span><span class="p">;</span><span class="c1">#必须
+</span><span class="c1"></span>                <span class="kn">proxy_set_header</span> <span class="s">Connection</span> <span class="s">&#34;upgrade&#34;</span><span class="p">;</span><span class="c1">#必须
+</span><span class="c1"></span>                <span class="kn">proxy_send_timeout</span> <span class="s">30s</span><span class="p">;</span><span class="c1">#send 超时时间 记得一定要按需配置这个 否则默认60s就断开了
+</span><span class="c1"></span>                <span class="kn">proxy_read_timeout</span> <span class="s">30s</span><span class="p">;</span><span class="c1">#read 超时时间
+</span><span class="c1"></span>        <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><ul>
+<li>server_name 可以随便配置一个，但不进行实际的解析，而是在本地配置 host；</li>
+<li>因为和服务器通讯使用的是 WebSocket，因此需要做 WebSocket 的代理；</li>
+</ul>
+<p>关于安全问题，可以在 <a href="https://github.com/JetBrains/projector-docker#faq">https://github.com/JetBrains/projector-docker#faq</a> 查看，因为我只是试用，所以没有考虑安全问题。</p>
+<p>这样在本地通过 <code>http://goland.studygolang.com</code> 就可以打开 GoLand IDE 了。</p>
+<h2 id="03-试用">03 试用</h2>
+<p>浏览器打开后，会出现如下安全提示，点击确认即可。</p>
+<p><p class="md__image">
+  <img src="../imgs/projector02.png"
+    alt=""  />
+</p>
+</p>
+<p>等待链接建立后，出现用户须知：</p>
+<p><p class="md__image">
+  <img src="../imgs/projector03.png"
+    alt=""  />
+</p>
+</p>
+<p>勾选后，继续。接着提示你是否发送给它们统计数据，你决定即可。</p>
+<p>之后出现这个定制界面，默认选中暗黑模式，你可以选择左下角跳过，保留默认。</p>
+<p><p class="md__image">
+  <img src="../imgs/projector04.png"
+    alt=""  />
+</p>
+</p>
+<p>最开始，我以为这种方式可以免费使用 GoLand 了，当看到这一步，嗯，我想多了：</p>
+<p><p class="md__image">
+  <img src="../imgs/projector05.png"
+    alt=""  />
+</p>
+</p>
+<p>这里我们选择免费试用，可以试用 30 天。</p>
+<p>接下来的步骤和原生版本的 GoLand 是一样的。</p>
+<p>不过有一点尴尬的是，这个镜像中并没有安装 Go，怎么办？我目前的办法是通过 Docker 和宿主机进行目录映射，使用宿主机上的 Go，即这样启动 Docker：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ docker run --rm -p 8887:8887 -it -v xxx:/usr/local/go  registry.jetbrains.team/p/prj/containers/projector-goland
+</code></pre></div><p>其中，-v 后面的 xxx 替换为宿主机上的 Go 安装目录，重启启动后，配置好 GOROOT（选择 /usr/local/go），可以正常写代码了：</p>
+<p><p class="md__image">
+  <img src="../imgs/projector06.png"
+    alt=""  />
+</p>
+</p>
+<p>然后可以运行、调试了。</p>
+<p>不过浏览器使用感觉不是太爽，官方还提供了原生客户端，即上面说的 client，我们通过这个地址下载一个：<a href="https://github.com/JetBrains/projector-client/releases/tag/launcher-v1.0.1">https://github.com/JetBrains/projector-client/releases/tag/launcher-v1.0.1</a>，记得选择适合你操作系统的版本。</p>
+<p>安装启动后，长这样：</p>
+<p><p class="md__image">
+  <img src="../imgs/projector07.png"
+    alt=""  />
+</p>
+</p>
+<p>就是一个空壳子。跟浏览器中类似，我们输入地址，然后 Connect。之后的过程和浏览器是一样的。</p>
+<p>如果之前在浏览器打开过，这个客户端会直接记忆上次的位置，而不是第一次访问的那些界面，现在看起来是不是跟本地的 GoLand 差不多了：</p>
+<p><p class="md__image">
+  <img src="../imgs/projector08.png"
+    alt=""  />
+</p>
+</p>
+<h2 id="04-感受">04 感受</h2>
+<p>试用后，感觉目前还不是太成熟：</p>
+<ul>
+<li>启动时，有时候会莫名报错，需要重新运行 Server；</li>
+<li>用起来不是很流畅；</li>
+<li>Mac 下，没有应用全局菜单，设置在 File 菜单下；而且 Command 相关快捷键没作用，必须改用 Control，这会很不习惯；</li>
+</ul>
+<p>也许还有其他问题，我没有深入使用，毕竟使用起来体验不太好。</p>
+<p>不过，JetBrains 说 Projector 是一种技术，而不是最终用户解决方案。你可以使用它来自定义架构，满足您的业务需求。Ansible？Kubernetes？都是没有问题的。</p>
+<p>Projector 毕竟刚起步，是一项非常年轻的技术，需要给它一些时间，而且相信开源的力量。JetBrains 有信心，认为它有潜力成为远程 IDE 访问的最佳解决方案之一。</p>
+<p>期待 Projector 更好的那一天！！</p>
+]]></content>
+		</item>
 		
 		<item>
 			<title>送 gRPC 书后续：自我反思和人性的思考</title>
@@ -30,7 +176,7 @@
 <h2 id="02-人性">02 人性</h2>
 <p>最近在学习理财相关的知识，有这么一个小故事，我稍微改了一下：</p>
 <blockquote>
-<p>比如土拨鼠有一个书：《Go语言编程之旅》，他卖给大象，报价 60 元，大象会觉得贵；但如果这本书是大象的，他卖个土拨鼠，大概率觉得 60 有点便宜，至少不会认为 60 贵。。。</p>
+<p>比如土拨鼠有一个书：《Go语言编程之旅》，他卖给大象，报价 60 元，大象会觉得贵；但如果这本书是大象的，他卖给土拨鼠，大概率觉得 60 有点便宜，至少不会认为 60 贵。。。</p>
 </blockquote>
 <p>相信大家明白其中意思了。</p>
 <p>对于任何抽奖，大家普遍会有这样的心理：</p>
@@ -61,7 +207,7 @@
     alt=""  />
 </p>
 </p>
-<p>所以，我认为的公平是建立在「<strong>双赢</strong>」基础上的。</p>
+<p>所以，我认为的公平是建立在「<strong>双赢</strong>」基础上的。<strong>双赢思维</strong>，这也是高效能人士的七个习惯之一。</p>
 <p>欢迎大家「点赞」、「在看」、「转发」和「留言」，<strong>四连的是真爱</strong>。</p>
 ]]></content>
 		</item>
