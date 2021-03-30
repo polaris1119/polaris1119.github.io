@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Mon, 21 Dec 2020 16:12:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 30 Mar 2021 12:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go周刊题解：切片的另类初始化 — 该题正确率出奇的低</title>
+      <link>https://polarisxu.studygolang.com/posts/go/action/weekly-question-88/</link>
+      <pubDate>Tue, 30 Mar 2021 12:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/action/weekly-question-88/</guid>
+      <description>大家好，我是站长 polarisxu。 我在 Go 语言爱好者周刊第 87 和 88 期 刊首出了两道题，这两道题有点类似，都是和切片初始化有关。但这两道的题正确率比较低，特别是 88 期的题。 第 87 期题目如下： package main import ( &amp;#34;fmt&amp;#34; ) func main() { a := []int{2: 1} fmt.Println(a) } 正确答案是：C，正确率 52%。这道题相对简单，但依然有近一半的人答错了。 ![image-20210329195215876](/Users/xuxinhua/Library/Application Support/typora-user-images/image-20210329195215876.png) 第 88 期题目和 87 期类似，但难度高一些，题目如下： package main func main() { var x = []int{4: 44, 55, 66, 1: 77,</description>
+    </item>
+    
     <item>
       <title>这道题竟然只有 12% 的人答对。。。</title>
       <link>https://polarisxu.studygolang.com/posts/go/action/weekly-question-embed-time/</link>

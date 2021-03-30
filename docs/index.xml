@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Sat, 27 Mar 2021 15:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 30 Mar 2021 12:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go周刊题解：切片的另类初始化 — 该题正确率出奇的低</title>
+      <link>https://polarisxu.studygolang.com/posts/go/action/weekly-question-88/</link>
+      <pubDate>Tue, 30 Mar 2021 12:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/action/weekly-question-88/</guid>
+      <description>大家好，我是站长 polarisxu。 我在 Go 语言爱好者周刊第 87 和 88 期 刊首出了两道题，这两道题有点类似，都是和切片初始化有关。但这两道的题正确率比较低，特别是 88 期的题。 第 87 期题目如下： package main import ( &amp;#34;fmt&amp;#34; ) func main() { a := []int{2: 1} fmt.Println(a) } 正确答案是：C，正确率 52%。这道题相对简单，但依然有近一半的人答错了。 ![image-20210329195215876](/Users/xuxinhua/Library/Application Support/typora-user-images/image-20210329195215876.png) 第 88 期题目和 87 期类似，但难度高一些，题目如下： package main func main() { var x = []int{4: 44, 55, 66, 1: 77,</description>
+    </item>
+    
     <item>
       <title>GoLand 也可以远程开发了：试用报告</title>
       <link>https://polarisxu.studygolang.com/posts/devtool/goland/goland-remote-projector/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/dynamic/go1.16.1-release/</guid>
       <description>大家好，我是站长 polarisxu。 Go 1.16 是 2021 年 2 月 16 日发布的。新版本发布，大家一般会等等，坐等 1.16.1 发布。没想到快一个月了才等到。 和之前一样，小版本是修复 Bug，会同时发布两个版本，这次是 Go1.16.1 和 Go1.15.9。那具体什么 Bug 呢？ Bug 1：encoding/xml 包相关 这个 Bug 不是 1.16 引入的，而是之前版本就存在。所以，Go 1.15.9 也修复了该 Bug。 具体是：在通过 xml.NewTokenDecoder 获得一个 Decoder 指针时</description>
-    </item>
-    
-    <item>
-      <title>RedMonk 编程语言排行榜，说 Go 正走向衰退，你认可吗？</title>
-      <link>https://polarisxu.studygolang.com/posts/go/language-rankings-1-21/</link>
-      <pubDate>Wed, 10 Mar 2021 14:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/language-rankings-1-21/</guid>
-      <description>大家好，我是站长 polarisxu。 2021 年 3 月 1 日，RedMonk 发布了 2021 年 1 月 编程语言排行榜（实际是 1 月 和 2 月的数据）。 先介绍下这个排名的依据。RedMonk 从 GitHub 和 Stack Overflow 中提取语言排名，并将它们合并为一个排名，试图反映代码（GitHub）和问答（Stack Overflow）的吸引力。这个想法并不是为了提供一个统计上有效的当前使用情况的表示，而是为了将语言的问答</description>
     </item>
     
   </channel>
