@@ -10,7 +10,7 @@
 		<atom:link href="https://polarisxu.studygolang.com/posts/index.xml" rel="self" type="application/rss+xml" />
 		
 		<item>
-			<title>“那些想替代 C 的语言怎么样？Go、Rust、C&#43;&#43; 和 Zig 生产力对比&#34;</title>
+			<title>那些想替代 C 的语言怎么样？Go、Rust、C&#43;&#43; 和 Zig 生产力对比</title>
 			<link>https://polarisxu.studygolang.com/posts/go/translation/better-c-benchmark/</link>
 			<pubDate>Thu, 01 Apr 2021 12:30:00 +0800</pubDate>
 			
