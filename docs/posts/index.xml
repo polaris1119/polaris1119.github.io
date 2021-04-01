@@ -6,8 +6,98 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en</language>
 		<copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-		<lastBuildDate>Tue, 30 Mar 2021 12:30:00 +0800</lastBuildDate>
+		<lastBuildDate>Wed, 31 Mar 2021 20:30:00 +0800</lastBuildDate>
 		<atom:link href="https://polarisxu.studygolang.com/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>我无语了，Go 中 &#43;-*/ 四个运算符竟然可以连着用</title>
+			<link>https://polarisxu.studygolang.com/posts/go/action/operator/</link>
+			<pubDate>Wed, 31 Mar 2021 20:30:00 +0800</pubDate>
+			
+			<guid>https://polarisxu.studygolang.com/posts/go/action/operator/</guid>
+			<description>大家好，我是站长 polarisxu。 我计划把类似这样的文章归为：奇淫技巧，你认同吗？ 看到 Go101（玩 twtter 的可以关注他） 发了一条消息，+-*/ 这四个竟然可以连着写： package main func main() { v := new(int) *v = 2 println(5/+-*v) } 我看到后，试着运行了一下，竟然输出了 -2 。。。我忍不住“卧槽”。。。 我不得不说，Go101 扣的真细节。 于是我尝试着找一些线索，看看为什么可以这样写。 01 直接看汇编 遇到一些不解的</description>
+			<content type="html"><![CDATA[<p>大家好，我是站长 polarisxu。</p>
+<p>我计划把类似这样的文章归为：奇淫技巧，你认同吗？</p>
+<p>看到 Go101（玩 twtter 的可以关注他） 发了一条消息，<code>+-*/</code> 这四个竟然可以连着写：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">v</span> <span class="o">:=</span> <span class="nb">new</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span>
+    <span class="o">*</span><span class="nx">v</span> <span class="p">=</span> <span class="mi">2</span>
+    <span class="nb">println</span><span class="p">(</span><span class="mi">5</span><span class="o">/+-*</span><span class="nx">v</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div><p>我看到后，试着运行了一下，竟然输出了 -2 。。。我忍不住“卧槽”。。。</p>
+<p>我不得不说，Go101 扣的真细节。</p>
+<p>于是我尝试着找一些线索，看看为什么可以这样写。</p>
+<h2 id="01-直接看汇编">01 直接看汇编</h2>
+<p>遇到一些不解的地方，有时候借助汇编也许能得到答案：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">go tool compile -S main.go
+</code></pre></div><p>看关键的几行汇编：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">	0x001d <span class="m">00029</span> <span class="o">(</span>main.go:6<span class="o">)</span>	PCDATA	<span class="nv">$1</span>, <span class="nv">$0</span>
+	0x001d <span class="m">00029</span> <span class="o">(</span>main.go:6<span class="o">)</span>	NOP
+	0x0020 <span class="m">00032</span> <span class="o">(</span>main.go:6<span class="o">)</span>	CALL	runtime.printlock<span class="o">(</span>SB<span class="o">)</span>
+	0x0025 <span class="m">00037</span> <span class="o">(</span>main.go:6<span class="o">)</span>	MOVQ	<span class="nv">$-</span>2, <span class="o">(</span>SP<span class="o">)</span>
+	0x002d <span class="m">00045</span> <span class="o">(</span>main.go:6<span class="o">)</span>	CALL	runtime.printint<span class="o">(</span>SB<span class="o">)</span>
+	0x0032 <span class="m">00050</span> <span class="o">(</span>main.go:6<span class="o">)</span>	CALL	runtime.printnl<span class="o">(</span>SB<span class="o">)</span>
+	0x0037 <span class="m">00055</span> <span class="o">(</span>main.go:6<span class="o">)</span>	CALL	runtime.printunlock<span class="o">(</span>SB<span class="o">)</span>
+</code></pre></div><p>从 <code>MOVQ	$-2, (SP)</code> 看出，直接编译器直接计算出 -2 了。。。（可以进一步加上 -N 来禁止优化，但没有没有看出额外特别的）</p>
+<h2 id="02-看规范">02 看规范</h2>
+<p>之前的一些题解，我总是在 Go 语言规范中找到解释，因此这次也不例外。</p>
+<p>在运算符章节，Go 中有如下几个一元运算符：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">unary_op</span> <span class="p">=</span> <span class="s">&#34;+&#34;</span> <span class="p">|</span> <span class="s">&#34;-&#34;</span> <span class="p">|</span> <span class="s">&#34;!&#34;</span> <span class="p">|</span> <span class="s">&#34;^&#34;</span> <span class="p">|</span> <span class="s">&#34;*&#34;</span> <span class="p">|</span> <span class="s">&#34;&amp;&#34;</span> <span class="p">|</span> <span class="s">&#34;&lt;-&#34;</span> <span class="p">.</span>
+</code></pre></div><p>其中，+、- 和 * 同时也是算术运算符中的加、减和乘。</p>
+<p>接着，在运算符优先级处提到：一元运算符有最高的优先级。</p>
+<p>我们分析题目中的表达式：<code>5/+-*v</code>。5 后面 /，很显然，这是除法。而 + 前面没有操作数，因此是一个一元运算符；同理 - 和 <code>*</code> 也是一元运算符。而一元运算符有最高的优先级，因此这个表达式优先计算 <code>+-*v</code> 的值。那这个东西为什么又合法呢？</p>
+<p>在规范中有这么一句话：</p>
+<blockquote>
+<p>对于整数操作数，一元运算符 <code>+</code> , <code>-</code> 和 <code>^</code> 有如下定义：（省略了 ^ 的解释）</p>
+<p>+x    　　　　              是 0 + x
+-x    取其负值               是 0 - x</p>
+</blockquote>
+<p>也就是说，<code>+-*v</code> 相当于：<code>0+(0-(*v))</code>。（为什么一元运算符左结合，因为一元，必须得有运算数，得跟着运算数走）</p>
+<p>这样一来，结果变成了求 5/-2 的值，结果自然是 -2（别跟我说应该是 2.5）。</p>
+<p>（规范参考 Bekcpear 翻译版：<a href="https://hao.studygolang.com/golang_spec.html">https://hao.studygolang.com/golang_spec.html</a>）</p>
+<h2 id="03-其他语言的行为">03 其他语言的行为</h2>
+<p>看到这，我不禁想看看其他语言怎么实现的。（没有指针的语言，就只能包含 /+- 了）</p>
+<p><strong>C 语言</strong></p>
+<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+		<span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+  	<span class="kt">int</span> <span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">i</span><span class="p">;</span>
+  	<span class="n">printf</span><span class="p">(</span><span class="s">&#34;%d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="mi">5</span><span class="o">/+-*</span><span class="n">p</span><span class="p">);</span>
+  	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><p>结果也是 -2。</p>
+<p><strong>Java</strong></p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">HelloWorld</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span> <span class="o">[]</span><span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+       <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">5</span><span class="o">/+-</span><span class="n">2</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><p>结果也是 -2。</p>
+<p><strong>PHP</strong></p>
+<div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php"><span class="o">&lt;?</span><span class="nx">php</span>
+<span class="k">echo</span> <span class="mi">5</span><span class="o">/+-</span><span class="mi">2</span><span class="p">;</span>
+</code></pre></div><p>结果是 -2.5。（弱类型语言嘛）</p>
+<p><strong>Python</strong></p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="mi">5</span><span class="o">/+-</span><span class="mi">2</span>
+</code></pre></div><p>结果是 -3。（Python 对 / 的处理和别的语言还是不太一样）</p>
+<p><strong>JS</strong></p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="mi">5</span><span class="o">/+-</span><span class="mi">2</span>
+</code></pre></div><p>结果和 PHP 一样，-2.5。</p>
+<p>最后看看 <strong>Rust</strong></p>
+<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="w">    </span><span class="n">println</span><span class="o">!</span><span class="p">(</span><span class="mi">5</span><span class="o">/+-</span><span class="mi">2</span><span class="p">);</span><span class="w">
+</span><span class="w"></span><span class="p">}</span><span class="w">
+</span></code></pre></div><p>编译器告诉我：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">error: expected expression, found <span class="sb">`</span>+<span class="sb">`</span>
+</code></pre></div><p>Rust 果然不一样！我们不一样、不一样。。。</p>
+<h2 id="04-总结">04 总结</h2>
+<p>奇淫技巧，如果能顺便学一点知识，那是极好的。当然，最关键的是希望有探索精神，找到其中的原因，举一反三，也许这点比较重要。</p>
+]]></content>
+		</item>
 		
 		<item>
 			<title>Go周刊题解：切片的另类初始化 — 该题正确率出奇的低</title>

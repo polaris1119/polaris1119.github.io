@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Tue, 30 Mar 2021 12:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 31 Mar 2021 20:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>我无语了，Go 中 &#43;-*/ 四个运算符竟然可以连着用</title>
+      <link>https://polarisxu.studygolang.com/posts/go/action/operator/</link>
+      <pubDate>Wed, 31 Mar 2021 20:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/action/operator/</guid>
+      <description>大家好，我是站长 polarisxu。 我计划把类似这样的文章归为：奇淫技巧，你认同吗？ 看到 Go101（玩 twtter 的可以关注他） 发了一条消息，+-*/ 这四个竟然可以连着写： package main func main() { v := new(int) *v = 2 println(5/+-*v) } 我看到后，试着运行了一下，竟然输出了 -2 。。。我忍不住“卧槽”。。。 我不得不说，Go101 扣的真细节。 于是我尝试着找一些线索，看看为什么可以这样写。 01 直接看汇编 遇到一些不解的</description>
+    </item>
+    
     <item>
       <title>Go周刊题解：切片的另类初始化 — 该题正确率出奇的低</title>
       <link>https://polarisxu.studygolang.com/posts/go/action/weekly-question-88/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/go-need-like-rustup-tool/</guid>
       <description>大家好，我是站长 polarisxu。 搭建开发环境复杂，会让很多新手抓狂。比如看到有人吐槽 Python 环境复杂，而搭建 PHP 环境，出现了很多一键安装包，像 lnmp 等。可见大家开始上手时，希望能够在环境上少一些折腾，别还没入门就劝退。 在早期，搭建 Go 语言开发环境，什么 GOROOT、GOPATH、GOBIN，很多新手一头雾水，经常稀里糊涂配置上了，写项目 go install 一下，找不到编译好的程序跑哪</description>
-    </item>
-    
-    <item>
-      <title>克制挺难的</title>
-      <link>https://polarisxu.studygolang.com/posts/talk/restraint-is-hard/</link>
-      <pubDate>Wed, 24 Feb 2021 00:00:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/talk/restraint-is-hard/</guid>
-      <description>大家好，我是站长 polarisxu。 昨天文章谈了 chi 这个 Go 框架，Kade 留言说，以为 chi 不会用 go mod，没想到去年就用了，但它支持的方式是从 v4.1.2 调到了 v1.5.0，也就是说之前都没有 go.mod，v1.5.0 开始加上了 go.mod。当 Go1.16 发布后，有了 ratract，他立马将其他所有版本都撤回了。面对社区的反对意见，他强硬的说：我在这个项目花了几年时间，尽管许多人不同</description>
     </item>
     
   </channel>

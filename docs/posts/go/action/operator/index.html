@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#fcfcfc">
+	<meta name="msapplication-TileColor" content="#fcfcfc">
+<meta itemprop="name" content="我无语了，Go 中 &#43;-*/ 四个运算符竟然可以连着用">
+<meta itemprop="description" content="大家好，我是站长 polarisxu。 我计划把类似这样的文章归为：奇淫技巧，你认同吗？ 看到 Go101（玩 twtter 的可以关注他） 发了一条消息，&#43;-*/ 这四个竟然可以连着写： package main func main() { v := new(int) *v = 2 println(5/&#43;-*v) } 我看到后，试着运行了一下，竟然输出了 -2 。。。我忍不住“卧槽”。。。 我不得不说，Go101 扣的真细节。 于是我尝试着找一些线索，看看为什么可以这样写。 01 直接看汇编 遇到一些不解的">
+<meta itemprop="datePublished" content="2021-03-31T20:30:00+08:00" />
+<meta itemprop="dateModified" content="2021-03-31T20:30:00+08:00" />
+<meta itemprop="wordCount" content="1022">
+
+
+
+<meta itemprop="keywords" content="Go,面试题," />
+<meta property="og:title" content="我无语了，Go 中 &#43;-*/ 四个运算符竟然可以连着用" />
+<meta property="og:description" content="大家好，我是站长 polarisxu。 我计划把类似这样的文章归为：奇淫技巧，你认同吗？ 看到 Go101（玩 twtter 的可以关注他） 发了一条消息，&#43;-*/ 这四个竟然可以连着写： package main func main() { v := new(int) *v = 2 println(5/&#43;-*v) } 我看到后，试着运行了一下，竟然输出了 -2 。。。我忍不住“卧槽”。。。 我不得不说，Go101 扣的真细节。 于是我尝试着找一些线索，看看为什么可以这样写。 01 直接看汇编 遇到一些不解的" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/action/operator/" />
+<meta property="article:published_time" content="2021-03-31T20:30:00+08:00" />
+<meta property="article:modified_time" content="2021-03-31T20:30:00+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="我无语了，Go 中 &#43;-*/ 四个运算符竟然可以连着用"/>
+<meta name="twitter:description" content="大家好，我是站长 polarisxu。 我计划把类似这样的文章归为：奇淫技巧，你认同吗？ 看到 Go101（玩 twtter 的可以关注他） 发了一条消息，&#43;-*/ 这四个竟然可以连着写： package main func main() { v := new(int) *v = 2 println(5/&#43;-*v) } 我看到后，试着运行了一下，竟然输出了 -2 。。。我忍不住“卧槽”。。。 我不得不说，Go101 扣的真细节。 于是我尝试着找一些线索，看看为什么可以这样写。 01 直接看汇编 遇到一些不解的"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>我无语了，Go 中 &#43;-*/ 四个运算符竟然可以连着用</title>
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
+	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/styles.css">
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://polarisxu.studygolang.com">polarisxu</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+  <a href="https://polarisxu.studygolang.com/">首页</a>
+  <a href="https://polarisxu.studygolang.com/categories/echo%E7%B3%BB%E5%88%97/">Echo系列</a>
+  <a href="https://polarisxu.studygolang.com/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a>
+  <a href="https://polarisxu.studygolang.com/posts/">归档</a>
+  <a href="https://polarisxu.studygolang.com/about/">关于</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<button id="toc-btn" class="hdr-btn desktop-only-ib" title="目录"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3" y2="6"></line><line x1="3" y1="12" x2="3" y2="12"></line><line x1="3" y1="18" x2="3" y2="18"></line></svg></button><span class="hdr-social hide-in-mobile"><a href="https://github.com/polaris1119" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a><a href="https://twitter.com/polaris1119" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="菜单"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://polarisxu.studygolang.com/">首页</a></li>
+			<li><a href="https://polarisxu.studygolang.com/categories/echo%E7%B3%BB%E5%88%97/">Echo系列</a></li>
+			<li><a href="https://polarisxu.studygolang.com/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a></li>
+			<li><a href="https://polarisxu.studygolang.com/posts/">归档</a></li>
+			<li><a href="https://polarisxu.studygolang.com/about/">关于</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Mar 31, 2021</span></div>
+				<h1>我无语了，Go 中 &#43;-*/ 四个运算符竟然可以连着用</h1>
+			</header>
+			<div class="content">
+				<p>大家好，我是站长 polarisxu。</p>
+<p>我计划把类似这样的文章归为：奇淫技巧，你认同吗？</p>
+<p>看到 Go101（玩 twtter 的可以关注他） 发了一条消息，<code>+-*/</code> 这四个竟然可以连着写：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">v</span> <span class="o">:=</span> <span class="nb">new</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span>
+    <span class="o">*</span><span class="nx">v</span> <span class="p">=</span> <span class="mi">2</span>
+    <span class="nb">println</span><span class="p">(</span><span class="mi">5</span><span class="o">/+-*</span><span class="nx">v</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div><p>我看到后，试着运行了一下，竟然输出了 -2 。。。我忍不住“卧槽”。。。</p>
+<p>我不得不说，Go101 扣的真细节。</p>
+<p>于是我尝试着找一些线索，看看为什么可以这样写。</p>
+<h2 id="01-直接看汇编">01 直接看汇编<a href="#01-直接看汇编" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>遇到一些不解的地方，有时候借助汇编也许能得到答案：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">go tool compile -S main.go
+</code></pre></div><p>看关键的几行汇编：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">	0x001d <span class="m">00029</span> <span class="o">(</span>main.go:6<span class="o">)</span>	PCDATA	<span class="nv">$1</span>, <span class="nv">$0</span>
+	0x001d <span class="m">00029</span> <span class="o">(</span>main.go:6<span class="o">)</span>	NOP
+	0x0020 <span class="m">00032</span> <span class="o">(</span>main.go:6<span class="o">)</span>	CALL	runtime.printlock<span class="o">(</span>SB<span class="o">)</span>
+	0x0025 <span class="m">00037</span> <span class="o">(</span>main.go:6<span class="o">)</span>	MOVQ	<span class="nv">$-</span>2, <span class="o">(</span>SP<span class="o">)</span>
+	0x002d <span class="m">00045</span> <span class="o">(</span>main.go:6<span class="o">)</span>	CALL	runtime.printint<span class="o">(</span>SB<span class="o">)</span>
+	0x0032 <span class="m">00050</span> <span class="o">(</span>main.go:6<span class="o">)</span>	CALL	runtime.printnl<span class="o">(</span>SB<span class="o">)</span>
+	0x0037 <span class="m">00055</span> <span class="o">(</span>main.go:6<span class="o">)</span>	CALL	runtime.printunlock<span class="o">(</span>SB<span class="o">)</span>
+</code></pre></div><p>从 <code>MOVQ	$-2, (SP)</code> 看出，直接编译器直接计算出 -2 了。。。（可以进一步加上 -N 来禁止优化，但没有没有看出额外特别的）</p>
+<h2 id="02-看规范">02 看规范<a href="#02-看规范" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>之前的一些题解，我总是在 Go 语言规范中找到解释，因此这次也不例外。</p>
+<p>在运算符章节，Go 中有如下几个一元运算符：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">unary_op</span> <span class="p">=</span> <span class="s">&#34;+&#34;</span> <span class="p">|</span> <span class="s">&#34;-&#34;</span> <span class="p">|</span> <span class="s">&#34;!&#34;</span> <span class="p">|</span> <span class="s">&#34;^&#34;</span> <span class="p">|</span> <span class="s">&#34;*&#34;</span> <span class="p">|</span> <span class="s">&#34;&amp;&#34;</span> <span class="p">|</span> <span class="s">&#34;&lt;-&#34;</span> <span class="p">.</span>
+</code></pre></div><p>其中，+、- 和 * 同时也是算术运算符中的加、减和乘。</p>
+<p>接着，在运算符优先级处提到：一元运算符有最高的优先级。</p>
+<p>我们分析题目中的表达式：<code>5/+-*v</code>。5 后面 /，很显然，这是除法。而 + 前面没有操作数，因此是一个一元运算符；同理 - 和 <code>*</code> 也是一元运算符。而一元运算符有最高的优先级，因此这个表达式优先计算 <code>+-*v</code> 的值。那这个东西为什么又合法呢？</p>
+<p>在规范中有这么一句话：</p>
+<blockquote>
+<p>对于整数操作数，一元运算符 <code>+</code> , <code>-</code> 和 <code>^</code> 有如下定义：（省略了 ^ 的解释）</p>
+<p>+x    　　　　              是 0 + x
+-x    取其负值               是 0 - x</p>
+</blockquote>
+<p>也就是说，<code>+-*v</code> 相当于：<code>0+(0-(*v))</code>。（为什么一元运算符左结合，因为一元，必须得有运算数，得跟着运算数走）</p>
+<p>这样一来，结果变成了求 5/-2 的值，结果自然是 -2（别跟我说应该是 2.5）。</p>
+<p>（规范参考 Bekcpear 翻译版：<a href="https://hao.studygolang.com/golang_spec.html">https://hao.studygolang.com/golang_spec.html</a>）</p>
+<h2 id="03-其他语言的行为">03 其他语言的行为<a href="#03-其他语言的行为" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>看到这，我不禁想看看其他语言怎么实现的。（没有指针的语言，就只能包含 /+- 了）</p>
+<p><strong>C 语言</strong></p>
+<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+		<span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+  	<span class="kt">int</span> <span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">i</span><span class="p">;</span>
+  	<span class="n">printf</span><span class="p">(</span><span class="s">&#34;%d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="mi">5</span><span class="o">/+-*</span><span class="n">p</span><span class="p">);</span>
+  	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><p>结果也是 -2。</p>
+<p><strong>Java</strong></p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">HelloWorld</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span> <span class="o">[]</span><span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+       <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">5</span><span class="o">/+-</span><span class="n">2</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><p>结果也是 -2。</p>
+<p><strong>PHP</strong></p>
+<div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php"><span class="o">&lt;?</span><span class="nx">php</span>
+<span class="k">echo</span> <span class="mi">5</span><span class="o">/+-</span><span class="mi">2</span><span class="p">;</span>
+</code></pre></div><p>结果是 -2.5。（弱类型语言嘛）</p>
+<p><strong>Python</strong></p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="mi">5</span><span class="o">/+-</span><span class="mi">2</span>
+</code></pre></div><p>结果是 -3。（Python 对 / 的处理和别的语言还是不太一样）</p>
+<p><strong>JS</strong></p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="mi">5</span><span class="o">/+-</span><span class="mi">2</span>
+</code></pre></div><p>结果和 PHP 一样，-2.5。</p>
+<p>最后看看 <strong>Rust</strong></p>
+<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="w">    </span><span class="n">println</span><span class="o">!</span><span class="p">(</span><span class="mi">5</span><span class="o">/+-</span><span class="mi">2</span><span class="p">);</span><span class="w">
+</span><span class="w"></span><span class="p">}</span><span class="w">
+</span></code></pre></div><p>编译器告诉我：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">error: expected expression, found <span class="sb">`</span>+<span class="sb">`</span>
+</code></pre></div><p>Rust 果然不一样！我们不一样、不一样。。。</p>
+<h2 id="04-总结">04 总结<a href="#04-总结" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>奇淫技巧，如果能顺便学一点知识，那是极好的。当然，最关键的是希望有探索精神，找到其中的原因，举一反三，也许这点比较重要。</p>
+
+			</div><div class="content">
+	<br>
+	<img src="https://static.studygolang.com/static/img/polarisxu-qrcode-soso-s.png">
+</div>
+
+<div class="related-posts thin">
+	<h2>相关推荐</h2>
+	<ul>
+	
+	<li><a href="/posts/go/action/weekly-question-88/">Go周刊题解：切片的另类初始化 — 该题正确率出奇的低</a></li>
+	
+	<li><a href="/posts/go/action/bytedance-interview-201112/">字节跳动面试真的也会问这样的问题？！</a></li>
+	
+	<li><a href="/posts/go/action/interview-slice-json/">一道关于 json 和 slice 的题难倒了 80% 的人</a></li>
+	
+	<li><a href="/posts/go/action/interview-len-shift/">这么一道“简单”的题，为什么结果出乎我的意料</a></li>
+	
+	<li><a href="/posts/go/go-version-detail/">发现 go version 的一个另类用法：你肯定想不到</a></li>
+	
+	</ul>
+</div>
+
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://polarisxu.studygolang.com/tags/go">Go</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/%E9%9D%A2%E8%AF%95%E9%A2%98">面试题</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1022 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2021-03-31 20:30 &#43;0800</p>
+			</footer>
+		</article>
+		<aside id="toc">
+			<div class="toc-title">目录</div>
+			<nav id="TableOfContents">
+  <ul>
+    <li><a href="#01-直接看汇编">01 直接看汇编</a></li>
+    <li><a href="#02-看规范">02 看规范</a></li>
+    <li><a href="#03-其他语言的行为">03 其他语言的行为</a></li>
+    <li><a href="#04-总结">04 总结</a></li>
+  </ul>
+</nav>
+		</aside>
+		<div class="post-nav thin">
+			<a class="prev-post" href="https://polarisxu.studygolang.com/posts/go/action/weekly-question-88/">
+				<span class="post-nav-label">旧&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>Go周刊题解：切片的另类初始化 — 该题正确率出奇的低</span>
+			</a>
+		</div>
+		<div id="comments" class="thin"><script src="https://utteranc.es/client.js"
+	repo="polaris1119/polarisxu"
+	issue-term="pathname"
+	theme="github-light"
+	crossorigin="anonymous"
+	async>
+</script>
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2019 - 2021 <a href="https://polarisxu.studygolang.com">polarisxu</a> &#183; <a href="https://beian.miit.gov.cn/">京ICP备14030343号-1</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://polarisxu.studygolang.com/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+		<span id="busuanzi_container" style="color: #666;">
+			本站总访客数/访问量：<span id="busuanzi_value_site_uv"></span>/<span id="busuanzi_value_site_pv"></span>
+		</span>
+	</footer>
+
+
+
+	<script src="https://polarisxu.studygolang.com/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw=" crossorigin="anonymous"></script>
+	<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?224c227cd9239761ec770bc8c1fb134c";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+</body>
+
+</html>
