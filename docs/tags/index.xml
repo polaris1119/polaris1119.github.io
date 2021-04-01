@@ -7,13 +7,22 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Wed, 31 Mar 2021 20:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 01 Apr 2021 12:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Go</title>
       <link>https://polarisxu.studygolang.com/tags/go/</link>
-      <pubDate>Wed, 31 Mar 2021 20:30:00 +0800</pubDate>
+      <pubDate>Thu, 01 Apr 2021 12:30:00 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/tags/go/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Rust</title>
+      <link>https://polarisxu.studygolang.com/tags/rust/</link>
+      <pubDate>Thu, 01 Apr 2021 12:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/tags/rust/</guid>
       <description></description>
     </item>
     
@@ -86,15 +95,6 @@
       <pubDate>Fri, 19 Mar 2021 17:50:00 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/tags/%E7%89%88%E6%9C%AC/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>基准测试</title>
-      <link>https://polarisxu.studygolang.com/tags/%E5%9F%BA%E5%87%86%E6%B5%8B%E8%AF%95/</link>
-      <pubDate>Wed, 17 Mar 2021 23:00:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/tags/%E5%9F%BA%E5%87%86%E6%B5%8B%E8%AF%95/</guid>
       <description></description>
     </item>
     

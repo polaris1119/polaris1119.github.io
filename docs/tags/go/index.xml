@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Wed, 31 Mar 2021 20:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 01 Apr 2021 12:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>“那些想替代 C 的语言怎么样？Go、Rust、C&#43;&#43; 和 Zig 生产力对比&#34;</title>
+      <link>https://polarisxu.studygolang.com/posts/go/translation/better-c-benchmark/</link>
+      <pubDate>Thu, 01 Apr 2021 12:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/translation/better-c-benchmark/</guid>
+      <description>C 已经快 50 岁了。对于一瓶葡萄酒来说，这个年龄很棒，但对于快速发展的行业中的编程语言而言，它就不同了。在过去的十年中，出现了许多具有不同风格的新语言，所有这些语言都试图在某种程度上成为 C 语言的替代者。 当一种新语言或多或少变得流行时 —— 开发人员开始编写基准测试，以展示该语言编写的软件性能，CPU 利用率和内存使用量以及二进制文件的大小等等。 在这里，我想在不同的层面</description>
+    </item>
+    
     <item>
       <title>我无语了，Go 中 &#43;-*/ 四个运算符竟然可以连着用</title>
       <link>https://polarisxu.studygolang.com/posts/go/action/operator/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/programming-language-implemented-by-go/</guid>
       <description>大家好，我是站长 polarisxu。 Go 是一门通用编程语言，Go1.5 实现了自举，也就是说，Go 语言是用它自身实现的。经过十来年的发展，开源界使用 Go 语言实现的编程语言不少，那它们发展的怎么样？本文进行一下梳理。 01 Go+ 这是国内七牛老大许式伟主导的，对 Go 语言的扩展，专为数据科学领域打造。目标是取代 Python 在数据科学领域的位置。 项目地址：https://github.com</description>
-    </item>
-    
-    <item>
-      <title>Go 官方应该搞一个类似 Rustup 的管理工具</title>
-      <link>https://polarisxu.studygolang.com/posts/go/go-need-like-rustup-tool/</link>
-      <pubDate>Thu, 25 Feb 2021 15:10:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/go-need-like-rustup-tool/</guid>
-      <description>大家好，我是站长 polarisxu。 搭建开发环境复杂，会让很多新手抓狂。比如看到有人吐槽 Python 环境复杂，而搭建 PHP 环境，出现了很多一键安装包，像 lnmp 等。可见大家开始上手时，希望能够在环境上少一些折腾，别还没入门就劝退。 在早期，搭建 Go 语言开发环境，什么 GOROOT、GOPATH、GOBIN，很多新手一头雾水，经常稀里糊涂配置上了，写项目 go install 一下，找不到编译好的程序跑哪</description>
     </item>
     
   </channel>

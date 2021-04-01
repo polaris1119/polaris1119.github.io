@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Sat, 20 Feb 2021 17:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/rust/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 01 Apr 2021 12:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/rust/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>“那些想替代 C 的语言怎么样？Go、Rust、C&#43;&#43; 和 Zig 生产力对比&#34;</title>
+      <link>https://polarisxu.studygolang.com/posts/go/translation/better-c-benchmark/</link>
+      <pubDate>Thu, 01 Apr 2021 12:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/translation/better-c-benchmark/</guid>
+      <description>C 已经快 50 岁了。对于一瓶葡萄酒来说，这个年龄很棒，但对于快速发展的行业中的编程语言而言，它就不同了。在过去的十年中，出现了许多具有不同风格的新语言，所有这些语言都试图在某种程度上成为 C 语言的替代者。 当一种新语言或多或少变得流行时 —— 开发人员开始编写基准测试，以展示该语言编写的软件性能，CPU 利用率和内存使用量以及二进制文件的大小等等。 在这里，我想在不同的层面</description>
+    </item>
+    
     <item>
       <title>为什么学 Rust 及相关学习资料推荐</title>
       <link>https://polarisxu.studygolang.com/posts/rust/why-rust-and-study-book/</link>

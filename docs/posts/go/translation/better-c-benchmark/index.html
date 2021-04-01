@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#fcfcfc">
+	<meta name="msapplication-TileColor" content="#fcfcfc">
+<meta itemprop="name" content="“那些想替代 C 的语言怎么样？Go、Rust、C&#43;&#43; 和 Zig 生产力对比&#34;">
+<meta itemprop="description" content="C 已经快 50 岁了。对于一瓶葡萄酒来说，这个年龄很棒，但对于快速发展的行业中的编程语言而言，它就不同了。在过去的十年中，出现了许多具有不同风格的新语言，所有这些语言都试图在某种程度上成为 C 语言的替代者。 当一种新语言或多或少变得流行时 —— 开发人员开始编写基准测试，以展示该语言编写的软件性能，CPU 利用率和内存使用量以及二进制文件的大小等等。 在这里，我想在不同的层面">
+<meta itemprop="datePublished" content="2021-04-01T12:30:00+08:00" />
+<meta itemprop="dateModified" content="2021-04-01T12:30:00+08:00" />
+<meta itemprop="wordCount" content="3479">
+
+
+
+<meta itemprop="keywords" content="Go,Rust," />
+<meta property="og:title" content="“那些想替代 C 的语言怎么样？Go、Rust、C&#43;&#43; 和 Zig 生产力对比&#34;" />
+<meta property="og:description" content="C 已经快 50 岁了。对于一瓶葡萄酒来说，这个年龄很棒，但对于快速发展的行业中的编程语言而言，它就不同了。在过去的十年中，出现了许多具有不同风格的新语言，所有这些语言都试图在某种程度上成为 C 语言的替代者。 当一种新语言或多或少变得流行时 —— 开发人员开始编写基准测试，以展示该语言编写的软件性能，CPU 利用率和内存使用量以及二进制文件的大小等等。 在这里，我想在不同的层面" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/translation/better-c-benchmark/" />
+<meta property="article:published_time" content="2021-04-01T12:30:00+08:00" />
+<meta property="article:modified_time" content="2021-04-01T12:30:00+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="“那些想替代 C 的语言怎么样？Go、Rust、C&#43;&#43; 和 Zig 生产力对比&#34;"/>
+<meta name="twitter:description" content="C 已经快 50 岁了。对于一瓶葡萄酒来说，这个年龄很棒，但对于快速发展的行业中的编程语言而言，它就不同了。在过去的十年中，出现了许多具有不同风格的新语言，所有这些语言都试图在某种程度上成为 C 语言的替代者。 当一种新语言或多或少变得流行时 —— 开发人员开始编写基准测试，以展示该语言编写的软件性能，CPU 利用率和内存使用量以及二进制文件的大小等等。 在这里，我想在不同的层面"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>“那些想替代 C 的语言怎么样？Go、Rust、C&#43;&#43; 和 Zig 生产力对比&#34;</title>
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
+	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/styles.css">
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://polarisxu.studygolang.com">polarisxu</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+  <a href="https://polarisxu.studygolang.com/">首页</a>
+  <a href="https://polarisxu.studygolang.com/categories/echo%E7%B3%BB%E5%88%97/">Echo系列</a>
+  <a href="https://polarisxu.studygolang.com/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a>
+  <a href="https://polarisxu.studygolang.com/posts/">归档</a>
+  <a href="https://polarisxu.studygolang.com/about/">关于</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<button id="toc-btn" class="hdr-btn desktop-only-ib" title="目录"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3" y2="6"></line><line x1="3" y1="12" x2="3" y2="12"></line><line x1="3" y1="18" x2="3" y2="18"></line></svg></button><span class="hdr-social hide-in-mobile"><a href="https://github.com/polaris1119" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a><a href="https://twitter.com/polaris1119" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="菜单"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://polarisxu.studygolang.com/">首页</a></li>
+			<li><a href="https://polarisxu.studygolang.com/categories/echo%E7%B3%BB%E5%88%97/">Echo系列</a></li>
+			<li><a href="https://polarisxu.studygolang.com/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a></li>
+			<li><a href="https://polarisxu.studygolang.com/posts/">归档</a></li>
+			<li><a href="https://polarisxu.studygolang.com/about/">关于</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Apr 1, 2021</span></div>
+				<h1>“那些想替代 C 的语言怎么样？Go、Rust、C&#43;&#43; 和 Zig 生产力对比&#34;</h1>
+			</header>
+			<div class="content">
+				<p>C 已经快 50 岁了。对于一瓶葡萄酒来说，这个年龄很棒，但对于快速发展的行业中的编程语言而言，它就不同了。在过去的十年中，出现了许多具有不同风格的新语言，所有这些语言都试图在某种程度上成为 C 语言的替代者。</p>
+<p>当一种新语言或多或少变得流行时 —— 开发人员开始编写基准测试，以展示该语言编写的软件性能，CPU 利用率和内存使用量以及二进制文件的大小等等。</p>
+<p>在这里，我想在不同的层面上进行一些实验 —— 编程语言的 UX（用户体验），使用这种语言时开发人员的效率，使用它们的容易程度，常见的挫败感，阅读代码的感受。我相信编程语言的 UX 与它们的技术特征一样重要，并且对语言的成功做出了很大的贡献。</p>
+<p>注意：该文章的其余部分带有很多主观色彩。</p>
+<h2 id="实验">实验<a href="#实验" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>让我们编写一个应用程序，该程序以递归方式扫描当前目录中的所有文件，并在与给定通配符匹配的文件中打印这些行。类似于 <code>ag</code> 或 <code>grep</code>，但使用通配符而不是正则表达式。二进制文件应被忽略。</p>
+<p>我发现这个问题是一个很好的练习，因为它展示了如何实现非常简单的通配符匹配算法（该算法可用于字符串和数字之类的纯数据，无需学习任何库或 API）。该算法应通过一些非常简单的测试。然后，它需要一些非常通用的底层 API，例如递归扫描目录或逐行读取文件。问题的所有部分都非常简单，小巧且范围广泛。这个小程序当然也可以用其他任何语言实现。</p>
+<p>我想测试该语言与常规的 “write-compile-run-debug” 循环的“友好”程度，为匹配算法编写测试的复杂度，找到与文件一起使用所需的 API、系统和基本 I/O 的难易度，指出错误时编译器的友好程度，语言的“直观性”等等。</p>
+<p>我的样本量相当谦逊 —— 仅我本人。但是为了避免偏见，建议你自己做（不要花太长时间）并比较结果。用不同的语言编写小程序后，我让同行的开发人员（约 20 人）阅读并给我反馈，哪些界限不清楚，哪些阅读和理解起来“更容易”。这些开发人员没有使用这种语言的经验，但是能熟练使用其他语言，例如 Java，C＃，JavaScript，Kotlin 和 Swift 等。</p>
+<p>我在这里测试的语言是 C++，Go，Rust 和 Zig。我得到的结果程序可以在 GitHub 找到： <a href="https://github.com/zserge/glob-grep">https://github.com/zserge/glob-grep</a>，请随时批评。</p>
+<h2 id="zig">Zig<a href="#zig" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>从 Zig 开始，因为我想看看 Zig 是什么类型的语言。之前听到过这个语言有不错的反馈，但是一直没用过。没有经验可谈，我打开了 Vim 并开始编写代码。</p>
+<p>我花了大约 1 个小时来完成程序。通配符匹配算法（我以前知道，只需要在 Zig 中实现）花了我大约 20 分钟的时间。其余主要在寻找 API 来进行目录扫描和文件读取。</p>
+<p>TLDR：出色，直观的小语言，较差的是 stdlib 和 docs。</p>
+<p>我喜欢的是：对于 C 程序员，该语言出奇的直观。感觉很简单，关于语言的文档（而不是 stdlib）非常清晰和友好。</p>
+<p>对于年轻的语言而言，Vim 集成也相当不错（在启用 Vim 插件之前 —— 格式化错误（编译器错误）使我很郁闷）。</p>
+<p>我喜欢错误处理方法。喜欢该语言附带的测试工具。甚至喜欢字符串只是字节数组，就像在 C 中一样。</p>
+<p>我对附带分配器的第一个反应是震惊，但实际上它甚至没有引起注意。它给人以极简主义的感受，即该语言的核心是如此简单，以至于它甚至不使用动态内存。同样，非常接近 C。</p>
+<p>在编写此代码时，我必须阅读许多 Zig 编译器和 stdlib 源代码，并且代码非常简洁明了。</p>
+<p>我不喜欢的东西：stdlib 文档太糟糕了。我从目录扫描和文件 I/O 中学到的所有知识–我都是从 GitHub 搜索结果中获得的，这也非常稀缺。</p>
+<p>编译器提示消息也不是很友好，但是对于熟悉 C 的人来说，这没什么大不了的。</p>
+<p>在 stdlib 中缺少字符串处理例程是出乎意料的，要连接字符串，必须手动做所有事情 —— 分配缓冲区，将字符串放在那里。或者使用格式化程序和分配器来同时打印两个字符串，然后释放缓冲区。但这仍然和 <code>s1+s2</code> 有很大不同。</p>
+<p>总的来说，核心语言很简单，我很喜欢它，但是 stdlib 比 libc 更受限制。我希望这只是该语言早期的标志。</p>
+<p>实际上，读 Zig 代码的人都提到了这点。它有点冗长，但明确，可预测且易于理解。毫不奇怪，因为该语言在设计时考虑了可读性（没有隐藏的控制流，没有隐藏的分配，没有宏，没有运算符重载，没有元编程等）。</p>
+<h2 id="rust">Rust<a href="#rust" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>我尝试学习 Rust，但失败了。我花了 2 个多小时才完成此程序，完成后我感到失望。</p>
+<p>TLDR：复杂。</p>
+<p>我喜欢的东西：编译器提示消息友好。该语言的文档也不错。但仅此而已，我这次并没有了解生命周期、错误处理等。围绕该语言的工具既现代又不错。</p>
+<p>我不喜欢的东西：编译器消息太冗长，占据了整个屏幕。我可不想 <code>rustc --explain</code> 为每个错误而奔波。求求你，不要惩罚我。文档有时也太冗长。我的意思是，最好有更多的文档而不是更少的文档，但是先拥有 TLDR 版本会更好。对于 stdlib 来说，也是如此，一小段功能及其用一句话即可完成的工作将更容易阅读。有 <code>&amp;str</code>，<code>Str</code> 和 <code>[u8]</code>，让新手感到惊讶。</p>
+<p>总体而言，Rust 中的编码对我来说就像是解决难题。可能会很有趣和令人兴奋的地方，尤其是在将 Rust 用作一种业余语言时，但是对于大多数任务，我宁愿使用一种“人机工程学”的语言，这种语言几乎不会引起注意。</p>
+<p>读 Rust 代码过程中，经常会骂出至少两个 “wtf”。他们经常抱怨语法不清楚，需要注意细节。而且，模式匹配对于“主流”开发人员仍然是陌生的事情。</p>
+<h2 id="go">Go<a href="#go" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>这是作弊。我曾经使用 Go，但是我还是想在这个实验中尝试一下。正如我期望的那样，我花了大约 15 分钟就能使我的完整 “glob” 实用程序正常工作。</p>
+<p>TLDR：富有成效，但固执己见。</p>
+<p>我喜欢的东西：感觉非常有用，文档对我来说很神奇 ——简短但有用，可以立即打开相关的 stdlib 函数源码并进行进一步研究。根据过去的经验，在编写应用程序时，我已经设想了如何使其成为多线程并提高性能（简单的 fan-out）。</p>
+<p>我不喜欢的东西：太多东西（缓冲 I/O，GC）存在。你不会觉得自己可以控制一切（就像在 Zig 中一样）。太自以为是 —— 这是列表中唯一需要我创建 3 个单独的文件才能使其起作用的语言。仍然会犯一些低级错误，例如意外的变量 shadow 或在循环内使用 defer。</p>
+<p>读 Go 代码，会发现它很清楚，有些人对内联 walker 函数感到好奇（它们不一定是内联的，他们是正确的）。一些人想知道多重分配，比如<code>a, b = c, d</code>，这种写法感觉更混乱了。具有讽刺意味的是，如果我是 Go 语言的新手，我会写出更直接的 Go 代码。</p>
+<h2 id="c">C++<a href="#c" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>尽管我有一定的 C 经验，但是与现代 C++ 却相去甚远，因此我决定尝试一下。我花了大约 20 分钟才能完成，这是出乎意料的。</p>
+<p>TLDR：好老的“朋友”。</p>
+<p>我喜欢的东西：感觉很熟悉，就像认识一个过去的老朋友一样。我喜欢这些文档，并提供了许多示例和良好的可读性。看到如今的 stdlib 这么强大，我感到很惊讶。文本编辑器和 IDE 中的支持也非常可靠。</p>
+<p>我不喜欢的东西：不良的工具 —— 没有构建系统，没有测试工具，没有 linter。我们过去习惯使用它，但这并不是现代开发人员所期望的。太强大了 —— 对于这项任务，C++ 感觉非常有生产力，但是我可以想象自己在某个时候处于决策瘫痪状态，这时有许多不同的方式来做某事，而所有事情都是一样的（或不好的）。</p>
+<p>读 C++ 代码的人实际上过去至少已经读过 C 或 C++，这是他们大学课程的一部分。我猜很多人抱怨使用 <code>::</code>，所以我应该正确使用名称空间。总的来说，由于我在 C++ 代码中没有“品味”  —— 我敢肯定它可以写得更清楚，但是我也看到在没有注意到的情况下它可能写得更糟。</p>
+<h2 id="其他基准">其他基准<a href="#其他基准" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>所有语言均生成静态可执行文件，大小均相同（2 ~ 5MB）。最小的是 Zig，最大的是 Rust。扫描整个 <code>/usr/include</code> 文件树时，它们的性能几乎相同。这就是为什么我要强调技术特性（主要指性能）通常不如开发人员体验那么重要。</p>
+<p>我想另外提一下构建时间。我运行了整个 build + test + clean 循环一百次。Go 最快（如预期的那样），其他三个都是基于 LLVM 的，速度要慢 3 到 4 倍。</p>
+<p>这意味着什么？这个结果并不令人惊讶，并且经常有关于语言的陈词滥调：Go 易于阅读，Rust 复杂，C++ 熟悉，Zig 看起来很有希望，但还太年轻而无法判断。</p>
+<p>如果我必须编写与 C 代码没有进行大量交互的新服务/实用程序 —— 我肯定会选择 Go。如果必须调用某些 C 或 C++ 库 —— 不幸的是，我会坚持使用 C++。Rust 和 Zig 在现代编程世界中将占据什么位置 —— 只有时间会证明一切。我希望 Zig 有更好的文档，这样可能在它变得过于小众和淹没之前获得流行。我一定会更加关注它，到目前为止，这是我遇到的第一个真正的 C 替代品，尤其是在涉及低级编码时。</p>
+<p>当然，尽管年代久远，C 仍然存在。在很多地方，C 是唯一的实际选择。我很高兴 C 还保持青春。</p>
+<blockquote>
+<p>原文链接：https://zserge.com/posts/better-c-benchmark/</p>
+<p>本文作者：zsergo</p>
+<p>编译：polarisxu</p>
+</blockquote>
+
+			</div><div class="content">
+	<br>
+	<img src="https://static.studygolang.com/static/img/polarisxu-qrcode-soso-s.png">
+</div>
+
+<div class="related-posts thin">
+	<h2>相关推荐</h2>
+	<ul>
+	
+	<li><a href="/posts/go/dynamic/go1.17-will-remove-gopath/">Go1.17 快报：将移除 GOPATH</a></li>
+	
+	<li><a href="/posts/rust/rust-first-impression/">Rust 的第一印象</a></li>
+	
+	<li><a href="/posts/talk/2021-02-10-talking/">明天除夕，闲聊几件事</a></li>
+	
+	<li><a href="/posts/go/translation/rust-vs-go/">客观、全面的比较 Rust 与 Go</a></li>
+	
+	<li><a href="/posts/go/translation/when-to-use-rust-and-when-to-use-golang/">何时使用 Rust 和何时使用 Golang</a></li>
+	
+	</ul>
+</div>
+
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://polarisxu.studygolang.com/tags/go">Go</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/rust">Rust</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>3479 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2021-04-01 12:30 &#43;0800</p>
+			</footer>
+		</article>
+		<aside id="toc">
+			<div class="toc-title">目录</div>
+			<nav id="TableOfContents">
+  <ul>
+    <li><a href="#实验">实验</a></li>
+    <li><a href="#zig">Zig</a></li>
+    <li><a href="#rust">Rust</a></li>
+    <li><a href="#go">Go</a></li>
+    <li><a href="#c">C++</a></li>
+    <li><a href="#其他基准">其他基准</a></li>
+  </ul>
+</nav>
+		</aside>
+		<div class="post-nav thin">
+			<a class="prev-post" href="https://polarisxu.studygolang.com/posts/go/action/operator/">
+				<span class="post-nav-label">旧&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>我无语了，Go 中 &#43;-*/ 四个运算符竟然可以连着用</span>
+			</a>
+		</div>
+		<div id="comments" class="thin"><script src="https://utteranc.es/client.js"
+	repo="polaris1119/polarisxu"
+	issue-term="pathname"
+	theme="github-light"
+	crossorigin="anonymous"
+	async>
+</script>
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2019 - 2021 <a href="https://polarisxu.studygolang.com">polarisxu</a> &#183; <a href="https://beian.miit.gov.cn/">京ICP备14030343号-1</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://polarisxu.studygolang.com/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+		<span id="busuanzi_container" style="color: #666;">
+			本站总访客数/访问量：<span id="busuanzi_value_site_uv"></span>/<span id="busuanzi_value_site_pv"></span>
+		</span>
+	</footer>
+
+
+
+	<script src="https://polarisxu.studygolang.com/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw=" crossorigin="anonymous"></script>
+	<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?224c227cd9239761ec770bc8c1fb134c";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+</body>
+
+</html>
