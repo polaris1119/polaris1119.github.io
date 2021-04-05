@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Thu, 01 Apr 2021 12:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 05 Apr 2021 11:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>【灵魂拷问】为什么假期回老家，计划总是泡汤？</title>
+      <link>https://polarisxu.studygolang.com/posts/talk/holiday-20210405/</link>
+      <pubDate>Mon, 05 Apr 2021 11:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/talk/holiday-20210405/</guid>
+      <description>大家好，我是站长 polarisxu。 今天这个话题，我相信很多人都深有体会。清明假期又结束了，我的计划也如往常一样泡汤了！但这次，我想复盘一下，为什么会这样？！ 先讲讲我之前的一些经历。 01 学生时代 学生时代，大学和大学之前还是有些不一样的。 高三之前，每次放假回家，除了老师布置的作业，其他计划的学习计划基本泡汤，书怎么带回去的就怎么带回来，每次内心都充满“罪恶感”，</description>
+    </item>
+    
     <item>
       <title>那些想替代 C 的语言怎么样？Go、Rust、C&#43;&#43; 和 Zig 生产力对比</title>
       <link>https://polarisxu.studygolang.com/posts/go/translation/better-c-benchmark/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/translation/golang-slower/</guid>
       <description>原文标题：Writing slower Go programs。作者认为应该优化可读性，而不是优化性能。你认可吗？一起看下该文。本文不代表 Go语言中文网 的观点。 什么？写更慢的 Go 程序？难道我们不应该关注如何让 Go 程序更快吗？ 实际不是的。为了性能而优化 Go 代码几乎肯定在浪费你的时间，原因有以下几点： 性能并不重要（Performance doesn&amp;rsquo;t matter）； Go 本身就够快； 可读性胜过速度； 以</description>
-    </item>
-    
-    <item>
-      <title>周末看完这本 gRPC 的书后，我决定送 10 本给读者</title>
-      <link>https://polarisxu.studygolang.com/posts/grpc/grpc-cncf-with-go-and-java/</link>
-      <pubDate>Tue, 16 Mar 2021 10:00:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/grpc/grpc-cncf-with-go-and-java/</guid>
-      <description>大家好，我是站长 polarisxu。 牛年春晚，Go语言中文网组织的活动，送了 10 本 《gRPC与云原生应用开发：以Go和Java为例》。上周末，我翻了下这本书，决定对该书做一个介绍，同时再送 10 本给我的读者。 01 gRPC 是什么？ 这是一本关于 gRPC 的书，所以简单介绍下 gRPC 是什么，相信很多人不陌生。 2015 年 2 月 26 日，谷歌宣布开源 gRPC，并称其「基于公司多年的分布式系统构建经验」。因为</description>
     </item>
     
   </channel>
