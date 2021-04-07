@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Thu, 01 Apr 2021 12:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 07 Apr 2021 17:20:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>答应我，这次一定彻底搞懂 Go 中的类型别名</title>
+      <link>https://polarisxu.studygolang.com/posts/go/action/type-and-alias/</link>
+      <pubDate>Wed, 07 Apr 2021 17:20:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/action/type-and-alias/</guid>
+      <description>大家好，我是站长 polarisxu。 有下面 3 行代码： // 32 位机器 1）var x int32 = 32.0 2）var y int = x 3）var z rune = x 它们是否能编译通过？为什么？ 如果面试时问这道题，你需要想想面试官想考察你什么。在往下看之前，建议你记下自己的答案。 01 数字字面量 在 Go 语言中，字面量是无类型（untyped）的。无类型是什么意思？无类型意味着可以赋值给类似类型的变量或常量。用上面例</description>
+    </item>
+    
     <item>
       <title>那些想替代 C 的语言怎么样？Go、Rust、C&#43;&#43; 和 Zig 生产力对比</title>
       <link>https://polarisxu.studygolang.com/posts/go/translation/better-c-benchmark/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/translation/top-10-framework-golang-library-to-build-microservice/</guid>
       <description>现在，很多开源库都支持构建应用程序。我应该向你推荐一些库，它们可以帮助启动具有简单设计、干净代码和良好性能的项目。 01 CLI 命令(spf13/cobra) 你想要构建一些 CLI 命令吗？ Cobra 既是一个用于创建强大的现代 CLI 应用程序的库，也是一个用于生成应用程序和命令文件的程序。 我使用这个库来管理命令应用程序，执行运行程序，初始化配置，并启动 Rest API。 基于 cobra 的应用组织结构： ├──</description>
-    </item>
-    
-    <item>
-      <title>那些 Go 语言实现的语言现在发展怎么样了？</title>
-      <link>https://polarisxu.studygolang.com/posts/go/programming-language-implemented-by-go/</link>
-      <pubDate>Mon, 01 Mar 2021 18:00:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/programming-language-implemented-by-go/</guid>
-      <description>大家好，我是站长 polarisxu。 Go 是一门通用编程语言，Go1.5 实现了自举，也就是说，Go 语言是用它自身实现的。经过十来年的发展，开源界使用 Go 语言实现的编程语言不少，那它们发展的怎么样？本文进行一下梳理。 01 Go+ 这是国内七牛老大许式伟主导的，对 Go 语言的扩展，专为数据科学领域打造。目标是取代 Python 在数据科学领域的位置。 项目地址：https://github.com</description>
     </item>
     
   </channel>

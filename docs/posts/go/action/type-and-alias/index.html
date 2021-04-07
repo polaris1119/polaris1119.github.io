@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#fcfcfc">
+	<meta name="msapplication-TileColor" content="#fcfcfc">
+<meta itemprop="name" content="答应我，这次一定彻底搞懂 Go 中的类型别名">
+<meta itemprop="description" content="大家好，我是站长 polarisxu。 有下面 3 行代码： // 32 位机器 1）var x int32 = 32.0 2）var y int = x 3）var z rune = x 它们是否能编译通过？为什么？ 如果面试时问这道题，你需要想想面试官想考察你什么。在往下看之前，建议你记下自己的答案。 01 数字字面量 在 Go 语言中，字面量是无类型（untyped）的。无类型是什么意思？无类型意味着可以赋值给类似类型的变量或常量。用上面例">
+<meta itemprop="datePublished" content="2021-04-07T17:20:00+08:00" />
+<meta itemprop="dateModified" content="2021-04-07T17:20:00+08:00" />
+<meta itemprop="wordCount" content="1376">
+
+
+
+<meta itemprop="keywords" content="Go,别名," />
+<meta property="og:title" content="答应我，这次一定彻底搞懂 Go 中的类型别名" />
+<meta property="og:description" content="大家好，我是站长 polarisxu。 有下面 3 行代码： // 32 位机器 1）var x int32 = 32.0 2）var y int = x 3）var z rune = x 它们是否能编译通过？为什么？ 如果面试时问这道题，你需要想想面试官想考察你什么。在往下看之前，建议你记下自己的答案。 01 数字字面量 在 Go 语言中，字面量是无类型（untyped）的。无类型是什么意思？无类型意味着可以赋值给类似类型的变量或常量。用上面例" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/action/type-and-alias/" />
+<meta property="article:published_time" content="2021-04-07T17:20:00+08:00" />
+<meta property="article:modified_time" content="2021-04-07T17:20:00+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="答应我，这次一定彻底搞懂 Go 中的类型别名"/>
+<meta name="twitter:description" content="大家好，我是站长 polarisxu。 有下面 3 行代码： // 32 位机器 1）var x int32 = 32.0 2）var y int = x 3）var z rune = x 它们是否能编译通过？为什么？ 如果面试时问这道题，你需要想想面试官想考察你什么。在往下看之前，建议你记下自己的答案。 01 数字字面量 在 Go 语言中，字面量是无类型（untyped）的。无类型是什么意思？无类型意味着可以赋值给类似类型的变量或常量。用上面例"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>答应我，这次一定彻底搞懂 Go 中的类型别名</title>
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
+	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/styles.css">
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://polarisxu.studygolang.com">polarisxu</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+  <a href="https://polarisxu.studygolang.com/">首页</a>
+  <a href="https://polarisxu.studygolang.com/categories/echo%E7%B3%BB%E5%88%97/">Echo系列</a>
+  <a href="https://polarisxu.studygolang.com/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a>
+  <a href="https://polarisxu.studygolang.com/posts/">归档</a>
+  <a href="https://polarisxu.studygolang.com/about/">关于</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<button id="toc-btn" class="hdr-btn desktop-only-ib" title="目录"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3" y2="6"></line><line x1="3" y1="12" x2="3" y2="12"></line><line x1="3" y1="18" x2="3" y2="18"></line></svg></button><span class="hdr-social hide-in-mobile"><a href="https://github.com/polaris1119" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a><a href="https://twitter.com/polaris1119" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="菜单"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://polarisxu.studygolang.com/">首页</a></li>
+			<li><a href="https://polarisxu.studygolang.com/categories/echo%E7%B3%BB%E5%88%97/">Echo系列</a></li>
+			<li><a href="https://polarisxu.studygolang.com/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a></li>
+			<li><a href="https://polarisxu.studygolang.com/posts/">归档</a></li>
+			<li><a href="https://polarisxu.studygolang.com/about/">关于</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Apr 7, 2021</span></div>
+				<h1>答应我，这次一定彻底搞懂 Go 中的类型别名</h1>
+			</header>
+			<div class="content">
+				<p>大家好，我是站长 polarisxu。</p>
+<p>有下面 3 行代码：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// 32 位机器
+</span><span class="c1"></span><span class="mi">1</span><span class="err">）</span><span class="kd">var</span> <span class="nx">x</span> <span class="kt">int32</span> <span class="p">=</span> <span class="mf">32.0</span>
+<span class="mi">2</span><span class="err">）</span><span class="kd">var</span> <span class="nx">y</span> <span class="kt">int</span> <span class="p">=</span> <span class="nx">x</span>
+<span class="mi">3</span><span class="err">）</span><span class="kd">var</span> <span class="nx">z</span> <span class="kt">rune</span> <span class="p">=</span> <span class="nx">x</span>
+</code></pre></div><p>它们是否能编译通过？为什么？</p>
+<p>如果面试时问这道题，你需要想想面试官想考察你什么。在往下看之前，建议你记下自己的答案。</p>
+<h2 id="01-数字字面量">01 数字字面量<a href="#01-数字字面量" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>在 Go 语言中，字面量是无类型（untyped）的。无类型是什么意思？无类型意味着可以赋值给类似类型的变量或常量。用上面例子，32.0 是无类型的浮点数字面量，因此它可以赋值给任意数字相关类型变量（或常量）。以下都是合法的：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">var</span> <span class="nx">a</span> <span class="kt">int64</span> <span class="p">=</span> <span class="mf">32.0</span>
+<span class="kd">var</span> <span class="nx">b</span> <span class="kt">int</span> <span class="p">=</span> <span class="mf">32.0</span>
+<span class="kd">var</span> <span class="nx">c</span> <span class="kt">float32</span> <span class="p">=</span> <span class="mf">32.0</span>
+<span class="kd">var</span> <span class="nx">d</span> <span class="kt">complex64</span> <span class="p">=</span> <span class="mf">32.0</span>
+<span class="kd">var</span> <span class="nx">e</span> <span class="kt">byte</span> <span class="p">=</span> <span class="mf">32.0</span>
+<span class="kd">var</span> <span class="nx">f</span> <span class="kt">rune</span> <span class="p">=</span> <span class="mf">32.0</span>
+</code></pre></div><p>所以上题中 1）是正确的。</p>
+<h2 id="02-不同类型">02 不同类型<a href="#02-不同类型" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>在目前 Go 1.16 版本中（实际上只有很早期的版本不是），int 类型在 32 位机器占 4 字节，64 位机器占 8 字节。所以，在 32 位机器上，int32 和 int 的内存占用和内存布局是完全一样的。但 Go 语言不会做隐式类型转换，int 和 int32 是不同的类型，因此上题中 2）编译不通过。</p>
+<h2 id="03-类型别名">03 类型别名<a href="#03-类型别名" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>熟悉 C 语言的小伙伴，看到 Go 中以下定义：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">myint</span> <span class="kt">int</span>
+</code></pre></div><p>会以为 myint 和 int 是一样的，认为 myint 是 int 的别名。而实际上，myint 是和 int 完全不一样的类型，只不过 myint 的底层类型是 int，它们直接可以强制类型转换，却不会隐式转换。关于这点无需多讲，重点要讲的是类型别名。</p>
+<p>从 Go1.9 开始引入了类型别名，定义如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">AliasDecl</span> <span class="p">=</span> <span class="nx">identifier</span><span class="p">,</span> <span class="s">&#34;=&#34;</span><span class="p">,</span> <span class="nx">Type</span> <span class="p">.</span>
+</code></pre></div><p>具体例子：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">intalias</span> <span class="p">=</span> <span class="kt">int</span>
+</code></pre></div><p>myint 是新类型，和 int 不一样；而 intalias 却和 int 一样，它只是 int 的别名：所有使用 intalias 的地方都可以使用 int。</p>
+<p>那为什么 Go 中会引入类型别名呢？Russ Cox 的论文 <a href="https://talks.golang.org/2016/refactor.article" target="_blank" rel="noopener">Codebase Refactoring (with help from Go)</a>
+ 介绍了它的背景。总结一下类型别名的用途，主要有两点：</p>
+<ul>
+<li>在大规模重构项目代码的时候，尤其是将一个类型从一个包移动到另一个包中的时候，有些代码会使用新包中的类型，有些代码使用旧包中的类型， 最典型的是 <code>context</code> 包。最开始，context 包名是 <code>golang.org/x/net/context</code>，1.7 开始，引入标准库，这样一来，存在两份。Go 1.9 开始采用别名重构了它；</li>
+<li>允许一个庞大的包分解成内部的几个小包，但是小包中的类型需要集中暴漏在上层的大包中；</li>
+</ul>
+<p>在 Go 中，你可以为任意类型定义别名，比如数组、结构体、指针、函数、接口、Slice、Map、Channel 等，包括为自定义类型定义别名。</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">F</span> <span class="p">=</span> <span class="kd">func</span><span class="p">()</span>
+<span class="kd">type</span> <span class="nx">I</span> <span class="p">=</span> <span class="kd">interface</span><span class="p">{}</span>
+<span class="o">...</span>
+</code></pre></div><p>此外，还可以为其他包中的类型定义别名，比如为标准库类型定义别名：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">MyReader</span> <span class="p">=</span> <span class="nx">bufio</span><span class="p">.</span><span class="nx">Reader</span>
+</code></pre></div><p>关于类型别名的一些注意事项：</p>
+<ul>
+<li>别名和原类型是一样的，因此 switch-type 结构中，不能存在两个 case，一个是原类型，一个是别名；</li>
+<li>类型别名不能循环定义，比如以下是不允许的：</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">T</span> <span class="p">=</span> <span class="kd">struct</span> <span class="p">{</span>
+	<span class="nx">next</span> <span class="o">*</span><span class="nx">T1</span>
+<span class="p">}</span>
+
+<span class="kd">type</span> <span class="nx">T1</span> <span class="p">=</span> <span class="nx">T</span>
+</code></pre></div><ul>
+<li>因为别名和原类型是一样的，因此共享同样的方法集，不论这个方法是定义在原类型还是别名上；</li>
+<li>别名的导出性可以和原类型不一样；</li>
+<li>不能为别的包的类型通过定义别名来增加方法。以下行为是不允许的：</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">MyReader</span> <span class="p">=</span> <span class="nx">bufio</span><span class="p">.</span><span class="nx">Reader</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">MyReader</span><span class="p">)</span> <span class="nf">AliasMethod</span><span class="p">()</span> <span class="p">{</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;This is alias method&#34;</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div><p>编译报错：<code>cannot define new methods on non-local type bufio.Reader</code>。</p>
+<p>回到开头题目的 3），rune 是什么类型？定义如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="kt">rune</span> <span class="p">=</span> <span class="kt">int32</span>
+</code></pre></div><p>很显然，rune 是 int32 的别名，因此题目中 3）也能编译通过。</p>
+<p>除了 rune，Go 内置类型中，还有 byte 是 uint8 的别名：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="kt">byte</span> <span class="p">=</span> <span class="kt">uint8</span>
+</code></pre></div><p>需要说明的是，在 Go1.9 之前，rune 和 byte 的别名性质就存在，是编译器负责处理的。只是 Go1.9 之后，别名可以用于其他类型了。</p>
+<h2 id="04-总结">04 总结<a href="#04-总结" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>一道看似简单的题目，如果你能够分析透彻，把语言的变化都说出来，我相信面试官会给你加分。</p>
+<p>今天的题目，你做对了吗？</p>
+
+			</div><div class="content">
+	<br>
+	<img src="https://static.studygolang.com/static/img/polarisxu-qrcode-soso-s.png">
+</div>
+
+<div class="related-posts thin">
+	<h2>相关推荐</h2>
+	<ul>
+	
+	<li><a href="/posts/go/translation/better-c-benchmark/">那些想替代 C 的语言怎么样？Go、Rust、C&#43;&#43; 和 Zig 生产力对比</a></li>
+	
+	<li><a href="/posts/go/action/operator/">我无语了，Go 中 &#43;-*/ 四个运算符竟然可以连着用</a></li>
+	
+	<li><a href="/posts/go/action/weekly-question-88/">Go周刊题解：切片的另类初始化 — 该题正确率出奇的低</a></li>
+	
+	<li><a href="/posts/go/go-version-detail/">发现 go version 的一个另类用法：你肯定想不到</a></li>
+	
+	<li><a href="/posts/go/choose-map-or-switch/">map 和 switch 如何选？match 又是什么？</a></li>
+	
+	</ul>
+</div>
+
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://polarisxu.studygolang.com/tags/go">Go</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/%E5%88%AB%E5%90%8D">别名</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1376 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2021-04-07 17:20 &#43;0800</p>
+			</footer>
+		</article>
+		<aside id="toc">
+			<div class="toc-title">目录</div>
+			<nav id="TableOfContents">
+  <ul>
+    <li><a href="#01-数字字面量">01 数字字面量</a></li>
+    <li><a href="#02-不同类型">02 不同类型</a></li>
+    <li><a href="#03-类型别名">03 类型别名</a></li>
+    <li><a href="#04-总结">04 总结</a></li>
+  </ul>
+</nav>
+		</aside>
+		<div class="post-nav thin">
+			<a class="prev-post" href="https://polarisxu.studygolang.com/posts/talk/holiday-20210405/">
+				<span class="post-nav-label">旧&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>【灵魂拷问】为什么假期回老家，计划总是泡汤？</span>
+			</a>
+		</div>
+		<div id="comments" class="thin"><script src="https://utteranc.es/client.js"
+	repo="polaris1119/polarisxu"
+	issue-term="pathname"
+	theme="github-light"
+	crossorigin="anonymous"
+	async>
+</script>
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2019 - 2021 <a href="https://polarisxu.studygolang.com">polarisxu</a> &#183; <a href="https://beian.miit.gov.cn/">京ICP备14030343号-1</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://polarisxu.studygolang.com/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+		<span id="busuanzi_container" style="color: #666;">
+			本站总访客数/访问量：<span id="busuanzi_value_site_uv"></span>/<span id="busuanzi_value_site_pv"></span>
+		</span>
+	</footer>
+
+
+
+	<script src="https://polarisxu.studygolang.com/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw=" crossorigin="anonymous"></script>
+	<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?224c227cd9239761ec770bc8c1fb134c";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+</body>
+
+</html>
