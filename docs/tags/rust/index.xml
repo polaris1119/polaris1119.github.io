@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Thu, 01 Apr 2021 12:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/rust/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 08 Apr 2021 10:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/rust/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Rust 劝退系列 01：打造开发环境</title>
+      <link>https://polarisxu.studygolang.com/posts/rust/rust-tutorial-01/</link>
+      <pubDate>Thu, 08 Apr 2021 10:00:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/rust/rust-tutorial-01/</guid>
+      <description>大家好，我是站长 polarisxu。 今天起正式 Rust “劝退”之旅。我也是在学习中，大家一起探讨交流，看谁先被劝退。在这个系列教程中，我通过和 Go 对比学习，同时只讲 Rust 最常用的特性，尽量避免入门就劝退。 工欲善其事必先利其器！本文我们先打造一个 Rust 的开发环境。 01 安装 Rust 打开 Rust 官网：https://rust-lang.org，可以切换到简体中文界面。在顶部菜单有「安装」。 对于</description>
+    </item>
+    
     <item>
       <title>那些想替代 C 的语言怎么样？Go、Rust、C&#43;&#43; 和 Zig 生产力对比</title>
       <link>https://polarisxu.studygolang.com/posts/go/translation/better-c-benchmark/</link>
