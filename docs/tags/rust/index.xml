@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Thu, 08 Apr 2021 10:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/rust/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 11 Apr 2021 22:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/rust/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Rust 劝退系列 02：第一个 Rust 程序</title>
+      <link>https://polarisxu.studygolang.com/posts/rust/rust-tutorial-02/</link>
+      <pubDate>Sun, 11 Apr 2021 22:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/rust/rust-tutorial-02/</guid>
+      <description>大家好，我是站长 polarisxu。 上节我们准备好了 Rust 环境，现在开始我们的第一个 Rust 程序。 01 Hello World 在终端执行如下命令，创建相关目录结构： $ mkdir ~/rust-learning $ cd ~/rust-learning $ mkdir hello $ cd hello 启动 VSCode，在 Welcome 页面选择打开文件夹：~/rust-learning，在 hello 目录下创建 main.rs 文件，输入如下代码： 细心的读者可能看到了 fn 下面的三个点，鼠标放上去提示： file not included in module tree rust-analyzer(unlinked-file) 这个提示的详细说明见链接：h</description>
+    </item>
+    
     <item>
       <title>Rust 劝退系列 01：打造开发环境</title>
       <link>https://polarisxu.studygolang.com/posts/rust/rust-tutorial-01/</link>

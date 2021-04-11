@@ -6,8 +6,161 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en</language>
 		<copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-		<lastBuildDate>Thu, 08 Apr 2021 10:00:00 +0800</lastBuildDate>
+		<lastBuildDate>Sun, 11 Apr 2021 22:30:00 +0800</lastBuildDate>
 		<atom:link href="https://polarisxu.studygolang.com/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>Rust 劝退系列 02：第一个 Rust 程序</title>
+			<link>https://polarisxu.studygolang.com/posts/rust/rust-tutorial-02/</link>
+			<pubDate>Sun, 11 Apr 2021 22:30:00 +0800</pubDate>
+			
+			<guid>https://polarisxu.studygolang.com/posts/rust/rust-tutorial-02/</guid>
+			<description>大家好，我是站长 polarisxu。 上节我们准备好了 Rust 环境，现在开始我们的第一个 Rust 程序。 01 Hello World 在终端执行如下命令，创建相关目录结构： $ mkdir ~/rust-learning $ cd ~/rust-learning $ mkdir hello $ cd hello 启动 VSCode，在 Welcome 页面选择打开文件夹：~/rust-learning，在 hello 目录下创建 main.rs 文件，输入如下代码： 细心的读者可能看到了 fn 下面的三个点，鼠标放上去提示： file not included in module tree rust-analyzer(unlinked-file) 这个提示的详细说明见链接：h</description>
+			<content type="html"><![CDATA[<p>大家好，我是站长 polarisxu。</p>
+<p>上节我们准备好了 Rust 环境，现在开始我们的第一个 Rust 程序。</p>
+<h2 id="01-hello-world">01 Hello World</h2>
+<p>在终端执行如下命令，创建相关目录结构：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ mkdir ~/rust-learning
+$ <span class="nb">cd</span> ~/rust-learning
+$ mkdir hello
+$ <span class="nb">cd</span> hello
+</code></pre></div><p>启动 VSCode，在 Welcome 页面选择打开文件夹：~/rust-learning，在 hello 目录下创建 main.rs 文件，输入如下代码：</p>
+<p><p class="md__image">
+  <img src="../imgs/tutorial02-01.png"
+    alt=""  />
+</p>
+</p>
+<p>细心的读者可能看到了 fn 下面的三个点，鼠标放上去提示：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">file not included in module tree rust-analyzer<span class="o">(</span>unlinked-file<span class="o">)</span>
+</code></pre></div><p>这个提示的详细说明见链接：<a href="https://rust-analyzer.github.io/manual.html#unlinked-file">https://rust-analyzer.github.io/manual.html#unlinked-file</a>。大意是，当前文件不在任何 crate 中。也就是说，rust-analyzer 插件要求标准的 cargo 目录。因此，编译运行该程序得通过终端：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ rustc main.rs
+$ ./main
+Hello World!
+</code></pre></div><p>这就是你的第一个 Rust 程序。关于 rustc，目前我们只需要知道它是 Rust 的编译器即可，因为实际中很少直接使用它。</p>
+<h2 id="02-cargo-版-hello-world">02 cargo 版 Hello World</h2>
+<p>上文说，编译 Rust 项目，很少直接使用 rustc 这个 Rust 编译器，那应该用什么呢？</p>
+<p>简单的程序（比如上面的单个文件）可能偶尔会用 rustc，但绝大部分时候，特别是项目中，我们应该一直使用 Rust 的生成工具和依赖管理器 Cargo。</p>
+<p>现在就介绍下 Cargo 这个工具。</p>
+<h3 id="cargo">Cargo</h3>
+<p>在安装完 rustup 后，Rust 工具链会默认安装上，这包括 Cargo 这个工具。</p>
+<p>因为这个工具很重要，官方直接提供了一个 Cargo 的手册：<a href="https://doc.rust-lang.org/cargo/index.html">https://doc.rust-lang.org/cargo/index.html</a>。</p>
+<blockquote>
+<p>Cargo 是 Rust 的包管理器。它能够下载 Rust 包的依赖，编译包，制作可分发的包，并将它们上传到 crates.io 上（这是 Rust 社区的包注册中心）。</p>
+</blockquote>
+<p>这个手册内容较多，有兴趣可以通读下，后续也可以用于查阅。我们这里只介绍经常使用的相关命令。先看一眼 Cargo 命令的相关帮助：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ cargo
+Rust<span class="s1">&#39;s package manager
+</span><span class="s1">
+</span><span class="s1">USAGE:
+</span><span class="s1">    cargo [+toolchain] [OPTIONS] [SUBCOMMAND]
+</span><span class="s1">
+</span><span class="s1">OPTIONS:
+</span><span class="s1">    -V, --version           Print version info and exit
+</span><span class="s1">        --list              List installed commands
+</span><span class="s1">        --explain &lt;CODE&gt;    Run `rustc --explain CODE`
+</span><span class="s1">    -v, --verbose           Use verbose output (-vv very verbose/build.rs output)
+</span><span class="s1">    -q, --quiet             No output printed to stdout
+</span><span class="s1">        --color &lt;WHEN&gt;      Coloring: auto, always, never
+</span><span class="s1">        --frozen            Require Cargo.lock and cache are up to date
+</span><span class="s1">        --locked            Require Cargo.lock is up to date
+</span><span class="s1">        --offline           Run without accessing the network
+</span><span class="s1">    -Z &lt;FLAG&gt;...            Unstable (nightly-only) flags to Cargo, see &#39;</span>cargo -Z help<span class="s1">&#39; for details
+</span><span class="s1">    -h, --help              Prints help information
+</span><span class="s1">
+</span><span class="s1">Some common cargo commands are (see all commands with --list):
+</span><span class="s1">    build, b    Compile the current package
+</span><span class="s1">    check, c    Analyze the current package and report errors, but don&#39;</span>t build object files
+    clean       Remove the target directory
+    doc         Build this package<span class="s1">&#39;s and its dependencies&#39;</span> documentation
+    new         Create a new cargo package
+    init        Create a new cargo package in an existing directory
+    run, r      Run a binary or example of the <span class="nb">local</span> package
+    test, t     Run the tests
+    bench       Run the benchmarks
+    update      Update dependencies listed in Cargo.lock
+    search      Search registry <span class="k">for</span> crates
+    publish     Package and upload this package to the registry
+    install     Install a Rust binary. Default location is <span class="nv">$HOME</span>/.cargo/bin
+    uninstall   Uninstall a Rust binary
+
+See <span class="s1">&#39;cargo help &lt;command&gt;&#39;</span> <span class="k">for</span> more information on a specific command.
+</code></pre></div><p>常用的命令如下：</p>
+<ul>
+<li>使用 <code>cargo new</code> 创建新的 package（包），包括可执行的和普通包。</li>
+<li>使用 <code>cargo build</code> 构建你的包。</li>
+<li>使用 <code>cargo run</code> 生成和运行包。</li>
+<li>使用 <code>cargo test</code> 测试你的包。</li>
+<li>使用 <code>cargo check</code> 进行包分析，并报告错误。</li>
+<li>使用 <code>cargo doc</code> 为你的包（以及依赖包）生成文档。</li>
+<li>使用 <code>cargo publish</code> 将包发布到 crates.io。</li>
+<li>使用 <code>cargo install</code> 安装 Rust 可执行程序。</li>
+</ul>
+<p>借助 VSCode，很多命令不需要我们手动输入执行。</p>
+<p>注：帮助说明中，都是 package，你可以理解成项目，下文有时会用项目的说法。</p>
+<h3 id="cargo-使用">Cargo 使用</h3>
+<p>使用 Cargo 创建一个新项目：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nb">cd</span> ~/rust-learning
+$ cargo new hello-cargo
+     Created binary <span class="o">(</span>application<span class="o">)</span> <span class="sb">`</span>hello-cargo<span class="sb">`</span> package
+</code></pre></div><p>生成了 hello-cargo 目录，其中包含如下文件：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ tree hello-cargo
+hello-cargo
+├── Cargo.toml
+└── src
+    └── main.rs
+</code></pre></div><p>其中 Cargo.toml 是 Rust 的清单文件（toml 格式，这种格式和 ini 文件有点像，但更强大），用于保存项目和依赖的元数据信息，类似 Go Module 中的 go.mod 文件。看下其中的内容：</p>
+<div class="highlight"><pre class="chroma"><code class="language-toml" data-lang="toml"><span class="p">[</span><span class="nx">package</span><span class="p">]</span>
+<span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;hello-cargo&#34;</span>
+<span class="nx">version</span> <span class="p">=</span> <span class="s2">&#34;0.1.0&#34;</span>
+<span class="nx">authors</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;xuxinhua &lt;polaris@studygolang.com&gt;&#34;</span><span class="p">]</span>
+<span class="nx">edition</span> <span class="p">=</span> <span class="s2">&#34;2018&#34;</span>
+
+<span class="c"># See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html</span>
+
+<span class="p">[</span><span class="nx">dependencies</span><span class="p">]</span>
+</code></pre></div><p>其中，edition 字段目前可以是 2015 和 2018，默认是 2018，具体什么区别，可以认为 2018 是一个 Rust 大版本（虽然向下兼容）。</p>
+<p>关于 authors 字段怎么获取的，可以参考 <a href="https://doc.rust-lang.org/cargo/commands/cargo-new.html">https://doc.rust-lang.org/cargo/commands/cargo-new.html</a>，里面有详细的解释。（也可以通过 cargo help new 帮助中查到）</p>
+<p>因为我们的项目还没有依赖，所以 dependencies 项是空的。</p>
+<p>除了看到的文件，Cargo 还生成了 git 相关的隐藏文件和文件夹：<code>.git</code> 和 <code>.gitignore</code>。也就是说，默认情况下，该项目就通过 git 进行版本控制，可以通过 <code>--vcs</code> 选项控制。</p>
+<p>最后是 Rust 源代码。Cargo 要求，源代码必须在 src 目录下，现在 main.rs 中就是一个简单的 Hello World：</p>
+<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="w">    </span><span class="n">println</span><span class="o">!</span><span class="p">(</span><span class="s">&#34;Hello, world!&#34;</span><span class="p">);</span><span class="w">
+</span><span class="w"></span><span class="p">}</span><span class="w">
+</span></code></pre></div><p>在 VSCode 中打开会发现顶部多出了两个按钮：</p>
+<p><p class="md__image">
+  <img src="../imgs/tutorial02-02.png"
+    alt=""  />
+</p>
+</p>
+<p>点就 「Run」，会在 VSCode 下方 Terminal 窗口输出类似如下信息：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">&gt; Executing task: cargo run --package hello-cargo --bin hello-cargo &lt;
+
+   Compiling hello-cargo v0.1.0 <span class="o">(</span>/Users/xuxinhua/rust-learning/hello-cargo<span class="o">)</span>
+    Finished dev <span class="o">[</span>unoptimized + debuginfo<span class="o">]</span> target<span class="o">(</span>s<span class="o">)</span> in 1.61s
+     Running <span class="sb">`</span>target/debug/hello-cargo<span class="sb">`</span>
+Hello, world!
+
+Terminal will be reused by tasks, press any key to close it.
+</code></pre></div><p>这里用的是 cargo run 这个命令：先编译，显示编译完成相关信息，然后运行。<code>--package</code> 指定要运行的目标包名， <code>--bin</code> 指定要运行的目标二进制文件名。（实际上，针对当前 hello-cargo 项目，执行运行 cargo run 效果是一样的）</p>
+<p>这时，项目根目录会生成一个 target 目录，你可以 tree target 看看，里面的文件很多，具体每个文件的作用我现在也不知，一般也不用去知晓，别劝退~</p>
+<p>你可以在终端输入如下命令：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ cargo run --release
+
+   Compiling hello-cargo v0.1.0 <span class="o">(</span>/Users/xuxinhua/rust-learning/hello-cargo<span class="o">)</span>
+    Finished release <span class="o">[</span>optimized<span class="o">]</span> target<span class="o">(</span>s<span class="o">)</span> in 1.28s
+     Running <span class="sb">`</span>target/release/hello-cargo<span class="sb">`</span>
+Hello, world!
+</code></pre></div><p>生产环境运行的程序应该始终使用 <code>--release</code> 选项。这时，在 target 目录下会生成一个 release 目录，而不是 debug 目录。</p>
+<blockquote>
+<p>在上面和 「Run」一起的还有一个 「Debug」按钮。点击它会提示你需要安装  <a href="https://marketplace.visualstudio.com/items?itemName=vadimcn.vscode-lldb" target="_blank" rel="noopener">CodeLLDB</a>
+ 或 <a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools" target="_blank" rel="noopener">MS C++ tools</a>
+ 扩展。本系列后续介绍调试相关知识。</p>
+</blockquote>
+<h2 id="03-小结">03 小结</h2>
+<p>从上面的介绍中可以看到，cargo 命令很强大。Go 语言中，基本上一个 go 命令搞定一切（这也是很多人觉得 Go 工具链很强大的原因）。而 Rust 中，你基本上不需要知道 rustc 命令的存在，只需要掌握 cargo 即可。话说，为啥叫 cargo 呢？crate + go？让人以为和 Go 语言相关呢。。。</p>
+<p>本节的 Hello World 应该不会劝退，而且可能会喜欢上它。不过我们没有对 Rust 语法做任何讲解，有些人看到 Hello World 的代码可能有一些奇怪，包括 fn、println!。下一节开始，就该讲解 Rust 的语法了。</p>
+]]></content>
+		</item>
 		
 		<item>
 			<title>Rust 劝退系列 01：打造开发环境</title>
