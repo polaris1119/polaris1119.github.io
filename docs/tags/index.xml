@@ -7,7 +7,25 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Sun, 11 Apr 2021 22:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 13 Apr 2021 18:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go</title>
+      <link>https://polarisxu.studygolang.com/tags/go/</link>
+      <pubDate>Tue, 13 Apr 2021 18:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/tags/go/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>闭包</title>
+      <link>https://polarisxu.studygolang.com/tags/%E9%97%AD%E5%8C%85/</link>
+      <pubDate>Tue, 13 Apr 2021 18:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/tags/%E9%97%AD%E5%8C%85/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>Rust</title>
       <link>https://polarisxu.studygolang.com/tags/rust/</link>
@@ -23,15 +41,6 @@
       <pubDate>Sun, 11 Apr 2021 22:30:00 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/tags/vscode/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Go</title>
-      <link>https://polarisxu.studygolang.com/tags/go/</link>
-      <pubDate>Wed, 07 Apr 2021 17:20:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/tags/go/</guid>
       <description></description>
     </item>
     
@@ -86,15 +95,6 @@
       <pubDate>Sat, 27 Mar 2021 15:00:00 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/tags/projector/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>gRPC</title>
-      <link>https://polarisxu.studygolang.com/tags/grpc/</link>
-      <pubDate>Thu, 25 Mar 2021 11:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/tags/grpc/</guid>
       <description></description>
     </item>
     

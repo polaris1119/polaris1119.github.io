@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Wed, 07 Apr 2021 17:20:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 13 Apr 2021 18:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>一道 Go 闭包题，面试官说原来自己答错了：面别人也涨知识</title>
+      <link>https://polarisxu.studygolang.com/posts/go/action/go-closure/</link>
+      <pubDate>Tue, 13 Apr 2021 18:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/action/go-closure/</guid>
+      <description>大家好，我是站长 polarisxu。 通常，JS 面试，闭包应该是必考的题目。随着越来越多的语言对函数式范式的支持，闭包问题经常出现。在 Go 语言中也是如此。 本文从一道题引出 Go 中的闭包。这是 Go 语言爱好者周刊第 90 期的一道题目。以下代码输出什么？ package main import &amp;#34;fmt&amp;#34; func app() func(string) string { t := &amp;#34;Hi&amp;#34; c := func(b string) string { t = t + &amp;#34; &amp;#34; + b return t } return c } func main() { a := app() b := app() a(&amp;#34;go&amp;#34;) fmt.Println(b(&amp;#34;All&amp;#34;)) } 这道题目答对的人蛮多的：60%。不管你</description>
+    </item>
+    
     <item>
       <title>答应我，这次一定彻底搞懂 Go 中的类型别名</title>
       <link>https://polarisxu.studygolang.com/posts/go/action/type-and-alias/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/language-rankings-1-21/</guid>
       <description>大家好，我是站长 polarisxu。 2021 年 3 月 1 日，RedMonk 发布了 2021 年 1 月 编程语言排行榜（实际是 1 月 和 2 月的数据）。 先介绍下这个排名的依据。RedMonk 从 GitHub 和 Stack Overflow 中提取语言排名，并将它们合并为一个排名，试图反映代码（GitHub）和问答（Stack Overflow）的吸引力。这个想法并不是为了提供一个统计上有效的当前使用情况的表示，而是为了将语言的问答</description>
-    </item>
-    
-    <item>
-      <title>构建微服务的 10 大 Go 框架/库</title>
-      <link>https://polarisxu.studygolang.com/posts/go/translation/top-10-framework-golang-library-to-build-microservice/</link>
-      <pubDate>Tue, 02 Mar 2021 22:00:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/translation/top-10-framework-golang-library-to-build-microservice/</guid>
-      <description>现在，很多开源库都支持构建应用程序。我应该向你推荐一些库，它们可以帮助启动具有简单设计、干净代码和良好性能的项目。 01 CLI 命令(spf13/cobra) 你想要构建一些 CLI 命令吗？ Cobra 既是一个用于创建强大的现代 CLI 应用程序的库，也是一个用于生成应用程序和命令文件的程序。 我使用这个库来管理命令应用程序，执行运行程序，初始化配置，并启动 Rest API。 基于 cobra 的应用组织结构： ├──</description>
     </item>
     
   </channel>

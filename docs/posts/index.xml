@@ -6,8 +6,225 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en</language>
 		<copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-		<lastBuildDate>Sun, 11 Apr 2021 22:30:00 +0800</lastBuildDate>
+		<lastBuildDate>Tue, 13 Apr 2021 18:30:00 +0800</lastBuildDate>
 		<atom:link href="https://polarisxu.studygolang.com/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>一道 Go 闭包题，面试官说原来自己答错了：面别人也涨知识</title>
+			<link>https://polarisxu.studygolang.com/posts/go/action/go-closure/</link>
+			<pubDate>Tue, 13 Apr 2021 18:30:00 +0800</pubDate>
+			
+			<guid>https://polarisxu.studygolang.com/posts/go/action/go-closure/</guid>
+			<description>大家好，我是站长 polarisxu。 通常，JS 面试，闭包应该是必考的题目。随着越来越多的语言对函数式范式的支持，闭包问题经常出现。在 Go 语言中也是如此。 本文从一道题引出 Go 中的闭包。这是 Go 语言爱好者周刊第 90 期的一道题目。以下代码输出什么？ package main import &amp;#34;fmt&amp;#34; func app() func(string) string { t := &amp;#34;Hi&amp;#34; c := func(b string) string { t = t + &amp;#34; &amp;#34; + b return t } return c } func main() { a := app() b := app() a(&amp;#34;go&amp;#34;) fmt.Println(b(&amp;#34;All&amp;#34;)) } 这道题目答对的人蛮多的：60%。不管你</description>
+			<content type="html"><![CDATA[<p>大家好，我是站长 polarisxu。</p>
+<p>通常，JS 面试，闭包应该是必考的题目。随着越来越多的语言对函数式范式的支持，闭包问题经常出现。在 Go 语言中也是如此。</p>
+<p>本文从一道题引出 Go 中的闭包。这是 Go 语言爱好者周刊第 90 期的一道题目。以下代码输出什么？</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="s">&#34;fmt&#34;</span>
+
+<span class="kd">func</span> <span class="nf">app</span><span class="p">()</span> <span class="kd">func</span><span class="p">(</span><span class="kt">string</span><span class="p">)</span> <span class="kt">string</span> <span class="p">{</span>
+	<span class="nx">t</span> <span class="o">:=</span> <span class="s">&#34;Hi&#34;</span>
+	<span class="nx">c</span> <span class="o">:=</span> <span class="kd">func</span><span class="p">(</span><span class="nx">b</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">string</span> <span class="p">{</span>
+		<span class="nx">t</span> <span class="p">=</span> <span class="nx">t</span> <span class="o">+</span> <span class="s">&#34; &#34;</span> <span class="o">+</span> <span class="nx">b</span>
+		<span class="k">return</span> <span class="nx">t</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="nx">c</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="nx">a</span> <span class="o">:=</span> <span class="nf">app</span><span class="p">()</span>
+	<span class="nx">b</span> <span class="o">:=</span> <span class="nf">app</span><span class="p">()</span>
+	<span class="nf">a</span><span class="p">(</span><span class="s">&#34;go&#34;</span><span class="p">)</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nf">b</span><span class="p">(</span><span class="s">&#34;All&#34;</span><span class="p">))</span>
+<span class="p">}</span>
+</code></pre></div><p>这道题目答对的人蛮多的：60%。不管你是答对还是答错，如果最后再加一行代码：<code>fmt.Println(a(&quot;All&quot;))</code>，它输出什么？想看看你是不是蒙对了。（提示：你可以输出 t 的地址，看看是什么情况。）</p>
+<h2 id="01-什么是闭包">01 什么是闭包</h2>
+<p>维基百科对闭包的定义：</p>
+<blockquote>
+<p>在计算机科学中，闭包（英语：Closure），又称词法闭包（Lexical Closure）或函数闭包（function closures），是在支持头等函数的编程语言中实现词法绑定的一种技术。闭包在实现上是一个结构体，它存储了一个函数（通常是其入口地址）和一个关联的环境（相当于一个符号查找表）。环境里是若干对符号和值的对应关系，它既要包括约束变量（该函数内部绑定的符号），也要包括自由变量（在函数外部定义但在函数内被引用），有些函数也可能没有自由变量。闭包跟函数最大的不同在于，当捕捉闭包的时候，它的自由变量会在捕捉时被确定，这样即便脱离了捕捉时的上下文，它也能照常运行。捕捉时对于值的处理可以是值拷贝，也可以是名称引用，这通常由语言设计者决定，也可能由用户自行指定（如 C++）。</p>
+</blockquote>
+<p>关于（函数）闭包，有几个关键点：</p>
+<ul>
+<li>函数是一等公民；</li>
+<li>闭包所处环境，可以引用环境里的值；</li>
+</ul>
+<p>问到什么是闭包时，网上一般这么回答的：</p>
+<blockquote>
+<p>在支持函数是一等公民的语言中，一个函数的返回值是另一个函数，被返回的函数可以访问父函数内的变量，当这个被返回的函数在外部执行时，就产生了闭包。</p>
+</blockquote>
+<p>所以，上面题目中，函数 app 的返回值是另一个函数，因此产生了闭包。</p>
+<h2 id="02-go-中的闭包">02 Go 中的闭包</h2>
+<p>Go 中的函数是一等公民，之前写过一篇文章：<a href="https://mp.weixin.qq.com/s/H3iuhkvQWonZbi7AzmokSA" target="_blank" rel="noopener">函数是一等公民，这到底在说什么？</a>
+</p>
+<p>日常开发中，闭包是很常见的。举几个例子。</p>
+<h3 id="标准库">标准库</h3>
+<p>在 net/http 包中的函数 ProxyURL，实现如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// ProxyURL returns a proxy function (for use in a Transport)
+</span><span class="c1">// that always returns the same URL.
+</span><span class="c1"></span><span class="kd">func</span> <span class="nf">ProxyURL</span><span class="p">(</span><span class="nx">fixedURL</span> <span class="o">*</span><span class="nx">url</span><span class="p">.</span><span class="nx">URL</span><span class="p">)</span> <span class="kd">func</span><span class="p">(</span><span class="o">*</span><span class="nx">Request</span><span class="p">)</span> <span class="p">(</span><span class="o">*</span><span class="nx">url</span><span class="p">.</span><span class="nx">URL</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">return</span> <span class="kd">func</span><span class="p">(</span><span class="o">*</span><span class="nx">Request</span><span class="p">)</span> <span class="p">(</span><span class="o">*</span><span class="nx">url</span><span class="p">.</span><span class="nx">URL</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="nx">fixedURL</span><span class="p">,</span> <span class="kc">nil</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><p>它的返回值是另一个函数，签名是：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span><span class="p">(</span><span class="o">*</span><span class="nx">Request</span><span class="p">)</span> <span class="p">(</span><span class="o">*</span><span class="nx">url</span><span class="p">.</span><span class="nx">URL</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+</code></pre></div><p>在返回的函数中，引用了父函数（ProxyURL）的参数 fixedURL，因此这是闭包。</p>
+<h3 id="web-中间件">Web 中间件</h3>
+<p>在 Web 开发中，中间件一般都会使用闭包。比如 Echo 框架中的一个中间件：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// BasicAuthWithConfig returns an BasicAuth middleware with config.
+</span><span class="c1">// See `BasicAuth()`.
+</span><span class="c1"></span><span class="kd">func</span> <span class="nf">BasicAuthWithConfig</span><span class="p">(</span><span class="nx">config</span> <span class="nx">BasicAuthConfig</span><span class="p">)</span> <span class="nx">echo</span><span class="p">.</span><span class="nx">MiddlewareFunc</span> <span class="p">{</span>
+	<span class="c1">// Defaults
+</span><span class="c1"></span>	<span class="k">if</span> <span class="nx">config</span><span class="p">.</span><span class="nx">Validator</span> <span class="o">==</span> <span class="kc">nil</span> <span class="p">{</span>
+		<span class="nb">panic</span><span class="p">(</span><span class="s">&#34;echo: basic-auth middleware requires a validator function&#34;</span><span class="p">)</span>
+	<span class="p">}</span>
+  <span class="o">...</span>
+	<span class="k">return</span> <span class="kd">func</span><span class="p">(</span><span class="nx">next</span> <span class="nx">echo</span><span class="p">.</span><span class="nx">HandlerFunc</span><span class="p">)</span> <span class="nx">echo</span><span class="p">.</span><span class="nx">HandlerFunc</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="kd">func</span><span class="p">(</span><span class="nx">c</span> <span class="nx">echo</span><span class="p">.</span><span class="nx">Context</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
+			<span class="c1">/// 省略很多代码
+</span><span class="c1"></span>      <span class="o">...</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><p>首先，echo.MiddlewareFunc 是一个函数：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">MiddlewareFunc</span> <span class="kd">func</span><span class="p">(</span><span class="nx">HandlerFunc</span><span class="p">)</span> <span class="nx">HandlerFunc</span>
+</code></pre></div><p>而 echo.HandlerFunc 也是一个函数：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">HandlerFunc</span> <span class="kd">func</span><span class="p">(</span><span class="nx">Context</span><span class="p">)</span> <span class="kt">error</span>
+</code></pre></div><p>所以，上面的函数嵌套了几层，是典型的闭包。</p>
+<h3 id="这是闭包吗">这是闭包吗？</h3>
+<p>在 Go 中不支持函数嵌套定义，函数内嵌套函数，必须通过匿名函数的形式。匿名函数在 Go 中是很常见的，比如开启一个 goroutine，通常通过匿名函数。</p>
+<p>现在有一个问题，以下代码是闭包吗？</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>  
+    <span class="s">&#34;fmt&#34;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>  
+    <span class="nx">a</span> <span class="o">:=</span> <span class="mi">5</span>
+    <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;a =&#34;</span><span class="p">,</span> <span class="nx">a</span><span class="p">)</span>
+    <span class="p">}()</span>
+<span class="p">}</span>
+</code></pre></div><p>如果按照上面网上一般的回答，这不是闭包，因为并没有返回函数。但按照维基百科的定义，这个属于闭包。有没有其他证据呢？</p>
+<p>在 Go 语言规范中，关于函数字面值（匿名函数）有这么一句话：</p>
+<blockquote>
+<p>Function literals are <em>closures</em>: they may refer to variables defined in a surrounding function. Those variables are then shared between the surrounding function and the function literal, and they survive as long as they are accessible.</p>
+</blockquote>
+<p>也就是说，函数字面值（匿名函数）是闭包，它们可以引用外层函数定义的变量。</p>
+<p>此外，在官方 FAQ 中有这样的说明：</p>
+<p><a href="https://docs.studygolang.com/doc/faq#closures_and_goroutines" target="_blank" rel="noopener">What happens with closures running as goroutines?</a>
+</p>
+<p>例子是：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">done</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">bool</span><span class="p">)</span>
+
+    <span class="nx">values</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&#34;a&#34;</span><span class="p">,</span> <span class="s">&#34;b&#34;</span><span class="p">,</span> <span class="s">&#34;c&#34;</span><span class="p">}</span>
+    <span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">v</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">values</span> <span class="p">{</span>
+        <span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+            <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span>
+            <span class="nx">done</span> <span class="o">&lt;-</span> <span class="kc">true</span>
+        <span class="p">}()</span>
+    <span class="p">}</span>
+
+    <span class="c1">// wait for all goroutines to complete before exiting
+</span><span class="c1"></span>    <span class="k">for</span> <span class="nx">_</span> <span class="p">=</span> <span class="k">range</span> <span class="nx">values</span> <span class="p">{</span>
+        <span class="o">&lt;-</span><span class="nx">done</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><p>这是 Go 中很常见的代码（很容易写错的），FAQ 称开启 goroutine 的那个匿名函数是一个闭包。</p>
+<h2 id="03-汇编看看实现">03 汇编看看实现</h2>
+<p>回到开始的题目，我们通过汇编看看，Go 闭包的实现，是不是按照维基百科说的，「闭包在实现上是一个结构体，它存储了一个函数（通常是其入口地址）和一个关联的环境（相当于一个符号查找表）」。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ go tool compile -S main.go
+</code></pre></div><p>看关键代码：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="mh">0x0000</span> <span class="mo">00000</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">5</span><span class="p">)</span>	<span class="nx">TEXT</span>	<span class="s">&#34;&#34;</span><span class="p">.</span><span class="nf">app</span><span class="p">(</span><span class="nx">SB</span><span class="p">),</span> <span class="nx">ABIInternal</span><span class="p">,</span> <span class="err">$</span><span class="mi">24</span><span class="o">-</span><span class="mi">8</span>
+<span class="mh">0x0000</span> <span class="mo">00000</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">5</span><span class="p">)</span>	<span class="nf">MOVQ</span>	<span class="p">(</span><span class="nx">TLS</span><span class="p">),</span> <span class="nx">CX</span>
+<span class="mh">0x0009</span> <span class="mo">0000</span><span class="mi">9</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">5</span><span class="p">)</span>	<span class="nx">CMPQ</span>	<span class="nx">SP</span><span class="p">,</span> <span class="mi">16</span><span class="p">(</span><span class="nx">CX</span><span class="p">)</span>
+<span class="mh">0x000d</span> <span class="mo">00013</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">5</span><span class="p">)</span>	<span class="nx">PCDATA</span>	<span class="err">$</span><span class="mi">0</span><span class="p">,</span> <span class="err">$</span><span class="o">-</span><span class="mi">2</span>
+<span class="mh">0x000d</span> <span class="mo">00013</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">5</span><span class="p">)</span>	<span class="nx">JLS</span>	<span class="mi">96</span>
+<span class="mh">0x000f</span> <span class="mo">00015</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">5</span><span class="p">)</span>	<span class="nx">PCDATA</span>	<span class="err">$</span><span class="mi">0</span><span class="p">,</span> <span class="err">$</span><span class="o">-</span><span class="mi">1</span>
+<span class="mh">0x000f</span> <span class="mo">00015</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">5</span><span class="p">)</span>	<span class="nx">SUBQ</span>	<span class="err">$</span><span class="mi">24</span><span class="p">,</span> <span class="nx">SP</span>
+<span class="mh">0x0013</span> <span class="mo">0001</span><span class="mi">9</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">5</span><span class="p">)</span>	<span class="nx">MOVQ</span>	<span class="nx">BP</span><span class="p">,</span> <span class="mi">16</span><span class="p">(</span><span class="nx">SP</span><span class="p">)</span>
+<span class="mh">0x0018</span> <span class="mo">00024</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">5</span><span class="p">)</span>	<span class="nx">LEAQ</span>	<span class="mi">16</span><span class="p">(</span><span class="nx">SP</span><span class="p">),</span> <span class="nx">BP</span>
+<span class="mh">0x001d</span> <span class="mo">0002</span><span class="mi">9</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">5</span><span class="p">)</span>	<span class="nx">FUNCDATA</span>	<span class="err">$</span><span class="mi">0</span><span class="p">,</span> <span class="nx">gclocals</span><span class="err">·</span><span class="mi">2</span><span class="nf">a5305abe05176240e61b8620e19a815</span><span class="p">(</span><span class="nx">SB</span><span class="p">)</span>
+<span class="mh">0x001d</span> <span class="mo">0002</span><span class="mi">9</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">5</span><span class="p">)</span>	<span class="nx">FUNCDATA</span>	<span class="err">$</span><span class="mi">1</span><span class="p">,</span> <span class="nx">gclocals</span><span class="err">·</span><span class="mi">33</span><span class="nf">cdeccccebe80329f1fdbee7f5874cb</span><span class="p">(</span><span class="nx">SB</span><span class="p">)</span>
+<span class="mh">0x001d</span> <span class="mo">0002</span><span class="mi">9</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">7</span><span class="p">)</span>	<span class="nx">LEAQ</span>	<span class="kd">type</span><span class="p">.</span><span class="nx">noalg</span><span class="p">.</span><span class="kd">struct</span> <span class="p">{</span> <span class="nx">F</span> <span class="kt">uintptr</span><span class="p">;</span> <span class="s">&#34;&#34;</span><span class="p">.</span><span class="nx">t</span> <span class="kt">string</span> <span class="p">}(</span><span class="nx">SB</span><span class="p">),</span> <span class="nx">AX</span>
+<span class="mh">0x0024</span> <span class="mo">00036</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">7</span><span class="p">)</span>	<span class="nx">MOVQ</span>	<span class="nx">AX</span><span class="p">,</span> <span class="p">(</span><span class="nx">SP</span><span class="p">)</span>
+<span class="mh">0x0028</span> <span class="mo">00040</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">7</span><span class="p">)</span>	<span class="nx">PCDATA</span>	<span class="err">$</span><span class="mi">1</span><span class="p">,</span> <span class="err">$</span><span class="mi">0</span>
+<span class="mh">0x0028</span> <span class="mo">00040</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">7</span><span class="p">)</span>	<span class="nx">CALL</span>	<span class="nx">runtime</span><span class="p">.</span><span class="nf">newobject</span><span class="p">(</span><span class="nx">SB</span><span class="p">)</span>
+<span class="mh">0x002d</span> <span class="mo">00045</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">7</span><span class="p">)</span>	<span class="nx">MOVQ</span>	<span class="mi">8</span><span class="p">(</span><span class="nx">SP</span><span class="p">),</span> <span class="nx">AX</span>
+<span class="mh">0x0032</span> <span class="mo">00050</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">7</span><span class="p">)</span>	<span class="nx">LEAQ</span>	<span class="s">&#34;&#34;</span><span class="p">.</span><span class="nx">app</span><span class="p">.</span><span class="nf">func1</span><span class="p">(</span><span class="nx">SB</span><span class="p">),</span> <span class="nx">CX</span>
+<span class="mh">0x0039</span> <span class="mo">00057</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">7</span><span class="p">)</span>	<span class="nx">MOVQ</span>	<span class="nx">CX</span><span class="p">,</span> <span class="p">(</span><span class="nx">AX</span><span class="p">)</span>
+<span class="mh">0x003c</span> <span class="mo">00060</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">7</span><span class="p">)</span>	<span class="nx">MOVQ</span>	<span class="err">$</span><span class="mi">2</span><span class="p">,</span> <span class="mi">16</span><span class="p">(</span><span class="nx">AX</span><span class="p">)</span>
+<span class="mh">0x0044</span> <span class="mo">0006</span><span class="mi">8</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">7</span><span class="p">)</span>	<span class="nx">LEAQ</span>	<span class="k">go</span><span class="p">.</span><span class="kt">string</span><span class="p">.</span><span class="s">&#34;Hi&#34;</span><span class="p">(</span><span class="nx">SB</span><span class="p">),</span> <span class="nx">CX</span>
+<span class="mh">0x004b</span> <span class="mo">00075</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">7</span><span class="p">)</span>	<span class="nx">MOVQ</span>	<span class="nx">CX</span><span class="p">,</span> <span class="mi">8</span><span class="p">(</span><span class="nx">AX</span><span class="p">)</span>
+<span class="mh">0x004f</span> <span class="mo">0007</span><span class="mi">9</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">10</span><span class="p">)</span>	<span class="nx">MOVQ</span>	<span class="nx">AX</span><span class="p">,</span> <span class="s">&#34;&#34;</span><span class="p">.</span><span class="err">~</span><span class="nx">r0</span><span class="o">+</span><span class="mi">32</span><span class="p">(</span><span class="nx">SP</span><span class="p">)</span>
+<span class="mh">0x0054</span> <span class="mo">000</span><span class="mi">84</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">10</span><span class="p">)</span>	<span class="nx">MOVQ</span>	<span class="mi">16</span><span class="p">(</span><span class="nx">SP</span><span class="p">),</span> <span class="nx">BP</span>
+<span class="mh">0x0059</span> <span class="mo">000</span><span class="mi">89</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">10</span><span class="p">)</span>	<span class="nx">ADDQ</span>	<span class="err">$</span><span class="mi">24</span><span class="p">,</span> <span class="nx">SP</span>
+<span class="mh">0x005d</span> <span class="mo">000</span><span class="mi">93</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">10</span><span class="p">)</span>	<span class="nx">RET</span>
+<span class="mh">0x005e</span> <span class="mo">000</span><span class="mi">94</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">10</span><span class="p">)</span>	<span class="nx">NOP</span>
+</code></pre></div><p>其中 <code>LEAQ	type.noalg.struct { F uintptr; &quot;&quot;.t string }(SB), AX</code> 这行表明 Go 对闭包的实现和维基百科说的类似。</p>
+<p>现在看看下面这种是不是这么实现的：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>  
+    <span class="s">&#34;fmt&#34;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>  
+    <span class="nx">a</span> <span class="o">:=</span> <span class="mi">5</span>
+    <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;a =&#34;</span><span class="p">,</span> <span class="nx">a</span><span class="p">)</span>
+    <span class="p">}()</span>
+<span class="p">}</span>
+</code></pre></div><p>看看汇编</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ go tool compile -S test.go
+<span class="s2">&#34;&#34;</span>.main.func1 STEXT <span class="nv">size</span><span class="o">=</span><span class="m">215</span> <span class="nv">args</span><span class="o">=</span>0x8 <span class="nv">locals</span><span class="o">=</span>0x50 <span class="nv">funcid</span><span class="o">=</span>0x0
+  0x0000 <span class="m">00000</span> <span class="o">(</span>test.go:9<span class="o">)</span>	TEXT	<span class="s2">&#34;&#34;</span>.main.func1<span class="o">(</span>SB<span class="o">)</span>, ABIInternal, <span class="nv">$80</span>-8
+  0x0000 <span class="m">00000</span> <span class="o">(</span>test.go:9<span class="o">)</span>	MOVQ	<span class="o">(</span>TLS<span class="o">)</span>, CX
+  0x0009 <span class="m">00009</span> <span class="o">(</span>test.go:9<span class="o">)</span>	CMPQ	SP, 16<span class="o">(</span>CX<span class="o">)</span>
+  0x000d <span class="m">00013</span> <span class="o">(</span>test.go:9<span class="o">)</span>	PCDATA	<span class="nv">$0</span>, <span class="nv">$-</span><span class="m">2</span>
+  0x000d <span class="m">00013</span> <span class="o">(</span>test.go:9<span class="o">)</span>	JLS	<span class="m">205</span>
+  0x0013 <span class="m">00019</span> <span class="o">(</span>test.go:9<span class="o">)</span>	PCDATA	<span class="nv">$0</span>, <span class="nv">$-</span><span class="m">1</span>
+  0x0013 <span class="m">00019</span> <span class="o">(</span>test.go:9<span class="o">)</span>	SUBQ	<span class="nv">$80</span>, SP
+  0x0017 <span class="m">00023</span> <span class="o">(</span>test.go:9<span class="o">)</span>	MOVQ	BP, 72<span class="o">(</span>SP<span class="o">)</span>
+  0x001c <span class="m">00028</span> <span class="o">(</span>test.go:9<span class="o">)</span>	LEAQ	72<span class="o">(</span>SP<span class="o">)</span>, BP
+  0x0021 <span class="m">00033</span> <span class="o">(</span>test.go:9<span class="o">)</span>	FUNCDATA	<span class="nv">$0</span>, gclocals·69c1753bd5f81501d95132d08af04464<span class="o">(</span>SB<span class="o">)</span>
+  0x0021 <span class="m">00033</span> <span class="o">(</span>test.go:9<span class="o">)</span>	FUNCDATA	<span class="nv">$1</span>, gclocals·9fb7f0986f647f17cb53dda1484e0f7a<span class="o">(</span>SB<span class="o">)</span>
+  0x0021 <span class="m">00033</span> <span class="o">(</span>test.go:10<span class="o">)</span>	MOVQ	<span class="s2">&#34;&#34;</span>.a+88<span class="o">(</span>SP<span class="o">)</span>, AX
+  0x0026 <span class="m">00038</span> <span class="o">(</span>test.go:10<span class="o">)</span>	MOVQ	AX, <span class="o">(</span>SP<span class="o">)</span>
+  0x002a <span class="m">00042</span> <span class="o">(</span>test.go:10<span class="o">)</span>	PCDATA	<span class="nv">$1</span>, <span class="nv">$0</span>
+  0x002a <span class="m">00042</span> <span class="o">(</span>test.go:10<span class="o">)</span>	CALL	runtime.convT64<span class="o">(</span>SB<span class="o">)</span>
+  0x002f <span class="m">00047</span> <span class="o">(</span>test.go:10<span class="o">)</span>	MOVQ	8<span class="o">(</span>SP<span class="o">)</span>, AX
+  0x0034 <span class="m">00052</span> <span class="o">(</span>test.go:10<span class="o">)</span>	MOVQ	AX, <span class="s2">&#34;&#34;</span>..autotmp_21+64<span class="o">(</span>SP<span class="o">)</span>
+  0x0039 <span class="m">00057</span> <span class="o">(</span>test.go:10<span class="o">)</span>	LEAQ	type.<span class="o">[</span>2<span class="o">]</span>interface <span class="o">{}(</span>SB<span class="o">)</span>, CX
+  0x0040 <span class="m">00064</span> <span class="o">(</span>test.go:10<span class="o">)</span>	MOVQ	CX, <span class="o">(</span>SP<span class="o">)</span>
+  0x0044 <span class="m">00068</span> <span class="o">(</span>test.go:10<span class="o">)</span>	PCDATA	<span class="nv">$1</span>, <span class="nv">$1</span>
+  0x0044 <span class="m">00068</span> <span class="o">(</span>test.go:10<span class="o">)</span>	CALL	runtime.newobject<span class="o">(</span>SB<span class="o">)</span>
+  0x0049 <span class="m">00073</span> <span class="o">(</span>test.go:10<span class="o">)</span>	MOVQ	8<span class="o">(</span>SP<span class="o">)</span>, AX
+  0x004e <span class="m">00078</span> <span class="o">(</span>test.go:10<span class="o">)</span>	LEAQ	type.string<span class="o">(</span>SB<span class="o">)</span>, CX
+  0x0055 <span class="m">00085</span> <span class="o">(</span>test.go:10<span class="o">)</span>	MOVQ	CX, <span class="o">(</span>AX<span class="o">)</span>
+  0x0058 <span class="m">00088</span> <span class="o">(</span>test.go:10<span class="o">)</span>	LEAQ	<span class="s2">&#34;&#34;</span>..stmp_1<span class="o">(</span>SB<span class="o">)</span>, CX
+  0x005f <span class="m">00095</span> <span class="o">(</span>test.go:10<span class="o">)</span>	MOVQ	CX, 8<span class="o">(</span>AX<span class="o">)</span>
+  0x0063 <span class="m">00099</span> <span class="o">(</span>test.go:10<span class="o">)</span>	LEAQ	type.int<span class="o">(</span>SB<span class="o">)</span>, CX
+  0x006a <span class="m">00106</span> <span class="o">(</span>test.go:10<span class="o">)</span>	MOVQ	CX, 16<span class="o">(</span>AX<span class="o">)</span>
+  0x006e <span class="m">00110</span> <span class="o">(</span>test.go:10<span class="o">)</span>	PCDATA	<span class="nv">$0</span>, <span class="nv">$-</span><span class="m">2</span>
+  0x006e <span class="m">00110</span> <span class="o">(</span>test.go:10<span class="o">)</span>	CMPL	runtime.writeBarrier<span class="o">(</span>SB<span class="o">)</span>, <span class="nv">$0</span>
+  0x0075 <span class="m">00117</span> <span class="o">(</span>test.go:10<span class="o">)</span>	JNE	<span class="m">189</span>
+  0x0077 <span class="m">00119</span> <span class="o">(</span>test.go:10<span class="o">)</span>	MOVQ	<span class="s2">&#34;&#34;</span>..autotmp_21+64<span class="o">(</span>SP<span class="o">)</span>, CX
+  0x007c <span class="m">00124</span> <span class="o">(</span>test.go:10<span class="o">)</span>	MOVQ	CX, 24<span class="o">(</span>AX<span class="o">)</span>
+  0x0080 <span class="m">00128</span> <span class="o">(</span>test.go:10<span class="o">)</span>	PCDATA	<span class="nv">$0</span>, <span class="nv">$-</span><span class="m">1</span>
+  0x0080 <span class="m">00128</span> <span class="o">(</span>test.go:10<span class="o">)</span>	PCDATA	<span class="nv">$1</span>, <span class="nv">$-</span><span class="m">1</span>
+</code></pre></div><p>发现并没有这样的结构体，可见 Go 对这种情况做了特殊处理，因为它不是重复使用的匿名函数。</p>
+<h2 id="04-总结">04 总结</h2>
+<p>通过以上的讲解，对闭包应该有了更清晰的认识。如果面试中再被问到闭包，你可以这么回答：</p>
+<blockquote>
+<p>对闭包来说，函数在该语言中得是一等公民。一般来说，一个函数返回另外一个函数，这个被返回的函数可以引用外层函数的局部变量，这形成了一个闭包。通常，闭包通过一个结构体来实现，它存储一个函数和一个关联的上下文环境。但 Go 语言中，匿名函数就是一个闭包，它可以直接引用外部函数的局部变量，因为 Go 规范和 FAQ 都这么说了。</p>
+</blockquote>
+<p>面试官会不会被你惊到：原来如此，后一种说法我之前没有注意过。</p>
+]]></content>
+		</item>
 		
 		<item>
 			<title>Rust 劝退系列 02：第一个 Rust 程序</title>

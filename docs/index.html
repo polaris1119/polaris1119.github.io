@@ -14,7 +14,7 @@
 <meta property="og:description" content="polarisxu,Go语言中文网,go,golang,源码分析,系列教程" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://polarisxu.studygolang.com/" />
-<meta property="og:updated_time" content="2021-04-11T22:30:00+08:00" />
+<meta property="og:updated_time" content="2021-04-13T18:30:00+08:00" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="polarisxu"/>
 <meta name="twitter:description" content="polarisxu,Go语言中文网,go,golang,源码分析,系列教程"/>
@@ -70,6 +70,26 @@
 		<main class="site-main section-inner thin animated fadeIn faster">
     
 		
+        <div class="post animated fadeInDown">
+            <div class="post-title">
+                <h2><a href="/posts/go/action/go-closure/">一道 Go 闭包题，面试官说原来自己答错了：面别人也涨知识</a>
+                </h2>
+            </div>
+            <div class="post-content">
+                <div class="p_part"><p>大家好，我是站长 polarisxu。 通常，JS 面试，闭包应该是必考的题目。随着越来越多的语言对函数式范式的支持，闭包问题经常出现。在 Go 语言中也是如此。 本文从一道题引出 Go 中的闭包。这是 Go 语言爱好者周刊第 90 期的一道题目。以下代码输出什么？ package main import &#34;fmt&#34; func app() func(string) string { t := &#34;Hi&#34; c := func(b string) string { t = t + &#34; &#34; + b return t } return c } func main() { a := app() b := app() a(&#34;go&#34;) fmt.Println(b(&#34;All&#34;)) } 这道题目答对的人蛮多的：60%。不管你</p></div>
+            </div>
+            <div class="post-footer">
+                <div class="meta">
+                    <div class="info"><em class="fas fa-calendar-day"></em><span
+                                class="date">2021-04-13</span>
+                        <a class="tag"
+                                   href="/tags/go/">Go</a><a class="tag"
+                                   href="/tags/%E9%97%AD%E5%8C%85/">闭包</a>
+                    </div>
+                </div>
+            </div>
+				</div>
+    
         <div class="post animated fadeInDown">
             <div class="post-title">
                 <h2><a href="/posts/rust/rust-tutorial-02/">Rust 劝退系列 02：第一个 Rust 程序</a>
@@ -250,26 +270,6 @@
             </div>
 				</div>
     
-        <div class="post animated fadeInDown">
-            <div class="post-title">
-                <h2><a href="/posts/talk/competition-aliyundriver/">阿里云盘公测随想：如何看待竞争</a>
-                </h2>
-            </div>
-            <div class="post-content">
-                <div class="p_part"><p>大家好，我是站长 polarisxu。 昨天（2021 年 3 月 22 日）阿里云盘公测，声称下载速度 50-100 M/s，网友测试，5G 下确实能达到。而且官方表示，“无论免费收费，未来都不限速”。 朋友圈有人发了这么一段话： 阿里云盘今天公测，下载速度 50-100 MB/s，官方表示：“无论免费收费，未来都不限速” 百度网盘目前用户数已超 7 亿，阿里云盘目前用户数不足千万 阿里云平台目前有 2800+ 的 CDN 节点，全</p></div>
-            </div>
-            <div class="post-footer">
-                <div class="meta">
-                    <div class="info"><em class="fas fa-calendar-day"></em><span
-                                class="date">2021-03-22</span>
-                        <a class="tag"
-                                   href="/tags/%E7%AB%9E%E4%BA%89/">竞争</a><a class="tag"
-                                   href="/tags/%E4%BA%91%E7%9B%98/">云盘</a>
-                    </div>
-                </div>
-            </div>
-				</div>
-    
     <div class="pagination">
         
 <ul class="pagination">
@@ -292,13 +292,13 @@
     <span aria-hidden="true">&nbsp;&hellip;&nbsp;</span>
   </li>
   <li class="page-item">
-    <a class="page-link" href="/page/12/">12</a>
+    <a class="page-link" href="/page/13/">13</a>
   </li>
   <li class="page-item">
     <a href="/page/2/" class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
   </li>
   <li class="page-item">
-    <a href="/page/12/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+    <a href="/page/13/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
   </li>
 </ul>
 
