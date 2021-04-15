@@ -11,7 +11,7 @@
 <meta itemprop="description" content="大家好，我是站长 polarisxu。 通常，JS 面试，闭包应该是必考的题目。随着越来越多的语言对函数式范式的支持，闭包问题经常出现。在 Go 语言中也是如此。 本文从一道题引出 Go 中的闭包。这是 Go 语言爱好者周刊第 90 期的一道题目。以下代码输出什么？ package main import &#34;fmt&#34; func app() func(string) string { t := &#34;Hi&#34; c := func(b string) string { t = t &#43; &#34; &#34; &#43; b return t } return c } func main() { a := app() b := app() a(&#34;go&#34;) fmt.Println(b(&#34;All&#34;)) } 这道题目答对的人蛮多的：60%。不管你">
 <meta itemprop="datePublished" content="2021-04-13T18:30:00+08:00" />
 <meta itemprop="dateModified" content="2021-04-13T18:30:00+08:00" />
-<meta itemprop="wordCount" content="2511">
+<meta itemprop="wordCount" content="2754">
 
 
 
@@ -105,7 +105,8 @@
 <span class="p">}</span>
 </code></pre></div><p>这道题目答对的人蛮多的：60%。不管你是答对还是答错，如果最后再加一行代码：<code>fmt.Println(a(&quot;All&quot;))</code>，它输出什么？想看看你是不是蒙对了。（提示：你可以输出 t 的地址，看看是什么情况。）</p>
 <h2 id="01-什么是闭包">01 什么是闭包<a href="#01-什么是闭包" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-<p>维基百科对闭包的定义：</p>
+<p>维基百科对<a href="https://zh.wikipedia.org/wiki/%E9%97%AD%E5%8C%85_%28%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%29" target="_blank" rel="noopener">闭包的定义</a>
+：</p>
 <blockquote>
 <p>在计算机科学中，闭包（英语：Closure），又称词法闭包（Lexical Closure）或函数闭包（function closures），是在支持头等函数的编程语言中实现词法绑定的一种技术。闭包在实现上是一个结构体，它存储了一个函数（通常是其入口地址）和一个关联的环境（相当于一个符号查找表）。环境里是若干对符号和值的对应关系，它既要包括约束变量（该函数内部绑定的符号），也要包括自由变量（在函数外部定义但在函数内被引用），有些函数也可能没有自由变量。闭包跟函数最大的不同在于，当捕捉闭包的时候，它的自由变量会在捕捉时被确定，这样即便脱离了捕捉时的上下文，它也能照常运行。捕捉时对于值的处理可以是值拷贝，也可以是名称引用，这通常由语言设计者决定，也可能由用户自行指定（如 C++）。</p>
 </blockquote>
@@ -288,6 +289,16 @@
 <p>对闭包来说，函数在该语言中得是一等公民。一般来说，一个函数返回另外一个函数，这个被返回的函数可以引用外层函数的局部变量，这形成了一个闭包。通常，闭包通过一个结构体来实现，它存储一个函数和一个关联的上下文环境。但 Go 语言中，匿名函数就是一个闭包，它可以直接引用外部函数的局部变量，因为 Go 规范和 FAQ 都这么说了。</p>
 </blockquote>
 <p>面试官会不会被你惊到：原来如此，后一种说法我之前没有注意过。</p>
+<blockquote>
+<p>4 月 14 日更新：</p>
+<p>来自<a href="https://mp.weixin.qq.com/s/gfyW0pBIHsf2oYluQNbP8A" target="_blank" rel="noopener">微信公众号</a>
+的读者 **gopher **留言：</p>
+<p>noalg 代表不会生成 equal 和 hash 函数，因为闭包的 struct 是匿名的，不存在比较或者作为 key 的场景。
+F uintptr 更准确的说应该是 .F uintptr，编译器生成的符号大部分都是.开头的。
+&ldquo;&quot;.t string 表示捕获了一个 string 类型的变量 t，而且是 by value 而不是 by reference，因为&quot;We use value capturing for values &lt;= 128 bytes that are never reassigned after capturing (effectively constant).&quot;。
+通过 (func)(*struct) 的类型转换，即可通过 .F 找到对应的函数。
+题外话：closure 通过 struct 实现只是为了 GC 更友好，另外匿名 struct 是为了不同的 package 共用 struct 的可能性。</p>
+</blockquote>
 
 			</div><div class="content">
 	<br>
@@ -316,7 +327,7 @@
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://polarisxu.studygolang.com/tags/go">Go</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/%E9%97%AD%E5%8C%85">闭包</a></span>
 				</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>2511 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>2754 字</p>
 				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2021-04-13 18:30 &#43;0800</p>
 			</footer>
 		</article>
@@ -338,6 +349,9 @@
 </nav>
 		</aside>
 		<div class="post-nav thin">
+			<a class="next-post" href="https://polarisxu.studygolang.com/posts/wechat/2021-04-wechat-changes/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;新</span><br><span>“这个功能，公众号、微信群会不会被玩坏？&#34;</span>
+			</a>
 			<a class="prev-post" href="https://polarisxu.studygolang.com/posts/rust/rust-tutorial-02/">
 				<span class="post-nav-label">旧&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>Rust 劝退系列 02：第一个 Rust 程序</span>
 			</a>

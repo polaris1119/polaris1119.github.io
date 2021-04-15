@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#fcfcfc">
+	<meta name="msapplication-TileColor" content="#fcfcfc">
+<meta itemprop="name" content="“这个功能，公众号、微信群会不会被玩坏？&#34;">
+<meta itemprop="description" content="大家好，我是站长 polarisxu。 微信生态近期又有一些不错的变更，体验上有较大改进，我把看到的一些列举下。 01 公众号留言支持盖楼 什么意思？最开始，微信公众号的留言，作者回复后，留言者没法接着原来的留言盖楼，必须另起一个留言，前段时间做了改进。不过还存在这样一个问题：比如一楼问了一个问题，其他读者想回复他，没法直接回复，经常见到这样的：回复一楼。然而，微信留言">
+<meta itemprop="datePublished" content="2021-04-14T18:30:00+08:00" />
+<meta itemprop="dateModified" content="2021-04-14T18:30:00+08:00" />
+<meta itemprop="wordCount" content="1345">
+
+
+
+<meta itemprop="keywords" content="Wechat,微信,公众号," />
+<meta property="og:title" content="“这个功能，公众号、微信群会不会被玩坏？&#34;" />
+<meta property="og:description" content="大家好，我是站长 polarisxu。 微信生态近期又有一些不错的变更，体验上有较大改进，我把看到的一些列举下。 01 公众号留言支持盖楼 什么意思？最开始，微信公众号的留言，作者回复后，留言者没法接着原来的留言盖楼，必须另起一个留言，前段时间做了改进。不过还存在这样一个问题：比如一楼问了一个问题，其他读者想回复他，没法直接回复，经常见到这样的：回复一楼。然而，微信留言" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://polarisxu.studygolang.com/posts/wechat/2021-04-wechat-changes/" />
+<meta property="article:published_time" content="2021-04-14T18:30:00+08:00" />
+<meta property="article:modified_time" content="2021-04-14T18:30:00+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="“这个功能，公众号、微信群会不会被玩坏？&#34;"/>
+<meta name="twitter:description" content="大家好，我是站长 polarisxu。 微信生态近期又有一些不错的变更，体验上有较大改进，我把看到的一些列举下。 01 公众号留言支持盖楼 什么意思？最开始，微信公众号的留言，作者回复后，留言者没法接着原来的留言盖楼，必须另起一个留言，前段时间做了改进。不过还存在这样一个问题：比如一楼问了一个问题，其他读者想回复他，没法直接回复，经常见到这样的：回复一楼。然而，微信留言"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>“这个功能，公众号、微信群会不会被玩坏？&#34;</title>
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
+	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/styles.css">
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://polarisxu.studygolang.com">polarisxu</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+  <a href="https://polarisxu.studygolang.com/">首页</a>
+  <a href="https://polarisxu.studygolang.com/categories/echo%E7%B3%BB%E5%88%97/">Echo系列</a>
+  <a href="https://polarisxu.studygolang.com/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a>
+  <a href="https://polarisxu.studygolang.com/posts/">归档</a>
+  <a href="https://polarisxu.studygolang.com/about/">关于</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<button id="toc-btn" class="hdr-btn desktop-only-ib" title="目录"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3" y2="6"></line><line x1="3" y1="12" x2="3" y2="12"></line><line x1="3" y1="18" x2="3" y2="18"></line></svg></button><span class="hdr-social hide-in-mobile"><a href="https://github.com/polaris1119" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a><a href="https://twitter.com/polaris1119" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="菜单"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://polarisxu.studygolang.com/">首页</a></li>
+			<li><a href="https://polarisxu.studygolang.com/categories/echo%E7%B3%BB%E5%88%97/">Echo系列</a></li>
+			<li><a href="https://polarisxu.studygolang.com/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a></li>
+			<li><a href="https://polarisxu.studygolang.com/posts/">归档</a></li>
+			<li><a href="https://polarisxu.studygolang.com/about/">关于</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Apr 14, 2021</span></div>
+				<h1>“这个功能，公众号、微信群会不会被玩坏？&#34;</h1>
+			</header>
+			<div class="content">
+				<p>大家好，我是站长 polarisxu。</p>
+<p>微信生态近期又有一些不错的变更，体验上有较大改进，我把看到的一些列举下。</p>
+<h2 id="01-公众号留言支持盖楼">01 公众号留言支持盖楼<a href="#01-公众号留言支持盖楼" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>什么意思？最开始，微信公众号的留言，作者回复后，留言者没法接着原来的留言盖楼，必须另起一个留言，前段时间做了改进。不过还存在这样一个问题：比如一楼问了一个问题，其他读者想回复他，没法直接回复，经常见到这样的：回复一楼。然而，微信留言目前的排序是按点赞数，按时间排序，一楼有可能不是一楼了，而且别的读者回复了，留言者也不会有提醒。</p>
+<p>现在公众号在灰度测试完全盖楼功能，解决上面说到的问题，体验会更好。</p>
+<p>这有种网易评论的感觉，相信公众号留言会更火。不过，任何留言都需要作者精选才能放出来，这也是安全性考虑。</p>
+<p>目前我的号还不支持盖楼，支持盖楼是这样子的（点开后）：</p>
+<p><p class="md__image">
+  <img src="../imgs/wechat-200414-01.png"
+    alt=""  />
+</p>
+</p>
+<h2 id="02-公众号二维码转卡片">02 公众号二维码转卡片<a href="#02-公众号二维码转卡片" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>前段时间，公众号提供了一个插入公众号卡片的功能，不过卡片是不能复制的，而二维码方便复制。现在公众号编辑后台提供了一个功能，鼠标停留在公众号二维码上，会出现「转为公众号卡片」的字样，点击就可以转为公众号卡片，很贴心的小功能。</p>
+<h2 id="03-新好友打标签更方便">03 新好友打标签更方便<a href="#03-新好友打标签更方便" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>对于每天要处理较多微信好友请求的人来说，这个改进减少了好几步操作。一般地，为了方便管理为微信好友，会为好友打上标签，毕竟微信不像 QQ，支持好友分组。之前，通过一个好友请求，需要额外点击几步才能设置上标签，现在在好友通过页面直接放上了标签，可以一次性搞定。</p>
+<h2 id="04-群更方便--所有人">04 群更方便 @ 所有人<a href="#04-群更方便--所有人" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>QQ 群 @ 所有人特别方便，但微信群一直很弱，群主想要 @ 所有人，必须通过群公告的形式发布。不过，现在可以直接 @ 所有人了。当然，这个功能比较打扰，建议一般别用，毕竟群主要用于交流，频繁打扰大家不合适。别被群主玩坏了。</p>
+<p>输入 @ 会出现下面的对话框，可以选择所有人：</p>
+<p><p class="md__image">
+  <img src="../imgs/wechat-200414-02.png"
+    alt=""  />
+</p>
+</p>
+<p>此外还有一个比较有意思的改动，如果你的很好友同时也是你的手机通讯录好友，昵称（或备注名称）和通讯录里的不一致，在转发信息等给他时，名称后会有括号，里面是通讯录中的名称。通过这种方式可以快速的知道，某个好友是不是你手机通讯录好友。（在微信「通讯录」Tab 也是这种方式显示的）</p>
+<p>另外，「我的」状态按钮改动多次后，终于好看些了。现在状态旁边加了三个点，可以查看哪些好友有状态，因为状态发布后几天会自动消失。</p>
+<hr>
+<p>最后介绍两个腾讯开发的微信小程序，也许用得到。</p>
+<h2 id="05-腾讯电子签">05 腾讯电子签<a href="#05-腾讯电子签" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>「腾讯电子签」目前包含两个功能：开收据和签合同。</p>
+<p>之前都需要纸质，现在通过这个小程序可以线上处理。这也是腾讯在区块链上的应用，支付宝可能早就有类似的功能了。</p>
+<p>按官方介绍，这个是有法律效力的，一方面，要求双方实名认证，有纠纷，可以找到人；另一方面，所有关键信息都上区块链。</p>
+<p>这里有官方的介绍：<a href="https://mp.weixin.qq.com/s/nrFxj2kEtDOwaPmGgWW0JQ" target="_blank" rel="noopener">手写收据太麻烦，下回用微信开！</a>
+</p>
+<p>试用小程序：</p>
+<p><p class="md__image">
+  <img src="../imgs/wechat-200414-03.png"
+    alt=""  />
+</p>
+</p>
+<h2 id="06-微小号">06 微小号<a href="#06-微小号" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>有些人可能听过阿里小号，我办理过一个，但目前阿里小号已经无法再购买了。</p>
+<p>小号有什么用呢？我想不用过多介绍。</p>
+<p>腾讯最近发布了一个「微小号」微信小程序，一人可以购买两个小号。不过一个号 10 元/月，而且目前只支持联通。相比较来说，阿里小号，不优惠一年才 40 元，优惠才 20 元/年。相比来说，微小号真心贵。如果你真有小号的需求，可以问问你的运营商可不可以办理副卡，可能会比这便宜。</p>
+<hr>
+<p>微信功能的更新，经常隐藏的很深，除了本文介绍的，你还发现了哪些有意思的更新？！</p>
+
+			</div><div class="content">
+	<br>
+	<img src="https://static.studygolang.com/static/img/polarisxu-qrcode-soso-s.png">
+</div>
+
+<div class="related-posts thin">
+	<h2>相关推荐</h2>
+	<ul>
+	
+	<li><a href="/posts/wechat/2021-01-wechat-changes/">2021 年了，你可能没注意到的微信公众号的一些变化</a></li>
+	
+	<li><a href="/posts/wechat/mac-wechat-3.0/">微信 Mac 版 3.0 支持浏览朋友圈：划水更方便了</a></li>
+	
+	<li><a href="/posts/wechat/myself-wechat-red-cover/">微信支持个人免费制作红包封面了：不过跟 clubhouse 一样，只能 iOS</a></li>
+	
+	<li><a href="/posts/wechat/article-pretty/">除了心灵美，颜值也很重要</a></li>
+	
+	<li><a href="/posts/wechat/wechat-8.0/">微信 8.0 的这个功能和 Go 的 error 一样？</a></li>
+	
+	</ul>
+</div>
+
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://polarisxu.studygolang.com/tags/wechat">Wechat</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/%E5%BE%AE%E4%BF%A1">微信</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/%E5%85%AC%E4%BC%97%E5%8F%B7">公众号</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1345 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2021-04-14 18:30 &#43;0800</p>
+			</footer>
+		</article>
+		<aside id="toc">
+			<div class="toc-title">目录</div>
+			<nav id="TableOfContents">
+  <ul>
+    <li><a href="#01-公众号留言支持盖楼">01 公众号留言支持盖楼</a></li>
+    <li><a href="#02-公众号二维码转卡片">02 公众号二维码转卡片</a></li>
+    <li><a href="#03-新好友打标签更方便">03 新好友打标签更方便</a></li>
+    <li><a href="#04-群更方便--所有人">04 群更方便 @ 所有人</a></li>
+    <li><a href="#05-腾讯电子签">05 腾讯电子签</a></li>
+    <li><a href="#06-微小号">06 微小号</a></li>
+  </ul>
+</nav>
+		</aside>
+		<div class="post-nav thin">
+			<a class="prev-post" href="https://polarisxu.studygolang.com/posts/go/action/go-closure/">
+				<span class="post-nav-label">旧&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>一道 Go 闭包题，面试官说原来自己答错了：面别人也涨知识</span>
+			</a>
+		</div>
+		<div id="comments" class="thin"><script src="https://utteranc.es/client.js"
+	repo="polaris1119/polarisxu"
+	issue-term="pathname"
+	theme="github-light"
+	crossorigin="anonymous"
+	async>
+</script>
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2019 - 2021 <a href="https://polarisxu.studygolang.com">polarisxu</a> &#183; <a href="https://beian.miit.gov.cn/">京ICP备14030343号-1</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://polarisxu.studygolang.com/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+		<span id="busuanzi_container" style="color: #666;">
+			本站总访客数/访问量：<span id="busuanzi_value_site_uv"></span>/<span id="busuanzi_value_site_pv"></span>
+		</span>
+	</footer>
+
+
+
+	<script src="https://polarisxu.studygolang.com/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw=" crossorigin="anonymous"></script>
+	<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?224c227cd9239761ec770bc8c1fb134c";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+</body>
+
+</html>
