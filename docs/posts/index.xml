@@ -133,6 +133,13 @@
 <p>这里额外解释下 ..inittask 为什么两个点。第一个点就是普通的 runtime. 这种调用方式，第二个点和 inittask 一起构成一个符号（变量）。注意，Go 中的变量是不允许以 . 开头的，所以，这个叫伪符号，只在不编译阶段存在。</p>
 </blockquote>
 <h2 id="04-一个例子">04 一个例子</h2>
+<p>研究 <code>//go:linkname</code> 是因为如下的背景：</p>
+<blockquote>
+<p>Java 里有 InheritableThreadLocal，SpringWeb 在 ServletActionContext 里使用它，达到在任何地方都能方便的获取HttpServletRequest。</p>
+<p>Go 并没有提供类似的机制，即使通过 stack 找到 goroutine id（99% 的文章都是这么介绍的），再配合 sync.Map，也只是实现了一个比较粗糙的 ThreadLocal，在子协程里仍然获取不到父协程的内容。</p>
+<p>g.label 虽然不是给这种场景准备的，但它具备了 InheritableThreadLocal 的一切要求，只要我们能够访问到 label 私有字段，我们就有了完整版的 InheritableThreadLocal。</p>
+</blockquote>
+<p>下面这个例子是作者真实项目中用的。</p>
 <p>在 runtime 和 runtime/pprof 包中有两个函数：runtime_setProfLabel 和  runtime_getProfLabel。其中，runtime 包中的提供了实现，而 pprof 中的没有提供实现。如果基于它们创建另外的函数，如下：</p>
 <div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">//go:linkname SetPointer runtime/pprof.runtime_setProfLabel
 </span><span class="c1"></span><span class="kd">func</span> <span class="nf">SetPointer</span><span class="p">(</span><span class="nx">ptr</span> <span class="nx">unsafe</span><span class="p">.</span><span class="nx">Pointer</span><span class="p">)</span>

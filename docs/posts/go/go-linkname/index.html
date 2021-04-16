@@ -11,7 +11,7 @@
 <meta itemprop="description" content="大家好，我是站长 polarisxu。 我之前写过一篇文章：为什么 Go 标准库中有些函数只有签名，没有函数体？ ，其中有一点就是 //go:linkname 这个指令。 Go 中类似的指令挺多的，比如 Go1.16 中的 //go:embed。前些天有人问我，为什么它用 //go:embed 不起作用？我一看，它是这么写的：// go:embed，不知道你看到问题了没有？是的，指令是通过注释的方式，但有三点要求，要特别注意： // 后不能有空格。">
 <meta itemprop="datePublished" content="2021-04-15T20:30:00+08:00" />
 <meta itemprop="dateModified" content="2021-04-15T20:30:00+08:00" />
-<meta itemprop="wordCount" content="1979">
+<meta itemprop="wordCount" content="2249">
 
 
 
@@ -198,6 +198,13 @@
 <p>这里额外解释下 ..inittask 为什么两个点。第一个点就是普通的 runtime. 这种调用方式，第二个点和 inittask 一起构成一个符号（变量）。注意，Go 中的变量是不允许以 . 开头的，所以，这个叫伪符号，只在不编译阶段存在。</p>
 </blockquote>
 <h2 id="04-一个例子">04 一个例子<a href="#04-一个例子" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>研究 <code>//go:linkname</code> 是因为如下的背景：</p>
+<blockquote>
+<p>Java 里有 InheritableThreadLocal，SpringWeb 在 ServletActionContext 里使用它，达到在任何地方都能方便的获取HttpServletRequest。</p>
+<p>Go 并没有提供类似的机制，即使通过 stack 找到 goroutine id（99% 的文章都是这么介绍的），再配合 sync.Map，也只是实现了一个比较粗糙的 ThreadLocal，在子协程里仍然获取不到父协程的内容。</p>
+<p>g.label 虽然不是给这种场景准备的，但它具备了 InheritableThreadLocal 的一切要求，只要我们能够访问到 label 私有字段，我们就有了完整版的 InheritableThreadLocal。</p>
+</blockquote>
+<p>下面这个例子是作者真实项目中用的。</p>
 <p>在 runtime 和 runtime/pprof 包中有两个函数：runtime_setProfLabel 和  runtime_getProfLabel。其中，runtime 包中的提供了实现，而 pprof 中的没有提供实现。如果基于它们创建另外的函数，如下：</p>
 <div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">//go:linkname SetPointer runtime/pprof.runtime_setProfLabel
 </span><span class="c1"></span><span class="kd">func</span> <span class="nf">SetPointer</span><span class="p">(</span><span class="nx">ptr</span> <span class="nx">unsafe</span><span class="p">.</span><span class="nx">Pointer</span><span class="p">)</span>
@@ -256,7 +263,7 @@
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://polarisxu.studygolang.com/tags/go">Go</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/%E6%8C%87%E4%BB%A4">指令</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/linkname">linkname</a></span>
 				</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1979 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>2249 字</p>
 				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2021-04-15 20:30 &#43;0800</p>
 			</footer>
 		</article>
