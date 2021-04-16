@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>指令 on polarisxu</title>
+    <link>https://polarisxu.studygolang.com/tags/%E6%8C%87%E4%BB%A4/</link>
+    <description>Recent content in 指令 on polarisxu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
+    <lastBuildDate>Thu, 15 Apr 2021 20:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/%E6%8C%87%E4%BB%A4/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>注释竟然还有特殊用途？一文解惑 //go:linkname 指令</title>
+      <link>https://polarisxu.studygolang.com/posts/go/go-linkname/</link>
+      <pubDate>Thu, 15 Apr 2021 20:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/go-linkname/</guid>
+      <description>大家好，我是站长 polarisxu。 我之前写过一篇文章：为什么 Go 标准库中有些函数只有签名，没有函数体？ ，其中有一点就是 //go:linkname 这个指令。 Go 中类似的指令挺多的，比如 Go1.16 中的 //go:embed。前些天有人问我，为什么它用 //go:embed 不起作用？我一看，它是这么写的：// go:embed，不知道你看到问题了没有？是的，指令是通过注释的方式，但有三点要求，要特别注意： // 后不能有空格。</description>
+    </item>
+    
+  </channel>
+</rss>

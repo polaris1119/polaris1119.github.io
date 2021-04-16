@@ -6,8 +6,165 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en</language>
 		<copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-		<lastBuildDate>Wed, 14 Apr 2021 18:30:00 +0800</lastBuildDate>
+		<lastBuildDate>Thu, 15 Apr 2021 20:30:00 +0800</lastBuildDate>
 		<atom:link href="https://polarisxu.studygolang.com/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>注释竟然还有特殊用途？一文解惑 //go:linkname 指令</title>
+			<link>https://polarisxu.studygolang.com/posts/go/go-linkname/</link>
+			<pubDate>Thu, 15 Apr 2021 20:30:00 +0800</pubDate>
+			
+			<guid>https://polarisxu.studygolang.com/posts/go/go-linkname/</guid>
+			<description>大家好，我是站长 polarisxu。 我之前写过一篇文章：为什么 Go 标准库中有些函数只有签名，没有函数体？ ，其中有一点就是 //go:linkname 这个指令。 Go 中类似的指令挺多的，比如 Go1.16 中的 //go:embed。前些天有人问我，为什么它用 //go:embed 不起作用？我一看，它是这么写的：// go:embed，不知道你看到问题了没有？是的，指令是通过注释的方式，但有三点要求，要特别注意： // 后不能有空格。</description>
+			<content type="html"><![CDATA[<p>大家好，我是站长 polarisxu。</p>
+<p>我之前写过一篇文章：<a href="https://mp.weixin.qq.com/s/XPRj87YT3U6hJvyY11y8jA" target="_blank" rel="noopener">为什么 Go 标准库中有些函数只有签名，没有函数体？</a>
+，其中有一点就是 <code>//go:linkname</code> 这个指令。</p>
+<p>Go 中类似的指令挺多的，比如 Go1.16 中的 <code>//go:embed</code>。前些天有人问我，为什么它用 <code>//go:embed</code> 不起作用？我一看，它是这么写的：<code>// go:embed</code>，不知道你看到问题了没有？是的，指令是通过注释的方式，但有三点要求，要特别注意：</p>
+<ul>
+<li><code>//</code> 后不能有空格。有些人可能习惯 <code>//</code> 后不加空格。但一般认为，<code>//</code> 后应该加一个空格。不过 go 指令却要求不能有空格，这是一个小“坑”，得注意。所以上面那位朋友就是加了空格，导致出问题。（程序并不会报错，只是没有得到自己想要的结果）</li>
+<li>代码和指令之间不能有空行或其他注释。这一点应该还好，很多人不会用错吧；</li>
+<li>一般来说，使用指令需要导入相应的包。比如 <code>//go:linkname</code> 指令要求导入 unsafe 包，一般会 <code>import _ &quot;unsafe”</code>，<code>//go:embed</code> 指令，要求导入 embed 包。</li>
+</ul>
+<p>有另外一位 Go 朋友「橘中秘士」微信私聊我：</p>
+<blockquote>
+<p>大佬好，能不能写一篇 linkname 的文章。目前已经有了一些初步概念，但是尚有一些疑团不是特别清晰。</p>
+<p>//go:linkname localname remotename，其中 local 作为占位符 remote 作为实现者或者 local 作为实现者 remote 作为占位符都是可以的。目前理解的就是给 Symbol 添加了一个 Linkname，查找 Symbo l的时候用 remote。</p>
+<p>譬如 //go:linkname runtimeNano runtime.nanotime，runtimeNano 作为占位符 runtime.nanotime 提供实现，任何调用 runtimeNano 的地方实际替换为对 runtime.nanotime 的调用，这种场景比较容易接受。</p>
+<p>譬如 //go:linkname runtime_cmpstring runtime.cmpstring，runtime_cmpstring 提供实现 runtime.cmpstring作为占位符，是不是这时符号表里不存在 runtime_cmpstring 只有 runtime.cmpstring？</p>
+</blockquote>
+<p>经过简单沟通，他写了一篇文章解决自己的困惑。希望对各位有帮助。以下是他写的关于 <code>//go:linkname</code> 的文章（我做了一些调整）。</p>
+<hr>
+<h2 id="01-格式">01 格式</h2>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">//go:linkname local remote
+</span></code></pre></div><p>remote 可以没有，此时 remote 使用 local 的值，效果就是 local 被导出。</p>
+<h2 id="02-local-和-remote-同时为函数">02 local 和 remote 同时为函数</h2>
+<h3 id="local-作为占位符remote-作为实现者">local 作为占位符，remote 作为实现者</h3>
+<p>标准库中的例子：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// 来自 time 包
+</span><span class="c1">//go:linkname runtimeNano runtime.nanotime
+</span><span class="c1"></span><span class="kd">func</span> <span class="nf">runtimeNano</span><span class="p">()</span> <span class="kt">int64</span>
+
+<span class="c1">// 来自 runtime 包
+</span><span class="c1">//go:nosplit
+</span><span class="c1"></span><span class="kd">func</span> <span class="nf">nanotime</span><span class="p">()</span> <span class="kt">int64</span> <span class="p">{</span>
+	<span class="k">return</span> <span class="nf">nanotime1</span><span class="p">()</span>
+<span class="p">}</span>
+</code></pre></div><p>此时二进制文件中并没有<code>runtimeNano</code>，直接转化为对<code>runtime.nanotime</code>的调用。</p>
+<h3 id="local-作为实现者remote-作为占位符">local 作为实现者，remote 作为占位符</h3>
+<p>同样来自标准库。这里存在函数没有函数体，但是被反向引用。</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// 在标准库的一个 internal 中
+</span><span class="c1">//go:linkname runtime_cmpstring runtime.cmpstring
+</span><span class="c1"></span><span class="kd">func</span> <span class="nf">runtime_cmpstring</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
+	<span class="nx">l</span> <span class="o">:=</span> <span class="nb">len</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span>
+	<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nx">b</span><span class="p">)</span> <span class="p">&lt;</span> <span class="nx">l</span> <span class="p">{</span>
+		<span class="nx">l</span> <span class="p">=</span> <span class="nb">len</span><span class="p">(</span><span class="nx">b</span><span class="p">)</span>
+	<span class="p">}</span>
+	<span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="nx">l</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+		<span class="nx">c1</span><span class="p">,</span> <span class="nx">c2</span> <span class="o">:=</span> <span class="nx">a</span><span class="p">[</span><span class="nx">i</span><span class="p">],</span> <span class="nx">b</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span>
+		<span class="k">if</span> <span class="nx">c1</span> <span class="p">&lt;</span> <span class="nx">c2</span> <span class="p">{</span>
+			<span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+		<span class="p">}</span>
+		<span class="k">if</span> <span class="nx">c1</span> <span class="p">&gt;</span> <span class="nx">c2</span> <span class="p">{</span>
+			<span class="k">return</span> <span class="o">+</span><span class="mi">1</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span> <span class="p">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+	<span class="p">}</span>
+	<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span> <span class="p">&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="o">+</span><span class="mi">1</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="mi">0</span>
+<span class="p">}</span>
+
+<span class="c1">// 来自 runtime
+</span><span class="c1"></span><span class="kd">func</span> <span class="nf">cmpstring</span><span class="p">(</span><span class="kt">string</span><span class="p">,</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">int</span>
+</code></pre></div><p>此时二进制文件中并没有<code>runtime_cmpstring</code>，对应的函数已经被命名为<code>runtime.cmpstring</code>。也就是说，实现在 internal 包，但最终通过 runtime.cmpstring 来引用。</p>
+<h3 id="一个占位符一个汇编函数">一个占位符+一个汇编函数</h3>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// 在标准库的一个 internal 中
+</span><span class="c1">//go:linkname abigen_runtime_memequal runtime.memequal
+</span><span class="c1"></span><span class="kd">func</span> <span class="nf">abigen_runtime_memequal</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span> <span class="nx">unsafe</span><span class="p">.</span><span class="nx">Pointer</span><span class="p">,</span> <span class="nx">size</span> <span class="kt">uintptr</span><span class="p">)</span> <span class="kt">bool</span>
+</code></pre></div><p>注意<code>runtime.memequal</code>的实现并不在<code>runtime</code>包中，使用汇编实现的话并不要求必须在相应的包中。</p>
+<div class="highlight"><pre class="chroma"><code class="language-asm" data-lang="asm"><span class="c"># memequal(a, b unsafe.Pointer, size uintptr) bool
+</span><span class="c"></span><span class="nf">TEXT</span> <span class="no">runtime</span><span class="err">·</span><span class="no">memequal</span><span class="p">(</span><span class="no">SB</span><span class="p">),</span><span class="no">NOSPLIT</span><span class="p">,</span><span class="no">$0-25</span>
+	<span class="nf">MOVQ</span>	<span class="no">a</span><span class="err">+</span><span class="mi">0</span><span class="p">(</span><span class="no">FP</span><span class="p">),</span> <span class="no">SI</span>
+	<span class="nf">MOVQ</span>	<span class="no">b</span><span class="err">+</span><span class="mi">8</span><span class="p">(</span><span class="no">FP</span><span class="p">),</span> <span class="no">DI</span>
+	<span class="nf">CMPQ</span>	<span class="no">SI</span><span class="p">,</span> <span class="no">DI</span>
+	<span class="nf">JEQ</span>	<span class="no">eq</span>
+	<span class="nf">MOVQ</span>	<span class="no">size</span><span class="err">+</span><span class="mi">16</span><span class="p">(</span><span class="no">FP</span><span class="p">),</span> <span class="no">BX</span>
+	<span class="nf">LEAQ</span>	<span class="no">ret</span><span class="err">+</span><span class="mi">24</span><span class="p">(</span><span class="no">FP</span><span class="p">),</span> <span class="no">AX</span>
+	<span class="nf">JMP</span>	<span class="no">memeqbody</span><span class="err">&lt;&gt;</span><span class="p">(</span><span class="no">SB</span><span class="p">)</span>
+<span class="nl">eq:</span>
+	<span class="nf">MOVB</span>	<span class="no">$1</span><span class="p">,</span> <span class="no">ret</span><span class="err">+</span><span class="mi">24</span><span class="p">(</span><span class="no">FP</span><span class="p">)</span>
+	<span class="nf">RET</span>
+</code></pre></div><h2 id="03-local-和-remote-同时为变量">03 local 和 remote 同时为变量</h2>
+<h3 id="两个常规变量">两个常规变量</h3>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">//go:linkname overflowError runtime.overflowError
+</span><span class="c1"></span><span class="kd">var</span> <span class="nx">overflowError</span> <span class="kt">error</span>
+
+<span class="c1">//go:linkname divideError runtime.divideError
+</span><span class="c1"></span><span class="kd">var</span> <span class="nx">divideError</span> <span class="kt">error</span>
+
+<span class="c1">//go:linkname zeroVal runtime.zeroVal
+</span><span class="c1"></span><span class="kd">var</span> <span class="nx">zeroVal</span> <span class="p">[</span><span class="nx">maxZero</span><span class="p">]</span><span class="kt">byte</span>
+
+<span class="c1">//go:linkname _iscgo runtime.iscgo
+</span><span class="c1"></span><span class="kd">var</span> <span class="nx">_iscgo</span> <span class="kt">bool</span> <span class="p">=</span> <span class="kc">true</span>
+
+<span class="c1">//go:cgo_import_static x_cgo_setenv
+</span><span class="c1">//go:linkname x_cgo_setenv x_cgo_setenv
+</span><span class="c1">//go:linkname _cgo_setenv runtime._cgo_setenv
+</span><span class="c1"></span><span class="kd">var</span> <span class="nx">x_cgo_setenv</span> <span class="kt">byte</span>
+<span class="kd">var</span> <span class="nx">_cgo_setenv</span> <span class="p">=</span> <span class="o">&amp;</span><span class="nx">x_cgo_setenv</span>
+
+<span class="c1">//go:cgo_import_static x_cgo_unsetenv
+</span><span class="c1">//go:linkname x_cgo_unsetenv x_cgo_unsetenv
+</span><span class="c1">//go:linkname _cgo_unsetenv runtime._cgo_unsetenv
+</span><span class="c1"></span><span class="kd">var</span> <span class="nx">x_cgo_unsetenv</span> <span class="kt">byte</span>
+<span class="kd">var</span> <span class="nx">_cgo_unsetenv</span> <span class="p">=</span> <span class="o">&amp;</span><span class="nx">x_cgo_unsetenv</span>
+</code></pre></div><h3 id="一个占位符一个伪符号">一个占位符+一个伪符号</h3>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">//go:linkname runtime_inittask runtime..inittask
+</span><span class="c1"></span><span class="kd">var</span> <span class="nx">runtime_inittask</span> <span class="nx">initTask</span>
+
+<span class="c1">//go:linkname main_inittask main..inittask
+</span><span class="c1"></span><span class="kd">var</span> <span class="nx">main_inittask</span> <span class="nx">initTask</span>
+</code></pre></div><p>注意是<code>..inittask</code>不是<code>.inittask</code>，而且<code>.inittask</code>只存在于编译阶段，任何包中都无法声明该变量。</p>
+<blockquote>
+<p>这里额外解释下 ..inittask 为什么两个点。第一个点就是普通的 runtime. 这种调用方式，第二个点和 inittask 一起构成一个符号（变量）。注意，Go 中的变量是不允许以 . 开头的，所以，这个叫伪符号，只在不编译阶段存在。</p>
+</blockquote>
+<h2 id="04-一个例子">04 一个例子</h2>
+<p>在 runtime 和 runtime/pprof 包中有两个函数：runtime_setProfLabel 和  runtime_getProfLabel。其中，runtime 包中的提供了实现，而 pprof 中的没有提供实现。如果基于它们创建另外的函数，如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">//go:linkname SetPointer runtime/pprof.runtime_setProfLabel
+</span><span class="c1"></span><span class="kd">func</span> <span class="nf">SetPointer</span><span class="p">(</span><span class="nx">ptr</span> <span class="nx">unsafe</span><span class="p">.</span><span class="nx">Pointer</span><span class="p">)</span>
+
+<span class="c1">//go:linkname GetPointer runtime/pprof.runtime_getProfLabel
+</span><span class="c1"></span><span class="kd">func</span> <span class="nf">GetPointer</span><span class="p">()</span> <span class="nx">unsafe</span><span class="p">.</span><span class="nx">Pointer</span>
+</code></pre></div><p>根据前面的分析，虽然<code>runtime.runtime_setProfLabel</code>/<code>runtime.runtime_getProfLabel</code>提供了函数实现，但是二进制文件中并不会出现（见下方代码），此时想要调用必须通过<code>runtime/pprof.runtime_setProfLabel</code>/<code>runtime/pprof.runtime_getProfLabel</code>，这也是上面<code>linkname</code>到<code>pprof</code>而不是<code>runtime</code>的根本原因。</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// 来自 runtime 包
+</span><span class="c1">//go:linkname runtime_setProfLabel runtime/pprof.runtime_setProfLabel
+</span><span class="c1"></span><span class="kd">func</span> <span class="nf">runtime_setProfLabel</span><span class="p">(</span><span class="nx">labels</span> <span class="nx">unsafe</span><span class="p">.</span><span class="nx">Pointer</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">if</span> <span class="nx">raceenabled</span> <span class="p">{</span>
+		<span class="nf">racereleasemerge</span><span class="p">(</span><span class="nx">unsafe</span><span class="p">.</span><span class="nf">Pointer</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">labelSync</span><span class="p">))</span>
+	<span class="p">}</span>
+	<span class="nf">getg</span><span class="p">().</span><span class="nx">labels</span> <span class="p">=</span> <span class="nx">labels</span>
+<span class="p">}</span>
+
+<span class="c1">// 来自 runtime/pprof 包
+</span><span class="c1"></span><span class="kd">func</span> <span class="nf">runtime_setProfLabel</span><span class="p">(</span><span class="nx">labels</span> <span class="nx">unsafe</span><span class="p">.</span><span class="nx">Pointer</span><span class="p">)</span>
+
+<span class="c1">// 来自 runtime 包
+</span><span class="c1">//go:linkname runtime_getProfLabel runtime/pprof.runtime_getProfLabel
+</span><span class="c1"></span><span class="kd">func</span> <span class="nf">runtime_getProfLabel</span><span class="p">()</span> <span class="nx">unsafe</span><span class="p">.</span><span class="nx">Pointer</span> <span class="p">{</span>
+	<span class="k">return</span> <span class="nf">getg</span><span class="p">().</span><span class="nx">labels</span>
+<span class="p">}</span>
+
+<span class="c1">// 来自 runtime/pprof 包
+</span><span class="c1"></span><span class="kd">func</span> <span class="nf">runtime_getProfLabel</span><span class="p">()</span> <span class="nx">unsafe</span><span class="p">.</span><span class="nx">Pointer</span>
+</code></pre></div><h2 id="05-总结">05 总结</h2>
+<p>Go 中有不少指令，有些指令你可能不太需要关心，也不会用到。然而有些指令了解它们的意思，对阅读相关代码很有帮助。</p>
+<p>这篇文章全面介绍了 <code>//go:linkname</code> 指令，不知道是否彻底解除了你的疑惑？欢迎留言交流！</p>
+]]></content>
+		</item>
 		
 		<item>
 			<title>这个功能，公众号、微信群会不会被玩坏？</title>

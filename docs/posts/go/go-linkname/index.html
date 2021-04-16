@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#fcfcfc">
+	<meta name="msapplication-TileColor" content="#fcfcfc">
+<meta itemprop="name" content="注释竟然还有特殊用途？一文解惑 //go:linkname 指令">
+<meta itemprop="description" content="大家好，我是站长 polarisxu。 我之前写过一篇文章：为什么 Go 标准库中有些函数只有签名，没有函数体？ ，其中有一点就是 //go:linkname 这个指令。 Go 中类似的指令挺多的，比如 Go1.16 中的 //go:embed。前些天有人问我，为什么它用 //go:embed 不起作用？我一看，它是这么写的：// go:embed，不知道你看到问题了没有？是的，指令是通过注释的方式，但有三点要求，要特别注意： // 后不能有空格。">
+<meta itemprop="datePublished" content="2021-04-15T20:30:00+08:00" />
+<meta itemprop="dateModified" content="2021-04-15T20:30:00+08:00" />
+<meta itemprop="wordCount" content="1979">
+
+
+
+<meta itemprop="keywords" content="Go,指令,linkname," />
+<meta property="og:title" content="注释竟然还有特殊用途？一文解惑 //go:linkname 指令" />
+<meta property="og:description" content="大家好，我是站长 polarisxu。 我之前写过一篇文章：为什么 Go 标准库中有些函数只有签名，没有函数体？ ，其中有一点就是 //go:linkname 这个指令。 Go 中类似的指令挺多的，比如 Go1.16 中的 //go:embed。前些天有人问我，为什么它用 //go:embed 不起作用？我一看，它是这么写的：// go:embed，不知道你看到问题了没有？是的，指令是通过注释的方式，但有三点要求，要特别注意： // 后不能有空格。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/go-linkname/" />
+<meta property="article:published_time" content="2021-04-15T20:30:00+08:00" />
+<meta property="article:modified_time" content="2021-04-15T20:30:00+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="注释竟然还有特殊用途？一文解惑 //go:linkname 指令"/>
+<meta name="twitter:description" content="大家好，我是站长 polarisxu。 我之前写过一篇文章：为什么 Go 标准库中有些函数只有签名，没有函数体？ ，其中有一点就是 //go:linkname 这个指令。 Go 中类似的指令挺多的，比如 Go1.16 中的 //go:embed。前些天有人问我，为什么它用 //go:embed 不起作用？我一看，它是这么写的：// go:embed，不知道你看到问题了没有？是的，指令是通过注释的方式，但有三点要求，要特别注意： // 后不能有空格。"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>注释竟然还有特殊用途？一文解惑 //go:linkname 指令</title>
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
+	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/styles.css">
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://polarisxu.studygolang.com">polarisxu</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+  <a href="https://polarisxu.studygolang.com/">首页</a>
+  <a href="https://polarisxu.studygolang.com/categories/echo%E7%B3%BB%E5%88%97/">Echo系列</a>
+  <a href="https://polarisxu.studygolang.com/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a>
+  <a href="https://polarisxu.studygolang.com/posts/">归档</a>
+  <a href="https://polarisxu.studygolang.com/about/">关于</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<button id="toc-btn" class="hdr-btn desktop-only-ib" title="目录"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3" y2="6"></line><line x1="3" y1="12" x2="3" y2="12"></line><line x1="3" y1="18" x2="3" y2="18"></line></svg></button><span class="hdr-social hide-in-mobile"><a href="https://github.com/polaris1119" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a><a href="https://twitter.com/polaris1119" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="菜单"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://polarisxu.studygolang.com/">首页</a></li>
+			<li><a href="https://polarisxu.studygolang.com/categories/echo%E7%B3%BB%E5%88%97/">Echo系列</a></li>
+			<li><a href="https://polarisxu.studygolang.com/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a></li>
+			<li><a href="https://polarisxu.studygolang.com/posts/">归档</a></li>
+			<li><a href="https://polarisxu.studygolang.com/about/">关于</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Apr 15, 2021</span></div>
+				<h1>注释竟然还有特殊用途？一文解惑 //go:linkname 指令</h1>
+			</header>
+			<div class="content">
+				<p>大家好，我是站长 polarisxu。</p>
+<p>我之前写过一篇文章：<a href="https://mp.weixin.qq.com/s/XPRj87YT3U6hJvyY11y8jA" target="_blank" rel="noopener">为什么 Go 标准库中有些函数只有签名，没有函数体？</a>
+，其中有一点就是 <code>//go:linkname</code> 这个指令。</p>
+<p>Go 中类似的指令挺多的，比如 Go1.16 中的 <code>//go:embed</code>。前些天有人问我，为什么它用 <code>//go:embed</code> 不起作用？我一看，它是这么写的：<code>// go:embed</code>，不知道你看到问题了没有？是的，指令是通过注释的方式，但有三点要求，要特别注意：</p>
+<ul>
+<li><code>//</code> 后不能有空格。有些人可能习惯 <code>//</code> 后不加空格。但一般认为，<code>//</code> 后应该加一个空格。不过 go 指令却要求不能有空格，这是一个小“坑”，得注意。所以上面那位朋友就是加了空格，导致出问题。（程序并不会报错，只是没有得到自己想要的结果）</li>
+<li>代码和指令之间不能有空行或其他注释。这一点应该还好，很多人不会用错吧；</li>
+<li>一般来说，使用指令需要导入相应的包。比如 <code>//go:linkname</code> 指令要求导入 unsafe 包，一般会 <code>import _ &quot;unsafe”</code>，<code>//go:embed</code> 指令，要求导入 embed 包。</li>
+</ul>
+<p>有另外一位 Go 朋友「橘中秘士」微信私聊我：</p>
+<blockquote>
+<p>大佬好，能不能写一篇 linkname 的文章。目前已经有了一些初步概念，但是尚有一些疑团不是特别清晰。</p>
+<p>//go:linkname localname remotename，其中 local 作为占位符 remote 作为实现者或者 local 作为实现者 remote 作为占位符都是可以的。目前理解的就是给 Symbol 添加了一个 Linkname，查找 Symbo l的时候用 remote。</p>
+<p>譬如 //go:linkname runtimeNano runtime.nanotime，runtimeNano 作为占位符 runtime.nanotime 提供实现，任何调用 runtimeNano 的地方实际替换为对 runtime.nanotime 的调用，这种场景比较容易接受。</p>
+<p>譬如 //go:linkname runtime_cmpstring runtime.cmpstring，runtime_cmpstring 提供实现 runtime.cmpstring作为占位符，是不是这时符号表里不存在 runtime_cmpstring 只有 runtime.cmpstring？</p>
+</blockquote>
+<p>经过简单沟通，他写了一篇文章解决自己的困惑。希望对各位有帮助。以下是他写的关于 <code>//go:linkname</code> 的文章（我做了一些调整）。</p>
+<hr>
+<h2 id="01-格式">01 格式<a href="#01-格式" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">//go:linkname local remote
+</span></code></pre></div><p>remote 可以没有，此时 remote 使用 local 的值，效果就是 local 被导出。</p>
+<h2 id="02-local-和-remote-同时为函数">02 local 和 remote 同时为函数<a href="#02-local-和-remote-同时为函数" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<h3 id="local-作为占位符remote-作为实现者">local 作为占位符，remote 作为实现者<a href="#local-作为占位符remote-作为实现者" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>标准库中的例子：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// 来自 time 包
+</span><span class="c1">//go:linkname runtimeNano runtime.nanotime
+</span><span class="c1"></span><span class="kd">func</span> <span class="nf">runtimeNano</span><span class="p">()</span> <span class="kt">int64</span>
+
+<span class="c1">// 来自 runtime 包
+</span><span class="c1">//go:nosplit
+</span><span class="c1"></span><span class="kd">func</span> <span class="nf">nanotime</span><span class="p">()</span> <span class="kt">int64</span> <span class="p">{</span>
+	<span class="k">return</span> <span class="nf">nanotime1</span><span class="p">()</span>
+<span class="p">}</span>
+</code></pre></div><p>此时二进制文件中并没有<code>runtimeNano</code>，直接转化为对<code>runtime.nanotime</code>的调用。</p>
+<h3 id="local-作为实现者remote-作为占位符">local 作为实现者，remote 作为占位符<a href="#local-作为实现者remote-作为占位符" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>同样来自标准库。这里存在函数没有函数体，但是被反向引用。</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// 在标准库的一个 internal 中
+</span><span class="c1">//go:linkname runtime_cmpstring runtime.cmpstring
+</span><span class="c1"></span><span class="kd">func</span> <span class="nf">runtime_cmpstring</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
+	<span class="nx">l</span> <span class="o">:=</span> <span class="nb">len</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span>
+	<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nx">b</span><span class="p">)</span> <span class="p">&lt;</span> <span class="nx">l</span> <span class="p">{</span>
+		<span class="nx">l</span> <span class="p">=</span> <span class="nb">len</span><span class="p">(</span><span class="nx">b</span><span class="p">)</span>
+	<span class="p">}</span>
+	<span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="nx">l</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+		<span class="nx">c1</span><span class="p">,</span> <span class="nx">c2</span> <span class="o">:=</span> <span class="nx">a</span><span class="p">[</span><span class="nx">i</span><span class="p">],</span> <span class="nx">b</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span>
+		<span class="k">if</span> <span class="nx">c1</span> <span class="p">&lt;</span> <span class="nx">c2</span> <span class="p">{</span>
+			<span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+		<span class="p">}</span>
+		<span class="k">if</span> <span class="nx">c1</span> <span class="p">&gt;</span> <span class="nx">c2</span> <span class="p">{</span>
+			<span class="k">return</span> <span class="o">+</span><span class="mi">1</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span> <span class="p">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+	<span class="p">}</span>
+	<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span> <span class="p">&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="o">+</span><span class="mi">1</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="mi">0</span>
+<span class="p">}</span>
+
+<span class="c1">// 来自 runtime
+</span><span class="c1"></span><span class="kd">func</span> <span class="nf">cmpstring</span><span class="p">(</span><span class="kt">string</span><span class="p">,</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">int</span>
+</code></pre></div><p>此时二进制文件中并没有<code>runtime_cmpstring</code>，对应的函数已经被命名为<code>runtime.cmpstring</code>。也就是说，实现在 internal 包，但最终通过 runtime.cmpstring 来引用。</p>
+<h3 id="一个占位符一个汇编函数">一个占位符+一个汇编函数<a href="#一个占位符一个汇编函数" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// 在标准库的一个 internal 中
+</span><span class="c1">//go:linkname abigen_runtime_memequal runtime.memequal
+</span><span class="c1"></span><span class="kd">func</span> <span class="nf">abigen_runtime_memequal</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span> <span class="nx">unsafe</span><span class="p">.</span><span class="nx">Pointer</span><span class="p">,</span> <span class="nx">size</span> <span class="kt">uintptr</span><span class="p">)</span> <span class="kt">bool</span>
+</code></pre></div><p>注意<code>runtime.memequal</code>的实现并不在<code>runtime</code>包中，使用汇编实现的话并不要求必须在相应的包中。</p>
+<div class="highlight"><pre class="chroma"><code class="language-asm" data-lang="asm"><span class="c"># memequal(a, b unsafe.Pointer, size uintptr) bool
+</span><span class="c"></span><span class="nf">TEXT</span> <span class="no">runtime</span><span class="err">·</span><span class="no">memequal</span><span class="p">(</span><span class="no">SB</span><span class="p">),</span><span class="no">NOSPLIT</span><span class="p">,</span><span class="no">$0-25</span>
+	<span class="nf">MOVQ</span>	<span class="no">a</span><span class="err">+</span><span class="mi">0</span><span class="p">(</span><span class="no">FP</span><span class="p">),</span> <span class="no">SI</span>
+	<span class="nf">MOVQ</span>	<span class="no">b</span><span class="err">+</span><span class="mi">8</span><span class="p">(</span><span class="no">FP</span><span class="p">),</span> <span class="no">DI</span>
+	<span class="nf">CMPQ</span>	<span class="no">SI</span><span class="p">,</span> <span class="no">DI</span>
+	<span class="nf">JEQ</span>	<span class="no">eq</span>
+	<span class="nf">MOVQ</span>	<span class="no">size</span><span class="err">+</span><span class="mi">16</span><span class="p">(</span><span class="no">FP</span><span class="p">),</span> <span class="no">BX</span>
+	<span class="nf">LEAQ</span>	<span class="no">ret</span><span class="err">+</span><span class="mi">24</span><span class="p">(</span><span class="no">FP</span><span class="p">),</span> <span class="no">AX</span>
+	<span class="nf">JMP</span>	<span class="no">memeqbody</span><span class="err">&lt;&gt;</span><span class="p">(</span><span class="no">SB</span><span class="p">)</span>
+<span class="nl">eq:</span>
+	<span class="nf">MOVB</span>	<span class="no">$1</span><span class="p">,</span> <span class="no">ret</span><span class="err">+</span><span class="mi">24</span><span class="p">(</span><span class="no">FP</span><span class="p">)</span>
+	<span class="nf">RET</span>
+</code></pre></div><h2 id="03-local-和-remote-同时为变量">03 local 和 remote 同时为变量<a href="#03-local-和-remote-同时为变量" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<h3 id="两个常规变量">两个常规变量<a href="#两个常规变量" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">//go:linkname overflowError runtime.overflowError
+</span><span class="c1"></span><span class="kd">var</span> <span class="nx">overflowError</span> <span class="kt">error</span>
+
+<span class="c1">//go:linkname divideError runtime.divideError
+</span><span class="c1"></span><span class="kd">var</span> <span class="nx">divideError</span> <span class="kt">error</span>
+
+<span class="c1">//go:linkname zeroVal runtime.zeroVal
+</span><span class="c1"></span><span class="kd">var</span> <span class="nx">zeroVal</span> <span class="p">[</span><span class="nx">maxZero</span><span class="p">]</span><span class="kt">byte</span>
+
+<span class="c1">//go:linkname _iscgo runtime.iscgo
+</span><span class="c1"></span><span class="kd">var</span> <span class="nx">_iscgo</span> <span class="kt">bool</span> <span class="p">=</span> <span class="kc">true</span>
+
+<span class="c1">//go:cgo_import_static x_cgo_setenv
+</span><span class="c1">//go:linkname x_cgo_setenv x_cgo_setenv
+</span><span class="c1">//go:linkname _cgo_setenv runtime._cgo_setenv
+</span><span class="c1"></span><span class="kd">var</span> <span class="nx">x_cgo_setenv</span> <span class="kt">byte</span>
+<span class="kd">var</span> <span class="nx">_cgo_setenv</span> <span class="p">=</span> <span class="o">&amp;</span><span class="nx">x_cgo_setenv</span>
+
+<span class="c1">//go:cgo_import_static x_cgo_unsetenv
+</span><span class="c1">//go:linkname x_cgo_unsetenv x_cgo_unsetenv
+</span><span class="c1">//go:linkname _cgo_unsetenv runtime._cgo_unsetenv
+</span><span class="c1"></span><span class="kd">var</span> <span class="nx">x_cgo_unsetenv</span> <span class="kt">byte</span>
+<span class="kd">var</span> <span class="nx">_cgo_unsetenv</span> <span class="p">=</span> <span class="o">&amp;</span><span class="nx">x_cgo_unsetenv</span>
+</code></pre></div><h3 id="一个占位符一个伪符号">一个占位符+一个伪符号<a href="#一个占位符一个伪符号" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">//go:linkname runtime_inittask runtime..inittask
+</span><span class="c1"></span><span class="kd">var</span> <span class="nx">runtime_inittask</span> <span class="nx">initTask</span>
+
+<span class="c1">//go:linkname main_inittask main..inittask
+</span><span class="c1"></span><span class="kd">var</span> <span class="nx">main_inittask</span> <span class="nx">initTask</span>
+</code></pre></div><p>注意是<code>..inittask</code>不是<code>.inittask</code>，而且<code>.inittask</code>只存在于编译阶段，任何包中都无法声明该变量。</p>
+<blockquote>
+<p>这里额外解释下 ..inittask 为什么两个点。第一个点就是普通的 runtime. 这种调用方式，第二个点和 inittask 一起构成一个符号（变量）。注意，Go 中的变量是不允许以 . 开头的，所以，这个叫伪符号，只在不编译阶段存在。</p>
+</blockquote>
+<h2 id="04-一个例子">04 一个例子<a href="#04-一个例子" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>在 runtime 和 runtime/pprof 包中有两个函数：runtime_setProfLabel 和  runtime_getProfLabel。其中，runtime 包中的提供了实现，而 pprof 中的没有提供实现。如果基于它们创建另外的函数，如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">//go:linkname SetPointer runtime/pprof.runtime_setProfLabel
+</span><span class="c1"></span><span class="kd">func</span> <span class="nf">SetPointer</span><span class="p">(</span><span class="nx">ptr</span> <span class="nx">unsafe</span><span class="p">.</span><span class="nx">Pointer</span><span class="p">)</span>
+
+<span class="c1">//go:linkname GetPointer runtime/pprof.runtime_getProfLabel
+</span><span class="c1"></span><span class="kd">func</span> <span class="nf">GetPointer</span><span class="p">()</span> <span class="nx">unsafe</span><span class="p">.</span><span class="nx">Pointer</span>
+</code></pre></div><p>根据前面的分析，虽然<code>runtime.runtime_setProfLabel</code>/<code>runtime.runtime_getProfLabel</code>提供了函数实现，但是二进制文件中并不会出现（见下方代码），此时想要调用必须通过<code>runtime/pprof.runtime_setProfLabel</code>/<code>runtime/pprof.runtime_getProfLabel</code>，这也是上面<code>linkname</code>到<code>pprof</code>而不是<code>runtime</code>的根本原因。</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// 来自 runtime 包
+</span><span class="c1">//go:linkname runtime_setProfLabel runtime/pprof.runtime_setProfLabel
+</span><span class="c1"></span><span class="kd">func</span> <span class="nf">runtime_setProfLabel</span><span class="p">(</span><span class="nx">labels</span> <span class="nx">unsafe</span><span class="p">.</span><span class="nx">Pointer</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">if</span> <span class="nx">raceenabled</span> <span class="p">{</span>
+		<span class="nf">racereleasemerge</span><span class="p">(</span><span class="nx">unsafe</span><span class="p">.</span><span class="nf">Pointer</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">labelSync</span><span class="p">))</span>
+	<span class="p">}</span>
+	<span class="nf">getg</span><span class="p">().</span><span class="nx">labels</span> <span class="p">=</span> <span class="nx">labels</span>
+<span class="p">}</span>
+
+<span class="c1">// 来自 runtime/pprof 包
+</span><span class="c1"></span><span class="kd">func</span> <span class="nf">runtime_setProfLabel</span><span class="p">(</span><span class="nx">labels</span> <span class="nx">unsafe</span><span class="p">.</span><span class="nx">Pointer</span><span class="p">)</span>
+
+<span class="c1">// 来自 runtime 包
+</span><span class="c1">//go:linkname runtime_getProfLabel runtime/pprof.runtime_getProfLabel
+</span><span class="c1"></span><span class="kd">func</span> <span class="nf">runtime_getProfLabel</span><span class="p">()</span> <span class="nx">unsafe</span><span class="p">.</span><span class="nx">Pointer</span> <span class="p">{</span>
+	<span class="k">return</span> <span class="nf">getg</span><span class="p">().</span><span class="nx">labels</span>
+<span class="p">}</span>
+
+<span class="c1">// 来自 runtime/pprof 包
+</span><span class="c1"></span><span class="kd">func</span> <span class="nf">runtime_getProfLabel</span><span class="p">()</span> <span class="nx">unsafe</span><span class="p">.</span><span class="nx">Pointer</span>
+</code></pre></div><h2 id="05-总结">05 总结<a href="#05-总结" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>Go 中有不少指令，有些指令你可能不太需要关心，也不会用到。然而有些指令了解它们的意思，对阅读相关代码很有帮助。</p>
+<p>这篇文章全面介绍了 <code>//go:linkname</code> 指令，不知道是否彻底解除了你的疑惑？欢迎留言交流！</p>
+
+			</div><div class="content">
+	<br>
+	<img src="https://static.studygolang.com/static/img/polarisxu-qrcode-soso-s.png">
+</div>
+
+<div class="related-posts thin">
+	<h2>相关推荐</h2>
+	<ul>
+	
+	<li><a href="/posts/go/action/go-closure/">一道 Go 闭包题，面试官说原来自己答错了：面别人也涨知识</a></li>
+	
+	<li><a href="/posts/go/action/type-and-alias/">答应我，这次一定彻底搞懂 Go 中的类型别名</a></li>
+	
+	<li><a href="/posts/go/translation/better-c-benchmark/">那些想替代 C 的语言怎么样？Go、Rust、C&#43;&#43; 和 Zig 生产力对比</a></li>
+	
+	<li><a href="/posts/go/action/operator/">我无语了，Go 中 &#43;-*/ 四个运算符竟然可以连着用</a></li>
+	
+	<li><a href="/posts/go/action/weekly-question-88/">Go周刊题解：切片的另类初始化 — 该题正确率出奇的低</a></li>
+	
+	</ul>
+</div>
+
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://polarisxu.studygolang.com/tags/go">Go</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/%E6%8C%87%E4%BB%A4">指令</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/linkname">linkname</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1979 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2021-04-15 20:30 &#43;0800</p>
+			</footer>
+		</article>
+		<aside id="toc">
+			<div class="toc-title">目录</div>
+			<nav id="TableOfContents">
+  <ul>
+    <li><a href="#01-格式">01 格式</a></li>
+    <li><a href="#02-local-和-remote-同时为函数">02 local 和 remote 同时为函数</a>
+      <ul>
+        <li><a href="#local-作为占位符remote-作为实现者">local 作为占位符，remote 作为实现者</a></li>
+        <li><a href="#local-作为实现者remote-作为占位符">local 作为实现者，remote 作为占位符</a></li>
+        <li><a href="#一个占位符一个汇编函数">一个占位符+一个汇编函数</a></li>
+      </ul>
+    </li>
+    <li><a href="#03-local-和-remote-同时为变量">03 local 和 remote 同时为变量</a>
+      <ul>
+        <li><a href="#两个常规变量">两个常规变量</a></li>
+        <li><a href="#一个占位符一个伪符号">一个占位符+一个伪符号</a></li>
+      </ul>
+    </li>
+    <li><a href="#04-一个例子">04 一个例子</a></li>
+    <li><a href="#05-总结">05 总结</a></li>
+  </ul>
+</nav>
+		</aside>
+		<div class="post-nav thin">
+			<a class="prev-post" href="https://polarisxu.studygolang.com/posts/wechat/2021-04-wechat-changes/">
+				<span class="post-nav-label">旧&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>这个功能，公众号、微信群会不会被玩坏？</span>
+			</a>
+		</div>
+		<div id="comments" class="thin"><script src="https://utteranc.es/client.js"
+	repo="polaris1119/polarisxu"
+	issue-term="pathname"
+	theme="github-light"
+	crossorigin="anonymous"
+	async>
+</script>
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2019 - 2021 <a href="https://polarisxu.studygolang.com">polarisxu</a> &#183; <a href="https://beian.miit.gov.cn/">京ICP备14030343号-1</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://polarisxu.studygolang.com/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+		<span id="busuanzi_container" style="color: #666;">
+			本站总访客数/访问量：<span id="busuanzi_value_site_uv"></span>/<span id="busuanzi_value_site_pv"></span>
+		</span>
+	</footer>
+
+
+
+	<script src="https://polarisxu.studygolang.com/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw=" crossorigin="anonymous"></script>
+	<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?224c227cd9239761ec770bc8c1fb134c";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+</body>
+
+</html>
