@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>变量 on polarisxu</title>
+    <link>https://polarisxu.studygolang.com/tags/%E5%8F%98%E9%87%8F/</link>
+    <description>Recent content in 变量 on polarisxu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
+    <lastBuildDate>Mon, 19 Apr 2021 12:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/%E5%8F%98%E9%87%8F/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Rust 劝退系列 03：变量</title>
+      <link>https://polarisxu.studygolang.com/posts/rust/rust-tutorial-03/</link>
+      <pubDate>Mon, 19 Apr 2021 12:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/rust/rust-tutorial-03/</guid>
+      <description>大家好，我是站长 polarisxu。 这是 Rust 劝退系列的第 3 个教程，探讨 Rust 中的变量。 01 变量和绑定 变量指定了某存储单元（Memory Location）的名称，该存储单元会存储特定类型的值。 Rust 是静态类型语言，不能在运行期改变变量类型。 和你熟悉的大部分编程语言不一样，Rust 中变量一般不叫声明，而叫做绑定（这是从函数式语言中借鉴的，使用关键字 let 绑定），那有什么区别呢？</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Sun, 11 Apr 2021 22:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/rust/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 19 Apr 2021 12:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/rust/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Rust 劝退系列 03：变量</title>
+      <link>https://polarisxu.studygolang.com/posts/rust/rust-tutorial-03/</link>
+      <pubDate>Mon, 19 Apr 2021 12:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/rust/rust-tutorial-03/</guid>
+      <description>大家好，我是站长 polarisxu。 这是 Rust 劝退系列的第 3 个教程，探讨 Rust 中的变量。 01 变量和绑定 变量指定了某存储单元（Memory Location）的名称，该存储单元会存储特定类型的值。 Rust 是静态类型语言，不能在运行期改变变量类型。 和你熟悉的大部分编程语言不一样，Rust 中变量一般不叫声明，而叫做绑定（这是从函数式语言中借鉴的，使用关键字 let 绑定），那有什么区别呢？</description>
+    </item>
+    
     <item>
       <title>Rust 劝退系列 02：第一个 Rust 程序</title>
       <link>https://polarisxu.studygolang.com/posts/rust/rust-tutorial-02/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/translation/when-to-use-rust-and-when-to-use-golang/</guid>
       <description>Golang 和 Rust 之间有明显的区别。Golang 更加注重构建可以无限扩展的 Web API 和小型服务，尤其是在 goroutine 的强大支持下。Rust 也可以用于小型服务，但是从开发人员的经验来看，事情要困难得多。 Rust 非常适合处理大量数据和其他 CPU 密集型操作，例如执行算法。这是 Rust 超过 Golang 的最大优势。要求高性能的项目通常更适合 Rust。 在本教程中，我们将就 Golang 和 Rust 进行比较和对比，评估这两种编程语言的性能，并发</description>
-    </item>
-    
-    <item>
-      <title>对 gRPC 的 Rust 和 Go 版本进行基准测试</title>
-      <link>https://polarisxu.studygolang.com/posts/go/translation/benchmarking-grpc-in-rust-go/</link>
-      <pubDate>Thu, 16 Jul 2020 11:15:51 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/translation/benchmarking-grpc-in-rust-go/</guid>
-      <description>背景 如果你计划构建可靠，内存安全 ，高性能的应用程序，那么 Rust＆Go 无疑会是你的选择。 如果您希望从内部应用程序中获得更高的性能，则可能还需要考虑使用 gRPC 而不是普通的 REST API。所有这些都是减少您的计算开销的解决方案。 我尝试比较各种库以了解它们的性能，并希望对你有所帮助。 关注的库 tower-grpc (Rust) 高性能 rust 库，尽管已被 tonic 替代 grpc-go (Golang) grpc 的官方 Go 模块 grpc-rust (Rust) 仍在开发中，另一个 rust grpc 库。看起来</description>
     </item>
     
   </channel>
