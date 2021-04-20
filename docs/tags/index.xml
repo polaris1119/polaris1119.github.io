@@ -27,11 +27,29 @@
     </item>
     
     <item>
+      <title>DDD</title>
+      <link>https://polarisxu.studygolang.com/tags/ddd/</link>
+      <pubDate>Mon, 19 Apr 2021 08:00:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/tags/ddd/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Go</title>
       <link>https://polarisxu.studygolang.com/tags/go/</link>
-      <pubDate>Thu, 15 Apr 2021 20:30:00 +0800</pubDate>
+      <pubDate>Mon, 19 Apr 2021 08:00:00 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/tags/go/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>图书</title>
+      <link>https://polarisxu.studygolang.com/tags/%E5%9B%BE%E4%B9%A6/</link>
+      <pubDate>Mon, 19 Apr 2021 08:00:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/tags/%E5%9B%BE%E4%B9%A6/</guid>
       <description></description>
     </item>
     
@@ -77,24 +95,6 @@
       <pubDate>Wed, 14 Apr 2021 18:30:00 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/tags/%E5%BE%AE%E4%BF%A1/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>闭包</title>
-      <link>https://polarisxu.studygolang.com/tags/%E9%97%AD%E5%8C%85/</link>
-      <pubDate>Tue, 13 Apr 2021 18:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/tags/%E9%97%AD%E5%8C%85/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>VSCode</title>
-      <link>https://polarisxu.studygolang.com/tags/vscode/</link>
-      <pubDate>Sun, 11 Apr 2021 22:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/tags/vscode/</guid>
       <description></description>
     </item>
     
