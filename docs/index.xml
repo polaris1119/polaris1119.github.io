@@ -7,7 +7,25 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Mon, 19 Apr 2021 12:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 25 Apr 2021 12:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Rust 劝退系列 04：基本数据类型</title>
+      <link>https://polarisxu.studygolang.com/posts/rust/rust-tutorial-04/</link>
+      <pubDate>Sun, 25 Apr 2021 12:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/rust/rust-tutorial-04/</guid>
+      <description>大家好，我是站长 polarisxu。 这是 Rust 劝退系列的第 4 个教程，探讨 Rust 中的基本数据类型，或叫标量类型（scalar type）。 Rust 和 Go 一样，都是静态类型语言，这表示每个变量的类型必须明确。和 Go 类似，大多数情况下，Rust 编译器能够推断出某个值的类型，不需要我们显示指定，写起来有点类似于弱类型似语言。但有些情况下，必须明确告知编译器我们使用什么类型，在 Rust 中，这叫</description>
+    </item>
+    
+    <item>
+      <title>我的 Go 语言书单</title>
+      <link>https://polarisxu.studygolang.com/posts/go/book/20210423-go-book-list/</link>
+      <pubDate>Fri, 23 Apr 2021 12:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/book/20210423-go-book-list/</guid>
+      <description>大家好，我是站长 polarisxu。 今天是 4 月 23 日，是世界读书日。当当有很大的优惠，而且我还要到了额外的优惠码，花 140 可以买到 400 块钱的书。借这个机会，我分享一份 Go 语言书单（实际上还有很多免费电子书单，但这里只说纸质版），需要的可以今天购买，超便宜！ 我认为不错的书，不代表你也认为好。所以，买不买自行判断哈。 01 入门级 以下排名不分先后。 Go 程序设计语言（俗称 Go 圣经） 本</description>
+    </item>
+    
     <item>
       <title>Rust 劝退系列 03：变量</title>
       <link>https://polarisxu.studygolang.com/posts/rust/rust-tutorial-03/</link>
@@ -78,24 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/action/type-and-alias/</guid>
       <description>大家好，我是站长 polarisxu。 有下面 3 行代码： // 32 位机器 1）var x int32 = 32.0 2）var y int = x 3）var z rune = x 它们是否能编译通过？为什么？ 如果面试时问这道题，你需要想想面试官想考察你什么。在往下看之前，建议你记下自己的答案。 01 数字字面量 在 Go 语言中，字面量是无类型（untyped）的。无类型是什么意思？无类型意味着可以赋值给类似类型的变量或常量。用上面例</description>
-    </item>
-    
-    <item>
-      <title>【灵魂拷问】为什么假期回老家，计划总是泡汤？</title>
-      <link>https://polarisxu.studygolang.com/posts/talk/holiday-20210405/</link>
-      <pubDate>Mon, 05 Apr 2021 11:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/talk/holiday-20210405/</guid>
-      <description>大家好，我是站长 polarisxu。 今天这个话题，我相信很多人都深有体会。清明假期又结束了，我的计划也如往常一样泡汤了！但这次，我想复盘一下，为什么会这样？！ 先讲讲我之前的一些经历。 01 学生时代 学生时代，大学和大学之前还是有些不一样的。 高三之前，每次放假回家，除了老师布置的作业，其他计划的学习计划基本泡汤，书怎么带回去的就怎么带回来，每次内心都充满“罪恶感”，</description>
-    </item>
-    
-    <item>
-      <title>那些想替代 C 的语言怎么样？Go、Rust、C&#43;&#43; 和 Zig 生产力对比</title>
-      <link>https://polarisxu.studygolang.com/posts/go/translation/better-c-benchmark/</link>
-      <pubDate>Thu, 01 Apr 2021 12:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/translation/better-c-benchmark/</guid>
-      <description>C 已经快 50 岁了。对于一瓶葡萄酒来说，这个年龄很棒，但对于快速发展的行业中的编程语言而言，它就不同了。在过去的十年中，出现了许多具有不同风格的新语言，所有这些语言都试图在某种程度上成为 C 语言的替代者。 当一种新语言或多或少变得流行时 —— 开发人员开始编写基准测试，以展示该语言编写的软件性能，CPU 利用率和内存使用量以及二进制文件的大小等等。 在这里，我想在不同的层面</description>
     </item>
     
   </channel>

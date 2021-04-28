@@ -6,8 +6,301 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en</language>
 		<copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-		<lastBuildDate>Mon, 19 Apr 2021 12:30:00 +0800</lastBuildDate>
+		<lastBuildDate>Sun, 25 Apr 2021 12:30:00 +0800</lastBuildDate>
 		<atom:link href="https://polarisxu.studygolang.com/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>Rust 劝退系列 04：基本数据类型</title>
+			<link>https://polarisxu.studygolang.com/posts/rust/rust-tutorial-04/</link>
+			<pubDate>Sun, 25 Apr 2021 12:30:00 +0800</pubDate>
+			
+			<guid>https://polarisxu.studygolang.com/posts/rust/rust-tutorial-04/</guid>
+			<description>大家好，我是站长 polarisxu。 这是 Rust 劝退系列的第 4 个教程，探讨 Rust 中的基本数据类型，或叫标量类型（scalar type）。 Rust 和 Go 一样，都是静态类型语言，这表示每个变量的类型必须明确。和 Go 类似，大多数情况下，Rust 编译器能够推断出某个值的类型，不需要我们显示指定，写起来有点类似于弱类型似语言。但有些情况下，必须明确告知编译器我们使用什么类型，在 Rust 中，这叫</description>
+			<content type="html"><![CDATA[<p>大家好，我是站长 polarisxu。</p>
+<p>这是 Rust 劝退系列的第 4 个教程，探讨 Rust 中的基本数据类型，或叫标量类型（scalar type）。</p>
+<p>Rust 和 Go 一样，都是静态类型语言，这表示每个变量的类型必须明确。和 Go 类似，大多数情况下，Rust 编译器能够推断出某个值的类型，不需要我们显示指定，写起来有点类似于弱类型似语言。但有些情况下，必须明确告知编译器我们使用什么类型，在 Rust 中，这叫 「类型注解」（type annotations）。</p>
+<p>对于类型注解，看一个常见的例子：</p>
+<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="kd">let</span><span class="w"> </span><span class="n">guess</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#34;42&#34;</span><span class="p">.</span><span class="n">parse</span><span class="p">().</span><span class="n">expect</span><span class="p">(</span><span class="s">&#34;Not a number!&#34;</span><span class="p">);</span><span class="w">
+</span></code></pre></div><p>这是将字符串 <code>&quot;42&quot;</code> 转为数字 42。在 Go 语言中，一般这么做：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">guess</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">strconv</span><span class="p">.</span><span class="nf">Atoi</span><span class="p">(</span><span class="s">&#34;42&#34;</span><span class="p">)</span>
+<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+  <span class="nb">panic</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div><p>但上面的 Rust 代码会报错：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">error<span class="o">[</span>E0282<span class="o">]</span>: <span class="nb">type</span> annotations needed
+ --&gt; src/main.rs:2:9
+  <span class="p">|</span>
+<span class="m">2</span> <span class="p">|</span>     <span class="nb">let</span> <span class="nv">guess</span> <span class="o">=</span> <span class="s2">&#34;42a&#34;</span>.parse<span class="o">()</span>.expect<span class="o">(</span><span class="s2">&#34;Not a number!&#34;</span><span class="o">)</span><span class="p">;</span>
+  <span class="p">|</span>         ^^^^^^ consider giving <span class="sb">`</span>guess<span class="sb">`</span> a <span class="nb">type</span>
+</code></pre></div><p>这和 Go 还是不太一样。Go 中很多时候，数值类型会是 int。</p>
+<p>为了修复这个问题，我们需要为 number 指定一个类型，比如 u32。</p>
+<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="kd">let</span><span class="w"> </span><span class="n">guess</span>: <span class="kt">u32</span> <span class="o">=</span><span class="w"> </span><span class="s">&#34;42&#34;</span><span class="p">.</span><span class="n">parse</span><span class="p">().</span><span class="n">expect</span><span class="p">(</span><span class="s">&#34;Not a number!&#34;</span><span class="p">);</span><span class="w">
+</span></code></pre></div><blockquote>
+<p>吐槽：在 Rust 中，类型注解和 Go 中一样，放在变量后面。但 Rust 中变量和类型直接非得加一个冒号（:），而且一般冒号紧跟着变量名（rustfmt 的建议）。不知道冒号有啥特殊需要？！</p>
+</blockquote>
+<p>Rust 内置如下基本数据类型：</p>
+<ul>
+<li>整数类型
+<ul>
+<li>有符合整数：i8、i16、i32、i64、i128、isize</li>
+<li>无符号整数：u8、u16、u32、u64、u128、usize</li>
+</ul>
+</li>
+<li>浮点类型：f32、f64</li>
+<li>布尔型：bool</li>
+<li>字符型：char</li>
+</ul>
+<h2 id="01-整数类型">01 整数类型</h2>
+<p>将整数类型整理为一张表，如下：（用 Go 语言对应的类型作对比）</p>
+<table>
+<thead>
+<tr>
+<th>长度</th>
+<th>有符号</th>
+<th>无符号</th>
+<th>Go 有符号</th>
+<th>Go 无符号</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>8-bit</td>
+<td><code>i8</code></td>
+<td><code>u8</code></td>
+<td><code>int8</code></td>
+<td><code>uint8</code></td>
+</tr>
+<tr>
+<td>16-bit</td>
+<td><code>i16</code></td>
+<td><code>u16</code></td>
+<td><code>int16</code></td>
+<td><code>uint16</code></td>
+</tr>
+<tr>
+<td>32-bit</td>
+<td><code>i32</code></td>
+<td><code>u32</code></td>
+<td><code>int32</code></td>
+<td><code>uint32</code></td>
+</tr>
+<tr>
+<td>64-bit</td>
+<td><code>i64</code></td>
+<td><code>u64</code></td>
+<td><code>int64</code></td>
+<td><code>uint64</code></td>
+</tr>
+<tr>
+<td>128-bit</td>
+<td><code>i128</code></td>
+<td><code>u128</code></td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>arch</td>
+<td><code>isize</code></td>
+<td><code>usize</code></td>
+<td><code>int</code></td>
+<td><code>uint</code></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>吐槽：有时候 Rust 真的很节省，int、uint 直接省略为 i、u，function 省略为 fn。但有时候又很繁琐（不简洁），比如前面说到的变量和类型之间的冒号。。。</p>
+<p>这里用 u、i 的形式，也需要一段时间适应。。。</p>
+</blockquote>
+<p>两点说明：</p>
+<ul>
+<li>Go 中没有 128 位长度的整数</li>
+<li>isize 和 usize 对应 Go 中的 int 和 uint，它们的长度依赖运行程序的计算机架构：64 位架构上它们是 64 位的， 32 位架构上它们是 32 位的</li>
+</ul>
+<p>在 Go 中，整型变量默认类型是 int，以下代码可以证明这一点：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">x</span> <span class="o">:=</span> <span class="mi">32</span>
+<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;%T\n&#34;</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span>
+<span class="c1">// 输出：int
+</span></code></pre></div><p>那 Rust 中默认是什么类型呢？</p>
+<p>我想在 Rust 中找到一种办法，打印变量类型，网上找到了这样的办法（有点挫）：</p>
+<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="c1">// 打印变量类型的函数。该函数看不懂先放着。
+</span><span class="c1"></span><span class="k">fn</span> <span class="nf">print_type_of</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span>: <span class="kp">&amp;</span><span class="nc">T</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="w">		</span><span class="n">println</span><span class="o">!</span><span class="p">(</span><span class="s">&#34;{}&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">std</span>::<span class="n">any</span>::<span class="n">type_name</span>::<span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">())</span><span class="w">
+</span><span class="w"></span><span class="p">}</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">32</span><span class="p">;</span><span class="w">
+</span><span class="w">    </span><span class="n">print_type_of</span><span class="p">(</span><span class="o">&amp;</span><span class="n">x</span><span class="p">);</span><span class="w">
+</span><span class="w">  	</span><span class="c1">// 输出：i32
+</span><span class="c1"></span><span class="p">}</span><span class="w">
+</span></code></pre></div><p>可见 Rust 中整型变量默认类型是 i32（即使在 64 位机器上，也是 i32）。这一定程度上说明，在 Go 中，整数一般建议用 int 类型；而 Rust 中，一般建议用 i32 类型。（所以，为什么开头的 parse 不能默认推断为 i32 类型呢？怕溢出？）</p>
+<h3 id="更智能的类型推断">更智能的类型推断</h3>
+<p>上文说 Rust 和 Go 一样，支持类型推断。不过 Rust 的推断更智能，怎么个智能法？看下面的代码：</p>
+<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="c1">// 打印变量类型的函数
+</span><span class="c1"></span><span class="k">fn</span> <span class="nf">print_type_of</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span>: <span class="kp">&amp;</span><span class="nc">T</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="w">    </span><span class="n">println</span><span class="o">!</span><span class="p">(</span><span class="s">&#34;{}&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">std</span>::<span class="n">any</span>::<span class="n">type_name</span>::<span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">())</span><span class="w">
+</span><span class="w"></span><span class="p">}</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">32</span><span class="p">;</span><span class="w">
+</span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">y</span>: <span class="kt">i8</span> <span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">;</span><span class="w">
+</span><span class="w">    </span><span class="n">print_type_of</span><span class="p">(</span><span class="o">&amp;</span><span class="n">x</span><span class="p">);</span><span class="w">
+</span><span class="w">    </span><span class="n">print_type_of</span><span class="p">(</span><span class="o">&amp;</span><span class="n">y</span><span class="p">)</span><span class="w">
+</span><span class="w"></span><span class="p">}</span><span class="w">
+</span></code></pre></div><p>根据上面的讲解，x 应该是默认类型：i32。但实际上，x 和 y 的类型都是 i8。也就是说，因为 x 的类型没有显示的指定（类型注解），Rust 编译器会根据上下文（实际上是 <code>let y: i8 = x</code> 这句）推断出 x 的类型应该和 y 一致，即 i8。</p>
+<p>在 Go 中，int8 和 int 是不会进行隐式转换的，Rust 也一样，必须进行显示转换。但 Rust 的智能类型推断，可以让开发者少写类型转换的代码。</p>
+<p>比如上面代码，在 Go 语言中是行不通的：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+	<span class="s">&#34;fmt&#34;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="nx">x</span> <span class="o">:=</span> <span class="mi">32</span>
+	<span class="kd">var</span> <span class="nx">y</span> <span class="kt">int8</span> <span class="p">=</span> <span class="nx">x</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;%T\n&#34;</span><span class="p">,</span> <span class="nx">x</span><span class="p">)</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;%T\n&#34;</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div><p>会报错：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">cannot use x <span class="o">(</span><span class="nb">type</span> int<span class="o">)</span> as <span class="nb">type</span> int8 in assignment
+</code></pre></div><p>也就是说，Go 中的类型推断不会考虑上下文，因此没有 Rust 智能。</p>
+<p>因为编译器的强大，VSCode 中（安装 rust-analyzer）会有类型提示，这样上面的 print_type_of 函数也不需要了。做了一个动图，注意上面 x 的类型变化：</p>
+<p><p class="md__image">
+  <img src="../imgs/tutorial04-01.png"
+    alt=""  />
+</p>
+</p>
+<p>此外，isize 和 usize 类型一般用作某些集合的索引，以后文章会看到。</p>
+<blockquote>
+<p>关于各种类型的表示范围我列出了，因为这个系列不是为无编程经验的人准备的。这个系列更多是为 Go 爱好者准备的 Rust 教程，因此和 Go 一致的地方可能不会讲。</p>
+</blockquote>
+<h2 id="02-浮点类型">02 浮点类型</h2>
+<p>和 Go 一样，Rust 也有两种浮点数类型：f32 和 f64，对应 Go 中的 float32 和 float64。和 Go 一样，默认类型是 f64，可以通过类型注解指定具体的浮点类型。（采用 IEEE-754 标准表示，关于浮点数知识，可以阅读<a href="https://mp.weixin.qq.com/s/BmXbChq3RVRmdGNgfxLyvw" target="_blank" rel="noopener">我之前写的文章</a>
+。）</p>
+<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="kd">let</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2.0</span><span class="p">;</span><span class="w">	</span><span class="c1">// 默认是 f64
+</span></code></pre></div><p>一般地，整数类型和浮点类型都成为数值类型。</p>
+<p>数值类型有一些共同的东西。比如都支持基本的数学运算。此外，除了通过类型注解指定类型，数值类型还可以在字面值后面带上类型后缀指定类型，比如：</p>
+<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="kd">let</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2.0</span><span class="k">f32</span><span class="p">;</span><span class="w">	</span><span class="c1">// f32 类型
+</span><span class="c1"></span><span class="kd">let</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">32</span><span class="k">i64</span><span class="p">;</span><span class="w">	</span><span class="c1">// i64 类型
+</span></code></pre></div><h2 id="03-布尔型">03 布尔型</h2>
+<p>和 Go 语言一样，Rust 中的布尔类型使用 bool 表示（咋没用 b、bl 之类的缩写呢？哈哈哈）。有两个可能的值：true 和 false。</p>
+<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span><span class="w">
+</span><span class="w">
+</span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">f</span>: <span class="kt">bool</span> <span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span><span class="w"> </span><span class="c1">// 显式指定类型注解
+</span><span class="c1"></span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id="04-字符型">04 字符型</h2>
+<p>Rust 中的 char 表示字符类型，是 Rust 的基本类型，字面值由单引号指定。</p>
+<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="kd">let</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sc">&#39;a&#39;</span><span class="p">;</span><span class="w">
+</span><span class="w"></span><span class="kd">let</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sc">&#39;中&#39;</span><span class="p">;</span><span class="w">
+</span><span class="w"></span><span class="kd">let</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sc">&#39;🤣&#39;</span><span class="p">;</span><span class="w">
+</span></code></pre></div><p>可见，Rust 中的 char 类型和 Go 中的 rune 一样，表示的是 Unicode 码点，占 4 个字节。</p>
+<p>因为 Rust 中的字符串很复杂，而且不是基本类型，因此留在以后讲解。</p>
+<h2 id="05-小结">05 小结</h2>
+<p>本文介绍了 Rust 中的四种基本数据类型：整型、浮点型、布尔型和字符型。其中，浮点型、布尔型和字符型分别对应 Go 中的浮点型、布尔型和 rune 类型，但整型，Go 和 Rust 有些许不一样，上文已经详细介绍了。此外，Go 中复数也是基本数据类型：complex64 和 complex128，而 Rust 中没有，复数通过第三方库实现，比如：<a href="https://crates.io/crates/easy_complex">https://crates.io/crates/easy_complex</a>。</p>
+<p>此外，你可能会说 Go 中还有一个基本类型：byte，而 Rust 没有。其实 Go 中的 byte 只是 uint8 的别名。另外，string 在 Go 中是基本数据类型，而在 Rust 中不是。</p>
+<p>本节内容就这些，你被劝退了吗？欢迎留言交流！</p>
+]]></content>
+		</item>
+		
+		<item>
+			<title>我的 Go 语言书单</title>
+			<link>https://polarisxu.studygolang.com/posts/go/book/20210423-go-book-list/</link>
+			<pubDate>Fri, 23 Apr 2021 12:30:00 +0800</pubDate>
+			
+			<guid>https://polarisxu.studygolang.com/posts/go/book/20210423-go-book-list/</guid>
+			<description>大家好，我是站长 polarisxu。 今天是 4 月 23 日，是世界读书日。当当有很大的优惠，而且我还要到了额外的优惠码，花 140 可以买到 400 块钱的书。借这个机会，我分享一份 Go 语言书单（实际上还有很多免费电子书单，但这里只说纸质版），需要的可以今天购买，超便宜！ 我认为不错的书，不代表你也认为好。所以，买不买自行判断哈。 01 入门级 以下排名不分先后。 Go 程序设计语言（俗称 Go 圣经） 本</description>
+			<content type="html"><![CDATA[<p>大家好，我是站长 polarisxu。</p>
+<p>今天是 4 月 23 日，是世界读书日。当当有很大的优惠，而且我还要到了额外的优惠码，花 140 可以买到 400 块钱的书。借这个机会，我分享一份 Go 语言书单（实际上还有很多免费电子书单，但这里只说纸质版），需要的可以今天购买，超便宜！</p>
+<blockquote>
+<p>我认为不错的书，不代表你也认为好。所以，买不买自行判断哈。</p>
+</blockquote>
+<h2 id="01-入门级">01 入门级</h2>
+<p>以下排名不分先后。</p>
+<h3 id="go-程序设计语言俗称-go-圣经">Go 程序设计语言（俗称 Go 圣经）</h3>
+<p>本书由《C程序设计语言》的作者Kernighan和谷歌公司Go团队主管Alan Donovan联袂撰写，是学习Go语言程序设计的指南。本书共13章，主要内容包括：Go的基础知识、基本结构、基本数据类型、复合数据类型、函数、方法、接口、goroutine、通道、共享变量的并发性、包、go工具、测试、反射等。本书适合作为计算机相关专业的教材，也可供Go语言爱好者阅读。</p>
+<p>这本书是翻译版，翻译水平自己鉴别。国内有大佬另外翻译了一版，并免费开源了，如果你喜欢电子书，可以<a href="https://books.studygolang.com/gopl-zh/" target="_blank" rel="noopener">在线阅读</a>
+。</p>
+<p>豆瓣评分：8.8</p>
+<p><p class="md__image">
+  <img src="../imgs/21go-book-list-01.png"
+    alt=""  />
+</p>
+</p>
+<h3 id="go-语言趣学指南">Go 语言趣学指南</h3>
+<p>这是一本面向 Go 语言初学者的书，书中循序渐进地介绍了使用Go语言必需知道的知识，展示了非常多生动有趣的例子，并通过提供大量练习来加深读者对书中所述内容的理解。本书共分7个单元，分别介绍了变量、常量、分支和循环等基础语句，整数、浮点数和字符串等常用类型， 类型、函数和方法，数组、切片和映射，结构和接口，指针、nil 和错误处理方法，并发和状态保护，并且每个单元都包含相应的大章和单元测试。</p>
+<p>这本书是国外的，这是中译本，译者有些人可能很熟悉，他出版过、翻译过挺多图书。</p>
+<p>豆瓣评分：8.0</p>
+<p><p class="md__image">
+  <img src="../imgs/21go-book-list-02.png"
+    alt=""  />
+</p>
+</p>
+<h2 id="02-go实战或进阶">02 Go实战或进阶</h2>
+<p>以下排名不分先后。</p>
+<h3 id="go语言编程之旅一起用go做项目">Go语言编程之旅：一起用Go做项目</h3>
+<p>本书分为6章，分别是命令行应用、HTTP应用、RPC应用、WebSocket 应用、进程内缓存和 Go语言中的大杀器，其中前5章是Go语言开发中最常见的项目类型，适合有一定Go语言基础的读者以及相关开发人员阅读。</p>
+<p>作者是煎鱼和 polarisxu。</p>
+<p>豆瓣评分：7.7，分数不高，应该是第一次印刷挺多编辑错误导致的，目前发现的错误都已改正，已完成第三次印刷。</p>
+<p><p class="md__image">
+  <img src="..//Users/xuxinhua/opensource/polarisxu/content/posts/go/book/imgs/21go-book-list-03.png"
+    alt=""  />
+</p>
+</p>
+<h3 id="go-语言学习笔记">Go 语言学习笔记</h3>
+<p>本书经四年多逐步完善，内容覆盖了语言、运行时、性能优化、工具链等各层面知识。且内容经大量读者反馈和校对，没有明显的缺陷和错误。上卷细致解析了语言规范相关细节，便于读者深入理解语言相关功能的使用方法和注意事项。下卷则对运行时源码做出深度剖析，引导读者透彻了解语言功能背后的支持环境和运行体系，诸如内存分配、垃圾回收和并发调度等。本书不适合编程初学入门，可供有实际编程经验或正在使用Go 工作的人群参考。</p>
+<p>作者雨痕，Go 圈大神！</p>
+<p>豆瓣评分：8.2</p>
+<p><p class="md__image">
+  <img src="../imgs/21go-book-list-04.png"
+    alt=""  />
+</p>
+</p>
+<h3 id="go-web-编程">Go Web 编程</h3>
+<p>该书围绕一个网络论坛 作为例子，教授读者如何使用请求处理器、多路复用器、模板引擎、存储系统等核心组件去构建一个 Go Web 应用，然后在该应用的基础上，构建出相应的 Web 服务。本书只会用到 Go 语言自带的标准库，而不会用到任何特定的 Web 框架：这使得读者学习到的知识不会受到特定的框架所限制，即使将来有需要用到现成的框架又或者自行构建框架，读者仍然会从本书介绍的知识中获益。</p>
+<p>该书作者是新加坡人，由黄健宏翻译（上面 《Go语言趣学指南》也是他翻译的）。</p>
+<p>豆瓣评分：8.1</p>
+<p><p class="md__image">
+  <img src="../imgs/21go-book-list-05.png"
+    alt=""  />
+</p>
+</p>
+<h3 id="go专家编程">Go专家编程</h3>
+<p>本书首先介绍Go语言常见的数据结构及控制结构的实现原理，包括管道、切片、Hash表、select和for-range等，这部分内容大都以几个精心准备的测验题目开头，每个测验题目均对应一个知识点，读者可以借此测验自身对该知识点的掌握程度。接着介绍了Go语言最基础的概念，包括协程的概念、协程调度模型、协程调度策略，以及内存分配和垃圾回收相关的内容。本书还介绍了一些标准库、异常处理和依赖管理等非语法相关但非常重要的内容。最后结合作者的见闻，整理了一些发生在真实项目中的编程陷阱。</p>
+<p>本书作者是华为云原生团队核心成员，开源爱好者，深度参与CNCF（云原生计算基金会）旗下Kubernetes、Prometheus等项目。</p>
+<p>豆瓣评分：9.6</p>
+<p><p class="md__image">
+  <img src="../imgs/21go-book-list-06.png"
+    alt=""  />
+</p>
+</p>
+<h3 id="go语言实战go-in-action">Go语言实战（Go In Action）</h3>
+<p>本书向读者提供一个专注、全面且符合语言习惯的视角。Go语言实战同时关注语言的规范和实现，涉及的内容包括语法、类型系统、并发、管道、测试，以及其他一些主题。</p>
+<p>这是国外 In Action 系列（本书是中译本），很经典。相对来说，这个系列都不是入门系列。</p>
+<p>豆瓣评分：7.7，分数不高。</p>
+<p><p class="md__image">
+  <img src="../imgs/21go-book-list-07.png"
+    alt=""  />
+</p>
+</p>
+<h3 id="go语言高级编程">Go语言高级编程</h3>
+<p>本书从实践出发讲解Go语言编程的进阶知识。本书共6章，第1章简单回顾Go语言的发展历史；第2章和第3章系统介绍CGO编程和Go汇编语言的用法；第4章对RPC和Protobuf技术进行深入介绍，并讲述如何打造一个自己的RPC系统；第5章介绍工业级环境的Web系统的设计和相关技术；第6章介绍Go语言在分布式领域的一些编程技术。</p>
+<p>作者是柴大和曹大。</p>
+<p>豆瓣评分：8.1</p>
+<p><p class="md__image">
+  <img src="..//Users/xuxinhua/opensource/polarisxu/content/posts/go/book/imgs/21go-book-list-08.png"
+    alt=""  />
+</p>
+</p>
+<h2 id="03-小结">03 小结</h2>
+<p>Go 的书越来越多，我这里做了一些精选。有一些书没有入选，有几方面原因：</p>
+<ul>
+<li>太老旧，比如 12、13 年出的</li>
+<li>豆瓣评分很低。比如翻译太烂</li>
+<li>有些豆瓣没有评分，而我又不了解</li>
+</ul>
+]]></content>
+		</item>
 		
 		<item>
 			<title>Rust 劝退系列 03：变量</title>

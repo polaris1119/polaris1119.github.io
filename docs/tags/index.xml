@@ -7,13 +7,40 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Mon, 19 Apr 2021 12:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 25 Apr 2021 12:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Rust</title>
       <link>https://polarisxu.studygolang.com/tags/rust/</link>
-      <pubDate>Mon, 19 Apr 2021 12:30:00 +0800</pubDate>
+      <pubDate>Sun, 25 Apr 2021 12:30:00 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/tags/rust/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>类型</title>
+      <link>https://polarisxu.studygolang.com/tags/%E7%B1%BB%E5%9E%8B/</link>
+      <pubDate>Sun, 25 Apr 2021 12:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/tags/%E7%B1%BB%E5%9E%8B/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Go</title>
+      <link>https://polarisxu.studygolang.com/tags/go/</link>
+      <pubDate>Fri, 23 Apr 2021 12:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/tags/go/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>书单</title>
+      <link>https://polarisxu.studygolang.com/tags/%E4%B9%A6%E5%8D%95/</link>
+      <pubDate>Fri, 23 Apr 2021 12:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/tags/%E4%B9%A6%E5%8D%95/</guid>
       <description></description>
     </item>
     
@@ -32,15 +59,6 @@
       <pubDate>Mon, 19 Apr 2021 08:00:00 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/tags/ddd/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Go</title>
-      <link>https://polarisxu.studygolang.com/tags/go/</link>
-      <pubDate>Mon, 19 Apr 2021 08:00:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/tags/go/</guid>
       <description></description>
     </item>
     
@@ -77,24 +95,6 @@
       <pubDate>Wed, 14 Apr 2021 18:30:00 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/tags/wechat/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>公众号</title>
-      <link>https://polarisxu.studygolang.com/tags/%E5%85%AC%E4%BC%97%E5%8F%B7/</link>
-      <pubDate>Wed, 14 Apr 2021 18:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/tags/%E5%85%AC%E4%BC%97%E5%8F%B7/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>微信</title>
-      <link>https://polarisxu.studygolang.com/tags/%E5%BE%AE%E4%BF%A1/</link>
-      <pubDate>Wed, 14 Apr 2021 18:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/tags/%E5%BE%AE%E4%BF%A1/</guid>
       <description></description>
     </item>
     

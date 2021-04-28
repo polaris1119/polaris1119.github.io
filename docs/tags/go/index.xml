@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Mon, 19 Apr 2021 08:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 23 Apr 2021 12:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>我的 Go 语言书单</title>
+      <link>https://polarisxu.studygolang.com/posts/go/book/20210423-go-book-list/</link>
+      <pubDate>Fri, 23 Apr 2021 12:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/book/20210423-go-book-list/</guid>
+      <description>大家好，我是站长 polarisxu。 今天是 4 月 23 日，是世界读书日。当当有很大的优惠，而且我还要到了额外的优惠码，花 140 可以买到 400 块钱的书。借这个机会，我分享一份 Go 语言书单（实际上还有很多免费电子书单，但这里只说纸质版），需要的可以今天购买，超便宜！ 我认为不错的书，不代表你也认为好。所以，买不买自行判断哈。 01 入门级 以下排名不分先后。 Go 程序设计语言（俗称 Go 圣经） 本</description>
+    </item>
+    
     <item>
       <title>我又来推荐免费 Go 新书了：一本用 Go 讲架构的书</title>
       <link>https://polarisxu.studygolang.com/posts/go/book/go-with-the-domain/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/choose-map-or-switch/</guid>
       <description>大家好，我是站长 polarisxu。 看到标题别惊讶，虽然 map 和 switch 似乎没啥关系，但有些场景它们俩都可以用。 场景一：根据不同的错误码显示对应错误消息，比如 200 -&amp;gt; 正常。 场景二：根据不同状态显示对应的文案。这个场景很常见，比如数据库保存状态，用的 tinyint 类型，显示给用户的是文本，所以需要进行转换。 具体怎么选？我们看一下代码，怎么选择应该一目了然。 const ( UnPay = iota HadPay Delivery Finish ) var orderState = map[int]string{ UnPay: &amp;</description>
-    </item>
-    
-    <item>
-      <title>优化Go应用性能就是在浪费时间？</title>
-      <link>https://polarisxu.studygolang.com/posts/go/translation/golang-slower/</link>
-      <pubDate>Wed, 17 Mar 2021 20:00:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/translation/golang-slower/</guid>
-      <description>原文标题：Writing slower Go programs。作者认为应该优化可读性，而不是优化性能。你认可吗？一起看下该文。本文不代表 Go语言中文网 的观点。 什么？写更慢的 Go 程序？难道我们不应该关注如何让 Go 程序更快吗？ 实际不是的。为了性能而优化 Go 代码几乎肯定在浪费你的时间，原因有以下几点： 性能并不重要（Performance doesn&amp;rsquo;t matter）； Go 本身就够快； 可读性胜过速度； 以</description>
     </item>
     
   </channel>
