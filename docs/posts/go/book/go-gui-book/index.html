@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#fcfcfc">
+	<meta name="msapplication-TileColor" content="#fcfcfc">
+<meta itemprop="name" content="Go 真的也可以进行 GUI 开发：还有这样的图书呢">
+<meta itemprop="description" content="大家好，我是站长 polarisxu。 最近看到一个视频：Building a Chess GUI with Fyne ，讲解如何使用 Go 构建一个完整的国际象棋应用程序。这个视频演示了如何构建 UI，添加动画，交互和拖放。所有这些都基于 Fyne 这个库构建，可以安装到桌面和移动设备！这个国际象棋的项目地址：https://github.com/andydotxyz/chess。 出于好奇，我深挖了一下，访问了视">
+<meta itemprop="datePublished" content="2021-04-28T18:30:00+08:00" />
+<meta itemprop="dateModified" content="2021-04-28T18:30:00+08:00" />
+<meta itemprop="wordCount" content="1283">
+
+
+
+<meta itemprop="keywords" content="Go,GUI,fyne," />
+<meta property="og:title" content="Go 真的也可以进行 GUI 开发：还有这样的图书呢" />
+<meta property="og:description" content="大家好，我是站长 polarisxu。 最近看到一个视频：Building a Chess GUI with Fyne ，讲解如何使用 Go 构建一个完整的国际象棋应用程序。这个视频演示了如何构建 UI，添加动画，交互和拖放。所有这些都基于 Fyne 这个库构建，可以安装到桌面和移动设备！这个国际象棋的项目地址：https://github.com/andydotxyz/chess。 出于好奇，我深挖了一下，访问了视" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/book/go-gui-book/" />
+<meta property="article:published_time" content="2021-04-28T18:30:00+08:00" />
+<meta property="article:modified_time" content="2021-04-28T18:30:00+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Go 真的也可以进行 GUI 开发：还有这样的图书呢"/>
+<meta name="twitter:description" content="大家好，我是站长 polarisxu。 最近看到一个视频：Building a Chess GUI with Fyne ，讲解如何使用 Go 构建一个完整的国际象棋应用程序。这个视频演示了如何构建 UI，添加动画，交互和拖放。所有这些都基于 Fyne 这个库构建，可以安装到桌面和移动设备！这个国际象棋的项目地址：https://github.com/andydotxyz/chess。 出于好奇，我深挖了一下，访问了视"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>Go 真的也可以进行 GUI 开发：还有这样的图书呢</title>
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
+	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/styles.css">
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://polarisxu.studygolang.com">polarisxu</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+  <a href="https://polarisxu.studygolang.com/">首页</a>
+  <a href="https://polarisxu.studygolang.com/categories/echo%E7%B3%BB%E5%88%97/">Echo系列</a>
+  <a href="https://polarisxu.studygolang.com/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a>
+  <a href="https://polarisxu.studygolang.com/posts/">归档</a>
+  <a href="https://polarisxu.studygolang.com/about/">关于</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<button id="toc-btn" class="hdr-btn desktop-only-ib" title="目录"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3" y2="6"></line><line x1="3" y1="12" x2="3" y2="12"></line><line x1="3" y1="18" x2="3" y2="18"></line></svg></button><span class="hdr-social hide-in-mobile"><a href="https://github.com/polaris1119" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a><a href="https://twitter.com/polaris1119" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="菜单"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://polarisxu.studygolang.com/">首页</a></li>
+			<li><a href="https://polarisxu.studygolang.com/categories/echo%E7%B3%BB%E5%88%97/">Echo系列</a></li>
+			<li><a href="https://polarisxu.studygolang.com/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a></li>
+			<li><a href="https://polarisxu.studygolang.com/posts/">归档</a></li>
+			<li><a href="https://polarisxu.studygolang.com/about/">关于</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Apr 28, 2021</span></div>
+				<h1>Go 真的也可以进行 GUI 开发：还有这样的图书呢</h1>
+			</header>
+			<div class="content">
+				<p>大家好，我是站长 polarisxu。</p>
+<p>最近看到一个视频：<a href="https://www.youtube.com/watch?v=zlPDWBLhn6c" target="_blank" rel="noopener">Building a Chess GUI with Fyne</a>
+，讲解如何使用 Go 构建一个完整的国际象棋应用程序。这个视频演示了如何构建 UI，添加动画，交互和拖放。所有这些都基于 <a href="https://fyne.io/" target="_blank" rel="noopener">Fyne</a>
+ 这个库构建，可以安装到桌面和移动设备！这个国际象棋的项目地址：<a href="https://github.com/andydotxyz/chess">https://github.com/andydotxyz/chess</a>。</p>
+<p><p class="md__image">
+  <img src="../imgs/go-gui-book01.png"
+    alt=""  />
+</p>
+</p>
+<p>出于好奇，我深挖了一下，访问了视频作者的个人网站：<a href="https://andy.xyz/">https://andy.xyz/</a>，发现它就是 Fyne 的作者：Andrew Williams。他还创建了 <a href="https://fynelabs.com/" target="_blank" rel="noopener">FyneLabs</a>
+，专门支持 Fyne 的发展。</p>
+<h2 id="01-一本-go-gui-图书">01 一本 Go GUI 图书<a href="#01-一本-go-gui-图书" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>同时，通过作者的网站，我发现他写了一本书：<a href="https://andy.xyz/2019/03/07/meet-the-first-book-about-golang-gui-programming/" target="_blank" rel="noopener">《GUI Application Development in Go》</a>
+，作者在这本书里对比了 Go 中可用的 GUI 工具包，包括一些传统的工具包（<a href="https://github.com/lxn/walk" target="_blank" rel="noopener">Walk</a>
+、 <a href="https://github.com/andlabs/ui" target="_blank" rel="noopener">andlabs UI</a>
+、 <a href="https://github.com/mattn/go-gtk" target="_blank" rel="noopener">Go-GTK</a>
+、 <a href="https://github.com/therecipe/qt" target="_blank" rel="noopener">qt</a>
+）和一些更前沿的项目（<a href="https://github.com/golang/exp/tree/master/shiny" target="_blank" rel="noopener">Shiny</a>
+、 <a href="https://github.com/golang-ui/nuklear" target="_blank" rel="noopener">nk</a>
+、 <a href="https://github.com/fyne-io/fyne" target="_blank" rel="noopener">Fyne</a>
+）。通过这些项目，作者探讨什么样的结构和代码更适合开发 Go GUI 程序。</p>
+<p>通过 GTK+ 的 Go 绑定构建了一个电子邮件应用程序，界面如下图，看起来还可以？</p>
+<p><p class="md__image">
+  <img src="../imgs/go-gui-book02.png"
+    alt=""  />
+</p>
+</p>
+<p>另外有一个图片查看器，使用 Fyne 构建的，界面如下图：</p>
+<p><p class="md__image">
+  <img src="../imgs/go-gui-book03.png"
+    alt=""  />
+</p>
+</p>
+<p>在这本书中，作者还讨论了如何规划和构建一个 GUI 应用程序以及它所依赖的代码。此外还了如何使用单元测试、持续集成，以及在集成网络和云服务时如何保持可维护的代码。最后介绍了如何打包和分发跨平台应用程序，以便交付给最终用户。</p>
+<p>该书在 <a href="https://www.amazon.com/Hands-GUI-Application-Development-cross-platform-ebook/dp/B07GYLYSCT/ref=sr_1_1" target="_blank" rel="noopener">Amazon</a>
+ 上可以买到，还有 Kindle 版，出版时间是 2019 年 2 月。</p>
+<p><p class="md__image">
+  <img src="../imgs/go-gui-book04.png"
+    alt=""  />
+</p>
+</p>
+<h2 id="02-一个-fyne-图书">02 一个 Fyne 图书<a href="#02-一个-fyne-图书" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>通过上面那本书，我又发现了另外一本书：<a href="https://www.amazon.com/Building-Cross-Platform-Applications-Fyne-platform-agnostic-ebook/dp/B08PKTNVBQ/ref=pd_rhf_dp_s_ci_mcx_mr_hp_d_2" target="_blank" rel="noopener">《Building Cross-Platform GUI Applications with Fyne》</a>
+，副标题是：Create beautiful, platform-agnostic graphical applications using Fyne and the Go programming language。</p>
+<p>这也是 Andrew Williams 写的，出版时间是 2021 年 1 月底。</p>
+<p>上一本书主要对比现存的 Go GUI 库，以及探索一个更合适的 Go GUI 开发方案，而这本书，主要讲述如何使用 Fyne 这个 Go GUI 工具包开发出漂亮的、跨平台的 GUI 应用程序。</p>
+<p>该书主要让你：</p>
+<ul>
+<li>了解如何使用标准 widgets，dialogs 和 layouts 以及如何构建自己的以上组件</li>
+<li>了解如何开发应用程序和包并将其分发到不同的操作系统和应用商店</li>
+<li>探索 Fyne 工具包的设计原则和愿景以及你在项目中可以如何使用</li>
+</ul>
+<p>本书主要通过示例项目来讲解，一共有五个示例项目，你将学习如何有效构建应用程序，专注于每个主要区域，包括画布，布局，文件处理，小部件，数据绑定和主题。本书还将向你展示已完成的应用程序如何在桌面计算机，笔记本电脑和智能手机上运行。完成这些项目后，你还可以将它们分发各种应用商店中供别人下载使用。</p>
+<p>如果你坚持学完该书，应该能够创建出漂亮的跨平台图形应用程序。</p>
+<p>以下是该书目录：</p>
+<ol>
+<li>A Brief History of GUI Toolkits and Cross-Platform Development</li>
+<li>The Future According to Fyne</li>
+<li>Window, Canvas, and Drawing</li>
+<li>Layout and File handling</li>
+<li>Widget Library and Themes</li>
+<li>Data Binding and Storage</li>
+<li>Building Custom Widgets and Themes</li>
+<li>Project Structure and Best Practices</li>
+<li>Bundling Resources and Preparing for Release</li>
+<li>Distribution - App Stores and Beyond</li>
+<li>Appendix A: Developer Tool Installation</li>
+<li>Appendix B: Installation of Mobile Build Tools</li>
+<li>Appendix C: Cross-Compiling</li>
+</ol>
+<h2 id="03-总结">03 总结<a href="#03-总结" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>虽然 GUI 不是 Go 的主战场，但作为一门通用编程语言，一些第三方库证明，Go 也是可以进行 GUI 开发的。如果你对 Go 语言开发 GUI 感兴趣，可以看看本文介绍的这两本书，特别是 Fyne 这本。从 Fyne 的发展看，前途还是值得期待的。</p>
+<p>当然，你也可以直接研究文章开头提到的国际象棋项目。</p>
+<p>以后请别说 Go 不能开发 GUI 程序了~当然，我们可以将 Go GUI 开发作为自己的爱好，业余研究，不能指望通过它找工作啥的。</p>
+<p>你会学习下 Go 的 GUI 开发吗？欢迎留言交流。</p>
+
+			</div><div class="content">
+	<br>
+	<img src="https://static.studygolang.com/static/img/polarisxu-qrcode-soso-s.png">
+</div>
+
+<div class="related-posts thin">
+	<h2>相关推荐</h2>
+	<ul>
+	
+	<li><a href="/posts/go/translation/use-mac-apis-and-build-mac-apps-with-go/">Go 终于可以开发原生 Mac APP 了</a></li>
+	
+	<li><a href="/posts/go/translation/goui-a-very-simple-ui-framework/">GoUI：一个非常简单的 GUI 框架</a></li>
+	
+	<li><a href="/posts/go/book/20210423-go-book-list/">我的 Go 语言书单</a></li>
+	
+	<li><a href="/posts/go/book/go-with-the-domain/">我又来推荐免费 Go 新书了：一本用 Go 讲架构的书</a></li>
+	
+	<li><a href="/posts/go/go-linkname/">注释竟然还有特殊用途？一文解惑 //go:linkname 指令</a></li>
+	
+	</ul>
+</div>
+
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://polarisxu.studygolang.com/tags/go">Go</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/gui">GUI</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/fyne">fyne</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1283 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2021-04-28 18:30 &#43;0800</p>
+			</footer>
+		</article>
+		<aside id="toc">
+			<div class="toc-title">目录</div>
+			<nav id="TableOfContents">
+  <ul>
+    <li><a href="#01-一本-go-gui-图书">01 一本 Go GUI 图书</a></li>
+    <li><a href="#02-一个-fyne-图书">02 一个 Fyne 图书</a></li>
+    <li><a href="#03-总结">03 总结</a></li>
+  </ul>
+</nav>
+		</aside>
+		<div class="post-nav thin">
+			<a class="prev-post" href="https://polarisxu.studygolang.com/posts/rust/rust-tutorial-04/">
+				<span class="post-nav-label">旧&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>Rust 劝退系列 04：基本数据类型</span>
+			</a>
+		</div>
+		<div id="comments" class="thin"><script src="https://utteranc.es/client.js"
+	repo="polaris1119/polarisxu"
+	issue-term="pathname"
+	theme="github-light"
+	crossorigin="anonymous"
+	async>
+</script>
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2019 - 2021 <a href="https://polarisxu.studygolang.com">polarisxu</a> &#183; <a href="https://beian.miit.gov.cn/">京ICP备14030343号-1</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://polarisxu.studygolang.com/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+		<span id="busuanzi_container" style="color: #666;">
+			本站总访客数/访问量：<span id="busuanzi_value_site_uv"></span>/<span id="busuanzi_value_site_pv"></span>
+		</span>
+	</footer>
+
+
+
+	<script src="https://polarisxu.studygolang.com/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw=" crossorigin="anonymous"></script>
+	<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?224c227cd9239761ec770bc8c1fb134c";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+</body>
+
+</html>

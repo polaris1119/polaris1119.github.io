@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Sun, 25 Apr 2021 12:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 28 Apr 2021 18:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go 真的也可以进行 GUI 开发：还有这样的图书呢</title>
+      <link>https://polarisxu.studygolang.com/posts/go/book/go-gui-book/</link>
+      <pubDate>Wed, 28 Apr 2021 18:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/book/go-gui-book/</guid>
+      <description>大家好，我是站长 polarisxu。 最近看到一个视频：Building a Chess GUI with Fyne ，讲解如何使用 Go 构建一个完整的国际象棋应用程序。这个视频演示了如何构建 UI，添加动画，交互和拖放。所有这些都基于 Fyne 这个库构建，可以安装到桌面和移动设备！这个国际象棋的项目地址：https://github.com/andydotxyz/chess。 出于好奇，我深挖了一下，访问了视</description>
+    </item>
+    
     <item>
       <title>Rust 劝退系列 04：基本数据类型</title>
       <link>https://polarisxu.studygolang.com/posts/rust/rust-tutorial-04/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/rust/rust-tutorial-01/</guid>
       <description>大家好，我是站长 polarisxu。 今天起正式 Rust “劝退”之旅。我也是在学习中，大家一起探讨交流，看谁先被劝退。在这个系列教程中，我通过和 Go 对比学习，同时只讲 Rust 最常用的特性，尽量避免入门就劝退。 工欲善其事必先利其器！本文我们先打造一个 Rust 的开发环境。 01 安装 Rust 打开 Rust 官网：https://rust-lang.org，可以切换到简体中文界面。在顶部菜单有「安装」。 对于</description>
-    </item>
-    
-    <item>
-      <title>答应我，这次一定彻底搞懂 Go 中的类型别名</title>
-      <link>https://polarisxu.studygolang.com/posts/go/action/type-and-alias/</link>
-      <pubDate>Wed, 07 Apr 2021 17:20:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/action/type-and-alias/</guid>
-      <description>大家好，我是站长 polarisxu。 有下面 3 行代码： // 32 位机器 1）var x int32 = 32.0 2）var y int = x 3）var z rune = x 它们是否能编译通过？为什么？ 如果面试时问这道题，你需要想想面试官想考察你什么。在往下看之前，建议你记下自己的答案。 01 数字字面量 在 Go 语言中，字面量是无类型（untyped）的。无类型是什么意思？无类型意味着可以赋值给类似类型的变量或常量。用上面例</description>
     </item>
     
   </channel>

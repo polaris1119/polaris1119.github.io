@@ -11,7 +11,7 @@
 <meta itemprop="description" content="大家好，我是站长 polarisxu。 这是 Rust 劝退系列的第 4 个教程，探讨 Rust 中的基本数据类型，或叫标量类型（scalar type）。 Rust 和 Go 一样，都是静态类型语言，这表示每个变量的类型必须明确。和 Go 类似，大多数情况下，Rust 编译器能够推断出某个值的类型，不需要我们显示指定，写起来有点类似于弱类型似语言。但有些情况下，必须明确告知编译器我们使用什么类型，在 Rust 中，这叫">
 <meta itemprop="datePublished" content="2021-04-25T12:30:00+08:00" />
 <meta itemprop="dateModified" content="2021-04-25T12:30:00+08:00" />
-<meta itemprop="wordCount" content="2281">
+<meta itemprop="wordCount" content="2282">
 
 
 
@@ -107,7 +107,7 @@
 <ul>
 <li>整数类型
 <ul>
-<li>有符合整数：i8、i16、i32、i64、i128、isize</li>
+<li>有符号整数：i8、i16、i32、i64、i128、isize</li>
 <li>无符号整数：u8、u16、u32、u64、u128、usize</li>
 </ul>
 </li>
@@ -237,7 +237,7 @@
 </p>
 <p>此外，isize 和 usize 类型一般用作某些集合的索引，以后文章会看到。</p>
 <blockquote>
-<p>关于各种类型的表示范围我列出了，因为这个系列不是为无编程经验的人准备的。这个系列更多是为 Go 爱好者准备的 Rust 教程，因此和 Go 一致的地方可能不会讲。</p>
+<p>关于各种类型的表示范围我不列出了，因为这个系列不是为无编程经验的人准备的。这个系列更多是为 Go 爱好者准备的 Rust 教程，因此和 Go 一致的地方可能不会讲。</p>
 </blockquote>
 <h2 id="02-浮点类型">02 浮点类型<a href="#02-浮点类型" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>和 Go 一样，Rust 也有两种浮点数类型：f32 和 f64，对应 Go 中的 float32 和 float64。和 Go 一样，默认类型是 f64，可以通过类型注解指定具体的浮点类型。（采用 IEEE-754 标准表示，关于浮点数知识，可以阅读<a href="https://mp.weixin.qq.com/s/BmXbChq3RVRmdGNgfxLyvw" target="_blank" rel="noopener">我之前写的文章</a>
@@ -293,7 +293,7 @@
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://polarisxu.studygolang.com/tags/rust">rust</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/%E7%B1%BB%E5%9E%8B">类型</a></span>
 				</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>2281 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>2282 字</p>
 				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2021-04-25 12:30 &#43;0800</p>
 			</footer>
 		</article>
@@ -314,6 +314,9 @@
 </nav>
 		</aside>
 		<div class="post-nav thin">
+			<a class="next-post" href="https://polarisxu.studygolang.com/posts/go/book/go-gui-book/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;新</span><br><span>Go 真的也可以进行 GUI 开发：还有这样的图书呢</span>
+			</a>
 			<a class="prev-post" href="https://polarisxu.studygolang.com/posts/go/book/20210423-go-book-list/">
 				<span class="post-nav-label">旧&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>我的 Go 语言书单</span>
 			</a>

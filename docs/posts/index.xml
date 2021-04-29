@@ -6,8 +6,93 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en</language>
 		<copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-		<lastBuildDate>Sun, 25 Apr 2021 12:30:00 +0800</lastBuildDate>
+		<lastBuildDate>Wed, 28 Apr 2021 18:30:00 +0800</lastBuildDate>
 		<atom:link href="https://polarisxu.studygolang.com/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>Go 真的也可以进行 GUI 开发：还有这样的图书呢</title>
+			<link>https://polarisxu.studygolang.com/posts/go/book/go-gui-book/</link>
+			<pubDate>Wed, 28 Apr 2021 18:30:00 +0800</pubDate>
+			
+			<guid>https://polarisxu.studygolang.com/posts/go/book/go-gui-book/</guid>
+			<description>大家好，我是站长 polarisxu。 最近看到一个视频：Building a Chess GUI with Fyne ，讲解如何使用 Go 构建一个完整的国际象棋应用程序。这个视频演示了如何构建 UI，添加动画，交互和拖放。所有这些都基于 Fyne 这个库构建，可以安装到桌面和移动设备！这个国际象棋的项目地址：https://github.com/andydotxyz/chess。 出于好奇，我深挖了一下，访问了视</description>
+			<content type="html"><![CDATA[<p>大家好，我是站长 polarisxu。</p>
+<p>最近看到一个视频：<a href="https://www.youtube.com/watch?v=zlPDWBLhn6c" target="_blank" rel="noopener">Building a Chess GUI with Fyne</a>
+，讲解如何使用 Go 构建一个完整的国际象棋应用程序。这个视频演示了如何构建 UI，添加动画，交互和拖放。所有这些都基于 <a href="https://fyne.io/" target="_blank" rel="noopener">Fyne</a>
+ 这个库构建，可以安装到桌面和移动设备！这个国际象棋的项目地址：<a href="https://github.com/andydotxyz/chess">https://github.com/andydotxyz/chess</a>。</p>
+<p><p class="md__image">
+  <img src="../imgs/go-gui-book01.png"
+    alt=""  />
+</p>
+</p>
+<p>出于好奇，我深挖了一下，访问了视频作者的个人网站：<a href="https://andy.xyz/">https://andy.xyz/</a>，发现它就是 Fyne 的作者：Andrew Williams。他还创建了 <a href="https://fynelabs.com/" target="_blank" rel="noopener">FyneLabs</a>
+，专门支持 Fyne 的发展。</p>
+<h2 id="01-一本-go-gui-图书">01 一本 Go GUI 图书</h2>
+<p>同时，通过作者的网站，我发现他写了一本书：<a href="https://andy.xyz/2019/03/07/meet-the-first-book-about-golang-gui-programming/" target="_blank" rel="noopener">《GUI Application Development in Go》</a>
+，作者在这本书里对比了 Go 中可用的 GUI 工具包，包括一些传统的工具包（<a href="https://github.com/lxn/walk" target="_blank" rel="noopener">Walk</a>
+、 <a href="https://github.com/andlabs/ui" target="_blank" rel="noopener">andlabs UI</a>
+、 <a href="https://github.com/mattn/go-gtk" target="_blank" rel="noopener">Go-GTK</a>
+、 <a href="https://github.com/therecipe/qt" target="_blank" rel="noopener">qt</a>
+）和一些更前沿的项目（<a href="https://github.com/golang/exp/tree/master/shiny" target="_blank" rel="noopener">Shiny</a>
+、 <a href="https://github.com/golang-ui/nuklear" target="_blank" rel="noopener">nk</a>
+、 <a href="https://github.com/fyne-io/fyne" target="_blank" rel="noopener">Fyne</a>
+）。通过这些项目，作者探讨什么样的结构和代码更适合开发 Go GUI 程序。</p>
+<p>通过 GTK+ 的 Go 绑定构建了一个电子邮件应用程序，界面如下图，看起来还可以？</p>
+<p><p class="md__image">
+  <img src="../imgs/go-gui-book02.png"
+    alt=""  />
+</p>
+</p>
+<p>另外有一个图片查看器，使用 Fyne 构建的，界面如下图：</p>
+<p><p class="md__image">
+  <img src="../imgs/go-gui-book03.png"
+    alt=""  />
+</p>
+</p>
+<p>在这本书中，作者还讨论了如何规划和构建一个 GUI 应用程序以及它所依赖的代码。此外还了如何使用单元测试、持续集成，以及在集成网络和云服务时如何保持可维护的代码。最后介绍了如何打包和分发跨平台应用程序，以便交付给最终用户。</p>
+<p>该书在 <a href="https://www.amazon.com/Hands-GUI-Application-Development-cross-platform-ebook/dp/B07GYLYSCT/ref=sr_1_1" target="_blank" rel="noopener">Amazon</a>
+ 上可以买到，还有 Kindle 版，出版时间是 2019 年 2 月。</p>
+<p><p class="md__image">
+  <img src="../imgs/go-gui-book04.png"
+    alt=""  />
+</p>
+</p>
+<h2 id="02-一个-fyne-图书">02 一个 Fyne 图书</h2>
+<p>通过上面那本书，我又发现了另外一本书：<a href="https://www.amazon.com/Building-Cross-Platform-Applications-Fyne-platform-agnostic-ebook/dp/B08PKTNVBQ/ref=pd_rhf_dp_s_ci_mcx_mr_hp_d_2" target="_blank" rel="noopener">《Building Cross-Platform GUI Applications with Fyne》</a>
+，副标题是：Create beautiful, platform-agnostic graphical applications using Fyne and the Go programming language。</p>
+<p>这也是 Andrew Williams 写的，出版时间是 2021 年 1 月底。</p>
+<p>上一本书主要对比现存的 Go GUI 库，以及探索一个更合适的 Go GUI 开发方案，而这本书，主要讲述如何使用 Fyne 这个 Go GUI 工具包开发出漂亮的、跨平台的 GUI 应用程序。</p>
+<p>该书主要让你：</p>
+<ul>
+<li>了解如何使用标准 widgets，dialogs 和 layouts 以及如何构建自己的以上组件</li>
+<li>了解如何开发应用程序和包并将其分发到不同的操作系统和应用商店</li>
+<li>探索 Fyne 工具包的设计原则和愿景以及你在项目中可以如何使用</li>
+</ul>
+<p>本书主要通过示例项目来讲解，一共有五个示例项目，你将学习如何有效构建应用程序，专注于每个主要区域，包括画布，布局，文件处理，小部件，数据绑定和主题。本书还将向你展示已完成的应用程序如何在桌面计算机，笔记本电脑和智能手机上运行。完成这些项目后，你还可以将它们分发各种应用商店中供别人下载使用。</p>
+<p>如果你坚持学完该书，应该能够创建出漂亮的跨平台图形应用程序。</p>
+<p>以下是该书目录：</p>
+<ol>
+<li>A Brief History of GUI Toolkits and Cross-Platform Development</li>
+<li>The Future According to Fyne</li>
+<li>Window, Canvas, and Drawing</li>
+<li>Layout and File handling</li>
+<li>Widget Library and Themes</li>
+<li>Data Binding and Storage</li>
+<li>Building Custom Widgets and Themes</li>
+<li>Project Structure and Best Practices</li>
+<li>Bundling Resources and Preparing for Release</li>
+<li>Distribution - App Stores and Beyond</li>
+<li>Appendix A: Developer Tool Installation</li>
+<li>Appendix B: Installation of Mobile Build Tools</li>
+<li>Appendix C: Cross-Compiling</li>
+</ol>
+<h2 id="03-总结">03 总结</h2>
+<p>虽然 GUI 不是 Go 的主战场，但作为一门通用编程语言，一些第三方库证明，Go 也是可以进行 GUI 开发的。如果你对 Go 语言开发 GUI 感兴趣，可以看看本文介绍的这两本书，特别是 Fyne 这本。从 Fyne 的发展看，前途还是值得期待的。</p>
+<p>当然，你也可以直接研究文章开头提到的国际象棋项目。</p>
+<p>以后请别说 Go 不能开发 GUI 程序了~当然，我们可以将 Go GUI 开发作为自己的爱好，业余研究，不能指望通过它找工作啥的。</p>
+<p>你会学习下 Go 的 GUI 开发吗？欢迎留言交流。</p>
+]]></content>
+		</item>
 		
 		<item>
 			<title>Rust 劝退系列 04：基本数据类型</title>
@@ -42,7 +127,7 @@
 <ul>
 <li>整数类型
 <ul>
-<li>有符合整数：i8、i16、i32、i64、i128、isize</li>
+<li>有符号整数：i8、i16、i32、i64、i128、isize</li>
 <li>无符号整数：u8、u16、u32、u64、u128、usize</li>
 </ul>
 </li>
@@ -172,7 +257,7 @@
 </p>
 <p>此外，isize 和 usize 类型一般用作某些集合的索引，以后文章会看到。</p>
 <blockquote>
-<p>关于各种类型的表示范围我列出了，因为这个系列不是为无编程经验的人准备的。这个系列更多是为 Go 爱好者准备的 Rust 教程，因此和 Go 一致的地方可能不会讲。</p>
+<p>关于各种类型的表示范围我不列出了，因为这个系列不是为无编程经验的人准备的。这个系列更多是为 Go 爱好者准备的 Rust 教程，因此和 Go 一致的地方可能不会讲。</p>
 </blockquote>
 <h2 id="02-浮点类型">02 浮点类型</h2>
 <p>和 Go 一样，Rust 也有两种浮点数类型：f32 和 f64，对应 Go 中的 float32 和 float64。和 Go 一样，默认类型是 f64，可以通过类型注解指定具体的浮点类型。（采用 IEEE-754 标准表示，关于浮点数知识，可以阅读<a href="https://mp.weixin.qq.com/s/BmXbChq3RVRmdGNgfxLyvw" target="_blank" rel="noopener">我之前写的文章</a>
