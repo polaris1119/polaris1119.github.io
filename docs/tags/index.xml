@@ -7,22 +7,31 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Wed, 28 Apr 2021 18:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 06 May 2021 13:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go</title>
+      <link>https://polarisxu.studygolang.com/tags/go/</link>
+      <pubDate>Thu, 06 May 2021 13:00:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/tags/go/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>海勒姆定律</title>
+      <link>https://polarisxu.studygolang.com/tags/%E6%B5%B7%E5%8B%92%E5%A7%86%E5%AE%9A%E5%BE%8B/</link>
+      <pubDate>Thu, 06 May 2021 13:00:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/tags/%E6%B5%B7%E5%8B%92%E5%A7%86%E5%AE%9A%E5%BE%8B/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>fyne</title>
       <link>https://polarisxu.studygolang.com/tags/fyne/</link>
       <pubDate>Wed, 28 Apr 2021 18:30:00 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/tags/fyne/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Go</title>
-      <link>https://polarisxu.studygolang.com/tags/go/</link>
-      <pubDate>Wed, 28 Apr 2021 18:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/tags/go/</guid>
       <description></description>
     </item>
     
@@ -86,15 +95,6 @@
       <pubDate>Mon, 19 Apr 2021 08:00:00 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/tags/%E5%9B%BE%E4%B9%A6/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>linkname</title>
-      <link>https://polarisxu.studygolang.com/tags/linkname/</link>
-      <pubDate>Thu, 15 Apr 2021 20:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/tags/linkname/</guid>
       <description></description>
     </item>
     

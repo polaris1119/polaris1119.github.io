@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Wed, 28 Apr 2021 18:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 06 May 2021 13:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>「卷」有理论依据：海勒姆定律—Go又是怎么卷的</title>
+      <link>https://polarisxu.studygolang.com/posts/law/hyrumslaw-go/</link>
+      <pubDate>Thu, 06 May 2021 13:00:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/law/hyrumslaw-go/</guid>
+      <description>大家好，我是站长 polarisxu。 对开发人员来说，其实也是有不少定律或原则的，只是很多人可能经历了，但不知道原来是这么个定律。 「内卷」这个词很流行，几乎渗透到每一个角落： 幼儿园小朋友都学一年级知识了，你家的不学，一年级跟不上。。。 小学生就各种课外辅导班，你不报班，也没人一起玩，让他看电子产品？ 面试造火箭，工作拧螺丝的现象更加严重。。。 公众号各种卷：标题、内</description>
+    </item>
+    
     <item>
       <title>Go 真的也可以进行 GUI 开发：还有这样的图书呢</title>
       <link>https://polarisxu.studygolang.com/posts/go/book/go-gui-book/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/action/weekly-question-88/</guid>
       <description>大家好，我是站长 polarisxu。 我在 Go 语言爱好者周刊第 87 和 88 期 刊首出了两道题，这两道题有点类似，都是和切片初始化有关。但这两道的题正确率比较低，特别是 88 期的题。 第 87 期题目如下： package main import ( &amp;#34;fmt&amp;#34; ) func main() { a := []int{2: 1} fmt.Println(a) } 正确答案是：C，正确率 52%。这道题相对简单，但依然有近一半的人答错了。 第 88 期题目和 87 期类似，但难度高一些，题目如下： package main func main() { var x = []int{4: 44, 55, 66, 1: 77, 88} println(len(x),</description>
-    </item>
-    
-    <item>
-      <title>发现 go version 的一个另类用法：你肯定想不到</title>
-      <link>https://polarisxu.studygolang.com/posts/go/go-version-detail/</link>
-      <pubDate>Fri, 19 Mar 2021 17:50:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/go-version-detail/</guid>
-      <description>大家好，我是站长 polarisxu。 对于 go version，大家应该不陌生。在很多入门教程，安装 Go 后，一般会建议执行 go version 看看是否安装成功；亦或遇到问题，别人会问你 Go 哪个版本，你也会通过 go version 命令查看。所以，go version 的一个作用是查看本地使用的 Go 版本。 但实际上，go version 还有其他用途，甚至可以说，输出本地 Go 版本号只是它功能的一个特例。先 go help version 看看： $ go help version usage: go version [-m] [-v] [file ...] Version</description>
     </item>
     
   </channel>

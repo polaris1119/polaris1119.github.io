@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#fcfcfc">
+	<meta name="msapplication-TileColor" content="#fcfcfc">
+<meta itemprop="name" content="「卷」有理论依据：海勒姆定律—Go又是怎么卷的">
+<meta itemprop="description" content="大家好，我是站长 polarisxu。 对开发人员来说，其实也是有不少定律或原则的，只是很多人可能经历了，但不知道原来是这么个定律。 「内卷」这个词很流行，几乎渗透到每一个角落： 幼儿园小朋友都学一年级知识了，你家的不学，一年级跟不上。。。 小学生就各种课外辅导班，你不报班，也没人一起玩，让他看电子产品？ 面试造火箭，工作拧螺丝的现象更加严重。。。 公众号各种卷：标题、内">
+<meta itemprop="datePublished" content="2021-05-06T13:00:00+08:00" />
+<meta itemprop="dateModified" content="2021-05-06T13:00:00+08:00" />
+<meta itemprop="wordCount" content="1934">
+
+
+
+<meta itemprop="keywords" content="海勒姆定律,Go," />
+<meta property="og:title" content="「卷」有理论依据：海勒姆定律—Go又是怎么卷的" />
+<meta property="og:description" content="大家好，我是站长 polarisxu。 对开发人员来说，其实也是有不少定律或原则的，只是很多人可能经历了，但不知道原来是这么个定律。 「内卷」这个词很流行，几乎渗透到每一个角落： 幼儿园小朋友都学一年级知识了，你家的不学，一年级跟不上。。。 小学生就各种课外辅导班，你不报班，也没人一起玩，让他看电子产品？ 面试造火箭，工作拧螺丝的现象更加严重。。。 公众号各种卷：标题、内" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://polarisxu.studygolang.com/posts/law/hyrumslaw-go/" />
+<meta property="article:published_time" content="2021-05-06T13:00:00+08:00" />
+<meta property="article:modified_time" content="2021-05-06T13:00:00+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="「卷」有理论依据：海勒姆定律—Go又是怎么卷的"/>
+<meta name="twitter:description" content="大家好，我是站长 polarisxu。 对开发人员来说，其实也是有不少定律或原则的，只是很多人可能经历了，但不知道原来是这么个定律。 「内卷」这个词很流行，几乎渗透到每一个角落： 幼儿园小朋友都学一年级知识了，你家的不学，一年级跟不上。。。 小学生就各种课外辅导班，你不报班，也没人一起玩，让他看电子产品？ 面试造火箭，工作拧螺丝的现象更加严重。。。 公众号各种卷：标题、内"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>「卷」有理论依据：海勒姆定律—Go又是怎么卷的</title>
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
+	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/styles.css">
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://polarisxu.studygolang.com">polarisxu</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+  <a href="https://polarisxu.studygolang.com/">首页</a>
+  <a href="https://polarisxu.studygolang.com/categories/echo%E7%B3%BB%E5%88%97/">Echo系列</a>
+  <a href="https://polarisxu.studygolang.com/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a>
+  <a href="https://polarisxu.studygolang.com/posts/">归档</a>
+  <a href="https://polarisxu.studygolang.com/about/">关于</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<button id="toc-btn" class="hdr-btn desktop-only-ib" title="目录"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3" y2="6"></line><line x1="3" y1="12" x2="3" y2="12"></line><line x1="3" y1="18" x2="3" y2="18"></line></svg></button><span class="hdr-social hide-in-mobile"><a href="https://github.com/polaris1119" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a><a href="https://twitter.com/polaris1119" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="菜单"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://polarisxu.studygolang.com/">首页</a></li>
+			<li><a href="https://polarisxu.studygolang.com/categories/echo%E7%B3%BB%E5%88%97/">Echo系列</a></li>
+			<li><a href="https://polarisxu.studygolang.com/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a></li>
+			<li><a href="https://polarisxu.studygolang.com/posts/">归档</a></li>
+			<li><a href="https://polarisxu.studygolang.com/about/">关于</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>May 6, 2021</span></div>
+				<h1>「卷」有理论依据：海勒姆定律—Go又是怎么卷的</h1>
+			</header>
+			<div class="content">
+				<p>大家好，我是站长 polarisxu。</p>
+<p>对开发人员来说，其实也是有不少定律或原则的，只是很多人可能经历了，但不知道原来是这么个定律。</p>
+<p>「内卷」这个词很流行，几乎渗透到每一个角落：</p>
+<ul>
+<li>幼儿园小朋友都学一年级知识了，你家的不学，一年级跟不上。。。</li>
+<li>小学生就各种课外辅导班，你不报班，也没人一起玩，让他看电子产品？</li>
+<li>面试造火箭，工作拧螺丝的现象更加严重。。。</li>
+<li>公众号各种卷：标题、内容等，卷王之王都出现了。。。</li>
+<li>。。。</li>
+</ul>
+<p>想起一个段子：「面试滴滴司机」，对话过程大概是这样的。（来源网络，如有雷同，纯属巧合）</p>
+<blockquote>
+<p>看你简历，你已经有八年的开车经验，咱们聊一聊从你按下汽车点火按钮后，汽车发生的一系列的动作。</p>
+</blockquote>
+<p>答：</p>
+<blockquote>
+<p>1）按下按钮后0.5秒，车辆完成电路自检。
+2）按下1秒后，启动机马达的电路被接通，带动马达高速运转，马达转子带动发动机飞轮运动，汽车发动机在轰鸣声中启动。
+3）油门踏板控制着发动机进气门（亦称作节气门）的开合角度。油门踩得越深，进气门开合角度就越大，进气量也就越大。
+4）然后，火花塞适时点火，引燃可燃气形成“爆燃”，巨大的冲击力使得活塞进行运动。每分钟这样的“爆燃”会发生几百上千次。活塞的运动带动发动机曲轴飞速旋转。发动机转速的，就是每分钟内曲轴旋转的圈数。
+5）气缸活塞在封闭爆燃的推动下往复运动，产生连续不断的动力。</p>
+<p>至此，发动机顺利完成启动，挂好档位踩油门，转速和车速逐步攀升，我们可以出发啦！</p>
+</blockquote>
+<p>面试官接着问：</p>
+<blockquote>
+<p>嗯，那有在之前的工作中，做过启动优化吗？尽量减少发动的时间，提高用户体验。</p>
+</blockquote>
+<p>。。。</p>
+<p>是不是卷的飞起？！</p>
+<p>##01 海勒姆定律</p>
+<p>在程序设计中，接口和实现是很重要的两部分。通常在一个系统里面，接口就是一个与系统交互的抽象，比如汽车的方向盘和油门，刹车这些（我们通过这些来控制汽车，与汽车交互），而实现则是这个系统工作的一种方式，比如汽车的轮子和引擎（汽车实际是通过这些来工作的）。区分接口和实现的好处是非常明显的，当一个系统快速迭代，变得越来越复杂和难以理解的时候，抽象能非常好的帮助我们管理这些复杂性。</p>
+<p>可见，一个接口在理论上需要清晰的将系统的使用者和该系统的实现隔离开。汽车系统是如此，其他系统也是如此。虽然设计者很努力，但现实往往是残酷的，当这个系统开始逐渐膨胀，一些用户开始依赖一些通过接口暴露出的内部的实现细节，「内卷」开始。。。</p>
+<p>几年前，Google 的一名工程师，Hyrum（海勒姆）观察指出：</p>
+<blockquote>
+<p>当 API 有足够多的用户时，你在合同中的承诺已不重要：你系统的所有可观察行为都将被某些人所依赖。</p>
+</blockquote>
+<p>这也叫做「隐式接口定律」。</p>
+<p>也就是说，当你的 API 有足够多的用户时，API 的所有行为（包括那些未囊括在公共说明中的一部分）最终都会被其他人所依赖。 一个简单的例子是 API 的响应时间这种非功能性因素；还有一个更微妙的例子是：用户使用正则表达式匹配错误提示来判断 API 的错误类型，即使 API 文档中没有任何关于错误提示的内容，而是指导用户应该使用相应的错误代码。一些用户依然会使用错误提示内容（而非错误代码），这种情况下变更 API 错误提示信息，实际上会破坏 API 的使用。</p>
+<p>俗称：<strong>不按套路出牌</strong>。</p>
+<h2 id="02-该定律在-go-中的体现">02 该定律在 Go 中的体现<a href="#02-该定律在-go-中的体现" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>随着使用 Go 的人越来越多，大家超越 Go 规范，不满足于 Go 公开的 API，「卷入」其内部实现了。你会写 Go 代码，写过大型项目可能都不够，你必须得符合「海勒姆定律」，挖挖 GMP、GC 等 runtime 很多实现细节。</p>
+<p>虽然 Go 官方一直在避免大家陷入实现细节，依赖实现细节，但还是挡不住「爱学习」的人们。比如 Go 中的 map 是无序的，但某个版本的实现，用户测试输出，咦，发现是有序的。。。然后依赖它。Go 官方「一怒之下」，故意打乱顺序。</p>
+<p>再比如一个包中多个文件的初始化顺序，规范并没有进行约定。但目前官方的实现是按照文件名顺序初始化的，于是很可能就有面试题，并且多半答案就说是文件名顺序，因为现在是这么实现的，源码在那摆着呢。。。</p>
+<p>再比如，Go 中 slice 的扩容，太多太多文章解释，扩容的规则是怎么样的，1.5 倍？2 倍？规范并没有对此做约定。而且 Go 不同版本的实现还经常变。用好 slice 貌似基本不能满足要求，你必须得知道它怎么扩容的，每次扩容增加多少？这跟开车需要知道发动机原理似乎没啥区别~</p>
+<p>还有很多很多例子，欢迎留言！</p>
+<h2 id="03-对我们有何启发">03 对我们有何启发<a href="#03-对我们有何启发" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>在实际工作中，我们一方面要尽量设计好接口，将接口和实现隔离，但同时也要留意隐式接口问题。特别是对外提供服务（包括公司的基础部门，对其他部门提供服务），要求我们在构建和维护复杂系统的时候思考的更全面一点。我们需要意识到，隐示接口会限制我们系统的设计和发展。虽然隐式接口理论上不是你的锅，但使用者不会这么认为。</p>
+<p>所以，「卷」有了理论依据。谷歌很多年前就用理论证明了「卷」的普遍存在，你还能不倦吗？🤣</p>
+<h2 id="04-参考">04 参考<a href="#04-参考" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>海勒姆定律：<a href="https://www.hyrumslaw.com/">https://www.hyrumslaw.com/</a></p>
+
+			</div><div class="content">
+	<br>
+	<img src="https://static.studygolang.com/static/img/polarisxu-qrcode-soso-s.png">
+</div>
+
+<div class="related-posts thin">
+	<h2>相关推荐</h2>
+	<ul>
+	
+	<li><a href="/posts/go/book/go-gui-book/">Go 真的也可以进行 GUI 开发：还有这样的图书呢</a></li>
+	
+	<li><a href="/posts/go/book/20210423-go-book-list/">我的 Go 语言书单</a></li>
+	
+	<li><a href="/posts/go/book/go-with-the-domain/">我又来推荐免费 Go 新书了：一本用 Go 讲架构的书</a></li>
+	
+	<li><a href="/posts/go/go-linkname/">注释竟然还有特殊用途？一文解惑 //go:linkname 指令</a></li>
+	
+	<li><a href="/posts/go/action/go-closure/">一道 Go 闭包题，面试官说原来自己答错了：面别人也涨知识</a></li>
+	
+	</ul>
+</div>
+
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://polarisxu.studygolang.com/tags/%E6%B5%B7%E5%8B%92%E5%A7%86%E5%AE%9A%E5%BE%8B">海勒姆定律</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/go">Go</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1934 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2021-05-06 13:00 &#43;0800</p>
+			</footer>
+		</article>
+		<aside id="toc">
+			<div class="toc-title">目录</div>
+			<nav id="TableOfContents">
+  <ul>
+    <li><a href="#02-该定律在-go-中的体现">02 该定律在 Go 中的体现</a></li>
+    <li><a href="#03-对我们有何启发">03 对我们有何启发</a></li>
+    <li><a href="#04-参考">04 参考</a></li>
+  </ul>
+</nav>
+		</aside>
+		<div class="post-nav thin">
+			<a class="prev-post" href="https://polarisxu.studygolang.com/posts/go/book/go-gui-book/">
+				<span class="post-nav-label">旧&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>Go 真的也可以进行 GUI 开发：还有这样的图书呢</span>
+			</a>
+		</div>
+		<div id="comments" class="thin"><script src="https://utteranc.es/client.js"
+	repo="polaris1119/polarisxu"
+	issue-term="pathname"
+	theme="github-light"
+	crossorigin="anonymous"
+	async>
+</script>
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2019 - 2021 <a href="https://polarisxu.studygolang.com">polarisxu</a> &#183; <a href="https://beian.miit.gov.cn/">京ICP备14030343号-1</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://polarisxu.studygolang.com/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+		<span id="busuanzi_container" style="color: #666;">
+			本站总访客数/访问量：<span id="busuanzi_value_site_uv"></span>/<span id="busuanzi_value_site_pv"></span>
+		</span>
+	</footer>
+
+
+
+	<script src="https://polarisxu.studygolang.com/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw=" crossorigin="anonymous"></script>
+	<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?224c227cd9239761ec770bc8c1fb134c";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+</body>
+
+</html>
