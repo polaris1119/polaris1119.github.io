@@ -17,5 +17,14 @@
       <description>大家好，我是站长 polarisxu。 这是 Rust 劝退系列的第 4 个教程，探讨 Rust 中的基本数据类型，或叫标量类型（scalar type）。 Rust 和 Go 一样，都是静态类型语言，这表示每个变量的类型必须明确。和 Go 类似，大多数情况下，Rust 编译器能够推断出某个值的类型，不需要我们显示指定，写起来有点类似于弱类型似语言。但有些情况下，必须明确告知编译器我们使用什么类型，在 Rust 中，这叫</description>
     </item>
     
+    <item>
+      <title>Rust 劝退系列 05：复合数据类型</title>
+      <link>https://polarisxu.studygolang.com/posts/rust/rust-tutorial-05/</link>
+      <pubDate>Sun, 25 Apr 2021 12:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/rust/rust-tutorial-05/</guid>
+      <description>大家好，我是站长 polarisxu。 这是 Rust 劝退系列的第 5 个教程，探讨 Rust 中的复合数据类型（Compound types）。Rust 中有两种原生的复合类型：元组（tuple）和数组（array），顺带介绍切片。 01 元组类型 Go 语言没有元组类型，但多返回值有点类似元组（但还是有区别的哦）。Python 中有元组类型，因此如果你熟悉 Python，对元组应该很熟悉。 什么是元组</description>
+    </item>
+    
   </channel>
 </rss>
