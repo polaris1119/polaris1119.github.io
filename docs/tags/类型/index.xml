@@ -18,6 +18,15 @@
     </item>
     
     <item>
+      <title>Rust 劝退系列 06：复合数据类型</title>
+      <link>https://polarisxu.studygolang.com/posts/rust/rust-tutorial-06/</link>
+      <pubDate>Thu, 06 May 2021 22:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/rust/rust-tutorial-06/</guid>
+      <description>大家好，我是站长 polarisxu。 这是 Rust 劝退系列的第 5 个教程，探讨 Rust 中的复合数据类型（Compound types）。Rust 中有两种原生的复合类型：元组（tuple）和数组（array），顺带介绍切片。 01 元组类型 Go 语言没有元组类型，但多返回值有点类似元组（但还是有区别的哦）。Python 中有元组类型，因此如果你熟悉 Python，对元组应该很熟悉。 什么是元组</description>
+    </item>
+    
+    <item>
       <title>Rust 劝退系列 04：基本数据类型</title>
       <link>https://polarisxu.studygolang.com/posts/rust/rust-tutorial-04/</link>
       <pubDate>Sun, 25 Apr 2021 12:30:00 +0800</pubDate>

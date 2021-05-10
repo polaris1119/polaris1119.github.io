@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Mon, 08 Mar 2021 15:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/%E5%AF%B9%E8%AF%9D/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 09 May 2021 23:40:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/%E5%AF%B9%E8%AF%9D/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>再一次看到了 Go 的节制：int128 类型要不要支持？</title>
+      <link>https://polarisxu.studygolang.com/posts/go/dynamic/support-int128/</link>
+      <pubDate>Sun, 09 May 2021 23:40:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/dynamic/support-int128/</guid>
+      <description>大家好，我是站长 polarisxu。 如果有看我写的 Rust 系列教程，会注意到，Rust 有一个整数类型：i128/u128，即 16 字节长的整数。而 Go 是不支持 int128/unit128 的。 当时，我也没有多想，感觉 128 长度应该用的也少。今天，我发现早在 2014 年就有人提议在 Go 中增加 int128/uint128 的支持：https://github.com/golang/go/issues/9455。 为什么想要这个类型呢？ 有人提出了</description>
+    </item>
+    
     <item>
       <title>polarisxu 对话无闻</title>
       <link>https://polarisxu.studygolang.com/posts/dialogue/vs-wuwen/</link>

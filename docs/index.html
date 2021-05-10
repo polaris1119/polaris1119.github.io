@@ -14,7 +14,7 @@
 <meta property="og:description" content="polarisxu,Go语言中文网,go,golang,源码分析,系列教程" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://polarisxu.studygolang.com/" />
-<meta property="og:updated_time" content="2021-05-06T22:30:00+08:00" />
+<meta property="og:updated_time" content="2021-05-09T23:40:00+08:00" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="polarisxu"/>
 <meta name="twitter:description" content="polarisxu,Go语言中文网,go,golang,源码分析,系列教程"/>
@@ -72,7 +72,47 @@
 		
         <div class="post animated fadeInDown">
             <div class="post-title">
+                <h2><a href="/posts/go/dynamic/support-int128/">再一次看到了 Go 的节制：int128 类型要不要支持？</a>
+                </h2>
+            </div>
+            <div class="post-content">
+                <div class="p_part"><p>大家好，我是站长 polarisxu。 如果有看我写的 Rust 系列教程，会注意到，Rust 有一个整数类型：i128/u128，即 16 字节长的整数。而 Go 是不支持 int128/unit128 的。 当时，我也没有多想，感觉 128 长度应该用的也少。今天，我发现早在 2014 年就有人提议在 Go 中增加 int128/uint128 的支持：https://github.com/golang/go/issues/9455。 为什么想要这个类型呢？ 有人提出了</p></div>
+            </div>
+            <div class="post-footer">
+                <div class="meta">
+                    <div class="info"><em class="fas fa-calendar-day"></em><span
+                                class="date">2021-05-09</span>
+                        <a class="tag"
+                                   href="/tags/%E5%AF%B9%E8%AF%9D/">对话</a><a class="tag"
+                                   href="/tags/%E6%97%A0%E9%97%BB/">无闻</a>
+                    </div>
+                </div>
+            </div>
+				</div>
+    
+        <div class="post animated fadeInDown">
+            <div class="post-title">
                 <h2><a href="/posts/rust/rust-tutorial-05/">Rust 劝退系列 05：复合数据类型</a>
+                </h2>
+            </div>
+            <div class="post-content">
+                <div class="p_part"><p>大家好，我是站长 polarisxu。 这是 Rust 劝退系列的第 5 个教程，探讨 Rust 中的复合数据类型（Compound types）。Rust 中有两种原生的复合类型：元组（tuple）和数组（array），顺带介绍切片。 01 元组类型 Go 语言没有元组类型，但多返回值有点类似元组（但还是有区别的哦）。Python 中有元组类型，因此如果你熟悉 Python，对元组应该很熟悉。 什么是元组</p></div>
+            </div>
+            <div class="post-footer">
+                <div class="meta">
+                    <div class="info"><em class="fas fa-calendar-day"></em><span
+                                class="date">2021-05-06</span>
+                        <a class="tag"
+                                   href="/tags/rust/">rust</a><a class="tag"
+                                   href="/tags/%E7%B1%BB%E5%9E%8B/">类型</a>
+                    </div>
+                </div>
+            </div>
+				</div>
+    
+        <div class="post animated fadeInDown">
+            <div class="post-title">
+                <h2><a href="/posts/rust/rust-tutorial-06/">Rust 劝退系列 06：复合数据类型</a>
                 </h2>
             </div>
             <div class="post-content">
@@ -233,47 +273,6 @@
             </div>
 				</div>
     
-        <div class="post animated fadeInDown">
-            <div class="post-title">
-                <h2><a href="/posts/wechat/2021-04-wechat-changes/">这个功能，公众号、微信群会不会被玩坏？</a>
-                </h2>
-            </div>
-            <div class="post-content">
-                <div class="p_part"><p>大家好，我是站长 polarisxu。 微信生态近期又有一些不错的变更，体验上有较大改进，我把看到的一些列举下。 01 公众号留言支持盖楼 什么意思？最开始，微信公众号的留言，作者回复后，留言者没法接着原来的留言盖楼，必须另起一个留言，前段时间做了改进。不过还存在这样一个问题：比如一楼问了一个问题，其他读者想回复他，没法直接回复，经常见到这样的：回复一楼。然而，微信留言</p></div>
-            </div>
-            <div class="post-footer">
-                <div class="meta">
-                    <div class="info"><em class="fas fa-calendar-day"></em><span
-                                class="date">2021-04-14</span>
-                        <a class="tag"
-                                   href="/tags/wechat/">Wechat</a><a class="tag"
-                                   href="/tags/%E5%BE%AE%E4%BF%A1/">微信</a><a class="tag"
-                                   href="/tags/%E5%85%AC%E4%BC%97%E5%8F%B7/">公众号</a>
-                    </div>
-                </div>
-            </div>
-				</div>
-    
-        <div class="post animated fadeInDown">
-            <div class="post-title">
-                <h2><a href="/posts/go/action/go-closure/">一道 Go 闭包题，面试官说原来自己答错了：面别人也涨知识</a>
-                </h2>
-            </div>
-            <div class="post-content">
-                <div class="p_part"><p>大家好，我是站长 polarisxu。 通常，JS 面试，闭包应该是必考的题目。随着越来越多的语言对函数式范式的支持，闭包问题经常出现。在 Go 语言中也是如此。 本文从一道题引出 Go 中的闭包。这是 Go 语言爱好者周刊第 90 期的一道题目。以下代码输出什么？ package main import &#34;fmt&#34; func app() func(string) string { t := &#34;Hi&#34; c := func(b string) string { t = t + &#34; &#34; + b return t } return c } func main() { a := app() b := app() a(&#34;go&#34;) fmt.Println(b(&#34;All&#34;)) } 这道题目答对的人蛮多的：60%。不管你</p></div>
-            </div>
-            <div class="post-footer">
-                <div class="meta">
-                    <div class="info"><em class="fas fa-calendar-day"></em><span
-                                class="date">2021-04-13</span>
-                        <a class="tag"
-                                   href="/tags/go/">Go</a><a class="tag"
-                                   href="/tags/%E9%97%AD%E5%8C%85/">闭包</a>
-                    </div>
-                </div>
-            </div>
-				</div>
-    
     <div class="pagination">
         
 <ul class="pagination">
@@ -296,13 +295,13 @@
     <span aria-hidden="true">&nbsp;&hellip;&nbsp;</span>
   </li>
   <li class="page-item">
-    <a class="page-link" href="/page/13/">13</a>
+    <a class="page-link" href="/page/14/">14</a>
   </li>
   <li class="page-item">
     <a href="/page/2/" class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
   </li>
   <li class="page-item">
-    <a href="/page/13/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+    <a href="/page/14/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
   </li>
 </ul>
 

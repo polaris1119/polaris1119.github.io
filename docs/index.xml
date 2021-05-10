@@ -7,13 +7,31 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Thu, 06 May 2021 22:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 09 May 2021 23:40:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>再一次看到了 Go 的节制：int128 类型要不要支持？</title>
+      <link>https://polarisxu.studygolang.com/posts/go/dynamic/support-int128/</link>
+      <pubDate>Sun, 09 May 2021 23:40:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/dynamic/support-int128/</guid>
+      <description>大家好，我是站长 polarisxu。 如果有看我写的 Rust 系列教程，会注意到，Rust 有一个整数类型：i128/u128，即 16 字节长的整数。而 Go 是不支持 int128/unit128 的。 当时，我也没有多想，感觉 128 长度应该用的也少。今天，我发现早在 2014 年就有人提议在 Go 中增加 int128/uint128 的支持：https://github.com/golang/go/issues/9455。 为什么想要这个类型呢？ 有人提出了</description>
+    </item>
+    
     <item>
       <title>Rust 劝退系列 05：复合数据类型</title>
       <link>https://polarisxu.studygolang.com/posts/rust/rust-tutorial-05/</link>
       <pubDate>Thu, 06 May 2021 22:30:00 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/posts/rust/rust-tutorial-05/</guid>
+      <description>大家好，我是站长 polarisxu。 这是 Rust 劝退系列的第 5 个教程，探讨 Rust 中的复合数据类型（Compound types）。Rust 中有两种原生的复合类型：元组（tuple）和数组（array），顺带介绍切片。 01 元组类型 Go 语言没有元组类型，但多返回值有点类似元组（但还是有区别的哦）。Python 中有元组类型，因此如果你熟悉 Python，对元组应该很熟悉。 什么是元组</description>
+    </item>
+    
+    <item>
+      <title>Rust 劝退系列 06：复合数据类型</title>
+      <link>https://polarisxu.studygolang.com/posts/rust/rust-tutorial-06/</link>
+      <pubDate>Thu, 06 May 2021 22:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/rust/rust-tutorial-06/</guid>
       <description>大家好，我是站长 polarisxu。 这是 Rust 劝退系列的第 5 个教程，探讨 Rust 中的复合数据类型（Compound types）。Rust 中有两种原生的复合类型：元组（tuple）和数组（array），顺带介绍切片。 01 元组类型 Go 语言没有元组类型，但多返回值有点类似元组（但还是有区别的哦）。Python 中有元组类型，因此如果你熟悉 Python，对元组应该很熟悉。 什么是元组</description>
     </item>
     
@@ -78,24 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/go-linkname/</guid>
       <description>大家好，我是站长 polarisxu。 我之前写过一篇文章：为什么 Go 标准库中有些函数只有签名，没有函数体？ ，其中有一点就是 //go:linkname 这个指令。 Go 中类似的指令挺多的，比如 Go1.16 中的 //go:embed。前些天有人问我，为什么它用 //go:embed 不起作用？我一看，它是这么写的：// go:embed，不知道你看到问题了没有？是的，指令是通过注释的方式，但有三点要求，要特别注意： // 后不能有空格。</description>
-    </item>
-    
-    <item>
-      <title>这个功能，公众号、微信群会不会被玩坏？</title>
-      <link>https://polarisxu.studygolang.com/posts/wechat/2021-04-wechat-changes/</link>
-      <pubDate>Wed, 14 Apr 2021 18:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/wechat/2021-04-wechat-changes/</guid>
-      <description>大家好，我是站长 polarisxu。 微信生态近期又有一些不错的变更，体验上有较大改进，我把看到的一些列举下。 01 公众号留言支持盖楼 什么意思？最开始，微信公众号的留言，作者回复后，留言者没法接着原来的留言盖楼，必须另起一个留言，前段时间做了改进。不过还存在这样一个问题：比如一楼问了一个问题，其他读者想回复他，没法直接回复，经常见到这样的：回复一楼。然而，微信留言</description>
-    </item>
-    
-    <item>
-      <title>一道 Go 闭包题，面试官说原来自己答错了：面别人也涨知识</title>
-      <link>https://polarisxu.studygolang.com/posts/go/action/go-closure/</link>
-      <pubDate>Tue, 13 Apr 2021 18:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/action/go-closure/</guid>
-      <description>大家好，我是站长 polarisxu。 通常，JS 面试，闭包应该是必考的题目。随着越来越多的语言对函数式范式的支持，闭包问题经常出现。在 Go 语言中也是如此。 本文从一道题引出 Go 中的闭包。这是 Go 语言爱好者周刊第 90 期的一道题目。以下代码输出什么？ package main import &amp;#34;fmt&amp;#34; func app() func(string) string { t := &amp;#34;Hi&amp;#34; c := func(b string) string { t = t + &amp;#34; &amp;#34; + b return t } return c } func main() { a := app() b := app() a(&amp;#34;go&amp;#34;) fmt.Println(b(&amp;#34;All&amp;#34;)) } 这道题目答对的人蛮多的：60%。不管你</description>
     </item>
     
   </channel>
