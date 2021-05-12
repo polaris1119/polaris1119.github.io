@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>tmplfunc on polarisxu</title>
+    <link>https://polarisxu.studygolang.com/tags/tmplfunc/</link>
+    <description>Recent content in tmplfunc on polarisxu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
+    <lastBuildDate>Wed, 12 May 2021 12:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/tmplfunc/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go Team Leader — rsc 大神新开源了一个库，增强模板功能</title>
+      <link>https://polarisxu.studygolang.com/posts/go/pkg/rsc-tmplfunc/</link>
+      <pubDate>Wed, 12 May 2021 12:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/pkg/rsc-tmplfunc/</guid>
+      <description>大家好，我是站长 polarisxu。 今天给大家分享一个 rsc 新开源的一个库：rsc.io/tmplfunc 。 这个库是对 Go 标准库模板的扩展，可以像调用函数一样调用模板。通过一个例子看怎么使用。 01 标准库 因为 text/template 和 html/template 基本是一样的，且 tmplfunc 这个包同时支持两者，本文使用 text/template 来演示。 有如下代码： package main import ( &amp;#34;os&amp;#34; &amp;#34;text/template&amp;#34; ) var stdstr = `{{link&amp;#34;https://golang.org&amp;#34;&amp;#34;The Go language&amp;#34;}}{{link&amp;#34;https:</description>
+    </item>
+    
+  </channel>
+</rss>

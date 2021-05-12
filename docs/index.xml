@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Sun, 09 May 2021 23:40:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 12 May 2021 12:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go Team Leader — rsc 大神新开源了一个库，增强模板功能</title>
+      <link>https://polarisxu.studygolang.com/posts/go/pkg/rsc-tmplfunc/</link>
+      <pubDate>Wed, 12 May 2021 12:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/pkg/rsc-tmplfunc/</guid>
+      <description>大家好，我是站长 polarisxu。 今天给大家分享一个 rsc 新开源的一个库：rsc.io/tmplfunc 。 这个库是对 Go 标准库模板的扩展，可以像调用函数一样调用模板。通过一个例子看怎么使用。 01 标准库 因为 text/template 和 html/template 基本是一样的，且 tmplfunc 这个包同时支持两者，本文使用 text/template 来演示。 有如下代码： package main import ( &amp;#34;os&amp;#34; &amp;#34;text/template&amp;#34; ) var stdstr = `{{link&amp;#34;https://golang.org&amp;#34;&amp;#34;The Go language&amp;#34;}}{{link&amp;#34;https:</description>
+    </item>
+    
     <item>
       <title>再一次看到了 Go 的节制：int128 类型要不要支持？</title>
       <link>https://polarisxu.studygolang.com/posts/go/dynamic/support-int128/</link>
@@ -23,15 +32,6 @@
       <pubDate>Thu, 06 May 2021 22:30:00 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/posts/rust/rust-tutorial-05/</guid>
-      <description>大家好，我是站长 polarisxu。 这是 Rust 劝退系列的第 5 个教程，探讨 Rust 中的复合数据类型（Compound types）。Rust 中有两种原生的复合类型：元组（tuple）和数组（array），顺带介绍切片。 01 元组类型 Go 语言没有元组类型，但多返回值有点类似元组（但还是有区别的哦）。Python 中有元组类型，因此如果你熟悉 Python，对元组应该很熟悉。 什么是元组</description>
-    </item>
-    
-    <item>
-      <title>Rust 劝退系列 06：复合数据类型</title>
-      <link>https://polarisxu.studygolang.com/posts/rust/rust-tutorial-06/</link>
-      <pubDate>Thu, 06 May 2021 22:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/rust/rust-tutorial-06/</guid>
       <description>大家好，我是站长 polarisxu。 这是 Rust 劝退系列的第 5 个教程，探讨 Rust 中的复合数据类型（Compound types）。Rust 中有两种原生的复合类型：元组（tuple）和数组（array），顺带介绍切片。 01 元组类型 Go 语言没有元组类型，但多返回值有点类似元组（但还是有区别的哦）。Python 中有元组类型，因此如果你熟悉 Python，对元组应该很熟悉。 什么是元组</description>
     </item>
     

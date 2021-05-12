@@ -3,13 +3,38 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://polarisxu.studygolang.com/tags/go/</loc>
+    <lastmod>2021-05-12T12:30:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polarisxu.studygolang.com/posts/go/pkg/rsc-tmplfunc/</loc>
+    <lastmod>2021-05-12T12:30:00+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://polarisxu.studygolang.com/</loc>
-    <lastmod>2021-05-09T23:40:00+08:00</lastmod>
+    <lastmod>2021-05-12T12:30:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polarisxu.studygolang.com/tags/rsc/</loc>
+    <lastmod>2021-05-12T12:30:00+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://polarisxu.studygolang.com/tags/</loc>
-    <lastmod>2021-05-09T23:40:00+08:00</lastmod>
+    <lastmod>2021-05-12T12:30:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polarisxu.studygolang.com/tags/tmplfunc/</loc>
+    <lastmod>2021-05-12T12:30:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polarisxu.studygolang.com/posts/</loc>
+    <lastmod>2021-05-12T12:30:00+08:00</lastmod>
   </url>
   
   <url>
@@ -19,11 +44,6 @@
   
   <url>
     <loc>https://polarisxu.studygolang.com/tags/%E5%AF%B9%E8%AF%9D/</loc>
-    <lastmod>2021-05-09T23:40:00+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://polarisxu.studygolang.com/posts/</loc>
     <lastmod>2021-05-09T23:40:00+08:00</lastmod>
   </url>
   
@@ -43,18 +63,8 @@
   </url>
   
   <url>
-    <loc>https://polarisxu.studygolang.com/posts/rust/rust-tutorial-06/</loc>
-    <lastmod>2021-05-06T22:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://polarisxu.studygolang.com/tags/%E7%B1%BB%E5%9E%8B/</loc>
     <lastmod>2021-05-06T22:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://polarisxu.studygolang.com/tags/go/</loc>
-    <lastmod>2021-05-06T13:00:00+08:00</lastmod>
   </url>
   
   <url>
@@ -835,11 +845,6 @@
   <url>
     <loc>https://polarisxu.studygolang.com/posts/talk/myblog-with-hugo-github-pages/</loc>
     <lastmod>2020-12-01T11:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://polarisxu.studygolang.com/tags/rsc/</loc>
-    <lastmod>2020-11-21T21:30:00+08:00</lastmod>
   </url>
   
   <url>
