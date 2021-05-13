@@ -7,13 +7,31 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Wed, 12 May 2021 12:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 13 May 2021 12:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Go</title>
       <link>https://polarisxu.studygolang.com/tags/go/</link>
-      <pubDate>Wed, 12 May 2021 12:30:00 +0800</pubDate>
+      <pubDate>Thu, 13 May 2021 12:30:00 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/tags/go/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Profiler</title>
+      <link>https://polarisxu.studygolang.com/tags/profiler/</link>
+      <pubDate>Thu, 13 May 2021 12:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/tags/profiler/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Uber</title>
+      <link>https://polarisxu.studygolang.com/tags/uber/</link>
+      <pubDate>Thu, 13 May 2021 12:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/tags/uber/</guid>
       <description></description>
     </item>
     
@@ -77,24 +95,6 @@
       <pubDate>Thu, 06 May 2021 13:00:00 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/tags/%E6%B5%B7%E5%8B%92%E5%A7%86%E5%AE%9A%E5%BE%8B/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>fyne</title>
-      <link>https://polarisxu.studygolang.com/tags/fyne/</link>
-      <pubDate>Wed, 28 Apr 2021 18:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/tags/fyne/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>GUI</title>
-      <link>https://polarisxu.studygolang.com/tags/gui/</link>
-      <pubDate>Wed, 28 Apr 2021 18:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/tags/gui/</guid>
       <description></description>
     </item>
     

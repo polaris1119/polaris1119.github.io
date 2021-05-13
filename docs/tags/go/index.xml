@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Wed, 12 May 2021 12:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 13 May 2021 12:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Uber 使用 Go 的规模这么大？！都自己定制的 Go 编译器了</title>
+      <link>https://polarisxu.studygolang.com/posts/go/dynamic/uber-pprof-pp/</link>
+      <pubDate>Thu, 13 May 2021 12:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/dynamic/uber-pprof-pp/</guid>
+      <description>大家好，我是站长 polarisxu。 今天看到 Uber 使用 Go 的情况，挺吃惊的，给大家分享下情况。 01 Uber 使用 Go 的情况 Uber 有数千个后端服务是使用 Go 实现的，它们运行在数百万个 CPU 内核上。因此，对于 Uber 来说，详细准确掌握 CPU 瓶颈至关重要。这不仅为了减少服务延迟，同时也能提高计算机运行效率。Uber 这个量级的规模，要求对代码和微观结构的影响有深入的了解。 02 定制 Go 编译器 其实说定制 Go 编译器</description>
+    </item>
+    
     <item>
       <title>Go Team Leader — rsc 大神新开源了一个库，增强模板功能</title>
       <link>https://polarisxu.studygolang.com/posts/go/pkg/rsc-tmplfunc/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/translation/better-c-benchmark/</guid>
       <description>C 已经快 50 岁了。对于一瓶葡萄酒来说，这个年龄很棒，但对于快速发展的行业中的编程语言而言，它就不同了。在过去的十年中，出现了许多具有不同风格的新语言，所有这些语言都试图在某种程度上成为 C 语言的替代者。 当一种新语言或多或少变得流行时 —— 开发人员开始编写基准测试，以展示该语言编写的软件性能，CPU 利用率和内存使用量以及二进制文件的大小等等。 在这里，我想在不同的层面</description>
-    </item>
-    
-    <item>
-      <title>我无语了，Go 中 &#43;-*/ 四个运算符竟然可以连着用</title>
-      <link>https://polarisxu.studygolang.com/posts/go/action/operator/</link>
-      <pubDate>Wed, 31 Mar 2021 20:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/action/operator/</guid>
-      <description>大家好，我是站长 polarisxu。 我计划把类似这样的文章归为：奇淫技巧，你认同吗？ 看到 Go101（玩 twtter 的可以关注他） 发了一条消息，+-*/ 这四个竟然可以连着写： package main func main() { v := new(int) *v = 2 println(5/+-*v) } 我看到后，试着运行了一下，竟然输出了 -2 。。。我忍不住“卧槽”。。。 我不得不说，Go101 扣的真细节。 于是我尝试着找一些线索，看看为什么可以这样写。 01 直接看汇编 遇到一些不解的</description>
     </item>
     
   </channel>
