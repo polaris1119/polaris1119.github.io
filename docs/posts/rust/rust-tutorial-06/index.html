@@ -7,24 +7,24 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<meta name="theme-color" content="#fcfcfc">
 	<meta name="msapplication-TileColor" content="#fcfcfc">
-<meta itemprop="name" content="Rust 劝退系列 06：复合数据类型">
-<meta itemprop="description" content="大家好，我是站长 polarisxu。 这是 Rust 劝退系列的第 5 个教程，探讨 Rust 中的复合数据类型（Compound types）。Rust 中有两种原生的复合类型：元组（tuple）和数组（array），顺带介绍切片。 01 元组类型 Go 语言没有元组类型，但多返回值有点类似元组（但还是有区别的哦）。Python 中有元组类型，因此如果你熟悉 Python，对元组应该很熟悉。 什么是元组">
-<meta itemprop="datePublished" content="2021-05-06T22:30:00+08:00" />
-<meta itemprop="dateModified" content="2021-05-06T22:30:00+08:00" />
-<meta itemprop="wordCount" content="2988">
+<meta itemprop="name" content="Rust 劝退系列 06：常量">
+<meta itemprop="description" content="大家好，我是站长 polarisxu。 这是 Rust 劝退系列的第 6 个教程，探讨 Rust 中的常量，因为 static 和常量有类似之处，因此一并探讨。（Rust By Example 中甚至将常量分成两种类型：const 和 static，我个人觉得常量是常量，static 修饰的是变量，不能算是常量） 01 常量 在 Rust 语言中，术语&quot;常量&quot;用于表示固定的值，比如 5 、-89、 I love Rust、3.14 等等。一">
+<meta itemprop="datePublished" content="2021-05-13T22:30:00+08:00" />
+<meta itemprop="dateModified" content="2021-05-13T22:30:00+08:00" />
+<meta itemprop="wordCount" content="1344">
 
 
 
-<meta itemprop="keywords" content="rust,类型," />
-<meta property="og:title" content="Rust 劝退系列 06：复合数据类型" />
-<meta property="og:description" content="大家好，我是站长 polarisxu。 这是 Rust 劝退系列的第 5 个教程，探讨 Rust 中的复合数据类型（Compound types）。Rust 中有两种原生的复合类型：元组（tuple）和数组（array），顺带介绍切片。 01 元组类型 Go 语言没有元组类型，但多返回值有点类似元组（但还是有区别的哦）。Python 中有元组类型，因此如果你熟悉 Python，对元组应该很熟悉。 什么是元组" />
+<meta itemprop="keywords" content="rust,常量," />
+<meta property="og:title" content="Rust 劝退系列 06：常量" />
+<meta property="og:description" content="大家好，我是站长 polarisxu。 这是 Rust 劝退系列的第 6 个教程，探讨 Rust 中的常量，因为 static 和常量有类似之处，因此一并探讨。（Rust By Example 中甚至将常量分成两种类型：const 和 static，我个人觉得常量是常量，static 修饰的是变量，不能算是常量） 01 常量 在 Rust 语言中，术语&quot;常量&quot;用于表示固定的值，比如 5 、-89、 I love Rust、3.14 等等。一" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://polarisxu.studygolang.com/posts/rust/rust-tutorial-06/" />
-<meta property="article:published_time" content="2021-05-06T22:30:00+08:00" />
-<meta property="article:modified_time" content="2021-05-06T22:30:00+08:00" />
+<meta property="article:published_time" content="2021-05-13T22:30:00+08:00" />
+<meta property="article:modified_time" content="2021-05-13T22:30:00+08:00" />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Rust 劝退系列 06：复合数据类型"/>
-<meta name="twitter:description" content="大家好，我是站长 polarisxu。 这是 Rust 劝退系列的第 5 个教程，探讨 Rust 中的复合数据类型（Compound types）。Rust 中有两种原生的复合类型：元组（tuple）和数组（array），顺带介绍切片。 01 元组类型 Go 语言没有元组类型，但多返回值有点类似元组（但还是有区别的哦）。Python 中有元组类型，因此如果你熟悉 Python，对元组应该很熟悉。 什么是元组"/>
+<meta name="twitter:title" content="Rust 劝退系列 06：常量"/>
+<meta name="twitter:description" content="大家好，我是站长 polarisxu。 这是 Rust 劝退系列的第 6 个教程，探讨 Rust 中的常量，因为 static 和常量有类似之处，因此一并探讨。（Rust By Example 中甚至将常量分成两种类型：const 和 static，我个人觉得常量是常量，static 修饰的是变量，不能算是常量） 01 常量 在 Rust 语言中，术语&quot;常量&quot;用于表示固定的值，比如 5 、-89、 I love Rust、3.14 等等。一"/>
 
 	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -33,7 +33,7 @@
 	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
 	<link rel="shortcut icon" href="/favicon.ico">
 
-	<title>Rust 劝退系列 06：复合数据类型</title>
+	<title>Rust 劝退系列 06：常量</title>
 	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
 	
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
@@ -77,147 +77,78 @@
 	<main class="site-main section-inner animated fadeIn faster">
 		<article class="thin">
 			<header class="post-header">
-				<div class="post-meta"><span>May 6, 2021</span></div>
-				<h1>Rust 劝退系列 06：复合数据类型</h1>
+				<div class="post-meta"><span>May 13, 2021</span></div>
+				<h1>Rust 劝退系列 06：常量</h1>
 			</header>
 			<div class="content">
 				<p>大家好，我是站长 polarisxu。</p>
-<p>这是 Rust 劝退系列的第 5 个教程，探讨 Rust 中的复合数据类型（Compound types）。Rust 中有两种原生的复合类型：元组（tuple）和数组（array），顺带介绍切片。</p>
-<h2 id="01-元组类型">01 元组类型<a href="#01-元组类型" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-<p>Go 语言没有元组类型，但多返回值有点类似元组（但还是有区别的哦）。Python 中有元组类型，因此如果你熟悉 Python，对元组应该很熟悉。</p>
-<p><strong>什么是元组类型？</strong></p>
-<p>元组是一个可以包含各种类型的值的组合。元组是一个将多个其他类型的值组合进一个复合类型的主要方式。元组长度固定：一旦声明，其长度无法增大或缩小。 元组的类型由各组成元素类型的序列定义。</p>
-<p>元组通过小括号定义，里面的元素通过逗号分隔，例如：</p>
-<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="p">(</span><span class="mf">23.2</span><span class="p">,</span><span class="w"> </span><span class="mi">27</span><span class="p">,</span><span class="w"> </span><span class="sc">&#39;a&#39;</span><span class="p">);</span><span class="w">
-</span></code></pre></div><p>这个字面值元组的类型是：(f64, i32, char)，即对应每个元素的默认类型。因此，我们可以通过 let 将这个元组绑定到变量上，Rust 会进行类型推断：</p>
-<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="kd">let</span><span class="w"> </span><span class="n">tup</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="mf">23.2</span><span class="p">,</span><span class="w"> </span><span class="mi">27</span><span class="p">,</span><span class="w"> </span><span class="sc">&#39;a&#39;</span><span class="p">);</span><span class="w">
-</span></code></pre></div><p>在 VSCode 中可以看到 tup 的类型就是：(f64, i32, char)。同样地，我们也可以为 tup 使用类型注解：</p>
-<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="kd">let</span><span class="w"> </span><span class="n">tup</span>: <span class="p">(</span><span class="kt">f32</span><span class="p">,</span><span class="w"> </span><span class="kt">i8</span><span class="p">,</span><span class="w"> </span><span class="n">char</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="mf">23.2</span><span class="p">,</span><span class="w"> </span><span class="mi">27</span><span class="p">,</span><span class="w"> </span><span class="sc">&#39;a&#39;</span><span class="p">);</span><span class="w">
-</span></code></pre></div><p>因为元组是多个类型的集合，对元组中的类型没有限制。因此，可以嵌套。比如：</p>
-<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="mf">2.1</span><span class="p">,</span><span class="w"> </span><span class="sc">&#39;a&#39;</span><span class="p">),</span><span class="w"> </span><span class="kc">false</span><span class="p">);</span><span class="w">
-</span></code></pre></div><p>不过建议别嵌套太多，否则可读性太差。</p>
-<p><strong>如何访问元组元素呢？</strong></p>
-<p>上面说，Go 语言中函数多返回值类似元组，在接收多返回值时，通过多个变量接收，比如：</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// Go 语言
-</span><span class="c1"></span><span class="nx">f</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">os</span><span class="p">.</span><span class="nf">Open</span><span class="p">(</span><span class="s">&#34;abc.txt&#34;</span><span class="p">)</span>
-</code></pre></div><p>在 Rust 中，可以解构元组（这也叫模式匹配解构）：</p>
-<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="kd">let</span><span class="w"> </span><span class="n">tup</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="mf">23.2</span><span class="p">,</span><span class="w"> </span><span class="mi">27</span><span class="p">,</span><span class="w"> </span><span class="sc">&#39;a&#39;</span><span class="p">);</span><span class="w">
-</span><span class="w"></span><span class="kd">let</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">z</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tup</span><span class="p">;</span><span class="w">	</span><span class="c1">// 注意：需要小括号
-</span></code></pre></div><p>和 Go 语言一样，如果某个元素我们不关心，可以放入垃圾桶（<code>_</code>）：</p>
-<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="kd">let</span><span class="w"> </span><span class="n">tup</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="mf">23.2</span><span class="p">,</span><span class="w"> </span><span class="mi">27</span><span class="p">,</span><span class="w"> </span><span class="sc">&#39;a&#39;</span><span class="p">);</span><span class="w">
-</span><span class="w"></span><span class="kd">let</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">_</span><span class="p">,</span><span class="w"> </span><span class="n">z</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tup</span><span class="p">;</span><span class="w">	</span><span class="c1">// 注意：需要小括号
-</span></code></pre></div><blockquote>
-<p>Rust 中变量定义未使用，不会像 Go 一样报错，但会警告！</p>
-</blockquote>
-<p>除了模式匹配解构，还可以使用类似访问数组元素的方式访问元组元素，只不过不是用<code>[]</code>，而是用 <code>.</code> 加索引的方式（索引也是从 0 开始）：</p>
-<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="kd">let</span><span class="w"> </span><span class="n">tup</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="mf">23.2</span><span class="p">,</span><span class="w"> </span><span class="mi">27</span><span class="p">,</span><span class="w"> </span><span class="sc">&#39;a&#39;</span><span class="p">);</span><span class="w">
-</span><span class="w"></span><span class="n">println</span><span class="o">!</span><span class="p">(</span><span class="s">&#34;{}&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">tup</span><span class="p">.</span><span class="mi">1</span><span class="p">);</span><span class="w">	</span><span class="c1">// 输出：27
-</span></code></pre></div><p><strong>特殊的元组</strong></p>
-<p>当元组中只有一个元素时（即元组长度是 1），唯一的元素后面必须加上逗号：</p>
-<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="kd">let</span><span class="w"> </span><span class="n">tup</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="p">,);</span><span class="w">	</span><span class="c1">// 逗号不能少，否则会提示你，单个值应该去掉小括号。这是避免将小括号当做计算的优先级
-</span></code></pre></div><p>自然，模式匹配解构元组时，也必须有逗号。</p>
-<p>如果元组没有元素呢？即空元组。看下面的代码：</p>
-<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">test_tuple</span><span class="p">();</span><span class="w">
-</span><span class="w">    </span><span class="n">println</span><span class="o">!</span><span class="p">(</span><span class="s">&#34;{:?}&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">result</span><span class="p">);</span><span class="w">
-</span><span class="w"></span><span class="p">}</span><span class="w">
-</span><span class="w">
-</span><span class="w"></span><span class="k">fn</span> <span class="nf">test_tuple</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span><span class="w">    </span><span class="n">println</span><span class="o">!</span><span class="p">(</span><span class="s">&#34;test empty tuple&#34;</span><span class="p">);</span><span class="w">
-</span><span class="w"></span><span class="p">}</span><span class="w">
-</span></code></pre></div><p>你猜打印 result 是啥？</p>
-<p>擦，竟然是 <code>()</code>，即空元组。而且 Rust 给它专门取了一个名字：单元类型（unit type），也就是说，<code>()</code> 叫单元类型，它有一个唯一值：空元组 <code>()</code>。而且，因为没有任何元素，Rust 将其归为变量类型。</p>
+<p>这是 Rust 劝退系列的第 6 个教程，探讨 Rust 中的常量，因为 static 和常量有类似之处，因此一并探讨。（Rust By Example 中甚至将常量分成两种类型：const 和 static，我个人觉得常量是常量，static 修饰的是变量，不能算是常量）</p>
+<h2 id="01-常量">01 常量<a href="#01-常量" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>在 Rust 语言中，术语&quot;常量&quot;用于表示固定的值，比如 5 、-89、 I love Rust、3.14 等等。一旦我们定义了一个常量，那么就再也不能改变常量的值了。</p>
+<p>Rust 语言中使用 <code>const</code> 关键字来定义一个常量。定义常量时需要明确指定常量的数据类型。</p>
+<p>看看下面的代码：（&amp;str 类型以后讲解）</p>
+<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="k">const</span><span class="w"> </span><span class="n">NUM</span>: <span class="kt">i32</span> <span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w">		</span><span class="c1">// const NUM = 5i8	编译不通过
+</span><span class="c1"></span><span class="k">const</span><span class="w"> </span><span class="n">PI</span>: <span class="kt">f64</span> <span class="o">=</span><span class="w"> </span><span class="mf">3.14</span><span class="p">;</span><span class="w">
+</span><span class="w"></span><span class="k">const</span><span class="w"> </span><span class="n">LOVE</span>: <span class="kp">&amp;</span><span class="kt">str</span> <span class="o">=</span><span class="w"> </span><span class="s">&#34;I love Rust!&#34;</span><span class="p">;</span><span class="w">	</span><span class="c1">// 也可以使用： &amp;&#39;static str，即指定声明周期
+</span></code></pre></div><p>在变量那一节讲过字面量。常量要求赋值时只能是常量表达式（字面量是常量表达式一种），这一点大部分语言都类似，即要求是编译期能计算出值的。</p>
+<p>关于常量，需要注意以下几点：</p>
+<ul>
+<li>必须显示指定数据类型。这一点我认为不如 Go。变量能推断，为什么常量不能推断呢？Go 甚至是无类型常量，这样在具体参与计算或赋值时，在赋予合适的类型，有点类似 Rust 变量的动态推断。即使有字面量类型后缀也不行。</li>
+<li>常量名一般使用大写字母，否则编译器会报 Warning。</li>
+<li>在编译时，常量会被替换为具体的值。这有点类似于 C 语言中的 <code>#define</code>。</li>
+<li>常量不支持重定义（遮蔽），这和变量是不同的。</li>
+</ul>
+<h2 id="02-静态变量">02 静态变量<a href="#02-静态变量" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <blockquote>
-<p>还嫌 Rust 不够复杂吗？就叫空元组不行吗？非得搞一个单元类型，这么奇怪的类型。。。</p>
+<p>这部分内容，我建议你看完就忘掉它！！！</p>
 </blockquote>
-<p>为了避免复杂性，我觉得大家将其理解为空元组即可。至于为什么这里会返回空元组，在函数部分会讲解。</p>
-<p>注意：() 是不占空间的，这和 Go 中的空结构体类似。</p>
-<h3 id="02-数组">02 数组<a href="#02-数组" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-<p>Rust 中的数组和 Go 中的类似，是不可变的，由元素类型和长度确定，且长度必须是编译期常量。Rust 中，数组类型标记为 <code>[T; size]</code>。数组字面值使用 <code>[]</code> 表示：</p>
-<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="kd">let</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">];</span><span class="w">
-</span></code></pre></div><p>同样会进行类型推断（包括长度）（这里推断出 a 的类型是 <code>[i32; 4]</code>），也可以显示进行类型注解：</p>
-<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="kd">let</span><span class="w"> </span><span class="n">a</span>: <span class="p">[</span><span class="kt">i8</span><span class="p">;</span><span class="w"> </span><span class="mi">4</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">];</span><span class="w">
-</span></code></pre></div><p>相比较而言，Rust 创建数组比 Go 简单，它和 PHP 这样的动态语言类似。在 Go 中一般这样创建数组：</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// Go 语言
-</span><span class="c1"></span><span class="nx">a</span> <span class="o">:=</span> <span class="p">[</span><span class="o">...</span><span class="p">]</span><span class="kt">int</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">}</span>
-</code></pre></div><p>也就是说，Go 中创建数组是，类型信息不能少，没法跟 Rust 一样进行类型推断。</p>
-<p>除了上面的初始化方法，Rust 中还可以这样简单的初始化：</p>
-<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="kd">let</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="mi">4</span><span class="p">];</span><span class="w">	</span><span class="c1">// 4 个元素都是 -1
-</span></code></pre></div><p>Rust 变量必须初始化后才能使用，而 Go 语言中，变量会有默认值。所以，Go 中可以简单的定义一个数组，然后使用默认的初始值。如：</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// Go 语言
-</span><span class="c1"></span><span class="kd">var</span> <span class="nx">a</span> <span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="kt">int</span>		<span class="c1">// a 的值是：[0 0 0 0]
-</span></code></pre></div><p>此外，Rust 中数组总是分配在栈中的，因此可以认为数组是「值类型」，和 Go 一样，我们不应该直接传递数组，而应该和 Go 一样，使用 slice。</p>
-<h2 id="03-切片slice">03 切片（slice）<a href="#03-切片slice" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-<p>Rust 中的切片和 Go 中的切片意思一样，表示对数组部分元素的引用。但和 Go 不同的是，Rust 的切片没有容量的概念，只有一个指向数据的指针和切片的长度。Rust 中切片的类型标记为 &amp;[T]，即对数组进行引用（&amp;）就是切片。</p>
-<p>Go 语言中有直接创建切片的语法（比如 make），但 Rust 中没有，它必须依赖数组或 Vec（以后讲解），通过引用来创建。</p>
-<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="kd">let</span><span class="w"> </span><span class="n">xs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">];</span><span class="w">
-</span><span class="w"></span><span class="kd">let</span><span class="w"> </span><span class="n">slice</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">xs</span><span class="p">;</span><span class="w">
-</span></code></pre></div><p>既然切片是数组元素的片段引用，那如何引用部分片段呢？</p>
-<p>在 Go 中是这么做的：</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">var</span> <span class="nx">arr</span> <span class="p">=</span> <span class="p">[</span><span class="o">...</span><span class="p">]</span><span class="kt">int</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">}</span>
-<span class="kd">var</span> <span class="nx">slice1</span> <span class="p">=</span> <span class="nx">arr</span><span class="p">[:]</span>			<span class="c1">// 结果是 [1 2 3 4]，全部元素
-</span><span class="c1"></span><span class="kd">var</span> <span class="nx">slice2</span> <span class="p">=</span> <span class="nx">arr</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>		<span class="c1">// 结果是 [2 3]
-</span><span class="c1"></span><span class="kd">var</span> <span class="nx">slice3</span> <span class="p">=</span> <span class="nx">arr</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span>		<span class="c1">// 结果是 [1 2 3]
-</span><span class="c1"></span><span class="kd">var</span> <span class="nx">slice4</span> <span class="p">=</span> <span class="nx">arr</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>		<span class="c1">// 结果是 [2 3 4]
-</span></code></pre></div><p>而在 Rust 中是这么做的：（结果和上面一样）</p>
-<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="kd">let</span><span class="w"> </span><span class="n">arr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">];</span><span class="w">
-</span><span class="w"></span><span class="kd">let</span><span class="w"> </span><span class="n">slice1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">arr</span><span class="p">[..];</span><span class="w">
-</span><span class="w"></span><span class="kd">let</span><span class="w"> </span><span class="n">slice2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">arr</span><span class="p">[</span><span class="mi">1</span><span class="p">..</span><span class="mi">3</span><span class="p">];</span><span class="w">
-</span><span class="w"></span><span class="kd">let</span><span class="w"> </span><span class="n">slice3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">arr</span><span class="p">[..</span><span class="mi">3</span><span class="p">];</span><span class="w">
-</span><span class="w"></span><span class="kd">let</span><span class="w"> </span><span class="n">slice4</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">arr</span><span class="p">[</span><span class="mi">1</span><span class="p">..];</span><span class="w">
-</span></code></pre></div><p>看到不同了吗？</p>
+<p>Rust 中，静态变量也叫全局变量。一般不建议使用。通过 static 定义静态变量。（Go 中没有 static 关键字）</p>
+<p>示例：</p>
+<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="k">static</span><span class="w"> </span><span class="n">NUM</span>: <span class="kt">i32</span> <span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span><span class="w">
+</span></code></pre></div><p>之所以将它和常量放在一起讲，是因为和常量有一些相似之处：</p>
 <ul>
-<li>Rust 中生成切片，需要引用（&amp;）；</li>
-<li>Go 中使用 <code>:</code> 来引用片段；而 Rust 使用 <code>..</code>；</li>
+<li>定义方式类型，一个使用 static，一个使用 const；</li>
+<li>名称都要求使用大写，否则会报 Warning；</li>
+<li>都必须明确指定类型；</li>
+<li>两者都要求必须使用常量表达式进行赋值，即必须是编译期能计算出的值；</li>
 </ul>
-<p>相同的点是，都可以省略起始或终止位置，或都省略。</p>
-<blockquote>
-<p>关于 <code>..</code> 以后还会讲到</p>
-</blockquote>
-<h3 id="切片类型的方法也适用于数组">切片类型的方法（也适用于数组）<a href="#切片类型的方法也适用于数组" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-<p>在 Rust 中，一切类型都有实现一些 trait，包括上一节的标量类型（用面向对象来讲，一切皆对象）。现在先不探讨 trait，着重看看 len 方法。具体参考标准库文档：<a href="https://doc.rust-lang.org/std/primitive.slice.html">https://doc.rust-lang.org/std/primitive.slice.html</a>。</p>
-<p><strong>1）len：计算长度</strong></p>
-<p>数组或切片有一个 len() 方法可以计算长度。</p>
-<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="k">pub</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">fn</span> <span class="nf">len</span><span class="p">(</span><span class="o">&amp;</span><span class="bp">self</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="kt">usize</span>
-
-<span class="c1">// 具体使用
-</span><span class="c1"></span><span class="kd">let</span><span class="w"> </span><span class="n">arr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">];</span><span class="w">
-</span><span class="w"></span><span class="n">assert_eq</span><span class="o">!</span><span class="p">(</span><span class="n">arr</span><span class="p">.</span><span class="n">len</span><span class="p">(),</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span><span class="w">		</span><span class="c1">// assert_eq 和 println 一样，是一个宏，用来断言
-</span></code></pre></div><p>而 Go 语言中，使用 len(arr) 的形式，len 是内置函数。</p>
-<p>不过，关于 len 还有一些细小的点。看下面的 Go 代码，你觉得有问题吗？</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">var</span> <span class="nx">arr</span> <span class="p">=</span> <span class="p">[</span><span class="o">...</span><span class="p">]</span><span class="kt">int</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">}</span>
-<span class="kd">var</span> <span class="nx">slice</span> <span class="p">=</span> <span class="nx">arr</span><span class="p">[:]</span>
-
-<span class="kd">var</span> <span class="nx">arr2</span> <span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="nx">arr</span><span class="p">)]</span><span class="kt">int</span>
-<span class="kd">var</span> <span class="nx">arr3</span> <span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="nx">slice</span><span class="p">)]</span><span class="kt">int</span>
-</code></pre></div><p>在 Go  中，要求数组长度要求是编译期常量。len(arr) 是编译期常量，而 len(slice) 却不是，因为 slice 的长度是可变的。所以，以上代码 arr2 正确，arr3 编译错误。</p>
-<p>那 Rust 中是怎么样的呢？</p>
-<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="kd">let</span><span class="w"> </span><span class="n">arr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">];</span><span class="w">
-</span><span class="w"></span><span class="kd">let</span><span class="w"> </span><span class="n">slice</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">arr</span><span class="p">[..];</span><span class="w">
+<p>但和常量也有一些重要的区别：</p>
+<ul>
+<li>常量在编译时被内联，但静态变量不会。在整个程序中静态变量只有一个实例，也就是说所有引用都指向同一个地址。</li>
+<li>常量不可变，而静态变量和普通变量一样，默认不可变，但可以通过 mut 关键字定义为可变。</li>
+</ul>
+<p>也正是因为全局变量有可变特性，导致多个线程同时访问时，可能引发数据竞争，导致内存安全问题。因此，对于全局可变变量的访问和修改必须放在 unsafe 块中进行。以下代码编译不通过：</p>
+<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="k">static</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">NUM</span>: <span class="kt">i32</span> <span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w">
 </span><span class="w">
-</span><span class="w"></span><span class="kd">let</span><span class="w"> </span><span class="n">arr2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="p">;</span><span class="n">arr</span><span class="p">.</span><span class="n">len</span><span class="p">()];</span><span class="w">
-</span><span class="w"></span><span class="kd">let</span><span class="w"> </span><span class="n">arr3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="p">;</span><span class="n">slice</span><span class="p">.</span><span class="n">len</span><span class="p">()];</span><span class="w">
-</span></code></pre></div><p>arr2 和 arr3 都编译错误。arr3 错误可以理解，为什么 arr2 也不行呢？</p>
-<p>根据编译器提示，怎么修改 arr2 就可以了：</p>
-<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="k">const</span><span class="w"> </span><span class="n">ARR</span>:<span class="p">[</span><span class="kt">i32</span><span class="p">;</span><span class="w"> </span><span class="mi">4</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">];</span><span class="w">
-</span><span class="w"></span><span class="kd">let</span><span class="w"> </span><span class="n">arr2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">ARR</span><span class="p">.</span><span class="n">len</span><span class="p">()];</span><span class="w">
-</span></code></pre></div><p>也就是说必须是数组常量。。。但数组本身不就是不可变的吗？非得定义成常量，多此一举？据说，Rust 有可能将数组改成可变的。。。有了切片，为啥还要把数组搞这么复杂？！</p>
-<p><strong>2）其他方法</strong></p>
-<ul>
-<li>is_empty：判断数组或切片是否为空</li>
-<li>first：获取第一个元素</li>
-<li>last：获取最后一个元素</li>
-<li>。。。</li>
-</ul>
-<p>first 和 last 有什么用？为啥不直接通过下标获取？</p>
-<ul>
-<li>last 的存在，使得我们不需要先调用 len 获取长度来间接获取最后一个元素。</li>
-<li>而 first 的存在，使得我们不需要先判断是否为空。</li>
-</ul>
-<p>不过，因为存在数组或切片为空的情况，因此 first 和 last 返回的都是 Opiton 类型。关于该类型后续再讲。</p>
-<h2 id="04-小结">04 小结<a href="#04-小结" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-<p>我们用两篇讲解了 Rust 中的数据类型，同时和 Go 的数据类型进行了对比。但 Rust 中的数据类型不止这些，还有其他类型，我们以后再讲，包括通过标准库定义的数据类型。</p>
-<p>再强调一次，本系列教程的目标是让大家学习尽可能不被劝退，因此有些特别复杂但我认为可以不用的，就不会介绍。关于 Rust 中的 primitive type 可以在标准库文档找到，以及每个类型的方法。<a href="https://doc.rust-lang.org/std/index.html#primitives">https://doc.rust-lang.org/std/index.html#primitives</a>。</p>
+</span><span class="w"></span><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="w">    </span><span class="n">NUM</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w">
+</span><span class="w">    </span><span class="n">println</span><span class="o">!</span><span class="p">(</span><span class="s">&#34;{}&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">NUM</span><span class="p">);</span><span class="w">
+</span><span class="w"></span><span class="p">}</span><span class="w">
+</span></code></pre></div><p>编译器提示：</p>
+<blockquote>
+<p>error[E0133]: use of mutable static is unsafe and requires unsafe function or block</p>
+</blockquote>
+<p>改为这样就可以了：</p>
+<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="k">static</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">NUM</span>: <span class="kt">i32</span> <span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="w">    </span><span class="k">unsafe</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="w">        </span><span class="n">NUM</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w">
+</span><span class="w">        </span><span class="n">println</span><span class="o">!</span><span class="p">(</span><span class="s">&#34;{}&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">NUM</span><span class="p">);</span><span class="w">
+</span><span class="w">    </span><span class="p">}</span><span class="w">
+</span><span class="w"></span><span class="p">}</span><span class="w">
+</span></code></pre></div><p>unsafe，Go 程序员应该很熟悉。在 Go 中一般也建议别用它。</p>
+<p>如果不用 unsafe，也就是静态变量别定义为可变，那这和常量似乎没啥区别，直接使用 const 更好。</p>
+<h2 id="03-小结">03 小结<a href="#03-小结" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>Rust 中的常量没有太多特殊的地方，但静态变量，我建议忘记它的存在。可能有极端的场景，通过静态变量能带来一些好处，但应该不是必须的。Rust 本身就够复杂的了，能学简单点就简单点。因此，我建议你可以忘掉关于 static 的内容。</p>
+<hr>
+<p>上次有朋友截了个图，发现这个系列阅读量阶梯型下跌：</p>
+<p><p class="md__image">
+  <img src="../imgs/tutorial06-01.png"
+    alt=""  />
+</p>
+</p>
+<p>如果你都看到这里了，说明你还在坚持学习 Rust，随手给我来个三连吧：在看、点赞、转发，让我有坚持写下去的动力~</p>
 
 			</div><div class="content">
 	<br>
@@ -244,36 +175,25 @@
 			<hr class="post-end">
 			<footer class="post-info">
 				<p>
-					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://polarisxu.studygolang.com/tags/rust">rust</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/%E7%B1%BB%E5%9E%8B">类型</a></span>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://polarisxu.studygolang.com/tags/rust">rust</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/%E5%B8%B8%E9%87%8F">常量</a></span>
 				</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>2988 字</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2021-05-06 22:30 &#43;0800</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1344 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2021-05-13 22:30 &#43;0800</p>
 			</footer>
 		</article>
 		<aside id="toc">
 			<div class="toc-title">目录</div>
 			<nav id="TableOfContents">
   <ul>
-    <li><a href="#01-元组类型">01 元组类型</a>
-      <ul>
-        <li><a href="#02-数组">02 数组</a></li>
-      </ul>
-    </li>
-    <li><a href="#03-切片slice">03 切片（slice）</a>
-      <ul>
-        <li><a href="#切片类型的方法也适用于数组">切片类型的方法（也适用于数组）</a></li>
-      </ul>
-    </li>
-    <li><a href="#04-小结">04 小结</a></li>
+    <li><a href="#01-常量">01 常量</a></li>
+    <li><a href="#02-静态变量">02 静态变量</a></li>
+    <li><a href="#03-小结">03 小结</a></li>
   </ul>
 </nav>
 		</aside>
 		<div class="post-nav thin">
-			<a class="next-post" href="https://polarisxu.studygolang.com/posts/rust/rust-tutorial-05/">
-				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;新</span><br><span>Rust 劝退系列 05：复合数据类型</span>
-			</a>
-			<a class="prev-post" href="https://polarisxu.studygolang.com/posts/law/hyrumslaw-go/">
-				<span class="post-nav-label">旧&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>「卷」有理论依据：海勒姆定律—Go又是怎么卷的</span>
+			<a class="prev-post" href="https://polarisxu.studygolang.com/posts/go/dynamic/uber-pprof-pp/">
+				<span class="post-nav-label">旧&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>Uber 使用 Go 的规模这么大？！都自己定制的 Go 编译器了</span>
 			</a>
 		</div>
 		<div id="comments" class="thin"><script src="https://utteranc.es/client.js"

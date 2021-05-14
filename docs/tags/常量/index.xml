@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>常量 on polarisxu</title>
+    <link>https://polarisxu.studygolang.com/tags/%E5%B8%B8%E9%87%8F/</link>
+    <description>Recent content in 常量 on polarisxu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
+    <lastBuildDate>Thu, 13 May 2021 22:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/%E5%B8%B8%E9%87%8F/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Rust 劝退系列 06：常量</title>
+      <link>https://polarisxu.studygolang.com/posts/rust/rust-tutorial-06/</link>
+      <pubDate>Thu, 13 May 2021 22:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/rust/rust-tutorial-06/</guid>
+      <description>大家好，我是站长 polarisxu。 这是 Rust 劝退系列的第 6 个教程，探讨 Rust 中的常量，因为 static 和常量有类似之处，因此一并探讨。（Rust By Example 中甚至将常量分成两种类型：const 和 static，我个人觉得常量是常量，static 修饰的是变量，不能算是常量） 01 常量 在 Rust 语言中，术语&amp;quot;常量&amp;quot;用于表示固定的值，比如 5 、-89、 I love Rust、3.14 等等。一</description>
+    </item>
+    
+  </channel>
+</rss>

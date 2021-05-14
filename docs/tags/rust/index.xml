@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Thu, 06 May 2021 22:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/rust/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 13 May 2021 22:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/rust/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Rust 劝退系列 06：常量</title>
+      <link>https://polarisxu.studygolang.com/posts/rust/rust-tutorial-06/</link>
+      <pubDate>Thu, 13 May 2021 22:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/rust/rust-tutorial-06/</guid>
+      <description>大家好，我是站长 polarisxu。 这是 Rust 劝退系列的第 6 个教程，探讨 Rust 中的常量，因为 static 和常量有类似之处，因此一并探讨。（Rust By Example 中甚至将常量分成两种类型：const 和 static，我个人觉得常量是常量，static 修饰的是变量，不能算是常量） 01 常量 在 Rust 语言中，术语&amp;quot;常量&amp;quot;用于表示固定的值，比如 5 、-89、 I love Rust、3.14 等等。一</description>
+    </item>
+    
     <item>
       <title>Rust 劝退系列 05：复合数据类型</title>
       <link>https://polarisxu.studygolang.com/posts/rust/rust-tutorial-05/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/rust/rust-first-impression/</guid>
       <description>大家好，我是站长 polarisxu。 有些朋友应该知道，我最近在看 Rust，在朋友圈我发了一些关于 Rust 相关的东西。2021 年，会陆续写一些 Rust 相关的文章。今天先来一篇。 这篇文章不谈具体的语法，主要从总体上介绍下 Rust，更确切说是 Rust 给我的第一印象，文章（包括后续 Rust 的文章）会和 Go 对比着来，方便 Go 朋友们一起学习、交流。 01 官网 对于中国开发者来说，我认为 Rust 的官网相比 Go 官网</description>
-    </item>
-    
-    <item>
-      <title>明天除夕，闲聊几件事</title>
-      <link>https://polarisxu.studygolang.com/posts/talk/2021-02-10-talking/</link>
-      <pubDate>Wed, 10 Feb 2021 21:00:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/talk/2021-02-10-talking/</guid>
-      <description>大家好，我是站长 polarisxu。 明天就除夕了，农历 2020 年马上也过完了，提前祝大家新年快乐！ 今天上午折腾了一上午 Gopher 晚会文章发布的问题，写好的文章莫名违规，怎么修改都不行。最后网站发布了原文 ，公众号发布临时写的文章 ，做一件事真的太难了！（没看到这个 gopher 晚会消息可以看看） 下午带小孩去雪地嘉年华玩了一下午，发现北京人似乎没少，往年过年，北京几乎是空城，可见在北京过年</description>
     </item>
     
   </channel>

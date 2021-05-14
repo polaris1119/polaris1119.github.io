@@ -3,22 +3,42 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://polarisxu.studygolang.com/</loc>
+    <lastmod>2021-05-13T22:30:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polarisxu.studygolang.com/tags/rust/</loc>
+    <lastmod>2021-05-13T22:30:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polarisxu.studygolang.com/posts/rust/rust-tutorial-06/</loc>
+    <lastmod>2021-05-13T22:30:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polarisxu.studygolang.com/tags/</loc>
+    <lastmod>2021-05-13T22:30:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polarisxu.studygolang.com/tags/%E5%B8%B8%E9%87%8F/</loc>
+    <lastmod>2021-05-13T22:30:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polarisxu.studygolang.com/posts/</loc>
+    <lastmod>2021-05-13T22:30:00+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://polarisxu.studygolang.com/tags/go/</loc>
     <lastmod>2021-05-13T12:30:00+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://polarisxu.studygolang.com/</loc>
-    <lastmod>2021-05-13T12:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://polarisxu.studygolang.com/tags/profiler/</loc>
-    <lastmod>2021-05-13T12:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://polarisxu.studygolang.com/tags/</loc>
     <lastmod>2021-05-13T12:30:00+08:00</lastmod>
   </url>
   
@@ -29,11 +49,6 @@
   
   <url>
     <loc>https://polarisxu.studygolang.com/posts/go/dynamic/uber-pprof-pp/</loc>
-    <lastmod>2021-05-13T12:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://polarisxu.studygolang.com/posts/</loc>
     <lastmod>2021-05-13T12:30:00+08:00</lastmod>
   </url>
   
@@ -65,11 +80,6 @@
   <url>
     <loc>https://polarisxu.studygolang.com/tags/%E6%97%A0%E9%97%BB/</loc>
     <lastmod>2021-05-09T23:40:00+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://polarisxu.studygolang.com/tags/rust/</loc>
-    <lastmod>2021-05-06T22:30:00+08:00</lastmod>
   </url>
   
   <url>
