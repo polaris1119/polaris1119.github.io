@@ -14,7 +14,7 @@
 <meta property="og:description" content="polarisxu,Go语言中文网,go,golang,源码分析,系列教程" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://polarisxu.studygolang.com/" />
-<meta property="og:updated_time" content="2021-05-13T22:30:00+08:00" />
+<meta property="og:updated_time" content="2021-05-19T12:30:00+08:00" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="polarisxu"/>
 <meta name="twitter:description" content="polarisxu,Go语言中文网,go,golang,源码分析,系列教程"/>
@@ -70,6 +70,46 @@
 		<main class="site-main section-inner thin animated fadeIn faster">
     
 		
+        <div class="post animated fadeInDown">
+            <div class="post-title">
+                <h2><a href="/posts/wechat/why-wechat/">我为什么运营微信公众号</a>
+                </h2>
+            </div>
+            <div class="post-content">
+                <div class="p_part"><p>大家好，我是站长 polarisxu。 这个话题有些人可能不喜欢，但我近期发现，越来越多的 Gopher 开始注册自己的微信公众号了，有些甚至花钱购买留言号。虽然我不是公众号运营的牛人，但这一两年还是有一些心得，因此写一些关于微信公众号的文章，希望对刚入门的 Gopher 有所帮助。 今天先谈谈我为什么运营微信公众号。 虽然 Go 语言中文网公众号很早就注册了（2014 年），但一直没有怎么运营。直到</p></div>
+            </div>
+            <div class="post-footer">
+                <div class="meta">
+                    <div class="info"><em class="fas fa-calendar-day"></em><span
+                                class="date">2021-01-11</span>
+                        <a class="tag"
+                                   href="/tags/%E5%85%AC%E4%BC%97%E5%8F%B7/">公众号</a>
+                    </div>
+                </div>
+            </div>
+				</div>
+    
+        <div class="post animated fadeInDown">
+            <div class="post-title">
+                <h2><a href="/posts/go/action/hashfs-http-cache/">基于 Go1.16 实现静态文件的 HTTP Cache</a>
+                </h2>
+            </div>
+            <div class="post-content">
+                <div class="p_part"><p>大家好，我是站长 polarisxu。 之前写过一篇文章：《提前试用将在 Go1.16 中发布的内嵌静态资源功能》 ，如果之前没阅读，建议继续看本文前先阅读下该文。 现在 Go 1.16 Beta 已经发布，离正式版发布不远了，在 GitHub 发现了一个库，它实现了 io/fs.FS 接口，它能够计算文件的 SHA256 哈希值并附加到文件名中以允许进行 HTTP Cache：即控制静态文件的版本。本文对其进行介绍并顺带讲解一些涉及到的其他内容。 温馨提示</p></div>
+            </div>
+            <div class="post-footer">
+                <div class="meta">
+                    <div class="info"><em class="fas fa-calendar-day"></em><span
+                                class="date">2021-01-10</span>
+                        <a class="tag"
+                                   href="/tags/go/">Go</a><a class="tag"
+                                   href="/tags/http/">HTTP</a><a class="tag"
+                                   href="/tags/embed/">embed</a>
+                    </div>
+                </div>
+            </div>
+				</div>
+    
         <div class="post animated fadeInDown">
             <div class="post-title">
                 <h2><a href="/posts/talk/2020-996-rank/">从一份 2020 年大厂加班榜说起</a>
@@ -230,47 +270,6 @@
                                    href="/tags/go/">Go</a><a class="tag"
                                    href="/tags/%E6%A0%87%E5%87%86%E5%BA%93/">标准库</a><a class="tag"
                                    href="/tags/pkgsite/">pkgsite</a>
-                    </div>
-                </div>
-            </div>
-				</div>
-    
-        <div class="post animated fadeInDown">
-            <div class="post-title">
-                <h2><a href="/posts/go/action/apple-m1-install-go/">新买了 Apple M1 Mac，却不知道如何安装 Go？</a>
-                </h2>
-            </div>
-            <div class="post-content">
-                <div class="p_part"><p>大家好，我是站长 polarisxu。 前些天有一位朋友问我： 有些朋友可能会有点奇怪，M1 有什么特别的吗？为了照顾部分童鞋，这里简单介绍下。 01 为什么会出现这个问题 大家知道不同的操作系统是很不一样的，同时不同的 CPU 架构也是很不一样的。Go 号称是跨平台的，自然要支持这些操作系统和 CPU 架构。 在 Go 中，GOOS 表示操作系统，GOARCH 表示 CPU 架构。比如你的 Linux 服务器，一般是 GO</p></div>
-            </div>
-            <div class="post-footer">
-                <div class="meta">
-                    <div class="info"><em class="fas fa-calendar-day"></em><span
-                                class="date">2020-12-16</span>
-                        <a class="tag"
-                                   href="/tags/m1/">M1</a><a class="tag"
-                                   href="/tags/go/">Go</a><a class="tag"
-                                   href="/tags/mac/">Mac</a>
-                    </div>
-                </div>
-            </div>
-				</div>
-    
-        <div class="post animated fadeInDown">
-            <div class="post-title">
-                <h2><a href="/posts/go/action/weekly-question-analysis-embed-interface/">你是不是没想过，结构体竟然可以内嵌一个接口？</a>
-                </h2>
-            </div>
-            <div class="post-content">
-                <div class="p_part"><p>大家好，我是站长 polarisxu。 时不时有人催问周刊题目的解析，那就先先解析下第 71 期 的题目。 01 题目是，以下代码能否通过编译： package main import ( &#34;fmt&#34; ) type worker interface { work() } type person struct { name string worker } func main() { var w worker = person{} fmt.Println(w) } 这是大家的投票结果： 只有 35% 的人答对了。 这里答错的原因在于 worker 是一个接口，如果是一个普通的类型，相信大家会答对。一个结构体竟然可以嵌入一个接口？！ 02 我们都知晓 Go 没有继承，但可以通</p></div>
-            </div>
-            <div class="post-footer">
-                <div class="meta">
-                    <div class="info"><em class="fas fa-calendar-day"></em><span
-                                class="date">2020-12-14</span>
-                        <a class="tag"
-                                   href="/tags/%E5%86%85%E5%B5%8C%E7%B1%BB%E5%9E%8B/">内嵌类型</a><a class="tag"
-                                   href="/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/">面试题</a>
                     </div>
                 </div>
             </div>

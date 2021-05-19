@@ -7,7 +7,25 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Thu, 13 May 2021 12:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 19 May 2021 12:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>盘点那些使用 Go 语言的国外公司</title>
+      <link>https://polarisxu.studygolang.com/posts/go/action/companies-using-golang/</link>
+      <pubDate>Wed, 19 May 2021 12:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/action/companies-using-golang/</guid>
+      <description>大家好，我是 polarisxu。 一直以来，各种语言都是国外大规模使用，但 Go 语言很不一样，国内更火。因为这样，有些人质疑：Go 也就国人瞎炒作，国外根本没啥公司用。真的是这样吗？今天就盘点一下那些使用 Go 的国外公司，看看他们的案例，希望对大家的技术选型有所借鉴！ 为了更清晰，以下盘点进行了必要的归类。 01 技术平台公司 技术平台提供了一组加速应用程序开发的通用功能，因此可</description>
+    </item>
+    
+    <item>
+      <title>编写了50万行Go代码是一种什么体验</title>
+      <link>https://polarisxu.studygolang.com/posts/go/translation/half-a-million-lines-of-go/</link>
+      <pubDate>Mon, 17 May 2021 20:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/translation/half-a-million-lines-of-go/</guid>
+      <description>大家好，我是 polarisxu。 今天看到一篇文章，分享给大家，看看写了 50 万行代码的 Gopher 对 Go 有什么感想。 先简单介绍下可汗学院（Khan Academy）。 这是一个非营利性组织，其使命是在任何地方为任何人提供免费的、世界级的教育。 全球有 6.17 亿儿童缺乏基本的数学和阅读技能。可汗学院是一个提供他们所需教育的非营利组织，因此需要大家的帮助，你的帮忙可以改变一个孩子的一生。 所</description>
+    </item>
+    
     <item>
       <title>Uber 使用 Go 的规模这么大？！都自己定制的 Go 编译器了</title>
       <link>https://polarisxu.studygolang.com/posts/go/dynamic/uber-pprof-pp/</link>
@@ -78,24 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/action/go-closure/</guid>
       <description>大家好，我是站长 polarisxu。 通常，JS 面试，闭包应该是必考的题目。随着越来越多的语言对函数式范式的支持，闭包问题经常出现。在 Go 语言中也是如此。 本文从一道题引出 Go 中的闭包。这是 Go 语言爱好者周刊第 90 期的一道题目。以下代码输出什么？ package main import &amp;#34;fmt&amp;#34; func app() func(string) string { t := &amp;#34;Hi&amp;#34; c := func(b string) string { t = t + &amp;#34; &amp;#34; + b return t } return c } func main() { a := app() b := app() a(&amp;#34;go&amp;#34;) fmt.Println(b(&amp;#34;All&amp;#34;)) } 这道题目答对的人蛮多的：60%。不管你</description>
-    </item>
-    
-    <item>
-      <title>答应我，这次一定彻底搞懂 Go 中的类型别名</title>
-      <link>https://polarisxu.studygolang.com/posts/go/action/type-and-alias/</link>
-      <pubDate>Wed, 07 Apr 2021 17:20:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/action/type-and-alias/</guid>
-      <description>大家好，我是站长 polarisxu。 有下面 3 行代码： // 32 位机器 1）var x int32 = 32.0 2）var y int = x 3）var z rune = x 它们是否能编译通过？为什么？ 如果面试时问这道题，你需要想想面试官想考察你什么。在往下看之前，建议你记下自己的答案。 01 数字字面量 在 Go 语言中，字面量是无类型（untyped）的。无类型是什么意思？无类型意味着可以赋值给类似类型的变量或常量。用上面例</description>
-    </item>
-    
-    <item>
-      <title>那些想替代 C 的语言怎么样？Go、Rust、C&#43;&#43; 和 Zig 生产力对比</title>
-      <link>https://polarisxu.studygolang.com/posts/go/translation/better-c-benchmark/</link>
-      <pubDate>Thu, 01 Apr 2021 12:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/translation/better-c-benchmark/</guid>
-      <description>C 已经快 50 岁了。对于一瓶葡萄酒来说，这个年龄很棒，但对于快速发展的行业中的编程语言而言，它就不同了。在过去的十年中，出现了许多具有不同风格的新语言，所有这些语言都试图在某种程度上成为 C 语言的替代者。 当一种新语言或多或少变得流行时 —— 开发人员开始编写基准测试，以展示该语言编写的软件性能，CPU 利用率和内存使用量以及二进制文件的大小等等。 在这里，我想在不同的层面</description>
     </item>
     
   </channel>
