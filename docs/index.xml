@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Wed, 19 May 2021 12:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 20 May 2021 12:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>周刊题解：常量表达式这个规则应该了解下</title>
+      <link>https://polarisxu.studygolang.com/posts/go/action/weekly-question-94/</link>
+      <pubDate>Thu, 20 May 2021 12:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/action/weekly-question-94/</guid>
+      <description>大家好，我是 polarisxu。 之前周刊题目正确率一直挺低的，于是我在「94期」出了一道简单的题目，如下： package main import ( &amp;#34;fmt&amp;#34; ) func main() { var ans float64 = 15 + 25 + 5.2 fmt.Println(ans) } 没想到，这道题的正确率也才 62%： 这篇文章就给大家讲解下这道题涉及到的常量表达式的一个知识点。 概念 常量表达式是指仅包含常量操作数，且是在编译的时候进行计算的。 而常量，在 Go 语言中又可以分为无类型常量和有类型常量，也可</description>
+    </item>
+    
     <item>
       <title>盘点那些使用 Go 语言的国外公司</title>
       <link>https://polarisxu.studygolang.com/posts/go/action/companies-using-golang/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/book/go-gui-book/</guid>
       <description>大家好，我是站长 polarisxu。 最近看到一个视频：Building a Chess GUI with Fyne ，讲解如何使用 Go 构建一个完整的国际象棋应用程序。这个视频演示了如何构建 UI，添加动画，交互和拖放。所有这些都基于 Fyne 这个库构建，可以安装到桌面和移动设备！这个国际象棋的项目地址：https://github.com/andydotxyz/chess。 出于好奇，我深挖了一下，访问了视</description>
-    </item>
-    
-    <item>
-      <title>Rust 劝退系列 04：基本数据类型</title>
-      <link>https://polarisxu.studygolang.com/posts/rust/rust-tutorial-04/</link>
-      <pubDate>Sun, 25 Apr 2021 12:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/rust/rust-tutorial-04/</guid>
-      <description>大家好，我是站长 polarisxu。 这是 Rust 劝退系列的第 4 个教程，探讨 Rust 中的基本数据类型，或叫标量类型（scalar type）。 Rust 和 Go 一样，都是静态类型语言，这表示每个变量的类型必须明确。和 Go 类似，大多数情况下，Rust 编译器能够推断出某个值的类型，不需要我们显示指定，写起来有点类似于弱类型似语言。但有些情况下，必须明确告知编译器我们使用什么类型，在 Rust 中，这叫</description>
     </item>
     
   </channel>

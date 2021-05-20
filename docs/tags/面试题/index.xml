@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Wed, 31 Mar 2021 20:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 20 May 2021 12:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>周刊题解：常量表达式这个规则应该了解下</title>
+      <link>https://polarisxu.studygolang.com/posts/go/action/weekly-question-94/</link>
+      <pubDate>Thu, 20 May 2021 12:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/action/weekly-question-94/</guid>
+      <description>大家好，我是 polarisxu。 之前周刊题目正确率一直挺低的，于是我在「94期」出了一道简单的题目，如下： package main import ( &amp;#34;fmt&amp;#34; ) func main() { var ans float64 = 15 + 25 + 5.2 fmt.Println(ans) } 没想到，这道题的正确率也才 62%： 这篇文章就给大家讲解下这道题涉及到的常量表达式的一个知识点。 概念 常量表达式是指仅包含常量操作数，且是在编译的时候进行计算的。 而常量，在 Go 语言中又可以分为无类型常量和有类型常量，也可</description>
+    </item>
+    
     <item>
       <title>我无语了，Go 中 &#43;-*/ 四个运算符竟然可以连着用</title>
       <link>https://polarisxu.studygolang.com/posts/go/action/operator/</link>
