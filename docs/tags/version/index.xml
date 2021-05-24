@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>version on polarisxu</title>
+    <link>https://polarisxu.studygolang.com/tags/version/</link>
+    <description>Recent content in version on polarisxu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
+    <lastBuildDate>Mon, 24 May 2021 20:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/version/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>官方的 Go 多版本管理方法</title>
+      <link>https://polarisxu.studygolang.com/posts/go/managing-multiple-go-versions/</link>
+      <pubDate>Mon, 24 May 2021 20:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/managing-multiple-go-versions/</guid>
+      <description>大家好，我是 polarisxu。 有些人可能注意到，每次 Go 发布新版本，官方都会提供类似这样的升级截图： 这可以说是官方的 Go 多版本管理，也是升级 Go 的方式。今天就一起聊一聊这种多版本管理方式及其实现原理。（我之前介绍过一个第三方多版本管理工具 goup ，是我比较推荐的）。 注意，Windows 用户应该使用 WSL2。 01 为什么需要多个 Go 版本 有些人可能觉得没有这样的需求。实际工作中</description>
+    </item>
+    
+  </channel>
+</rss>

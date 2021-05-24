@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Thu, 13 May 2021 22:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/rust/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 20 May 2021 22:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/rust/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Rust新书：给你一个劝退的理由</title>
+      <link>https://polarisxu.studygolang.com/posts/rust/rust-new-book-20210520/</link>
+      <pubDate>Thu, 20 May 2021 22:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/rust/rust-new-book-20210520/</guid>
+      <description>大家好，我是 polarisxu。 过去一段时间，我每周写一篇「Rust 劝退系列」，发现阅读量越来越低。于是我在思考，怎么能够调动大家学习的热情。思考再三，我决定试试这个办法！ 最近看到机械工业出版社出了一本 Rust 新书：《Rust编程：入门、实战和进阶》，我看完目录，发现很符合我一直想要的。 我在学习 Rust 的过程中，发现目前市面上的 Rust 图书，内容组织方式和其他语言的图书不太一</description>
+    </item>
+    
     <item>
       <title>Rust 劝退系列 06：常量</title>
       <link>https://polarisxu.studygolang.com/posts/rust/rust-tutorial-06/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/dynamic/go1.17-will-remove-gopath/</guid>
       <description>大家好，我是站长 polarisxu。 是的，没看错，Go 1.16 刚正式发布，但这里说的是 Go1.17 将会包含的改变（不出意外的话），我会出一系列文章介绍 Go1.17 的变化。 关于 Go 1.16 的变化。Reddit 上有一张图总结的挺好的： 相关的知识点，我之前也写过很好几篇文章，有兴趣的可以看看： Go 1.16 的这个新变化需要适应下：go get 和 go install 的变化 提前试用将在 Go1.16 中发布的内嵌静态资源功能 基于 Go1.16 实现静态文件的 HTTP</description>
-    </item>
-    
-    <item>
-      <title>Rust 的第一印象</title>
-      <link>https://polarisxu.studygolang.com/posts/rust/rust-first-impression/</link>
-      <pubDate>Sun, 14 Feb 2021 23:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/rust/rust-first-impression/</guid>
-      <description>大家好，我是站长 polarisxu。 有些朋友应该知道，我最近在看 Rust，在朋友圈我发了一些关于 Rust 相关的东西。2021 年，会陆续写一些 Rust 相关的文章。今天先来一篇。 这篇文章不谈具体的语法，主要从总体上介绍下 Rust，更确切说是 Rust 给我的第一印象，文章（包括后续 Rust 的文章）会和 Go 对比着来，方便 Go 朋友们一起学习、交流。 01 官网 对于中国开发者来说，我认为 Rust 的官网相比 Go 官网</description>
     </item>
     
   </channel>
