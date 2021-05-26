@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Thu, 20 May 2021 22:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/rust/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 25 May 2021 22:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/rust/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Rust 劝退系列 07：流程控制</title>
+      <link>https://polarisxu.studygolang.com/posts/rust/rust-tutorial-07/</link>
+      <pubDate>Tue, 25 May 2021 22:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/rust/rust-tutorial-07/</guid>
+      <description>大家好，我是站长 polarisxu。 这是 Rust 劝退系列的第 7 个教程，探讨 Rust 中的流程控制。注意，跟其他语言一样，Rust 中有条件、循环，但没有 switch，而是有 match 模式匹配。 01 运算符 开始讲解流程控制之前，先补充一个知识点，那就是 Rust 的运算符。 Rust 支持算术运算符、关系运算符、逻辑运算符和位运算符 4 种，它们和其他语言没有什么不同，因此不细讲了，只提醒一点：Rust 中没有自</description>
+    </item>
+    
     <item>
       <title>Rust新书：给你一个劝退的理由</title>
       <link>https://polarisxu.studygolang.com/posts/rust/rust-new-book-20210520/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/rust/why-rust-and-study-book/</guid>
       <description>大家好，我是站长 polarisxu。 春节结束，我的 Rust 之旅才刚刚开始。经过春节期间的学习，发现 Rust 真的是有点复杂，好吧，我觉得很复杂。如果你跟我一样，决定学习 Rust，那一定要有心理准备，要啃一块硬骨头，毕竟跟 Go 语言比起来，复杂太多了。 01 为什么要学 Rust 呢？ 看看 Google 上的结果： 爱总是能找到一堆理由，不爱亦如此。比如也有反对你学习 Rust 的，比如这篇：《我为什么反对使用 Rust</description>
-    </item>
-    
-    <item>
-      <title>Go1.17 快报：将移除 GOPATH</title>
-      <link>https://polarisxu.studygolang.com/posts/go/dynamic/go1.17-will-remove-gopath/</link>
-      <pubDate>Fri, 19 Feb 2021 09:20:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/dynamic/go1.17-will-remove-gopath/</guid>
-      <description>大家好，我是站长 polarisxu。 是的，没看错，Go 1.16 刚正式发布，但这里说的是 Go1.17 将会包含的改变（不出意外的话），我会出一系列文章介绍 Go1.17 的变化。 关于 Go 1.16 的变化。Reddit 上有一张图总结的挺好的： 相关的知识点，我之前也写过很好几篇文章，有兴趣的可以看看： Go 1.16 的这个新变化需要适应下：go get 和 go install 的变化 提前试用将在 Go1.16 中发布的内嵌静态资源功能 基于 Go1.16 实现静态文件的 HTTP</description>
     </item>
     
   </channel>
