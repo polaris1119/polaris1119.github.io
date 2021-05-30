@@ -11,7 +11,7 @@
 <meta itemprop="description" content="大家好，我是站长 polarisxu。 这是 Rust 劝退系列的第 7 个教程，探讨 Rust 中的流程控制。注意，跟其他语言一样，Rust 中有条件、循环，但没有 switch，而是有 match 模式匹配。 01 运算符 开始讲解流程控制之前，先补充一个知识点，那就是 Rust 的运算符。 Rust 支持算术运算符、关系运算符、逻辑运算符和位运算符 4 种，它们和其他语言没有什么不同，因此不细讲了，只提醒一点：Rust 中没有自">
 <meta itemprop="datePublished" content="2021-05-25T22:30:00+08:00" />
 <meta itemprop="dateModified" content="2021-05-25T22:30:00+08:00" />
-<meta itemprop="wordCount" content="2566">
+<meta itemprop="wordCount" content="2587">
 
 
 
@@ -89,7 +89,7 @@
 <blockquote>
 <p>Go 中 <code>++</code> 或 <code>--</code> 是语句，只有一种形式：后缀，即 i++；而 C 等语言支持前缀和后缀，如 i++、++i。Rust 干脆全没有。</p>
 </blockquote>
-<p>吐槽：自增和自减运算符，有时候挺好用的，Rust 为啥不支持呢？！</p>
+<p>吐槽：自增和自减运算符，有时候挺好用的，Rust 为啥不支持呢？！（难道因为没有常规的 for 循环，所以不需要？）</p>
 <h2 id="02-语句和表达式">02 语句和表达式<a href="#02-语句和表达式" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>为什么专门介绍语句和表达式？！</p>
 <p>上文提到，Go 中的自增或自减是语句而不是表达式，这有什么不同呢？</p>
@@ -213,7 +213,7 @@
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://polarisxu.studygolang.com/tags/rust">rust</a></span>
 				</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>2566 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>2587 字</p>
 				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2021-05-25 22:30 &#43;0800</p>
 			</footer>
 		</article>
