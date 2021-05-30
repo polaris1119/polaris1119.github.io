@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Mon, 24 May 2021 20:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 30 May 2021 22:20:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go 1.17 新特性提前学之测试执行随机化</title>
+      <link>https://polarisxu.studygolang.com/posts/go/dynamic/go1.17-testing-shuffle-flag/</link>
+      <pubDate>Sun, 30 May 2021 22:20:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/dynamic/go1.17-testing-shuffle-flag/</guid>
+      <description>大家好，我是 polarisxu。 Go1.17 预计在 8 月份发布。目前 tip.golang.org 可以浏览 Go1.17 的相关内容，https://tip.golang.org/doc/go1.17 也有了 Go1.17 相关改动的部分文档。这段时间，我会陆续给大家分享 Go1.17 中相关的新特性，提前学习。。。好吧，提前卷了~ 今天先聊聊在测试中增加的随机化 flag：shuffle。 01 安装 tip 版本 由于 Go1.17 还未发布，因此为了体验它的新特性，我</description>
+    </item>
+    
     <item>
       <title>官方的 Go 多版本管理：使用和原理</title>
       <link>https://polarisxu.studygolang.com/posts/go/managing-multiple-go-versions/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/book/20210423-go-book-list/</guid>
       <description>大家好，我是站长 polarisxu。 今天是 4 月 23 日，是世界读书日。当当有很大的优惠，而且我还要到了额外的优惠码，花 140 可以买到 400 块钱的书。借这个机会，我分享一份 Go 语言书单（实际上还有很多免费电子书单，但这里只说纸质版），需要的可以今天购买，超便宜！ 我认为不错的书，不代表你也认为好。所以，买不买自行判断哈。 01 入门级 以下排名不分先后。 Go 程序设计语言（俗称 Go 圣经） 本</description>
-    </item>
-    
-    <item>
-      <title>我又来推荐免费 Go 新书了：一本用 Go 讲架构的书</title>
-      <link>https://polarisxu.studygolang.com/posts/go/book/go-with-the-domain/</link>
-      <pubDate>Mon, 19 Apr 2021 08:00:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/book/go-with-the-domain/</guid>
-      <description>大家好，我是站长 polarisxu。 我又来给大家推荐 Go 新书了，免费的哦。说明一点，这本书我只是浏览了下目录，看了下介绍，感觉应该还可以，值得读一读。书名是：《Go With The Domain》。 先介绍下该书的作者。Miłosz 和 Robert，他们是 Three Dots Labs 的创始人，这是一个什么组织呢？官网上是这么介绍的： Golang, Domain-Driven Design and Continuous Delivery. 关注 Go 领域驱动设计和持续交付，所以，这本书也是和这方面有</description>
     </item>
     
   </channel>

@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Tue, 25 May 2021 22:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 30 May 2021 22:20:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go 1.17 新特性提前学之测试执行随机化</title>
+      <link>https://polarisxu.studygolang.com/posts/go/dynamic/go1.17-testing-shuffle-flag/</link>
+      <pubDate>Sun, 30 May 2021 22:20:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/dynamic/go1.17-testing-shuffle-flag/</guid>
+      <description>大家好，我是 polarisxu。 Go1.17 预计在 8 月份发布。目前 tip.golang.org 可以浏览 Go1.17 的相关内容，https://tip.golang.org/doc/go1.17 也有了 Go1.17 相关改动的部分文档。这段时间，我会陆续给大家分享 Go1.17 中相关的新特性，提前学习。。。好吧，提前卷了~ 今天先聊聊在测试中增加的随机化 flag：shuffle。 01 安装 tip 版本 由于 Go1.17 还未发布，因此为了体验它的新特性，我</description>
+    </item>
+    
     <item>
       <title>Rust 劝退系列 07：流程控制</title>
       <link>https://polarisxu.studygolang.com/posts/rust/rust-tutorial-07/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/pkg/rsc-tmplfunc/</guid>
       <description>大家好，我是站长 polarisxu。 今天给大家分享一个 rsc 新开源的一个库：rsc.io/tmplfunc 。 这个库是对 Go 标准库模板的扩展，可以像调用函数一样调用模板。通过一个例子看怎么使用。 01 标准库 因为 text/template 和 html/template 基本是一样的，且 tmplfunc 这个包同时支持两者，本文使用 text/template 来演示。 有如下代码： package main import ( &amp;#34;os&amp;#34; &amp;#34;text/template&amp;#34; ) var stdstr = `{{link&amp;#34;https://golang.org&amp;#34;&amp;#34;The Go language&amp;#34;}}{{link&amp;#34;https:</description>
-    </item>
-    
-    <item>
-      <title>再一次看到了 Go 的节制：int128 类型要不要支持？</title>
-      <link>https://polarisxu.studygolang.com/posts/go/dynamic/support-int128/</link>
-      <pubDate>Sun, 09 May 2021 23:40:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/dynamic/support-int128/</guid>
-      <description>大家好，我是站长 polarisxu。 如果有看我写的 Rust 系列教程，会注意到，Rust 有一个整数类型：i128/u128，即 16 字节长的整数。而 Go 是不支持 int128/unit128 的。 当时，我也没有多想，感觉 128 长度应该用的也少。今天，我发现早在 2014 年就有人提议在 Go 中增加 int128/uint128 的支持：https://github.com/golang/go/issues/9455。 为什么想要这个类型呢？ 有人提出了</description>
     </item>
     
   </channel>
