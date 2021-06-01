@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>信号 on polarisxu</title>
+    <link>https://polarisxu.studygolang.com/tags/%E4%BF%A1%E5%8F%B7/</link>
+    <description>Recent content in 信号 on polarisxu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
+    <lastBuildDate>Tue, 01 Jun 2021 12:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/%E4%BF%A1%E5%8F%B7/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go1.16 中的新函数 signal.NotifyContext 怎么用？</title>
+      <link>https://polarisxu.studygolang.com/posts/go/signal-notifycontext/</link>
+      <pubDate>Tue, 01 Jun 2021 12:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/signal-notifycontext/</guid>
+      <description>大家好，我是 polarisxu。 os/signal 这个包大家可能用的不多。但自从 Go1.8 起，有些人开始使用这个包了，原因是 Go1.8 在 net/http 包新增了一个方法： func (srv *Server) Shutdown(ctx context.Context) error 有了它就不需要借助第三方库实现优雅关闭服务了。具体怎么做呢？ func main() { server = http.Server{ Addr: &amp;#34;:8080&amp;#34;, } http.HandleFunc(&amp;#34;/&amp;#34;, func(w http.ResponseWriter, r *http.Request) { time.Sleep(time.Second * 10) fmt.Fprint(w, &amp;#34;Hello world!&amp;#34;) }) go server.ListenAndServe() // 监听中断信号（CTRL + C） c := make(chan os.Signal, 1) signal.Notify(c, os.Interrupt) &amp;lt;-c // 重置 os.Interrupt 的默认行为 signal.Reset(os.Interrupt) fmt.Println(&amp;#34;shutting down gracefully, press Ctrl+C again to force&amp;#34;) // 给程序最多 5 秒时间处理正在服务的</description>
+    </item>
+    
+  </channel>
+</rss>

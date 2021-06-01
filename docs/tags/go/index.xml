@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Sun, 30 May 2021 22:20:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 01 Jun 2021 12:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go1.16 中的新函数 signal.NotifyContext 怎么用？</title>
+      <link>https://polarisxu.studygolang.com/posts/go/signal-notifycontext/</link>
+      <pubDate>Tue, 01 Jun 2021 12:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/signal-notifycontext/</guid>
+      <description>大家好，我是 polarisxu。 os/signal 这个包大家可能用的不多。但自从 Go1.8 起，有些人开始使用这个包了，原因是 Go1.8 在 net/http 包新增了一个方法： func (srv *Server) Shutdown(ctx context.Context) error 有了它就不需要借助第三方库实现优雅关闭服务了。具体怎么做呢？ func main() { server = http.Server{ Addr: &amp;#34;:8080&amp;#34;, } http.HandleFunc(&amp;#34;/&amp;#34;, func(w http.ResponseWriter, r *http.Request) { time.Sleep(time.Second * 10) fmt.Fprint(w, &amp;#34;Hello world!&amp;#34;) }) go server.ListenAndServe() // 监听中断信号（CTRL + C） c := make(chan os.Signal, 1) signal.Notify(c, os.Interrupt) &amp;lt;-c // 重置 os.Interrupt 的默认行为 signal.Reset(os.Interrupt) fmt.Println(&amp;#34;shutting down gracefully, press Ctrl+C again to force&amp;#34;) // 给程序最多 5 秒时间处理正在服务的</description>
+    </item>
+    
     <item>
       <title>Go 1.17 新特性提前学之测试执行随机化</title>
       <link>https://polarisxu.studygolang.com/posts/go/dynamic/go1.17-testing-shuffle-flag/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/book/go-gui-book/</guid>
       <description>大家好，我是站长 polarisxu。 最近看到一个视频：Building a Chess GUI with Fyne ，讲解如何使用 Go 构建一个完整的国际象棋应用程序。这个视频演示了如何构建 UI，添加动画，交互和拖放。所有这些都基于 Fyne 这个库构建，可以安装到桌面和移动设备！这个国际象棋的项目地址：https://github.com/andydotxyz/chess。 出于好奇，我深挖了一下，访问了视</description>
-    </item>
-    
-    <item>
-      <title>我的 Go 语言书单</title>
-      <link>https://polarisxu.studygolang.com/posts/go/book/20210423-go-book-list/</link>
-      <pubDate>Fri, 23 Apr 2021 12:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/book/20210423-go-book-list/</guid>
-      <description>大家好，我是站长 polarisxu。 今天是 4 月 23 日，是世界读书日。当当有很大的优惠，而且我还要到了额外的优惠码，花 140 可以买到 400 块钱的书。借这个机会，我分享一份 Go 语言书单（实际上还有很多免费电子书单，但这里只说纸质版），需要的可以今天购买，超便宜！ 我认为不错的书，不代表你也认为好。所以，买不买自行判断哈。 01 入门级 以下排名不分先后。 Go 程序设计语言（俗称 Go 圣经） 本</description>
     </item>
     
   </channel>

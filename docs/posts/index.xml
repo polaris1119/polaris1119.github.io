@@ -6,8 +6,113 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en</language>
 		<copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-		<lastBuildDate>Sun, 30 May 2021 22:20:00 +0800</lastBuildDate>
+		<lastBuildDate>Tue, 01 Jun 2021 12:30:00 +0800</lastBuildDate>
 		<atom:link href="https://polarisxu.studygolang.com/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>Go1.16 中的新函数 signal.NotifyContext 怎么用？</title>
+			<link>https://polarisxu.studygolang.com/posts/go/signal-notifycontext/</link>
+			<pubDate>Tue, 01 Jun 2021 12:30:00 +0800</pubDate>
+			
+			<guid>https://polarisxu.studygolang.com/posts/go/signal-notifycontext/</guid>
+			<description>大家好，我是 polarisxu。 os/signal 这个包大家可能用的不多。但自从 Go1.8 起，有些人开始使用这个包了，原因是 Go1.8 在 net/http 包新增了一个方法： func (srv *Server) Shutdown(ctx context.Context) error 有了它就不需要借助第三方库实现优雅关闭服务了。具体怎么做呢？ func main() { server = http.Server{ Addr: &amp;#34;:8080&amp;#34;, } http.HandleFunc(&amp;#34;/&amp;#34;, func(w http.ResponseWriter, r *http.Request) { time.Sleep(time.Second * 10) fmt.Fprint(w, &amp;#34;Hello world!&amp;#34;) }) go server.ListenAndServe() // 监听中断信号（CTRL + C） c := make(chan os.Signal, 1) signal.Notify(c, os.Interrupt) &amp;lt;-c // 重置 os.Interrupt 的默认行为 signal.Reset(os.Interrupt) fmt.Println(&amp;#34;shutting down gracefully, press Ctrl+C again to force&amp;#34;) // 给程序最多 5 秒时间处理正在服务的</description>
+			<content type="html"><![CDATA[<p>大家好，我是 polarisxu。</p>
+<p>os/signal 这个包大家可能用的不多。但自从 Go1.8 起，有些人开始使用这个包了，原因是 Go1.8 在 net/http 包新增了一个方法：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="p">(</span><span class="nx">srv</span> <span class="o">*</span><span class="nx">Server</span><span class="p">)</span> <span class="nf">Shutdown</span><span class="p">(</span><span class="nx">ctx</span> <span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">)</span> <span class="kt">error</span>
+</code></pre></div><p>有了它就不需要借助第三方库实现优雅关闭服务了。具体怎么做呢？</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="nx">server</span> <span class="p">=</span> <span class="nx">http</span><span class="p">.</span><span class="nx">Server</span><span class="p">{</span>
+		<span class="nx">Addr</span><span class="p">:</span> <span class="s">&#34;:8080&#34;</span><span class="p">,</span>
+	<span class="p">}</span>
+
+	<span class="nx">http</span><span class="p">.</span><span class="nf">HandleFunc</span><span class="p">(</span><span class="s">&#34;/&#34;</span><span class="p">,</span> <span class="kd">func</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="p">{</span>
+		<span class="nx">time</span><span class="p">.</span><span class="nf">Sleep</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span> <span class="o">*</span> <span class="mi">10</span><span class="p">)</span>
+		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Fprint</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="s">&#34;Hello world!&#34;</span><span class="p">)</span>
+	<span class="p">})</span>
+  
+	<span class="k">go</span> <span class="nx">server</span><span class="p">.</span><span class="nf">ListenAndServe</span><span class="p">()</span>
+
+	<span class="c1">// 监听中断信号（CTRL + C）
+</span><span class="c1"></span>	<span class="nx">c</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Signal</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+	<span class="nx">signal</span><span class="p">.</span><span class="nf">Notify</span><span class="p">(</span><span class="nx">c</span><span class="p">,</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Interrupt</span><span class="p">)</span>
+	<span class="o">&lt;-</span><span class="nx">c</span>
+
+	<span class="c1">// 重置 os.Interrupt 的默认行为
+</span><span class="c1"></span>	<span class="nx">signal</span><span class="p">.</span><span class="nf">Reset</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Interrupt</span><span class="p">)</span>
+
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;shutting down gracefully, press Ctrl+C again to force&#34;</span><span class="p">)</span>
+
+	<span class="c1">// 给程序最多 5 秒时间处理正在服务的请求
+</span><span class="c1"></span>	<span class="nx">timeoutCtx</span><span class="p">,</span> <span class="nx">cancel</span> <span class="o">:=</span> <span class="nx">context</span><span class="p">.</span><span class="nf">WithTimeout</span><span class="p">(</span><span class="nx">context</span><span class="p">.</span><span class="nf">Background</span><span class="p">(),</span> <span class="mi">5</span><span class="o">*</span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">)</span>
+	<span class="k">defer</span> <span class="nf">cancel</span><span class="p">()</span>
+
+	<span class="k">if</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">server</span><span class="p">.</span><span class="nf">Shutdown</span><span class="p">(</span><span class="nx">timeoutCtx</span><span class="p">);</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><ul>
+<li>这里利用 os/signal 包监听 Interrupt 信号；</li>
+<li>收到该信号后，16 行 <code>&lt;-c</code> 会返回；</li>
+<li>为了可以再次 CTRL + C 强制退出，通过 Reset 恢复 os.Interrupt 的默认行为；（这不是必须的）</li>
+</ul>
+<p>优雅退出的关键：1）新请求进不来；2）已有请求给时间处理完。所以，在接收到信号后，调用 server.Shutdown 方法，阻止新请求进来，同时给 5 秒等待时间，让已经进来的请求有时间处理。</p>
+<p>在 Go1.16 中，os/signal 包新增了一个函数：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">NotifyContext</span><span class="p">(</span><span class="nx">parent</span> <span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">,</span> <span class="nx">signals</span> <span class="o">...</span><span class="nx">os</span><span class="p">.</span><span class="nx">Signal</span><span class="p">)</span> <span class="p">(</span><span class="nx">ctx</span> <span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">,</span> <span class="nx">stop</span> <span class="nx">context</span><span class="p">.</span><span class="nx">CancelFunc</span><span class="p">)</span>
+</code></pre></div><p>功能和 Notify 类似，但用法上有些不同。上面的例子改用 NotifyContext：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">after</span><span class="p">()</span> <span class="p">{</span>
+	<span class="nx">server</span> <span class="p">=</span> <span class="nx">http</span><span class="p">.</span><span class="nx">Server</span><span class="p">{</span>
+		<span class="nx">Addr</span><span class="p">:</span> <span class="s">&#34;:8080&#34;</span><span class="p">,</span>
+	<span class="p">}</span>
+
+	<span class="nx">http</span><span class="p">.</span><span class="nf">HandleFunc</span><span class="p">(</span><span class="s">&#34;/&#34;</span><span class="p">,</span> <span class="kd">func</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="p">{</span>
+		<span class="nx">time</span><span class="p">.</span><span class="nf">Sleep</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span> <span class="o">*</span> <span class="mi">10</span><span class="p">)</span>
+		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Fprint</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="s">&#34;Hello world!&#34;</span><span class="p">)</span>
+	<span class="p">})</span>
+
+	<span class="k">go</span> <span class="nx">server</span><span class="p">.</span><span class="nf">ListenAndServe</span><span class="p">()</span>
+	
+  <span class="c1">// 监听中断信号（CTRL + C）
+</span><span class="c1"></span>	<span class="nx">ctx</span><span class="p">,</span> <span class="nx">stop</span> <span class="o">:=</span> <span class="nx">signal</span><span class="p">.</span><span class="nf">NotifyContext</span><span class="p">(</span><span class="nx">context</span><span class="p">.</span><span class="nf">Background</span><span class="p">(),</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Interrupt</span><span class="p">)</span>
+	<span class="o">&lt;-</span><span class="nx">ctx</span><span class="p">.</span><span class="nf">Done</span><span class="p">()</span>
+
+  <span class="c1">// 重置 os.Interrupt 的默认行为，类似 signal.Reset
+</span><span class="c1"></span>	<span class="nf">stop</span><span class="p">()</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;shutting down gracefully, press Ctrl+C again to force&#34;</span><span class="p">)</span>
+
+  <span class="c1">// 给程序最多 5 秒时间处理正在服务的请求
+</span><span class="c1"></span>	<span class="nx">timeoutCtx</span><span class="p">,</span> <span class="nx">cancel</span> <span class="o">:=</span> <span class="nx">context</span><span class="p">.</span><span class="nf">WithTimeout</span><span class="p">(</span><span class="nx">context</span><span class="p">.</span><span class="nf">Background</span><span class="p">(),</span> <span class="mi">5</span><span class="o">*</span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">)</span>
+	<span class="k">defer</span> <span class="nf">cancel</span><span class="p">()</span>
+
+	<span class="k">if</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">server</span><span class="p">.</span><span class="nf">Shutdown</span><span class="p">(</span><span class="nx">timeoutCtx</span><span class="p">);</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><p>和上面的写法有区别，完成的功能一样的。其实 NotifyContext 的内部就是基于 Notify 实现的：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">NotifyContext</span><span class="p">(</span><span class="nx">parent</span> <span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">,</span> <span class="nx">signals</span> <span class="o">...</span><span class="nx">os</span><span class="p">.</span><span class="nx">Signal</span><span class="p">)</span> <span class="p">(</span><span class="nx">ctx</span> <span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">,</span> <span class="nx">stop</span> <span class="nx">context</span><span class="p">.</span><span class="nx">CancelFunc</span><span class="p">)</span> <span class="p">{</span>
+	<span class="nx">ctx</span><span class="p">,</span> <span class="nx">cancel</span> <span class="o">:=</span> <span class="nx">context</span><span class="p">.</span><span class="nf">WithCancel</span><span class="p">(</span><span class="nx">parent</span><span class="p">)</span>
+	<span class="nx">c</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">signalCtx</span><span class="p">{</span>
+		<span class="nx">Context</span><span class="p">:</span> <span class="nx">ctx</span><span class="p">,</span>
+		<span class="nx">cancel</span><span class="p">:</span>  <span class="nx">cancel</span><span class="p">,</span>
+		<span class="nx">signals</span><span class="p">:</span> <span class="nx">signals</span><span class="p">,</span>
+	<span class="p">}</span>
+	<span class="nx">c</span><span class="p">.</span><span class="nx">ch</span> <span class="p">=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Signal</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+	<span class="nf">Notify</span><span class="p">(</span><span class="nx">c</span><span class="p">.</span><span class="nx">ch</span><span class="p">,</span> <span class="nx">c</span><span class="p">.</span><span class="nx">signals</span><span class="o">...</span><span class="p">)</span>
+	<span class="k">if</span> <span class="nx">ctx</span><span class="p">.</span><span class="nf">Err</span><span class="p">()</span> <span class="o">==</span> <span class="kc">nil</span> <span class="p">{</span>
+		<span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+			<span class="k">select</span> <span class="p">{</span>
+			<span class="k">case</span> <span class="o">&lt;-</span><span class="nx">c</span><span class="p">.</span><span class="nx">ch</span><span class="p">:</span>
+				<span class="nx">c</span><span class="p">.</span><span class="nf">cancel</span><span class="p">()</span>
+			<span class="k">case</span> <span class="o">&lt;-</span><span class="nx">c</span><span class="p">.</span><span class="nf">Done</span><span class="p">():</span>
+			<span class="p">}</span>
+		<span class="p">}()</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="nx">c</span><span class="p">,</span> <span class="nx">c</span><span class="p">.</span><span class="nx">stop</span>
+<span class="p">}</span>
+</code></pre></div><p>只是在返回的 stop 被调用时，会执行 os/signal 包中的 Stop 函数，这个 Stop 函数的功能和 Reset 类似。因此上面 Notify 的例子，Reset 的地方可以改为 Stop。</p>
+<p>从封装上看，NotifyContext 做的更好。而且，如果在某些需要 Context 的场景下，它把监控系统信号和创建 Context 一步搞定。</p>
+<p>NotifyContext 的用法，优雅的关闭服务，你掌握了吗？</p>
+]]></content>
+		</item>
 		
 		<item>
 			<title>Go 1.17 新特性提前学之测试执行随机化</title>
