@@ -4,7 +4,52 @@
   
   <url>
     <loc>https://polarisxu.studygolang.com/tags/go/</loc>
-    <lastmod>2021-06-01T12:30:00+08:00</lastmod>
+    <lastmod>2021-06-07T21:30:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polarisxu.studygolang.com/</loc>
+    <lastmod>2021-06-07T21:30:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polarisxu.studygolang.com/tags/</loc>
+    <lastmod>2021-06-07T21:30:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polarisxu.studygolang.com/posts/go/book/practical-go-lessons/</loc>
+    <lastmod>2021-06-07T21:30:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polarisxu.studygolang.com/tags/%E5%9B%BE%E4%B9%A6/</loc>
+    <lastmod>2021-06-07T21:30:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polarisxu.studygolang.com/posts/</loc>
+    <lastmod>2021-06-07T21:30:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polarisxu.studygolang.com/posts/go/dynamic/go1.17-slice-to-array/</loc>
+    <lastmod>2021-06-07T20:30:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polarisxu.studygolang.com/tags/%E6%96%B0%E7%89%B9%E6%80%A7/</loc>
+    <lastmod>2021-06-07T20:30:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polarisxu.studygolang.com/tags/rust/</loc>
+    <lastmod>2021-06-06T22:30:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polarisxu.studygolang.com/posts/rust/rust-tutorial-08/</loc>
+    <lastmod>2021-06-06T22:30:00+08:00</lastmod>
   </url>
   
   <url>
@@ -13,22 +58,7 @@
   </url>
   
   <url>
-    <loc>https://polarisxu.studygolang.com/</loc>
-    <lastmod>2021-06-01T12:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://polarisxu.studygolang.com/tags/</loc>
-    <lastmod>2021-06-01T12:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://polarisxu.studygolang.com/tags/%E4%BF%A1%E5%8F%B7/</loc>
-    <lastmod>2021-06-01T12:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://polarisxu.studygolang.com/posts/</loc>
     <lastmod>2021-06-01T12:30:00+08:00</lastmod>
   </url>
   
@@ -40,11 +70,6 @@
   <url>
     <loc>https://polarisxu.studygolang.com/posts/go/dynamic/go1.17-testing-shuffle-flag/</loc>
     <lastmod>2021-05-30T22:20:00+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://polarisxu.studygolang.com/tags/rust/</loc>
-    <lastmod>2021-05-25T22:30:00+08:00</lastmod>
   </url>
   
   <url>
@@ -64,11 +89,6 @@
   
   <url>
     <loc>https://polarisxu.studygolang.com/posts/rust/rust-new-book-20210520/</loc>
-    <lastmod>2021-05-20T22:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://polarisxu.studygolang.com/tags/%E5%9B%BE%E4%B9%A6/</loc>
     <lastmod>2021-05-20T22:30:00+08:00</lastmod>
   </url>
   

@@ -14,7 +14,7 @@
 <meta property="og:description" content="polarisxu,Go语言中文网,go,golang,源码分析,系列教程" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://polarisxu.studygolang.com/" />
-<meta property="og:updated_time" content="2021-06-01T12:30:00+08:00" />
+<meta property="og:updated_time" content="2021-06-07T21:30:00+08:00" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="polarisxu"/>
 <meta name="twitter:description" content="polarisxu,Go语言中文网,go,golang,源码分析,系列教程"/>
@@ -70,6 +70,66 @@
 		<main class="site-main section-inner thin animated fadeIn faster">
     
 		
+        <div class="post animated fadeInDown">
+            <div class="post-title">
+                <h2><a href="/posts/go/action/weekly-question-analysis-embed-interface/">你是不是没想过，结构体竟然可以内嵌一个接口？</a>
+                </h2>
+            </div>
+            <div class="post-content">
+                <div class="p_part"><p>大家好，我是站长 polarisxu。 时不时有人催问周刊题目的解析，那就先先解析下第 71 期 的题目。 01 题目是，以下代码能否通过编译： package main import ( &#34;fmt&#34; ) type worker interface { work() } type person struct { name string worker } func main() { var w worker = person{} fmt.Println(w) } 这是大家的投票结果： 只有 35% 的人答对了。 这里答错的原因在于 worker 是一个接口，如果是一个普通的类型，相信大家会答对。一个结构体竟然可以嵌入一个接口？！ 02 我们都知晓 Go 没有继承，但可以通</p></div>
+            </div>
+            <div class="post-footer">
+                <div class="meta">
+                    <div class="info"><em class="fas fa-calendar-day"></em><span
+                                class="date">2020-12-14</span>
+                        <a class="tag"
+                                   href="/tags/%E5%86%85%E5%B5%8C%E7%B1%BB%E5%9E%8B/">内嵌类型</a><a class="tag"
+                                   href="/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/">面试题</a>
+                    </div>
+                </div>
+            </div>
+				</div>
+    
+        <div class="post animated fadeInDown">
+            <div class="post-title">
+                <h2><a href="/posts/php/php8-intro/">体验下“世界上最好的语言”新版本的特性</a>
+                </h2>
+            </div>
+            <div class="post-content">
+                <div class="p_part"><p>大家好，我是站长 polarisxu。 看到标题，大家应该知晓今天聊的主角是谁。是的，它就是 PHP。 PHP 曾经很辉煌，现在怎么样？不做过多评价，前几天好未来不刚组织了一届 PHP 大会吗？！正因为曾经很辉煌，很多现在的 Go 爱好者曾经都是 PHPer，应该还有不少还在用着 PHP。我觉得完全没必要非得贬低一门语言去抬高另外一门语言，自己喜欢就好。而且掌握多门语言是自己的优势。 为什么</p></div>
+            </div>
+            <div class="post-footer">
+                <div class="meta">
+                    <div class="info"><em class="fas fa-calendar-day"></em><span
+                                class="date">2020-12-08</span>
+                        <a class="tag"
+                                   href="/tags/php/">PHP</a><a class="tag"
+                                   href="/tags/php8/">PHP8</a>
+                    </div>
+                </div>
+            </div>
+				</div>
+    
+        <div class="post animated fadeInDown">
+            <div class="post-title">
+                <h2><a href="/posts/share/programming-idioms/">推荐一个网站：其实是三个网站</a>
+                </h2>
+            </div>
+            <div class="post-content">
+                <div class="p_part"><p>大家好，我是站长 polarisxu。 现在这样的环境要求我们程序员掌握多门语言。然而，很多人在掌握了一门语言后，学习其他语言时，总会有前一门语言的影子；亦或有些人希望在学习新语言时能和之前的语言进行对比学习。 无意中发现一个网站，对有上述情况的人可能有些帮助，因此推荐给大家。网站地址：https://programming-idioms.org/。 从网站名称也能</p></div>
+            </div>
+            <div class="post-footer">
+                <div class="meta">
+                    <div class="info"><em class="fas fa-calendar-day"></em><span
+                                class="date">2020-12-07</span>
+                        <a class="tag"
+                                   href="/tags/golang/">Golang</a><a class="tag"
+                                   href="/tags/%E5%88%86%E4%BA%AB%E5%8F%91%E7%8E%B0/">分享发现</a>
+                    </div>
+                </div>
+            </div>
+				</div>
+    
         <div class="post animated fadeInDown">
             <div class="post-title">
                 <h2><a href="/posts/devtool/goland/goland-2020-3-release/">GoLand 2020.3 正式发布了，有不少新功能，包括支持泛型</a>
@@ -210,68 +270,6 @@
                                    href="/tags/golang/">Golang</a><a class="tag"
                                    href="/tags/%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93/">第三方库</a><a class="tag"
                                    href="/tags/%E7%BB%9F%E8%AE%A1/">统计</a>
-                    </div>
-                </div>
-            </div>
-				</div>
-    
-        <div class="post animated fadeInDown">
-            <div class="post-title">
-                <h2><a href="/posts/go/action/bytedance-interview-201112/">字节跳动面试真的也会问这样的问题？！</a>
-                </h2>
-            </div>
-            <div class="post-content">
-                <div class="p_part"><p>大家好，我是站长 polarisxu。 网上看到有人分享去字节跳动的面试 Go 的经验 ，从面试题来看，应该是比较初级的职位。 这份面试经验总结中（其实谈不上总结，只是面试题的记录，并没有总结分析答案），有一道 Go 相关的题，也是一个老生常谈的问题：以下代码有什么问题，怎么解决？ total, sum := 0, 0 for i := 1; i &lt;= 10; i++ { sum += i go func() { total += i }() } fmt.Printf(&#34;total:%d sum %d&#34;, total, sum) 01 考点一 我相信很多人应该一眼看出了其中</p></div>
-            </div>
-            <div class="post-footer">
-                <div class="meta">
-                    <div class="info"><em class="fas fa-calendar-day"></em><span
-                                class="date">2020-11-12</span>
-                        <a class="tag"
-                                   href="/tags/go/">Go</a><a class="tag"
-                                   href="/tags/golang/">Golang</a><a class="tag"
-                                   href="/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/">面试题</a>
-                    </div>
-                </div>
-            </div>
-				</div>
-    
-        <div class="post animated fadeInDown">
-            <div class="post-title">
-                <h2><a href="/posts/talk/view-github-discussions/">GitHub 出的这个功能，让开源项目有了自己的社区</a>
-                </h2>
-            </div>
-            <div class="post-content">
-                <div class="p_part"><p>大家好，我是站长 polarisxu。 为了更有利于开源项目的发展，形成自己的社区很重要，作者们可以更好地和使用者交流互动，了解他们需求、问题。虽然 GitHub 有 issue，但毕竟它主要还是用于反馈 bug、提新特性，不是一个社区的感觉。所以一般项目都会有其他的社区，比如会开通 google groups 邮件组、使用 Gitter、Discord、Slack 等。当然，国内的项目通常会使用 QQ 群、微信群</p></div>
-            </div>
-            <div class="post-footer">
-                <div class="meta">
-                    <div class="info"><em class="fas fa-calendar-day"></em><span
-                                class="date">2020-11-12</span>
-                        <a class="tag"
-                                   href="/tags/github/">GitHub</a><a class="tag"
-                                   href="/tags/nitro/">Nitro</a>
-                    </div>
-                </div>
-            </div>
-				</div>
-    
-        <div class="post animated fadeInDown">
-            <div class="post-title">
-                <h2><a href="/posts/go/dynamic/go-opensource-11-years/">祝贺 Go 开源 11 周年</a>
-                </h2>
-            </div>
-            <div class="post-content">
-                <div class="p_part"><p>题图来自《了不起的程序员》 今天是 Go 语言开源 11 周年。有些人可能不太知道，简单回顾下 Go 的历史。 2007 年 Rob Pike, Robert Griesemer 和 Ken Thompson 一起创建了 Go 语言。从代码提交记录看，2008 年 3 月 3 日有了 Go 最初的规范 。 2009 年 11 月 10 日，Go 语言以开放源代码的方式向全球发布，当年获得了 TIOBE 年度编程语言称号； 2011 年 3 月 16 日，Go 语言的第一个稳定版本 r56 发布； 2012 年 3 月 28 日，Go 语言的第一个正式版本 Go1 发布，并承诺</p></div>
-            </div>
-            <div class="post-footer">
-                <div class="meta">
-                    <div class="info"><em class="fas fa-calendar-day"></em><span
-                                class="date">2020-11-10</span>
-                        <a class="tag"
-                                   href="/tags/golang/">Golang</a><a class="tag"
-                                   href="/tags/go/">Go</a><a class="tag"
-                                   href="/tags/%E5%9B%BE%E4%B9%A6/">图书</a>
                     </div>
                 </div>
             </div>

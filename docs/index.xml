@@ -7,7 +7,34 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Tue, 01 Jun 2021 12:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 07 Jun 2021 21:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>一本花了2.5年写成的Go免费在线图书</title>
+      <link>https://polarisxu.studygolang.com/posts/go/book/practical-go-lessons/</link>
+      <pubDate>Mon, 07 Jun 2021 21:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/book/practical-go-lessons/</guid>
+      <description>大家好，我是 polarisxu。 又一次为大家推荐 Go 图书，这是一本免费的 Go 语言在线图书：https://www.practical-go-lessons.com/。以下是该书的一个封面： 这本书采用渐进的方式讲解 Go 语言。作者还试图解释一些难以掌握的计算机科学概念，对于新人来说很有用。因此这本书对于那些没有计算机基础的人也有帮助。 我也写过书，也一直在坚持写文章，知</description>
+    </item>
+    
+    <item>
+      <title>Go1.17 新特性之切片变数组</title>
+      <link>https://polarisxu.studygolang.com/posts/go/dynamic/go1.17-slice-to-array/</link>
+      <pubDate>Mon, 07 Jun 2021 20:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/dynamic/go1.17-slice-to-array/</guid>
+      <description>大家好，我是 polarisxu。 按计划，Go 1.17 会在 2021 年 8 月份发布。目前，1.17 相关的功能已经开发差不多了，上次介绍了测试顺序随机的问题，今天介绍 1.17 中的另一个新功能：切片显式地转换成数组指针。 01 数组转切片 介绍新功能之前，我们先看看在 Go 中如何将数组转为切片。（当然，数组指针也是 OK 的） 一般地，通过 slice 表达式（slice expressions）可以从一个数组得到一个</description>
+    </item>
+    
+    <item>
+      <title>Rust 劝退系列 08：模式匹配</title>
+      <link>https://polarisxu.studygolang.com/posts/rust/rust-tutorial-08/</link>
+      <pubDate>Sun, 06 Jun 2021 22:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/rust/rust-tutorial-08/</guid>
+      <description>大家好，我是站长 polarisxu。 这是 Rust 劝退系列的第 8 个教程，探讨 Rust 中的模式匹配。 01 match 表达式 关于 match 表达式，很多其他语言并没有，比如 Go 语言。不过有些语言开始支持 match，比如 PHP 8.0 就有了 match 表达式。 一般地可以认为 match 和 switch 类似，所以 Rust 中没有 switch。 match 用于检查某个当前的值是否匹配一组/列值中的某一个。看一个具体的例子： fn test_match(number: i32)-&amp;gt; &amp;amp;&amp;#39;staticstr{matchnumber{// 匹配单个值 1=&amp;gt;{println!(&amp;#34;One!&amp;#34;);&amp;#34;One!&amp;#34;},// 匹配多个值 2|3|5|7|11=&amp;gt;&amp;#34;This is a prime&amp;#34;,// 匹配</description>
+    </item>
+    
     <item>
       <title>Go1.16 中的新函数 signal.NotifyContext 怎么用？</title>
       <link>https://polarisxu.studygolang.com/posts/go/signal-notifycontext/</link>
@@ -69,33 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/action/companies-using-golang/</guid>
       <description>大家好，我是 polarisxu。 一直以来，各种语言都是国外大规模使用，但 Go 语言很不一样，国内更火。因为这样，有些人质疑：Go 也就国人瞎炒作，国外根本没啥公司用。真的是这样吗？今天就盘点一下那些使用 Go 的国外公司，看看他们的案例，希望对大家的技术选型有所借鉴！ 为了更清晰，以下盘点进行了必要的归类。 01 技术平台公司 技术平台提供了一组加速应用程序开发的通用功能，因此可</description>
-    </item>
-    
-    <item>
-      <title>编写了50万行Go代码是一种什么体验</title>
-      <link>https://polarisxu.studygolang.com/posts/go/translation/half-a-million-lines-of-go/</link>
-      <pubDate>Mon, 17 May 2021 20:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/translation/half-a-million-lines-of-go/</guid>
-      <description>大家好，我是 polarisxu。 今天看到一篇文章，分享给大家，看看写了 50 万行代码的 Gopher 对 Go 有什么感想。 先简单介绍下可汗学院（Khan Academy）。 这是一个非营利性组织，其使命是在任何地方为任何人提供免费的、世界级的教育。 全球有 6.17 亿儿童缺乏基本的数学和阅读技能。可汗学院是一个提供他们所需教育的非营利组织，因此需要大家的帮助，你的帮忙可以改变一个孩子的一生。 所</description>
-    </item>
-    
-    <item>
-      <title>Rust 劝退系列 06：常量</title>
-      <link>https://polarisxu.studygolang.com/posts/rust/rust-tutorial-06/</link>
-      <pubDate>Thu, 13 May 2021 22:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/rust/rust-tutorial-06/</guid>
-      <description>大家好，我是站长 polarisxu。 这是 Rust 劝退系列的第 6 个教程，探讨 Rust 中的常量，因为 static 和常量有类似之处，因此一并探讨。（Rust By Example 中甚至将常量分成两种类型：const 和 static，我个人觉得常量是常量，static 修饰的是变量，不能算是常量） 01 常量 在 Rust 语言中，术语&amp;quot;常量&amp;quot;用于表示固定的值，比如 5 、-89、 I love Rust、3.14 等等。一</description>
-    </item>
-    
-    <item>
-      <title>Uber 使用 Go 的规模这么大？！都自己定制的 Go 编译器了</title>
-      <link>https://polarisxu.studygolang.com/posts/go/dynamic/uber-pprof-pp/</link>
-      <pubDate>Thu, 13 May 2021 12:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/dynamic/uber-pprof-pp/</guid>
-      <description>大家好，我是站长 polarisxu。 今天看到 Uber 使用 Go 的情况，挺吃惊的，给大家分享下情况。 01 Uber 使用 Go 的情况 Uber 有数千个后端服务是使用 Go 实现的，它们运行在数百万个 CPU 内核上。因此，对于 Uber 来说，详细准确掌握 CPU 瓶颈至关重要。这不仅为了减少服务延迟，同时也能提高计算机运行效率。Uber 这个量级的规模，要求对代码和微观结构的影响有深入的了解。 02 定制 Go 编译器 其实说定制 Go 编译器</description>
     </item>
     
   </channel>

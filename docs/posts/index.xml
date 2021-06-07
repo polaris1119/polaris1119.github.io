@@ -6,8 +6,162 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en</language>
 		<copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-		<lastBuildDate>Tue, 01 Jun 2021 12:30:00 +0800</lastBuildDate>
+		<lastBuildDate>Mon, 07 Jun 2021 21:30:00 +0800</lastBuildDate>
 		<atom:link href="https://polarisxu.studygolang.com/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>一本花了2.5年写成的Go免费在线图书</title>
+			<link>https://polarisxu.studygolang.com/posts/go/book/practical-go-lessons/</link>
+			<pubDate>Mon, 07 Jun 2021 21:30:00 +0800</pubDate>
+			
+			<guid>https://polarisxu.studygolang.com/posts/go/book/practical-go-lessons/</guid>
+			<description>大家好，我是 polarisxu。 又一次为大家推荐 Go 图书，这是一本免费的 Go 语言在线图书：https://www.practical-go-lessons.com/。以下是该书的一个封面： 这本书采用渐进的方式讲解 Go 语言。作者还试图解释一些难以掌握的计算机科学概念，对于新人来说很有用。因此这本书对于那些没有计算机基础的人也有帮助。 我也写过书，也一直在坚持写文章，知</description>
+			<content type="html"><![CDATA[<p>大家好，我是 polarisxu。</p>
+<p>又一次为大家推荐 Go 图书，这是一本免费的 Go 语言在线图书：<a href="https://www.practical-go-lessons.com/">https://www.practical-go-lessons.com/</a>。以下是该书的一个封面：</p>
+<p><p class="md__image">
+  <img src="../imgs/go-lessons-cover.jpg"
+    alt=""  />
+</p>
+</p>
+<p>这本书采用渐进的方式讲解 Go 语言。作者还试图解释一些难以掌握的计算机科学概念，对于新人来说很有用。因此这本书对于那些没有计算机基础的人也有帮助。</p>
+<p>我也写过书，也一直在坚持写文章，知道写作的不容易。但我看到这本书作者的写作经历，实在是佩服！！！</p>
+<p>这本书是从 2018 年开始写的，作者都是利用晚上和周末。在 2020 年底，作者决定辞掉工作全职写该书，一本花了 2.5 年的书。可见作者多用心。而且，作者在书中每一章节开头都配置了一幅 Gopher 图，超级可爱，猜测是作者自己画的！上面的图就是其中一张。</p>
+<p>花了这么多心血，还全职写该书，但万万没想到，作者竟然决定在网上免费分享该书。是不是很不理解？作者却认为，多年来他从互联网上获取到了很多知识。现在，他想通过这本书回馈社区！真的是良心作者。</p>
+<p>当然，大家也可以购买支持。在这里可以购买：<a href="https://www.practical-go-lessons.com/buy-digital-or-hard-copy">https://www.practical-go-lessons.com/buy-digital-or-hard-copy</a>。老师和学生 10% 折扣。</p>
+<p>这本书一共 41 章，758 页。可惜是英文的。大家有兴趣可以组织翻译一波？！</p>
+<p>最后，附上该书的一些插图。</p>
+<p><p class="md__image">
+  <img src="../imgs/go-lessons01.png"
+    alt=""  />
+</p>
+</p>
+<p><p class="md__image">
+  <img src="../imgs/go-lessons02.png"
+    alt=""  />
+</p>
+</p>
+]]></content>
+		</item>
+		
+		<item>
+			<title>Go1.17 新特性之切片变数组</title>
+			<link>https://polarisxu.studygolang.com/posts/go/dynamic/go1.17-slice-to-array/</link>
+			<pubDate>Mon, 07 Jun 2021 20:30:00 +0800</pubDate>
+			
+			<guid>https://polarisxu.studygolang.com/posts/go/dynamic/go1.17-slice-to-array/</guid>
+			<description>大家好，我是 polarisxu。 按计划，Go 1.17 会在 2021 年 8 月份发布。目前，1.17 相关的功能已经开发差不多了，上次介绍了测试顺序随机的问题，今天介绍 1.17 中的另一个新功能：切片显式地转换成数组指针。 01 数组转切片 介绍新功能之前，我们先看看在 Go 中如何将数组转为切片。（当然，数组指针也是 OK 的） 一般地，通过 slice 表达式（slice expressions）可以从一个数组得到一个</description>
+			<content type="html"><![CDATA[<p>大家好，我是 polarisxu。</p>
+<p>按计划，Go 1.17 会在 2021 年 8 月份发布。目前，1.17 相关的功能已经开发差不多了，上次介绍了测试顺序随机的问题，今天介绍 1.17 中的另一个新功能：切片显式地转换成数组指针。</p>
+<h2 id="01-数组转切片">01 数组转切片</h2>
+<p>介绍新功能之前，我们先看看在 Go 中如何将数组转为切片。（当然，数组指针也是 OK 的）</p>
+<p>一般地，通过 slice 表达式（slice expressions）可以从一个数组得到一个切片。</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">a</span><span class="p">[</span><span class="nx">low</span> <span class="p">:</span> <span class="nx">high</span> <span class="p">:</span> <span class="nx">max</span><span class="p">]</span>
+</code></pre></div><p>其中，max 可以省略。比如：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">a</span> <span class="o">:=</span> <span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="kt">int</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">}</span>
+<span class="nx">s</span> <span class="o">:=</span> <span class="nx">a</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span>
+</code></pre></div><p>s 就是一个切片。</p>
+<h2 id="02-切片转数组指针">02 切片转数组指针</h2>
+<p>先了解下，为什么会有这样的需求。</p>
+<p>该需求来自这个 issue：<a href="https://github.com/golang/go/issues/395">https://github.com/golang/go/issues/395</a>。rogpeppe 提到，很多时候，函数接收一个 slice 参数，但如果使用数组指针，则允许编译器在编译时检查常量索引。比如这样的情况：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">foo</span><span class="p">(</span><span class="nx">a</span> <span class="p">[]</span><span class="kt">int</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="nx">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="nx">a</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="nx">a</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span>
+<span class="p">}</span>
+</code></pre></div><p>怎么能够更好的在编译期进行索引检查。</p>
+<p>看看具体的例子，以下来自 Go 语言规范（针对 Go1.17 这个语言特性新增）：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">s</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="nx">s0</span> <span class="o">:=</span> <span class="p">(</span><span class="o">*</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="kt">byte</span><span class="p">)(</span><span class="nx">s</span><span class="p">)</span>      <span class="c1">// s0 != nil
+</span><span class="c1"></span><span class="nx">s2</span> <span class="o">:=</span> <span class="p">(</span><span class="o">*</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="kt">byte</span><span class="p">)(</span><span class="nx">s</span><span class="p">)</span>      <span class="c1">// &amp;s2[0] == &amp;s[0]
+</span><span class="c1"></span><span class="nx">s4</span> <span class="o">:=</span> <span class="p">(</span><span class="o">*</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="kt">byte</span><span class="p">)(</span><span class="nx">s</span><span class="p">)</span>      <span class="c1">// panics: len([4]byte) &gt; len(s)
+</span><span class="c1"></span>
+<span class="kd">var</span> <span class="nx">t</span> <span class="p">[]</span><span class="kt">string</span>
+<span class="nx">t0</span> <span class="o">:=</span> <span class="p">(</span><span class="o">*</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="kt">string</span><span class="p">)(</span><span class="nx">t</span><span class="p">)</span>    <span class="c1">// t0 == nil
+</span><span class="c1"></span><span class="nx">t1</span> <span class="o">:=</span> <span class="p">(</span><span class="o">*</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="kt">string</span><span class="p">)(</span><span class="nx">t</span><span class="p">)</span>    <span class="c1">// panics: len([1]string) &gt; len(s)
+</span></code></pre></div><p>注意，当切片的长度小于数组长度时会 panic。所以上面例子中，s4 和 t1 发生了 panic。</p>
+<h2 id="03-小结">03 小结</h2>
+<p>虽然用处不大，但如果</p>
+]]></content>
+		</item>
+		
+		<item>
+			<title>Rust 劝退系列 08：模式匹配</title>
+			<link>https://polarisxu.studygolang.com/posts/rust/rust-tutorial-08/</link>
+			<pubDate>Sun, 06 Jun 2021 22:30:00 +0800</pubDate>
+			
+			<guid>https://polarisxu.studygolang.com/posts/rust/rust-tutorial-08/</guid>
+			<description>大家好，我是站长 polarisxu。 这是 Rust 劝退系列的第 8 个教程，探讨 Rust 中的模式匹配。 01 match 表达式 关于 match 表达式，很多其他语言并没有，比如 Go 语言。不过有些语言开始支持 match，比如 PHP 8.0 就有了 match 表达式。 一般地可以认为 match 和 switch 类似，所以 Rust 中没有 switch。 match 用于检查某个当前的值是否匹配一组/列值中的某一个。看一个具体的例子： fn test_match(number: i32)-&amp;gt; &amp;amp;&amp;#39;staticstr{matchnumber{// 匹配单个值 1=&amp;gt;{println!(&amp;#34;One!&amp;#34;);&amp;#34;One!&amp;#34;},// 匹配多个值 2|3|5|7|11=&amp;gt;&amp;#34;This is a prime&amp;#34;,// 匹配</description>
+			<content type="html"><![CDATA[<p>大家好，我是站长 polarisxu。</p>
+<p>这是 Rust 劝退系列的第 8 个教程，探讨 Rust 中的模式匹配。</p>
+<h2 id="01-match-表达式">01 match 表达式</h2>
+<p>关于 match 表达式，很多其他语言并没有，比如 Go 语言。不过有些语言开始支持 match，比如 PHP 8.0 就有了 match 表达式。</p>
+<p>一般地可以认为 match 和 switch 类似，所以 Rust 中没有 switch。</p>
+<p>match 用于检查某个当前的值是否匹配一组/列值中的某一个。看一个具体的例子：</p>
+<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="k">fn</span> <span class="nf">test_match</span><span class="p">(</span><span class="n">number</span>: <span class="kt">i32</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="kp">&amp;</span><span class="nb">&#39;static</span><span class="w"> </span><span class="kt">str</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="w">    </span><span class="k">match</span><span class="w"> </span><span class="n">number</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="w">        </span><span class="c1">// 匹配单个值
+</span><span class="c1"></span><span class="w">        </span><span class="mi">1</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">{</span><span class="n">println</span><span class="o">!</span><span class="p">(</span><span class="s">&#34;One!&#34;</span><span class="p">);</span><span class="w"> </span><span class="s">&#34;One!&#34;</span><span class="p">},</span><span class="w">
+</span><span class="w">        </span><span class="c1">// 匹配多个值
+</span><span class="c1"></span><span class="w">        </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">7</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">11</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s">&#34;This is a prime&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">        </span><span class="c1">// 匹配一个闭区间范围
+</span><span class="c1"></span><span class="w">        </span><span class="mi">13</span><span class="p">..</span><span class="o">=</span><span class="mi">19</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s">&#34;A teen&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">        </span><span class="c1">// 处理其他情况
+</span><span class="c1"></span><span class="w">        </span><span class="n">_</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s">&#34;Ain&#39;t special&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">    </span><span class="p">}</span><span class="w">
+</span><span class="w"></span><span class="p">}</span><span class="w">
+</span></code></pre></div><p>一个简单的语法结构，但大概率在其他语言没见过。简单解释下：</p>
+<ul>
+<li>跟其他语言的 switch 类似，可以匹配多个分支；多个分支之间，使用 <code>,</code> 分隔；</li>
+<li>在 match 分支中，<code>=&gt;</code> 左侧是模式，因此叫做模式匹配，比如 | 表示匹配多个值；<code>..=</code> 表示匹配一个范围；右侧是在左侧匹配成功时要执行的操作；</li>
+<li>match 要求穷尽，也就是要包含所有可能的值。因此提供了 <code>_</code>，用来处理所有其他情况，类似 switch 的 default 分支；但只要穷尽了，可以没有 <code>_</code>；</li>
+<li>如果右侧操作是多个语句，需要放在 <code>{}</code> 中；</li>
+<li>match 是表达式，它的结果是匹配到的模式中，执行操作的最后一个表达式的结果。这在 Rust 中是一种模式。所以，match 表达式的值即为函数的返回值；因此，match 的所有分支必须返回同一数据类型；</li>
+<li>注意 match 表达式最后是否有分号的区别；</li>
+</ul>
+<blockquote>
+<p>日常吐槽：在 match 中匹配区间，和 for in 一样，使用 <code>..</code> 来表示半闭半开区间，结果报错。看到资料说应该使用 <code>…</code>，但却提示该语法已废弃！为啥语法结构还不保持一致呢？！</p>
+</blockquote>
+<p>看一个接收 match 结果的例子：</p>
+<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="kd">let</span><span class="w"> </span><span class="n">boolean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span><span class="w">
+</span><span class="w"></span><span class="kd">let</span><span class="w"> </span><span class="n">binary</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">match</span><span class="w"> </span><span class="n">boolean</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="w">  </span><span class="kc">false</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="w">  </span><span class="kc">true</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+</span><span class="w"></span><span class="p">};</span><span class="w">	</span><span class="c1">// 注意这里的分号
+</span><span class="c1"></span><span class="n">println</span><span class="o">!</span><span class="p">(</span><span class="s">&#34;{} -&gt; {}&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">boolean</span><span class="p">,</span><span class="w"> </span><span class="n">binary</span><span class="p">);</span><span class="w">
+</span></code></pre></div><h2 id="02-match-其他用法">02 match 其他用法</h2>
+<p>上面介绍了常规的 match 操作。match 还有很多其他的用法。</p>
+<h3 id="解构">解构</h3>
+<p>当元组和 match 一起时，可以解构元组。</p>
+<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">pair</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mi">2</span><span class="p">);</span><span class="w">
+</span><span class="w">    </span><span class="c1">// 试一试将不同的值赋给 `pair`
+</span><span class="c1"></span><span class="w">
+</span><span class="w">    </span><span class="n">println</span><span class="o">!</span><span class="p">(</span><span class="s">&#34;Tell me about {:?}&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">pair</span><span class="p">);</span><span class="w">
+</span><span class="w">    </span><span class="c1">// match 可以解构一个元组
+</span><span class="c1"></span><span class="w">    </span><span class="k">match</span><span class="w"> </span><span class="n">pair</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="w">        </span><span class="c1">// 解构出第二个值
+</span><span class="c1"></span><span class="w">        </span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">println</span><span class="o">!</span><span class="p">(</span><span class="s">&#34;First is `0` and `y` is `{:?}`&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">),</span><span class="w">
+</span><span class="w">        </span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">println</span><span class="o">!</span><span class="p">(</span><span class="s">&#34;`x` is `{:?}` and last is `0`&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">),</span><span class="w">
+</span><span class="w">        </span><span class="n">_</span><span class="w">      </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">println</span><span class="o">!</span><span class="p">(</span><span class="s">&#34;It doesn&#39;t matter what they are&#34;</span><span class="p">),</span><span class="w">
+</span><span class="w">        </span><span class="c1">// `_` 表示不将值绑定到变量
+</span><span class="c1"></span><span class="w">    </span><span class="p">}</span><span class="w">
+</span><span class="w"></span><span class="p">}</span><span class="w">
+</span></code></pre></div><p>关于枚举和指针、引用和 match 的结合，以后遇到再讲解。</p>
+<h3 id="guard-语句">guard 语句</h3>
+<p>在 match 分支中可以加上过滤条件。接着上面元组解构的例子：</p>
+<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">pair</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mi">2</span><span class="p">);</span><span class="w">
+</span><span class="w">
+</span><span class="w">    </span><span class="n">println</span><span class="o">!</span><span class="p">(</span><span class="s">&#34;Tell me about {:?}&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">pair</span><span class="p">);</span><span class="w">
+</span><span class="w">    </span><span class="k">match</span><span class="w"> </span><span class="n">pair</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="w">        </span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">println</span><span class="o">!</span><span class="p">(</span><span class="s">&#34;These are twins&#34;</span><span class="p">),</span><span class="w">
+</span><span class="w">        </span><span class="c1">// `if` 条件部分是一个卫语句
+</span><span class="c1"></span><span class="w">        </span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">println</span><span class="o">!</span><span class="p">(</span><span class="s">&#34;Antimatter, kaboom!&#34;</span><span class="p">),</span><span class="w">
+</span><span class="w">        </span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">_</span><span class="p">)</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">println</span><span class="o">!</span><span class="p">(</span><span class="s">&#34;The first one is odd&#34;</span><span class="p">),</span><span class="w">
+</span><span class="w">        </span><span class="n">_</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">println</span><span class="o">!</span><span class="p">(</span><span class="s">&#34;No correlation...&#34;</span><span class="p">),</span><span class="w">
+</span><span class="w">    </span><span class="p">}</span><span class="w">
+</span><span class="w"></span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id="绑定">绑定</h3>
+]]></content>
+		</item>
 		
 		<item>
 			<title>Go1.16 中的新函数 signal.NotifyContext 怎么用？</title>
@@ -110,7 +264,8 @@
 <span class="p">}</span>
 </code></pre></div><p>只是在返回的 stop 被调用时，会执行 os/signal 包中的 Stop 函数，这个 Stop 函数的功能和 Reset 类似。因此上面 Notify 的例子，Reset 的地方可以改为 Stop。</p>
 <p>从封装上看，NotifyContext 做的更好。而且，如果在某些需要 Context 的场景下，它把监控系统信号和创建 Context 一步搞定。</p>
-<p>NotifyContext 的用法，优雅的关闭服务，你掌握了吗？</p>
+<p>NotifyContext 的用法，优雅的关闭服务，你掌握了吗？希望你实际动手试验下，启动服务，通过 <code>curl http://localhost:8080/</code> 访问，然后按 CTRL + C，看看具体效果。只看不动手，基本知识不是你的。</p>
+<p>关于 NotifyContext 函数的文档可以在这里查看：<a href="https://docs.studygolang.com/pkg/os/signal/#NotifyContext">https://docs.studygolang.com/pkg/os/signal/#NotifyContext</a>。</p>
 ]]></content>
 		</item>
 		

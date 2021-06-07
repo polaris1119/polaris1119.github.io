@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>新特性 on polarisxu</title>
+    <link>https://polarisxu.studygolang.com/tags/%E6%96%B0%E7%89%B9%E6%80%A7/</link>
+    <description>Recent content in 新特性 on polarisxu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
+    <lastBuildDate>Mon, 07 Jun 2021 20:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/%E6%96%B0%E7%89%B9%E6%80%A7/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go1.17 新特性之切片变数组</title>
+      <link>https://polarisxu.studygolang.com/posts/go/dynamic/go1.17-slice-to-array/</link>
+      <pubDate>Mon, 07 Jun 2021 20:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/dynamic/go1.17-slice-to-array/</guid>
+      <description>大家好，我是 polarisxu。 按计划，Go 1.17 会在 2021 年 8 月份发布。目前，1.17 相关的功能已经开发差不多了，上次介绍了测试顺序随机的问题，今天介绍 1.17 中的另一个新功能：切片显式地转换成数组指针。 01 数组转切片 介绍新功能之前，我们先看看在 Go 中如何将数组转为切片。（当然，数组指针也是 OK 的） 一般地，通过 slice 表达式（slice expressions）可以从一个数组得到一个</description>
+    </item>
+    
+  </channel>
+</rss>
