@@ -107,17 +107,17 @@
 </span><span class="c1"></span><span class="w">        </span><span class="n">_</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s">&#34;Ain&#39;t special&#34;</span><span class="p">,</span><span class="w">
 </span><span class="w">    </span><span class="p">}</span><span class="w">
 </span><span class="w"></span><span class="p">}</span><span class="w">
-</span></code></pre></div><p>一个简单的语法结构，但大概率在其他语言没见过。简单解释下：</p>
+</span></code></pre></div><p>看起来是一个简单的语法结构，但大概率在其他语言没见过。简单解释下：</p>
 <ul>
 <li>跟其他语言的 switch 类似，可以匹配多个分支；多个分支之间，使用 <code>,</code> 分隔；</li>
 <li>在 match 分支中，<code>=&gt;</code> 左侧是模式，因此叫做模式匹配，比如 | 表示匹配多个值；<code>..=</code> 表示匹配一个范围；右侧是在左侧匹配成功时要执行的操作；</li>
 <li>match 要求穷尽，也就是要包含所有可能的值。因此提供了 <code>_</code>，用来处理所有其他情况，类似 switch 的 default 分支；但只要穷尽了，可以没有 <code>_</code>；</li>
 <li>如果右侧操作是多个语句，需要放在 <code>{}</code> 中；</li>
-<li>match 是表达式，它的结果是匹配到的模式中，执行操作的最后一个表达式的结果。这在 Rust 中是一种模式。所以，match 表达式的值即为函数的返回值；因此，match 的所有分支必须返回同一数据类型；</li>
+<li>match 是表达式，它的结果是匹配到的模式中，执行操作的最后一个表达式的结果。这在 Rust 中是很常见的，之前提到过，Rust 中一切皆表达式。所以，这个例子中 match 表达式的值即为函数的返回值。因此，match 的所有分支必须返回同一数据类型；</li>
 <li>注意 match 表达式最后是否有分号的区别；</li>
 </ul>
 <blockquote>
-<p>日常吐槽：在 match 中匹配区间，和 for in 一样，使用 <code>..</code> 来表示半闭半开区间，结果报错。看到资料说应该使用 <code>…</code>，但却提示该语法已废弃！为啥语法结构还不保持一致呢？！</p>
+<p>日常吐槽：在 match 中匹配区间，如果想和 for in 一样，使用 <code>..</code> 来表示半闭半开区间，结果报错。看到资料说应该使用 <code>…</code>，但却提示该语法已废弃！为啥语法结构还不保持一致呢？！</p>
 </blockquote>
 <p>看一个接收 match 结果的例子：</p>
 <div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="kd">let</span><span class="w"> </span><span class="n">boolean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span><span class="w">
@@ -131,9 +131,9 @@
 <h3 id="解构">解构</h3>
 <p>当元组和 match 一起时，可以解构元组。</p>
 <div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">pair</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mi">2</span><span class="p">);</span><span class="w">
-</span><span class="w">    </span><span class="c1">// 试一试将不同的值赋给 `pair`
-</span><span class="c1"></span><span class="w">
+</span><span class="w">		</span><span class="c1">// 试一试将不同的值赋给 `pair`
+</span><span class="c1"></span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">pair</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mi">2</span><span class="p">);</span><span class="w">
+</span><span class="w">    
 </span><span class="w">    </span><span class="n">println</span><span class="o">!</span><span class="p">(</span><span class="s">&#34;Tell me about {:?}&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">pair</span><span class="p">);</span><span class="w">
 </span><span class="w">    </span><span class="c1">// match 可以解构一个元组
 </span><span class="c1"></span><span class="w">    </span><span class="k">match</span><span class="w"> </span><span class="n">pair</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -160,6 +160,64 @@
 </span><span class="w">    </span><span class="p">}</span><span class="w">
 </span><span class="w"></span><span class="p">}</span><span class="w">
 </span></code></pre></div><h3 id="绑定">绑定</h3>
+<p>这是什么意思呢？看一个例子：（来自 rust by example）</p>
+<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="c1">// `age` 函数，返回一个 `u32` 值。
+</span><span class="c1"></span><span class="k">fn</span> <span class="nf">age</span><span class="p">()</span><span class="w"> </span>-&gt; <span class="kt">u32</span> <span class="p">{</span><span class="w">
+</span><span class="w">    </span><span class="mi">15</span><span class="w">
+</span><span class="w"></span><span class="p">}</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="w">    </span><span class="n">println</span><span class="o">!</span><span class="p">(</span><span class="s">&#34;Tell me type of person you are&#34;</span><span class="p">);</span><span class="w">
+</span><span class="w">
+</span><span class="w">    </span><span class="k">match</span><span class="w"> </span><span class="n">age</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="w">        </span><span class="mi">0</span><span class="w">             </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">println</span><span class="o">!</span><span class="p">(</span><span class="s">&#34;I&#39;m not born yet I guess&#34;</span><span class="p">),</span><span class="w">
+</span><span class="w">        </span><span class="c1">// 可以直接 `match` 1 ..= 12，但怎么把岁数打印出来呢？
+</span><span class="c1"></span><span class="w">        </span><span class="c1">// 在 1 ..= 12 分支中绑定匹配值到 `n` 。现在年龄就可以读取了。
+</span><span class="c1"></span><span class="w">        </span><span class="n">n</span><span class="w"> </span><span class="o">@</span><span class="w"> </span><span class="mi">1</span><span class="w">  </span><span class="p">..</span><span class="o">=</span><span class="w"> </span><span class="mi">12</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">println</span><span class="o">!</span><span class="p">(</span><span class="s">&#34;I&#39;m a child of age {:?}&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">),</span><span class="w">
+</span><span class="w">        </span><span class="n">n</span><span class="w"> </span><span class="o">@</span><span class="w"> </span><span class="mi">13</span><span class="w"> </span><span class="p">..</span><span class="o">=</span><span class="w"> </span><span class="mi">19</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">println</span><span class="o">!</span><span class="p">(</span><span class="s">&#34;I&#39;m a teen of age {:?}&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">),</span><span class="w">
+</span><span class="w">        </span><span class="c1">// 不符合上面的范围。返回结果。
+</span><span class="c1"></span><span class="w">        </span><span class="n">n</span><span class="w">             </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">println</span><span class="o">!</span><span class="p">(</span><span class="s">&#34;I&#39;m an old person of age {:?}&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">),</span><span class="w">
+</span><span class="w">    </span><span class="p">}</span><span class="w">
+</span><span class="w"></span><span class="p">}</span><span class="w">
+</span></code></pre></div><p>match 后是一个函数，我们希望在分支中，根据匹配结果，使用 age 函数的返回值。当然，这个例子有点多此一举，完全可以在 match 之前用变量存储 age 函数的返回值。</p>
+<p>那换一个例子：</p>
+<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="k">fn</span> <span class="nf">some_number</span><span class="p">()</span><span class="w"> </span>-&gt; <span class="nb">Option</span><span class="o">&lt;</span><span class="kt">u32</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="w">    </span><span class="nb">Some</span><span class="p">(</span><span class="mi">41</span><span class="p">)</span><span class="w">
+</span><span class="w"></span><span class="p">}</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="w">    </span><span class="k">match</span><span class="w"> </span><span class="n">some_number</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="w">        </span><span class="nb">Some</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">@</span><span class="w"> </span><span class="mi">40</span><span class="p">..</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">println</span><span class="o">!</span><span class="p">(</span><span class="s">&#34;The Answer: {}!&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">),</span><span class="w">
+</span><span class="w">        </span><span class="nb">Some</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="w">      </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">println</span><span class="o">!</span><span class="p">(</span><span class="s">&#34;Not interesting... {}&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">),</span><span class="w">
+</span><span class="w">        </span><span class="n">_</span><span class="w">            </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">(),</span><span class="w">
+</span><span class="w">    </span><span class="p">}</span><span class="w">
+</span><span class="w"></span><span class="p">}</span><span class="w">
+</span></code></pre></div><ul>
+<li>关于 Option 以后讲解</li>
+</ul>
+<p>这个例子很好的讲解了绑定的作用：分支中想要使用匹配的结果，通过 @ 符号可以将匹配的结果和某个变量绑定，然后就可以使用这个变量了。</p>
+<h2 id="03-if-let-和-while-let">03 if let 和 while let</h2>
+<p>这两个结构其他语言没见过，可以理解为是某些场景下替代 match，让代码更简洁，因为 match 必须穷尽所有情况，而 if let 和 while let 没有此限制。</p>
+<p>以下代码：</p>
+<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="kd">let</span><span class="w"> </span><span class="n">some_u8_value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Some</span><span class="p">(</span><span class="mi">3</span><span class="k">u8</span><span class="p">);</span><span class="w">
+</span><span class="w"></span><span class="k">match</span><span class="w"> </span><span class="n">some_u8_value</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="w">  </span><span class="nb">Some</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">println</span><span class="o">!</span><span class="p">(</span><span class="s">&#34;three&#34;</span><span class="p">),</span><span class="w">
+</span><span class="w">  </span><span class="n">_</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">(),</span><span class="w">	</span><span class="c1">// 有点多余
+</span><span class="c1"></span><span class="p">}</span><span class="w">
+</span></code></pre></div><p>改为 if let：</p>
+<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="kd">let</span><span class="w"> </span><span class="n">some_u8_value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Some</span><span class="p">(</span><span class="mi">3</span><span class="k">u8</span><span class="p">);</span><span class="w">
+</span><span class="w"></span><span class="k">if</span><span class="w"> </span><span class="kd">let</span><span class="w"> </span><span class="nb">Some</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">some_u8_value</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="w">	</span><span class="n">println</span><span class="o">!</span><span class="p">(</span><span class="s">&#34;three&#34;</span><span class="p">);</span><span class="w">
+</span><span class="w"></span><span class="p">}</span><span class="w">
+</span></code></pre></div><ul>
+<li>和 match 一样，if let 和 while let 都是表达式；</li>
+<li>if/while let 等号左侧是模式，右侧是要匹配的值；所以当右侧的值和左侧的模式匹配时，执行对应的语句块；所以，有时候 if let 也可以单纯的当做解构使用；</li>
+<li>if let 支持普通的 else if 和 else；while let 没有 else；</li>
+</ul>
+<p>while let 语法和 if let 类似。这里就不举例子了。</p>
+<h2 id="04-小结">04 小结</h2>
+<p>Rust 中的 match 虽然和其他语言的 switch 类似，很显然，match 的复杂度比 switch 高。当然，最关键还是实际使用。这需要不断实际练习。</p>
+<p>通常，match 和 Option、枚举一起使用，因此，在讲解这两个知识点时，一般会使用到 match。</p>
 ]]></content>
 		</item>
 		
