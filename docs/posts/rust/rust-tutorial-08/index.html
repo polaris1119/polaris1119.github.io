@@ -9,19 +9,19 @@
 	<meta name="msapplication-TileColor" content="#fcfcfc">
 <meta itemprop="name" content="Rust 劝退系列 08：模式匹配">
 <meta itemprop="description" content="大家好，我是站长 polarisxu。 这是 Rust 劝退系列的第 8 个教程，探讨 Rust 中的模式匹配。 01 match 表达式 关于 match 表达式，很多其他语言并没有，比如 Go 语言。不过有些语言开始支持 match，比如 PHP 8.0 就有了 match 表达式。 一般地可以认为 match 和 switch 类似，所以 Rust 中没有 switch。 match 用于检查某个当前的值是否匹配一组/列值中的某一个。看一个具体的例子： fn test_match(number: i32)-&gt; &amp;&#39;staticstr{matchnumber{// 匹配单个值 1=&gt;{println!(&#34;One!&#34;);&#34;One!&#34;},// 匹配多个值 2|3|5|7|11=&gt;&#34;This is a prime&#34;,// 匹配">
-<meta itemprop="datePublished" content="2021-06-06T22:30:00+08:00" />
-<meta itemprop="dateModified" content="2021-06-06T22:30:00+08:00" />
+<meta itemprop="datePublished" content="2021-06-08T22:30:00+08:00" />
+<meta itemprop="dateModified" content="2021-06-08T22:30:00+08:00" />
 <meta itemprop="wordCount" content="1486">
 
 
 
-<meta itemprop="keywords" content="rust," />
+<meta itemprop="keywords" content="rust,match," />
 <meta property="og:title" content="Rust 劝退系列 08：模式匹配" />
 <meta property="og:description" content="大家好，我是站长 polarisxu。 这是 Rust 劝退系列的第 8 个教程，探讨 Rust 中的模式匹配。 01 match 表达式 关于 match 表达式，很多其他语言并没有，比如 Go 语言。不过有些语言开始支持 match，比如 PHP 8.0 就有了 match 表达式。 一般地可以认为 match 和 switch 类似，所以 Rust 中没有 switch。 match 用于检查某个当前的值是否匹配一组/列值中的某一个。看一个具体的例子： fn test_match(number: i32)-&gt; &amp;&#39;staticstr{matchnumber{// 匹配单个值 1=&gt;{println!(&#34;One!&#34;);&#34;One!&#34;},// 匹配多个值 2|3|5|7|11=&gt;&#34;This is a prime&#34;,// 匹配" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://polarisxu.studygolang.com/posts/rust/rust-tutorial-08/" />
-<meta property="article:published_time" content="2021-06-06T22:30:00+08:00" />
-<meta property="article:modified_time" content="2021-06-06T22:30:00+08:00" />
+<meta property="article:published_time" content="2021-06-08T22:30:00+08:00" />
+<meta property="article:modified_time" content="2021-06-08T22:30:00+08:00" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Rust 劝退系列 08：模式匹配"/>
 <meta name="twitter:description" content="大家好，我是站长 polarisxu。 这是 Rust 劝退系列的第 8 个教程，探讨 Rust 中的模式匹配。 01 match 表达式 关于 match 表达式，很多其他语言并没有，比如 Go 语言。不过有些语言开始支持 match，比如 PHP 8.0 就有了 match 表达式。 一般地可以认为 match 和 switch 类似，所以 Rust 中没有 switch。 match 用于检查某个当前的值是否匹配一组/列值中的某一个。看一个具体的例子： fn test_match(number: i32)-&gt; &amp;&#39;staticstr{matchnumber{// 匹配单个值 1=&gt;{println!(&#34;One!&#34;);&#34;One!&#34;},// 匹配多个值 2|3|5|7|11=&gt;&#34;This is a prime&#34;,// 匹配"/>
@@ -77,7 +77,7 @@
 	<main class="site-main section-inner animated fadeIn faster">
 		<article class="thin">
 			<header class="post-header">
-				<div class="post-meta"><span>Jun 6, 2021</span></div>
+				<div class="post-meta"><span>Jun 8, 2021</span></div>
 				<h1>Rust 劝退系列 08：模式匹配</h1>
 			</header>
 			<div class="content">
@@ -236,10 +236,10 @@
 			<hr class="post-end">
 			<footer class="post-info">
 				<p>
-					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://polarisxu.studygolang.com/tags/rust">rust</a></span>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://polarisxu.studygolang.com/tags/rust">rust</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/match">match</a></span>
 				</p>
 				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1486 字</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2021-06-06 22:30 &#43;0800</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2021-06-08 22:30 &#43;0800</p>
 			</footer>
 		</article>
 		<aside id="toc">
@@ -260,11 +260,8 @@
 </nav>
 		</aside>
 		<div class="post-nav thin">
-			<a class="next-post" href="https://polarisxu.studygolang.com/posts/go/dynamic/go1.17-slice-to-array/">
-				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;新</span><br><span>Go1.17 新特性之切片变数组</span>
-			</a>
-			<a class="prev-post" href="https://polarisxu.studygolang.com/posts/go/signal-notifycontext/">
-				<span class="post-nav-label">旧&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>Go1.16 中的新函数 signal.NotifyContext 怎么用？</span>
+			<a class="prev-post" href="https://polarisxu.studygolang.com/posts/go/book/practical-go-lessons/">
+				<span class="post-nav-label">旧&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>一本花了2.5年写成的Go免费在线图书</span>
 			</a>
 		</div>
 		<div id="comments" class="thin"><script src="https://utteranc.es/client.js"
