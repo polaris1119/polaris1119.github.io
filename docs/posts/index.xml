@@ -216,7 +216,7 @@
 </ul>
 <p>while let 语法和 if let 类似。这里就不举例子了。</p>
 <h2 id="04-小结">04 小结</h2>
-<p>Rust 中的 match 虽然和其他语言的 switch 类似，很显然，match 的复杂度比 switch 高。当然，最关键还是实际使用。这需要不断实际练习。</p>
+<p>Rust 中的 match 虽然和其他语言的 switch 类似，很显然，match 的复杂度比 switch 高。当然，不管复杂与否，最关键还是要实际使用，需要不断实际练习。</p>
 <p>通常，match 和 Option、枚举一起使用，因此，在讲解这两个知识点时，一般会使用到 match。</p>
 ]]></content>
 		</item>
