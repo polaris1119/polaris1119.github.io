@@ -97,7 +97,7 @@
 <div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">foo</span><span class="p">(</span><span class="nx">a</span> <span class="p">[]</span><span class="kt">int</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
     <span class="k">return</span> <span class="nx">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="nx">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="nx">a</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="nx">a</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span>
 <span class="p">}</span>
-</code></pre></div><p>怎么能够更好的在编译期进行索引检查。</p>
+</code></pre></div><p>怎么能够更好的在编译期进行索引检查？</p>
 <p>看看具体的例子，以下来自 Go 语言规范（针对 Go1.17 这个语言特性新增）：</p>
 <div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">s</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
 <span class="nx">s0</span> <span class="o">:=</span> <span class="p">(</span><span class="o">*</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="kt">byte</span><span class="p">)(</span><span class="nx">s</span><span class="p">)</span>      <span class="c1">// s0 != nil
@@ -120,15 +120,15 @@
 	<h2>相关推荐</h2>
 	<ul>
 	
+	<li><a href="/posts/go/book/practical-go-lessons-translate/">不怕烂尾！决定组织翻译这本 Go 图书</a></li>
+	
+	<li><a href="/posts/go/golangorg-website/">回顾 Go 官网的演变史</a></li>
+	
 	<li><a href="/posts/go/book/practical-go-lessons/">一本花了2.5年写成的Go免费在线图书</a></li>
 	
 	<li><a href="/posts/go/signal-notifycontext/">Go1.16 中的新函数 signal.NotifyContext 怎么用？</a></li>
 	
 	<li><a href="/posts/go/dynamic/go1.17-testing-shuffle-flag/">Go 1.17 新特性提前学之测试执行随机化</a></li>
-	
-	<li><a href="/posts/go/managing-multiple-go-versions/">官方的 Go 多版本管理：使用和原理</a></li>
-	
-	<li><a href="/posts/go/action/weekly-question-94/">周刊题解：常量表达式这个规则应该了解下</a></li>
 	
 	</ul>
 </div>

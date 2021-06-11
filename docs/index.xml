@@ -7,7 +7,25 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Tue, 08 Jun 2021 22:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 10 Jun 2021 23:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>不怕烂尾！决定组织翻译这本 Go 图书</title>
+      <link>https://polarisxu.studygolang.com/posts/go/book/practical-go-lessons-translate/</link>
+      <pubDate>Thu, 10 Jun 2021 23:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/book/practical-go-lessons-translate/</guid>
+      <description>大家好，我是 polarisxu。 前些天给大家分享了一本书：《Practical Go Lessons》 ，挺受欢迎，大家纷纷建议组织翻译。 实话说，我是担心烂尾的，因为之前组织过其他的，比如标准库翻译等，很多人都是一时热情，过些天就把这事忘得一干二净！最后想要有始有终，只能我自己慢慢收尾。 但看到大家的热情，我又觉得，也许这次大家能坚持呢？要不再试一次？大不了最后烂尾，</description>
+    </item>
+    
+    <item>
+      <title>回顾 Go 官网的演变史</title>
+      <link>https://polarisxu.studygolang.com/posts/go/golangorg-website/</link>
+      <pubDate>Thu, 10 Jun 2021 12:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/golangorg-website/</guid>
+      <description>大家好，我是 polarisxu。 最近 618，阿里云等云厂商都在促销，我之前有一台服务器在华为云，正好要过期了，发现续费要 2500 左右。而阿里云新客买一台服务器，3 年才 179.9（1 核 2 G），用来镜像一个 Go 官网还是绰绰有余的。因为很早就镜像过 Go 官网，这次发现官网搭建又有了很大变化，因此决定回顾下 Go 官网的演变。 新人常年有优化，比如 99 元/年。有兴趣的可以购买：https</description>
+    </item>
+    
     <item>
       <title>Rust 劝退系列 08：模式匹配</title>
       <link>https://polarisxu.studygolang.com/posts/rust/rust-tutorial-08/</link>
@@ -78,24 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/rust/rust-new-book-20210520/</guid>
       <description>大家好，我是 polarisxu。 过去一段时间，我每周写一篇「Rust 劝退系列」，发现阅读量越来越低。于是我在思考，怎么能够调动大家学习的热情。思考再三，我决定试试这个办法！ 最近看到机械工业出版社出了一本 Rust 新书：《Rust编程：入门、实战和进阶》，我看完目录，发现很符合我一直想要的。 我在学习 Rust 的过程中，发现目前市面上的 Rust 图书，内容组织方式和其他语言的图书不太一</description>
-    </item>
-    
-    <item>
-      <title>周刊题解：常量表达式这个规则应该了解下</title>
-      <link>https://polarisxu.studygolang.com/posts/go/action/weekly-question-94/</link>
-      <pubDate>Thu, 20 May 2021 12:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/action/weekly-question-94/</guid>
-      <description>大家好，我是 polarisxu。 之前周刊题目正确率一直挺低的，于是我在「94期」出了一道简单的题目，如下： package main import ( &amp;#34;fmt&amp;#34; ) func main() { var ans float64 = 15 + 25 + 5.2 fmt.Println(ans) } 没想到，这道题的正确率也才 62%： 这篇文章就给大家讲解下这道题涉及到的常量表达式的一个知识点。 概念 常量表达式是指仅包含常量操作数，且是在编译的时候进行计算的。 而常量，在 Go 语言中又可以分为无类型常量和有类型常量，也可</description>
-    </item>
-    
-    <item>
-      <title>盘点那些使用 Go 语言的国外公司</title>
-      <link>https://polarisxu.studygolang.com/posts/go/action/companies-using-golang/</link>
-      <pubDate>Wed, 19 May 2021 12:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/action/companies-using-golang/</guid>
-      <description>大家好，我是 polarisxu。 一直以来，各种语言都是国外大规模使用，但 Go 语言很不一样，国内更火。因为这样，有些人质疑：Go 也就国人瞎炒作，国外根本没啥公司用。真的是这样吗？今天就盘点一下那些使用 Go 的国外公司，看看他们的案例，希望对大家的技术选型有所借鉴！ 为了更清晰，以下盘点进行了必要的归类。 01 技术平台公司 技术平台提供了一组加速应用程序开发的通用功能，因此可</description>
     </item>
     
   </channel>

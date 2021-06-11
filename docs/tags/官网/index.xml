@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>官网 on polarisxu</title>
+    <link>https://polarisxu.studygolang.com/tags/%E5%AE%98%E7%BD%91/</link>
+    <description>Recent content in 官网 on polarisxu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
+    <lastBuildDate>Thu, 10 Jun 2021 12:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/%E5%AE%98%E7%BD%91/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>回顾 Go 官网的演变史</title>
+      <link>https://polarisxu.studygolang.com/posts/go/golangorg-website/</link>
+      <pubDate>Thu, 10 Jun 2021 12:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/golangorg-website/</guid>
+      <description>大家好，我是 polarisxu。 最近 618，阿里云等云厂商都在促销，我之前有一台服务器在华为云，正好要过期了，发现续费要 2500 左右。而阿里云新客买一台服务器，3 年才 179.9（1 核 2 G），用来镜像一个 Go 官网还是绰绰有余的。因为很早就镜像过 Go 官网，这次发现官网搭建又有了很大变化，因此决定回顾下 Go 官网的演变。 新人常年有优化，比如 99 元/年。有兴趣的可以购买：https</description>
+    </item>
+    
+  </channel>
+</rss>
