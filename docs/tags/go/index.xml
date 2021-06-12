@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Thu, 10 Jun 2021 23:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 12 Jun 2021 21:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go图书翻译：一个好消息，一个坏消息</title>
+      <link>https://polarisxu.studygolang.com/posts/go/book/practical-go-lessons-decline/</link>
+      <pubDate>Sat, 12 Jun 2021 21:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/book/practical-go-lessons-decline/</guid>
+      <description>大家好，我是 polarisxu。 看到广大 gopher 们的需求，昨天我发文宣布组织翻译《Practical Go Lessons》 这本书。发文后，有将近一百人要参与。感受到了大家的热情~ 昨天下午，我给作者发信息，请求授权我们翻译。昨天一天没有回应（虽然看到信息已读，但没有给我答复）。但我们觉得，大概率会取得授权，所以，昨天做好了准备工作：流程、规范等，并且大家觉得端午节假期可</description>
+    </item>
+    
     <item>
       <title>不怕烂尾！决定组织翻译这本 Go 图书</title>
       <link>https://polarisxu.studygolang.com/posts/go/book/practical-go-lessons-translate/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/action/companies-using-golang/</guid>
       <description>大家好，我是 polarisxu。 一直以来，各种语言都是国外大规模使用，但 Go 语言很不一样，国内更火。因为这样，有些人质疑：Go 也就国人瞎炒作，国外根本没啥公司用。真的是这样吗？今天就盘点一下那些使用 Go 的国外公司，看看他们的案例，希望对大家的技术选型有所借鉴！ 为了更清晰，以下盘点进行了必要的归类。 01 技术平台公司 技术平台提供了一组加速应用程序开发的通用功能，因此可</description>
-    </item>
-    
-    <item>
-      <title>编写了50万行Go代码是一种什么体验</title>
-      <link>https://polarisxu.studygolang.com/posts/go/translation/half-a-million-lines-of-go/</link>
-      <pubDate>Mon, 17 May 2021 20:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/translation/half-a-million-lines-of-go/</guid>
-      <description>大家好，我是 polarisxu。 今天看到一篇文章，分享给大家，看看写了 50 万行代码的 Gopher 对 Go 有什么感想。 先简单介绍下可汗学院（Khan Academy）。 这是一个非营利性组织，其使命是在任何地方为任何人提供免费的、世界级的教育。 全球有 6.17 亿儿童缺乏基本的数学和阅读技能。可汗学院是一个提供他们所需教育的非营利组织，因此需要大家的帮助，你的帮忙可以改变一个孩子的一生。 所</description>
     </item>
     
   </channel>

@@ -6,8 +6,33 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en</language>
 		<copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-		<lastBuildDate>Thu, 10 Jun 2021 23:30:00 +0800</lastBuildDate>
+		<lastBuildDate>Sat, 12 Jun 2021 21:30:00 +0800</lastBuildDate>
 		<atom:link href="https://polarisxu.studygolang.com/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>Go图书翻译：一个好消息，一个坏消息</title>
+			<link>https://polarisxu.studygolang.com/posts/go/book/practical-go-lessons-decline/</link>
+			<pubDate>Sat, 12 Jun 2021 21:30:00 +0800</pubDate>
+			
+			<guid>https://polarisxu.studygolang.com/posts/go/book/practical-go-lessons-decline/</guid>
+			<description>大家好，我是 polarisxu。 看到广大 gopher 们的需求，昨天我发文宣布组织翻译《Practical Go Lessons》 这本书。发文后，有将近一百人要参与。感受到了大家的热情~ 昨天下午，我给作者发信息，请求授权我们翻译。昨天一天没有回应（虽然看到信息已读，但没有给我答复）。但我们觉得，大概率会取得授权，所以，昨天做好了准备工作：流程、规范等，并且大家觉得端午节假期可</description>
+			<content type="html"><![CDATA[<p>大家好，我是 polarisxu。</p>
+<p>看到广大 gopher 们的需求，昨天我发文宣布<a href="https://mp.weixin.qq.com/s/ry-qn0-7GuS0qb6ylU_4qA" target="_blank" rel="noopener">组织翻译《Practical Go Lessons》</a>
+这本书。发文后，有将近一百人要参与。感受到了大家的热情~</p>
+<p>昨天下午，我给作者发信息，请求授权我们翻译。昨天一天没有回应（虽然看到信息已读，但没有给我答复）。但我们觉得，大概率会取得授权，所以，昨天做好了准备工作：流程、规范等，并且大家觉得端午节假期可以搞定，因为参与人数多，一个人翻译一章，假期抽空完全可以搞定。同时也敲定了十来个校对者。又一次体会到了人多力量大！昨晚，就有几个人陆陆续续提交了 PR，翻译完成了几章。</p>
+<p>然而，今天下午 3 点 24，我收到了作者的回信：</p>
+<p><p class="md__image">
+  <img src="../imgs/go-lessions-decline.png"
+    alt=""  />
+</p>
+</p>
+<p>被“无情”的拒绝了~所以，我立马通知了大家，没有获得授权。大家还是挺失望的，不过已经翻译了的，也算是一种学习，也是收获！而且，我们会考虑翻译其他 Go 图书。</p>
+<p>但也有一个好消息，作者和他的朋友正在出中文版，虽然进度肯定没那么快，但毕竟官方出品。不得不佩服作者，一个法国人，用英文写该书，然后还自己搞定中文版。值得敬佩！</p>
+<p>我昨天给他发消息，说明了国内 Gopher 的热情。也许他看到了中国 Gopher 的市场，所以决定自己出中文版。这，是好事！</p>
+<p>虽然组织了半天，最后没取得授权，但得知了官方会出中文版，挺好！中文版出来，我会第一时间分享给大家！</p>
+<p>再次感谢大家的热情和支持！祝大家端午节快乐！</p>
+]]></content>
+		</item>
 		
 		<item>
 			<title>不怕烂尾！决定组织翻译这本 Go 图书</title>

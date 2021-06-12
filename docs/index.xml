@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Thu, 10 Jun 2021 23:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 12 Jun 2021 21:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go图书翻译：一个好消息，一个坏消息</title>
+      <link>https://polarisxu.studygolang.com/posts/go/book/practical-go-lessons-decline/</link>
+      <pubDate>Sat, 12 Jun 2021 21:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/book/practical-go-lessons-decline/</guid>
+      <description>大家好，我是 polarisxu。 看到广大 gopher 们的需求，昨天我发文宣布组织翻译《Practical Go Lessons》 这本书。发文后，有将近一百人要参与。感受到了大家的热情~ 昨天下午，我给作者发信息，请求授权我们翻译。昨天一天没有回应（虽然看到信息已读，但没有给我答复）。但我们觉得，大概率会取得授权，所以，昨天做好了准备工作：流程、规范等，并且大家觉得端午节假期可</description>
+    </item>
+    
     <item>
       <title>不怕烂尾！决定组织翻译这本 Go 图书</title>
       <link>https://polarisxu.studygolang.com/posts/go/book/practical-go-lessons-translate/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/managing-multiple-go-versions/</guid>
       <description>大家好，我是 polarisxu。 有些人可能注意到，每次 Go 发布新版本，官方都会提供类似这样的升级截图： 这可以说是官方的 Go 多版本管理，也是升级 Go 的方式。今天就一起聊一聊这种多版本管理方式及其实现原理。（我之前介绍过一个第三方多版本管理工具 goup ，是我比较推荐的）。 注意，Windows 用户应该使用 WSL2。 01 为什么需要多个 Go 版本 有些人可能觉得没有这样的需求。实际工作中</description>
-    </item>
-    
-    <item>
-      <title>Rust新书：给你一个劝退的理由</title>
-      <link>https://polarisxu.studygolang.com/posts/rust/rust-new-book-20210520/</link>
-      <pubDate>Thu, 20 May 2021 22:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/rust/rust-new-book-20210520/</guid>
-      <description>大家好，我是 polarisxu。 过去一段时间，我每周写一篇「Rust 劝退系列」，发现阅读量越来越低。于是我在思考，怎么能够调动大家学习的热情。思考再三，我决定试试这个办法！ 最近看到机械工业出版社出了一本 Rust 新书：《Rust编程：入门、实战和进阶》，我看完目录，发现很符合我一直想要的。 我在学习 Rust 的过程中，发现目前市面上的 Rust 图书，内容组织方式和其他语言的图书不太一</description>
     </item>
     
   </channel>
