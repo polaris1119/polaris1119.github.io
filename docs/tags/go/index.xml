@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Sat, 12 Jun 2021 21:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 13 Jun 2021 20:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>站长8年前的Go代码竟然进入大厂的项目里了</title>
+      <link>https://polarisxu.studygolang.com/posts/talk/about-writing/</link>
+      <pubDate>Sun, 13 Jun 2021 20:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/talk/about-writing/</guid>
+      <description>大家好，我是 polarisxu。 在群里有一位大厂大佬发了这么一条信息： 有点惊住了！ 这是我在 2013 年 1 月写的一篇关于 RSA 的文章：《GO加密解密之RSA》 ，没想到进入了大厂的项目里。只不过，这 CTRL + C、CTRL +V 有点小猛，邮箱地址直接进入了仓库。。。不愧是： 群友们很有才，说可以写一篇文章：当初写下的示例程序，已然在巨头大厂安稳运行 6 年，创造的价值数以亿记。 这件事还是有些</description>
+    </item>
+    
     <item>
       <title>Go图书翻译：一个好消息，一个坏消息</title>
       <link>https://polarisxu.studygolang.com/posts/go/book/practical-go-lessons-decline/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/action/weekly-question-94/</guid>
       <description>大家好，我是 polarisxu。 之前周刊题目正确率一直挺低的，于是我在「94期」出了一道简单的题目，如下： package main import ( &amp;#34;fmt&amp;#34; ) func main() { var ans float64 = 15 + 25 + 5.2 fmt.Println(ans) } 没想到，这道题的正确率也才 62%： 这篇文章就给大家讲解下这道题涉及到的常量表达式的一个知识点。 概念 常量表达式是指仅包含常量操作数，且是在编译的时候进行计算的。 而常量，在 Go 语言中又可以分为无类型常量和有类型常量，也可</description>
-    </item>
-    
-    <item>
-      <title>盘点那些使用 Go 语言的国外公司</title>
-      <link>https://polarisxu.studygolang.com/posts/go/action/companies-using-golang/</link>
-      <pubDate>Wed, 19 May 2021 12:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/action/companies-using-golang/</guid>
-      <description>大家好，我是 polarisxu。 一直以来，各种语言都是国外大规模使用，但 Go 语言很不一样，国内更火。因为这样，有些人质疑：Go 也就国人瞎炒作，国外根本没啥公司用。真的是这样吗？今天就盘点一下那些使用 Go 的国外公司，看看他们的案例，希望对大家的技术选型有所借鉴！ 为了更清晰，以下盘点进行了必要的归类。 01 技术平台公司 技术平台提供了一组加速应用程序开发的通用功能，因此可</description>
     </item>
     
   </channel>

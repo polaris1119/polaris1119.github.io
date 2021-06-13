@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>RSA on polarisxu</title>
+    <link>https://polarisxu.studygolang.com/tags/rsa/</link>
+    <description>Recent content in RSA on polarisxu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
+    <lastBuildDate>Sun, 13 Jun 2021 20:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/rsa/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>站长8年前的Go代码竟然进入大厂的项目里了</title>
+      <link>https://polarisxu.studygolang.com/posts/talk/about-writing/</link>
+      <pubDate>Sun, 13 Jun 2021 20:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/talk/about-writing/</guid>
+      <description>大家好，我是 polarisxu。 在群里有一位大厂大佬发了这么一条信息： 有点惊住了！ 这是我在 2013 年 1 月写的一篇关于 RSA 的文章：《GO加密解密之RSA》 ，没想到进入了大厂的项目里。只不过，这 CTRL + C、CTRL +V 有点小猛，邮箱地址直接进入了仓库。。。不愧是： 群友们很有才，说可以写一篇文章：当初写下的示例程序，已然在巨头大厂安稳运行 6 年，创造的价值数以亿记。 这件事还是有些</description>
+    </item>
+    
+  </channel>
+</rss>

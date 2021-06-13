@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Sat, 12 Jun 2021 21:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 13 Jun 2021 20:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>站长8年前的Go代码竟然进入大厂的项目里了</title>
+      <link>https://polarisxu.studygolang.com/posts/talk/about-writing/</link>
+      <pubDate>Sun, 13 Jun 2021 20:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/talk/about-writing/</guid>
+      <description>大家好，我是 polarisxu。 在群里有一位大厂大佬发了这么一条信息： 有点惊住了！ 这是我在 2013 年 1 月写的一篇关于 RSA 的文章：《GO加密解密之RSA》 ，没想到进入了大厂的项目里。只不过，这 CTRL + C、CTRL +V 有点小猛，邮箱地址直接进入了仓库。。。不愧是： 群友们很有才，说可以写一篇文章：当初写下的示例程序，已然在巨头大厂安稳运行 6 年，创造的价值数以亿记。 这件事还是有些</description>
+    </item>
+    
     <item>
       <title>Go图书翻译：一个好消息，一个坏消息</title>
       <link>https://polarisxu.studygolang.com/posts/go/book/practical-go-lessons-decline/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/rust/rust-tutorial-07/</guid>
       <description>大家好，我是站长 polarisxu。 这是 Rust 劝退系列的第 7 个教程，探讨 Rust 中的流程控制。注意，跟其他语言一样，Rust 中有条件、循环，但没有 switch，而是有 match 模式匹配。 01 运算符 开始讲解流程控制之前，先补充一个知识点，那就是 Rust 的运算符。 Rust 支持算术运算符、关系运算符、逻辑运算符和位运算符 4 种，它们和其他语言没有什么不同，因此不细讲了，只提醒一点：Rust 中没有自</description>
-    </item>
-    
-    <item>
-      <title>官方的 Go 多版本管理：使用和原理</title>
-      <link>https://polarisxu.studygolang.com/posts/go/managing-multiple-go-versions/</link>
-      <pubDate>Mon, 24 May 2021 20:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/managing-multiple-go-versions/</guid>
-      <description>大家好，我是 polarisxu。 有些人可能注意到，每次 Go 发布新版本，官方都会提供类似这样的升级截图： 这可以说是官方的 Go 多版本管理，也是升级 Go 的方式。今天就一起聊一聊这种多版本管理方式及其实现原理。（我之前介绍过一个第三方多版本管理工具 goup ，是我比较推荐的）。 注意，Windows 用户应该使用 WSL2。 01 为什么需要多个 Go 版本 有些人可能觉得没有这样的需求。实际工作中</description>
     </item>
     
   </channel>
