@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Sun, 13 Jun 2021 20:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 14 Jun 2021 20:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>回顾 Go 官网的演变史</title>
+      <link>https://polarisxu.studygolang.com/posts/go/golangorg-website/</link>
+      <pubDate>Mon, 14 Jun 2021 20:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/golangorg-website/</guid>
+      <description>大家好，我是 polarisxu。 最近 618，阿里云等云厂商都在促销，我之前有一台服务器在华为云，正好要过期了，发现续费要 2500 左右。而阿里云新客买一台服务器，3 年才 179.9（1 核 2 G），用来镜像一个 Go 官网还是绰绰有余的。因为很早就镜像过 Go 官网，这次发现官网搭建又有了很大变化，因此决定回顾下 Go 官网的演变。 新人常年有优惠，比如 99 元/年。有兴趣的可以购买：https</description>
+    </item>
+    
     <item>
       <title>站长8年前的Go代码竟然进入大厂的项目里了</title>
       <link>https://polarisxu.studygolang.com/posts/talk/about-writing/</link>
@@ -33,15 +42,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/book/practical-go-lessons-translate/</guid>
       <description>大家好，我是 polarisxu。 前些天给大家分享了一本书：《Practical Go Lessons》 ，挺受欢迎，大家纷纷建议组织翻译。 实话说，我是担心烂尾的，因为之前组织过其他的，比如标准库翻译等，很多人都是一时热情，过些天就把这事忘得一干二净！最后想要有始有终，只能我自己慢慢收尾。 但看到大家的热情，我又觉得，也许这次大家能坚持呢？要不再试一次？大不了最后烂尾，</description>
-    </item>
-    
-    <item>
-      <title>回顾 Go 官网的演变史</title>
-      <link>https://polarisxu.studygolang.com/posts/go/golangorg-website/</link>
-      <pubDate>Thu, 10 Jun 2021 12:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/golangorg-website/</guid>
-      <description>大家好，我是 polarisxu。 最近 618，阿里云等云厂商都在促销，我之前有一台服务器在华为云，正好要过期了，发现续费要 2500 左右。而阿里云新客买一台服务器，3 年才 179.9（1 核 2 G），用来镜像一个 Go 官网还是绰绰有余的。因为很早就镜像过 Go 官网，这次发现官网搭建又有了很大变化，因此决定回顾下 Go 官网的演变。 新人常年有优化，比如 99 元/年。有兴趣的可以购买：https</description>
     </item>
     
     <item>

@@ -6,8 +6,60 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en</language>
 		<copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-		<lastBuildDate>Sun, 13 Jun 2021 20:30:00 +0800</lastBuildDate>
+		<lastBuildDate>Mon, 14 Jun 2021 20:30:00 +0800</lastBuildDate>
 		<atom:link href="https://polarisxu.studygolang.com/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>回顾 Go 官网的演变史</title>
+			<link>https://polarisxu.studygolang.com/posts/go/golangorg-website/</link>
+			<pubDate>Mon, 14 Jun 2021 20:30:00 +0800</pubDate>
+			
+			<guid>https://polarisxu.studygolang.com/posts/go/golangorg-website/</guid>
+			<description>大家好，我是 polarisxu。 最近 618，阿里云等云厂商都在促销，我之前有一台服务器在华为云，正好要过期了，发现续费要 2500 左右。而阿里云新客买一台服务器，3 年才 179.9（1 核 2 G），用来镜像一个 Go 官网还是绰绰有余的。因为很早就镜像过 Go 官网，这次发现官网搭建又有了很大变化，因此决定回顾下 Go 官网的演变。 新人常年有优惠，比如 99 元/年。有兴趣的可以购买：https</description>
+			<content type="html"><![CDATA[<p>大家好，我是 polarisxu。</p>
+<p>最近 618，阿里云等云厂商都在促销，我之前有一台服务器在华为云，正好要过期了，发现续费要 2500 左右。而阿里云新客买一台服务器，3 年才 179.9（1 核 2 G），用来镜像一个 Go 官网还是绰绰有余的。因为很早就镜像过 Go 官网，这次发现官网搭建又有了很大变化，因此决定回顾下 Go 官网的演变。</p>
+<blockquote>
+<p>新人常年有优惠，比如 99 元/年。有兴趣的可以购买：<a href="https://www.aliyun.com/1111/new?userCode=tdj9sqcr">https://www.aliyun.com/1111/new?userCode=tdj9sqcr</a>，如果不是新客，可以使用家里人的身份注册。</p>
+</blockquote>
+<p>大家应该知道，Go 官网 <a href="https://golang.org">https://golang.org</a> 我们默认访问不了。这对很多新手来说挺困惑的。所以我很早就搞了一个 Go 官网镜像：<a href="https://docs.studygolang.com">https://docs.studygolang.com</a>。下面就聊聊我搭建官网的一些事，也是官网的演变史。</p>
+<h2 id="01-自带官网">01 自带官网</h2>
+<p>Go 1.0 发布时，安装包中自带 godoc 程序，通过该程序可以在本地搭建一个官网镜像：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">godoc -http<span class="o">=</span>:6060
+</code></pre></div><p>打开浏览器访问 http://localohst:6060 ，看到如下页面：</p>
+<p><p class="md__image">
+  <img src="../imgs/golangorgwebsite01.png"
+    alt=""  />
+</p>
+</p>
+<p>这解决了我们访问不了 Go 官网的问题，我也借此搭建了一个 Go 官网镜像：<a href="https://docs.studygolang.com">https://docs.studygolang.com</a>。</p>
+<h2 id="02-从主仓库剥离">02 从主仓库剥离</h2>
+<p>从 Go1.2 开始，godoc 从 Go 主仓库剥离，放入了 <a href="https://github.com/golang/tools">https://github.com/golang/tools</a> 中。这时，如果想要本地搭建 Go 官网镜像，可以通过 go get 命名安装：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">go get golang.org/x/tools/cmd/godoc
+</code></pre></div><p>但那时候这样多半安装不成功，因为 golang.org 访问不了。</p>
+<h2 id="03-官网改版">03 官网改版</h2>
+<p>2019 年，官网做了改版，也就是现在的样子。代码也不再使用 golang.org/x/tools/cmd/godoc，而是使用新仓库 <a href="https://github.com/golang/website">https://github.com/golang/website</a>，相当于完全重写。</p>
+<p>要在本地搭建官网镜像，clone 该仓库代码，然后执行如下命令即可：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">go run ./cmd/golangorg
+</code></pre></div><p>新官网长这样：</p>
+<p><p class="md__image">
+  <img src="../imgs/golangorgwebsite02.png"
+    alt=""  />
+</p>
+</p>
+<p>但有两个问题：</p>
+<ul>
+<li>官方博客在单独的域名：<a href="https://blog.golang.org">https://blog.golang.org</a>；</li>
+<li>play 在另一个单独的域名：<a href="https://play.golang.org">https://play.golang.org</a>；</li>
+</ul>
+<p>这两个域名一样访问不了。而且，虽然 Go 官方特意为我们搭建了 <a href="https://golang.google.cn">https://golang.google.cn</a>，但这是阉割版，没有 blog 和 play。</p>
+<p>play 主程序在 <a href="https://github.com/golang/tools">https://github.com/golang/tools</a> 仓库中，而 blog 在 <a href="https://github.com/golang/blog">https://github.com/golang/blog</a> 中， 为了搭建自己的 blog，得费一番心思。</p>
+<p>Go1.16 发布后，使用了 Go  内嵌功能。最近在 website 仓库中，把 blog 也包含进来了（原 blog 仓库也删除了），同时 go.dev 网站主程序也放在了 website 中。</p>
+<p>现在 Go 语言中文网搭建的 Go 官网镜像：<a href="https://docs.studygolang.com">https://docs.studygolang.com</a> 可以正常访问 blog 和 play，欢迎使用。</p>
+<h2 id="04-总结">04 总结</h2>
+<p>Go 官网在 website 仓库中，一个网站涉及几个程序，之前分开好几个项目。现在，通过 website 集中管理，同样的代码放在了该项目的 internal 子包中。</p>
+<p>现在自己搭建一个 Go 官网镜像，只要 clone website 仓库代码，运行 <code>go run ./cmd/golangorg</code> 即可。</p>
+]]></content>
+		</item>
 		
 		<item>
 			<title>站长8年前的Go代码竟然进入大厂的项目里了</title>
@@ -99,26 +151,6 @@
 </p>
 </p>
 <p>请大家三连走一波，让更多人看到！</p>
-]]></content>
-		</item>
-		
-		<item>
-			<title>回顾 Go 官网的演变史</title>
-			<link>https://polarisxu.studygolang.com/posts/go/golangorg-website/</link>
-			<pubDate>Thu, 10 Jun 2021 12:30:00 +0800</pubDate>
-			
-			<guid>https://polarisxu.studygolang.com/posts/go/golangorg-website/</guid>
-			<description>大家好，我是 polarisxu。 最近 618，阿里云等云厂商都在促销，我之前有一台服务器在华为云，正好要过期了，发现续费要 2500 左右。而阿里云新客买一台服务器，3 年才 179.9（1 核 2 G），用来镜像一个 Go 官网还是绰绰有余的。因为很早就镜像过 Go 官网，这次发现官网搭建又有了很大变化，因此决定回顾下 Go 官网的演变。 新人常年有优化，比如 99 元/年。有兴趣的可以购买：https</description>
-			<content type="html"><![CDATA[<p>大家好，我是 polarisxu。</p>
-<p>最近 618，阿里云等云厂商都在促销，我之前有一台服务器在华为云，正好要过期了，发现续费要 2500 左右。而阿里云新客买一台服务器，3 年才 179.9（1 核 2 G），用来镜像一个 Go 官网还是绰绰有余的。因为很早就镜像过 Go 官网，这次发现官网搭建又有了很大变化，因此决定回顾下 Go 官网的演变。</p>
-<blockquote>
-<p>新人常年有优化，比如 99 元/年。有兴趣的可以购买：<a href="https://www.aliyun.com/1111/new?userCode=tdj9sqcr">https://www.aliyun.com/1111/new?userCode=tdj9sqcr</a>，可以使用家里人的身份注册。</p>
-</blockquote>
-<p>大家应该知道，Go 官网 <a href="https://golang.org">https://golang.org</a> 我们默认访问不了。这对很多新手来说挺困惑的。所以我很早就搞了一个 Go 官网镜像：<a href="https://docs.studygolang.com">https://docs.studygolang.com</a>。下面就聊聊我搭建官网的一些事，也是官网的演变史。</p>
-<h2 id="01-自带官网">01 自带官网</h2>
-<p>Go 1.0 发布时，安装包中自带 godoc 程序，通过该程序可以在本地搭建一个官网镜像：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">godoc -http<span class="o">=</span>:6060
-</code></pre></div><p>访问浏览器会看到</p>
 ]]></content>
 		</item>
 		
