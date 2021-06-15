@@ -17,14 +17,5 @@
       <description>大家好，我是站长 polarisxu。 这是 Rust 劝退系列的第 8 个教程，探讨 Rust 中的模式匹配。 01 match 表达式 关于 match 表达式，很多其他语言并没有，比如 Go 语言。不过有些语言开始支持 match，比如 PHP 8.0 就有了 match 表达式。 一般地可以认为 match 和 switch 类似，所以 Rust 中没有 switch。 match 用于检查某个当前的值是否匹配一组/列值中的某一个。看一个具体的例子： fn test_match(number: i32)-&amp;gt; &amp;amp;&amp;#39;staticstr{matchnumber{// 匹配单个值 1=&amp;gt;{println!(&amp;#34;One!&amp;#34;);&amp;#34;One!&amp;#34;},// 匹配多个值 2|3|5|7|11=&amp;gt;&amp;#34;This is a prime&amp;#34;,// 匹配</description>
     </item>
     
-    <item>
-      <title>被黑惨了：一句话，说明自己会 Go，咋整？</title>
-      <link>https://polarisxu.studygolang.com/posts/talk/explain-you-programming-in-go/</link>
-      <pubDate>Fri, 04 Jun 2021 18:12:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/talk/explain-you-programming-in-go/</guid>
-      <description>大家好，我是 polarisxu。 今天在「Go语言中文网」微信群里有网友问了这么一个问题：一句话，说明自己会 go，咋整？一个哥们立马给出了一个回复，竟然无法反驳，感觉 Go 被黑的很惨？！（被黑的最惨的一次？！！） 关于 if err != nil 的调侃真的不要太多。这里列举几个： 1）之前发过一篇文章：写了50万行Go代码是一种什么样的体验？ ，有人留言调侃说：有 10 万行是 if err != nil。。。</description>
-    </item>
-    
   </channel>
 </rss>

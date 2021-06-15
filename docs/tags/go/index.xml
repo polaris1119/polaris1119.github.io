@@ -63,6 +63,15 @@
     </item>
     
     <item>
+      <title>被黑惨了：一句话，说明自己会 Go，咋整？</title>
+      <link>https://polarisxu.studygolang.com/posts/talk/explain-you-programming-in-go/</link>
+      <pubDate>Fri, 04 Jun 2021 18:12:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/talk/explain-you-programming-in-go/</guid>
+      <description>大家好，我是 polarisxu。 今天在「Go语言中文网」微信群里有网友问了这么一个问题：一句话，说明自己会 go，咋整？一个哥们立马给出了一个回复，竟然无法反驳，感觉 Go 被黑的很惨？！（被黑的最惨的一次？！！） 关于 if err != nil 的调侃真的不要太多。这里列举几个： 1）之前发过一篇文章：写了50万行Go代码是一种什么样的体验？ ，有人留言调侃说：有 10 万行是 if err != nil。。。</description>
+    </item>
+    
+    <item>
       <title>Go1.16 中的新函数 signal.NotifyContext 怎么用？</title>
       <link>https://polarisxu.studygolang.com/posts/go/signal-notifycontext/</link>
       <pubDate>Tue, 01 Jun 2021 12:30:00 +0800</pubDate>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/managing-multiple-go-versions/</guid>
       <description>大家好，我是 polarisxu。 有些人可能注意到，每次 Go 发布新版本，官方都会提供类似这样的升级截图： 这可以说是官方的 Go 多版本管理，也是升级 Go 的方式。今天就一起聊一聊这种多版本管理方式及其实现原理。（我之前介绍过一个第三方多版本管理工具 goup ，是我比较推荐的）。 注意，Windows 用户应该使用 WSL2。 01 为什么需要多个 Go 版本 有些人可能觉得没有这样的需求。实际工作中</description>
-    </item>
-    
-    <item>
-      <title>周刊题解：常量表达式这个规则应该了解下</title>
-      <link>https://polarisxu.studygolang.com/posts/go/action/weekly-question-94/</link>
-      <pubDate>Thu, 20 May 2021 12:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/action/weekly-question-94/</guid>
-      <description>大家好，我是 polarisxu。 之前周刊题目正确率一直挺低的，于是我在「94期」出了一道简单的题目，如下： package main import ( &amp;#34;fmt&amp;#34; ) func main() { var ans float64 = 15 + 25 + 5.2 fmt.Println(ans) } 没想到，这道题的正确率也才 62%： 这篇文章就给大家讲解下这道题涉及到的常量表达式的一个知识点。 概念 常量表达式是指仅包含常量操作数，且是在编译的时候进行计算的。 而常量，在 Go 语言中又可以分为无类型常量和有类型常量，也可</description>
     </item>
     
   </channel>
