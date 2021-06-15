@@ -367,6 +367,50 @@
 		</item>
 		
 		<item>
+			<title>被黑惨了：一句话，说明自己会 Go，咋整？</title>
+			<link>https://polarisxu.studygolang.com/posts/talk/explain-you-programming-in-go/</link>
+			<pubDate>Fri, 04 Jun 2021 18:12:00 +0800</pubDate>
+			
+			<guid>https://polarisxu.studygolang.com/posts/talk/explain-you-programming-in-go/</guid>
+			<description>大家好，我是 polarisxu。 今天在「Go语言中文网」微信群里有网友问了这么一个问题：一句话，说明自己会 go，咋整？一个哥们立马给出了一个回复，竟然无法反驳，感觉 Go 被黑的很惨？！（被黑的最惨的一次？！！） 关于 if err != nil 的调侃真的不要太多。这里列举几个： 1）之前发过一篇文章：写了50万行Go代码是一种什么样的体验？ ，有人留言调侃说：有 10 万行是 if err != nil。。。</description>
+			<content type="html"><![CDATA[<p>大家好，我是 polarisxu。</p>
+<p>今天在「Go语言中文网」微信群里有网友问了这么一个问题：一句话，说明自己会 go，咋整？一个哥们立马给出了一个回复，竟然无法反驳，感觉 Go 被黑的很惨？！（被黑的最惨的一次？！！）</p>
+<p><p class="md__image">
+  <img src="../imgs/wechat-group-go.png"
+    alt=""  />
+</p>
+</p>
+<p>关于 <code>if err != nil</code> 的调侃真的不要太多。这里列举几个：</p>
+<p>1）之前发过一篇文章：<a href="https://mp.weixin.qq.com/s/pzoTAl8xA9sefI_Ckpv8PA" target="_blank" rel="noopener">写了50万行Go代码是一种什么样的体验？</a>
+，有人留言调侃说：有 10 万行是 <code>if err != nil</code>。。。</p>
+<p>2）VSCode 有一个插件，配合 Mac 的 touch bar 可以一键生成 <code>if err != nil</code>，地址：<a href="https://github.com/dongri/touch-bar-if-err">https://github.com/dongri/touch-bar-if-err</a></p>
+<p><p class="md__image">
+  <img src="../imgs/touch-bar.png"
+    alt=""  />
+</p>
+</p>
+<p>3）GoLand 编辑器也支持快捷键生成 <code>if err != nil</code></p>
+<p>关于错误处理的问题确实是 Go 争议最多的，也有大量的文章讨论相关的问题，包括各种推荐的做法。在 Go 语言提案中，也有这种各样的错误处理提案。看几个：</p>
+<ul>
+<li><a href="https://github.com/golang/go/issues/33387" target="_blank" rel="noopener">simplify error handling with try err == nil {} except {}</a>
+，目前这个提案被否了；</li>
+<li><a href="https://github.com/golang/go/issues/46433" target="_blank" rel="noopener">try-catch by assignment</a>
+，还是想要回到传统的 try catch，目测大概率会被否；</li>
+<li><a href="https://github.com/golang/go/issues/36338" target="_blank" rel="noopener">error handling with error receiver function</a>
+，增加了 or 关键字；</li>
+<li>。。。</li>
+</ul>
+<p><p class="md__image">
+  <img src="../imgs/simple-programming.jpeg"
+    alt=""  />
+</p>
+</p>
+<p>因为 error 大改影响挺大的，目前相关的提案都收录在了这个 issue 中：<a href="https://github.com/golang/go/issues/33892">https://github.com/golang/go/issues/33892</a>，这里包含了各种放在 go2 处理的 issue，有兴趣的可以了解。</p>
+<p>一句话，说明自己会 Go，咋整？你会如何回答，欢迎留言交流！</p>
+]]></content>
+		</item>
+		
+		<item>
 			<title>Go1.16 中的新函数 signal.NotifyContext 怎么用？</title>
 			<link>https://polarisxu.studygolang.com/posts/go/signal-notifycontext/</link>
 			<pubDate>Tue, 01 Jun 2021 12:30:00 +0800</pubDate>
