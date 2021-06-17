@@ -8,23 +8,23 @@
 	<meta name="theme-color" content="#fcfcfc">
 	<meta name="msapplication-TileColor" content="#fcfcfc">
 <meta itemprop="name" content="Go1.17 新特性之切片变数组">
-<meta itemprop="description" content="大家好，我是 polarisxu。 按计划，Go 1.17 会在 2021 年 8 月份发布。目前，1.17 相关的功能已经开发差不多了，上次介绍了测试顺序随机的问题，今天介绍 1.17 中的另一个新功能：切片显式地转换成数组指针。 01 数组转切片 介绍新功能之前，我们先看看在 Go 中如何将数组转为切片。（当然，数组指针也是 OK 的） 一般地，通过 slice 表达式（slice expressions）可以从一个数组得到一个">
-<meta itemprop="datePublished" content="2021-06-07T20:30:00+08:00" />
-<meta itemprop="dateModified" content="2021-06-07T20:30:00+08:00" />
-<meta itemprop="wordCount" content="523">
+<meta itemprop="description" content="大家好，我是 polarisxu。 按计划，Go 1.17 会在 2021 年 8 月份发布（目前已经发布了 Beta1 版本）。目前，1.17 相关的功能已经开发差不多了，上次介绍了测试顺序随机的问题，今天介绍 1.17 中的另一个新功能：切片显式地转换成数组指针。 温馨提示，如果要试验该功能，需要升级到 1.17 Beta1 版本。另外一个主意事项就是如果在有 go.mod 的目录中试验，确保其中的版本改为 1.17，否则会报错：conver">
+<meta itemprop="datePublished" content="2021-06-17T07:30:00+08:00" />
+<meta itemprop="dateModified" content="2021-06-17T07:30:00+08:00" />
+<meta itemprop="wordCount" content="1386">
 
 
 
 <meta itemprop="keywords" content="Go,新特性," />
 <meta property="og:title" content="Go1.17 新特性之切片变数组" />
-<meta property="og:description" content="大家好，我是 polarisxu。 按计划，Go 1.17 会在 2021 年 8 月份发布。目前，1.17 相关的功能已经开发差不多了，上次介绍了测试顺序随机的问题，今天介绍 1.17 中的另一个新功能：切片显式地转换成数组指针。 01 数组转切片 介绍新功能之前，我们先看看在 Go 中如何将数组转为切片。（当然，数组指针也是 OK 的） 一般地，通过 slice 表达式（slice expressions）可以从一个数组得到一个" />
+<meta property="og:description" content="大家好，我是 polarisxu。 按计划，Go 1.17 会在 2021 年 8 月份发布（目前已经发布了 Beta1 版本）。目前，1.17 相关的功能已经开发差不多了，上次介绍了测试顺序随机的问题，今天介绍 1.17 中的另一个新功能：切片显式地转换成数组指针。 温馨提示，如果要试验该功能，需要升级到 1.17 Beta1 版本。另外一个主意事项就是如果在有 go.mod 的目录中试验，确保其中的版本改为 1.17，否则会报错：conver" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/dynamic/go1.17-slice-to-array/" />
-<meta property="article:published_time" content="2021-06-07T20:30:00+08:00" />
-<meta property="article:modified_time" content="2021-06-07T20:30:00+08:00" />
+<meta property="article:published_time" content="2021-06-17T07:30:00+08:00" />
+<meta property="article:modified_time" content="2021-06-17T07:30:00+08:00" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Go1.17 新特性之切片变数组"/>
-<meta name="twitter:description" content="大家好，我是 polarisxu。 按计划，Go 1.17 会在 2021 年 8 月份发布。目前，1.17 相关的功能已经开发差不多了，上次介绍了测试顺序随机的问题，今天介绍 1.17 中的另一个新功能：切片显式地转换成数组指针。 01 数组转切片 介绍新功能之前，我们先看看在 Go 中如何将数组转为切片。（当然，数组指针也是 OK 的） 一般地，通过 slice 表达式（slice expressions）可以从一个数组得到一个"/>
+<meta name="twitter:description" content="大家好，我是 polarisxu。 按计划，Go 1.17 会在 2021 年 8 月份发布（目前已经发布了 Beta1 版本）。目前，1.17 相关的功能已经开发差不多了，上次介绍了测试顺序随机的问题，今天介绍 1.17 中的另一个新功能：切片显式地转换成数组指针。 温馨提示，如果要试验该功能，需要升级到 1.17 Beta1 版本。另外一个主意事项就是如果在有 go.mod 的目录中试验，确保其中的版本改为 1.17，否则会报错：conver"/>
 
 	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -77,12 +77,15 @@
 	<main class="site-main section-inner animated fadeIn faster">
 		<article class="thin">
 			<header class="post-header">
-				<div class="post-meta"><span>Jun 7, 2021</span></div>
+				<div class="post-meta"><span>Jun 17, 2021</span></div>
 				<h1>Go1.17 新特性之切片变数组</h1>
 			</header>
 			<div class="content">
 				<p>大家好，我是 polarisxu。</p>
-<p>按计划，Go 1.17 会在 2021 年 8 月份发布。目前，1.17 相关的功能已经开发差不多了，上次介绍了测试顺序随机的问题，今天介绍 1.17 中的另一个新功能：切片显式地转换成数组指针。</p>
+<p>按计划，Go 1.17 会在 2021 年 8 月份发布（目前已经发布了 Beta1 版本）。目前，1.17 相关的功能已经开发差不多了，上次介绍了测试顺序随机的问题，今天介绍 1.17 中的另一个新功能：切片显式地转换成数组指针。</p>
+<blockquote>
+<p>温馨提示，如果要试验该功能，需要升级到 1.17 Beta1 版本。另外一个主意事项就是如果在有 go.mod 的目录中试验，确保其中的版本改为 1.17，否则会报错：conversion of slices to array pointers only supported as of -lang=go1.17</p>
+</blockquote>
 <h2 id="01-数组转切片">01 数组转切片<a href="#01-数组转切片" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>介绍新功能之前，我们先看看在 Go 中如何将数组转为切片。（当然，数组指针也是 OK 的）</p>
 <p>一般地，通过 slice 表达式（slice expressions）可以从一个数组得到一个切片。</p>
@@ -97,7 +100,12 @@
 <div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">foo</span><span class="p">(</span><span class="nx">a</span> <span class="p">[]</span><span class="kt">int</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
     <span class="k">return</span> <span class="nx">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="nx">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="nx">a</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="nx">a</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span>
 <span class="p">}</span>
-</code></pre></div><p>怎么能够更好的在编译期进行索引检查？</p>
+</code></pre></div><p>能够编译期进行索引检查。比如这样（当然，最后实现不是这样的）：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">foo</span><span class="p">(</span><span class="nx">a</span> <span class="p">[]</span><span class="kt">int</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
+    <span class="nx">b</span> <span class="o">:=</span> <span class="nx">a</span><span class="p">.[</span><span class="mi">0</span><span class="p">:</span><span class="mi">4</span><span class="p">];</span>
+    <span class="k">return</span> <span class="nx">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="nx">b</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="nx">b</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="nx">b</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span>
+<span class="p">}</span>
+</code></pre></div><p>此外，有时候我们通过数组得到切片，但有时候我们直接创建切片，底层数组是匿名的。如果我们想要获得底层数组怎么办？将切片转为数组指针可以实现这个需求。</p>
 <p>看看具体的例子，以下来自 Go 语言规范（针对 Go1.17 这个语言特性新增）：</p>
 <div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">s</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
 <span class="nx">s0</span> <span class="o">:=</span> <span class="p">(</span><span class="o">*</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="kt">byte</span><span class="p">)(</span><span class="nx">s</span><span class="p">)</span>      <span class="c1">// s0 != nil
@@ -107,9 +115,50 @@
 <span class="kd">var</span> <span class="nx">t</span> <span class="p">[]</span><span class="kt">string</span>
 <span class="nx">t0</span> <span class="o">:=</span> <span class="p">(</span><span class="o">*</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="kt">string</span><span class="p">)(</span><span class="nx">t</span><span class="p">)</span>    <span class="c1">// t0 == nil
 </span><span class="c1"></span><span class="nx">t1</span> <span class="o">:=</span> <span class="p">(</span><span class="o">*</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="kt">string</span><span class="p">)(</span><span class="nx">t</span><span class="p">)</span>    <span class="c1">// panics: len([1]string) &gt; len(s)
-</span></code></pre></div><p>注意，当切片的长度小于数组长度时会 panic。所以上面例子中，s4 和 t1 发生了 panic。</p>
-<h2 id="03-小结">03 小结<a href="#03-小结" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-<p>虽然用处不大，但如果</p>
+</span></code></pre></div><p>几个注意的点：</p>
+<ul>
+<li>当切片的长度小于数组长度（len）时会 panic。所以上面例子中，s4 和 t1 发生了 panic</li>
+<li>将一个非空切片转为 0 长度的数组，得到的指针不是 nil（如 s0）；但将一个空切片转为 0 长度的数组，得到的指针是 nil（如 t0）；</li>
+<li>多次转换，并不会创建多个数组（因为得到的是底层数组），这从 <code>&amp;s2[0] == &amp;s[0]</code> 可以看出；</li>
+</ul>
+<p>所以，总结一下就是，将切片转换为数组指针，产生指向切片的底层数组的指针。如果切片的长度小于数组的长度，则会发生运行时 panic。</p>
+<p>不过针对 panic，目前没法做断言检查。只能通过 if 判断了。</p>
+<h2 id="03-reflect-注意事项">03 reflect 注意事项<a href="#03-reflect-注意事项" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>针对语言这个改动，reflect 包中的 Type 接口有一个方法：ConvertibleTo。之前的说明是这样的：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// ConvertibleTo reports whether a value of the type is convertible to type u.
+</span><span class="c1"></span><span class="nf">ConvertibleTo</span><span class="p">(</span><span class="nx">u</span> <span class="nx">Type</span><span class="p">)</span> <span class="kt">bool</span>
+</code></pre></div><p>1.17 是这样的：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// ConvertibleTo reports whether a value of the type is convertible to type u.
+</span><span class="c1">// Even if ConvertibleTo returns true, the conversion may still panic.
+</span><span class="c1">// For example, a slice of type []T is convertible to *[N]T,
+</span><span class="c1">// but the conversion will panic if its length is less than N.
+</span><span class="c1"></span><span class="nf">ConvertibleTo</span><span class="p">(</span><span class="nx">u</span> <span class="nx">Type</span><span class="p">)</span> <span class="kt">bool</span>
+</code></pre></div><p>因为切片转为数组指针可能会 panic，所以才加了这么一句文档说明。</p>
+<p>因此，如果通过反射转换做类型转换，虽然通过 ConvertibleTo 判断是可转换的，但调用 Convert 方法依然可能 panic。这点需要特别注意下。</p>
+<h2 id="04-小结">04 小结<a href="#04-小结" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>这个语言改变，大部分时候可能用不到。但有些场景可以做到不需要内存拷贝（copy），比如标准库中有一个例子：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// https://docs.studygolang.com/src/crypto/sha256/sha256.go?s=5787:5834#L252
+</span><span class="c1"></span><span class="kd">func</span> <span class="nf">Sum224</span><span class="p">(</span><span class="nx">data</span> <span class="p">[]</span><span class="kt">byte</span><span class="p">)</span> <span class="p">(</span><span class="nx">sum224</span> <span class="p">[</span><span class="nx">Size224</span><span class="p">]</span><span class="kt">byte</span><span class="p">)</span> <span class="p">{</span>
+	<span class="kd">var</span> <span class="nx">d</span> <span class="nx">digest</span>
+	<span class="nx">d</span><span class="p">.</span><span class="nx">is224</span> <span class="p">=</span> <span class="kc">true</span>
+	<span class="nx">d</span><span class="p">.</span><span class="nf">Reset</span><span class="p">()</span>
+	<span class="nx">d</span><span class="p">.</span><span class="nf">Write</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span>
+	<span class="nx">sum</span> <span class="o">:=</span> <span class="nx">d</span><span class="p">.</span><span class="nf">checkSum</span><span class="p">()</span>
+	<span class="nb">copy</span><span class="p">(</span><span class="nx">sum224</span><span class="p">[:],</span> <span class="nx">sum</span><span class="p">[:</span><span class="nx">Size224</span><span class="p">])</span>
+	<span class="k">return</span>
+<span class="p">}</span>
+</code></pre></div><p>官方计划修改为：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">Sum224</span><span class="p">(</span><span class="nx">data</span> <span class="p">[]</span><span class="kt">byte</span><span class="p">)</span> <span class="p">[</span><span class="nx">Size224</span><span class="p">]</span><span class="kt">byte</span> <span class="p">{</span>
+	<span class="kd">var</span> <span class="nx">d</span> <span class="nx">digest</span>
+	<span class="nx">d</span><span class="p">.</span><span class="nx">is224</span> <span class="p">=</span> <span class="kc">true</span>
+	<span class="nx">d</span><span class="p">.</span><span class="nf">Reset</span><span class="p">()</span>
+	<span class="nx">d</span><span class="p">.</span><span class="nf">Write</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span>
+	<span class="nx">sum</span> <span class="o">:=</span> <span class="nx">d</span><span class="p">.</span><span class="nf">checkSum</span><span class="p">()</span>
+	<span class="nx">ap</span> <span class="o">:=</span> <span class="p">(</span><span class="o">*</span><span class="p">[</span><span class="nx">Size224</span><span class="p">]</span><span class="kt">byte</span><span class="p">)(</span><span class="nx">sum</span><span class="p">[:</span><span class="nx">Size224</span><span class="p">])</span>
+	<span class="k">return</span> <span class="o">*</span><span class="nx">ap</span>
+<span class="p">}</span>
+</code></pre></div><p>注意其中的区别。</p>
+<p>但这里 bradfitz 在修改时，发现，为什么一定要转为数组指针，能否直接转为数组，毕竟，在 Go 中使用数组的话，不太常用数组指针。于是 bradfitz 给出了另一个提案：<a href="https://github.com/golang/go/issues/46505">https://github.com/golang/go/issues/46505</a>，即 allow conversion from slice to array。目前该提案是否接受，还没有结论。</p>
 
 			</div><div class="content">
 	<br>
@@ -138,8 +187,8 @@
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://polarisxu.studygolang.com/tags/go">Go</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/%E6%96%B0%E7%89%B9%E6%80%A7">新特性</a></span>
 				</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>523 字</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2021-06-07 20:30 &#43;0800</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1386 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2021-06-17 07:30 &#43;0800</p>
 			</footer>
 		</article>
 		<aside id="toc">
@@ -148,16 +197,14 @@
   <ul>
     <li><a href="#01-数组转切片">01 数组转切片</a></li>
     <li><a href="#02-切片转数组指针">02 切片转数组指针</a></li>
-    <li><a href="#03-小结">03 小结</a></li>
+    <li><a href="#03-reflect-注意事项">03 reflect 注意事项</a></li>
+    <li><a href="#04-小结">04 小结</a></li>
   </ul>
 </nav>
 		</aside>
 		<div class="post-nav thin">
-			<a class="next-post" href="https://polarisxu.studygolang.com/posts/go/book/practical-go-lessons/">
-				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;新</span><br><span>一本花了2.5年写成的Go免费在线图书</span>
-			</a>
-			<a class="prev-post" href="https://polarisxu.studygolang.com/posts/talk/explain-you-programming-in-go/">
-				<span class="post-nav-label">旧&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>被黑惨了：一句话，说明自己会 Go，咋整？</span>
+			<a class="prev-post" href="https://polarisxu.studygolang.com/posts/go/golangorg-website/">
+				<span class="post-nav-label">旧&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>回顾 Go 官网的演变史</span>
 			</a>
 		</div>
 		<div id="comments" class="thin"><script src="https://utteranc.es/client.js"
