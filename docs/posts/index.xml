@@ -6,8 +6,76 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en</language>
 		<copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-		<lastBuildDate>Thu, 17 Jun 2021 07:30:00 +0800</lastBuildDate>
+		<lastBuildDate>Tue, 22 Jun 2021 12:30:00 +0800</lastBuildDate>
 		<atom:link href="https://polarisxu.studygolang.com/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>Go1.17 快报之标准库越来越注重易用性</title>
+			<link>https://polarisxu.studygolang.com/posts/go/pkg/go1.17-std/</link>
+			<pubDate>Tue, 22 Jun 2021 12:30:00 +0800</pubDate>
+			
+			<guid>https://polarisxu.studygolang.com/posts/go/pkg/go1.17-std/</guid>
+			<description>大家好，我是 polarisxu。 说起 Go 的优点，很多人会提到 Go 拥有强大的标准库，比如开发一个 HTTP 服务，几行代码就搞定。不过，如果是一个 PHPer 转到 Go，又会觉得 Go 标准库不够便利，很多东西都需要自己二次封装。这其实是一个取舍的问题。 Go 官方也在不断完善、优化标准库，在坚持一定原则的基础上，尽可能让标准库好用、易用。今天就看看 Go1.17 中，官方在这方面做了哪些改进。 01 time 包 Unix 时间戳，</description>
+			<content type="html"><![CDATA[<p>大家好，我是 polarisxu。</p>
+<p>说起 Go 的优点，很多人会提到 Go 拥有强大的标准库，比如开发一个 HTTP 服务，几行代码就搞定。不过，如果是一个 PHPer 转到 Go，又会觉得 Go 标准库不够便利，很多东西都需要自己二次封装。这其实是一个取舍的问题。</p>
+<p>Go 官方也在不断完善、优化标准库，在坚持一定原则的基础上，尽可能让标准库好用、易用。今天就看看 Go1.17 中，官方在这方面做了哪些改进。</p>
+<h2 id="01-time-包">01 time 包</h2>
+<p>Unix 时间戳，大家知道单位是什么吗？Java 或 JavaScript 的同学大概率会回答是毫秒，因为这两门语言提供获取“时间戳”的方法，单位是毫秒。但实际上，标准的 Unix 时间戳，单位是秒，标准定义是：</p>
+<blockquote>
+<p>Unix 时间戳是从 1970 年 1 月 1 日（UTC/GMT 的午夜）开始所经过的秒数，不考虑闰秒。</p>
+</blockquote>
+<p>正因为如此，Go 标准库 time 包提供获取时间戳的方法是 <code>Unix()</code>，单位是秒：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// Unix returns t as a Unix time, the number of seconds elapsed
+</span><span class="c1">// since January 1, 1970 UTC. The result does not depend on the
+</span><span class="c1">// location associated with t.
+</span><span class="c1">// Unix-like operating systems often record time as a 32-bit
+</span><span class="c1">// count of seconds, but since the method here returns a 64-bit
+</span><span class="c1">// value it is valid for billions of years into the past or future.
+</span><span class="c1"></span><span class="kd">func</span> <span class="p">(</span><span class="nx">t</span> <span class="nx">Time</span><span class="p">)</span> <span class="nf">Unix</span><span class="p">()</span> <span class="kt">int64</span>
+</code></pre></div><p>在和客户端/前端协商 API 时，一定要注意时间戳单位的问题。</p>
+<p>为了方便，Go1.17 增加加了 Time.UnixMilli 方法，返回 Unix 时间戳的毫秒数，同时也提供了 UnixNano 和 UnixMicro。</p>
+<p>此外，如果前端传递一个毫秒的时间戳，可以通过 Go1.17 新的函数 UnixMilli 转为 Time 类型：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">UnixMilli</span><span class="p">(</span><span class="nx">msec</span> <span class="kt">int64</span><span class="p">)</span> <span class="nx">Time</span>
+</code></pre></div><p>注意 UnixMilli 函数和 Time.UnixMilli 方法的区别，互逆的关系。</p>
+<h2 id="02-neturl-包">02 net/url 包</h2>
+<p>在这个包中有一个类型 Values，定义如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">Values</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">][]</span><span class="kt">string</span>
+</code></pre></div><p>它通常用于查询参数和表单值。它提供了 Set、Get、Del 等方法，但没有提供判断某个 key 是否设置了的方法（虽然自己实现不难，但形式不一致），而且这种需求还挺多的。Go1.17 就增加了一个方法：Has，用来判断某个 key 是否设置了。</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// Has checks whether a given key is set.
+</span><span class="c1"></span><span class="kd">func</span> <span class="p">(</span><span class="nx">v</span> <span class="nx">Values</span><span class="p">)</span> <span class="nf">Has</span><span class="p">(</span><span class="nx">key</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">bool</span>
+</code></pre></div><h2 id="03-net-包">03 net 包</h2>
+<p>如何判断一个 IP 地址是否是内网地址？你查找标准库会发现没有这样的方法，这时只能自己实现，需要查找 IPv4 标准，看哪些是内网地址，还得处理 IPv6 的情况。</p>
+<p>Go1.17 中增加了一个方法：IsPrivate，用来判断一个 IP 地址是否是内网地址：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// IsPrivate reports whether ip is a private address, according to
+</span><span class="c1">// RFC 1918 (IPv4 addresses) and RFC 4193 (IPv6 addresses).
+</span><span class="c1"></span><span class="kd">func</span> <span class="p">(</span><span class="nx">ip</span> <span class="nx">IP</span><span class="p">)</span> <span class="nf">IsPrivate</span><span class="p">()</span> <span class="kt">bool</span>
+</code></pre></div><p>是不是方便很多。看它的实现，自己实现可能不那么容易：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="p">(</span><span class="nx">ip</span> <span class="nx">IP</span><span class="p">)</span> <span class="nf">IsPrivate</span><span class="p">()</span> <span class="kt">bool</span> <span class="p">{</span>
+	<span class="k">if</span> <span class="nx">ip4</span> <span class="o">:=</span> <span class="nx">ip</span><span class="p">.</span><span class="nf">To4</span><span class="p">();</span> <span class="nx">ip4</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+		<span class="c1">// Following RFC 1918, Section 3. Private Address Space which says:
+</span><span class="c1"></span>		<span class="c1">//   The Internet Assigned Numbers Authority (IANA) has reserved the
+</span><span class="c1"></span>		<span class="c1">//   following three blocks of the IP address space for private internets:
+</span><span class="c1"></span>		<span class="c1">//     10.0.0.0        -   10.255.255.255  (10/8 prefix)
+</span><span class="c1"></span>		<span class="c1">//     172.16.0.0      -   172.31.255.255  (172.16/12 prefix)
+</span><span class="c1"></span>		<span class="c1">//     192.168.0.0     -   192.168.255.255 (192.168/16 prefix)
+</span><span class="c1"></span>		<span class="k">return</span> <span class="nx">ip4</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">10</span> <span class="o">||</span>
+			<span class="p">(</span><span class="nx">ip4</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">172</span> <span class="o">&amp;&amp;</span> <span class="nx">ip4</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">&amp;</span><span class="mh">0xf0</span> <span class="o">==</span> <span class="mi">16</span><span class="p">)</span> <span class="o">||</span>
+			<span class="p">(</span><span class="nx">ip4</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">192</span> <span class="o">&amp;&amp;</span> <span class="nx">ip4</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mi">168</span><span class="p">)</span>
+	<span class="p">}</span>
+	<span class="c1">// Following RFC 4193, Section 8. IANA Considerations which says:
+</span><span class="c1"></span>	<span class="c1">//   The IANA has assigned the FC00::/7 prefix to &#34;Unique Local Unicast&#34;.
+</span><span class="c1"></span>	<span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="nx">ip</span><span class="p">)</span> <span class="o">==</span> <span class="nx">IPv6len</span> <span class="o">&amp;&amp;</span> <span class="nx">ip</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">&amp;</span><span class="mh">0xfe</span> <span class="o">==</span> <span class="mh">0xfc</span>
+<span class="p">}</span>
+</code></pre></div><h2 id="04-其他包">04 其他包</h2>
+<p>math 包新提供了 MaxInt、MinInt、MaxUint 三个常量，分别对应 int 的最大、最小值和 uint 的最大值，这样我们不需要自己判断当前 CPU 架构确定最大最小值。</p>
+<p>io/fs 包新增加 FileInfoToDirEntry 函数，它用于获取一个 FileInfo 的 DirEntry 信息，在操作文件系统时可能会用到。</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">FileInfoToDirEntry</span><span class="p">(</span><span class="nx">info</span> <span class="nx">FileInfo</span><span class="p">)</span> <span class="nx">DirEntry</span>
+</code></pre></div><p>database/sql 包新增加了 NullByte 和 NullInt16，用于表示可能为 null 的 int16 和 byte 类型（我个人不建议创建数据表时支持 null，这样处理起来比较麻烦，建议全部 NOT NULL）。</p>
+<h2 id="05-总结">05 总结</h2>
+<p>简单、易用，一直是 Go 的哲学。标准库方面，Go 也会尽可能的做到易用，但不会封装到像 PHP 那样的程度，有些功能，还是需要自己进行二次封装。</p>
+<p>你觉得 Go1.17 上面的改进如何？还有哪些功能是你希望标准库提供的？欢迎留言交流。</p>
+]]></content>
+		</item>
 		
 		<item>
 			<title>Go1.17 新特性之切片变数组</title>

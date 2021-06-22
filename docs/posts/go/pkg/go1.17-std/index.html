@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#fcfcfc">
+	<meta name="msapplication-TileColor" content="#fcfcfc">
+<meta itemprop="name" content="Go1.17 快报之标准库越来越注重易用性">
+<meta itemprop="description" content="大家好，我是 polarisxu。 说起 Go 的优点，很多人会提到 Go 拥有强大的标准库，比如开发一个 HTTP 服务，几行代码就搞定。不过，如果是一个 PHPer 转到 Go，又会觉得 Go 标准库不够便利，很多东西都需要自己二次封装。这其实是一个取舍的问题。 Go 官方也在不断完善、优化标准库，在坚持一定原则的基础上，尽可能让标准库好用、易用。今天就看看 Go1.17 中，官方在这方面做了哪些改进。 01 time 包 Unix 时间戳，">
+<meta itemprop="datePublished" content="2021-06-22T12:30:00+08:00" />
+<meta itemprop="dateModified" content="2021-06-22T12:30:00+08:00" />
+<meta itemprop="wordCount" content="1269">
+
+
+
+<meta itemprop="keywords" content="Go,标准库," />
+<meta property="og:title" content="Go1.17 快报之标准库越来越注重易用性" />
+<meta property="og:description" content="大家好，我是 polarisxu。 说起 Go 的优点，很多人会提到 Go 拥有强大的标准库，比如开发一个 HTTP 服务，几行代码就搞定。不过，如果是一个 PHPer 转到 Go，又会觉得 Go 标准库不够便利，很多东西都需要自己二次封装。这其实是一个取舍的问题。 Go 官方也在不断完善、优化标准库，在坚持一定原则的基础上，尽可能让标准库好用、易用。今天就看看 Go1.17 中，官方在这方面做了哪些改进。 01 time 包 Unix 时间戳，" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/pkg/go1.17-std/" />
+<meta property="article:published_time" content="2021-06-22T12:30:00+08:00" />
+<meta property="article:modified_time" content="2021-06-22T12:30:00+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Go1.17 快报之标准库越来越注重易用性"/>
+<meta name="twitter:description" content="大家好，我是 polarisxu。 说起 Go 的优点，很多人会提到 Go 拥有强大的标准库，比如开发一个 HTTP 服务，几行代码就搞定。不过，如果是一个 PHPer 转到 Go，又会觉得 Go 标准库不够便利，很多东西都需要自己二次封装。这其实是一个取舍的问题。 Go 官方也在不断完善、优化标准库，在坚持一定原则的基础上，尽可能让标准库好用、易用。今天就看看 Go1.17 中，官方在这方面做了哪些改进。 01 time 包 Unix 时间戳，"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>Go1.17 快报之标准库越来越注重易用性</title>
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
+	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/styles.css">
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://polarisxu.studygolang.com">polarisxu</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+  <a href="https://polarisxu.studygolang.com/">首页</a>
+  <a href="https://polarisxu.studygolang.com/categories/echo%E7%B3%BB%E5%88%97/">Echo系列</a>
+  <a href="https://polarisxu.studygolang.com/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a>
+  <a href="https://polarisxu.studygolang.com/posts/">归档</a>
+  <a href="https://polarisxu.studygolang.com/about/">关于</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<button id="toc-btn" class="hdr-btn desktop-only-ib" title="目录"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3" y2="6"></line><line x1="3" y1="12" x2="3" y2="12"></line><line x1="3" y1="18" x2="3" y2="18"></line></svg></button><span class="hdr-social hide-in-mobile"><a href="https://github.com/polaris1119" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a><a href="https://twitter.com/polaris1119" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="菜单"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://polarisxu.studygolang.com/">首页</a></li>
+			<li><a href="https://polarisxu.studygolang.com/categories/echo%E7%B3%BB%E5%88%97/">Echo系列</a></li>
+			<li><a href="https://polarisxu.studygolang.com/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a></li>
+			<li><a href="https://polarisxu.studygolang.com/posts/">归档</a></li>
+			<li><a href="https://polarisxu.studygolang.com/about/">关于</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Jun 22, 2021</span></div>
+				<h1>Go1.17 快报之标准库越来越注重易用性</h1>
+			</header>
+			<div class="content">
+				<p>大家好，我是 polarisxu。</p>
+<p>说起 Go 的优点，很多人会提到 Go 拥有强大的标准库，比如开发一个 HTTP 服务，几行代码就搞定。不过，如果是一个 PHPer 转到 Go，又会觉得 Go 标准库不够便利，很多东西都需要自己二次封装。这其实是一个取舍的问题。</p>
+<p>Go 官方也在不断完善、优化标准库，在坚持一定原则的基础上，尽可能让标准库好用、易用。今天就看看 Go1.17 中，官方在这方面做了哪些改进。</p>
+<h2 id="01-time-包">01 time 包<a href="#01-time-包" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>Unix 时间戳，大家知道单位是什么吗？Java 或 JavaScript 的同学大概率会回答是毫秒，因为这两门语言提供获取“时间戳”的方法，单位是毫秒。但实际上，标准的 Unix 时间戳，单位是秒，标准定义是：</p>
+<blockquote>
+<p>Unix 时间戳是从 1970 年 1 月 1 日（UTC/GMT 的午夜）开始所经过的秒数，不考虑闰秒。</p>
+</blockquote>
+<p>正因为如此，Go 标准库 time 包提供获取时间戳的方法是 <code>Unix()</code>，单位是秒：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// Unix returns t as a Unix time, the number of seconds elapsed
+</span><span class="c1">// since January 1, 1970 UTC. The result does not depend on the
+</span><span class="c1">// location associated with t.
+</span><span class="c1">// Unix-like operating systems often record time as a 32-bit
+</span><span class="c1">// count of seconds, but since the method here returns a 64-bit
+</span><span class="c1">// value it is valid for billions of years into the past or future.
+</span><span class="c1"></span><span class="kd">func</span> <span class="p">(</span><span class="nx">t</span> <span class="nx">Time</span><span class="p">)</span> <span class="nf">Unix</span><span class="p">()</span> <span class="kt">int64</span>
+</code></pre></div><p>在和客户端/前端协商 API 时，一定要注意时间戳单位的问题。</p>
+<p>为了方便，Go1.17 增加加了 Time.UnixMilli 方法，返回 Unix 时间戳的毫秒数，同时也提供了 UnixNano 和 UnixMicro。</p>
+<p>此外，如果前端传递一个毫秒的时间戳，可以通过 Go1.17 新的函数 UnixMilli 转为 Time 类型：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">UnixMilli</span><span class="p">(</span><span class="nx">msec</span> <span class="kt">int64</span><span class="p">)</span> <span class="nx">Time</span>
+</code></pre></div><p>注意 UnixMilli 函数和 Time.UnixMilli 方法的区别，互逆的关系。</p>
+<h2 id="02-neturl-包">02 net/url 包<a href="#02-neturl-包" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>在这个包中有一个类型 Values，定义如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">Values</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">][]</span><span class="kt">string</span>
+</code></pre></div><p>它通常用于查询参数和表单值。它提供了 Set、Get、Del 等方法，但没有提供判断某个 key 是否设置了的方法（虽然自己实现不难，但形式不一致），而且这种需求还挺多的。Go1.17 就增加了一个方法：Has，用来判断某个 key 是否设置了。</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// Has checks whether a given key is set.
+</span><span class="c1"></span><span class="kd">func</span> <span class="p">(</span><span class="nx">v</span> <span class="nx">Values</span><span class="p">)</span> <span class="nf">Has</span><span class="p">(</span><span class="nx">key</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">bool</span>
+</code></pre></div><h2 id="03-net-包">03 net 包<a href="#03-net-包" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>如何判断一个 IP 地址是否是内网地址？你查找标准库会发现没有这样的方法，这时只能自己实现，需要查找 IPv4 标准，看哪些是内网地址，还得处理 IPv6 的情况。</p>
+<p>Go1.17 中增加了一个方法：IsPrivate，用来判断一个 IP 地址是否是内网地址：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// IsPrivate reports whether ip is a private address, according to
+</span><span class="c1">// RFC 1918 (IPv4 addresses) and RFC 4193 (IPv6 addresses).
+</span><span class="c1"></span><span class="kd">func</span> <span class="p">(</span><span class="nx">ip</span> <span class="nx">IP</span><span class="p">)</span> <span class="nf">IsPrivate</span><span class="p">()</span> <span class="kt">bool</span>
+</code></pre></div><p>是不是方便很多。看它的实现，自己实现可能不那么容易：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="p">(</span><span class="nx">ip</span> <span class="nx">IP</span><span class="p">)</span> <span class="nf">IsPrivate</span><span class="p">()</span> <span class="kt">bool</span> <span class="p">{</span>
+	<span class="k">if</span> <span class="nx">ip4</span> <span class="o">:=</span> <span class="nx">ip</span><span class="p">.</span><span class="nf">To4</span><span class="p">();</span> <span class="nx">ip4</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+		<span class="c1">// Following RFC 1918, Section 3. Private Address Space which says:
+</span><span class="c1"></span>		<span class="c1">//   The Internet Assigned Numbers Authority (IANA) has reserved the
+</span><span class="c1"></span>		<span class="c1">//   following three blocks of the IP address space for private internets:
+</span><span class="c1"></span>		<span class="c1">//     10.0.0.0        -   10.255.255.255  (10/8 prefix)
+</span><span class="c1"></span>		<span class="c1">//     172.16.0.0      -   172.31.255.255  (172.16/12 prefix)
+</span><span class="c1"></span>		<span class="c1">//     192.168.0.0     -   192.168.255.255 (192.168/16 prefix)
+</span><span class="c1"></span>		<span class="k">return</span> <span class="nx">ip4</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">10</span> <span class="o">||</span>
+			<span class="p">(</span><span class="nx">ip4</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">172</span> <span class="o">&amp;&amp;</span> <span class="nx">ip4</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">&amp;</span><span class="mh">0xf0</span> <span class="o">==</span> <span class="mi">16</span><span class="p">)</span> <span class="o">||</span>
+			<span class="p">(</span><span class="nx">ip4</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">192</span> <span class="o">&amp;&amp;</span> <span class="nx">ip4</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mi">168</span><span class="p">)</span>
+	<span class="p">}</span>
+	<span class="c1">// Following RFC 4193, Section 8. IANA Considerations which says:
+</span><span class="c1"></span>	<span class="c1">//   The IANA has assigned the FC00::/7 prefix to &#34;Unique Local Unicast&#34;.
+</span><span class="c1"></span>	<span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="nx">ip</span><span class="p">)</span> <span class="o">==</span> <span class="nx">IPv6len</span> <span class="o">&amp;&amp;</span> <span class="nx">ip</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">&amp;</span><span class="mh">0xfe</span> <span class="o">==</span> <span class="mh">0xfc</span>
+<span class="p">}</span>
+</code></pre></div><h2 id="04-其他包">04 其他包<a href="#04-其他包" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>math 包新提供了 MaxInt、MinInt、MaxUint 三个常量，分别对应 int 的最大、最小值和 uint 的最大值，这样我们不需要自己判断当前 CPU 架构确定最大最小值。</p>
+<p>io/fs 包新增加 FileInfoToDirEntry 函数，它用于获取一个 FileInfo 的 DirEntry 信息，在操作文件系统时可能会用到。</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">FileInfoToDirEntry</span><span class="p">(</span><span class="nx">info</span> <span class="nx">FileInfo</span><span class="p">)</span> <span class="nx">DirEntry</span>
+</code></pre></div><p>database/sql 包新增加了 NullByte 和 NullInt16，用于表示可能为 null 的 int16 和 byte 类型（我个人不建议创建数据表时支持 null，这样处理起来比较麻烦，建议全部 NOT NULL）。</p>
+<h2 id="05-总结">05 总结<a href="#05-总结" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>简单、易用，一直是 Go 的哲学。标准库方面，Go 也会尽可能的做到易用，但不会封装到像 PHP 那样的程度，有些功能，还是需要自己进行二次封装。</p>
+<p>你觉得 Go1.17 上面的改进如何？还有哪些功能是你希望标准库提供的？欢迎留言交流。</p>
+
+			</div><div class="content">
+	<br>
+	<img src="https://static.studygolang.com/static/img/polarisxu-qrcode-soso-s.png">
+</div>
+
+<div class="related-posts thin">
+	<h2>相关推荐</h2>
+	<ul>
+	
+	<li><a href="/posts/go/how-realize-go-std-version-show/">怎么知道某个 API 是在哪个 Go 版本添加的？这个功能如何实现的</a></li>
+	
+	<li><a href="/posts/go/dynamic/view-go-history-std-version/">听说你还不知道如何查看 Go 历史文档？</a></li>
+	
+	<li><a href="/posts/go/dynamic/go1.17-slice-to-array/">Go1.17 新特性之切片变数组</a></li>
+	
+	<li><a href="/posts/go/golangorg-website/">回顾 Go 官网的演变史</a></li>
+	
+	<li><a href="/posts/talk/about-writing/">站长8年前的Go代码竟然进入大厂的项目里了</a></li>
+	
+	</ul>
+</div>
+
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://polarisxu.studygolang.com/tags/go">Go</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/%E6%A0%87%E5%87%86%E5%BA%93">标准库</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1269 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2021-06-22 12:30 &#43;0800</p>
+			</footer>
+		</article>
+		<aside id="toc">
+			<div class="toc-title">目录</div>
+			<nav id="TableOfContents">
+  <ul>
+    <li><a href="#01-time-包">01 time 包</a></li>
+    <li><a href="#02-neturl-包">02 net/url 包</a></li>
+    <li><a href="#03-net-包">03 net 包</a></li>
+    <li><a href="#04-其他包">04 其他包</a></li>
+    <li><a href="#05-总结">05 总结</a></li>
+  </ul>
+</nav>
+		</aside>
+		<div class="post-nav thin">
+			<a class="prev-post" href="https://polarisxu.studygolang.com/posts/go/dynamic/go1.17-slice-to-array/">
+				<span class="post-nav-label">旧&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>Go1.17 新特性之切片变数组</span>
+			</a>
+		</div>
+		<div id="comments" class="thin"><script src="https://utteranc.es/client.js"
+	repo="polaris1119/polarisxu"
+	issue-term="pathname"
+	theme="github-light"
+	crossorigin="anonymous"
+	async>
+</script>
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2019 - 2021 <a href="https://polarisxu.studygolang.com">polarisxu</a> &#183; <a href="https://beian.miit.gov.cn/">京ICP备14030343号-1</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://polarisxu.studygolang.com/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+		<span id="busuanzi_container" style="color: #666;">
+			本站总访客数/访问量：<span id="busuanzi_value_site_uv"></span>/<span id="busuanzi_value_site_pv"></span>
+		</span>
+	</footer>
+
+
+
+	<script src="https://polarisxu.studygolang.com/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw=" crossorigin="anonymous"></script>
+	<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?224c227cd9239761ec770bc8c1fb134c";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+</body>
+
+</html>

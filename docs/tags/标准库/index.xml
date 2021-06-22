@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Thu, 04 Feb 2021 15:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/%E6%A0%87%E5%87%86%E5%BA%93/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 22 Jun 2021 12:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/%E6%A0%87%E5%87%86%E5%BA%93/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go1.17 快报之标准库越来越注重易用性</title>
+      <link>https://polarisxu.studygolang.com/posts/go/pkg/go1.17-std/</link>
+      <pubDate>Tue, 22 Jun 2021 12:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/pkg/go1.17-std/</guid>
+      <description>大家好，我是 polarisxu。 说起 Go 的优点，很多人会提到 Go 拥有强大的标准库，比如开发一个 HTTP 服务，几行代码就搞定。不过，如果是一个 PHPer 转到 Go，又会觉得 Go 标准库不够便利，很多东西都需要自己二次封装。这其实是一个取舍的问题。 Go 官方也在不断完善、优化标准库，在坚持一定原则的基础上，尽可能让标准库好用、易用。今天就看看 Go1.17 中，官方在这方面做了哪些改进。 01 time 包 Unix 时间戳，</description>
+    </item>
+    
     <item>
       <title>怎么知道某个 API 是在哪个 Go 版本添加的？这个功能如何实现的</title>
       <link>https://polarisxu.studygolang.com/posts/go/how-realize-go-std-version-show/</link>
