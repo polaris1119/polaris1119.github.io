@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Tue, 22 Jun 2021 12:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 24 Jun 2021 12:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>这是要干嘛？！微软招 Go 编译器全职开发人员</title>
+      <link>https://polarisxu.studygolang.com/posts/go/dynamic/microsoft-go/</link>
+      <pubDate>Thu, 24 Jun 2021 12:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/dynamic/microsoft-go/</guid>
+      <description>大家好，我是 polarisxu。 微软在其招聘主页上挂了一个招聘信息，招聘高级软件工程师（职位链接：https://careers.microsoft.com/us/en/job/1038385/Senior-Software-Engineer）。这个职位有点特别： 个人贡献者。具体来说，找为 Go 语言编译器和工具开发的全职员工。 我们都知道，一直以来，为了搞了不少开</description>
+    </item>
+    
     <item>
       <title>Go1.17 快报之标准库越来越注重易用性</title>
       <link>https://polarisxu.studygolang.com/posts/go/pkg/go1.17-std/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/talk/explain-you-programming-in-go/</guid>
       <description>大家好，我是 polarisxu。 今天在「Go语言中文网」微信群里有网友问了这么一个问题：一句话，说明自己会 go，咋整？一个哥们立马给出了一个回复，竟然无法反驳，感觉 Go 被黑的很惨？！（被黑的最惨的一次？！！） 关于 if err != nil 的调侃真的不要太多。这里列举几个： 1）之前发过一篇文章：写了50万行Go代码是一种什么样的体验？ ，有人留言调侃说：有 10 万行是 if err != nil。。。</description>
-    </item>
-    
-    <item>
-      <title>Go1.16 中的新函数 signal.NotifyContext 怎么用？</title>
-      <link>https://polarisxu.studygolang.com/posts/go/signal-notifycontext/</link>
-      <pubDate>Tue, 01 Jun 2021 12:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/signal-notifycontext/</guid>
-      <description>大家好，我是 polarisxu。 os/signal 这个包大家可能用的不多。但自从 Go1.8 起，有些人开始使用这个包了，原因是 Go1.8 在 net/http 包新增了一个方法： func (srv *Server) Shutdown(ctx context.Context) error 有了它就不需要借助第三方库实现优雅关闭服务了。具体怎么做呢？ func main() { server = http.Server{ Addr: &amp;#34;:8080&amp;#34;, } http.HandleFunc(&amp;#34;/&amp;#34;, func(w http.ResponseWriter, r *http.Request) { time.Sleep(time.Second * 10) fmt.Fprint(w, &amp;#34;Hello world!&amp;#34;) }) go server.ListenAndServe() // 监听中断信号（CTRL + C） c := make(chan os.Signal, 1) signal.Notify(c, os.Interrupt) &amp;lt;-c // 重置 os.Interrupt 的默认行为 signal.Reset(os.Interrupt) fmt.Println(&amp;#34;shutting down gracefully, press Ctrl+C again to force&amp;#34;) // 给程序最多 5 秒时间处理正在服务的</description>
     </item>
     
   </channel>

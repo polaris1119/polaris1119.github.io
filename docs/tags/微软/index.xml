@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>微软 on polarisxu</title>
+    <link>https://polarisxu.studygolang.com/tags/%E5%BE%AE%E8%BD%AF/</link>
+    <description>Recent content in 微软 on polarisxu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
+    <lastBuildDate>Thu, 24 Jun 2021 12:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/%E5%BE%AE%E8%BD%AF/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>这是要干嘛？！微软招 Go 编译器全职开发人员</title>
+      <link>https://polarisxu.studygolang.com/posts/go/dynamic/microsoft-go/</link>
+      <pubDate>Thu, 24 Jun 2021 12:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/dynamic/microsoft-go/</guid>
+      <description>大家好，我是 polarisxu。 微软在其招聘主页上挂了一个招聘信息，招聘高级软件工程师（职位链接：https://careers.microsoft.com/us/en/job/1038385/Senior-Software-Engineer）。这个职位有点特别： 个人贡献者。具体来说，找为 Go 语言编译器和工具开发的全职员工。 我们都知道，一直以来，为了搞了不少开</description>
+    </item>
+    
+  </channel>
+</rss>

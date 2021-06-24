@@ -6,8 +6,38 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en</language>
 		<copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-		<lastBuildDate>Tue, 22 Jun 2021 12:30:00 +0800</lastBuildDate>
+		<lastBuildDate>Thu, 24 Jun 2021 12:30:00 +0800</lastBuildDate>
 		<atom:link href="https://polarisxu.studygolang.com/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>这是要干嘛？！微软招 Go 编译器全职开发人员</title>
+			<link>https://polarisxu.studygolang.com/posts/go/dynamic/microsoft-go/</link>
+			<pubDate>Thu, 24 Jun 2021 12:30:00 +0800</pubDate>
+			
+			<guid>https://polarisxu.studygolang.com/posts/go/dynamic/microsoft-go/</guid>
+			<description>大家好，我是 polarisxu。 微软在其招聘主页上挂了一个招聘信息，招聘高级软件工程师（职位链接：https://careers.microsoft.com/us/en/job/1038385/Senior-Software-Engineer）。这个职位有点特别： 个人贡献者。具体来说，找为 Go 语言编译器和工具开发的全职员工。 我们都知道，一直以来，为了搞了不少开</description>
+			<content type="html"><![CDATA[<p>大家好，我是 polarisxu。</p>
+<p>微软在其招聘主页上挂了一个招聘信息，招聘高级软件工程师（职位链接：<a href="https://careers.microsoft.com/us/en/job/1038385/Senior-Software-Engineer">https://careers.microsoft.com/us/en/job/1038385/Senior-Software-Engineer</a>）。这个职位有点特别：</p>
+<p><p class="md__image">
+  <img src="../imgs/microsoft-go01.png"
+    alt=""  />
+</p>
+</p>
+<p>个人贡献者。具体来说，找为 Go 语言编译器和工具开发的全职员工。</p>
+<p>我们都知道，一直以来，为了搞了不少开发语言，最有名的是 VB、C#（.NET 框架）等。现在他们计划招全职人员，专门为 Go 编译器和工具贡献代码，这个真的很赞。</p>
+<p>招聘需求中还提到，这个角色，将与 Microsoft 其他产品组密切合作，以收集需求并为 Go 开发工具改进。微软的愿景是希望这个角色支持 Go 在微软的应用，同时与更广泛的 Go 社区合作并分享这些改进。</p>
+<p>从这点可以看出，Go 在微软内部肯定有不少产品在使用，这对 Go 来说是大好事。同时也反映了微软这些年在纳德拉的带领下发生了很大的变化，拥抱开源就是其中之一。</p>
+<p>具体职责方面，该职位信息提到，为 Go 编译器和工具生态系统的设计和实现做出贡献，结合开源和封闭源代码开发工具技术，专注于提供 Go 工具集改进以支持内部产品组。</p>
+<p>具体要求截图给大家看看：</p>
+<p><p class="md__image">
+  <img src="../imgs/microsoft-go02.png"
+    alt=""  />
+</p>
+</p>
+<p>对于那些从事 Go 编译器和工具相关的社区爱好者来说，这也许是一个很好的机会。</p>
+<p>反观国内，有这样的大厂招类似的职位吗？</p>
+]]></content>
+		</item>
 		
 		<item>
 			<title>Go1.17 快报之标准库越来越注重易用性</title>
