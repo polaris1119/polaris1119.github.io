@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>社区 on polarisxu</title>
+    <link>https://polarisxu.studygolang.com/tags/%E7%A4%BE%E5%8C%BA/</link>
+    <description>Recent content in 社区 on polarisxu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
+    <lastBuildDate>Thu, 24 Jun 2021 23:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/%E7%A4%BE%E5%8C%BA/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go 启用新的官方问答社区</title>
+      <link>https://polarisxu.studygolang.com/posts/go/dynamic/collectives-go/</link>
+      <pubDate>Thu, 24 Jun 2021 23:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/dynamic/collectives-go/</guid>
+      <description>大家好，我是 polarisxu。 Go 官方宣布，在 StackOverflow 上启用新的问答社区，而这之前，官方的主要在 Google Groups。先简单介绍下 StackOverflow 的 Collective 。 01 Collective 是什么？ 我们知道 StackOverflow 是一个问答社区，针对某一个类问题，一般通过 Tag 的形式汇集，比如 Go 语言的：https://stackoverflow.com/questions/tagged/go。而 Collective 是 StackOverflow 推出的，专门用于为你喜欢的技术构建一个社区</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -14,7 +14,7 @@
 <meta property="og:description" content="polarisxu,Go语言中文网,go,golang,源码分析,系列教程" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://polarisxu.studygolang.com/" />
-<meta property="og:updated_time" content="2021-06-24T12:30:00+08:00" />
+<meta property="og:updated_time" content="2021-06-24T23:30:00+08:00" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="polarisxu"/>
 <meta name="twitter:description" content="polarisxu,Go语言中文网,go,golang,源码分析,系列教程"/>
@@ -70,6 +70,27 @@
 		<main class="site-main section-inner thin animated fadeIn faster">
     
 		
+        <div class="post animated fadeInDown">
+            <div class="post-title">
+                <h2><a href="/posts/go/action/interview-len-shift/">这么一道“简单”的题，为什么结果出乎我的意料</a>
+                </h2>
+            </div>
+            <div class="post-content">
+                <div class="p_part"><p>今天在《Go语言爱好者周刊：第62期》 中贴了一道 Go101 的题，原题如下： package main const s = &#34;Go101.org&#34; // len(s) == 9 // 1 &lt;&lt; 9 == 512 // 512 / 128 == 4 var a byte = 1 &lt;&lt; len(s) / 128 var b byte = 1 &lt;&lt; len(s[:]) / 128 func main() { println(a, b) } 答案是 4 0。 不少人对这个结果应该很吃惊，因为从答题结果看，不到一半的人答对了。而且，如果只给 var b byte = 1 &lt;&lt; len(s[:]) / 128，没有 a 对比，我想答对的人会更少。因为有对比，很多人虽然直觉是 4 4，但想到一定有陷阱，所</p></div>
+            </div>
+            <div class="post-footer">
+                <div class="meta">
+                    <div class="info"><em class="fas fa-calendar-day"></em><span
+                                class="date">2020-09-27</span>
+                        <a class="tag"
+                                   href="/tags/go/">Go</a><a class="tag"
+                                   href="/tags/golang/">Golang</a><a class="tag"
+                                   href="/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/">面试题</a>
+                    </div>
+                </div>
+            </div>
+				</div>
+    
         <div class="post animated fadeInDown">
             <div class="post-title">
                 <h2><a href="/posts/go/translation/how-to-find-goroutines-during-debugging/">如何在调试过程中查找 Goroutine</a>
@@ -271,28 +292,6 @@ IDE 将识别自定义位置，并将其用于具有依赖关系的所有后续�
                                    href="/tags/goland/">GoLand</a><a class="tag"
                                    href="/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a><a class="tag"
                                    href="/tags/%E6%B3%9B%E5%9E%8B/">泛型</a>
-                    </div>
-                </div>
-            </div>
-				</div>
-    
-        <div class="post animated fadeInDown">
-            <div class="post-title">
-                <h2><a href="/posts/go/translation/benchmarking-grpc-in-rust-go/">对 gRPC 的 Rust 和 Go 版本进行基准测试</a>
-                </h2>
-            </div>
-            <div class="post-content">
-                <div class="p_part"><p>背景 如果你计划构建可靠，内存安全 ，高性能的应用程序，那么 Rust＆Go 无疑会是你的选择。 如果您希望从内部应用程序中获得更高的性能，则可能还需要考虑使用 gRPC 而不是普通的 REST API。所有这些都是减少您的计算开销的解决方案。 我尝试比较各种库以了解它们的性能，并希望对你有所帮助。 关注的库 tower-grpc (Rust) 高性能 rust 库，尽管已被 tonic 替代 grpc-go (Golang) grpc 的官方 Go 模块 grpc-rust (Rust) 仍在开发中，另一个 rust grpc 库。看起来</p></div>
-            </div>
-            <div class="post-footer">
-                <div class="meta">
-                    <div class="info"><em class="fas fa-calendar-day"></em><span
-                                class="date">2020-07-16</span>
-                        <a class="tag"
-                                   href="/tags/go/">Go</a><a class="tag"
-                                   href="/tags/rust/">Rust</a><a class="tag"
-                                   href="/tags/grpc/">gRPC</a><a class="tag"
-                                   href="/tags/%E5%9F%BA%E5%87%86%E6%B5%8B%E8%AF%95/">基准测试</a>
                     </div>
                 </div>
             </div>
