@@ -7,7 +7,7 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<meta name="theme-color" content="#fcfcfc">
 	<meta name="msapplication-TileColor" content="#fcfcfc">
-<meta itemprop="name" content="Rust 劝退系列 08：模式匹配">
+<meta itemprop="name" content="Rust 劝退系列 09：函数">
 <meta itemprop="description" content="大家好，我是站长 polarisxu。 这是 Rust 劝退系列的第 8 个教程，探讨 Rust 中的模式匹配。 01 match 表达式 关于 match 表达式，很多其他语言并没有，比如 Go 语言。不过有些语言开始支持 match，比如 PHP 8.0 就有了 match 表达式。 一般地可以认为 match 和 switch 类似，所以 Rust 中没有 switch。 match 用于检查某个当前的值是否匹配一组/列值中的某一个。看一个具体的例子： fn test_match(number: i32)-&gt; &amp;&#39;staticstr{matchnumber{// 匹配单个值 1=&gt;{println!(&#34;One!&#34;);&#34;One!&#34;},// 匹配多个值 2|3|5|7|11=&gt;&#34;This is a prime&#34;,// 匹配">
 <meta itemprop="datePublished" content="2021-06-08T22:30:00+08:00" />
 <meta itemprop="dateModified" content="2021-06-08T22:30:00+08:00" />
@@ -16,14 +16,14 @@
 
 
 <meta itemprop="keywords" content="rust,match," />
-<meta property="og:title" content="Rust 劝退系列 08：模式匹配" />
+<meta property="og:title" content="Rust 劝退系列 09：函数" />
 <meta property="og:description" content="大家好，我是站长 polarisxu。 这是 Rust 劝退系列的第 8 个教程，探讨 Rust 中的模式匹配。 01 match 表达式 关于 match 表达式，很多其他语言并没有，比如 Go 语言。不过有些语言开始支持 match，比如 PHP 8.0 就有了 match 表达式。 一般地可以认为 match 和 switch 类似，所以 Rust 中没有 switch。 match 用于检查某个当前的值是否匹配一组/列值中的某一个。看一个具体的例子： fn test_match(number: i32)-&gt; &amp;&#39;staticstr{matchnumber{// 匹配单个值 1=&gt;{println!(&#34;One!&#34;);&#34;One!&#34;},// 匹配多个值 2|3|5|7|11=&gt;&#34;This is a prime&#34;,// 匹配" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://polarisxu.studygolang.com/posts/rust/rust-tutorial-08/" />
+<meta property="og:url" content="https://polarisxu.studygolang.com/posts/rust/rust-tutorial-09/" />
 <meta property="article:published_time" content="2021-06-08T22:30:00+08:00" />
 <meta property="article:modified_time" content="2021-06-08T22:30:00+08:00" />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Rust 劝退系列 08：模式匹配"/>
+<meta name="twitter:title" content="Rust 劝退系列 09：函数"/>
 <meta name="twitter:description" content="大家好，我是站长 polarisxu。 这是 Rust 劝退系列的第 8 个教程，探讨 Rust 中的模式匹配。 01 match 表达式 关于 match 表达式，很多其他语言并没有，比如 Go 语言。不过有些语言开始支持 match，比如 PHP 8.0 就有了 match 表达式。 一般地可以认为 match 和 switch 类似，所以 Rust 中没有 switch。 match 用于检查某个当前的值是否匹配一组/列值中的某一个。看一个具体的例子： fn test_match(number: i32)-&gt; &amp;&#39;staticstr{matchnumber{// 匹配单个值 1=&gt;{println!(&#34;One!&#34;);&#34;One!&#34;},// 匹配多个值 2|3|5|7|11=&gt;&#34;This is a prime&#34;,// 匹配"/>
 
 	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -33,7 +33,7 @@
 	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
 	<link rel="shortcut icon" href="/favicon.ico">
 
-	<title>Rust 劝退系列 08：模式匹配</title>
+	<title>Rust 劝退系列 09：函数</title>
 	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
 	
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
@@ -78,7 +78,7 @@
 		<article class="thin">
 			<header class="post-header">
 				<div class="post-meta"><span>Jun 8, 2021</span></div>
-				<h1>Rust 劝退系列 08：模式匹配</h1>
+				<h1>Rust 劝退系列 09：函数</h1>
 			</header>
 			<div class="content">
 				<p>大家好，我是站长 polarisxu。</p>
@@ -220,7 +220,7 @@
 	<h2>相关推荐</h2>
 	<ul>
 	
-	<li><a href="/posts/rust/rust-tutorial-09/">Rust 劝退系列 09：函数</a></li>
+	<li><a href="/posts/rust/rust-tutorial-08/">Rust 劝退系列 08：模式匹配</a></li>
 	
 	<li><a href="/posts/rust/rust-tutorial-07/">Rust 劝退系列 07：流程控制</a></li>
 	
@@ -260,11 +260,11 @@
 </nav>
 		</aside>
 		<div class="post-nav thin">
-			<a class="next-post" href="https://polarisxu.studygolang.com/posts/go/book/practical-go-lessons-translate/">
-				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;新</span><br><span>不怕烂尾！决定组织翻译这本 Go 图书</span>
+			<a class="next-post" href="https://polarisxu.studygolang.com/posts/rust/rust-tutorial-08/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;新</span><br><span>Rust 劝退系列 08：模式匹配</span>
 			</a>
-			<a class="prev-post" href="https://polarisxu.studygolang.com/posts/rust/rust-tutorial-09/">
-				<span class="post-nav-label">旧&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>Rust 劝退系列 09：函数</span>
+			<a class="prev-post" href="https://polarisxu.studygolang.com/posts/go/book/practical-go-lessons/">
+				<span class="post-nav-label">旧&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>一本花了2.5年写成的Go免费在线图书</span>
 			</a>
 		</div>
 		<div id="comments" class="thin"><script src="https://utteranc.es/client.js"

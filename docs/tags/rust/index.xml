@@ -18,6 +18,15 @@
     </item>
     
     <item>
+      <title>Rust 劝退系列 09：函数</title>
+      <link>https://polarisxu.studygolang.com/posts/rust/rust-tutorial-09/</link>
+      <pubDate>Tue, 08 Jun 2021 22:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/rust/rust-tutorial-09/</guid>
+      <description>大家好，我是站长 polarisxu。 这是 Rust 劝退系列的第 8 个教程，探讨 Rust 中的模式匹配。 01 match 表达式 关于 match 表达式，很多其他语言并没有，比如 Go 语言。不过有些语言开始支持 match，比如 PHP 8.0 就有了 match 表达式。 一般地可以认为 match 和 switch 类似，所以 Rust 中没有 switch。 match 用于检查某个当前的值是否匹配一组/列值中的某一个。看一个具体的例子： fn test_match(number: i32)-&amp;gt; &amp;amp;&amp;#39;staticstr{matchnumber{// 匹配单个值 1=&amp;gt;{println!(&amp;#34;One!&amp;#34;);&amp;#34;One!&amp;#34;},// 匹配多个值 2|3|5|7|11=&amp;gt;&amp;#34;This is a prime&amp;#34;,// 匹配</description>
+    </item>
+    
+    <item>
       <title>Rust 劝退系列 07：流程控制</title>
       <link>https://polarisxu.studygolang.com/posts/rust/rust-tutorial-07/</link>
       <pubDate>Tue, 25 May 2021 22:30:00 +0800</pubDate>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/rust/rust-tutorial-01/</guid>
       <description>大家好，我是站长 polarisxu。 今天起正式 Rust “劝退”之旅。我也是在学习中，大家一起探讨交流，看谁先被劝退。在这个系列教程中，我通过和 Go 对比学习，同时只讲 Rust 最常用的特性，尽量避免入门就劝退。 工欲善其事必先利其器！本文我们先打造一个 Rust 的开发环境。 01 安装 Rust 打开 Rust 官网：https://rust-lang.org，可以切换到简体中文界面。在顶部菜单有「安装」。 对于</description>
-    </item>
-    
-    <item>
-      <title>那些想替代 C 的语言怎么样？Go、Rust、C&#43;&#43; 和 Zig 生产力对比</title>
-      <link>https://polarisxu.studygolang.com/posts/go/translation/better-c-benchmark/</link>
-      <pubDate>Thu, 01 Apr 2021 12:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/translation/better-c-benchmark/</guid>
-      <description>C 已经快 50 岁了。对于一瓶葡萄酒来说，这个年龄很棒，但对于快速发展的行业中的编程语言而言，它就不同了。在过去的十年中，出现了许多具有不同风格的新语言，所有这些语言都试图在某种程度上成为 C 语言的替代者。 当一种新语言或多或少变得流行时 —— 开发人员开始编写基准测试，以展示该语言编写的软件性能，CPU 利用率和内存使用量以及二进制文件的大小等等。 在这里，我想在不同的层面</description>
     </item>
     
   </channel>
