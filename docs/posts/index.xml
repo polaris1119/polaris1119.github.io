@@ -6,8 +6,42 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en</language>
 		<copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-		<lastBuildDate>Thu, 24 Jun 2021 23:30:00 +0800</lastBuildDate>
+		<lastBuildDate>Tue, 29 Jun 2021 22:30:00 +0800</lastBuildDate>
 		<atom:link href="https://polarisxu.studygolang.com/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>这本 Go 新书挺期待的：100 个常见错误</title>
+			<link>https://polarisxu.studygolang.com/posts/go/book/100-go-mistakes/</link>
+			<pubDate>Tue, 29 Jun 2021 22:30:00 +0800</pubDate>
+			
+			<guid>https://polarisxu.studygolang.com/posts/go/book/100-go-mistakes/</guid>
+			<description>大家好，我是 polarisxu。 Go 虽然简单，但一样会有很多容易犯的错误。网上也有不少总结的 Go 常见错误。 Teiva Harsanyi 在 2019 年发表过一篇文章：《The Top 10 Most Common Mistakes I’ve Seen in Go Projects》 （这里有中文版：https://tomotoes.com/blog/the-top-10-most-common-mistakes-ive-seen-in-go-projects/）</description>
+			<content type="html"><![CDATA[<p>大家好，我是 polarisxu。</p>
+<p>Go 虽然简单，但一样会有很多容易犯的错误。网上也有不少总结的 Go 常见错误。</p>
+<p>Teiva Harsanyi 在 2019 年发表过一篇文章：<a href="https://itnext.io/the-top-10-most-common-mistakes-ive-seen-in-go-projects-4b79d4f6cd65" target="_blank" rel="noopener">《The Top 10 Most Common Mistakes I’ve Seen in Go Projects》</a>
+（这里有中文版：<a href="https://tomotoes.com/blog/the-top-10-most-common-mistakes-ive-seen-in-go-projects/">https://tomotoes.com/blog/the-top-10-most-common-mistakes-ive-seen-in-go-projects/</a>），总结了 Go 项目中常见的 10 个错误。这篇文章不仅分析每个错误的场景，还给出了最佳实践，值得一读。</p>
+<p>看其中一个例子：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">Status</span> <span class="kt">uint32</span>
+
+<span class="kd">const</span> <span class="p">(</span>
+  <span class="nx">StatusOpen</span> <span class="nx">Status</span> <span class="p">=</span> <span class="kc">iota</span>
+  <span class="nx">StatusClosed</span>
+  <span class="nx">StatusUnknown</span>
+<span class="p">)</span>
+</code></pre></div><p>这样的代码，你认为有什么问题？</p>
+<p>最近这篇文章的作者发文说，因为那篇文章挺受欢迎，他就想着能不能写一本这方面的图书。于是，他不断收集各种常见问题，研究博文、图书等。</p>
+<p>去年年底，这样的错误达到了 100 个之多，于是他联系出版社准备出版该书。</p>
+<p>和作者那篇文章类似，每一个错误都将尽可能用现实生活中的例子来说明。目标是希望能够帮助 Go 开发者更高效地工作，减少不必要的错误，真正做到 Go 提倡的 Happy Working！</p>
+<p>目前这本书已经基本完成，在 manning 官方可以找到：<a href="https://www.manning.com/books/100-go-mistakes-how-to-avoid-them">https://www.manning.com/books/100-go-mistakes-how-to-avoid-them</a>，封面如下：</p>
+<p><p class="md__image">
+  <img src="../imgs/Harsanyi-MEAP-HI.png"
+    alt=""  />
+</p>
+</p>
+<p>该书目前出于预售阶段，打 5 折。不过，其中前三章已经可以免费阅读。作者给出了本书的目录，希望大家提建议。（可以访问这里看详细目录：<a href="https://medium.com/solvingalgo/100-go-mistakes-2022-4debd9449a72">https://medium.com/solvingalgo/100-go-mistakes-2022-4debd9449a72</a>）</p>
+<p>从目录看，这本书挺适合作为手册翻阅的。作者预计，这本书得 2022 年春出版。期待一下！</p>
+]]></content>
+		</item>
 		
 		<item>
 			<title>Go 启用新的官方问答社区</title>
@@ -26,7 +60,7 @@
 <p>截止目前，只有两个 Collective 可用，分别是 Go 语言和 Google Cloud，相信马上会越来越多。</p>
 <h2 id="02-go-collective">02 Go Collective</h2>
 <p>根据 <a href="https://blog.golang.org/stackoverflow" target="_blank" rel="noopener">Go 官方介绍</a>
-，Go Collective 是 StackOverflow Collective 上的第一个开源项目，是 Go &amp; StackOverflow 合作的结果。</p>
+，Go Collective 是 StackOverflow Collective 上的第一个开源项目，是 Go &amp; StackOverflow 合作的结果。（<a href="https://stackoverflow.com/collectives/go">https://stackoverflow.com/collectives/go</a>）</p>
 <p><p class="md__image">
   <img src="../imgs/go-collective01.png"
     alt=""  />
