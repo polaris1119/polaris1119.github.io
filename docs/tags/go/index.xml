@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Tue, 29 Jun 2021 22:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 03 Jul 2021 22:10:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go项目实战：一步步构建一个并发文件下载器</title>
+      <link>https://polarisxu.studygolang.com/posts/go/action/build-a-concurrent-file-downloader/</link>
+      <pubDate>Sat, 03 Jul 2021 22:10:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/action/build-a-concurrent-file-downloader/</guid>
+      <description>大家好，我是 polarisxu。 今天为大家带来一个实战项目。建议你一定要动手实践。 在往下看之前，你不妨思考下，用 Go 如何实现一个并发下载器。（我之前有推荐过一个类似的开源项目：推荐三个Go实战开源项目 ） 01 原理 对于服务器上的某个文件，我们要并发下载到本地，很容易想到，应该将文件分成多个部分，然后开多个 goroutine 并发地去下载，最后将这多个部分合并成一个文件，实现并发下载的</description>
+    </item>
+    
     <item>
       <title>这本 Go 新书挺期待的：100 个常见错误</title>
       <link>https://polarisxu.studygolang.com/posts/go/book/100-go-mistakes/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/book/practical-go-lessons-translate/</guid>
       <description>大家好，我是 polarisxu。 前些天给大家分享了一本书：《Practical Go Lessons》 ，挺受欢迎，大家纷纷建议组织翻译。 实话说，我是担心烂尾的，因为之前组织过其他的，比如标准库翻译等，很多人都是一时热情，过些天就把这事忘得一干二净！最后想要有始有终，只能我自己慢慢收尾。 但看到大家的热情，我又觉得，也许这次大家能坚持呢？要不再试一次？大不了最后烂尾，</description>
-    </item>
-    
-    <item>
-      <title>一本花了2.5年写成的Go免费在线图书</title>
-      <link>https://polarisxu.studygolang.com/posts/go/book/practical-go-lessons/</link>
-      <pubDate>Mon, 07 Jun 2021 21:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/book/practical-go-lessons/</guid>
-      <description>大家好，我是 polarisxu。 又一次为大家推荐 Go 图书，这是一本免费的 Go 语言在线图书：https://www.practical-go-lessons.com/。以下是该书的一个封面： 这本书采用渐进的方式讲解 Go 语言。作者还试图解释一些难以掌握的计算机科学概念，对于新人来说很有用。因此这本书对于那些没有计算机基础的人也有帮助。 我也写过书，也一直在坚持写文章，知</description>
     </item>
     
   </channel>
