@@ -7,7 +7,25 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Sat, 03 Jul 2021 22:10:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 03 Jul 2021 22:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Rust</title>
+      <link>https://polarisxu.studygolang.com/tags/rust/</link>
+      <pubDate>Sat, 03 Jul 2021 22:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/tags/rust/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>函数</title>
+      <link>https://polarisxu.studygolang.com/tags/%E5%87%BD%E6%95%B0/</link>
+      <pubDate>Sat, 03 Jul 2021 22:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/tags/%E5%87%BD%E6%95%B0/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>Go</title>
       <link>https://polarisxu.studygolang.com/tags/go/</link>
@@ -77,24 +95,6 @@
       <pubDate>Mon, 14 Jun 2021 20:30:00 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/tags/%E5%AE%98%E7%BD%91/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>RSA</title>
-      <link>https://polarisxu.studygolang.com/tags/rsa/</link>
-      <pubDate>Sun, 13 Jun 2021 20:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/tags/rsa/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>match</title>
-      <link>https://polarisxu.studygolang.com/tags/match/</link>
-      <pubDate>Tue, 08 Jun 2021 22:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/tags/match/</guid>
       <description></description>
     </item>
     

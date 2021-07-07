@@ -8,23 +8,23 @@
 	<meta name="theme-color" content="#fcfcfc">
 	<meta name="msapplication-TileColor" content="#fcfcfc">
 <meta itemprop="name" content="Rust 劝退系列 09：函数">
-<meta itemprop="description" content="大家好，我是站长 polarisxu。 这是 Rust 劝退系列的第 8 个教程，探讨 Rust 中的模式匹配。 01 match 表达式 关于 match 表达式，很多其他语言并没有，比如 Go 语言。不过有些语言开始支持 match，比如 PHP 8.0 就有了 match 表达式。 一般地可以认为 match 和 switch 类似，所以 Rust 中没有 switch。 match 用于检查某个当前的值是否匹配一组/列值中的某一个。看一个具体的例子： fn test_match(number: i32)-&gt; &amp;&#39;staticstr{matchnumber{// 匹配单个值 1=&gt;{println!(&#34;One!&#34;);&#34;One!&#34;},// 匹配多个值 2|3|5|7|11=&gt;&#34;This is a prime&#34;,// 匹配">
-<meta itemprop="datePublished" content="2021-06-08T22:30:00+08:00" />
-<meta itemprop="dateModified" content="2021-06-08T22:30:00+08:00" />
-<meta itemprop="wordCount" content="1486">
+<meta itemprop="description" content="大家好，我是站长 polarisxu。 这是 Rust 劝退系列的第 9 个教程，探讨 Rust 中的函数。 Rust 是支持函数式编程的语言。Rust 中，函数作为一等公民，本身就是一种类型。函数类型变量可以作为其他函数的参数或返回值，也可以赋值给别的变量，还可以直接调用执行。 01 函数定义 在 Rust 中，函数使用 fn 关键字定义（Go 中使用 func，想着够省略了，没想到 Rust 来个更省略！）。 和大部分其他语言的语法">
+<meta itemprop="datePublished" content="2021-07-03T22:30:00+08:00" />
+<meta itemprop="dateModified" content="2021-07-03T22:30:00+08:00" />
+<meta itemprop="wordCount" content="1323">
 
 
 
-<meta itemprop="keywords" content="rust,match," />
+<meta itemprop="keywords" content="rust,函数," />
 <meta property="og:title" content="Rust 劝退系列 09：函数" />
-<meta property="og:description" content="大家好，我是站长 polarisxu。 这是 Rust 劝退系列的第 8 个教程，探讨 Rust 中的模式匹配。 01 match 表达式 关于 match 表达式，很多其他语言并没有，比如 Go 语言。不过有些语言开始支持 match，比如 PHP 8.0 就有了 match 表达式。 一般地可以认为 match 和 switch 类似，所以 Rust 中没有 switch。 match 用于检查某个当前的值是否匹配一组/列值中的某一个。看一个具体的例子： fn test_match(number: i32)-&gt; &amp;&#39;staticstr{matchnumber{// 匹配单个值 1=&gt;{println!(&#34;One!&#34;);&#34;One!&#34;},// 匹配多个值 2|3|5|7|11=&gt;&#34;This is a prime&#34;,// 匹配" />
+<meta property="og:description" content="大家好，我是站长 polarisxu。 这是 Rust 劝退系列的第 9 个教程，探讨 Rust 中的函数。 Rust 是支持函数式编程的语言。Rust 中，函数作为一等公民，本身就是一种类型。函数类型变量可以作为其他函数的参数或返回值，也可以赋值给别的变量，还可以直接调用执行。 01 函数定义 在 Rust 中，函数使用 fn 关键字定义（Go 中使用 func，想着够省略了，没想到 Rust 来个更省略！）。 和大部分其他语言的语法" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://polarisxu.studygolang.com/posts/rust/rust-tutorial-09/" />
-<meta property="article:published_time" content="2021-06-08T22:30:00+08:00" />
-<meta property="article:modified_time" content="2021-06-08T22:30:00+08:00" />
+<meta property="article:published_time" content="2021-07-03T22:30:00+08:00" />
+<meta property="article:modified_time" content="2021-07-03T22:30:00+08:00" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Rust 劝退系列 09：函数"/>
-<meta name="twitter:description" content="大家好，我是站长 polarisxu。 这是 Rust 劝退系列的第 8 个教程，探讨 Rust 中的模式匹配。 01 match 表达式 关于 match 表达式，很多其他语言并没有，比如 Go 语言。不过有些语言开始支持 match，比如 PHP 8.0 就有了 match 表达式。 一般地可以认为 match 和 switch 类似，所以 Rust 中没有 switch。 match 用于检查某个当前的值是否匹配一组/列值中的某一个。看一个具体的例子： fn test_match(number: i32)-&gt; &amp;&#39;staticstr{matchnumber{// 匹配单个值 1=&gt;{println!(&#34;One!&#34;);&#34;One!&#34;},// 匹配多个值 2|3|5|7|11=&gt;&#34;This is a prime&#34;,// 匹配"/>
+<meta name="twitter:description" content="大家好，我是站长 polarisxu。 这是 Rust 劝退系列的第 9 个教程，探讨 Rust 中的函数。 Rust 是支持函数式编程的语言。Rust 中，函数作为一等公民，本身就是一种类型。函数类型变量可以作为其他函数的参数或返回值，也可以赋值给别的变量，还可以直接调用执行。 01 函数定义 在 Rust 中，函数使用 fn 关键字定义（Go 中使用 func，想着够省略了，没想到 Rust 来个更省略！）。 和大部分其他语言的语法"/>
 
 	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -77,139 +77,82 @@
 	<main class="site-main section-inner animated fadeIn faster">
 		<article class="thin">
 			<header class="post-header">
-				<div class="post-meta"><span>Jun 8, 2021</span></div>
+				<div class="post-meta"><span>Jul 3, 2021</span></div>
 				<h1>Rust 劝退系列 09：函数</h1>
 			</header>
 			<div class="content">
 				<p>大家好，我是站长 polarisxu。</p>
-<p>这是 Rust 劝退系列的第 8 个教程，探讨 Rust 中的模式匹配。</p>
-<h2 id="01-match-表达式">01 match 表达式<a href="#01-match-表达式" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-<p>关于 match 表达式，很多其他语言并没有，比如 Go 语言。不过有些语言开始支持 match，比如 PHP 8.0 就有了 match 表达式。</p>
-<p>一般地可以认为 match 和 switch 类似，所以 Rust 中没有 switch。</p>
-<p>match 用于检查某个当前的值是否匹配一组/列值中的某一个。看一个具体的例子：</p>
-<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="k">fn</span> <span class="nf">test_match</span><span class="p">(</span><span class="n">number</span>: <span class="kt">i32</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="kp">&amp;</span><span class="nb">&#39;static</span><span class="w"> </span><span class="kt">str</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span><span class="w">    </span><span class="k">match</span><span class="w"> </span><span class="n">number</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span><span class="w">        </span><span class="c1">// 匹配单个值
-</span><span class="c1"></span><span class="w">        </span><span class="mi">1</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">{</span><span class="n">println</span><span class="o">!</span><span class="p">(</span><span class="s">&#34;One!&#34;</span><span class="p">);</span><span class="w"> </span><span class="s">&#34;One!&#34;</span><span class="p">},</span><span class="w">
-</span><span class="w">        </span><span class="c1">// 匹配多个值
-</span><span class="c1"></span><span class="w">        </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">7</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">11</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s">&#34;This is a prime&#34;</span><span class="p">,</span><span class="w">
-</span><span class="w">        </span><span class="c1">// 匹配一个闭区间范围
-</span><span class="c1"></span><span class="w">        </span><span class="mi">13</span><span class="p">..</span><span class="o">=</span><span class="mi">19</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s">&#34;A teen&#34;</span><span class="p">,</span><span class="w">
-</span><span class="w">        </span><span class="c1">// 处理其他情况
-</span><span class="c1"></span><span class="w">        </span><span class="n">_</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s">&#34;Ain&#39;t special&#34;</span><span class="p">,</span><span class="w">
-</span><span class="w">    </span><span class="p">}</span><span class="w">
-</span><span class="w"></span><span class="p">}</span><span class="w">
-</span></code></pre></div><p>看起来是一个简单的语法结构，但大概率在其他语言没见过。简单解释下：</p>
+<p>这是 Rust 劝退系列的第 9 个教程，探讨 Rust 中的函数。</p>
+<p>Rust 是支持函数式编程的语言。Rust 中，函数作为一等公民，本身就是一种类型。函数类型变量可以作为其他函数的参数或返回值，也可以赋值给别的变量，还可以直接调用执行。</p>
+<h2 id="01-函数定义">01 函数定义<a href="#01-函数定义" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>在 Rust 中，函数使用 fn 关键字定义（Go 中使用 func，想着够省略了，没想到 Rust 来个更省略！）。</p>
+<p>和大部分其他语言的语法类似，Rust 中的函数签名同样包括函数名、函数参数类型和返回值类型。和 Go 语言的函数比，Rust 的函数定义有些不同：</p>
 <ul>
-<li>跟其他语言的 switch 类似，可以匹配多个分支；多个分支之间，使用 <code>,</code> 分隔；</li>
-<li>在 match 分支中，<code>=&gt;</code> 左侧是模式，因此叫做模式匹配，比如 | 表示匹配多个值；<code>..=</code> 表示匹配一个范围；右侧是在左侧匹配成功时要执行的操作；</li>
-<li>match 要求穷尽，也就是要包含所有可能的值。因此提供了 <code>_</code>，用来处理所有其他情况，类似 switch 的 default 分支；但只要穷尽了，可以没有 <code>_</code>；</li>
-<li>如果右侧操作是多个语句，需要放在 <code>{}</code> 中；</li>
-<li>match 是表达式，它的结果是匹配到的模式中，执行操作的最后一个表达式的结果。这在 Rust 中是很常见的，之前提到过，Rust 中一切皆表达式。所以，这个例子中 match 表达式的值即为函数的返回值。因此，match 的所有分支必须返回同一数据类型；</li>
-<li>注意 match 表达式最后是否有分号的区别；</li>
+<li>除了上面说的关键字不同外，Rust 函数名一般建议使用下划线风格（小写字母），即 蛇形命名法（snake_case），否则编译器会警告；而 Go 使用驼峰风格；</li>
+<li>返回值类型使用 -&gt; 标识；</li>
+<li>大括号虽然没有严格要求怎么放，但一般建议紧接函数签名之后，而不是另起一行（Go 是只能这样）；</li>
 </ul>
-<blockquote>
-<p>日常吐槽：在 match 中匹配区间，如果想和 for in 一样，使用 <code>..</code> 来表示半闭半开区间，结果报错。看到资料说应该使用 <code>…</code>，但却提示该语法已废弃！为啥语法结构还不保持一致呢？！</p>
-</blockquote>
-<p>看一个接收 match 结果的例子：</p>
-<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="kd">let</span><span class="w"> </span><span class="n">boolean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span><span class="w">
-</span><span class="w"></span><span class="kd">let</span><span class="w"> </span><span class="n">binary</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">match</span><span class="w"> </span><span class="n">boolean</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span><span class="w">  </span><span class="kc">false</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-</span><span class="w">  </span><span class="kc">true</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-</span><span class="w"></span><span class="p">};</span><span class="w">	</span><span class="c1">// 注意这里的分号
-</span><span class="c1"></span><span class="n">println</span><span class="o">!</span><span class="p">(</span><span class="s">&#34;{} -&gt; {}&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">boolean</span><span class="p">,</span><span class="w"> </span><span class="n">binary</span><span class="p">);</span><span class="w">
-</span></code></pre></div><h2 id="02-match-其他用法">02 match 其他用法<a href="#02-match-其他用法" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-<p>上面介绍了常规的 match 操作。match 还有很多其他的用法。</p>
-<h3 id="解构">解构<a href="#解构" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-<p>当元组和 match 一起时，可以解构元组。</p>
-<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span><span class="w">		</span><span class="c1">// 试一试将不同的值赋给 `pair`
-</span><span class="c1"></span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">pair</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mi">2</span><span class="p">);</span><span class="w">
-</span><span class="w">    
-</span><span class="w">    </span><span class="n">println</span><span class="o">!</span><span class="p">(</span><span class="s">&#34;Tell me about {:?}&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">pair</span><span class="p">);</span><span class="w">
-</span><span class="w">    </span><span class="c1">// match 可以解构一个元组
-</span><span class="c1"></span><span class="w">    </span><span class="k">match</span><span class="w"> </span><span class="n">pair</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span><span class="w">        </span><span class="c1">// 解构出第二个值
-</span><span class="c1"></span><span class="w">        </span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">println</span><span class="o">!</span><span class="p">(</span><span class="s">&#34;First is `0` and `y` is `{:?}`&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">),</span><span class="w">
-</span><span class="w">        </span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">println</span><span class="o">!</span><span class="p">(</span><span class="s">&#34;`x` is `{:?}` and last is `0`&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">),</span><span class="w">
-</span><span class="w">        </span><span class="n">_</span><span class="w">      </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">println</span><span class="o">!</span><span class="p">(</span><span class="s">&#34;It doesn&#39;t matter what they are&#34;</span><span class="p">),</span><span class="w">
-</span><span class="w">        </span><span class="c1">// `_` 表示不将值绑定到变量
-</span><span class="c1"></span><span class="w">    </span><span class="p">}</span><span class="w">
-</span><span class="w"></span><span class="p">}</span><span class="w">
-</span></code></pre></div><p>关于枚举和指针、引用和 match 的结合，以后遇到再讲解。</p>
-<h3 id="guard-语句">guard 语句<a href="#guard-语句" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-<p>在 match 分支中可以加上过滤条件。接着上面元组解构的例子：</p>
-<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">pair</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mi">2</span><span class="p">);</span><span class="w">
-</span><span class="w">
-</span><span class="w">    </span><span class="n">println</span><span class="o">!</span><span class="p">(</span><span class="s">&#34;Tell me about {:?}&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">pair</span><span class="p">);</span><span class="w">
-</span><span class="w">    </span><span class="k">match</span><span class="w"> </span><span class="n">pair</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span><span class="w">        </span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">println</span><span class="o">!</span><span class="p">(</span><span class="s">&#34;These are twins&#34;</span><span class="p">),</span><span class="w">
-</span><span class="w">        </span><span class="c1">// `if` 条件部分是一个卫语句
-</span><span class="c1"></span><span class="w">        </span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">println</span><span class="o">!</span><span class="p">(</span><span class="s">&#34;Antimatter, kaboom!&#34;</span><span class="p">),</span><span class="w">
-</span><span class="w">        </span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">_</span><span class="p">)</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">println</span><span class="o">!</span><span class="p">(</span><span class="s">&#34;The first one is odd&#34;</span><span class="p">),</span><span class="w">
-</span><span class="w">        </span><span class="n">_</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">println</span><span class="o">!</span><span class="p">(</span><span class="s">&#34;No correlation...&#34;</span><span class="p">),</span><span class="w">
-</span><span class="w">    </span><span class="p">}</span><span class="w">
-</span><span class="w"></span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id="绑定">绑定<a href="#绑定" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-<p>这是什么意思呢？看一个例子：（来自 rust by example）</p>
-<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="c1">// `age` 函数，返回一个 `u32` 值。
-</span><span class="c1"></span><span class="k">fn</span> <span class="nf">age</span><span class="p">()</span><span class="w"> </span>-&gt; <span class="kt">u32</span> <span class="p">{</span><span class="w">
-</span><span class="w">    </span><span class="mi">15</span><span class="w">
-</span><span class="w"></span><span class="p">}</span><span class="w">
-</span><span class="w">
-</span><span class="w"></span><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span><span class="w">    </span><span class="n">println</span><span class="o">!</span><span class="p">(</span><span class="s">&#34;Tell me type of person you are&#34;</span><span class="p">);</span><span class="w">
-</span><span class="w">
-</span><span class="w">    </span><span class="k">match</span><span class="w"> </span><span class="n">age</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span><span class="w">        </span><span class="mi">0</span><span class="w">             </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">println</span><span class="o">!</span><span class="p">(</span><span class="s">&#34;I&#39;m not born yet I guess&#34;</span><span class="p">),</span><span class="w">
-</span><span class="w">        </span><span class="c1">// 可以直接 `match` 1 ..= 12，但怎么把岁数打印出来呢？
-</span><span class="c1"></span><span class="w">        </span><span class="c1">// 在 1 ..= 12 分支中绑定匹配值到 `n` 。现在年龄就可以读取了。
-</span><span class="c1"></span><span class="w">        </span><span class="n">n</span><span class="w"> </span><span class="o">@</span><span class="w"> </span><span class="mi">1</span><span class="w">  </span><span class="p">..</span><span class="o">=</span><span class="w"> </span><span class="mi">12</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">println</span><span class="o">!</span><span class="p">(</span><span class="s">&#34;I&#39;m a child of age {:?}&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">),</span><span class="w">
-</span><span class="w">        </span><span class="n">n</span><span class="w"> </span><span class="o">@</span><span class="w"> </span><span class="mi">13</span><span class="w"> </span><span class="p">..</span><span class="o">=</span><span class="w"> </span><span class="mi">19</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">println</span><span class="o">!</span><span class="p">(</span><span class="s">&#34;I&#39;m a teen of age {:?}&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">),</span><span class="w">
-</span><span class="w">        </span><span class="c1">// 不符合上面的范围。返回结果。
-</span><span class="c1"></span><span class="w">        </span><span class="n">n</span><span class="w">             </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">println</span><span class="o">!</span><span class="p">(</span><span class="s">&#34;I&#39;m an old person of age {:?}&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">),</span><span class="w">
-</span><span class="w">    </span><span class="p">}</span><span class="w">
-</span><span class="w"></span><span class="p">}</span><span class="w">
-</span></code></pre></div><p>match 后是一个函数，我们希望在分支中，根据匹配结果，使用 age 函数的返回值。当然，这个例子有点多此一举，完全可以在 match 之前用变量存储 age 函数的返回值。</p>
-<p>那换一个例子：</p>
-<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="k">fn</span> <span class="nf">some_number</span><span class="p">()</span><span class="w"> </span>-&gt; <span class="nb">Option</span><span class="o">&lt;</span><span class="kt">u32</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span><span class="w">    </span><span class="nb">Some</span><span class="p">(</span><span class="mi">41</span><span class="p">)</span><span class="w">
-</span><span class="w"></span><span class="p">}</span><span class="w">
-</span><span class="w">
-</span><span class="w"></span><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span><span class="w">    </span><span class="k">match</span><span class="w"> </span><span class="n">some_number</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span><span class="w">        </span><span class="nb">Some</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">@</span><span class="w"> </span><span class="mi">40</span><span class="p">..</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">println</span><span class="o">!</span><span class="p">(</span><span class="s">&#34;The Answer: {}!&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">),</span><span class="w">
-</span><span class="w">        </span><span class="nb">Some</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="w">      </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">println</span><span class="o">!</span><span class="p">(</span><span class="s">&#34;Not interesting... {}&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">),</span><span class="w">
-</span><span class="w">        </span><span class="n">_</span><span class="w">            </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">(),</span><span class="w">
-</span><span class="w">    </span><span class="p">}</span><span class="w">
-</span><span class="w"></span><span class="p">}</span><span class="w">
-</span></code></pre></div><ul>
-<li>关于 Option 以后讲解</li>
-</ul>
-<p>这个例子很好的讲解了绑定的作用：分支中想要使用匹配的结果，通过 @ 符号可以将匹配的结果和某个变量绑定，然后就可以使用这个变量了。</p>
-<h2 id="03-if-let-和-while-let">03 if let 和 while let<a href="#03-if-let-和-while-let" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-<p>这两个结构其他语言没见过，可以理解为是某些场景下替代 match，让代码更简洁，因为 match 必须穷尽所有情况，而 if let 和 while let 没有此限制。</p>
-<p>以下代码：</p>
-<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="kd">let</span><span class="w"> </span><span class="n">some_u8_value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Some</span><span class="p">(</span><span class="mi">3</span><span class="k">u8</span><span class="p">);</span><span class="w">
-</span><span class="w"></span><span class="k">match</span><span class="w"> </span><span class="n">some_u8_value</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span><span class="w">  </span><span class="nb">Some</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">println</span><span class="o">!</span><span class="p">(</span><span class="s">&#34;three&#34;</span><span class="p">),</span><span class="w">
-</span><span class="w">  </span><span class="n">_</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">(),</span><span class="w">	</span><span class="c1">// 有点多余
+<p>函数声明如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="k">fn</span> <span class="nf">functionname</span><span class="p">(</span><span class="n">parametername</span>: <span class="nc">type</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nc">returntype</span><span class="w"> </span><span class="p">{</span><span class="w">  
+</span><span class="w">    </span><span class="c1">// 函数体（具体实现的功能）
 </span><span class="c1"></span><span class="p">}</span><span class="w">
-</span></code></pre></div><p>改为 if let：</p>
-<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="kd">let</span><span class="w"> </span><span class="n">some_u8_value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Some</span><span class="p">(</span><span class="mi">3</span><span class="k">u8</span><span class="p">);</span><span class="w">
-</span><span class="w"></span><span class="k">if</span><span class="w"> </span><span class="kd">let</span><span class="w"> </span><span class="nb">Some</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">some_u8_value</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span><span class="w">	</span><span class="n">println</span><span class="o">!</span><span class="p">(</span><span class="s">&#34;three&#34;</span><span class="p">);</span><span class="w">
+</span></code></pre></div><p>函数示例：</p>
+<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="k">fn</span> <span class="nf">max</span><span class="p">(</span><span class="n">x</span>: <span class="kt">i32</span><span class="p">,</span><span class="w"> </span><span class="n">y</span>: <span class="kt">i32</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="kt">i32</span> <span class="p">{</span><span class="w">
+</span><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">x</span><span class="p">;</span><span class="w">
+</span><span class="w">  </span><span class="p">}</span><span class="w">
+</span><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">y</span><span class="p">;</span><span class="w">
 </span><span class="w"></span><span class="p">}</span><span class="w">
-</span></code></pre></div><ul>
-<li>和 match 一样，if let 和 while let 都是表达式；</li>
-<li>if/while let 等号左侧是模式，右侧是要匹配的值；所以当右侧的值和左侧的模式匹配时，执行对应的语句块；所以，有时候 if let 也可以单纯的当做解构使用；</li>
-<li>if let 支持普通的 else if 和 else；while let 没有 else；</li>
-</ul>
-<p>while let 语法和 if let 类似。这里就不举例子了。</p>
-<h2 id="04-小结">04 小结<a href="#04-小结" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-<p>Rust 中的 match 虽然和其他语言的 switch 类似，很显然，match 的复杂度比 switch 高。当然，不管复杂与否，最关键还是要实际使用，需要不断实际练习。</p>
-<p>通常，match 和 Option、枚举一起使用，因此，在讲解这两个知识点时，一般会使用到 match。</p>
+</span></code></pre></div><h2 id="02-函数参数">02 函数参数<a href="#02-函数参数" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>注意，和 Go 不同，虽然上面示例中，x、y 的类型相同，但 x 的类型不能省略。</p>
+<p>和 Go 语言一样，Rust 中的函数也没有不能指定默认值。但 Go 支持不定参数，Rust目前不支持。</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// Go 中这样的函数，Rust 不支持
+</span><span class="c1"></span><span class="kd">func</span> <span class="nf">Sum</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">z</span> <span class="o">...</span><span class="kt">int</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
+  <span class="c1">// 函数体
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></div><p>函数参数和变量一样，默认是不可变的，当需要可变参数时，一样得使用 mut 关键字。看一个例子：（来自 《Rust 编程之道》）</p>
+<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="k">fn</span> <span class="nf">modify</span><span class="p">(</span><span class="k">mut</span><span class="w"> </span><span class="n">v</span>: <span class="nb">Vec</span><span class="o">&lt;</span><span class="kt">u32</span><span class="o">&gt;</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nb">Vec</span><span class="o">&lt;</span><span class="kt">u32</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="w">  </span><span class="n">v</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span><span class="w">
+</span><span class="w">  </span><span class="n">v</span><span class="w">
+</span><span class="w"></span><span class="p">}</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vec</span><span class="o">!</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">];</span><span class="w">
+</span><span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">modify</span><span class="p">(</span><span class="n">v</span><span class="p">);</span><span class="w">
+</span><span class="w">  </span><span class="n">println</span><span class="o">!</span><span class="p">(</span><span class="s">&#34;{:?}&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="p">);</span><span class="w">
+</span><span class="w"></span><span class="p">}</span><span class="w">
+</span></code></pre></div><p>按值传递参数，函数里需要对传入其中的动态数组进行修改，因此在参数前加上了 mut 关键字。正因为函数参数前使用了 mut（这叫做可变修饰），因此在 main 里的声明和调用处并没有使用 mut。</p>
+<p>再看另一种情况：</p>
+<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="k">fn</span> <span class="nf">modify</span><span class="p">(</span><span class="n">v</span>: <span class="kp">&amp;</span><span class="nc">mut</span><span class="w"> </span><span class="nb">Vec</span><span class="o">&lt;</span><span class="kt">u32</span><span class="o">&gt;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="w">  </span><span class="n">v</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span><span class="w">
+</span><span class="w"></span><span class="p">}</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vec</span><span class="o">!</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">];</span><span class="w">
+</span><span class="w">  </span><span class="n">modify</span><span class="p">(</span><span class="o">&amp;</span><span class="k">mut</span><span class="w"> </span><span class="n">v</span><span class="p">);</span><span class="w">
+</span><span class="w">  </span><span class="n">println</span><span class="o">!</span><span class="p">(</span><span class="s">&#34;{:?}&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="p">);</span><span class="w">
+</span><span class="w"></span><span class="p">}</span><span class="w">
+</span></code></pre></div><p>这是按引用传递参数。注意 mut 的位置：按值传递，参数可变，mut 放在参数前，这和定义可变变量是一样的写法；但按引用传递，<code>&amp;mut Vec&lt;u32&gt;</code> 这是一个整体，是可变引用类型，因此参数前面不再需要 mut。（mut 位置不一样，着实容易晕！）</p>
+<p>此外，函数参数可以使用 <code>_</code> 忽略该它。</p>
+<h2 id="03-函数返回值">03 函数返回值<a href="#03-函数返回值" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>如果函数没有返回值，-&gt; 不写。其实，根据前面的介绍，没有返回值的函数，返回的类型是单元值 <code>()</code>。所以，也可以显示返回该类型。</p>
+<p>虽然 Rust 不支持多返回值，但因为有元组类型，因此返回元组相当于支持多返回值。</p>
+<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">swap</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span><span class="w">
+</span><span class="w">  </span><span class="n">println</span><span class="o">!</span><span class="p">(</span><span class="s">&#34;x={},y={}&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">);</span><span class="w">
+</span><span class="w"></span><span class="p">}</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">fn</span> <span class="nf">swap</span><span class="p">(</span><span class="n">x</span>: <span class="kt">i32</span><span class="p">,</span><span class="w"> </span><span class="n">y</span>: <span class="kt">i32</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="p">(</span><span class="kt">i32</span><span class="p">,</span><span class="w"> </span><span class="kt">i32</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="w">    </span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w">
+</span><span class="w"></span><span class="p">}</span><span class="w">
+</span></code></pre></div><p>不知道大家是否注意到，swap 函数要求返回一个元组，但我们并没有使用 return 语句，但要特别注意结尾是没有分号的。</p>
+<p>前面说过，Rust 中一切都是表达式。if 表达式、循环表达式等，它们的值是最后一个表达式的值。对于函数，它的返回值是最后一个表达式的值。所以，Rust 中经常不通过 return 来返回值。当然，用 return 也是可以的，但需要注意加上分号。</p>
+<h2 id="04-特殊函数-main">04 特殊函数 main<a href="#04-特殊函数-main" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>这个不用多说，是 Rust 程序的入口函数，签名如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w">
+</span></code></pre></div><p>没有参数、没有返回值。</p>
+<h2 id="05-总结">05 总结<a href="#05-总结" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>关于函数还有很多其他知识点，比如高阶函数、方法、闭包等，下一节就介绍高阶函数和闭包。</p>
 
 			</div><div class="content">
 	<br>
@@ -236,35 +179,27 @@
 			<hr class="post-end">
 			<footer class="post-info">
 				<p>
-					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://polarisxu.studygolang.com/tags/rust">rust</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/match">match</a></span>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://polarisxu.studygolang.com/tags/rust">rust</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/%E5%87%BD%E6%95%B0">函数</a></span>
 				</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1486 字</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2021-06-08 22:30 &#43;0800</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1323 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2021-07-03 22:30 &#43;0800</p>
 			</footer>
 		</article>
 		<aside id="toc">
 			<div class="toc-title">目录</div>
 			<nav id="TableOfContents">
   <ul>
-    <li><a href="#01-match-表达式">01 match 表达式</a></li>
-    <li><a href="#02-match-其他用法">02 match 其他用法</a>
-      <ul>
-        <li><a href="#解构">解构</a></li>
-        <li><a href="#guard-语句">guard 语句</a></li>
-        <li><a href="#绑定">绑定</a></li>
-      </ul>
-    </li>
-    <li><a href="#03-if-let-和-while-let">03 if let 和 while let</a></li>
-    <li><a href="#04-小结">04 小结</a></li>
+    <li><a href="#01-函数定义">01 函数定义</a></li>
+    <li><a href="#02-函数参数">02 函数参数</a></li>
+    <li><a href="#03-函数返回值">03 函数返回值</a></li>
+    <li><a href="#04-特殊函数-main">04 特殊函数 main</a></li>
+    <li><a href="#05-总结">05 总结</a></li>
   </ul>
 </nav>
 		</aside>
 		<div class="post-nav thin">
-			<a class="next-post" href="https://polarisxu.studygolang.com/posts/rust/rust-tutorial-08/">
-				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;新</span><br><span>Rust 劝退系列 08：模式匹配</span>
-			</a>
-			<a class="prev-post" href="https://polarisxu.studygolang.com/posts/go/book/practical-go-lessons/">
-				<span class="post-nav-label">旧&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>一本花了2.5年写成的Go免费在线图书</span>
+			<a class="prev-post" href="https://polarisxu.studygolang.com/posts/go/action/build-a-concurrent-file-downloader/">
+				<span class="post-nav-label">旧&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>Go项目实战：一步步构建一个并发文件下载器</span>
 			</a>
 		</div>
 		<div id="comments" class="thin"><script src="https://utteranc.es/client.js"
