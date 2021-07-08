@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#fcfcfc">
+	<meta name="msapplication-TileColor" content="#fcfcfc">
+<meta itemprop="name" content="网友很强大，发现了Go并发下载的Bug">
+<meta itemprop="description" content="大家好，我是 polarisxu。 前几天我写了一篇文章：Go项目实战：一步步构建一个并发文件下载器 ，有小伙伴评论问，请求 https://studygolang.com/dl/golang/go1.16.5.src.tar.gz 为什么没有返回 Accept-Ranges。在写那篇文章时，我也试了，确实没有返回，因此我以为它不支持。 但有一个小伙伴很认真，他改用 GET 方法请求这个地址，结果却有 Accept-Ranges，于是就很困惑，问我什么原因。经过一顿操作猛如虎，终于知">
+<meta itemprop="datePublished" content="2021-07-07T22:10:00+08:00" />
+<meta itemprop="dateModified" content="2021-07-07T22:10:00+08:00" />
+<meta itemprop="wordCount" content="2271">
+
+
+
+<meta itemprop="keywords" content="Go,并发," />
+<meta property="og:title" content="网友很强大，发现了Go并发下载的Bug" />
+<meta property="og:description" content="大家好，我是 polarisxu。 前几天我写了一篇文章：Go项目实战：一步步构建一个并发文件下载器 ，有小伙伴评论问，请求 https://studygolang.com/dl/golang/go1.16.5.src.tar.gz 为什么没有返回 Accept-Ranges。在写那篇文章时，我也试了，确实没有返回，因此我以为它不支持。 但有一个小伙伴很认真，他改用 GET 方法请求这个地址，结果却有 Accept-Ranges，于是就很困惑，问我什么原因。经过一顿操作猛如虎，终于知" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/action/studygolang-downloader-bug/" />
+<meta property="article:published_time" content="2021-07-07T22:10:00+08:00" />
+<meta property="article:modified_time" content="2021-07-07T22:10:00+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="网友很强大，发现了Go并发下载的Bug"/>
+<meta name="twitter:description" content="大家好，我是 polarisxu。 前几天我写了一篇文章：Go项目实战：一步步构建一个并发文件下载器 ，有小伙伴评论问，请求 https://studygolang.com/dl/golang/go1.16.5.src.tar.gz 为什么没有返回 Accept-Ranges。在写那篇文章时，我也试了，确实没有返回，因此我以为它不支持。 但有一个小伙伴很认真，他改用 GET 方法请求这个地址，结果却有 Accept-Ranges，于是就很困惑，问我什么原因。经过一顿操作猛如虎，终于知"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>网友很强大，发现了Go并发下载的Bug</title>
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
+	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/styles.css">
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://polarisxu.studygolang.com">polarisxu</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+  <a href="https://polarisxu.studygolang.com/">首页</a>
+  <a href="https://polarisxu.studygolang.com/categories/echo%E7%B3%BB%E5%88%97/">Echo系列</a>
+  <a href="https://polarisxu.studygolang.com/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a>
+  <a href="https://polarisxu.studygolang.com/posts/">归档</a>
+  <a href="https://polarisxu.studygolang.com/about/">关于</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<button id="toc-btn" class="hdr-btn desktop-only-ib" title="目录"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3" y2="6"></line><line x1="3" y1="12" x2="3" y2="12"></line><line x1="3" y1="18" x2="3" y2="18"></line></svg></button><span class="hdr-social hide-in-mobile"><a href="https://github.com/polaris1119" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a><a href="https://twitter.com/polaris1119" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="菜单"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://polarisxu.studygolang.com/">首页</a></li>
+			<li><a href="https://polarisxu.studygolang.com/categories/echo%E7%B3%BB%E5%88%97/">Echo系列</a></li>
+			<li><a href="https://polarisxu.studygolang.com/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a></li>
+			<li><a href="https://polarisxu.studygolang.com/posts/">归档</a></li>
+			<li><a href="https://polarisxu.studygolang.com/about/">关于</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Jul 7, 2021</span></div>
+				<h1>网友很强大，发现了Go并发下载的Bug</h1>
+			</header>
+			<div class="content">
+				<p>大家好，我是 polarisxu。</p>
+<p>前几天我写了一篇文章：<a href="https://polarisxu.studygolang.com/posts/go/action/build-a-concurrent-file-downloader/" target="_blank" rel="noopener">Go项目实战：一步步构建一个并发文件下载器</a>
+，有小伙伴评论问，请求 <code>https://studygolang.com/dl/golang/go1.16.5.src.tar.gz</code> 为什么没有返回 Accept-Ranges。在写那篇文章时，我也试了，确实没有返回，因此我以为它不支持。</p>
+<p>但有一个小伙伴很认真，他改用 GET 方法请求这个地址，结果却有 Accept-Ranges，于是就很困惑，问我什么原因。经过一顿操作猛如虎，终于知道原因了。记录下排查过程，供大家参考！（小伙伴的留言可以查看那篇文章）</p>
+<h2 id="01-排查过程">01 排查过程<a href="#01-排查过程" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>通过 curl 命令，分别用 GET 和 HEAD 方法请求这个地址，结果如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ curl -X GET --head https://studygolang.com/dl/golang/go1.16.5.src.tar.gz
+HTTP/1.1 <span class="m">303</span> See Other
+Server: nginx
+Date: Wed, <span class="m">07</span> Jul <span class="m">2021</span> 09:09:35 GMT
+Content-Length: <span class="m">0</span>
+Connection: keep-alive
+Location: https://golang.google.cn/dl/go1.16.5.src.tar.gz
+X-Request-Id: 83ee595c-6270-4fb0-a2f1-98fdc4d315be
+
+$ curl --head https://studygolang.com/dl/golang/go1.16.5.src.tar.gz
+HTTP/1.1 <span class="m">200</span> OK
+Server: nginx
+Date: Wed, <span class="m">07</span> Jul <span class="m">2021</span> 09:09:44 GMT
+Connection: keep-alive
+X-Request-Id: f2ba473d-5bee-44c3-a591-02c358551235
+</code></pre></div><p>虽然都没有 Accept-Ranges，但有一个奇怪现象：一个状态码是 303，一个是 200。很显然，303 是正确的，HEAD 为什么会是 200？</p>
+<p>我以为是 Nginx 对 HEAD 请求做了特殊处理，于是直接访问 Go 服务的方式（不经过 Nginx 代理），结果一样。</p>
+<p>于是，我用 Go 实现一个简单的 Web 服务，Handler 里面也重定向。</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="nx">http</span><span class="p">.</span><span class="nf">HandleFunc</span><span class="p">(</span><span class="s">&#34;/dl&#34;</span><span class="p">,</span> <span class="kd">func</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="p">{</span>
+		<span class="nx">http</span><span class="p">.</span><span class="nf">Redirect</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="nx">r</span><span class="p">,</span> <span class="s">&#34;/&#34;</span><span class="p">,</span> <span class="nx">http</span><span class="p">.</span><span class="nx">StatusSeeOther</span><span class="p">)</span>
+	<span class="p">})</span>
+	<span class="nx">http</span><span class="p">.</span><span class="nf">HandleFunc</span><span class="p">(</span><span class="s">&#34;/&#34;</span><span class="p">,</span> <span class="kd">func</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="p">{</span>
+		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Fprintf</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="s">&#34;Hello World&#34;</span><span class="p">)</span>
+	<span class="p">})</span>
+	<span class="nx">http</span><span class="p">.</span><span class="nf">ListenAndServe</span><span class="p">(</span><span class="s">&#34;:2022&#34;</span><span class="p">,</span> <span class="kc">nil</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div><p>用 curl 请求 <code>http://localhost:2022/dl</code>，GET 和 HEAD 都返回 303。于是我怀疑是不是 Echo 框架哪里的问题（studygolang 使用 Echo 框架构建的）。</p>
+<p>所以，我用 Echo 框架写个 Web 服务测试：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="nx">e</span> <span class="o">:=</span> <span class="nx">echo</span><span class="p">.</span><span class="nf">New</span><span class="p">()</span>
+  
+	<span class="nx">e</span><span class="p">.</span><span class="nf">GET</span><span class="p">(</span><span class="s">&#34;/dl&#34;</span><span class="p">,</span> <span class="kd">func</span><span class="p">(</span><span class="nx">ctx</span> <span class="nx">echo</span><span class="p">.</span><span class="nx">Context</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">ctx</span><span class="p">.</span><span class="nf">Redirect</span><span class="p">(</span><span class="nx">http</span><span class="p">.</span><span class="nx">StatusSeeOther</span><span class="p">,</span> <span class="s">&#34;/&#34;</span><span class="p">)</span>
+  <span class="p">})</span>
+  <span class="nx">e</span><span class="p">.</span><span class="nf">GET</span><span class="p">(</span><span class="s">&#34;/&#34;</span><span class="p">,</span> <span class="kd">func</span><span class="p">(</span><span class="nx">ctx</span> <span class="nx">echo</span><span class="p">.</span><span class="nx">Context</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">ctx</span><span class="p">.</span><span class="nf">String</span><span class="p">(</span><span class="nx">http</span><span class="p">.</span><span class="nx">StatusOK</span><span class="p">,</span> <span class="s">&#34;Hello World!&#34;</span><span class="p">)</span>
+  <span class="p">})</span>
+	
+	<span class="nx">e</span><span class="p">.</span><span class="nx">Logger</span><span class="p">.</span><span class="nf">Fatal</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nf">Start</span><span class="p">(</span><span class="s">&#34;:2022&#34;</span><span class="p">))</span>
+<span class="p">}</span>
+</code></pre></div><p>同样用 curl 请求  <code>http://localhost:2022/dl</code>，GET 返回 303，而 HEAD 报 405 Method Not Allowed，这符合预期。我们的路由设置只允许 GET 请求。但为什么 studygolang 没有返回 405，因为它也限制只能 GET 请求。</p>
+<p>于是我对随便一个地址发起 HEAD 请求，发现都返回 200，可见 HTTP 错误被“吞掉”了。查找 studygolang 的中间件，发现了这个：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">HTTPError</span><span class="p">()</span> <span class="nx">echo</span><span class="p">.</span><span class="nx">MiddlewareFunc</span> <span class="p">{</span>
+	<span class="k">return</span> <span class="kd">func</span><span class="p">(</span><span class="nx">next</span> <span class="nx">echo</span><span class="p">.</span><span class="nx">HandlerFunc</span><span class="p">)</span> <span class="nx">echo</span><span class="p">.</span><span class="nx">HandlerFunc</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="kd">func</span><span class="p">(</span><span class="nx">ctx</span> <span class="nx">echo</span><span class="p">.</span><span class="nx">Context</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
+			<span class="k">if</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nf">next</span><span class="p">(</span><span class="nx">ctx</span><span class="p">);</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+
+				<span class="k">if</span> <span class="p">!</span><span class="nx">ctx</span><span class="p">.</span><span class="nf">Response</span><span class="p">().</span><span class="nx">Committed</span> <span class="p">{</span>
+					<span class="k">if</span> <span class="nx">he</span><span class="p">,</span> <span class="nx">ok</span> <span class="o">:=</span> <span class="nx">err</span><span class="p">.(</span><span class="o">*</span><span class="nx">echo</span><span class="p">.</span><span class="nx">HTTPError</span><span class="p">);</span> <span class="nx">ok</span> <span class="p">{</span>
+						<span class="k">switch</span> <span class="nx">he</span><span class="p">.</span><span class="nx">Code</span> <span class="p">{</span>
+						<span class="k">case</span> <span class="nx">http</span><span class="p">.</span><span class="nx">StatusNotFound</span><span class="p">:</span>
+							<span class="k">if</span> <span class="nx">util</span><span class="p">.</span><span class="nf">IsAjax</span><span class="p">(</span><span class="nx">ctx</span><span class="p">)</span> <span class="p">{</span>
+								<span class="k">return</span> <span class="nx">ctx</span><span class="p">.</span><span class="nf">String</span><span class="p">(</span><span class="nx">http</span><span class="p">.</span><span class="nx">StatusOK</span><span class="p">,</span> <span class="s">`{&#34;ok&#34;:0,&#34;error&#34;:&#34;接口不存在&#34;}`</span><span class="p">)</span>
+							<span class="p">}</span>
+							<span class="k">return</span> <span class="nf">Render</span><span class="p">(</span><span class="nx">ctx</span><span class="p">,</span> <span class="s">&#34;404.html&#34;</span><span class="p">,</span> <span class="kc">nil</span><span class="p">)</span>
+						<span class="k">case</span> <span class="nx">http</span><span class="p">.</span><span class="nx">StatusForbidden</span><span class="p">:</span>
+							<span class="k">if</span> <span class="nx">util</span><span class="p">.</span><span class="nf">IsAjax</span><span class="p">(</span><span class="nx">ctx</span><span class="p">)</span> <span class="p">{</span>
+								<span class="k">return</span> <span class="nx">ctx</span><span class="p">.</span><span class="nf">String</span><span class="p">(</span><span class="nx">http</span><span class="p">.</span><span class="nx">StatusOK</span><span class="p">,</span> <span class="s">`{&#34;ok&#34;:0,&#34;error&#34;:&#34;没有权限访问&#34;}`</span><span class="p">)</span>
+							<span class="p">}</span>
+							<span class="k">return</span> <span class="nf">Render</span><span class="p">(</span><span class="nx">ctx</span><span class="p">,</span> <span class="s">&#34;403.html&#34;</span><span class="p">,</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kd">interface</span><span class="p">{}{</span><span class="s">&#34;msg&#34;</span><span class="p">:</span> <span class="nx">he</span><span class="p">.</span><span class="nx">Message</span><span class="p">})</span>
+						<span class="k">case</span> <span class="nx">http</span><span class="p">.</span><span class="nx">StatusInternalServerError</span><span class="p">:</span>
+							<span class="k">if</span> <span class="nx">util</span><span class="p">.</span><span class="nf">IsAjax</span><span class="p">(</span><span class="nx">ctx</span><span class="p">)</span> <span class="p">{</span>
+								<span class="k">return</span> <span class="nx">ctx</span><span class="p">.</span><span class="nf">String</span><span class="p">(</span><span class="nx">http</span><span class="p">.</span><span class="nx">StatusOK</span><span class="p">,</span> <span class="s">`{&#34;ok&#34;:0,&#34;error&#34;:&#34;接口服务器错误&#34;}`</span><span class="p">)</span>
+							<span class="p">}</span>
+							<span class="k">return</span> <span class="nf">Render</span><span class="p">(</span><span class="nx">ctx</span><span class="p">,</span> <span class="s">&#34;500.html&#34;</span><span class="p">,</span> <span class="kc">nil</span><span class="p">)</span>
+					<span class="p">}</span>
+				<span class="p">}</span>
+			<span class="p">}</span>
+			<span class="k">return</span> <span class="kc">nil</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><p>这里对 404、403、500 错误都做了处理，但其他 HTTP 错误直接忽略了，导致最后返回了 200 OK。只需要在上面 switch 语句加一个 default 分支，同时把 err 原样 return，采用系统默认处理方式：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="k">default</span><span class="p">:</span>
+	<span class="k">return</span> <span class="nx">err</span>
+</code></pre></div><p>这样 405 Method Not Allowed 会正常返回。</p>
+<p>同时，为了解决 HEAD 能用来判断下载行为，针对下载路由，我加上了允许 HEAD 请求，这样就解决了小伙伴们的困惑。</p>
+<h2 id="02-curl-和-go-代码行为异同">02 curl 和 Go 代码行为异同<a href="#02-curl-和-go-代码行为异同" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>不知道大家发现没有，通过 curl 请求 <code>https://studygolang.com/dl/golang/go1.16.5.src.tar.gz</code> 和 Go 代码请求，结果是不一样的：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ curl -X GET --head https://studygolang.com/dl/golang/go1.16.5.src.tar.gz
+HTTP/1.1 <span class="m">303</span> See Other
+Server: nginx
+Date: Thu, <span class="m">08</span> Jul <span class="m">2021</span> 02:05:10 GMT
+Content-Length: <span class="m">0</span>
+Connection: keep-alive
+Location: https://golang.google.cn/dl/go1.16.5.src.tar.gz
+X-Request-Id: 14d741ca-65c1-4b05-90b8-bef5c8b5a0a3
+</code></pre></div><p>返回的是 303 重定向，自然没有 Accept-Ranges 头。</p>
+<p>但改用如下 Go 代码：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">resp</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">http</span><span class="p">.</span><span class="nf">Get</span><span class="p">(</span><span class="s">&#34;https://studygolang.com/dl/golang/go1.16.5.src.tar.gz&#34;</span><span class="p">)</span>
+<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+  <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;get err&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+  <span class="k">return</span>
+<span class="p">}</span>
+
+<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">resp</span><span class="p">)</span>
+<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;ranges&#34;</span><span class="p">,</span> <span class="nx">resp</span><span class="p">.</span><span class="nx">Header</span><span class="p">.</span><span class="nf">Get</span><span class="p">(</span><span class="s">&#34;Accept-Ranges&#34;</span><span class="p">))</span>
+</code></pre></div><p>返回的是 200，且有 Accept-Ranges 头。可以猜测，应该是 Go 根据重定向递归请求重定向后的地址。可以查看源码确认下。</p>
+<p>通过这个可以看到：<a href="https://docs.studygolang.com/src/net/http/client.go?s=20406:20458#L574">https://docs.studygolang.com/src/net/http/client.go?s=20406:20458#L574</a>，核心代码如下（比较容易看懂）：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// 循环处理所有需要处理的 url（包括重定向后的）
+</span><span class="c1"></span><span class="k">for</span> <span class="p">{</span>
+		<span class="c1">// For all but the first request, create the next
+</span><span class="c1"></span>		<span class="c1">// request hop and replace req.
+</span><span class="c1"></span>		<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nx">reqs</span><span class="p">)</span> <span class="p">&gt;</span> <span class="mi">0</span> <span class="p">{</span>
+      <span class="c1">// 如果是重定向，请求重定向地址
+</span><span class="c1"></span>			<span class="nx">loc</span> <span class="o">:=</span> <span class="nx">resp</span><span class="p">.</span><span class="nx">Header</span><span class="p">.</span><span class="nf">Get</span><span class="p">(</span><span class="s">&#34;Location&#34;</span><span class="p">)</span>
+			<span class="k">if</span> <span class="nx">loc</span> <span class="o">==</span> <span class="s">&#34;&#34;</span> <span class="p">{</span>
+				<span class="nx">resp</span><span class="p">.</span><span class="nf">closeBody</span><span class="p">()</span>
+				<span class="k">return</span> <span class="kc">nil</span><span class="p">,</span> <span class="nf">uerr</span><span class="p">(</span><span class="nx">fmt</span><span class="p">.</span><span class="nf">Errorf</span><span class="p">(</span><span class="s">&#34;%d response missing Location header&#34;</span><span class="p">,</span> <span class="nx">resp</span><span class="p">.</span><span class="nx">StatusCode</span><span class="p">))</span>
+			<span class="p">}</span>
+			<span class="nx">u</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nf">Parse</span><span class="p">(</span><span class="nx">loc</span><span class="p">)</span>
+			<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+				<span class="nx">resp</span><span class="p">.</span><span class="nf">closeBody</span><span class="p">()</span>
+				<span class="k">return</span> <span class="kc">nil</span><span class="p">,</span> <span class="nf">uerr</span><span class="p">(</span><span class="nx">fmt</span><span class="p">.</span><span class="nf">Errorf</span><span class="p">(</span><span class="s">&#34;failed to parse Location header %q: %v&#34;</span><span class="p">,</span> <span class="nx">loc</span><span class="p">,</span> <span class="nx">err</span><span class="p">))</span>
+			<span class="p">}</span>
+			<span class="nx">host</span> <span class="o">:=</span> <span class="s">&#34;&#34;</span>
+			<span class="k">if</span> <span class="nx">req</span><span class="p">.</span><span class="nx">Host</span> <span class="o">!=</span> <span class="s">&#34;&#34;</span> <span class="o">&amp;&amp;</span> <span class="nx">req</span><span class="p">.</span><span class="nx">Host</span> <span class="o">!=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Host</span> <span class="p">{</span>
+				<span class="c1">// If the caller specified a custom Host header and the
+</span><span class="c1"></span>				<span class="c1">// redirect location is relative, preserve the Host header
+</span><span class="c1"></span>				<span class="c1">// through the redirect. See issue #22233.
+</span><span class="c1"></span>				<span class="k">if</span> <span class="nx">u</span><span class="p">,</span> <span class="nx">_</span> <span class="o">:=</span> <span class="nx">url</span><span class="p">.</span><span class="nf">Parse</span><span class="p">(</span><span class="nx">loc</span><span class="p">);</span> <span class="nx">u</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="o">&amp;&amp;</span> <span class="p">!</span><span class="nx">u</span><span class="p">.</span><span class="nf">IsAbs</span><span class="p">()</span> <span class="p">{</span>
+					<span class="nx">host</span> <span class="p">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">Host</span>
+				<span class="p">}</span>
+			<span class="p">}</span>
+			<span class="nx">ireq</span> <span class="o">:=</span> <span class="nx">reqs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+			<span class="nx">req</span> <span class="p">=</span> <span class="o">&amp;</span><span class="nx">Request</span><span class="p">{</span>
+				<span class="nx">Method</span><span class="p">:</span>   <span class="nx">redirectMethod</span><span class="p">,</span>
+				<span class="nx">Response</span><span class="p">:</span> <span class="nx">resp</span><span class="p">,</span>
+				<span class="nx">URL</span><span class="p">:</span>      <span class="nx">u</span><span class="p">,</span>
+				<span class="nx">Header</span><span class="p">:</span>   <span class="nb">make</span><span class="p">(</span><span class="nx">Header</span><span class="p">),</span>
+				<span class="nx">Host</span><span class="p">:</span>     <span class="nx">host</span><span class="p">,</span>
+				<span class="nx">Cancel</span><span class="p">:</span>   <span class="nx">ireq</span><span class="p">.</span><span class="nx">Cancel</span><span class="p">,</span>
+				<span class="nx">ctx</span><span class="p">:</span>      <span class="nx">ireq</span><span class="p">.</span><span class="nx">ctx</span><span class="p">,</span>
+			<span class="p">}</span>
+			<span class="k">if</span> <span class="nx">includeBody</span> <span class="o">&amp;&amp;</span> <span class="nx">ireq</span><span class="p">.</span><span class="nx">GetBody</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+				<span class="nx">req</span><span class="p">.</span><span class="nx">Body</span><span class="p">,</span> <span class="nx">err</span> <span class="p">=</span> <span class="nx">ireq</span><span class="p">.</span><span class="nf">GetBody</span><span class="p">()</span>
+				<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+					<span class="nx">resp</span><span class="p">.</span><span class="nf">closeBody</span><span class="p">()</span>
+					<span class="k">return</span> <span class="kc">nil</span><span class="p">,</span> <span class="nf">uerr</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+				<span class="p">}</span>
+				<span class="nx">req</span><span class="p">.</span><span class="nx">ContentLength</span> <span class="p">=</span> <span class="nx">ireq</span><span class="p">.</span><span class="nx">ContentLength</span>
+			<span class="p">}</span>
+
+			<span class="c1">// Copy original headers before setting the Referer,
+</span><span class="c1"></span>			<span class="c1">// in case the user set Referer on their first request.
+</span><span class="c1"></span>			<span class="c1">// If they really want to override, they can do it in
+</span><span class="c1"></span>			<span class="c1">// their CheckRedirect func.
+</span><span class="c1"></span>			<span class="nf">copyHeaders</span><span class="p">(</span><span class="nx">req</span><span class="p">)</span>
+
+			<span class="c1">// Add the Referer header from the most recent
+</span><span class="c1"></span>			<span class="c1">// request URL to the new one, if it&#39;s not https-&gt;http:
+</span><span class="c1"></span>			<span class="k">if</span> <span class="nx">ref</span> <span class="o">:=</span> <span class="nf">refererForURL</span><span class="p">(</span><span class="nx">reqs</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="nx">reqs</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">].</span><span class="nx">URL</span><span class="p">,</span> <span class="nx">req</span><span class="p">.</span><span class="nx">URL</span><span class="p">);</span> <span class="nx">ref</span> <span class="o">!=</span> <span class="s">&#34;&#34;</span> <span class="p">{</span>
+				<span class="nx">req</span><span class="p">.</span><span class="nx">Header</span><span class="p">.</span><span class="nf">Set</span><span class="p">(</span><span class="s">&#34;Referer&#34;</span><span class="p">,</span> <span class="nx">ref</span><span class="p">)</span>
+			<span class="p">}</span>
+			<span class="nx">err</span> <span class="p">=</span> <span class="nx">c</span><span class="p">.</span><span class="nf">checkRedirect</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">reqs</span><span class="p">)</span>
+
+			<span class="c1">// Sentinel error to let users select the
+</span><span class="c1"></span>			<span class="c1">// previous response, without closing its
+</span><span class="c1"></span>			<span class="c1">// body. See Issue 10069.
+</span><span class="c1"></span>			<span class="k">if</span> <span class="nx">err</span> <span class="o">==</span> <span class="nx">ErrUseLastResponse</span> <span class="p">{</span>
+				<span class="k">return</span> <span class="nx">resp</span><span class="p">,</span> <span class="kc">nil</span>
+			<span class="p">}</span>
+
+			<span class="c1">// Close the previous response&#39;s body. But
+</span><span class="c1"></span>			<span class="c1">// read at least some of the body so if it&#39;s
+</span><span class="c1"></span>			<span class="c1">// small the underlying TCP connection will be
+</span><span class="c1"></span>			<span class="c1">// re-used. No need to check for errors: if it
+</span><span class="c1"></span>			<span class="c1">// fails, the Transport won&#39;t reuse it anyway.
+</span><span class="c1"></span>			<span class="kd">const</span> <span class="nx">maxBodySlurpSize</span> <span class="p">=</span> <span class="mi">2</span> <span class="o">&lt;&lt;</span> <span class="mi">10</span>
+			<span class="k">if</span> <span class="nx">resp</span><span class="p">.</span><span class="nx">ContentLength</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span> <span class="o">||</span> <span class="nx">resp</span><span class="p">.</span><span class="nx">ContentLength</span> <span class="o">&lt;=</span> <span class="nx">maxBodySlurpSize</span> <span class="p">{</span>
+				<span class="nx">io</span><span class="p">.</span><span class="nf">CopyN</span><span class="p">(</span><span class="nx">io</span><span class="p">.</span><span class="nx">Discard</span><span class="p">,</span> <span class="nx">resp</span><span class="p">.</span><span class="nx">Body</span><span class="p">,</span> <span class="nx">maxBodySlurpSize</span><span class="p">)</span>
+			<span class="p">}</span>
+			<span class="nx">resp</span><span class="p">.</span><span class="nx">Body</span><span class="p">.</span><span class="nf">Close</span><span class="p">()</span>
+
+			<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+				<span class="c1">// Special case for Go 1 compatibility: return both the response
+</span><span class="c1"></span>				<span class="c1">// and an error if the CheckRedirect function failed.
+</span><span class="c1"></span>				<span class="c1">// See https://golang.org/issue/3795
+</span><span class="c1"></span>				<span class="c1">// The resp.Body has already been closed.
+</span><span class="c1"></span>				<span class="nx">ue</span> <span class="o">:=</span> <span class="nf">uerr</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+				<span class="nx">ue</span><span class="p">.(</span><span class="o">*</span><span class="nx">url</span><span class="p">.</span><span class="nx">Error</span><span class="p">).</span><span class="nx">URL</span> <span class="p">=</span> <span class="nx">loc</span>
+				<span class="k">return</span> <span class="nx">resp</span><span class="p">,</span> <span class="nx">ue</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+
+		<span class="nx">reqs</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">reqs</span><span class="p">,</span> <span class="nx">req</span><span class="p">)</span>
+		<span class="kd">var</span> <span class="nx">err</span> <span class="kt">error</span>
+		<span class="kd">var</span> <span class="nx">didTimeout</span> <span class="kd">func</span><span class="p">()</span> <span class="kt">bool</span>
+		<span class="k">if</span> <span class="nx">resp</span><span class="p">,</span> <span class="nx">didTimeout</span><span class="p">,</span> <span class="nx">err</span> <span class="p">=</span> <span class="nx">c</span><span class="p">.</span><span class="nf">send</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">deadline</span><span class="p">);</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+			<span class="c1">// c.send() always closes req.Body
+</span><span class="c1"></span>			<span class="nx">reqBodyClosed</span> <span class="p">=</span> <span class="kc">true</span>
+			<span class="k">if</span> <span class="p">!</span><span class="nx">deadline</span><span class="p">.</span><span class="nf">IsZero</span><span class="p">()</span> <span class="o">&amp;&amp;</span> <span class="nf">didTimeout</span><span class="p">()</span> <span class="p">{</span>
+				<span class="nx">err</span> <span class="p">=</span> <span class="o">&amp;</span><span class="nx">httpError</span><span class="p">{</span>
+					<span class="c1">// TODO: early in cycle: s/Client.Timeout exceeded/timeout or context cancellation/
+</span><span class="c1"></span>					<span class="nx">err</span><span class="p">:</span>     <span class="nx">err</span><span class="p">.</span><span class="nf">Error</span><span class="p">()</span> <span class="o">+</span> <span class="s">&#34; (Client.Timeout exceeded while awaiting headers)&#34;</span><span class="p">,</span>
+					<span class="nx">timeout</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+				<span class="p">}</span>
+			<span class="p">}</span>
+			<span class="k">return</span> <span class="kc">nil</span><span class="p">,</span> <span class="nf">uerr</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+		<span class="p">}</span>
+
+  	<span class="c1">// 确认重定向行为
+</span><span class="c1"></span>		<span class="kd">var</span> <span class="nx">shouldRedirect</span> <span class="kt">bool</span>
+		<span class="nx">redirectMethod</span><span class="p">,</span> <span class="nx">shouldRedirect</span><span class="p">,</span> <span class="nx">includeBody</span> <span class="p">=</span> <span class="nf">redirectBehavior</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">Method</span><span class="p">,</span> <span class="nx">resp</span><span class="p">,</span> <span class="nx">reqs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+		<span class="k">if</span> <span class="p">!</span><span class="nx">shouldRedirect</span> <span class="p">{</span>
+			<span class="k">return</span> <span class="nx">resp</span><span class="p">,</span> <span class="kc">nil</span>
+		<span class="p">}</span>
+
+		<span class="nx">req</span><span class="p">.</span><span class="nf">closeBody</span><span class="p">()</span>
+	<span class="p">}</span>
+</code></pre></div><p>可以进一步看 redirectBehavior 函数 <a href="https://docs.studygolang.com/src/net/http/client.go?s=20406:20458#L497">https://docs.studygolang.com/src/net/http/client.go?s=20406:20458#L497</a>：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">redirectBehavior</span><span class="p">(</span><span class="nx">reqMethod</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">resp</span> <span class="o">*</span><span class="nx">Response</span><span class="p">,</span> <span class="nx">ireq</span> <span class="o">*</span><span class="nx">Request</span><span class="p">)</span> <span class="p">(</span><span class="nx">redirectMethod</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">shouldRedirect</span><span class="p">,</span> <span class="nx">includeBody</span> <span class="kt">bool</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">switch</span> <span class="nx">resp</span><span class="p">.</span><span class="nx">StatusCode</span> <span class="p">{</span>
+	<span class="k">case</span> <span class="mi">301</span><span class="p">,</span> <span class="mi">302</span><span class="p">,</span> <span class="mi">303</span><span class="p">:</span>
+		<span class="nx">redirectMethod</span> <span class="p">=</span> <span class="nx">reqMethod</span>
+		<span class="nx">shouldRedirect</span> <span class="p">=</span> <span class="kc">true</span>
+		<span class="nx">includeBody</span> <span class="p">=</span> <span class="kc">false</span>
+
+		<span class="c1">// RFC 2616 allowed automatic redirection only with GET and
+</span><span class="c1"></span>		<span class="c1">// HEAD requests. RFC 7231 lifts this restriction, but we still
+</span><span class="c1"></span>		<span class="c1">// restrict other methods to GET to maintain compatibility.
+</span><span class="c1"></span>		<span class="c1">// See Issue 18570.
+</span><span class="c1"></span>		<span class="k">if</span> <span class="nx">reqMethod</span> <span class="o">!=</span> <span class="s">&#34;GET&#34;</span> <span class="o">&amp;&amp;</span> <span class="nx">reqMethod</span> <span class="o">!=</span> <span class="s">&#34;HEAD&#34;</span> <span class="p">{</span>
+			<span class="nx">redirectMethod</span> <span class="p">=</span> <span class="s">&#34;GET&#34;</span>
+		<span class="p">}</span>
+	<span class="k">case</span> <span class="mi">307</span><span class="p">,</span> <span class="mi">308</span><span class="p">:</span>
+		<span class="nx">redirectMethod</span> <span class="p">=</span> <span class="nx">reqMethod</span>
+		<span class="nx">shouldRedirect</span> <span class="p">=</span> <span class="kc">true</span>
+		<span class="nx">includeBody</span> <span class="p">=</span> <span class="kc">true</span>
+
+		<span class="c1">// Treat 307 and 308 specially, since they&#39;re new in
+</span><span class="c1"></span>		<span class="c1">// Go 1.8, and they also require re-sending the request body.
+</span><span class="c1"></span>		<span class="k">if</span> <span class="nx">resp</span><span class="p">.</span><span class="nx">Header</span><span class="p">.</span><span class="nf">Get</span><span class="p">(</span><span class="s">&#34;Location&#34;</span><span class="p">)</span> <span class="o">==</span> <span class="s">&#34;&#34;</span> <span class="p">{</span>
+			<span class="c1">// 308s have been observed in the wild being served
+</span><span class="c1"></span>			<span class="c1">// without Location headers. Since Go 1.7 and earlier
+</span><span class="c1"></span>			<span class="c1">// didn&#39;t follow these codes, just stop here instead
+</span><span class="c1"></span>			<span class="c1">// of returning an error.
+</span><span class="c1"></span>			<span class="c1">// See Issue 17773.
+</span><span class="c1"></span>			<span class="nx">shouldRedirect</span> <span class="p">=</span> <span class="kc">false</span>
+			<span class="k">break</span>
+		<span class="p">}</span>
+		<span class="k">if</span> <span class="nx">ireq</span><span class="p">.</span><span class="nx">GetBody</span> <span class="o">==</span> <span class="kc">nil</span> <span class="o">&amp;&amp;</span> <span class="nx">ireq</span><span class="p">.</span><span class="nf">outgoingLength</span><span class="p">()</span> <span class="o">!=</span> <span class="mi">0</span> <span class="p">{</span>
+			<span class="c1">// We had a request body, and 307/308 require
+</span><span class="c1"></span>			<span class="c1">// re-sending it, but GetBody is not defined. So just
+</span><span class="c1"></span>			<span class="c1">// return this response to the user instead of an
+</span><span class="c1"></span>			<span class="c1">// error, like we did in Go 1.7 and earlier.
+</span><span class="c1"></span>			<span class="nx">shouldRedirect</span> <span class="p">=</span> <span class="kc">false</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="nx">redirectMethod</span><span class="p">,</span> <span class="nx">shouldRedirect</span><span class="p">,</span> <span class="nx">includeBody</span>
+<span class="p">}</span>
+</code></pre></div><p>很清晰了吧。</p>
+<h2 id="03-总结">03 总结<a href="#03-总结" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>很开心，还是有读者很认真的在看我的文章，在跟着动手实践，还对其中的点提出质疑。希望通过这篇文章，大家能够对 HTTP 协议有更深的认识，同时体会问题排查的思路。</p>
+<p>有其他问题，也欢迎留言交流！</p>
+
+			</div><div class="content">
+	<br>
+	<img src="https://static.studygolang.com/static/img/polarisxu-qrcode-soso-s.png">
+</div>
+
+<div class="related-posts thin">
+	<h2>相关推荐</h2>
+	<ul>
+	
+	<li><a href="/posts/go/action/build-a-concurrent-file-downloader/">Go项目实战：一步步构建一个并发文件下载器</a></li>
+	
+	<li><a href="/posts/go/book/100-go-mistakes/">这本 Go 新书挺期待的：100 个常见错误</a></li>
+	
+	<li><a href="/posts/go/dynamic/collectives-go/">Go 启用新的官方问答社区</a></li>
+	
+	<li><a href="/posts/go/dynamic/microsoft-go/">这是要干嘛？！微软招 Go 编译器全职开发人员</a></li>
+	
+	<li><a href="/posts/go/pkg/go1.17-std/">Go1.17 快报之标准库越来越注重易用性</a></li>
+	
+	</ul>
+</div>
+
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://polarisxu.studygolang.com/tags/go">Go</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/%E5%B9%B6%E5%8F%91">并发</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>2271 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2021-07-07 22:10 &#43;0800</p>
+			</footer>
+		</article>
+		<aside id="toc">
+			<div class="toc-title">目录</div>
+			<nav id="TableOfContents">
+  <ul>
+    <li><a href="#01-排查过程">01 排查过程</a></li>
+    <li><a href="#02-curl-和-go-代码行为异同">02 curl 和 Go 代码行为异同</a></li>
+    <li><a href="#03-总结">03 总结</a></li>
+  </ul>
+</nav>
+		</aside>
+		<div class="post-nav thin">
+			<a class="prev-post" href="https://polarisxu.studygolang.com/posts/rust/rust-tutorial-09/">
+				<span class="post-nav-label">旧&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>Rust 劝退系列 09：函数</span>
+			</a>
+		</div>
+		<div id="comments" class="thin"><script src="https://utteranc.es/client.js"
+	repo="polaris1119/polarisxu"
+	issue-term="pathname"
+	theme="github-light"
+	crossorigin="anonymous"
+	async>
+</script>
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2019 - 2021 <a href="https://polarisxu.studygolang.com">polarisxu</a> &#183; <a href="https://beian.miit.gov.cn/">京ICP备14030343号-1</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://polarisxu.studygolang.com/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+		<span id="busuanzi_container" style="color: #666;">
+			本站总访客数/访问量：<span id="busuanzi_value_site_uv"></span>/<span id="busuanzi_value_site_pv"></span>
+		</span>
+	</footer>
+
+
+
+	<script src="https://polarisxu.studygolang.com/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw=" crossorigin="anonymous"></script>
+	<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?224c227cd9239761ec770bc8c1fb134c";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+</body>
+
+</html>

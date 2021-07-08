@@ -3,8 +3,33 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://polarisxu.studygolang.com/tags/go/</loc>
+    <lastmod>2021-07-07T22:10:00+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://polarisxu.studygolang.com/</loc>
-    <lastmod>2021-07-03T22:30:00+08:00</lastmod>
+    <lastmod>2021-07-07T22:10:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polarisxu.studygolang.com/tags/</loc>
+    <lastmod>2021-07-07T22:10:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polarisxu.studygolang.com/tags/%E5%B9%B6%E5%8F%91/</loc>
+    <lastmod>2021-07-07T22:10:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polarisxu.studygolang.com/posts/</loc>
+    <lastmod>2021-07-07T22:10:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polarisxu.studygolang.com/posts/go/action/studygolang-downloader-bug/</loc>
+    <lastmod>2021-07-07T22:10:00+08:00</lastmod>
   </url>
   
   <url>
@@ -18,32 +43,12 @@
   </url>
   
   <url>
-    <loc>https://polarisxu.studygolang.com/tags/</loc>
-    <lastmod>2021-07-03T22:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://polarisxu.studygolang.com/tags/%E5%87%BD%E6%95%B0/</loc>
     <lastmod>2021-07-03T22:30:00+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://polarisxu.studygolang.com/posts/</loc>
-    <lastmod>2021-07-03T22:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://polarisxu.studygolang.com/tags/go/</loc>
-    <lastmod>2021-07-03T22:10:00+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://polarisxu.studygolang.com/posts/go/action/build-a-concurrent-file-downloader/</loc>
-    <lastmod>2021-07-03T22:10:00+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://polarisxu.studygolang.com/tags/%E5%B9%B6%E5%8F%91/</loc>
     <lastmod>2021-07-03T22:10:00+08:00</lastmod>
   </url>
   

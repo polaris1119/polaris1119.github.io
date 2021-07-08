@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Sat, 03 Jul 2021 22:10:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/%E5%B9%B6%E5%8F%91/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 07 Jul 2021 22:10:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/%E5%B9%B6%E5%8F%91/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>网友很强大，发现了Go并发下载的Bug</title>
+      <link>https://polarisxu.studygolang.com/posts/go/action/studygolang-downloader-bug/</link>
+      <pubDate>Wed, 07 Jul 2021 22:10:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/action/studygolang-downloader-bug/</guid>
+      <description>大家好，我是 polarisxu。 前几天我写了一篇文章：Go项目实战：一步步构建一个并发文件下载器 ，有小伙伴评论问，请求 https://studygolang.com/dl/golang/go1.16.5.src.tar.gz 为什么没有返回 Accept-Ranges。在写那篇文章时，我也试了，确实没有返回，因此我以为它不支持。 但有一个小伙伴很认真，他改用 GET 方法请求这个地址，结果却有 Accept-Ranges，于是就很困惑，问我什么原因。经过一顿操作猛如虎，终于知</description>
+    </item>
+    
     <item>
       <title>Go项目实战：一步步构建一个并发文件下载器</title>
       <link>https://polarisxu.studygolang.com/posts/go/action/build-a-concurrent-file-downloader/</link>

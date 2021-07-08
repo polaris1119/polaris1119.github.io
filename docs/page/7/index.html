@@ -14,7 +14,7 @@
 <meta property="og:description" content="polarisxu,Go语言中文网,go,golang,源码分析,系列教程" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://polarisxu.studygolang.com/" />
-<meta property="og:updated_time" content="2021-07-03T22:30:00+08:00" />
+<meta property="og:updated_time" content="2021-07-07T22:10:00+08:00" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="polarisxu"/>
 <meta name="twitter:description" content="polarisxu,Go语言中文网,go,golang,源码分析,系列教程"/>
@@ -70,6 +70,25 @@
 		<main class="site-main section-inner thin animated fadeIn faster">
     
 		
+        <div class="post animated fadeInDown">
+            <div class="post-title">
+                <h2><a href="/posts/talk/restraint-is-hard/">克制挺难的</a>
+                </h2>
+            </div>
+            <div class="post-content">
+                <div class="p_part"><p>大家好，我是站长 polarisxu。 昨天文章谈了 chi 这个 Go 框架，Kade 留言说，以为 chi 不会用 go mod，没想到去年就用了，但它支持的方式是从 v4.1.2 调到了 v1.5.0，也就是说之前都没有 go.mod，v1.5.0 开始加上了 go.mod。当 Go1.16 发布后，有了 ratract，他立马将其他所有版本都撤回了。面对社区的反对意见，他强硬的说：我在这个项目花了几年时间，尽管许多人不同</p></div>
+            </div>
+            <div class="post-footer">
+                <div class="meta">
+                    <div class="info"><em class="fas fa-calendar-day"></em><span
+                                class="date">2021-02-24</span>
+                        <a class="tag"
+                                   href="/tags/go/">Go</a>
+                    </div>
+                </div>
+            </div>
+				</div>
+    
         <div class="post animated fadeInDown">
             <div class="post-title">
                 <h2><a href="/posts/go/action/go-chi-use-retract/">从 go-chi 框架撤回所有主版本聊 Go1.16 的新特性</a>
@@ -248,26 +267,6 @@
                         <a class="tag"
                                    href="/tags/clubhouse/">clubhouse</a><a class="tag"
                                    href="/tags/%E5%BE%AE%E4%BF%A1/">微信</a>
-                    </div>
-                </div>
-            </div>
-				</div>
-    
-        <div class="post animated fadeInDown">
-            <div class="post-title">
-                <h2><a href="/posts/go/how-realize-go-std-version-show/">怎么知道某个 API 是在哪个 Go 版本添加的？这个功能如何实现的</a>
-                </h2>
-            </div>
-            <div class="post-content">
-                <div class="p_part"><p>大家好，我是站长 polarisxu。 因为 Go 的兼容性做的很好，很多人不太关心 Go 的具体版本。然而有时候可能会涉及到版本的问题，比如你想使用 strings.Builder，Go 版本就必须 &gt;= 1.10，但以下代码在 Go1.10 却编译不通过。 package main import ( &#34;fmt&#34; &#34;strings&#34; ) func main() { var b strings.Builder b.WriteString(&#34;polarisxu&#34;) fmt.Println(b.Cap()) } 编译会报错： $ go version go version go1.10.8 darwin/amd64 $ go run main.go # command-line-arguments ./main.go:11:15: b.Cap undefined (type strings.Builder has no field or method Cap) 提示 strings.Builder 类型没有 Cap 字段或方法。 所以，你知道标准库中</p></div>
-            </div>
-            <div class="post-footer">
-                <div class="meta">
-                    <div class="info"><em class="fas fa-calendar-day"></em><span
-                                class="date">2021-02-04</span>
-                        <a class="tag"
-                                   href="/tags/%E6%A0%87%E5%87%86%E5%BA%93/">标准库</a><a class="tag"
-                                   href="/tags/go/">Go</a>
                     </div>
                 </div>
             </div>

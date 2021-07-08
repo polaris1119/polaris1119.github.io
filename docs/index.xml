@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Sat, 03 Jul 2021 22:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 07 Jul 2021 22:10:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>网友很强大，发现了Go并发下载的Bug</title>
+      <link>https://polarisxu.studygolang.com/posts/go/action/studygolang-downloader-bug/</link>
+      <pubDate>Wed, 07 Jul 2021 22:10:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/action/studygolang-downloader-bug/</guid>
+      <description>大家好，我是 polarisxu。 前几天我写了一篇文章：Go项目实战：一步步构建一个并发文件下载器 ，有小伙伴评论问，请求 https://studygolang.com/dl/golang/go1.16.5.src.tar.gz 为什么没有返回 Accept-Ranges。在写那篇文章时，我也试了，确实没有返回，因此我以为它不支持。 但有一个小伙伴很认真，他改用 GET 方法请求这个地址，结果却有 Accept-Ranges，于是就很困惑，问我什么原因。经过一顿操作猛如虎，终于知</description>
+    </item>
+    
     <item>
       <title>Rust 劝退系列 09：函数</title>
       <link>https://polarisxu.studygolang.com/posts/rust/rust-tutorial-09/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/talk/about-writing/</guid>
       <description>大家好，我是 polarisxu。 在群里有一位大厂大佬发了这么一条信息： 有点惊住了！ 这是我在 2013 年 1 月写的一篇关于 RSA 的文章：《GO加密解密之RSA》 ，没想到进入了大厂的项目里。只不过，这 CTRL + C、CTRL +V 有点小猛，邮箱地址直接进入了仓库。。。不愧是： 群友们很有才，说可以写一篇文章：当初写下的示例程序，已然在巨头大厂安稳运行 6 年，创造的价值数以亿记。 这件事还是有些</description>
-    </item>
-    
-    <item>
-      <title>Go图书翻译：一个好消息，一个坏消息</title>
-      <link>https://polarisxu.studygolang.com/posts/go/book/practical-go-lessons-decline/</link>
-      <pubDate>Sat, 12 Jun 2021 21:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/book/practical-go-lessons-decline/</guid>
-      <description>大家好，我是 polarisxu。 看到广大 gopher 们的需求，昨天我发文宣布组织翻译《Practical Go Lessons》 这本书。发文后，有将近一百人要参与。感受到了大家的热情~ 昨天下午，我给作者发信息，请求授权我们翻译。昨天一天没有回应（虽然看到信息已读，但没有给我答复）。但我们觉得，大概率会取得授权，所以，昨天做好了准备工作：流程、规范等，并且大家觉得端午节假期可</description>
     </item>
     
   </channel>
