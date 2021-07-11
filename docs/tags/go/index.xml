@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Wed, 07 Jul 2021 22:10:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 11 Jul 2021 22:10:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>这个工具真好：看看你的Go项目依赖有无漏洞</title>
+      <link>https://polarisxu.studygolang.com/posts/go/project/google-deps/</link>
+      <pubDate>Sun, 11 Jul 2021 22:10:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/project/google-deps/</guid>
+      <description>大家好，我是 polarisxu。 发现了一个好工具，推荐给大家！ https://deps.dev/，这是 Google 新出的一个实验性工具，命名为：Open Source Insights，它能让你更了解你的项目依赖。 通过这个网站，你可以查询任意开源项目的依赖情况，还包括依赖的依赖，可以看到完整的依赖关系图，而且可以看到它们的许可证。 目前该工具支持 Go Modules、NPM package</description>
+    </item>
+    
     <item>
       <title>网友很强大，发现了Go并发下载的Bug</title>
       <link>https://polarisxu.studygolang.com/posts/go/action/studygolang-downloader-bug/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/talk/about-writing/</guid>
       <description>大家好，我是 polarisxu。 在群里有一位大厂大佬发了这么一条信息： 有点惊住了！ 这是我在 2013 年 1 月写的一篇关于 RSA 的文章：《GO加密解密之RSA》 ，没想到进入了大厂的项目里。只不过，这 CTRL + C、CTRL +V 有点小猛，邮箱地址直接进入了仓库。。。不愧是： 群友们很有才，说可以写一篇文章：当初写下的示例程序，已然在巨头大厂安稳运行 6 年，创造的价值数以亿记。 这件事还是有些</description>
-    </item>
-    
-    <item>
-      <title>Go图书翻译：一个好消息，一个坏消息</title>
-      <link>https://polarisxu.studygolang.com/posts/go/book/practical-go-lessons-decline/</link>
-      <pubDate>Sat, 12 Jun 2021 21:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/book/practical-go-lessons-decline/</guid>
-      <description>大家好，我是 polarisxu。 看到广大 gopher 们的需求，昨天我发文宣布组织翻译《Practical Go Lessons》 这本书。发文后，有将近一百人要参与。感受到了大家的热情~ 昨天下午，我给作者发信息，请求授权我们翻译。昨天一天没有回应（虽然看到信息已读，但没有给我答复）。但我们觉得，大概率会取得授权，所以，昨天做好了准备工作：流程、规范等，并且大家觉得端午节假期可</description>
     </item>
     
   </channel>
