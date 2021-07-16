@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Sun, 11 Jul 2021 22:10:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 15 Jul 2021 22:10:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go1.17 新特性：新版构建约束</title>
+      <link>https://polarisxu.studygolang.com/posts/go/dynamic/go1.17-build-contraints/</link>
+      <pubDate>Thu, 15 Jul 2021 22:10:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/dynamic/go1.17-build-contraints/</guid>
+      <description>大家好，我是 polarisxu。 Go 1.17 下个月就要正式发布了。很多人要问泛型了吧，泛型已经很明确了，Go1.18 会有。今天给大家介绍 Go1.17 的一个新特性：构建约束 — Build Constraints。 确切来说，这个特性相关的工作在 1.16 时就加入，但处于过度阶段，1.17 在各方面都更完善，更完整的支持，是时候了解它了。 01 什么是构建约束 构建约束（build constraint），也叫做</description>
+    </item>
+    
     <item>
       <title>这个工具真好：看看你的Go项目依赖有无漏洞</title>
       <link>https://polarisxu.studygolang.com/posts/go/project/google-deps/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/dynamic/go1.17-slice-to-array/</guid>
       <description>大家好，我是 polarisxu。 按计划，Go 1.17 会在 2021 年 8 月份发布（目前已经发布了 Beta1 版本）。目前，1.17 相关的功能已经开发差不多了，上次介绍了测试顺序随机的问题，今天介绍 1.17 中的另一个新功能：切片显式地转换成数组指针。 温馨提示，如果要试验该功能，需要升级到 1.17 Beta1 版本。另外一个主意事项就是如果在有 go.mod 的目录中试验，确保其中的版本改为 1.17，否则会报错：conver</description>
-    </item>
-    
-    <item>
-      <title>回顾 Go 官网的演变史</title>
-      <link>https://polarisxu.studygolang.com/posts/go/golangorg-website/</link>
-      <pubDate>Mon, 14 Jun 2021 20:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/golangorg-website/</guid>
-      <description>大家好，我是 polarisxu。 最近 618，阿里云等云厂商都在促销，我之前有一台服务器在华为云，正好要过期了，发现续费要 2500 左右。而阿里云新客买一台服务器，3 年才 179.9（1 核 2 G），用来镜像一个 Go 官网还是绰绰有余的。因为很早就镜像过 Go 官网，这次发现官网搭建又有了很大变化，因此决定回顾下 Go 官网的演变。 新人常年有优惠，比如 99 元/年。有兴趣的可以购买：https</description>
     </item>
     
   </channel>

@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Thu, 17 Jun 2021 07:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/%E6%96%B0%E7%89%B9%E6%80%A7/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 15 Jul 2021 22:10:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/%E6%96%B0%E7%89%B9%E6%80%A7/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go1.17 新特性：新版构建约束</title>
+      <link>https://polarisxu.studygolang.com/posts/go/dynamic/go1.17-build-contraints/</link>
+      <pubDate>Thu, 15 Jul 2021 22:10:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/dynamic/go1.17-build-contraints/</guid>
+      <description>大家好，我是 polarisxu。 Go 1.17 下个月就要正式发布了。很多人要问泛型了吧，泛型已经很明确了，Go1.18 会有。今天给大家介绍 Go1.17 的一个新特性：构建约束 — Build Constraints。 确切来说，这个特性相关的工作在 1.16 时就加入，但处于过度阶段，1.17 在各方面都更完善，更完整的支持，是时候了解它了。 01 什么是构建约束 构建约束（build constraint），也叫做</description>
+    </item>
+    
     <item>
       <title>Go1.17 新特性之切片变数组</title>
       <link>https://polarisxu.studygolang.com/posts/go/dynamic/go1.17-slice-to-array/</link>

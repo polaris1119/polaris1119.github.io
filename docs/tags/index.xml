@@ -7,13 +7,22 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Sun, 11 Jul 2021 22:10:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 15 Jul 2021 22:10:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Go</title>
       <link>https://polarisxu.studygolang.com/tags/go/</link>
-      <pubDate>Sun, 11 Jul 2021 22:10:00 +0800</pubDate>
+      <pubDate>Thu, 15 Jul 2021 22:10:00 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/tags/go/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>新特性</title>
+      <link>https://polarisxu.studygolang.com/tags/%E6%96%B0%E7%89%B9%E6%80%A7/</link>
+      <pubDate>Thu, 15 Jul 2021 22:10:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/tags/%E6%96%B0%E7%89%B9%E6%80%A7/</guid>
       <description></description>
     </item>
     
@@ -86,15 +95,6 @@
       <pubDate>Tue, 22 Jun 2021 12:30:00 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/tags/%E6%A0%87%E5%87%86%E5%BA%93/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>新特性</title>
-      <link>https://polarisxu.studygolang.com/tags/%E6%96%B0%E7%89%B9%E6%80%A7/</link>
-      <pubDate>Thu, 17 Jun 2021 07:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/tags/%E6%96%B0%E7%89%B9%E6%80%A7/</guid>
       <description></description>
     </item>
     
