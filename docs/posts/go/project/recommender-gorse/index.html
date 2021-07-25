@@ -7,24 +7,24 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<meta name="theme-color" content="#fcfcfc">
 	<meta name="msapplication-TileColor" content="#fcfcfc">
-<meta itemprop="name" content="这个工具真好：看看你的Go项目依赖有无漏洞">
-<meta itemprop="description" content="大家好，我是 polarisxu。 发现了一个好工具，推荐给大家！ https://deps.dev/，这是 Google 新出的一个实验性工具，命名为：Open Source Insights，它能让你更了解你的项目依赖。 通过这个网站，你可以查询任意开源项目的依赖情况，还包括依赖的依赖，可以看到完整的依赖关系图，而且可以看到它们的许可证。 目前该工具支持 Go Modules、NPM package">
-<meta itemprop="datePublished" content="2021-07-11T22:10:00+08:00" />
-<meta itemprop="dateModified" content="2021-07-11T22:10:00+08:00" />
-<meta itemprop="wordCount" content="613">
+<meta itemprop="name" content="厉害了我的 Go：推荐系统都有开源实现">
+<meta itemprop="description" content="大家好，我是 polarisxu。 看到一个项目：https://gorse.io/，这是一个用 Go 编写的开源推荐系统。Gorse 的目标是成为一个通用的开源推荐系统，可以迅速地引入到各种各样的在线服务中。通过将项目、用户和交互数据导入 Gorse，系统将自动训练模型，为每个用户生成推荐。 这个项目代码托管在 GitHub 上：https://github.com/zhenghaoz">
+<meta itemprop="datePublished" content="2021-07-19T14:10:00+08:00" />
+<meta itemprop="dateModified" content="2021-07-19T14:10:00+08:00" />
+<meta itemprop="wordCount" content="618">
 
 
 
-<meta itemprop="keywords" content="Go,工具," />
-<meta property="og:title" content="这个工具真好：看看你的Go项目依赖有无漏洞" />
-<meta property="og:description" content="大家好，我是 polarisxu。 发现了一个好工具，推荐给大家！ https://deps.dev/，这是 Google 新出的一个实验性工具，命名为：Open Source Insights，它能让你更了解你的项目依赖。 通过这个网站，你可以查询任意开源项目的依赖情况，还包括依赖的依赖，可以看到完整的依赖关系图，而且可以看到它们的许可证。 目前该工具支持 Go Modules、NPM package" />
+<meta itemprop="keywords" content="Go,开源项目," />
+<meta property="og:title" content="厉害了我的 Go：推荐系统都有开源实现" />
+<meta property="og:description" content="大家好，我是 polarisxu。 看到一个项目：https://gorse.io/，这是一个用 Go 编写的开源推荐系统。Gorse 的目标是成为一个通用的开源推荐系统，可以迅速地引入到各种各样的在线服务中。通过将项目、用户和交互数据导入 Gorse，系统将自动训练模型，为每个用户生成推荐。 这个项目代码托管在 GitHub 上：https://github.com/zhenghaoz" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/project/google-deps/" />
-<meta property="article:published_time" content="2021-07-11T22:10:00+08:00" />
-<meta property="article:modified_time" content="2021-07-11T22:10:00+08:00" />
+<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/project/recommender-gorse/" />
+<meta property="article:published_time" content="2021-07-19T14:10:00+08:00" />
+<meta property="article:modified_time" content="2021-07-19T14:10:00+08:00" />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="这个工具真好：看看你的Go项目依赖有无漏洞"/>
-<meta name="twitter:description" content="大家好，我是 polarisxu。 发现了一个好工具，推荐给大家！ https://deps.dev/，这是 Google 新出的一个实验性工具，命名为：Open Source Insights，它能让你更了解你的项目依赖。 通过这个网站，你可以查询任意开源项目的依赖情况，还包括依赖的依赖，可以看到完整的依赖关系图，而且可以看到它们的许可证。 目前该工具支持 Go Modules、NPM package"/>
+<meta name="twitter:title" content="厉害了我的 Go：推荐系统都有开源实现"/>
+<meta name="twitter:description" content="大家好，我是 polarisxu。 看到一个项目：https://gorse.io/，这是一个用 Go 编写的开源推荐系统。Gorse 的目标是成为一个通用的开源推荐系统，可以迅速地引入到各种各样的在线服务中。通过将项目、用户和交互数据导入 Gorse，系统将自动训练模型，为每个用户生成推荐。 这个项目代码托管在 GitHub 上：https://github.com/zhenghaoz"/>
 
 	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -33,7 +33,7 @@
 	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
 	<link rel="shortcut icon" href="/favicon.ico">
 
-	<title>这个工具真好：看看你的Go项目依赖有无漏洞</title>
+	<title>厉害了我的 Go：推荐系统都有开源实现</title>
 	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
 	
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
@@ -77,50 +77,34 @@
 	<main class="site-main section-inner animated fadeIn faster">
 		<article class="thin">
 			<header class="post-header">
-				<div class="post-meta"><span>Jul 11, 2021</span></div>
-				<h1>这个工具真好：看看你的Go项目依赖有无漏洞</h1>
+				<div class="post-meta"><span>Jul 19, 2021</span></div>
+				<h1>厉害了我的 Go：推荐系统都有开源实现</h1>
 			</header>
 			<div class="content">
 				<p>大家好，我是 polarisxu。</p>
-<p>发现了一个好工具，推荐给大家！</p>
-<p><a href="https://deps.dev/">https://deps.dev/</a>，这是 Google 新出的一个实验性工具，命名为：Open Source Insights，它能让你更了解你的项目依赖。</p>
-<p>通过这个网站，你可以查询任意开源项目的依赖情况，还包括依赖的依赖，可以看到完整的依赖关系图，而且可以看到它们的许可证。</p>
-<p>目前该工具支持 Go Modules、NPM packages、Java 的Mavan 和 Rust 的 Cargo，将来可能还会支持 .Net 的 NuGet 和 Python 的 PyPI。</p>
+<p>看到一个项目：<a href="https://gorse.io/">https://gorse.io/</a>，这是一个用 Go 编写的开源推荐系统。Gorse 的目标是成为一个通用的开源推荐系统，可以迅速地引入到各种各样的在线服务中。通过将项目、用户和交互数据导入 Gorse，系统将自动训练模型，为每个用户生成推荐。</p>
+<p>这个项目代码托管在 GitHub 上：<a href="https://github.com/zhenghaoz/gorse">https://github.com/zhenghaoz/gorse</a>，目前 Star 数 1.7k+，查了下记录，2018 年中旬，国人发起开发的这个项目（国人对 Go 确实情有独钟？！），因为他们参考的项目，一个是 Java 实现的，一个是 Python 实现的。</p>
+<p>经过近 3 年的发展，目前该项目版本是 0.2.2，有两个实际的使用案例：</p>
 <p><p class="md__image">
-  <img src="../imgs/deps01.png"
+  <img src="../imgs/case.png"
     alt=""  />
 </p>
 </p>
-<p>以 Go 语言中文网的源码为例，看看使用情况。</p>
-<p>输入包名：github.com/studygolang/studygolang，<a href="https://deps.dev/go/github.com%2Fstudygolang%2Fstudygolang">https://deps.dev/go/github.com%2Fstudygolang%2Fstudygolang</a> 结果如下：</p>
-<p><p class="md__image">
-  <img src="../imgs/deps02.png"
-    alt=""  />
-</p>
-</p>
-<p>发现有几处安全问题，查看详细信息，发现有几个库有漏洞：</p>
+<p>可见该项目有了一定的成熟度，小型创业团队，想要有自己的推荐系统，可以考虑基于这个项目。这个项目有如下特点：</p>
 <ul>
-<li>golang.org/x/crypto</li>
-<li>golang.org/x/text</li>
-<li>github.com/dgrijalva/jwt-go</li>
-<li>github.com/labstack/echo/v4</li>
-<li>github.com/tidwall/gjson</li>
+<li>自动化：通过后台模型搜索，自动选择最佳推荐模型和策略；</li>
+<li>分布式推荐：单节点训练、分布式预测以及在推荐阶段实现水平扩展的能力；</li>
+<li>Restful API：为数据 CRUD 和推荐请求提供 RESTful API；</li>
+<li>数据仪表盘：提供数据导入和导出、监控和集群状态检查的仪表板；</li>
 </ul>
-<p>拿 github.com/tidwall/gjson 看看：</p>
+<p>这是官方给的仪表盘示例：</p>
 <p><p class="md__image">
-  <img src="../imgs/deps03.png"
+  <img src="../imgs/dashboard.jpg"
     alt=""  />
 </p>
 </p>
-<p>gjson 1.6.3 及以下版本存在这个漏洞，具体信息来源：<a href="https://github.com/tidwall/gjson/issues/192">https://github.com/tidwall/gjson/issues/192</a>，由于不正确的边界检查，恶意构造的 JSON 对象可能会引起越界 panic。如果解析用户输入，这可能被用作分布式拒绝服务攻击。</p>
-<p>根据这个提示应该升级我们的依赖，修复漏洞。</p>
-<p>在 Dependencies 标签可以看到项目依赖，支持表格方式和图表方式查看依赖。在 Dependents 标签可以看到哪些项目依赖了当前项目。</p>
-<p>赶紧看看你在使用的开源项目有无安全漏洞，会不会有安全隐患。比如 Gin 项目就有安全漏洞：</p>
-<p><p class="md__image">
-  <img src="../imgs/deps04.png"
-    alt=""  />
-</p>
-</p>
+<p>这个项目提供了比较完整的文档：<a href="https://docs.gorse.io/">https://docs.gorse.io/</a>，包括安装、使用的介绍，同时还提供了设计的思路、架构图，方便使用者学习、理解。从提交记录看，贡献者很活跃。</p>
+<p>如果你只是对推荐系统感兴趣，刚好也想通过一个项目更熟悉 Go 语言，我觉得这个项目一定很适合你，可以好好学习学习。</p>
 
 			</div><div class="content">
 	<br>
@@ -131,15 +115,15 @@
 	<h2>相关推荐</h2>
 	<ul>
 	
-	<li><a href="/posts/go/project/go-version-manager/">终于找到了一款我喜欢的安装和管理 Go 版本的工具</a></li>
-	
 	<li><a href="/posts/go/action/weekly-question-104/">一道关于 len 函数的诡异 Go 面试题解析</a></li>
-	
-	<li><a href="/posts/go/project/recommender-gorse/">厉害了我的 Go：推荐系统都有开源实现</a></li>
 	
 	<li><a href="/posts/go/dynamic/go1.17-build-contraints/">Go1.17 新特性：新版构建约束</a></li>
 	
+	<li><a href="/posts/go/project/google-deps/">这个工具真好：看看你的Go项目依赖有无漏洞</a></li>
+	
 	<li><a href="/posts/go/action/studygolang-downloader-bug/">网友很强大，发现了Go并发下载的Bug</a></li>
+	
+	<li><a href="/posts/go/action/build-a-concurrent-file-downloader/">Go项目实战：一步步构建一个并发文件下载器</a></li>
 	
 	</ul>
 </div>
@@ -147,10 +131,10 @@
 			<hr class="post-end">
 			<footer class="post-info">
 				<p>
-					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://polarisxu.studygolang.com/tags/go">Go</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/%E5%B7%A5%E5%85%B7">工具</a></span>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://polarisxu.studygolang.com/tags/go">Go</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE">开源项目</a></span>
 				</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>613 字</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2021-07-11 22:10 &#43;0800</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>618 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2021-07-19 14:10 &#43;0800</p>
 			</footer>
 		</article>
 		<aside id="toc">
@@ -158,11 +142,11 @@
 			<nav id="TableOfContents"></nav>
 		</aside>
 		<div class="post-nav thin">
-			<a class="next-post" href="https://polarisxu.studygolang.com/posts/go/dynamic/go1.17-build-contraints/">
-				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;新</span><br><span>Go1.17 新特性：新版构建约束</span>
+			<a class="next-post" href="https://polarisxu.studygolang.com/posts/go/action/weekly-question-104/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;新</span><br><span>一道关于 len 函数的诡异 Go 面试题解析</span>
 			</a>
-			<a class="prev-post" href="https://polarisxu.studygolang.com/posts/go/action/studygolang-downloader-bug/">
-				<span class="post-nav-label">旧&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>网友很强大，发现了Go并发下载的Bug</span>
+			<a class="prev-post" href="https://polarisxu.studygolang.com/posts/go/dynamic/go1.17-build-contraints/">
+				<span class="post-nav-label">旧&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>Go1.17 新特性：新版构建约束</span>
 			</a>
 		</div>
 		<div id="comments" class="thin"><script src="https://utteranc.es/client.js"

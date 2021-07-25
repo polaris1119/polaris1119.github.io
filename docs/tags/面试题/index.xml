@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Thu, 20 May 2021 12:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 25 Jul 2021 22:22:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>一道关于 len 函数的诡异 Go 面试题解析</title>
+      <link>https://polarisxu.studygolang.com/posts/go/action/weekly-question-104/</link>
+      <pubDate>Sun, 25 Jul 2021 22:22:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/action/weekly-question-104/</guid>
+      <description>大家好，我是 polarisxu。 在 Go语言爱好者周刊第 104 期有一道题目，以下代码输出什么： package main func main() { var x *struct { s [][32]byte } println(len(x.s[99])) } 答题结果如下： 正确率只有 16%。 本文就讲解下为什么结果是 32。 01 解析题目 先剖析下这段代码，x 变量： var x *struct { s [][32]byte } 注意这里不是定义一个结构体类型，而是定义一个结构体类型指针变量，即 x 是一个指针，指针类型是一个匿名结构体。很显然，x 的值是 nil，因</description>
+    </item>
+    
     <item>
       <title>周刊题解：常量表达式这个规则应该了解下</title>
       <link>https://polarisxu.studygolang.com/posts/go/action/weekly-question-94/</link>

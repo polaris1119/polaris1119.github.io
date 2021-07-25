@@ -14,7 +14,7 @@
 <meta property="og:description" content="polarisxu,Go语言中文网,go,golang,源码分析,系列教程" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://polarisxu.studygolang.com/" />
-<meta property="og:updated_time" content="2021-07-15T22:10:00+08:00" />
+<meta property="og:updated_time" content="2021-07-25T22:22:00+08:00" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="polarisxu"/>
 <meta name="twitter:description" content="polarisxu,Go语言中文网,go,golang,源码分析,系列教程"/>
@@ -70,6 +70,46 @@
 		<main class="site-main section-inner thin animated fadeIn faster">
     
 		
+        <div class="post animated fadeInDown">
+            <div class="post-title">
+                <h2><a href="/posts/go/pkg/go1.17-std/">Go1.17 快报之标准库越来越注重易用性</a>
+                </h2>
+            </div>
+            <div class="post-content">
+                <div class="p_part"><p>大家好，我是 polarisxu。 说起 Go 的优点，很多人会提到 Go 拥有强大的标准库，比如开发一个 HTTP 服务，几行代码就搞定。不过，如果是一个 PHPer 转到 Go，又会觉得 Go 标准库不够便利，很多东西都需要自己二次封装。这其实是一个取舍的问题。 Go 官方也在不断完善、优化标准库，在坚持一定原则的基础上，尽可能让标准库好用、易用。今天就看看 Go1.17 中，官方在这方面做了哪些改进。 01 time 包 Unix 时间戳，</p></div>
+            </div>
+            <div class="post-footer">
+                <div class="meta">
+                    <div class="info"><em class="fas fa-calendar-day"></em><span
+                                class="date">2021-06-22</span>
+                        <a class="tag"
+                                   href="/tags/go/">Go</a><a class="tag"
+                                   href="/tags/%E6%A0%87%E5%87%86%E5%BA%93/">标准库</a>
+                    </div>
+                </div>
+            </div>
+				</div>
+    
+        <div class="post animated fadeInDown">
+            <div class="post-title">
+                <h2><a href="/posts/go/dynamic/go1.17-slice-to-array/">Go1.17 新特性之切片变数组</a>
+                </h2>
+            </div>
+            <div class="post-content">
+                <div class="p_part"><p>大家好，我是 polarisxu。 按计划，Go 1.17 会在 2021 年 8 月份发布（目前已经发布了 Beta1 版本）。目前，1.17 相关的功能已经开发差不多了，上次介绍了测试顺序随机的问题，今天介绍 1.17 中的另一个新功能：切片显式地转换成数组指针。 温馨提示，如果要试验该功能，需要升级到 1.17 Beta1 版本。另外一个主意事项就是如果在有 go.mod 的目录中试验，确保其中的版本改为 1.17，否则会报错：conver</p></div>
+            </div>
+            <div class="post-footer">
+                <div class="meta">
+                    <div class="info"><em class="fas fa-calendar-day"></em><span
+                                class="date">2021-06-17</span>
+                        <a class="tag"
+                                   href="/tags/go/">Go</a><a class="tag"
+                                   href="/tags/%E6%96%B0%E7%89%B9%E6%80%A7/">新特性</a>
+                    </div>
+                </div>
+            </div>
+				</div>
+    
         <div class="post animated fadeInDown">
             <div class="post-title">
                 <h2><a href="/posts/go/golangorg-website/">回顾 Go 官网的演变史</a>
@@ -229,45 +269,6 @@
             </div>
 				</div>
     
-        <div class="post animated fadeInDown">
-            <div class="post-title">
-                <h2><a href="/posts/go/dynamic/go1.17-testing-shuffle-flag/">Go 1.17 新特性提前学之测试执行随机化</a>
-                </h2>
-            </div>
-            <div class="post-content">
-                <div class="p_part"><p>大家好，我是 polarisxu。 Go1.17 预计在 8 月份发布。目前 tip.golang.org 可以浏览 Go1.17 的相关内容，https://tip.golang.org/doc/go1.17 也有了 Go1.17 相关改动的部分文档。这段时间，我会陆续给大家分享 Go1.17 中相关的新特性，提前学习。。。好吧，提前卷了~ 今天先聊聊在测试中增加的随机化 flag：shuffle。 01 安装 tip 版本 由于 Go1.17 还未发布，因此为了体验它的新特性，我</p></div>
-            </div>
-            <div class="post-footer">
-                <div class="meta">
-                    <div class="info"><em class="fas fa-calendar-day"></em><span
-                                class="date">2021-05-30</span>
-                        <a class="tag"
-                                   href="/tags/go/">Go</a><a class="tag"
-                                   href="/tags/1.17/">1.17</a>
-                    </div>
-                </div>
-            </div>
-				</div>
-    
-        <div class="post animated fadeInDown">
-            <div class="post-title">
-                <h2><a href="/posts/rust/rust-tutorial-07/">Rust 劝退系列 07：流程控制</a>
-                </h2>
-            </div>
-            <div class="post-content">
-                <div class="p_part"><p>大家好，我是站长 polarisxu。 这是 Rust 劝退系列的第 7 个教程，探讨 Rust 中的流程控制。注意，跟其他语言一样，Rust 中有条件、循环，但没有 switch，而是有 match 模式匹配。 01 运算符 开始讲解流程控制之前，先补充一个知识点，那就是 Rust 的运算符。 Rust 支持算术运算符、关系运算符、逻辑运算符和位运算符 4 种，它们和其他语言没有什么不同，因此不细讲了，只提醒一点：Rust 中没有自</p></div>
-            </div>
-            <div class="post-footer">
-                <div class="meta">
-                    <div class="info"><em class="fas fa-calendar-day"></em><span
-                                class="date">2021-05-25</span>
-                        <a class="tag"
-                                   href="/tags/rust/">rust</a>
-                    </div>
-                </div>
-            </div>
-				</div>
-    
     <div class="pagination">
         
 <ul class="pagination">
@@ -290,13 +291,13 @@
     <span aria-hidden="true">&nbsp;&hellip;&nbsp;</span>
   </li>
   <li class="page-item">
-    <a class="page-link" href="/page/16/">16</a>
+    <a class="page-link" href="/page/17/">17</a>
   </li>
   <li class="page-item">
     <a href="/page/3/" class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
   </li>
   <li class="page-item">
-    <a href="/page/16/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+    <a href="/page/17/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
   </li>
 </ul>
 

@@ -6,8 +6,143 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en</language>
 		<copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-		<lastBuildDate>Thu, 15 Jul 2021 22:10:00 +0800</lastBuildDate>
+		<lastBuildDate>Sun, 25 Jul 2021 22:22:00 +0800</lastBuildDate>
 		<atom:link href="https://polarisxu.studygolang.com/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>一道关于 len 函数的诡异 Go 面试题解析</title>
+			<link>https://polarisxu.studygolang.com/posts/go/action/weekly-question-104/</link>
+			<pubDate>Sun, 25 Jul 2021 22:22:00 +0800</pubDate>
+			
+			<guid>https://polarisxu.studygolang.com/posts/go/action/weekly-question-104/</guid>
+			<description>大家好，我是 polarisxu。 在 Go语言爱好者周刊第 104 期有一道题目，以下代码输出什么： package main func main() { var x *struct { s [][32]byte } println(len(x.s[99])) } 答题结果如下： 正确率只有 16%。 本文就讲解下为什么结果是 32。 01 解析题目 先剖析下这段代码，x 变量： var x *struct { s [][32]byte } 注意这里不是定义一个结构体类型，而是定义一个结构体类型指针变量，即 x 是一个指针，指针类型是一个匿名结构体。很显然，x 的值是 nil，因</description>
+			<content type="html"><![CDATA[<p>大家好，我是 polarisxu。</p>
+<p>在 Go语言爱好者周刊第 104 期有一道题目，以下代码输出什么：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">x</span> <span class="o">*</span><span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">s</span> <span class="p">[][</span><span class="mi">32</span><span class="p">]</span><span class="kt">byte</span>
+  <span class="p">}</span>
+  
+  <span class="nb">println</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="nx">x</span><span class="p">.</span><span class="nx">s</span><span class="p">[</span><span class="mi">99</span><span class="p">]))</span>
+<span class="p">}</span>
+</code></pre></div><p>答题结果如下：</p>
+<p><p class="md__image">
+  <img src="../imgs/weekly-question-104-01.png"
+    alt=""  />
+</p>
+</p>
+<p>正确率只有 16%。</p>
+<p>本文就讲解下为什么结果是 32。</p>
+<h2 id="01-解析题目">01 解析题目</h2>
+<p>先剖析下这段代码，x 变量：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">var</span> <span class="nx">x</span> <span class="o">*</span><span class="kd">struct</span> <span class="p">{</span>
+  <span class="nx">s</span> <span class="p">[][</span><span class="mi">32</span><span class="p">]</span><span class="kt">byte</span>
+<span class="p">}</span>
+</code></pre></div><p>注意这里不是定义一个结构体类型，而是定义一个结构体类型指针变量，即 x 是一个指针，指针类型是一个匿名结构体。很显然，x 的值是 nil，因为没有初始化，可以打印证实这一点。</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="s">&#34;fmt&#34;</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="kd">var</span> <span class="nx">x</span> <span class="o">*</span><span class="kd">struct</span> <span class="p">{</span>
+		<span class="nx">s</span> <span class="p">[][</span><span class="mi">32</span><span class="p">]</span><span class="kt">byte</span>
+	<span class="p">}</span>
+
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;x.Type = %T; x.Value= %v\n&#34;</span><span class="p">,</span> <span class="nx">x</span><span class="p">,</span> <span class="nx">x</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div><p>输出：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">x.Type <span class="o">=</span> *struct <span class="o">{</span> s <span class="o">[][</span>32<span class="o">]</span>uint8 <span class="o">}</span><span class="p">;</span> x.Value<span class="o">=</span> &lt;nil&gt;
+</code></pre></div><p>这也是为什么 48% 的人选择 A （panic） 的原因，毕竟 x 是 nil，panic 很自然的。比如这样就会 panic：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nb">println</span><span class="p">(</span><span class="nx">x</span><span class="p">.</span><span class="nx">s</span><span class="p">)</span>
+<span class="c1">// panic: runtime error: invalid memory address or nil pointer dereference
+</span></code></pre></div><p>响应的，fmt.Println(x.s[99]) 也会 panic。但为什么 <code>len(x.s[99])</code> 就不 panic 了呢？所以得从 len 入手一探究竟。</p>
+<h2 id="02-len-详解">02 len 详解</h2>
+<p>len 函数是一个内置类型，什么意思？就是由编译器实现的。它的参数可以接收多种类型，有泛型的味道。</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nb">len</span><span class="p">(</span><span class="nx">v</span> <span class="nx">Type</span><span class="p">)</span> <span class="kt">int</span>
+</code></pre></div><p>关于它的说明，标准库文档有说明：</p>
+<blockquote>
+<p>内建函数 len 返回 v 的长度，这取决于具体类型：</p>
+<ul>
+<li>数组：v 中元素的数量</li>
+<li>数组指针：*v 中元素的数量（v 为 nil 时 panic）</li>
+<li>切片、map：v 中元素的数量；若 v 为nil，len(v) 即为零</li>
+<li>字符串：v 中字节的数量</li>
+<li>通道：通道缓存中队列（未读取）元素的数量；若 v 为 nil，len(v) 即为零</li>
+</ul>
+</blockquote>
+<p>光这个解释，还不够全面，len 函数还有其他一些特殊的点。这要看 Go 语言规范。</p>
+<p>在规范中，有一节是<a href="https://hao.studygolang.com/golang_spec.html#id221" target="_blank" rel="noopener">关于 len 和 cap 的</a>
+。有如下几个要点：</p>
+<ul>
+<li>返回结果总是 int；</li>
+<li>返回结果有可能是常量；</li>
+<li>有时对函数参数不求值，即编译期确定返回值；</li>
+</ul>
+<p>2、3 点解释下。（规范中有说明）</p>
+<p>如果 len 或 cap 的函数参数 v 是字符串常量，则返回值是一个常量。</p>
+<p><strong>如果 v 的类型是数组或指向数组的指针，且表达式 v 没有包含 channel 接收或（非常量）函数调用，则返回值也是一个常量。这种情况下，不会对 v 进行求值（即编译期就能确定）。否则返回值不是常量，且会对 v 进行求值（即得运行时确定）。</strong></p>
+<p><strong>这一点是这道题的关键。</strong></p>
+<p>首先，x.s[99] 的类型是 <code>[32]byte</code>，它是一个数组，且表达式 <code>x.s[99]</code> 没有包含 channel 接收也不是函数调用，因此不会对  x.s[99] 进行求值，不求值自然不会 panic（想不明白？可以想成没有解引用操作）。也就是说，编译器能够在编译阶段分析出 x.s[99] 的类型是 [32]byte，且不需要对 x.s[99] 求值，因此直接返回数组的长度，即 32。</p>
+<h2 id="03-其他类似情况">03 其他类似情况</h2>
+<p>类似这样不求值的情况还有没有？还真有。比如下面的代码：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">var</span> <span class="nx">testdata</span> <span class="o">*</span><span class="kd">struct</span> <span class="p">{</span>
+  <span class="nx">a</span> <span class="o">*</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span><span class="kt">int</span>
+<span class="p">}</span>
+<span class="k">for</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">_</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">testdata</span><span class="p">.</span><span class="nx">a</span> <span class="p">{</span>
+  <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div><p>同样不会 panic，原理和上面的类似，<a href="https://hao.studygolang.com/golang_spec.html#id355" target="_blank" rel="noopener">在 Go 语言规范有说明</a>
+。</p>
+<p>&ldquo;range&rdquo; 子句中右侧的表达式被称为 range 表达式 ，它可以是数组、数组的指针、切片、字符串、map或是允许接收操作 的 channel。range 表达式会在开始此循环前被求值一次，但有一个例外：当存在最多一个迭代变量且 <code>len(x)</code> 是常量时，range 表达式是不被求值的。</p>
+<p>所以上面代码中 testdata.a 不会被求值，因为 len(testdata.a) 是常量。</p>
+<p>但如果改为这样：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">var</span> <span class="nx">testdata</span> <span class="o">*</span><span class="kd">struct</span> <span class="p">{</span>
+  <span class="nx">a</span> <span class="o">*</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span><span class="kt">int</span>
+<span class="p">}</span>
+<span class="k">for</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">j</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">testdata</span><span class="p">.</span><span class="nx">a</span> <span class="p">{</span>
+  <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">i</span><span class="p">,</span> <span class="nx">j</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div><p>就会 panic。</p>
+<h2 id="04-总结">04 总结</h2>
+<p>通过这么一道「诡异」的面试题，希望你能够对 len 有更深的理解，也希望你能够重视 Go 语言规范，多留意一些细节，同时学会如何寻找问题的答案。</p>
+]]></content>
+		</item>
+		
+		<item>
+			<title>厉害了我的 Go：推荐系统都有开源实现</title>
+			<link>https://polarisxu.studygolang.com/posts/go/project/recommender-gorse/</link>
+			<pubDate>Mon, 19 Jul 2021 14:10:00 +0800</pubDate>
+			
+			<guid>https://polarisxu.studygolang.com/posts/go/project/recommender-gorse/</guid>
+			<description>大家好，我是 polarisxu。 看到一个项目：https://gorse.io/，这是一个用 Go 编写的开源推荐系统。Gorse 的目标是成为一个通用的开源推荐系统，可以迅速地引入到各种各样的在线服务中。通过将项目、用户和交互数据导入 Gorse，系统将自动训练模型，为每个用户生成推荐。 这个项目代码托管在 GitHub 上：https://github.com/zhenghaoz</description>
+			<content type="html"><![CDATA[<p>大家好，我是 polarisxu。</p>
+<p>看到一个项目：<a href="https://gorse.io/">https://gorse.io/</a>，这是一个用 Go 编写的开源推荐系统。Gorse 的目标是成为一个通用的开源推荐系统，可以迅速地引入到各种各样的在线服务中。通过将项目、用户和交互数据导入 Gorse，系统将自动训练模型，为每个用户生成推荐。</p>
+<p>这个项目代码托管在 GitHub 上：<a href="https://github.com/zhenghaoz/gorse">https://github.com/zhenghaoz/gorse</a>，目前 Star 数 1.7k+，查了下记录，2018 年中旬，国人发起开发的这个项目（国人对 Go 确实情有独钟？！），因为他们参考的项目，一个是 Java 实现的，一个是 Python 实现的。</p>
+<p>经过近 3 年的发展，目前该项目版本是 0.2.2，有两个实际的使用案例：</p>
+<p><p class="md__image">
+  <img src="../imgs/case.png"
+    alt=""  />
+</p>
+</p>
+<p>可见该项目有了一定的成熟度，小型创业团队，想要有自己的推荐系统，可以考虑基于这个项目。这个项目有如下特点：</p>
+<ul>
+<li>自动化：通过后台模型搜索，自动选择最佳推荐模型和策略；</li>
+<li>分布式推荐：单节点训练、分布式预测以及在推荐阶段实现水平扩展的能力；</li>
+<li>Restful API：为数据 CRUD 和推荐请求提供 RESTful API；</li>
+<li>数据仪表盘：提供数据导入和导出、监控和集群状态检查的仪表板；</li>
+</ul>
+<p>这是官方给的仪表盘示例：</p>
+<p><p class="md__image">
+  <img src="../imgs/dashboard.jpg"
+    alt=""  />
+</p>
+</p>
+<p>这个项目提供了比较完整的文档：<a href="https://docs.gorse.io/">https://docs.gorse.io/</a>，包括安装、使用的介绍，同时还提供了设计的思路、架构图，方便使用者学习、理解。从提交记录看，贡献者很活跃。</p>
+<p>如果你只是对推荐系统感兴趣，刚好也想通过一个项目更熟悉 Go 语言，我觉得这个项目一定很适合你，可以好好学习学习。</p>
+]]></content>
+		</item>
 		
 		<item>
 			<title>Go1.17 新特性：新版构建约束</title>
