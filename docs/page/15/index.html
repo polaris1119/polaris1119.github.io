@@ -14,7 +14,7 @@
 <meta property="og:description" content="polarisxu,Go语言中文网,go,golang,源码分析,系列教程" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://polarisxu.studygolang.com/" />
-<meta property="og:updated_time" content="2021-07-25T22:22:00+08:00" />
+<meta property="og:updated_time" content="2021-07-26T22:10:00+08:00" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="polarisxu"/>
 <meta name="twitter:description" content="polarisxu,Go语言中文网,go,golang,源码分析,系列教程"/>
@@ -70,6 +70,26 @@
 		<main class="site-main section-inner thin animated fadeIn faster">
     
 		
+        <div class="post animated fadeInDown">
+            <div class="post-title">
+                <h2><a href="/posts/talk/my-first-action-book/">重磅！史上第一本带你做项目的 Go 图书开卖</a>
+                </h2>
+            </div>
+            <div class="post-content">
+                <div class="p_part"><p>2020 年过去了一半，这半年对所有人来说都不寻常。但也是这场疫情，让我完成了一件大事：出了一本 Go 语言图书，书名是：《Go 语言编程之旅：一起用 Go 做项目》。 海报 先上海报： 全书共分为 6 章，分别是命令行应用、HTTP 应用、RPC 应用、WebSocket 应用、进程内缓存和 Go 语言中的大杀器，其中前 5 章是 Go 语言开发中最常见的项目类型。本书对项目开发、细节分析、运行时分析等核心内</p></div>
+            </div>
+            <div class="post-footer">
+                <div class="meta">
+                    <div class="info"><em class="fas fa-calendar-day"></em><span
+                                class="date">2020-07-02</span>
+                        <a class="tag"
+                                   href="/tags/go/">Go</a><a class="tag"
+                                   href="/tags/%E5%9B%BE%E4%B9%A6/">图书</a>
+                    </div>
+                </div>
+            </div>
+				</div>
+    
         <div class="post animated fadeInDown">
             <div class="post-title">
                 <h2><a href="/posts/go/translation/go-is-awesome/">从这些角度看 Go 是一门很棒的语言</a>
@@ -345,28 +365,6 @@ Go 1.14 添加了对嵌入重叠接口的支持，我们也添加了此功能！
                                    href="/tags/echo/">echo</a><a class="tag"
                                    href="/tags/web%E6%A1%86%E6%9E%B6/">web框架</a><a class="tag"
                                    href="/tags/%E6%A8%A1%E6%9D%BF%E5%BC%95%E6%93%8E/">模板引擎</a>
-                    </div>
-                </div>
-            </div>
-				</div>
-    
-        <div class="post animated fadeInDown">
-            <div class="post-title">
-                <h2><a href="/posts/go/echo/custom06-ext-server/">Echo 系列教程——定制篇6：自定义 Server 相关，替换或扩展默认的 Server</a>
-                </h2>
-            </div>
-            <div class="post-content">
-                <div class="p_part"><p>这是定制篇的最后一节，讲解 Server 的自定义。 默认 Server 通常情况下，Echo 通过如下方式启动一个 HTTP Server： e := echo.New() e.GET(&#34;/&#34;, func(c echo.Context) error { return c.String(http.StatusOK, &#34;Hello, World!&#34;) }) e.Logger.Fatal(e.Start(&#34;:2020&#34;)) 我们打开源码一探究竟： // Start starts an HTTP server. func (e *Echo) Start(address string) error { e.Server.Addr = address return e.StartServer(e.Server) } 原来调用的是 StartServer，参数是默认的 Server 实例，它是一个 http.Server 的指针类型。 自定义 Server 知道了 Echo#Start 最终调用的是 Echo#StartServer，而且它的参数是一个 *http.Server 类型，所以自</p></div>
-            </div>
-            <div class="post-footer">
-                <div class="meta">
-                    <div class="info"><em class="fas fa-calendar-day"></em><span
-                                class="date">2020-03-16</span>
-                        <a class="tag"
-                                   href="/tags/echo/">echo</a><a class="tag"
-                                   href="/tags/web%E6%A1%86%E6%9E%B6/">web框架</a><a class="tag"
-                                   href="/tags/%E6%89%A9%E5%B1%95/">扩展</a><a class="tag"
-                                   href="/tags/server/">server</a>
                     </div>
                 </div>
             </div>

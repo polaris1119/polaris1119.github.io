@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Sun, 25 Jul 2021 22:22:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 26 Jul 2021 22:10:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go开源项目推荐：500行代码确认请求时间花在哪</title>
+      <link>https://polarisxu.studygolang.com/posts/go/project/httpstat/</link>
+      <pubDate>Mon, 26 Jul 2021 22:10:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/project/httpstat/</guid>
+      <description>大家好，我是 polarisxu。 工作中遇到请求慢，难免想要查看时间都花在哪里了。办法肯定有不少，比如浏览器带的工具等。不过今天我要推荐一个命令行工具，目的有两个： 安装、使用方便，可以清晰的看出时间花在哪里了，建议放入自己的常用工具箱； Go 语言实现的，500 行左右代码，可以作为新手项目学习、练习、实战； 项目名称：httpstat，作者是 davecheney 大神。项目地址：http</description>
+    </item>
+    
     <item>
       <title>一道关于 len 函数的诡异 Go 面试题解析</title>
       <link>https://polarisxu.studygolang.com/posts/go/action/weekly-question-104/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/dynamic/collectives-go/</guid>
       <description>大家好，我是 polarisxu。 Go 官方宣布，在 StackOverflow 上启用新的问答社区，而这之前，官方的主要在 Google Groups。先简单介绍下 StackOverflow 的 Collective 。 01 Collective 是什么？ 我们知道 StackOverflow 是一个问答社区，针对某一个类问题，一般通过 Tag 的形式汇集，比如 Go 语言的：https://stackoverflow.com/questions/tagged/go。而 Collective 是 StackOverflow 推出的，专门用于为你喜欢的技术构建一个社区</description>
-    </item>
-    
-    <item>
-      <title>这是要干嘛？！微软招 Go 编译器全职开发人员</title>
-      <link>https://polarisxu.studygolang.com/posts/go/dynamic/microsoft-go/</link>
-      <pubDate>Thu, 24 Jun 2021 12:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/dynamic/microsoft-go/</guid>
-      <description>大家好，我是 polarisxu。 微软在其招聘主页上挂了一个招聘信息，招聘高级软件工程师（职位链接：https://careers.microsoft.com/us/en/job/1038385/Senior-Software-Engineer）。这个职位有点特别： 个人贡献者。具体来说，找为 Go 语言编译器和工具开发的全职员工。 我们都知道，一直以来，微软搞了不少开</description>
     </item>
     
   </channel>

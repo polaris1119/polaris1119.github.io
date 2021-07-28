@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Mon, 19 Jul 2021 14:10:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 26 Jul 2021 22:10:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go开源项目推荐：500行代码确认请求时间花在哪</title>
+      <link>https://polarisxu.studygolang.com/posts/go/project/httpstat/</link>
+      <pubDate>Mon, 26 Jul 2021 22:10:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/project/httpstat/</guid>
+      <description>大家好，我是 polarisxu。 工作中遇到请求慢，难免想要查看时间都花在哪里了。办法肯定有不少，比如浏览器带的工具等。不过今天我要推荐一个命令行工具，目的有两个： 安装、使用方便，可以清晰的看出时间花在哪里了，建议放入自己的常用工具箱； Go 语言实现的，500 行左右代码，可以作为新手项目学习、练习、实战； 项目名称：httpstat，作者是 davecheney 大神。项目地址：http</description>
+    </item>
+    
     <item>
       <title>厉害了我的 Go：推荐系统都有开源实现</title>
       <link>https://polarisxu.studygolang.com/posts/go/project/recommender-gorse/</link>
