@@ -14,7 +14,7 @@
 <meta property="og:description" content="polarisxu,Go语言中文网,go,golang,源码分析,系列教程" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://polarisxu.studygolang.com/" />
-<meta property="og:updated_time" content="2021-07-26T22:10:00+08:00" />
+<meta property="og:updated_time" content="2021-08-03T22:10:00+08:00" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="polarisxu"/>
 <meta name="twitter:description" content="polarisxu,Go语言中文网,go,golang,源码分析,系列教程"/>
@@ -70,6 +70,45 @@
 		<main class="site-main section-inner thin animated fadeIn faster">
     
 		
+        <div class="post animated fadeInDown">
+            <div class="post-title">
+                <h2><a href="/posts/go/book/practical-go-lessons/">一本花了2.5年写成的Go免费在线图书</a>
+                </h2>
+            </div>
+            <div class="post-content">
+                <div class="p_part"><p>大家好，我是 polarisxu。 又一次为大家推荐 Go 图书，这是一本免费的 Go 语言在线图书：https://www.practical-go-lessons.com/。以下是该书的一个封面： 这本书采用渐进的方式讲解 Go 语言。作者还试图解释一些难以掌握的计算机科学概念，对于新人来说很有用。因此这本书对于那些没有计算机基础的人也有帮助。 我也写过书，也一直在坚持写文章，知</p></div>
+            </div>
+            <div class="post-footer">
+                <div class="meta">
+                    <div class="info"><em class="fas fa-calendar-day"></em><span
+                                class="date">2021-06-07</span>
+                        <a class="tag"
+                                   href="/tags/go/">Go</a><a class="tag"
+                                   href="/tags/%E5%9B%BE%E4%B9%A6/">图书</a>
+                    </div>
+                </div>
+            </div>
+				</div>
+    
+        <div class="post animated fadeInDown">
+            <div class="post-title">
+                <h2><a href="/posts/talk/explain-you-programming-in-go/">被黑惨了：一句话，说明自己会 Go，咋整？</a>
+                </h2>
+            </div>
+            <div class="post-content">
+                <div class="p_part"><p>大家好，我是 polarisxu。 今天在「Go语言中文网」微信群里有网友问了这么一个问题：一句话，说明自己会 go，咋整？一个哥们立马给出了一个回复，竟然无法反驳，感觉 Go 被黑的很惨？！（被黑的最惨的一次？！！） 关于 if err != nil 的调侃真的不要太多。这里列举几个： 1）之前发过一篇文章：写了50万行Go代码是一种什么样的体验？ ，有人留言调侃说：有 10 万行是 if err != nil。。。</p></div>
+            </div>
+            <div class="post-footer">
+                <div class="meta">
+                    <div class="info"><em class="fas fa-calendar-day"></em><span
+                                class="date">2021-06-04</span>
+                        <a class="tag"
+                                   href="/tags/go/">Go</a>
+                    </div>
+                </div>
+            </div>
+				</div>
+    
         <div class="post animated fadeInDown">
             <div class="post-title">
                 <h2><a href="/posts/go/signal-notifycontext/">Go1.16 中的新函数 signal.NotifyContext 怎么用？</a>
@@ -223,47 +262,6 @@
                                 class="date">2021-05-17</span>
                         <a class="tag"
                                    href="/tags/go/">Go</a>
-                    </div>
-                </div>
-            </div>
-				</div>
-    
-        <div class="post animated fadeInDown">
-            <div class="post-title">
-                <h2><a href="/posts/rust/rust-tutorial-06/">Rust 劝退系列 06：常量</a>
-                </h2>
-            </div>
-            <div class="post-content">
-                <div class="p_part"><p>大家好，我是站长 polarisxu。 这是 Rust 劝退系列的第 6 个教程，探讨 Rust 中的常量，因为 static 和常量有类似之处，因此一并探讨。（Rust By Example 中甚至将常量分成两种类型：const 和 static，我个人觉得常量是常量，static 修饰的是变量，不能算是常量） 01 常量 在 Rust 语言中，术语&quot;常量&quot;用于表示固定的值，比如 5 、-89、 I love Rust、3.14 等等。一</p></div>
-            </div>
-            <div class="post-footer">
-                <div class="meta">
-                    <div class="info"><em class="fas fa-calendar-day"></em><span
-                                class="date">2021-05-13</span>
-                        <a class="tag"
-                                   href="/tags/rust/">rust</a><a class="tag"
-                                   href="/tags/%E5%B8%B8%E9%87%8F/">常量</a>
-                    </div>
-                </div>
-            </div>
-				</div>
-    
-        <div class="post animated fadeInDown">
-            <div class="post-title">
-                <h2><a href="/posts/go/dynamic/uber-pprof-pp/">Uber 使用 Go 的规模这么大？！都自己定制的 Go 编译器了</a>
-                </h2>
-            </div>
-            <div class="post-content">
-                <div class="p_part"><p>大家好，我是站长 polarisxu。 今天看到 Uber 使用 Go 的情况，挺吃惊的，给大家分享下情况。 01 Uber 使用 Go 的情况 Uber 有数千个后端服务是使用 Go 实现的，它们运行在数百万个 CPU 内核上。因此，对于 Uber 来说，详细准确掌握 CPU 瓶颈至关重要。这不仅为了减少服务延迟，同时也能提高计算机运行效率。Uber 这个量级的规模，要求对代码和微观结构的影响有深入的了解。 02 定制 Go 编译器 其实说定制 Go 编译器</p></div>
-            </div>
-            <div class="post-footer">
-                <div class="meta">
-                    <div class="info"><em class="fas fa-calendar-day"></em><span
-                                class="date">2021-05-13</span>
-                        <a class="tag"
-                                   href="/tags/go/">Go</a><a class="tag"
-                                   href="/tags/uber/">Uber</a><a class="tag"
-                                   href="/tags/profiler/">Profiler</a>
                     </div>
                 </div>
             </div>

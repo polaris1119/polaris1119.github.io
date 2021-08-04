@@ -14,7 +14,7 @@
 <meta property="og:description" content="polarisxu,Go语言中文网,go,golang,源码分析,系列教程" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://polarisxu.studygolang.com/" />
-<meta property="og:updated_time" content="2021-07-26T22:10:00+08:00" />
+<meta property="og:updated_time" content="2021-08-03T22:10:00+08:00" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="polarisxu"/>
 <meta name="twitter:description" content="polarisxu,Go语言中文网,go,golang,源码分析,系列教程"/>
@@ -70,6 +70,46 @@
 		<main class="site-main section-inner thin animated fadeIn faster">
     
 		
+        <div class="post animated fadeInDown">
+            <div class="post-title">
+                <h2><a href="/posts/go/action/weekly-question-88/">Go周刊题解：切片的另类初始化 — 该题正确率出奇的低</a>
+                </h2>
+            </div>
+            <div class="post-content">
+                <div class="p_part"><p>大家好，我是站长 polarisxu。 我在 Go 语言爱好者周刊第 87 和 88 期 刊首出了两道题，这两道题有点类似，都是和切片初始化有关。但这两道的题正确率比较低，特别是 88 期的题。 第 87 期题目如下： package main import ( &#34;fmt&#34; ) func main() { a := []int{2: 1} fmt.Println(a) } 正确答案是：C，正确率 52%。这道题相对简单，但依然有近一半的人答错了。 第 88 期题目和 87 期类似，但难度高一些，题目如下： package main func main() { var x = []int{4: 44, 55, 66, 1: 77, 88} println(len(x),</p></div>
+            </div>
+            <div class="post-footer">
+                <div class="meta">
+                    <div class="info"><em class="fas fa-calendar-day"></em><span
+                                class="date">2021-03-30</span>
+                        <a class="tag"
+                                   href="/tags/go/">Go</a><a class="tag"
+                                   href="/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/">面试题</a>
+                    </div>
+                </div>
+            </div>
+				</div>
+    
+        <div class="post animated fadeInDown">
+            <div class="post-title">
+                <h2><a href="/posts/devtool/goland/goland-remote-projector/">GoLand 也可以远程开发了：试用报告</a>
+                </h2>
+            </div>
+            <div class="post-content">
+                <div class="p_part"><p>大家好，我是站长 polarisxu。 JetBrains 官方今天发了一篇文章：《使用 Projector 远程访问 IDE》 ，了解到 JetBrains 搞了一个远程开发 IDE。很多人知道 VSCode 可以进行远程开发，现在 JetBrains 系列 IDE 也支持了（自然 GoLand 也支持），于是安装试用了下，给大家做一个汇报。 01 Projector 是什么 Projector 是一种远程运行和访问 Swing GUI 应用程序的技术（Swing 是 Java 的 GUI API，JetBrains 系列 IDE 都是使用 Swing 绘制的 UI），目前 1.0 版本可</p></div>
+            </div>
+            <div class="post-footer">
+                <div class="meta">
+                    <div class="info"><em class="fas fa-calendar-day"></em><span
+                                class="date">2021-03-27</span>
+                        <a class="tag"
+                                   href="/tags/goland/">GoLand</a><a class="tag"
+                                   href="/tags/projector/">Projector</a>
+                    </div>
+                </div>
+            </div>
+				</div>
+    
         <div class="post animated fadeInDown">
             <div class="post-title">
                 <h2><a href="/posts/talk/double-win-after-grpc/">送 gRPC 书后续：自我反思和人性的思考</a>
@@ -225,46 +265,6 @@
                         <a class="tag"
                                    href="/tags/go/">Go</a><a class="tag"
                                    href="/tags/bug/">Bug</a>
-                    </div>
-                </div>
-            </div>
-				</div>
-    
-        <div class="post animated fadeInDown">
-            <div class="post-title">
-                <h2><a href="/posts/go/language-rankings-1-21/">RedMonk 编程语言排行榜，说 Go 正走向衰退，你认可吗？</a>
-                </h2>
-            </div>
-            <div class="post-content">
-                <div class="p_part"><p>大家好，我是站长 polarisxu。 2021 年 3 月 1 日，RedMonk 发布了 2021 年 1 月 编程语言排行榜（实际是 1 月 和 2 月的数据）。 先介绍下这个排名的依据。RedMonk 从 GitHub 和 Stack Overflow 中提取语言排名，并将它们合并为一个排名，试图反映代码（GitHub）和问答（Stack Overflow）的吸引力。这个想法并不是为了提供一个统计上有效的当前使用情况的表示，而是为了将语言的问答</p></div>
-            </div>
-            <div class="post-footer">
-                <div class="meta">
-                    <div class="info"><em class="fas fa-calendar-day"></em><span
-                                class="date">2021-03-10</span>
-                        <a class="tag"
-                                   href="/tags/%E6%8E%92%E8%A1%8C%E6%A6%9C/">排行榜</a><a class="tag"
-                                   href="/tags/go/">Go</a>
-                    </div>
-                </div>
-            </div>
-				</div>
-    
-        <div class="post animated fadeInDown">
-            <div class="post-title">
-                <h2><a href="/posts/dialogue/vs-wuwen/">polarisxu 对话无闻</a>
-                </h2>
-            </div>
-            <div class="post-content">
-                <div class="p_part"><p>大家好，我是站长 polarisxu。 今天起，我计划起一个系列，叫做「对话 xxx」，主要访谈、撰写一些圈里人的成长故事，希望他们的故事对大家有一些启发。 今天要对话的这位是国内 Go 开源界的名人，GitHub followers 有 11.1k+，主导了开发了好几个 Go 开源项目，它就是无闻，昵称 unknwon（注意，不是 unknown）。早期学习 Go 的小伙伴，知道他可能更多是来自他的视频教程</p></div>
-            </div>
-            <div class="post-footer">
-                <div class="meta">
-                    <div class="info"><em class="fas fa-calendar-day"></em><span
-                                class="date">2021-03-08</span>
-                        <a class="tag"
-                                   href="/tags/%E5%AF%B9%E8%AF%9D/">对话</a><a class="tag"
-                                   href="/tags/%E6%97%A0%E9%97%BB/">无闻</a>
                     </div>
                 </div>
             </div>

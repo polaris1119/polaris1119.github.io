@@ -7,7 +7,25 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Mon, 26 Jul 2021 22:10:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 03 Aug 2021 22:10:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go 的时间格式化为什么是 2006-01-02 15:04:05？</title>
+      <link>https://polarisxu.studygolang.com/posts/go/imgs/why-time-use-2006/</link>
+      <pubDate>Tue, 03 Aug 2021 22:10:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/imgs/why-time-use-2006/</guid>
+      <description>大家好，我是 polarisxu。 没有什么是完美的！而且，有些东西，有些人认为好，有些人认为很糟糕。Go 也是如此。喜欢 Go 语言的朋友，大概率对其中某些地方不喜欢。比如，你喜欢 Go 中时间格式化固定的 2006-01-02 15:04:05 -0700 吗？为什么是这么一个时间？今天来一探究竟！ 01 新手的困惑 无论是各种群里还是网上搜一下，包括国外的，对 2006-01-02 15:04:05 -0700 都很困惑。 一般的困扰主要有： 不知道只能固定要这个时间，换其他</description>
+    </item>
+    
+    <item>
+      <title>GitHub 为 Go 社区带来安全支持</title>
+      <link>https://polarisxu.studygolang.com/posts/go/dynamic/github-supply-chain-security-features-go-community/</link>
+      <pubDate>Thu, 29 Jul 2021 22:10:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/dynamic/github-supply-chain-security-features-go-community/</guid>
+      <description>大家好，我是 polarisxu。 关于 Go 安全相关的内容，我写过几篇文章：《Go 团队开始重视安全问题了》 、《Go Module 有漏洞？免费的 Go 漏洞扫描 VSCode 插件》 和《这个工具真好：看看你的Go项目依赖有无漏洞》 ，有兴趣的可以看看。 今天介绍另外一个关于安全的内容，是 GitHub 的。 大家都知晓，目前 Go 是严重依赖 GitHub 的，很多第三方库基本都托管在 GitHub 上。因为 Go 把 GitHub 既当作代码协作的平台，也当作发布包的</description>
+    </item>
+    
     <item>
       <title>Go开源项目推荐：500行代码确认请求时间花在哪</title>
       <link>https://polarisxu.studygolang.com/posts/go/project/httpstat/</link>
@@ -78,24 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/book/100-go-mistakes/</guid>
       <description>大家好，我是 polarisxu。 Go 虽然简单，但一样会有很多容易犯的错误。网上也有不少总结的 Go 常见错误。 Teiva Harsanyi 在 2019 年发表过一篇文章：《The Top 10 Most Common Mistakes I’ve Seen in Go Projects》 （这里有中文版：https://tomotoes.com/blog/the-top-10-most-common-mistakes-ive-seen-in-go-projects/）</description>
-    </item>
-    
-    <item>
-      <title>Go 启用新的官方问答社区</title>
-      <link>https://polarisxu.studygolang.com/posts/go/dynamic/collectives-go/</link>
-      <pubDate>Thu, 24 Jun 2021 23:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/dynamic/collectives-go/</guid>
-      <description>大家好，我是 polarisxu。 Go 官方宣布，在 StackOverflow 上启用新的问答社区，而这之前，官方的主要在 Google Groups。先简单介绍下 StackOverflow 的 Collective 。 01 Collective 是什么？ 我们知道 StackOverflow 是一个问答社区，针对某一个类问题，一般通过 Tag 的形式汇集，比如 Go 语言的：https://stackoverflow.com/questions/tagged/go。而 Collective 是 StackOverflow 推出的，专门用于为你喜欢的技术构建一个社区</description>
-    </item>
-    
-    <item>
-      <title>这是要干嘛？！微软招 Go 编译器全职开发人员</title>
-      <link>https://polarisxu.studygolang.com/posts/go/dynamic/microsoft-go/</link>
-      <pubDate>Thu, 24 Jun 2021 12:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/dynamic/microsoft-go/</guid>
-      <description>大家好，我是 polarisxu。 微软在其招聘主页上挂了一个招聘信息，招聘高级软件工程师（职位链接：https://careers.microsoft.com/us/en/job/1038385/Senior-Software-Engineer）。这个职位有点特别： 个人贡献者。具体来说，找为 Go 语言编译器和工具开发的全职员工。 我们都知道，一直以来，微软搞了不少开</description>
     </item>
     
   </channel>

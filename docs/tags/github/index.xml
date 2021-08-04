@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Wed, 03 Mar 2021 11:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/github/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 29 Jul 2021 22:10:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/github/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>GitHub 为 Go 社区带来安全支持</title>
+      <link>https://polarisxu.studygolang.com/posts/go/dynamic/github-supply-chain-security-features-go-community/</link>
+      <pubDate>Thu, 29 Jul 2021 22:10:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/dynamic/github-supply-chain-security-features-go-community/</guid>
+      <description>大家好，我是 polarisxu。 关于 Go 安全相关的内容，我写过几篇文章：《Go 团队开始重视安全问题了》 、《Go Module 有漏洞？免费的 Go 漏洞扫描 VSCode 插件》 和《这个工具真好：看看你的Go项目依赖有无漏洞》 ，有兴趣的可以看看。 今天介绍另外一个关于安全的内容，是 GitHub 的。 大家都知晓，目前 Go 是严重依赖 GitHub 的，很多第三方库基本都托管在 GitHub 上。因为 Go 把 GitHub 既当作代码协作的平台，也当作发布包的</description>
+    </item>
+    
     <item>
       <title>妹子你是认真的吗？.sh 文件只能在 Shanghai 机器跑</title>
       <link>https://polarisxu.studygolang.com/posts/talk/sh-is-shanghai/</link>

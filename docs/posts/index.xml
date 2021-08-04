@@ -6,8 +6,117 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en</language>
 		<copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-		<lastBuildDate>Mon, 26 Jul 2021 22:10:00 +0800</lastBuildDate>
+		<lastBuildDate>Tue, 03 Aug 2021 22:10:00 +0800</lastBuildDate>
 		<atom:link href="https://polarisxu.studygolang.com/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>Go 的时间格式化为什么是 2006-01-02 15:04:05？</title>
+			<link>https://polarisxu.studygolang.com/posts/go/imgs/why-time-use-2006/</link>
+			<pubDate>Tue, 03 Aug 2021 22:10:00 +0800</pubDate>
+			
+			<guid>https://polarisxu.studygolang.com/posts/go/imgs/why-time-use-2006/</guid>
+			<description>大家好，我是 polarisxu。 没有什么是完美的！而且，有些东西，有些人认为好，有些人认为很糟糕。Go 也是如此。喜欢 Go 语言的朋友，大概率对其中某些地方不喜欢。比如，你喜欢 Go 中时间格式化固定的 2006-01-02 15:04:05 -0700 吗？为什么是这么一个时间？今天来一探究竟！ 01 新手的困惑 无论是各种群里还是网上搜一下，包括国外的，对 2006-01-02 15:04:05 -0700 都很困惑。 一般的困扰主要有： 不知道只能固定要这个时间，换其他</description>
+			<content type="html"><![CDATA[<p>大家好，我是 polarisxu。</p>
+<p>没有什么是完美的！而且，有些东西，有些人认为好，有些人认为很糟糕。Go 也是如此。喜欢 Go 语言的朋友，大概率对其中某些地方不喜欢。比如，你喜欢 Go 中时间格式化固定的 <code>2006-01-02 15:04:05 -0700</code> 吗？为什么是这么一个时间？今天来一探究竟！</p>
+<h2 id="01-新手的困惑">01 新手的困惑</h2>
+<p>无论是各种群里还是网上搜一下，包括国外的，对 2006-01-02 15:04:05 -0700 都很困惑。</p>
+<p><p class="md__image">
+  <img src="..//Users/xuxinhua/opensource/polarisxu/content/posts/go/imgs/time-format.png"
+    alt=""  />
+</p>
+</p>
+<p>一般的困扰主要有：</p>
+<ul>
+<li>不知道只能固定要这个时间，换其他的，出来的结果莫名其妙，然后一脸懵逼；</li>
+<li>为什么没有像其他语言一样，yyyy-mm-dd 这样的形式？</li>
+<li>这个时间有什么特殊意义吗？为什么挑这么个时间，完全记不住；</li>
+</ul>
+<p>这很正常，毕竟这一点上，Go 很另类，也可以说很“奇葩”。甚至有人注册了一个域名：<a href="http://fuckinggodateformat.com/">http://fuckinggodateformat.com/</a>，我也是醉了。。。</p>
+<p>但是这真的不好？</p>
+<h2 id="02-为什么这么设计">02 为什么这么设计？</h2>
+<p>为什么选择这个时间？不少人有这样的疑问。有人猜测是 Go 项目启动的时间等。但仔细研究，发现 Go Team 还是用心良苦，目的是解决大家记忆问题。</p>
+<p>比如常规的 ymd 格式，以 PHP 为例，一般这样 <code>Y-m-d H:i:s</code>，输出类似：2021-08-03 09:30:00，但如果我想输出：<code>21-8-4 9:30:00</code>，你不查手册，能写出来吗？你看看 PHP 文档中关于 date 格式化的说明，头有点大，竟然那么多，虽然常用的形式，大部分人都记得，但遇到不怎么常用的，就得查手册了。</p>
+<p>反观 Go 语言，它直接使用一个具体的时间来当做格式化字符串，需要什么格式，改这个时间格式即可。比如上面的例子，常规方式：2006-01-02  15:04:05，而 21-8-4 9:30:00 这种格式，只需要对应的改变值即可：06-1-2 3:04:05。而且，我查了下，PHP 没法表示没有前导零的分钟数和秒数，而 Go 很容易实现。很显然，Go 的方式是更合理、更易用的，对于各种变化，也能够更自如的应对。</p>
+<p>只不过，很多人对这个具体的时间觉得记不住。这一点，Go 官方也考虑到了。毕竟采用特殊的时间，目的就是为了解决大家记忆问题，因此要确保这个特殊时间也好记。Go 是这么设计的：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">1: month <span class="o">(</span>January, Jan, 01, etc<span class="o">)</span>
+2: day
+3: hour <span class="o">(</span><span class="m">15</span> is 3pm on a <span class="m">24</span> hour clock<span class="o">)</span>
+4: minute
+5: second
+6: year <span class="o">(</span>2006<span class="o">)</span>
+7: timezone <span class="o">(</span>GMT-7 is MST<span class="o">)</span>
+</code></pre></div><p>刚好是 1 2 3 4 5 6 7，据此进行变化即可。</p>
+<p>比如官方定义的常量：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">const</span> <span class="p">(</span>
+    <span class="nx">ANSIC</span>       <span class="p">=</span> <span class="s">&#34;Mon Jan _2 15:04:05 2006&#34;</span>
+    <span class="nx">UnixDate</span>    <span class="p">=</span> <span class="s">&#34;Mon Jan _2 15:04:05 MST 2006&#34;</span>
+    <span class="nx">RubyDate</span>    <span class="p">=</span> <span class="s">&#34;Mon Jan 02 15:04:05 -0700 2006&#34;</span>
+    <span class="nx">RFC822</span>      <span class="p">=</span> <span class="s">&#34;02 Jan 06 15:04 MST&#34;</span>
+    <span class="nx">RFC822Z</span>     <span class="p">=</span> <span class="s">&#34;02 Jan 06 15:04 -0700&#34;</span> <span class="c1">// RFC822 with numeric zone
+</span><span class="c1"></span>    <span class="nx">RFC850</span>      <span class="p">=</span> <span class="s">&#34;Monday, 02-Jan-06 15:04:05 MST&#34;</span>
+    <span class="nx">RFC1123</span>     <span class="p">=</span> <span class="s">&#34;Mon, 02 Jan 2006 15:04:05 MST&#34;</span>
+    <span class="nx">RFC1123Z</span>    <span class="p">=</span> <span class="s">&#34;Mon, 02 Jan 2006 15:04:05 -0700&#34;</span> <span class="c1">// RFC1123 with numeric zone
+</span><span class="c1"></span>    <span class="nx">RFC3339</span>     <span class="p">=</span> <span class="s">&#34;2006-01-02T15:04:05Z07:00&#34;</span>
+    <span class="nx">RFC3339Nano</span> <span class="p">=</span> <span class="s">&#34;2006-01-02T15:04:05.999999999Z07:00&#34;</span>
+    <span class="nx">Kitchen</span>     <span class="p">=</span> <span class="s">&#34;3:04PM&#34;</span>
+<span class="p">)</span>
+</code></pre></div><p>按 ANSIC 标准的日期格式，月、日、时、分、秒、年，最后加 MST 时区。对应就是 1 2 3 4 5 6 7。同时还可以随意加星期几。</p>
+<p>发现没有？围绕着 1 2 3 4 5 6 7 随意变化，真的不要太爽。我相信你用习惯了会发现 Go 这个设计真的太好了。</p>
+<h2 id="03-总结">03 总结</h2>
+<p>Go 的设计原则之一：大道至简。尽量简介，让大家开心编程。我认为这个格式化时间的设计也体现了这一点，他们设计的很用心。</p>
+<p>知晓了为什么这么设计，我相信你看完这篇文章会从此爱上 Go 的时间格式化形式。</p>
+]]></content>
+		</item>
+		
+		<item>
+			<title>GitHub 为 Go 社区带来安全支持</title>
+			<link>https://polarisxu.studygolang.com/posts/go/dynamic/github-supply-chain-security-features-go-community/</link>
+			<pubDate>Thu, 29 Jul 2021 22:10:00 +0800</pubDate>
+			
+			<guid>https://polarisxu.studygolang.com/posts/go/dynamic/github-supply-chain-security-features-go-community/</guid>
+			<description>大家好，我是 polarisxu。 关于 Go 安全相关的内容，我写过几篇文章：《Go 团队开始重视安全问题了》 、《Go Module 有漏洞？免费的 Go 漏洞扫描 VSCode 插件》 和《这个工具真好：看看你的Go项目依赖有无漏洞》 ，有兴趣的可以看看。 今天介绍另外一个关于安全的内容，是 GitHub 的。 大家都知晓，目前 Go 是严重依赖 GitHub 的，很多第三方库基本都托管在 GitHub 上。因为 Go 把 GitHub 既当作代码协作的平台，也当作发布包的</description>
+			<content type="html"><![CDATA[<p>大家好，我是 polarisxu。</p>
+<p>关于 Go 安全相关的内容，我写过几篇文章：<a href="https://mp.weixin.qq.com/s/-Zv1QwM1lYNWEvIoUNjmXQ" target="_blank" rel="noopener">《Go 团队开始重视安全问题了》</a>
+、<a href="https://mp.weixin.qq.com/s/NkxIEoOHXbjgqLPhWsKYRA" target="_blank" rel="noopener">《Go Module 有漏洞？免费的 Go 漏洞扫描 VSCode 插件》</a>
+和<a href="https://mp.weixin.qq.com/s/pzCefw0g82f6fNqiW3wqEg" target="_blank" rel="noopener">《这个工具真好：看看你的Go项目依赖有无漏洞》</a>
+，有兴趣的可以看看。</p>
+<p>今天介绍另外一个关于安全的内容，是 GitHub 的。</p>
+<p>大家都知晓，目前 Go 是严重依赖 GitHub 的，很多第三方库基本都托管在 GitHub 上。因为 Go 把 GitHub 既当作代码协作的平台，也当作发布包的平台，从而使 Go 成为如今 GitHub 上排名前 5 的编程语言之一，见<a href="https://mp.weixin.qq.com/s/Y_9TN9XxlQjfa9oXenjpxg" target="_blank" rel="noopener">《GitHub 显示，Go 排名第 4 了，有视频为证！》</a>
+。所以，GitHub 官方也更重视 Go 社区，最近宣布他们的安全特性可以用于 Go 模块，这将有助于 Go 社区发现、报告和防止安全漏洞。</p>
+<h2 id="01-github-安全数据库">01 GitHub 安全数据库</h2>
+<p>GitHub 有一个开放的安全建议数据库，叫 <a href="https://github.com/advisories" target="_blank" rel="noopener">Advisory Database</a>
+，专注于为开发人员提供高质量、可操作的漏洞信息。它使用的是知识共享署名 4.0，所以数据可以在任何地方使用。</p>
+<p><p class="md__image">
+  <img src="../imgs/github-security01.png"
+    alt="安全建议数据库"  />
+</p>
+</p>
+<p>从上图可以看到，目前这个数据库支持 PHP、Go、Java、JS、.NET、Python、Ruby 等语言，GitHub 发文宣布支持 Go 时，该数据库有 155 条 Go 相关记录，现在已经 164，你看到这篇文章时，应该会更多。正如 GitHub 宣称的，随着他们对现有漏洞和新发现的漏洞进行筛选，这个数字每天都在增长。</p>
+<h2 id="02-如何帮助发现漏洞">02 如何帮助发现漏洞</h2>
+<p>有这个数据库，那 GitHub 是如何帮助发现漏洞的呢？</p>
+<p>GitHub 很早就有一套安全策略，只是现在这套策略可以支持 Go 仓库。关于这套策略的详细信息，可以查看 GitHub 官方文档：<a href="https://docs.github.com/cn/code-security/getting-started/securing-your-repository">https://docs.github.com/cn/code-security/getting-started/securing-your-repository</a>，这里给的是中文版。</p>
+<p>这里简单介绍几个点。</p>
+<ul>
+<li>公开的仓库，默认启动了相关的安全策略；如果是私有仓库，需要你手动处理，文档中有说明；</li>
+<li>可以自定义用户如何报告安全漏洞。这点建议大的开源项目可以好好研究、利用下。官方建议是，再漏洞进入 GitHub   建议漏洞库之前，你和报告者私下沟通交流解决。</li>
+</ul>
+<p>具体来说，在仓库的 Security 选项卡，可以配置安全策略。</p>
+<p><p class="md__image">
+  <img src="../imgs/github-security02.png"
+    alt=""  />
+</p>
+</p>
+<p>在 Insights 选项卡可以查看依赖相关信息，包括配置是否触发依赖漏洞报警等。</p>
+<p><p class="md__image">
+  <img src="../imgs/github-security03.png"
+    alt=""  />
+</p>
+</p>
+<h2 id="03-哪个更好用">03 哪个更好用</h2>
+<p>了解了几个安全相关的工具后，到底该用哪个？VSCode 插件是适合大部分人的选择，不过 jfrog 的 gocenter 不维护了，所以没法用了。</p>
+<p>所以，我推荐谷歌的 deps.dev。不过如果你是开源项目作者，你应该好好研究、利用下 GitHub 提供的安全策略，让你的开源项目更健壮。</p>
+]]></content>
+		</item>
 		
 		<item>
 			<title>Go开源项目推荐：500行代码确认请求时间花在哪</title>
