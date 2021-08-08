@@ -10,10 +10,10 @@
     <lastBuildDate>Tue, 03 Aug 2021 22:10:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Go 的时间格式化为什么是 2006-01-02 15:04:05？</title>
-      <link>https://polarisxu.studygolang.com/posts/go/imgs/why-time-use-2006/</link>
+      <link>https://polarisxu.studygolang.com/posts/go/why-time-use-2006/</link>
       <pubDate>Tue, 03 Aug 2021 22:10:00 +0800</pubDate>
       
-      <guid>https://polarisxu.studygolang.com/posts/go/imgs/why-time-use-2006/</guid>
+      <guid>https://polarisxu.studygolang.com/posts/go/why-time-use-2006/</guid>
       <description>大家好，我是 polarisxu。 没有什么是完美的！而且，有些东西，有些人认为好，有些人认为很糟糕。Go 也是如此。喜欢 Go 语言的朋友，大概率对其中某些地方不喜欢。比如，你喜欢 Go 中时间格式化固定的 2006-01-02 15:04:05 -0700 吗？为什么是这么一个时间？今天来一探究竟！ 01 新手的困惑 无论是各种群里还是网上搜一下，包括国外的，对 2006-01-02 15:04:05 -0700 都很困惑。 一般的困扰主要有： 不知道只能固定要这个时间，换其他</description>
     </item>
     
