@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Tue, 17 Nov 2020 15:12:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 10 Aug 2021 22:10:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go 第三方库推荐：类型转换如此简单</title>
+      <link>https://polarisxu.studygolang.com/posts/go/pkg/cast/</link>
+      <pubDate>Tue, 10 Aug 2021 22:10:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/pkg/cast/</guid>
+      <description>大家好，我是 polarisxu。 强类型语言有它的优势，但也有不便利的地方，最典型的就是类型转换。Golang 作为一门强类型语言，而且不支持隐式类型转换，因此这个问题更突出。虽然 Go 提供了不少方式进行类型转换，包括相关的标准库，比如 strconv 包。 然而，strconv 包使用没那么方便，比如 &amp;quot;8&amp;quot; 转为 int 类型： s := &amp;#34;8&amp;#34; i, err := strconv.Atoi(s) 你必须对 err 进行处理，因为返回两个值，没法直接将结果传递给</description>
+    </item>
+    
     <item>
       <title>通过这个 Runtime 统计信息可视化库学到了什么？</title>
       <link>https://polarisxu.studygolang.com/posts/go/pkg/statsview/</link>

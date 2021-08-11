@@ -6,8 +6,304 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en</language>
 		<copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-		<lastBuildDate>Tue, 03 Aug 2021 22:10:00 +0800</lastBuildDate>
+		<lastBuildDate>Tue, 10 Aug 2021 22:10:00 +0800</lastBuildDate>
 		<atom:link href="https://polarisxu.studygolang.com/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>Go 第三方库推荐：类型转换如此简单</title>
+			<link>https://polarisxu.studygolang.com/posts/go/pkg/cast/</link>
+			<pubDate>Tue, 10 Aug 2021 22:10:00 +0800</pubDate>
+			
+			<guid>https://polarisxu.studygolang.com/posts/go/pkg/cast/</guid>
+			<description>大家好，我是 polarisxu。 强类型语言有它的优势，但也有不便利的地方，最典型的就是类型转换。Golang 作为一门强类型语言，而且不支持隐式类型转换，因此这个问题更突出。虽然 Go 提供了不少方式进行类型转换，包括相关的标准库，比如 strconv 包。 然而，strconv 包使用没那么方便，比如 &amp;quot;8&amp;quot; 转为 int 类型： s := &amp;#34;8&amp;#34; i, err := strconv.Atoi(s) 你必须对 err 进行处理，因为返回两个值，没法直接将结果传递给</description>
+			<content type="html"><![CDATA[<p>大家好，我是 polarisxu。</p>
+<p>强类型语言有它的优势，但也有不便利的地方，最典型的就是类型转换。Golang 作为一门强类型语言，而且不支持隐式类型转换，因此这个问题更突出。虽然 Go 提供了不少方式进行类型转换，包括相关的标准库，比如 strconv 包。</p>
+<p>然而，strconv 包使用没那么方便，比如 <code>&quot;8&quot;</code> 转为 int 类型：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">s</span> <span class="o">:=</span> <span class="s">&#34;8&#34;</span>
+<span class="nx">i</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">strconv</span><span class="p">.</span><span class="nf">Atoi</span><span class="p">(</span><span class="nx">s</span><span class="p">)</span>
+</code></pre></div><p>你必须对 err 进行处理，因为返回两个值，没法直接将结果传递给接收 int 参数的函数，使用不方便。</p>
+<p>今天给大家介绍一个第三方库，专门处理类型转换的问题。</p>
+<h2 id="01-为什么需要类型转换">01 为什么需要类型转换</h2>
+<p>有一些场景会需要使用类型转换：</p>
+<ul>
+<li>从 yaml、toml、json 等配置文件中读取数据；</li>
+<li>从网络接收请求数据；</li>
+<li>其他通过 interface{} 处理数据的情况；</li>
+<li>。。。</li>
+</ul>
+<p>转换为正确的类型，能充分利用强类型的好处，让程序更健壮、更安全。</p>
+<h2 id="02-spf13cast">02 spf13/cast</h2>
+<p>第三方包 github.com/spf13/cast 专门解决类型转换的问题，这个包产生于 hugo。当时主要用于处理 yaml 等配置文件数据的转换。该包不会 panic。</p>
+<p>该包目前有 1.6k+ 的 Star，有超过 4000 多个开源项目使用了该包。</p>
+<p>这个包使用很简单，主要有两套函数：</p>
+<p>1）To_ 形式函数</p>
+<p>这些函数始终返回所需的类型。如果无法正确转换为对应的类型，则返回目标类型的零值。</p>
+<p>支持的类型包括所有的基本数据类型，还支持 time.Time、time.Duration、slice、map 等常用类型。</p>
+<p>比如：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">cast</span><span class="p">.</span><span class="nf">ToString</span><span class="p">(</span><span class="s">&#34;mayonegg&#34;</span><span class="p">)</span>         <span class="c1">// &#34;mayonegg&#34;
+</span><span class="c1"></span><span class="nx">cast</span><span class="p">.</span><span class="nf">ToString</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>                  <span class="c1">// &#34;8&#34;
+</span><span class="c1"></span><span class="nx">cast</span><span class="p">.</span><span class="nf">ToString</span><span class="p">(</span><span class="mf">8.31</span><span class="p">)</span>               <span class="c1">// &#34;8.31&#34;
+</span><span class="c1"></span><span class="nx">cast</span><span class="p">.</span><span class="nf">ToString</span><span class="p">([]</span><span class="nb">byte</span><span class="p">(</span><span class="s">&#34;one time&#34;</span><span class="p">))</span> <span class="c1">// &#34;one time&#34;
+</span><span class="c1"></span><span class="nx">cast</span><span class="p">.</span><span class="nf">ToString</span><span class="p">(</span><span class="kc">nil</span><span class="p">)</span>                <span class="c1">// &#34;&#34;
+</span><span class="c1"></span><span class="nx">cast</span><span class="p">.</span><span class="nf">ToTime</span><span class="p">(</span><span class="s">&#34;2021-08-10 22:00:00&#34;</span><span class="p">)</span>	<span class="c1">// 2021-08-10 22:00:00 +0000 UTC
+</span></code></pre></div><p>注意，转换为 time.Time 时，需要注意时区问题。ToTime 默认使用 UTC，如果想用其他时区，得类似这么做：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">secondsEastOfUTC</span> <span class="o">:=</span> <span class="nb">int</span><span class="p">((</span><span class="mi">8</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Hour</span><span class="p">).</span><span class="nf">Seconds</span><span class="p">())</span>
+<span class="nx">beijing</span> <span class="o">:=</span> <span class="nx">time</span><span class="p">.</span><span class="nf">FixedZone</span><span class="p">(</span><span class="s">&#34;Beijing Time&#34;</span><span class="p">,</span> <span class="nx">secondsEastOfUTC</span><span class="p">)</span>
+<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">cast</span><span class="p">.</span><span class="nf">ToTimeInDefaultLocation</span><span class="p">(</span><span class="s">&#34;2021-08-10 22:00:00&#34;</span><span class="p">,</span> <span class="nx">beijing</span><span class="p">))</span>
+</code></pre></div><p>当然，你也可以这样：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">cast</span><span class="p">.</span><span class="nf">ToTimeInDefaultLocation</span><span class="p">(</span><span class="s">&#34;2021-08-10 22:00:00&#34;</span><span class="p">,</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Local</span><span class="p">))</span>
+</code></pre></div><p>不过，Local 表示本地时区，要明确这个本地是不是你想要的。</p>
+<p>2）To_E 形式函数</p>
+<p>E 表示 error，也就是说，这一系列函数会返回 error。在无法进行类型转换时，会将错误原因返回。To_ 形式内部调用的是 To_E 形似，只是它忽略了错误。</p>
+<p>这种形式就不举例了。一般地，除非你需要区分零值是因为出错导致的还是本身就是零值，否则应该使用 To_ 系列函数，毕竟更省事。</p>
+<h2 id="03-总结">03 总结</h2>
+<p>大概率，不少公司都有自己类似的库。如果没有，可以考虑使用该库，这样的轮子，没太多必要造。不过这个库有一点我不太喜欢，就是没法指定默认值。</p>
+<p>比如，我想在转换失败时，返回我的默认值，而不是默认零值，这个包做不到。常见的场景就是，处理用户可选输入，如果用户没输入，给一个默认值。</p>
+<p>配置文件也有这样的场景，比如某个配置项如果没有配置，我希望硬编码一个默认值。因为 cast 不支持，依赖 cast 的 github.com/spf13/viper 库也不支持默认值，导致我会写出这样的繁琐代码：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">viper</span><span class="p">.</span><span class="nf">SetDefault</span><span class="p">(</span><span class="s">&#34;listen.port&#34;</span><span class="p">,</span> <span class="s">&#34;2021&#34;</span><span class="p">)</span>
+<span class="nx">port</span> <span class="o">:=</span> <span class="nx">viper</span><span class="p">.</span><span class="nf">GetString</span><span class="p">(</span><span class="s">&#34;listen.port&#34;</span><span class="p">)</span>
+</code></pre></div><p>我更希望的是这样的代码：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">port</span> <span class="o">:=</span> <span class="nx">viper</span><span class="p">.</span><span class="nf">GetString</span><span class="p">(</span><span class="s">&#34;listen.port&#34;</span><span class="p">,</span> <span class="s">&#34;2021&#34;</span><span class="p">)</span>	<span class="c1">// listen.port 没设置时，返回 2021
+</span></code></pre></div>]]></content>
+		</item>
+		
+		<item>
+			<title>担心密码提交到 GitHub？建议使用这个 Go 开源工具</title>
+			<link>https://polarisxu.studygolang.com/posts/go/project/gosec-tool-intro/</link>
+			<pubDate>Tue, 10 Aug 2021 22:10:00 +0800</pubDate>
+			
+			<guid>https://polarisxu.studygolang.com/posts/go/project/gosec-tool-intro/</guid>
+			<description>大家好，我是 polarisxu。 最近跟安全扛上了！这是我分享的 Go 安全相关的第 5 篇文章，前 4 篇文章如下： 《Go 团队开始重视安全问题了》 《Go Module 有漏洞？免费的 Go 漏洞扫描 VSCode 插件》 《这个工具真好：看看你的Go项目依赖有无漏洞》 重磅！GitHub 为 Go 社区带来安全支持 今天要分享的这个开源工具，我个人认为更实用，可以当作一个 vet 工具使用，切切实实检查日常开发经常会忽略的安全</description>
+			<content type="html"><![CDATA[<p>大家好，我是 polarisxu。</p>
+<p>最近跟安全扛上了！这是我分享的 Go 安全相关的第 5 篇文章，前 4 篇文章如下：</p>
+<ul>
+<li><a href="https://mp.weixin.qq.com/s/-Zv1QwM1lYNWEvIoUNjmXQ" target="_blank" rel="noopener">《Go 团队开始重视安全问题了》</a>
+</li>
+<li><a href="https://mp.weixin.qq.com/s/NkxIEoOHXbjgqLPhWsKYRA" target="_blank" rel="noopener">《Go Module 有漏洞？免费的 Go 漏洞扫描 VSCode 插件》</a>
+</li>
+<li><a href="https://mp.weixin.qq.com/s/pzCefw0g82f6fNqiW3wqEg" target="_blank" rel="noopener">《这个工具真好：看看你的Go项目依赖有无漏洞》</a>
+</li>
+<li><a href="https://mp.weixin.qq.com/s/m3VkJU-m_TXnY59ELW12fQ" target="_blank" rel="noopener">重磅！GitHub 为 Go 社区带来安全支持</a>
+</li>
+</ul>
+<p>今天要分享的这个开源工具，我个人认为更实用，可以当作一个 vet 工具使用，切切实实检查日常开发经常会忽略的安全问题，最常见的，比如将密码提交到 GitHub 上了。。。</p>
+<p>这个工具就是 gosec，GitHub 地址：<a href="https://github.com/securego/gosec">https://github.com/securego/gosec</a>，截止目前 Star 数 4.9k+，目测这一波能涨被不少~</p>
+<h2 id="01-简介">01 简介</h2>
+<p>这个工具通过扫描 Go 代码的 AST 树来发现安全问题，具体来说，它通过一些规则来检查代码的安全。有专门的官网：<a href="https://securego.io/">https://securego.io/</a>。</p>
+<p><p class="md__image">
+  <img src="../imgs/gosec-logo.png"
+    alt="gosec"  />
+</p>
+</p>
+<h2 id="02-安装">02 安装</h2>
+<p>官方提供了几种安装方式。作为一个 Go 程序员，我喜欢使用 go get 或 go install 安装。</p>
+<blockquote>
+<p>Go1.16 开始，安装可执行 Go 程序使用 go install，下载安装普通库，使用 go get</p>
+</blockquote>
+<p>因为目前最新版本是 v2，因此这么安装：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ go install github.com/securego/gosec/v2/cmd/gosec@latest
+</code></pre></div><p>当然，你也可以使用官方编译好的安装：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># binary will be $(go env GOPATH)/bin/gosec</span>
+curl -sfL https://raw.githubusercontent.com/securego/gosec/master/install.sh <span class="p">|</span> sh -s -- -b <span class="k">$(</span>go env GOPATH<span class="k">)</span>/bin vX.Y.Z
+
+<span class="c1"># or install it into ./bin/</span>
+curl -sfL https://raw.githubusercontent.com/securego/gosec/master/install.sh <span class="p">|</span> sh -s vX.Y.Z
+
+<span class="c1"># In alpine linux (as it does not come with curl by default)</span>
+wget -O - -q https://raw.githubusercontent.com/securego/gosec/master/install.sh <span class="p">|</span> sh -s vX.Y.Z
+
+<span class="c1"># If you want to use the checksums provided on the &#34;Releases&#34; page</span>
+<span class="c1"># then you will have to download a tar.gz file for your operating system instead of a binary file</span>
+wget https://github.com/securego/gosec/releases/download/vX.Y.Z/gosec_vX.Y.Z_OS.tar.gz
+</code></pre></div><p>如果你想将其和 CI 工具集成，可以参考和 GitHub Action 的集成方式：</p>
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Run Gosec</span><span class="w">
+</span><span class="w"></span><span class="nt">on</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">push</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="l">master</span><span class="w">
+</span><span class="w">  </span><span class="nt">pull_request</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="l">master</span><span class="w">
+</span><span class="w"></span><span class="nt">jobs</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">tests</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l">ubuntu-latest</span><span class="w">
+</span><span class="w">    </span><span class="nt">env</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">GO111MODULE</span><span class="p">:</span><span class="w"> </span><span class="kc">on</span><span class="w">
+</span><span class="w">    </span><span class="nt">steps</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Checkout Source</span><span class="w">
+</span><span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l">actions/checkout@v2</span><span class="w">
+</span><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Run Gosec Security Scanner</span><span class="w">
+</span><span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l">securego/gosec@master</span><span class="w">
+</span><span class="w">        </span><span class="nt">with</span><span class="p">:</span><span class="w">
+</span><span class="w">          </span><span class="nt">args</span><span class="p">:</span><span class="w"> </span><span class="l">./...</span><span class="w">
+</span></code></pre></div><h2 id="03-使用和规则介绍">03 使用和规则介绍</h2>
+<p>本地安装好后，执行 gosec -h 可以看到使用帮助：（请确保 gosec 在 PATH 环境变量中）</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ gosec -h
+
+gosec - Golang security checker
+
+gosec analyzes Go <span class="nb">source</span> code to look <span class="k">for</span> common programming mistakes that
+can lead to security problems.
+
+VERSION: dev
+GIT TAG:
+BUILD DATE:
+
+USAGE:
+
+	<span class="c1"># Check a single package</span>
+	$ gosec <span class="nv">$GOPATH</span>/src/github.com/example/project
+
+	<span class="c1"># Check all packages under the current directory and save results in</span>
+	<span class="c1"># json format.</span>
+	$ gosec -fmt<span class="o">=</span>json -out<span class="o">=</span>results.json ./...
+
+	<span class="c1"># Run a specific set of rules (by default all rules will be run):</span>
+	$ gosec -include<span class="o">=</span>G101,G203,G401  ./...
+
+	<span class="c1"># Run all rules except the provided</span>
+	$ gosec -exclude<span class="o">=</span>G101 <span class="nv">$GOPATH</span>/src/github.com/example/project/...
+
+
+OPTIONS:
+
+  -color
+    	Prints the text format report with colorization when it goes in the stdout <span class="o">(</span>default <span class="nb">true</span><span class="o">)</span>
+  -conf string
+    	Path to optional config file
+  -confidence string
+    	Filter out the issues with a lower confidence than the given value. Valid options are: low, medium, high <span class="o">(</span>default <span class="s2">&#34;low&#34;</span><span class="o">)</span>
+  -exclude string
+    	Comma separated list of rules IDs to exclude. <span class="o">(</span>see rule list<span class="o">)</span>
+  -exclude-dir value
+    	Exclude folder from scan <span class="o">(</span>can be specified multiple <span class="nb">times</span><span class="o">)</span>
+  -fmt string
+    	Set output format. Valid options are: json, yaml, csv, junit-xml, html, sonarqube, golint, sarif or text <span class="o">(</span>default <span class="s2">&#34;text&#34;</span><span class="o">)</span>
+  -include string
+    	Comma separated list of rules IDs to include. <span class="o">(</span>see rule list<span class="o">)</span>
+  -log string
+    	Log messages to file rather than stderr
+  -no-fail
+    	Do not fail the scanning, even <span class="k">if</span> issues were found
+  -nosec
+    	Ignores <span class="c1">#nosec comments when set</span>
+  -nosec-tag string
+    	Set an alternative string <span class="k">for</span> <span class="c1">#nosec. Some examples: #dontanalyze, #falsepositive</span>
+  -out string
+    	Set output file <span class="k">for</span> results
+  -quiet
+    	Only show output when errors are found
+  -severity string
+    	Filter out the issues with a lower severity than the given value. Valid options are: low, medium, high <span class="o">(</span>default <span class="s2">&#34;low&#34;</span><span class="o">)</span>
+  -sort
+    	Sort issues by severity <span class="o">(</span>default <span class="nb">true</span><span class="o">)</span>
+  -stdout
+    	Stdout the results as well as write it in the output file
+  -tags string
+    	Comma separated list of build tags
+  -tests
+    	Scan tests files
+  -verbose string
+    	Overrides the output format when stdout the results <span class="k">while</span> saving them in the output file.
+    	Valid options are: json, yaml, csv, junit-xml, html, sonarqube, golint, sarif or text
+  -version
+    	Print version and quit with <span class="nb">exit</span> code <span class="m">0</span>
+
+
+RULES:
+
+	G101: Look <span class="k">for</span> hardcoded credentials
+	G102: Bind to all interfaces
+	G103: Audit the use of unsafe block
+	G104: Audit errors not checked
+	G106: Audit the use of ssh.InsecureIgnoreHostKey <span class="k">function</span>
+	G107: Url provided to HTTP request as taint input
+	G108: Profiling endpoint is automatically exposed
+	G109: Converting strconv.Atoi result to int32/int16
+	G110: Detect io.Copy instead of io.CopyN when decompression
+	G201: SQL query construction using format string
+	G202: SQL query construction using string concatenation
+	G203: Use of unescaped data in HTML templates
+	G204: Audit use of <span class="nb">command</span> execution
+	G301: Poor file permissions used when creating a directory
+	G302: Poor file permissions used when creation file or using chmod
+	G303: Creating tempfile using a predictable path
+	G304: File path provided as taint input
+	G305: File path traversal when extracting zip archive
+	G306: Poor file permissions used when writing to a file
+	G307: Unsafe defer call of a method returning an error
+	G401: Detect the usage of DES, RC4, MD5 or SHA1
+	G402: Look <span class="k">for</span> bad TLS connection settings
+	G403: Ensure minimum RSA key length of <span class="m">2048</span> bits
+	G404: Insecure random number <span class="nb">source</span> <span class="o">(</span>rand<span class="o">)</span>
+	G501: Import blocklist: crypto/md5
+	G502: Import blocklist: crypto/des
+	G503: Import blocklist: crypto/rc4
+	G504: Import blocklist: net/http/cgi
+	G505: Import blocklist: crypto/sha1
+	G601: Implicit memory aliasing in RangeStmt
+</code></pre></div><p>拿 Go 语言中文网试验一下，切换到 studygolang 源码目录，执行：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ gosec ./...
+...
+Summary:
+  Gosec  : dev
+  Files  : <span class="m">186</span>
+  Lines  : <span class="m">27434</span>
+  Nosec  : <span class="m">0</span>
+  Issues : <span class="m">292</span>
+</code></pre></div><p>中间过程输出内容很多，最后进行了汇总。根据默认规则，一共发现了 292 个 issue。但别慌，这里面有些规则太严格了，比如：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>/Users/xuxinhua/project/golang/studygolang/cmd/studygolang/background.go:57<span class="o">]</span> - G104 <span class="o">(</span>CWE-703<span class="o">)</span>: Errors unhandled. <span class="o">(</span>Confidence: HIGH, Severity: LOW<span class="o">)</span>
+    56: 		// 生成阅读排行榜
+  &gt; 57: 		c.AddFunc<span class="o">(</span><span class="s2">&#34;@daily&#34;</span>, genViewRank<span class="o">)</span>
+    58:
+</code></pre></div><p>因为 c.AddFunc 会返回 error，这个 error 一般不需要处理（这是启动定时任务进行处理），它提示没有处理，对应的规则是 G104。所以，我们将该规则排除掉：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ gosec -exclude ./...
+...
+Summary:
+  Gosec  : dev
+  Files  : <span class="m">186</span>
+  Lines  : <span class="m">27434</span>
+  Nosec  : <span class="m">0</span>
+  Issues : <span class="m">51</span>
+</code></pre></div><p>这次 issue 只剩下 51 个。查看过程中指出的问题代码，依然发现有些规则可以忽略，比如：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>/Users/xuxinhua/project/golang/studygolang/logic/sitemap.go:266<span class="o">]</span> - G307 <span class="o">(</span>CWE-703<span class="o">)</span>: Deferring unsafe method <span class="s2">&#34;Close&#34;</span> on <span class="nb">type</span> <span class="s2">&#34;*os.File&#34;</span> <span class="o">(</span>Confidence: HIGH, Severity: MEDIUM<span class="o">)</span>
+    265: 	<span class="o">}</span>
+  &gt; 266: 	defer file.Close<span class="o">()</span>
+    267:
+</code></pre></div><p>对应规则是 G307：Deferring a method which returns an error。大家一般都会这么做，因此这个规则也可以排除。</p>
+<p>有兴趣的可以一步步看，默认提供的 30 来个规则都检测了哪些问题，根据你的项目情况，排除或使用哪些规则。</p>
+<p>接下来，看一下密码安全问题规则，这是第一个规则：G101，只使用这个规则检测 studygolang 试试：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ gosec -include<span class="o">=</span>G101 ./...
+...
+<span class="o">[</span>/Users/xuxinhua/project/golang/studygolang/http/http.go:437<span class="o">]</span> - G101 <span class="o">(</span>CWE-798<span class="o">)</span>: Potential hardcoded credentials <span class="o">(</span>Confidence: LOW, Severity: HIGH<span class="o">)</span>
+    436: const <span class="o">(</span>
+  &gt; 437: 	<span class="nv">TokenSalt</span>       <span class="o">=</span> <span class="s2">&#34;b3%JFOykZx_golang_polaris&#34;</span>
+    438: 	<span class="nv">NeedReLoginCode</span> <span class="o">=</span> <span class="m">600</span>
+
+Summary:
+  Gosec  : dev
+  Files  : <span class="m">186</span>
+  Lines  : <span class="m">27434</span>
+  Nosec  : <span class="m">0</span>
+  Issues : <span class="m">1</span>
+</code></pre></div><p>挺厉害，检查出了 TokenSalt 写死在代码里了，这是当时准备做 APP 时写的一个 Token，虽然影响不大（因为没有使用），也提醒了这样的应该提前写在配置文件中。</p>
+<p>那 gosec 是怎么检测到的呢？在官网对这个规则有说明。它根据名称是否类似下面这些来判断的：</p>
+<ul>
+<li>“password”</li>
+<li>“pass”</li>
+<li>“passwd”</li>
+<li>“pwd”</li>
+<li>“secret”</li>
+<li>“token”</li>
+</ul>
+<p>此外，安全相关特别要注意的就是 XSS 和 SQL 注入，这方面 gosec 也会有相关规则检测，比如 G201、G202、G203。</p>
+<p>注意：通过 gosec 检测出的 issue，不代表一定有问题，但对我们是一个很好的提醒，让我们能够审视自己的代码，确保相关地方没问题，知道自己为什么这么写。</p>
+<p>gosec 工具其他的使用，可以看文档说明，自己尝试。</p>
+<h2 id="04-总结">04 总结</h2>
+<p>安全问题，我们永远不能忽视。很多时候，可能不会有问题，但真出了问题可能就是大问题。在写代码时，我们难免会有疏忽，通过使用 gosec 这样的工具，可以为我们把好最后一道关。</p>
+<p>赶紧用 gosec 检验一下你的项目吧。</p>
+]]></content>
+		</item>
 		
 		<item>
 			<title>Go 的时间格式化为什么是 2006-01-02 15:04:05？</title>
@@ -63,7 +359,7 @@
 </code></pre></div><p>按 ANSIC 标准的日期格式，月、日、时、分、秒、年，最后加 MST 时区。对应就是 1 2 3 4 5 6 7。同时还可以随意加星期几。</p>
 <p>发现没有？围绕着 1 2 3 4 5 6 7 随意变化，真的不要太爽。我相信你用习惯了会发现 Go 这个设计真的太好了。</p>
 <h2 id="03-总结">03 总结</h2>
-<p>Go 的设计原则之一：大道至简。尽量简介，让大家开心编程。我认为这个格式化时间的设计也体现了这一点，他们设计的很用心。</p>
+<p>Go 的设计原则之一：大道至简。尽量简洁，让大家开心编程。我认为这个格式化时间的设计也体现了这一点，他们设计的很用心。</p>
 <p>知晓了为什么这么设计，我相信你看完这篇文章会从此爱上 Go 的时间格式化形式。</p>
 ]]></content>
 		</item>

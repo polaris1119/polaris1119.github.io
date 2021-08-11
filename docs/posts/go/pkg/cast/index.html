@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#fcfcfc">
+	<meta name="msapplication-TileColor" content="#fcfcfc">
+<meta itemprop="name" content="Go 第三方库推荐：类型转换如此简单">
+<meta itemprop="description" content="大家好，我是 polarisxu。 强类型语言有它的优势，但也有不便利的地方，最典型的就是类型转换。Golang 作为一门强类型语言，而且不支持隐式类型转换，因此这个问题更突出。虽然 Go 提供了不少方式进行类型转换，包括相关的标准库，比如 strconv 包。 然而，strconv 包使用没那么方便，比如 &quot;8&quot; 转为 int 类型： s := &#34;8&#34; i, err := strconv.Atoi(s) 你必须对 err 进行处理，因为返回两个值，没法直接将结果传递给">
+<meta itemprop="datePublished" content="2021-08-10T22:10:00+08:00" />
+<meta itemprop="dateModified" content="2021-08-10T22:10:00+08:00" />
+<meta itemprop="wordCount" content="1057">
+
+
+
+<meta itemprop="keywords" content="Go,第三方库," />
+<meta property="og:title" content="Go 第三方库推荐：类型转换如此简单" />
+<meta property="og:description" content="大家好，我是 polarisxu。 强类型语言有它的优势，但也有不便利的地方，最典型的就是类型转换。Golang 作为一门强类型语言，而且不支持隐式类型转换，因此这个问题更突出。虽然 Go 提供了不少方式进行类型转换，包括相关的标准库，比如 strconv 包。 然而，strconv 包使用没那么方便，比如 &quot;8&quot; 转为 int 类型： s := &#34;8&#34; i, err := strconv.Atoi(s) 你必须对 err 进行处理，因为返回两个值，没法直接将结果传递给" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/pkg/cast/" />
+<meta property="article:published_time" content="2021-08-10T22:10:00+08:00" />
+<meta property="article:modified_time" content="2021-08-10T22:10:00+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Go 第三方库推荐：类型转换如此简单"/>
+<meta name="twitter:description" content="大家好，我是 polarisxu。 强类型语言有它的优势，但也有不便利的地方，最典型的就是类型转换。Golang 作为一门强类型语言，而且不支持隐式类型转换，因此这个问题更突出。虽然 Go 提供了不少方式进行类型转换，包括相关的标准库，比如 strconv 包。 然而，strconv 包使用没那么方便，比如 &quot;8&quot; 转为 int 类型： s := &#34;8&#34; i, err := strconv.Atoi(s) 你必须对 err 进行处理，因为返回两个值，没法直接将结果传递给"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>Go 第三方库推荐：类型转换如此简单</title>
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
+	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/styles.css">
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://polarisxu.studygolang.com">polarisxu</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+  <a href="https://polarisxu.studygolang.com/">首页</a>
+  <a href="https://polarisxu.studygolang.com/categories/echo%E7%B3%BB%E5%88%97/">Echo系列</a>
+  <a href="https://polarisxu.studygolang.com/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a>
+  <a href="https://polarisxu.studygolang.com/posts/">归档</a>
+  <a href="https://polarisxu.studygolang.com/about/">关于</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<button id="toc-btn" class="hdr-btn desktop-only-ib" title="目录"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3" y2="6"></line><line x1="3" y1="12" x2="3" y2="12"></line><line x1="3" y1="18" x2="3" y2="18"></line></svg></button><span class="hdr-social hide-in-mobile"><a href="https://github.com/polaris1119" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a><a href="https://twitter.com/polaris1119" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="菜单"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://polarisxu.studygolang.com/">首页</a></li>
+			<li><a href="https://polarisxu.studygolang.com/categories/echo%E7%B3%BB%E5%88%97/">Echo系列</a></li>
+			<li><a href="https://polarisxu.studygolang.com/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a></li>
+			<li><a href="https://polarisxu.studygolang.com/posts/">归档</a></li>
+			<li><a href="https://polarisxu.studygolang.com/about/">关于</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Aug 10, 2021</span></div>
+				<h1>Go 第三方库推荐：类型转换如此简单</h1>
+			</header>
+			<div class="content">
+				<p>大家好，我是 polarisxu。</p>
+<p>强类型语言有它的优势，但也有不便利的地方，最典型的就是类型转换。Golang 作为一门强类型语言，而且不支持隐式类型转换，因此这个问题更突出。虽然 Go 提供了不少方式进行类型转换，包括相关的标准库，比如 strconv 包。</p>
+<p>然而，strconv 包使用没那么方便，比如 <code>&quot;8&quot;</code> 转为 int 类型：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">s</span> <span class="o">:=</span> <span class="s">&#34;8&#34;</span>
+<span class="nx">i</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">strconv</span><span class="p">.</span><span class="nf">Atoi</span><span class="p">(</span><span class="nx">s</span><span class="p">)</span>
+</code></pre></div><p>你必须对 err 进行处理，因为返回两个值，没法直接将结果传递给接收 int 参数的函数，使用不方便。</p>
+<p>今天给大家介绍一个第三方库，专门处理类型转换的问题。</p>
+<h2 id="01-为什么需要类型转换">01 为什么需要类型转换<a href="#01-为什么需要类型转换" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>有一些场景会需要使用类型转换：</p>
+<ul>
+<li>从 yaml、toml、json 等配置文件中读取数据；</li>
+<li>从网络接收请求数据；</li>
+<li>其他通过 interface{} 处理数据的情况；</li>
+<li>。。。</li>
+</ul>
+<p>转换为正确的类型，能充分利用强类型的好处，让程序更健壮、更安全。</p>
+<h2 id="02-spf13cast">02 spf13/cast<a href="#02-spf13cast" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>第三方包 github.com/spf13/cast 专门解决类型转换的问题，这个包产生于 hugo。当时主要用于处理 yaml 等配置文件数据的转换。该包不会 panic。</p>
+<p>该包目前有 1.6k+ 的 Star，有超过 4000 多个开源项目使用了该包。</p>
+<p>这个包使用很简单，主要有两套函数：</p>
+<p>1）To_ 形式函数</p>
+<p>这些函数始终返回所需的类型。如果无法正确转换为对应的类型，则返回目标类型的零值。</p>
+<p>支持的类型包括所有的基本数据类型，还支持 time.Time、time.Duration、slice、map 等常用类型。</p>
+<p>比如：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">cast</span><span class="p">.</span><span class="nf">ToString</span><span class="p">(</span><span class="s">&#34;mayonegg&#34;</span><span class="p">)</span>         <span class="c1">// &#34;mayonegg&#34;
+</span><span class="c1"></span><span class="nx">cast</span><span class="p">.</span><span class="nf">ToString</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>                  <span class="c1">// &#34;8&#34;
+</span><span class="c1"></span><span class="nx">cast</span><span class="p">.</span><span class="nf">ToString</span><span class="p">(</span><span class="mf">8.31</span><span class="p">)</span>               <span class="c1">// &#34;8.31&#34;
+</span><span class="c1"></span><span class="nx">cast</span><span class="p">.</span><span class="nf">ToString</span><span class="p">([]</span><span class="nb">byte</span><span class="p">(</span><span class="s">&#34;one time&#34;</span><span class="p">))</span> <span class="c1">// &#34;one time&#34;
+</span><span class="c1"></span><span class="nx">cast</span><span class="p">.</span><span class="nf">ToString</span><span class="p">(</span><span class="kc">nil</span><span class="p">)</span>                <span class="c1">// &#34;&#34;
+</span><span class="c1"></span><span class="nx">cast</span><span class="p">.</span><span class="nf">ToTime</span><span class="p">(</span><span class="s">&#34;2021-08-10 22:00:00&#34;</span><span class="p">)</span>	<span class="c1">// 2021-08-10 22:00:00 +0000 UTC
+</span></code></pre></div><p>注意，转换为 time.Time 时，需要注意时区问题。ToTime 默认使用 UTC，如果想用其他时区，得类似这么做：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">secondsEastOfUTC</span> <span class="o">:=</span> <span class="nb">int</span><span class="p">((</span><span class="mi">8</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Hour</span><span class="p">).</span><span class="nf">Seconds</span><span class="p">())</span>
+<span class="nx">beijing</span> <span class="o">:=</span> <span class="nx">time</span><span class="p">.</span><span class="nf">FixedZone</span><span class="p">(</span><span class="s">&#34;Beijing Time&#34;</span><span class="p">,</span> <span class="nx">secondsEastOfUTC</span><span class="p">)</span>
+<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">cast</span><span class="p">.</span><span class="nf">ToTimeInDefaultLocation</span><span class="p">(</span><span class="s">&#34;2021-08-10 22:00:00&#34;</span><span class="p">,</span> <span class="nx">beijing</span><span class="p">))</span>
+</code></pre></div><p>当然，你也可以这样：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">cast</span><span class="p">.</span><span class="nf">ToTimeInDefaultLocation</span><span class="p">(</span><span class="s">&#34;2021-08-10 22:00:00&#34;</span><span class="p">,</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Local</span><span class="p">))</span>
+</code></pre></div><p>不过，Local 表示本地时区，要明确这个本地是不是你想要的。</p>
+<p>2）To_E 形式函数</p>
+<p>E 表示 error，也就是说，这一系列函数会返回 error。在无法进行类型转换时，会将错误原因返回。To_ 形式内部调用的是 To_E 形似，只是它忽略了错误。</p>
+<p>这种形式就不举例了。一般地，除非你需要区分零值是因为出错导致的还是本身就是零值，否则应该使用 To_ 系列函数，毕竟更省事。</p>
+<h2 id="03-总结">03 总结<a href="#03-总结" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>大概率，不少公司都有自己类似的库。如果没有，可以考虑使用该库，这样的轮子，没太多必要造。不过这个库有一点我不太喜欢，就是没法指定默认值。</p>
+<p>比如，我想在转换失败时，返回我的默认值，而不是默认零值，这个包做不到。常见的场景就是，处理用户可选输入，如果用户没输入，给一个默认值。</p>
+<p>配置文件也有这样的场景，比如某个配置项如果没有配置，我希望硬编码一个默认值。因为 cast 不支持，依赖 cast 的 github.com/spf13/viper 库也不支持默认值，导致我会写出这样的繁琐代码：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">viper</span><span class="p">.</span><span class="nf">SetDefault</span><span class="p">(</span><span class="s">&#34;listen.port&#34;</span><span class="p">,</span> <span class="s">&#34;2021&#34;</span><span class="p">)</span>
+<span class="nx">port</span> <span class="o">:=</span> <span class="nx">viper</span><span class="p">.</span><span class="nf">GetString</span><span class="p">(</span><span class="s">&#34;listen.port&#34;</span><span class="p">)</span>
+</code></pre></div><p>我更希望的是这样的代码：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">port</span> <span class="o">:=</span> <span class="nx">viper</span><span class="p">.</span><span class="nf">GetString</span><span class="p">(</span><span class="s">&#34;listen.port&#34;</span><span class="p">,</span> <span class="s">&#34;2021&#34;</span><span class="p">)</span>	<span class="c1">// listen.port 没设置时，返回 2021
+</span></code></pre></div>
+			</div><div class="content">
+	<br>
+	<img src="https://static.studygolang.com/static/img/polarisxu-qrcode-soso-s.png">
+</div>
+
+<div class="related-posts thin">
+	<h2>相关推荐</h2>
+	<ul>
+	
+	<li><a href="/posts/go/pkg/statsview/">通过这个 Runtime 统计信息可视化库学到了什么？</a></li>
+	
+	<li><a href="/posts/go/pkg/statsviz/">你喜欢的 Go 第三方库：一步为系统集成可视化实时运行时统计</a></li>
+	
+	<li><a href="/posts/go/project/gosec-tool-intro/">担心密码提交到 GitHub？建议使用这个 Go 开源工具</a></li>
+	
+	<li><a href="/posts/go/why-time-use-2006/">Go 的时间格式化为什么是 2006-01-02 15:04:05？</a></li>
+	
+	<li><a href="/posts/go/dynamic/github-supply-chain-security-features-go-community/">GitHub 为 Go 社区带来安全支持</a></li>
+	
+	</ul>
+</div>
+
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://polarisxu.studygolang.com/tags/go">Go</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93">第三方库</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1057 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2021-08-10 22:10 &#43;0800</p>
+			</footer>
+		</article>
+		<aside id="toc">
+			<div class="toc-title">目录</div>
+			<nav id="TableOfContents">
+  <ul>
+    <li><a href="#01-为什么需要类型转换">01 为什么需要类型转换</a></li>
+    <li><a href="#02-spf13cast">02 spf13/cast</a></li>
+    <li><a href="#03-总结">03 总结</a></li>
+  </ul>
+</nav>
+		</aside>
+		<div class="post-nav thin">
+			<a class="prev-post" href="https://polarisxu.studygolang.com/posts/go/project/gosec-tool-intro/">
+				<span class="post-nav-label">旧&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>担心密码提交到 GitHub？建议使用这个 Go 开源工具</span>
+			</a>
+		</div>
+		<div id="comments" class="thin"><script src="https://utteranc.es/client.js"
+	repo="polaris1119/polarisxu"
+	issue-term="pathname"
+	theme="github-light"
+	crossorigin="anonymous"
+	async>
+</script>
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2019 - 2021 <a href="https://polarisxu.studygolang.com">polarisxu</a> &#183; <a href="https://beian.miit.gov.cn/">京ICP备14030343号-1</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://polarisxu.studygolang.com/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+		<span id="busuanzi_container" style="color: #666;">
+			本站总访客数/访问量：<span id="busuanzi_value_site_uv"></span>/<span id="busuanzi_value_site_pv"></span>
+		</span>
+	</footer>
+
+
+
+	<script src="https://polarisxu.studygolang.com/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw=" crossorigin="anonymous"></script>
+	<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?224c227cd9239761ec770bc8c1fb134c";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+</body>
+
+</html>

@@ -14,7 +14,7 @@
 <meta property="og:description" content="polarisxu,Go语言中文网,go,golang,源码分析,系列教程" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://polarisxu.studygolang.com/" />
-<meta property="og:updated_time" content="2021-08-03T22:10:00+08:00" />
+<meta property="og:updated_time" content="2021-08-10T22:10:00+08:00" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="polarisxu"/>
 <meta name="twitter:description" content="polarisxu,Go语言中文网,go,golang,源码分析,系列教程"/>
@@ -70,6 +70,65 @@
 		<main class="site-main section-inner thin animated fadeIn faster">
     
 		
+        <div class="post animated fadeInDown">
+            <div class="post-title">
+                <h2><a href="/posts/go/translation/easter-eggs-in-go-source-code-2l02/">Go 源代码中的复活节彩蛋</a>
+                </h2>
+            </div>
+            <div class="post-content">
+                <div class="p_part"><p>前言 前段时间，我在某个 Slack 工作区与朋友聊天： 朋友：“有人知道为什么time.minWall 的默认值是 1885 吗？” 我：“不知道，也许是从《回到未来 3》那一年开始的？” 我那么说基本是在开玩笑，因为我也不知道为什么将其设置为 1885 年。尽管其背后的事实与我在 Go 中的日常编码没有任何关系，但我还是情不自禁地询问了幕后花絮。我在团队聊天中问了我的同伴 Gophers，但似乎没人能找到</p></div>
+            </div>
+            <div class="post-footer">
+                <div class="meta">
+                    <div class="info"><em class="fas fa-calendar-day"></em><span
+                                class="date">2020-07-17</span>
+                        <a class="tag"
+                                   href="/tags/go/">Go</a><a class="tag"
+                                   href="/tags/%E6%BA%90%E7%A0%81/">源码</a><a class="tag"
+                                   href="/tags/time/">time</a>
+                    </div>
+                </div>
+            </div>
+				</div>
+    
+        <div class="post animated fadeInDown">
+            <div class="post-title">
+                <h2><a href="/posts/devtool/goland/2020.2.beta/">GoLand 2020.2 Beta 版发布：go.mod 升级以及对泛型的实验性支持</a>
+                </h2>
+            </div>
+            <div class="post-content">
+                <div class="p_part"><p>GoLand 2020.2 达到 Beta。这意味着我们将结束一连串的新功能开发，将重点转移到完善我们已经完成的工作上，并开始计算发布日之前的日子！
+与我们的“抢先体验计划”版本相比，该测试版非常稳定，但请记住，可能仍然在某处存在 Bug。
+同样请注意，此 Beta 版本是 EAP 周期中的最后一个版本，不需要订阅即可使用（如果您只是想尝试 GoLand，请尝试）。测试版通常会在发布候选版本之后出现，一旦我们发现该版本足够好并且可以在您的计算机上安装了。
+在此发布周期中，我们为即将推出的 GoLand 2020.2 打包了 Go 模块的新功能，更好地呈现了代码中可能存在的问题和薄弱环节，提供了新的代码检查功能以及新的代码编辑功能，例如期待已久的 “Add Caret Per Selected Line”，改进了后台流程，使其更透明，更快，更多！
+让我们来看看即将发布的版本中的新功能。选择您感兴趣的主题，或浏览整个博客文章以了解每个新功能。
+ Go Modules Generics a.k.a. Type Parameters Code Editing Code Inspections Take Variadic Arguments Under Сontrol References from Comments Save Projects as Templates Under the Hood Processes Version Control  Go Modules 支持 GOMODCACHE 环境变量 从 Go 1.15 开始，可以使用新的 GOMODCACHE 环境变量将 Go Modules 缓存的默认位置从 $GOPATH/pkg/mod 更改为另一个文件夹。
+为此，只需在 “Preferences/Settings | Go Modules | Environment” 设置 GOMODCACHE 即可。
+IDE 将识别自定义位置，并将其用于具有依赖关系的所有后续操作。同步依赖项快速修复程序（可通过 Alt + Enter 实现）会将依赖项下载到 GOMODCACHE，外部库也将在新的自定义位置显示依赖项。
+升级 go.mod 文件 行注释（在 Windows/Linux 上为 Ctrl + /，在 macOS 上为 ⌘ + /）可用于 go.mod 文件。
+现在，当您键入 replace，exclude 和 require 语句的左括号时，GoLang 立即自动为你添加右括号。
+泛型（又称类型参数） 6月16日，Go Team 宣布了泛型（也称为类型参数）设计草案。请访问 Golang 文档以获取有关该概念的完整详细信息 。
+这是一个重大的发展，因此我们立即着手增加对它的支持。GoLand 2020.2 Beta 提供了对泛型的实验性支持，您可以通过在 Settings/Preferences | Go 启用对泛型的实验性支持。
+此初始支持提供语法高亮显示和基本参考解析，并且仅在 go2 文件中有效。
+请注意，有关泛型的工作仍在进行中，我们目前尚无法提供全面的支持。
+尽管如此，请分享您的体验和您可能有的任何建议。它确实可以帮助我们完善到目前为止已完成的工作，因此我们可以使其可靠并使用更高级的功能进行填充。
+代码编辑 想要将快速修复的结果应用于代码之前预览其结果，请使用 Alt + Enter 快捷方式调用显示上下文操作，选择所需的快速修复，然后在 macOS 上按 Alt + Space 或在 Windows 和 Linux 上为 Ctrl + Shift + I。
+新的“按选定的行添加插入（多行操作）”操作会在每个选定行的末尾插入，并取消选择这些行。在 Windows/Linux 上使用快捷键 Alt + Shift + G 或在 macOS 上使用 ⌥ + ⇧ + G 调用它。
+在 Preferences/Settings | Editor | Code Style | Go | Wrapping and Braces 中为调用参数，函数参数和复合文字元素配置换行。或者，您可以使用 Alt + Enter 键，调出 Put arguments on separate lines 和 *Put arguments on one line，*以手动拆分和合并元素。</p></div>
+            </div>
+            <div class="post-footer">
+                <div class="meta">
+                    <div class="info"><em class="fas fa-calendar-day"></em><span
+                                class="date">2020-07-16</span>
+                        <a class="tag"
+                                   href="/tags/goland/">GoLand</a><a class="tag"
+                                   href="/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a><a class="tag"
+                                   href="/tags/%E6%B3%9B%E5%9E%8B/">泛型</a>
+                    </div>
+                </div>
+            </div>
+				</div>
+    
         <div class="post animated fadeInDown">
             <div class="post-title">
                 <h2><a href="/posts/go/translation/benchmarking-grpc-in-rust-go/">对 gRPC 的 Rust 和 Go 版本进行基准测试</a>
@@ -273,98 +332,6 @@ version:&#34;3.5&#34;services:web:container_name:dockerdevbuild:./ports:- &#34;8
                                    href="/tags/goland/">GoLand</a><a class="tag"
                                    href="/tags/docker/">Docker</a><a class="tag"
                                    href="/tags/compose/">Compose</a>
-                    </div>
-                </div>
-            </div>
-				</div>
-    
-        <div class="post animated fadeInDown">
-            <div class="post-title">
-                <h2><a href="/posts/devtool/goland/debugging-a-go-application-inside-a-docker-container/">基于 GoLand 使用 Docker 容器进行 Go 开发</a>
-                </h2>
-            </div>
-            <div class="post-content">
-                <div class="p_part"><p>今天，我们开始撰写一系列有关 GoLand 内部对 Docker，Docker Compose 和 Kubernetes 的支持以及它如何帮助我们在 Go 中编写（微）服务的文章。
-我们将研究如何在 IDE 中配置项目，如何使用 Docker 或 Kubernetes 运行或调试我们的项目，以及如何将项目连接到我们选择的数据库 PostgreSQL。
-让我们从介绍普通的 Docker 工作流程开始，然后我们将构建容器并运行它。
-在继续之前，我们需要 GoLand 2020.1.1 或更高版本，该版本带有最新的 Docker 插件。我们还需要一个相当现代的 Docker 版本，例如 17.06 或更高版本。注意：虽然旧版本的 IDE 在一定程度上可以使用，但是本文使用了新功能，并且 IDE 的外观可能有所不同。
-项目设置 让我们开始设置我们的项目。
-我们可以创建一个新的 Go Modules 项目，也可以使用现有的项目。
-项目结构应类似于此仓库中的结构：https://github.com/dlsniper/dockerdev。
-本教程不会介绍如何为你的系统安装和配置 Docker。
-相反，我们将从配置 Docker 服务器开始，以便我们可以运行我们的应用程序。将 Docker 安装到系统中后，转到 Settings/Preferences | Build, Execution, Deployment | Docker，然后单击 + 按钮添加新的 Docker 服务器连接。
-默认情况下，该插件将创建与本地计算机 Docker 服务器的连接，对于我们的教程而言已经足够了。单击确定按钮以创建服务器配置。
-使用 Dockerfile 首先，让我们在项目的根目录中打开 Dockerfile。
-# Compile stage FROM golang:1.13.8 AS build-env ADD . /dockerdev WORKDIR /dockerdev RUN go build -o /server # Final stage FROM debian:buster EXPOSE 8000 WORKDIR / COPY --from=build-env /server / CMD [&quot;/server&quot;] 该 Dockerfile 使用多阶段构建，该方式使我们能够生成最小的 Docker 映像，因为构建应用程序二进制文件的编译阶段与构建容器的最终阶段是分开的。
-将上面的代码粘贴到 Dockerfile 中后，第一个 FROM […] 指令旁边会出现一个绿色箭头。这是运行容器的最快方法。
-但是，我们需要进行一些编辑才能运行它，因为我们需要为容器公开正确的端口以接收连接。
-为容器创建一个新的运行配置 我们可以创建一个新的运行配置，也可以编辑仓库中存在的配置。为了简单起见，直接使用现有的，因为它已经预先填写了我们需要的所有值。要对其进行编辑，请单击选项列表底部的 Edit ‘Docker – Web – Standalone’  选项。
-在这里，我们可以设置运行 Docker 容器所需的所有选项。我们的运行配置已经填上了重要内容，例如配置名称：“ Docker – Web Dev – Standalone”。容器名称设置为 docker-web-dev-standalone。最后，在“绑定端口”字段中，我们将“主机”端口和“容器”端口都设置为 8000，以便可以访问应用程序。
-现在，我们可以单击对话框底部的 “Run” 按钮，来启动我们的容器。
-了解服务工具窗口 Docker 完成构建过程后，我们可以查看 “Services Tool Window” 窗口，并在 “Containers” 部分中看到新创建的容器。我们还将在 “Images” 部分中看到使用的镜像。
-对于每个容器，有以下可用选项卡：
- Build Log：它显示用于构建容器的日志； Log：显示容器的输出； Attached console：如果可以的话，这允许我们与容器的应用程序/shell 交互； Properties：将显示有关容器的更多信息，例如 镜像 ID 或容器 ID； Environment variables：显示容器使用的环境变量； Port bindings：显示容器暴露给主机的所有端口； Volume bindings：显示为容器安装的卷； Files：如果它支持运行 ls 命令，则允许我们浏览容器中的文件。对于像我们这样的基于 Alpine 的容器，我们可以添加 RUN apk add &ndash;no-cache coreutils 指令来启用此功能；  在左侧，我们可以看到各种按钮。首先，有一个 “Redeploy” 按钮，它使我们可以再次运行容器的构建配置。</p></div>
-            </div>
-            <div class="post-footer">
-                <div class="meta">
-                    <div class="info"><em class="fas fa-calendar-day"></em><span
-                                class="date">2020-05-04</span>
-                        <a class="tag"
-                                   href="/tags/goland/">GoLand</a><a class="tag"
-                                   href="/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a><a class="tag"
-                                   href="/tags/docker/">Docker</a>
-                    </div>
-                </div>
-            </div>
-				</div>
-    
-        <div class="post animated fadeInDown">
-            <div class="post-title">
-                <h2><a href="/posts/devtool/goland/goland-2020-1-release/">还在用 2019.3 就 Out 了：GoLand 2020.1 版本正式发布</a>
-                </h2>
-            </div>
-            <div class="post-content">
-                <div class="p_part"><p>北京时间 2020 年 4 月 10 日凌晨，Jetbrains 宣布正式发布 GoLand 2020.1 版本。
-该版本主要的变化有：
-引入了对 Go 模块支持的各种升级以及代码编辑功能，这些功能几乎不需要用户交互，也不需要扩展的代码补全系列。
-除此之外，还添加了新的代码检查、快速修复和其他改进，例如新的 LightEdit 模式（可让您在文本编辑器中打开文件，而无需创建或加载项目）、智能拼写和语法检查以及用于 Web 开发和数据库处理的新功能。
-Go 语言中文网在 2020.1 还未正式发布之前，就发过关于该版本特性的文章，现在 2020.1 正式发布了，相关功能特性稳定了，我们再次介绍下相关新特性。
-Go 模块改进 2020.1 现已支持 Go 1.13 的环境变量 GOPROXY、GOPRIVATE、GOSUMDB、GONOPROXY 和 GONOSUMB。
-使用 Go Modules 项目模板配置其默认值。只需点击 Environment 字段中的 Browse 图标即可打开新的 Environment Variables 对话框。
-go.mod 文件支持 go、module、require、replace 和 exclude 关键字代码补全、依赖项名称以及本地路径替换。
-此外，也可以使用 Rename 和 Move 重构。 重命名或移动由 replace 语句引用的目录时，GoLand 将相应地更改 go.mod 文件中的路径。
-现在，您还可以通过 Project 视图调用 Find Usages，以探索 go.mod 文件中特定目录路径的使用位置。
-在 GoLand 2020.1 中，您可以通过 Alt-Enter 获取缺失的依赖项并移除未使用的依赖项。
-最后但同样重要的是，如果存在本地路径替换，则新版本将在您提交之前显示一条通知，这样您就不会意外提交它们。
-您无需学习如何使用的代码补全功能 GoLand 2020.1 将建议 if err != nil { &hellip; } 来补全错误处理模式。 只需在表达式内输入 if。
-只需输入 type 关键字或 struct 和 interface，即可更快地定义结构和接口类型。
-Fill Fields 操作在格式化规则要求时会在冒号后面添加空格。 它还会在组合文字声明中语句的末尾添加逗号。
-现在，使用 map 时，代码补全会在您补全键类型后将光标移到右中括号后面。
-对于函数的返回类型，补全功能将为局部变量和零值提供适合相应返回值类型的建议。
-智能代码补全（⌥⇧Space 或 Ctrl+Shift+Space） 智能代码补全会建议一个指向结构初始值设定项的指针。
-它还会建议在断言和类型 switch 用例中首先使用兼容类型。
-在类型断言中，它提供已赋值变量的类型。
-最后，它提供了表达式中可能指针的建议列表。
-基本代码补全（⌃空格或 Ctrl+空格） 为注释添加了基本代码补全，这将使编写文档更加轻松！ 它可为当前包声明建议名称，并为函数和方法建议参数名称。除此之外，基本代码补全还可以建议文字和转换。
-代码编辑 编写多值返回函数的签名时，GoLand 2020.1 会在逗号后面的返回类型周围添加括号。当您在字符串文字中粘贴一些文本时，IDE 会转义双引号。
-Go 1.14 支持 1）支持重叠接口
-Go 1.14 添加了对嵌入重叠接口的支持，我们也添加了此功能！ 当您使用重叠接口描述类型的不同方面时，GoLand 不会将这些方面的重复方法报告为错误。
-2）自动 vendoring 模式
-如果模块根包含 vendor 目录，则会在 Go 1.14 中自动启用 vendoring 模式。 对于 GoLand 2020.1，我们决定为 Go 1.13 及更早版本实现类似的行为。 IDE 会自动将导入解析到 vendor/ 文件夹（如果模块中存在）。
-调试器更新 1）分析器标签支持
-为了帮助您在调试或核心转储分析过程中更轻松地区分 goroutine，我们为其添加了分析器标签。更多详情请参考：如何在调试过程中查找 Goroutine 。
-2）宏支持
-现在，可以将宏用作运行或调试应用程序的参数。 在 Run/Debug Configurations 对话框中，点击 Go Tool 中的 + 或 Program arguments 字段即可打开新的 Macros 对话框，其中会列出要使用的可用宏。
-此外，您现在还可以将配置文件存储在项目中。 在 Run/Debug Configurations 对话框的顶部，选择 Store 作为项目文件选项。</p></div>
-            </div>
-            <div class="post-footer">
-                <div class="meta">
-                    <div class="info"><em class="fas fa-calendar-day"></em><span
-                                class="date">2020-04-10</span>
-                        <a class="tag"
-                                   href="/tags/goland/">GoLand</a><a class="tag"
-                                   href="/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a><a class="tag"
-                                   href="/tags/%E5%8F%91%E5%B8%83/">发布</a>
                     </div>
                 </div>
             </div>

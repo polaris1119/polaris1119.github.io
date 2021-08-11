@@ -7,7 +7,25 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Tue, 03 Aug 2021 22:10:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 10 Aug 2021 22:10:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go 第三方库推荐：类型转换如此简单</title>
+      <link>https://polarisxu.studygolang.com/posts/go/pkg/cast/</link>
+      <pubDate>Tue, 10 Aug 2021 22:10:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/pkg/cast/</guid>
+      <description>大家好，我是 polarisxu。 强类型语言有它的优势，但也有不便利的地方，最典型的就是类型转换。Golang 作为一门强类型语言，而且不支持隐式类型转换，因此这个问题更突出。虽然 Go 提供了不少方式进行类型转换，包括相关的标准库，比如 strconv 包。 然而，strconv 包使用没那么方便，比如 &amp;quot;8&amp;quot; 转为 int 类型： s := &amp;#34;8&amp;#34; i, err := strconv.Atoi(s) 你必须对 err 进行处理，因为返回两个值，没法直接将结果传递给</description>
+    </item>
+    
+    <item>
+      <title>担心密码提交到 GitHub？建议使用这个 Go 开源工具</title>
+      <link>https://polarisxu.studygolang.com/posts/go/project/gosec-tool-intro/</link>
+      <pubDate>Tue, 10 Aug 2021 22:10:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/project/gosec-tool-intro/</guid>
+      <description>大家好，我是 polarisxu。 最近跟安全扛上了！这是我分享的 Go 安全相关的第 5 篇文章，前 4 篇文章如下： 《Go 团队开始重视安全问题了》 《Go Module 有漏洞？免费的 Go 漏洞扫描 VSCode 插件》 《这个工具真好：看看你的Go项目依赖有无漏洞》 重磅！GitHub 为 Go 社区带来安全支持 今天要分享的这个开源工具，我个人认为更实用，可以当作一个 vet 工具使用，切切实实检查日常开发经常会忽略的安全</description>
+    </item>
+    
     <item>
       <title>Go 的时间格式化为什么是 2006-01-02 15:04:05？</title>
       <link>https://polarisxu.studygolang.com/posts/go/why-time-use-2006/</link>
@@ -78,24 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/action/studygolang-downloader-bug/</guid>
       <description>大家好，我是 polarisxu。 前几天我写了一篇文章：Go项目实战：一步步构建一个并发文件下载器 ，有小伙伴评论问，请求 https://studygolang.com/dl/golang/go1.16.5.src.tar.gz 为什么没有返回 Accept-Ranges。在写那篇文章时，我也试了，确实没有返回，因此我以为它不支持。 但有一个小伙伴很认真，他改用 GET 方法请求这个地址，结果却有 Accept-Ranges，于是就很困惑，问我什么原因。经过一顿操作猛如虎，终于知</description>
-    </item>
-    
-    <item>
-      <title>Go项目实战：一步步构建一个并发文件下载器</title>
-      <link>https://polarisxu.studygolang.com/posts/go/action/build-a-concurrent-file-downloader/</link>
-      <pubDate>Sat, 03 Jul 2021 22:10:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/action/build-a-concurrent-file-downloader/</guid>
-      <description>大家好，我是 polarisxu。 今天为大家带来一个实战项目。建议你一定要动手实践。 在往下看之前，你不妨思考下，用 Go 如何实现一个并发下载器。（我之前有推荐过一个类似的开源项目：推荐三个Go实战开源项目 ） 01 原理 对于服务器上的某个文件，我们要并发下载到本地，很容易想到，应该将文件分成多个部分，然后开多个 goroutine 并发地去下载，最后将这多个部分合并成一个文件，实现并发下载的</description>
-    </item>
-    
-    <item>
-      <title>这本 Go 新书挺期待的：100 个常见错误</title>
-      <link>https://polarisxu.studygolang.com/posts/go/book/100-go-mistakes/</link>
-      <pubDate>Tue, 29 Jun 2021 22:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/book/100-go-mistakes/</guid>
-      <description>大家好，我是 polarisxu。 Go 虽然简单，但一样会有很多容易犯的错误。网上也有不少总结的 Go 常见错误。 Teiva Harsanyi 在 2019 年发表过一篇文章：《The Top 10 Most Common Mistakes I’ve Seen in Go Projects》 （这里有中文版：https://tomotoes.com/blog/the-top-10-most-common-mistakes-ive-seen-in-go-projects/）</description>
     </item>
     
   </channel>
