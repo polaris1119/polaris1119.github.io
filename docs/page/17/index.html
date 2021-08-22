@@ -176,6 +176,36 @@
     
         <div class="post animated fadeInDown">
             <div class="post-title">
+                <h2><a href="/posts/go/dynamic/go1.17-module/"></a>
+                </h2>
+            </div>
+            <div class="post-content">
+                <div class="p_part"><p>Go 1.17 新特性：Module 有哪些变化？ 大家好，我是 polarisxu。
+自从 Go1.11 增加 Go Module 以来，每个版本都在不断改进 Module。Go1.17 也不例外。这次最主要的变化有两点：
+ Module graph pruning：Module 依赖图修剪 Lazy Loading：Module 延迟加载  此外还有 Deprecated 注释等。本文就一起探究下这些新变化，因为有人没看懂，不知道这些变化是什么意思。
+01 Module 依赖图修剪 要搞懂这个知识点，需要对比 1.17 之前的情况。
+ 注意，这个变化并不会影响 go mod 的任何使用
+ 为了方便演示，我们构建一个这样的例子。
+有四个模块：主模块（studymod）和 a、b、c 三个模块，如下图：
+module studymod 是我们的项目，它依赖模块 a 中的 x 包，而 x 包依赖模块 b，同时 a 包中的 y 包依赖模块 c。
+很显然，对我们的项目 studymod 来说，模块 c 的代码根本没用上。Go 1.17 对 module 的改进主要就是在这种没用上的模块上。
+基于 Go1.16 假定在 $HOME 下创建一个新目录 gomod116，构建如下目录结构：
+[xuxinhua@/Users/xuxinhua/gomod116] $ tree -L 3 . ├── a │ ├── x │ │ └── x.go	// 包含正确的包定义和 import │ └── y │ └── y.go ├── b │ └── b.go ├── c │ └── c.go └── studymod.go 在 Go 文件中只是简单的定义包和 import。几个 go 文件的内容分别如下：
+// x.go package x import _ &#34;b&#34; // y.go package y import _ &#34;c&#34; // b.go package b // c.go package c // studymod.go package studymod import _ &#34;a/x&#34; 进入 gomod116 目录，将 Go 版本切换到 Go1.16.x（多版本发挥作用了，多版本问题，可以看看这篇文章：终于找到了一款我喜欢的安装和管理 Go 版本的工具 ），然后执行下列命令：
+$ go mod init studymod $ cd a $ go mod init a $ cd ../b $ go mod init b $ cd ../c $ go mod init c 因为模块 a 依赖模块 b 和 c，往 a/go.</p></div>
+            </div>
+            <div class="post-footer">
+                <div class="meta">
+                    <div class="info"><em class="fas fa-calendar-day"></em><span
+                                class="date">0001-01-01</span>
+                        
+                    </div>
+                </div>
+            </div>
+				</div>
+    
+        <div class="post animated fadeInDown">
+            <div class="post-title">
                 <h2><a href="/posts/systemprogramming/go/01/"></a>
                 </h2>
             </div>
