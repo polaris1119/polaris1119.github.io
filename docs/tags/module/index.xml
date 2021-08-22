@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Tue, 23 Feb 2021 18:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/module/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 21 Aug 2021 22:10:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/module/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go 1.17 新特性：Module 有哪些变化？</title>
+      <link>https://polarisxu.studygolang.com/posts/go/dynamic/go1.17-module/</link>
+      <pubDate>Sat, 21 Aug 2021 22:10:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/dynamic/go1.17-module/</guid>
+      <description>大家好，我是 polarisxu。 自从 Go1.11 增加 Go Module 以来，每个版本都在不断改进 Module。Go1.17 也不例外。这次最主要的变化有两点： Module graph pruning：Module 依赖图修剪 Lazy Loading：Module 延迟加载 此外还有 Deprecated 注释等。本文就一起探究下这些新变化，因为有人没看懂，不知道这些变化是什么意思。 01 Module 依赖图修剪 要搞懂这个知识点，需要对比 1.17 之前的情况。 注意，</description>
+    </item>
+    
     <item>
       <title>从 go-chi 框架撤回所有主版本聊 Go1.16 的新特性</title>
       <link>https://polarisxu.studygolang.com/posts/go/action/go-chi-use-retract/</link>

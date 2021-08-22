@@ -7,58 +7,24 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<meta name="theme-color" content="#fcfcfc">
 	<meta name="msapplication-TileColor" content="#fcfcfc">
-<meta itemprop="name" content="">
-<meta itemprop="description" content="Go 1.17 新特性：Module 有哪些变化？ 大家好，我是 polarisxu。
-自从 Go1.11 增加 Go Module 以来，每个版本都在不断改进 Module。Go1.17 也不例外。这次最主要的变化有两点：
- Module graph pruning：Module 依赖图修剪 Lazy Loading：Module 延迟加载  此外还有 Deprecated 注释等。本文就一起探究下这些新变化，因为有人没看懂，不知道这些变化是什么意思。
-01 Module 依赖图修剪 要搞懂这个知识点，需要对比 1.17 之前的情况。
- 注意，这个变化并不会影响 go mod 的任何使用
- 为了方便演示，我们构建一个这样的例子。
-有四个模块：主模块（studymod）和 a、b、c 三个模块，如下图：
-module studymod 是我们的项目，它依赖模块 a 中的 x 包，而 x 包依赖模块 b，同时 a 包中的 y 包依赖模块 c。
-很显然，对我们的项目 studymod 来说，模块 c 的代码根本没用上。Go 1.17 对 module 的改进主要就是在这种没用上的模块上。
-基于 Go1.16 假定在 $HOME 下创建一个新目录 gomod116，构建如下目录结构：
-[xuxinhua@/Users/xuxinhua/gomod116] $ tree -L 3 . ├── a │ ├── x │ │ └── x.go	// 包含正确的包定义和 import │ └── y │ └── y.go ├── b │ └── b.go ├── c │ └── c.go └── studymod.go 在 Go 文件中只是简单的定义包和 import。几个 go 文件的内容分别如下：
-// x.go package x import _ &#34;b&#34; // y.go package y import _ &#34;c&#34; // b.go package b // c.go package c // studymod.go package studymod import _ &#34;a/x&#34; 进入 gomod116 目录，将 Go 版本切换到 Go1.16.x（多版本发挥作用了，多版本问题，可以看看这篇文章：终于找到了一款我喜欢的安装和管理 Go 版本的工具 ），然后执行下列命令：
-$ go mod init studymod $ cd a $ go mod init a $ cd ../b $ go mod init b $ cd ../c $ go mod init c 因为模块 a 依赖模块 b 和 c，往 a/go.">
-
-<meta itemprop="wordCount" content="504">
+<meta itemprop="name" content="Go 1.17 新特性：Module 有哪些变化？">
+<meta itemprop="description" content="大家好，我是 polarisxu。 自从 Go1.11 增加 Go Module 以来，每个版本都在不断改进 Module。Go1.17 也不例外。这次最主要的变化有两点： Module graph pruning：Module 依赖图修剪 Lazy Loading：Module 延迟加载 此外还有 Deprecated 注释等。本文就一起探究下这些新变化，因为有人没看懂，不知道这些变化是什么意思。 01 Module 依赖图修剪 要搞懂这个知识点，需要对比 1.17 之前的情况。 注意，">
+<meta itemprop="datePublished" content="2021-08-21T22:10:00+08:00" />
+<meta itemprop="dateModified" content="2021-08-21T22:10:00+08:00" />
+<meta itemprop="wordCount" content="1893">
 
 
 
-<meta itemprop="keywords" content="" />
-<meta property="og:title" content="" />
-<meta property="og:description" content="Go 1.17 新特性：Module 有哪些变化？ 大家好，我是 polarisxu。
-自从 Go1.11 增加 Go Module 以来，每个版本都在不断改进 Module。Go1.17 也不例外。这次最主要的变化有两点：
- Module graph pruning：Module 依赖图修剪 Lazy Loading：Module 延迟加载  此外还有 Deprecated 注释等。本文就一起探究下这些新变化，因为有人没看懂，不知道这些变化是什么意思。
-01 Module 依赖图修剪 要搞懂这个知识点，需要对比 1.17 之前的情况。
- 注意，这个变化并不会影响 go mod 的任何使用
- 为了方便演示，我们构建一个这样的例子。
-有四个模块：主模块（studymod）和 a、b、c 三个模块，如下图：
-module studymod 是我们的项目，它依赖模块 a 中的 x 包，而 x 包依赖模块 b，同时 a 包中的 y 包依赖模块 c。
-很显然，对我们的项目 studymod 来说，模块 c 的代码根本没用上。Go 1.17 对 module 的改进主要就是在这种没用上的模块上。
-基于 Go1.16 假定在 $HOME 下创建一个新目录 gomod116，构建如下目录结构：
-[xuxinhua@/Users/xuxinhua/gomod116] $ tree -L 3 . ├── a │ ├── x │ │ └── x.go	// 包含正确的包定义和 import │ └── y │ └── y.go ├── b │ └── b.go ├── c │ └── c.go └── studymod.go 在 Go 文件中只是简单的定义包和 import。几个 go 文件的内容分别如下：
-// x.go package x import _ &#34;b&#34; // y.go package y import _ &#34;c&#34; // b.go package b // c.go package c // studymod.go package studymod import _ &#34;a/x&#34; 进入 gomod116 目录，将 Go 版本切换到 Go1.16.x（多版本发挥作用了，多版本问题，可以看看这篇文章：终于找到了一款我喜欢的安装和管理 Go 版本的工具 ），然后执行下列命令：
-$ go mod init studymod $ cd a $ go mod init a $ cd ../b $ go mod init b $ cd ../c $ go mod init c 因为模块 a 依赖模块 b 和 c，往 a/go." />
+<meta itemprop="keywords" content="Go,Module," />
+<meta property="og:title" content="Go 1.17 新特性：Module 有哪些变化？" />
+<meta property="og:description" content="大家好，我是 polarisxu。 自从 Go1.11 增加 Go Module 以来，每个版本都在不断改进 Module。Go1.17 也不例外。这次最主要的变化有两点： Module graph pruning：Module 依赖图修剪 Lazy Loading：Module 延迟加载 此外还有 Deprecated 注释等。本文就一起探究下这些新变化，因为有人没看懂，不知道这些变化是什么意思。 01 Module 依赖图修剪 要搞懂这个知识点，需要对比 1.17 之前的情况。 注意，" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/dynamic/go1.17-module/" />
-
+<meta property="article:published_time" content="2021-08-21T22:10:00+08:00" />
+<meta property="article:modified_time" content="2021-08-21T22:10:00+08:00" />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content=""/>
-<meta name="twitter:description" content="Go 1.17 新特性：Module 有哪些变化？ 大家好，我是 polarisxu。
-自从 Go1.11 增加 Go Module 以来，每个版本都在不断改进 Module。Go1.17 也不例外。这次最主要的变化有两点：
- Module graph pruning：Module 依赖图修剪 Lazy Loading：Module 延迟加载  此外还有 Deprecated 注释等。本文就一起探究下这些新变化，因为有人没看懂，不知道这些变化是什么意思。
-01 Module 依赖图修剪 要搞懂这个知识点，需要对比 1.17 之前的情况。
- 注意，这个变化并不会影响 go mod 的任何使用
- 为了方便演示，我们构建一个这样的例子。
-有四个模块：主模块（studymod）和 a、b、c 三个模块，如下图：
-module studymod 是我们的项目，它依赖模块 a 中的 x 包，而 x 包依赖模块 b，同时 a 包中的 y 包依赖模块 c。
-很显然，对我们的项目 studymod 来说，模块 c 的代码根本没用上。Go 1.17 对 module 的改进主要就是在这种没用上的模块上。
-基于 Go1.16 假定在 $HOME 下创建一个新目录 gomod116，构建如下目录结构：
-[xuxinhua@/Users/xuxinhua/gomod116] $ tree -L 3 . ├── a │ ├── x │ │ └── x.go	// 包含正确的包定义和 import │ └── y │ └── y.go ├── b │ └── b.go ├── c │ └── c.go └── studymod.go 在 Go 文件中只是简单的定义包和 import。几个 go 文件的内容分别如下：
-// x.go package x import _ &#34;b&#34; // y.go package y import _ &#34;c&#34; // b.go package b // c.go package c // studymod.go package studymod import _ &#34;a/x&#34; 进入 gomod116 目录，将 Go 版本切换到 Go1.16.x（多版本发挥作用了，多版本问题，可以看看这篇文章：终于找到了一款我喜欢的安装和管理 Go 版本的工具 ），然后执行下列命令：
-$ go mod init studymod $ cd a $ go mod init a $ cd ../b $ go mod init b $ cd ../c $ go mod init c 因为模块 a 依赖模块 b 和 c，往 a/go."/>
+<meta name="twitter:title" content="Go 1.17 新特性：Module 有哪些变化？"/>
+<meta name="twitter:description" content="大家好，我是 polarisxu。 自从 Go1.11 增加 Go Module 以来，每个版本都在不断改进 Module。Go1.17 也不例外。这次最主要的变化有两点： Module graph pruning：Module 依赖图修剪 Lazy Loading：Module 延迟加载 此外还有 Deprecated 注释等。本文就一起探究下这些新变化，因为有人没看懂，不知道这些变化是什么意思。 01 Module 依赖图修剪 要搞懂这个知识点，需要对比 1.17 之前的情况。 注意，"/>
 
 	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -67,7 +33,7 @@ $ go mod init studymod $ cd a $ go mod init a $ cd ../b $ go mod init b $ cd ../
 	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
 	<link rel="shortcut icon" href="/favicon.ico">
 
-	<title></title>
+	<title>Go 1.17 新特性：Module 有哪些变化？</title>
 	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
 	
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
@@ -93,7 +59,7 @@ $ go mod init studymod $ cd a $ go mod init a $ cd ../b $ go mod init b $ cd ../
 				</nav>
 			</div>
 			<div class="hdr-right hdr-icons">
-				<span class="hdr-social hide-in-mobile"><a href="https://github.com/polaris1119" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a><a href="https://twitter.com/polaris1119" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="菜单"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+				<button id="toc-btn" class="hdr-btn desktop-only-ib" title="目录"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3" y2="6"></line><line x1="3" y1="12" x2="3" y2="12"></line><line x1="3" y1="18" x2="3" y2="18"></line></svg></button><span class="hdr-social hide-in-mobile"><a href="https://github.com/polaris1119" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a><a href="https://twitter.com/polaris1119" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="菜单"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
 			</div>
 		</div>
 	</header>
@@ -111,12 +77,11 @@ $ go mod init studymod $ cd a $ go mod init a $ cd ../b $ go mod init b $ cd ../
 	<main class="site-main section-inner animated fadeIn faster">
 		<article class="thin">
 			<header class="post-header">
-				<div class="post-meta"><span>Jan 1, 0001</span></div>
-				<h1></h1>
+				<div class="post-meta"><span>Aug 21, 2021</span></div>
+				<h1>Go 1.17 新特性：Module 有哪些变化？</h1>
 			</header>
 			<div class="content">
-				<h1 id="go-117-新特性module-有哪些变化">Go 1.17 新特性：Module 有哪些变化？<a href="#go-117-新特性module-有哪些变化" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
-<p>大家好，我是 polarisxu。</p>
+				<p>大家好，我是 polarisxu。</p>
 <p>自从 Go1.11 增加 Go Module 以来，每个版本都在不断改进 Module。Go1.17 也不例外。这次最主要的变化有两点：</p>
 <ul>
 <li>Module graph pruning：Module 依赖图修剪</li>
@@ -290,18 +255,52 @@ module example.com/mod
 	<img src="https://static.studygolang.com/static/img/polarisxu-qrcode-soso-s.png">
 </div>
 
+<div class="related-posts thin">
+	<h2>相关推荐</h2>
+	<ul>
+	
+	<li><a href="/posts/go/action/go-chi-use-retract/">从 go-chi 框架撤回所有主版本聊 Go1.16 的新特性</a></li>
+	
+	<li><a href="/posts/go/dynamic/pkg-go-dev-plan/">更懂 module 的包资源中心：关于 pkg.go.dev 的前世今生和未来</a></li>
+	
+	<li><a href="/posts/go/pkg/cast/">Go 第三方库推荐：类型转换如此简单</a></li>
+	
+	<li><a href="/posts/go/project/gosec-tool-intro/">担心密码提交到 GitHub？建议使用这个 Go 开源工具</a></li>
+	
+	<li><a href="/posts/go/why-time-use-2006/">Go 的时间格式化为什么是 2006-01-02 15:04:05？</a></li>
+	
+	</ul>
+</div>
+
 			<hr class="post-end">
 			<footer class="post-info">
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>504 字</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>0001-01-01 08:05 &#43;0805</p>
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://polarisxu.studygolang.com/tags/go">Go</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/module">Module</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1893 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2021-08-21 22:10 &#43;0800</p>
 			</footer>
 		</article>
+		<aside id="toc">
+			<div class="toc-title">目录</div>
+			<nav id="TableOfContents">
+  <ul>
+    <li><a href="#01-module-依赖图修剪">01 Module 依赖图修剪</a>
+      <ul>
+        <li><a href="#基于-go116">基于 Go1.16</a></li>
+        <li><a href="#基于-go117">基于 Go1.17</a></li>
+        <li><a href="#这么做的优劣">这么做的优劣</a></li>
+      </ul>
+    </li>
+    <li><a href="#02-延迟加载lazy-loading">02 延迟加载（lazy Loading）</a></li>
+    <li><a href="#03-deprecated-注释">03 Deprecated 注释</a></li>
+    <li><a href="#04-总结">04 总结</a></li>
+  </ul>
+</nav>
+		</aside>
 		<div class="post-nav thin">
-			<a class="next-post" href="https://polarisxu.studygolang.com/posts/go/echo/echo/">
-				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;新</span><br><span>Echo 系列教程——Go 语言 Web 框架 Echo 系列教程</span>
-			</a>
-			<a class="prev-post" href="https://polarisxu.studygolang.com/posts/systemprogramming/go/01/">
-				<span class="post-nav-label">旧&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span></span>
+			<a class="prev-post" href="https://polarisxu.studygolang.com/posts/go/pkg/cast/">
+				<span class="post-nav-label">旧&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>Go 第三方库推荐：类型转换如此简单</span>
 			</a>
 		</div>
 		<div id="comments" class="thin"><script src="https://utteranc.es/client.js"
