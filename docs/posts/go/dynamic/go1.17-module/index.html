@@ -11,7 +11,7 @@
 <meta itemprop="description" content="大家好，我是 polarisxu。 自从 Go1.11 增加 Go Module 以来，每个版本都在不断改进 Module。Go1.17 也不例外。这次最主要的变化有两点： Module graph pruning：Module 依赖图修剪 Lazy Loading：Module 延迟加载 此外还有 Deprecated 注释等。本文就一起探究下这些新变化，因为有人没看懂，不知道这些变化是什么意思。 01 Module 依赖图修剪 要搞懂这个知识点，需要对比 1.17 之前的情况。 注意，">
 <meta itemprop="datePublished" content="2021-08-21T22:10:00+08:00" />
 <meta itemprop="dateModified" content="2021-08-21T22:10:00+08:00" />
-<meta itemprop="wordCount" content="1893">
+<meta itemprop="wordCount" content="1892">
 
 
 
@@ -231,14 +231,14 @@ a@v0.1.0 c@v0.1.0
 <p>有点类似其他语言中 xxx.lock 文件的感觉了。</p>
 <p>当然，这种方式后，go.mod 的文件会更大，这也是该方式的一个相对劣势。</p>
 <h2 id="02-延迟加载lazy-loading">02 延迟加载（lazy Loading）<a href="#02-延迟加载lazy-loading" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-<p>理解了上面依赖图的裁剪，延迟加载就一句话：那些根本没有用上的模块（比如上面例子中的模块 c），Go 1.17 后，Go 命令不会去读取其 go.mod 文件。如果之后需要了，再会去加载。</p>
+<p>理解了上面依赖图的裁剪，延迟加载就一句话：那些根本没有用上的模块（比如上面例子中的模块 c），Go 1.17 后，Go 命令不会去读取其 go.mod 文件。如果之后需要了，再去加载。</p>
 <h2 id="03-deprecated-注释">03 Deprecated 注释<a href="#03-deprecated-注释" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>Go1.17 go.mod 中支持 Deprecated 注释，用来标明该模块废弃了。</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">// Deprecated: use example.com/mod/v2 instead.
 module example.com/mod
 </code></pre></div><p>对于那些使用了被废弃的 module 的 go 项目，go list、go get 命令都会给出 warning。</p>
 <p>看过我这篇文章：<a href="https://mp.weixin.qq.com/s/mBJ3hQ6oR1V9YtdXpkTnow" target="_blank" rel="noopener">《从 go-chi 框架撤回所有主版本聊 Go1.16 的新特性》</a>
- 的朋友，可能会有疑问，撤回和废弃有和不同，如何分别使用？这里稍微总结下：</p>
+ 的朋友，可能会有疑问，撤回和废弃有何不同，如何分别使用？这里稍微总结下：</p>
 <p><strong>撤回的使用场景</strong>：</p>
 <ul>
 <li>发现了一个严重的安全漏洞；</li>
@@ -263,11 +263,11 @@ module example.com/mod
 	
 	<li><a href="/posts/go/dynamic/pkg-go-dev-plan/">更懂 module 的包资源中心：关于 pkg.go.dev 的前世今生和未来</a></li>
 	
+	<li><a href="/posts/go/dynamic/go-generic/">扬眉吐气：刚刚，Go 已经默认支持泛型了</a></li>
+	
 	<li><a href="/posts/go/pkg/cast/">Go 第三方库推荐：类型转换如此简单</a></li>
 	
 	<li><a href="/posts/go/project/gosec-tool-intro/">担心密码提交到 GitHub？建议使用这个 Go 开源工具</a></li>
-	
-	<li><a href="/posts/go/why-time-use-2006/">Go 的时间格式化为什么是 2006-01-02 15:04:05？</a></li>
 	
 	</ul>
 </div>
@@ -277,7 +277,7 @@ module example.com/mod
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://polarisxu.studygolang.com/tags/go">Go</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/module">Module</a></span>
 				</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1893 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1892 字</p>
 				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2021-08-21 22:10 &#43;0800</p>
 			</footer>
 		</article>
@@ -299,6 +299,9 @@ module example.com/mod
 </nav>
 		</aside>
 		<div class="post-nav thin">
+			<a class="next-post" href="https://polarisxu.studygolang.com/posts/go/dynamic/go-generic/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;新</span><br><span>扬眉吐气：刚刚，Go 已经默认支持泛型了</span>
+			</a>
 			<a class="prev-post" href="https://polarisxu.studygolang.com/posts/go/pkg/cast/">
 				<span class="post-nav-label">旧&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>Go 第三方库推荐：类型转换如此简单</span>
 			</a>

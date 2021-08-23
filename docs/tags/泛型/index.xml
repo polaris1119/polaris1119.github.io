@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Fri, 04 Dec 2020 22:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/%E6%B3%9B%E5%9E%8B/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 22 Aug 2021 22:10:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/%E6%B3%9B%E5%9E%8B/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>扬眉吐气：刚刚，Go 已经默认支持泛型了</title>
+      <link>https://polarisxu.studygolang.com/posts/go/dynamic/go-generic/</link>
+      <pubDate>Sun, 22 Aug 2021 22:10:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/dynamic/go-generic/</guid>
+      <description>大家好，我是 polarisxu。 上周 Go 1.17 发布，在发布文档中，没有提到泛型的事情。但在发布之前，大家就发现，泛型的相关代码在 1.17 中埋下了，只是默认不启用。 就在最近，gotip 已经默认启用泛型。Go 泛型官方叫做：type parameters。 -G 的默认值由 0 改为了 3，那 Go 1.17 有没有这个 flag？ 01 Go1.17 启用泛型支持 安装 Go1.17，推荐使用类似 goup 这样的工具，方便切换版本，</description>
+    </item>
+    
     <item>
       <title>GoLand 2020.3 正式发布了，有不少新功能，包括支持泛型</title>
       <link>https://polarisxu.studygolang.com/posts/devtool/goland/goland-2020-3-release/</link>

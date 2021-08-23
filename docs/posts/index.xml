@@ -6,8 +6,97 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en</language>
 		<copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-		<lastBuildDate>Sat, 21 Aug 2021 22:10:00 +0800</lastBuildDate>
+		<lastBuildDate>Sun, 22 Aug 2021 22:10:00 +0800</lastBuildDate>
 		<atom:link href="https://polarisxu.studygolang.com/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>扬眉吐气：刚刚，Go 已经默认支持泛型了</title>
+			<link>https://polarisxu.studygolang.com/posts/go/dynamic/go-generic/</link>
+			<pubDate>Sun, 22 Aug 2021 22:10:00 +0800</pubDate>
+			
+			<guid>https://polarisxu.studygolang.com/posts/go/dynamic/go-generic/</guid>
+			<description>大家好，我是 polarisxu。 上周 Go 1.17 发布，在发布文档中，没有提到泛型的事情。但在发布之前，大家就发现，泛型的相关代码在 1.17 中埋下了，只是默认不启用。 就在最近，gotip 已经默认启用泛型。Go 泛型官方叫做：type parameters。 -G 的默认值由 0 改为了 3，那 Go 1.17 有没有这个 flag？ 01 Go1.17 启用泛型支持 安装 Go1.17，推荐使用类似 goup 这样的工具，方便切换版本，</description>
+			<content type="html"><![CDATA[<p>大家好，我是 polarisxu。</p>
+<p>上周 Go 1.17 发布，在发布文档中，没有提到泛型的事情。但在发布之前，大家就发现，泛型的相关代码在 1.17 中埋下了，只是默认不启用。</p>
+<p>就在最近，gotip 已经默认启用泛型。Go 泛型官方叫做：type parameters。</p>
+<p><p class="md__image">
+  <img src="../imgs/go-generic01.png"
+    alt=""  />
+</p>
+</p>
+<p><code>-G</code> 的默认值由 0 改为了 3，那 Go 1.17 有没有这个 flag？</p>
+<h2 id="01-go117-启用泛型支持">01 Go1.17 启用泛型支持</h2>
+<p>安装 Go1.17，推荐使用类似 <a href="https://mp.weixin.qq.com/s/yTblk9Js1Zcq5aWVcYGjOA" target="_blank" rel="noopener">goup</a>
+ 这样的工具，方便切换版本，确保已经是 1.17：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ go version
+go version go1.17 darwin/amd64
+</code></pre></div><p>然后执行如下命令，查看编译器 flag：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ go tool compile -h
+usage: compile <span class="o">[</span>options<span class="o">]</span> file.go...
+  -% int
+    	debug non-static initializers
+  -+	compiling runtime
+  -B	disable bounds checking
+  -C	disable printing of columns in error messages
+  -D path
+    	<span class="nb">set</span> relative path <span class="k">for</span> <span class="nb">local</span> imports
+  -E	debug symbol <span class="nb">export</span>
+  -G	accept generic code
+  -I directory
+    	add directory to import search path
+  ....
+</code></pre></div><p>注意到：<code>-G	accept generic code</code> 了吧，通过它来控制是否接受泛型代码，这个 flag 可能是临时性的。从这个帮助文档上没有看到 <code>-G</code> 能够接受那些值，通过查代码可以知晓（包括上面提到默认值由 0 改为 3），0 表示不启用泛型，3 表示启用泛型。</p>
+<p>看一个具体泛型的例子：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&#34;fmt&#34;</span>
+<span class="p">)</span>
+
+<span class="kd">type</span> <span class="nx">Addable</span> <span class="kd">interface</span> <span class="p">{</span>
+	<span class="kd">type</span> <span class="kt">int</span><span class="p">,</span> <span class="kt">int8</span><span class="p">,</span> <span class="kt">int16</span><span class="p">,</span> <span class="kt">int32</span><span class="p">,</span> <span class="kt">int64</span><span class="p">,</span>
+		<span class="kt">uint</span><span class="p">,</span> <span class="kt">uint8</span><span class="p">,</span> <span class="kt">uint16</span><span class="p">,</span> <span class="kt">uint32</span><span class="p">,</span> <span class="kt">uint64</span><span class="p">,</span> <span class="kt">uintptr</span><span class="p">,</span>
+		<span class="kt">float32</span><span class="p">,</span> <span class="kt">float64</span><span class="p">,</span> <span class="kt">complex64</span><span class="p">,</span> <span class="kt">complex128</span><span class="p">,</span>
+		<span class="kt">string</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nx">add</span><span class="p">[</span><span class="nx">T</span> <span class="nx">Addable</span><span class="p">](</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span> <span class="nx">T</span><span class="p">)</span> <span class="nx">T</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nf">add</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nf">add</span><span class="p">(</span><span class="s">&#34;foo&#34;</span><span class="p">,</span><span class="s">&#34;bar&#34;</span><span class="p">))</span>
+<span class="p">}</span>
+</code></pre></div><blockquote>
+<p>例子来自：<a href="https://github.com/mattn/go-generics-example">https://github.com/mattn/go-generics-example</a>。</p>
+</blockquote>
+<p>使用 Go1.17 编译：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ go build test.go
+<span class="c1"># command-line-arguments</span>
+./test.go:8:2: syntax error: unexpected type, expecting method or interface name
+./test.go:14:6: missing <span class="k">function</span> body
+./test.go:14:9: syntax error: unexpected <span class="o">[</span>, expecting <span class="o">(</span>
+</code></pre></div><p>发现报语法错误。</p>
+<p>改成这样编译：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ go build -gcflags<span class="o">=</span>-G<span class="o">=</span><span class="m">3</span> test.go
+</code></pre></div><p>一切正常，运行也得到了正确的结果。表明 Go1.17 支持泛型了。</p>
+<h2 id="02-gotip-默认支持泛型">02 gotip 默认支持泛型</h2>
+<p>上面提到，目前 gotip 已经将 <code>-G</code> 默认值改为了 3，也就是默认就支持泛型了。（gotip 即是 go 仓库的 master 分支代码）</p>
+<p>基于上面的代码用 gotip 试验下，确保版本：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ go version
+go version devel go1.18-6416bde023 Sun Aug <span class="m">22</span> 13:54:24 <span class="m">2021</span> +0000 darwin/amd64
+</code></pre></div><p>直接运行上面的代码：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ go run add.go
+<span class="m">3</span>
+foobar
+</code></pre></div><p>关于默认启用泛型 HN 上有很多讨论：<a href="https://news.ycombinator.com/item?id=28253692">https://news.ycombinator.com/item?id=28253692</a>，有认为泛型来的太晚的，有说 Go 根本不需要泛型的。</p>
+<p>我觉得，如果你不喜欢泛型，完全可以不用嘛。很多时候，泛型还是很有好处的。相关泛型的教程，后续可以慢慢出了。</p>
+<h2 id="03-总结">03 总结</h2>
+<p>Go 1.17 虽然支持了泛型，但不建议线上使用，毕竟官方承诺的是 Go1.18 正式启用泛型。而且，有了泛型，需要更多相关工具、标准库的支持，才能够用起来更顺手。Go1.18，2022 年 2 月见！</p>
+]]></content>
+		</item>
 		
 		<item>
 			<title>Go 1.17 新特性：Module 有哪些变化？</title>
@@ -166,14 +255,14 @@ a@v0.1.0 c@v0.1.0
 <p>有点类似其他语言中 xxx.lock 文件的感觉了。</p>
 <p>当然，这种方式后，go.mod 的文件会更大，这也是该方式的一个相对劣势。</p>
 <h2 id="02-延迟加载lazy-loading">02 延迟加载（lazy Loading）</h2>
-<p>理解了上面依赖图的裁剪，延迟加载就一句话：那些根本没有用上的模块（比如上面例子中的模块 c），Go 1.17 后，Go 命令不会去读取其 go.mod 文件。如果之后需要了，再会去加载。</p>
+<p>理解了上面依赖图的裁剪，延迟加载就一句话：那些根本没有用上的模块（比如上面例子中的模块 c），Go 1.17 后，Go 命令不会去读取其 go.mod 文件。如果之后需要了，再去加载。</p>
 <h2 id="03-deprecated-注释">03 Deprecated 注释</h2>
 <p>Go1.17 go.mod 中支持 Deprecated 注释，用来标明该模块废弃了。</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">// Deprecated: use example.com/mod/v2 instead.
 module example.com/mod
 </code></pre></div><p>对于那些使用了被废弃的 module 的 go 项目，go list、go get 命令都会给出 warning。</p>
 <p>看过我这篇文章：<a href="https://mp.weixin.qq.com/s/mBJ3hQ6oR1V9YtdXpkTnow" target="_blank" rel="noopener">《从 go-chi 框架撤回所有主版本聊 Go1.16 的新特性》</a>
- 的朋友，可能会有疑问，撤回和废弃有和不同，如何分别使用？这里稍微总结下：</p>
+ 的朋友，可能会有疑问，撤回和废弃有何不同，如何分别使用？这里稍微总结下：</p>
 <p><strong>撤回的使用场景</strong>：</p>
 <ul>
 <li>发现了一个严重的安全漏洞；</li>
