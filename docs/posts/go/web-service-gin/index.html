@@ -7,24 +7,24 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<meta name="theme-color" content="#fcfcfc">
 	<meta name="msapplication-TileColor" content="#fcfcfc">
-<meta itemprop="name" content="厉害了我的 Go：推荐系统都有开源实现">
-<meta itemprop="description" content="大家好，我是 polarisxu。 看到一个项目：https://gorse.io/，这是一个用 Go 编写的开源推荐系统。Gorse 的目标是成为一个通用的开源推荐系统，可以迅速地引入到各种各样的在线服务中。通过将项目、用户和交互数据导入 Gorse，系统将自动训练模型，为每个用户生成推荐。 这个项目代码托管在 GitHub 上：https://github.com/zhenghaoz">
-<meta itemprop="datePublished" content="2021-07-19T14:10:00+08:00" />
-<meta itemprop="dateModified" content="2021-07-19T14:10:00+08:00" />
-<meta itemprop="wordCount" content="618">
+<meta itemprop="name" content="Gin 这是要成为 Go 官方框架？">
+<meta itemprop="description" content="大家好，我是 polarisxu。 常浏览 Go 官方网站的朋友可能留意到，Go 网站近一段时间增加了不少文档、教程。可能官方意识到，Go 被越来越多的用于 API 开发，于是近期又出了一个这方面的教程：《Tutorial: Developing a RESTful API with Go and Gin》 。 是的，基于 Gin 框架。在众多框架中，Go 官方选择了 Gin 框架，可见这个框架的受欢迎程度。 这份官方的教程包含以下几个方面： 设计 API 接口：以一个虚拟">
+<meta itemprop="datePublished" content="2021-08-23T22:00:00+08:00" />
+<meta itemprop="dateModified" content="2021-08-23T22:00:00+08:00" />
+<meta itemprop="wordCount" content="589">
 
 
 
-<meta itemprop="keywords" content="Go,开源项目," />
-<meta property="og:title" content="厉害了我的 Go：推荐系统都有开源实现" />
-<meta property="og:description" content="大家好，我是 polarisxu。 看到一个项目：https://gorse.io/，这是一个用 Go 编写的开源推荐系统。Gorse 的目标是成为一个通用的开源推荐系统，可以迅速地引入到各种各样的在线服务中。通过将项目、用户和交互数据导入 Gorse，系统将自动训练模型，为每个用户生成推荐。 这个项目代码托管在 GitHub 上：https://github.com/zhenghaoz" />
+<meta itemprop="keywords" content="Go,Gin," />
+<meta property="og:title" content="Gin 这是要成为 Go 官方框架？" />
+<meta property="og:description" content="大家好，我是 polarisxu。 常浏览 Go 官方网站的朋友可能留意到，Go 网站近一段时间增加了不少文档、教程。可能官方意识到，Go 被越来越多的用于 API 开发，于是近期又出了一个这方面的教程：《Tutorial: Developing a RESTful API with Go and Gin》 。 是的，基于 Gin 框架。在众多框架中，Go 官方选择了 Gin 框架，可见这个框架的受欢迎程度。 这份官方的教程包含以下几个方面： 设计 API 接口：以一个虚拟" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/project/recommender-gorse/" />
-<meta property="article:published_time" content="2021-07-19T14:10:00+08:00" />
-<meta property="article:modified_time" content="2021-07-19T14:10:00+08:00" />
+<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/web-service-gin/" />
+<meta property="article:published_time" content="2021-08-23T22:00:00+08:00" />
+<meta property="article:modified_time" content="2021-08-23T22:00:00+08:00" />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="厉害了我的 Go：推荐系统都有开源实现"/>
-<meta name="twitter:description" content="大家好，我是 polarisxu。 看到一个项目：https://gorse.io/，这是一个用 Go 编写的开源推荐系统。Gorse 的目标是成为一个通用的开源推荐系统，可以迅速地引入到各种各样的在线服务中。通过将项目、用户和交互数据导入 Gorse，系统将自动训练模型，为每个用户生成推荐。 这个项目代码托管在 GitHub 上：https://github.com/zhenghaoz"/>
+<meta name="twitter:title" content="Gin 这是要成为 Go 官方框架？"/>
+<meta name="twitter:description" content="大家好，我是 polarisxu。 常浏览 Go 官方网站的朋友可能留意到，Go 网站近一段时间增加了不少文档、教程。可能官方意识到，Go 被越来越多的用于 API 开发，于是近期又出了一个这方面的教程：《Tutorial: Developing a RESTful API with Go and Gin》 。 是的，基于 Gin 框架。在众多框架中，Go 官方选择了 Gin 框架，可见这个框架的受欢迎程度。 这份官方的教程包含以下几个方面： 设计 API 接口：以一个虚拟"/>
 
 	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -33,7 +33,7 @@
 	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
 	<link rel="shortcut icon" href="/favicon.ico">
 
-	<title>厉害了我的 Go：推荐系统都有开源实现</title>
+	<title>Gin 这是要成为 Go 官方框架？</title>
 	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
 	
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
@@ -77,34 +77,27 @@
 	<main class="site-main section-inner animated fadeIn faster">
 		<article class="thin">
 			<header class="post-header">
-				<div class="post-meta"><span>Jul 19, 2021</span></div>
-				<h1>厉害了我的 Go：推荐系统都有开源实现</h1>
+				<div class="post-meta"><span>Aug 23, 2021</span></div>
+				<h1>Gin 这是要成为 Go 官方框架？</h1>
 			</header>
 			<div class="content">
 				<p>大家好，我是 polarisxu。</p>
-<p>看到一个项目：<a href="https://gorse.io/">https://gorse.io/</a>，这是一个用 Go 编写的开源推荐系统。Gorse 的目标是成为一个通用的开源推荐系统，可以迅速地引入到各种各样的在线服务中。通过将项目、用户和交互数据导入 Gorse，系统将自动训练模型，为每个用户生成推荐。</p>
-<p>这个项目代码托管在 GitHub 上：<a href="https://github.com/zhenghaoz/gorse">https://github.com/zhenghaoz/gorse</a>，目前 Star 数 1.7k+，查了下记录，2018 年中旬，国人发起开发的这个项目（国人对 Go 确实情有独钟？！），因为他们参考的项目，一个是 Java 实现的，一个是 Python 实现的。</p>
-<p>经过近 3 年的发展，目前该项目版本是 0.2.2，有两个实际的使用案例：</p>
-<p><p class="md__image">
-  <img src="../imgs/case.png"
-    alt=""  />
-</p>
-</p>
-<p>可见该项目有了一定的成熟度，小型创业团队，想要有自己的推荐系统，可以考虑基于这个项目。这个项目有如下特点：</p>
+<p>常浏览 Go 官方网站的朋友可能留意到，Go 网站近一段时间增加了不少文档、教程。可能官方意识到，Go 被越来越多的用于 API 开发，于是近期又出了一个这方面的教程：<a href="https://docs.studygolang.com/doc/tutorial/web-service-gin" target="_blank" rel="noopener">《Tutorial: Developing a RESTful API with Go and Gin》</a>
+。</p>
+<p>是的，基于 Gin 框架。在众多框架中，Go 官方选择了 Gin 框架，可见这个框架的受欢迎程度。</p>
+<p>这份官方的教程包含以下几个方面：</p>
 <ul>
-<li>自动化：通过后台模型搜索，自动选择最佳推荐模型和策略；</li>
-<li>分布式推荐：单节点训练、分布式预测以及在推荐阶段实现水平扩展的能力；</li>
-<li>Restful API：为数据 CRUD 和推荐请求提供 RESTful API；</li>
-<li>数据仪表盘：提供数据导入和导出、监控和集群状态检查的仪表板；</li>
+<li>设计 API 接口：以一个虚拟相册应用为例</li>
+<li>创建项目目录结构</li>
+<li>构建需要的数据</li>
+<li>处理器（handler）：获取所有相册数据、创建一条记录、获取一条记录</li>
 </ul>
-<p>这是官方给的仪表盘示例：</p>
-<p><p class="md__image">
-  <img src="../imgs/dashboard.jpg"
-    alt=""  />
-</p>
-</p>
-<p>这个项目提供了比较完整的文档：<a href="https://docs.gorse.io/">https://docs.gorse.io/</a>，包括安装、使用的介绍，同时还提供了设计的思路、架构图，方便使用者学习、理解。从提交记录看，贡献者很活跃。</p>
-<p>如果你只是对推荐系统感兴趣，刚好也想通过一个项目更熟悉 Go 语言，我觉得这个项目一定很适合你，可以好好学习学习。</p>
+<p>这是一个超级简单的入门教程，完整代码也就 60 多行。这份教程让你对 Gin 框架有一个基本了解，同时如何构建一个项目有一定的参考。</p>
+<p>这个教程出现在 Go 官方网站，对 Gin 来说是大好事，毕竟 Go 框架那么多，现在一定程度上说是得到了官方的认可。</p>
+<p>目前 Gin 项目有 50k+ 的 Star，Go 框架类 Star 数第一，甚至在 GitHub 整个 Go Topic 下都排第 6。它的官方文档也已经有各国语言翻译版，其中包括简体中文版：<a href="https://gin-gonic.com/zh-cn/docs/">https://gin-gonic.com/zh-cn/docs/</a>。</p>
+<p>Gin 官方也有很多示例：<a href="https://github.com/gin-gonic/examples">https://github.com/gin-gonic/examples</a>。</p>
+<p>此外，Gin 这个框架的教程也很多，框架也有了马太效应。。。</p>
+<p>所以，这个框架建议你了解、试用下。当然，也顺带推荐我一直在用的一个框架：<a href="https://github.com/labstack/echo">https://github.com/labstack/echo</a>。</p>
 
 			</div><div class="content">
 	<br>
@@ -115,15 +108,15 @@
 	<h2>相关推荐</h2>
 	<ul>
 	
-	<li><a href="/posts/go/project/httpstat/">Go开源项目推荐：500行代码确认请求时间花在哪</a></li>
-	
 	<li><a href="/posts/go/dynamic/golang.org-change/">Go 官网要变天。。。</a></li>
-	
-	<li><a href="/posts/go/web-service-gin/">Gin 这是要成为 Go 官方框架？</a></li>
 	
 	<li><a href="/posts/go/dynamic/go-generic/">扬眉吐气：刚刚，Go 已经默认支持泛型了</a></li>
 	
 	<li><a href="/posts/go/dynamic/go1.17-module/">Go 1.17 新特性：Module 有哪些变化？</a></li>
+	
+	<li><a href="/posts/go/pkg/cast/">Go 第三方库推荐：类型转换如此简单</a></li>
+	
+	<li><a href="/posts/go/project/gosec-tool-intro/">担心密码提交到 GitHub？建议使用这个 Go 开源工具</a></li>
 	
 	</ul>
 </div>
@@ -131,10 +124,10 @@
 			<hr class="post-end">
 			<footer class="post-info">
 				<p>
-					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://polarisxu.studygolang.com/tags/go">Go</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE">开源项目</a></span>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://polarisxu.studygolang.com/tags/go">Go</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/gin">Gin</a></span>
 				</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>618 字</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2021-07-19 14:10 &#43;0800</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>589 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2021-08-23 22:00 &#43;0800</p>
 			</footer>
 		</article>
 		<aside id="toc">
@@ -142,11 +135,11 @@
 			<nav id="TableOfContents"></nav>
 		</aside>
 		<div class="post-nav thin">
-			<a class="next-post" href="https://polarisxu.studygolang.com/posts/go/action/weekly-question-104/">
-				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;新</span><br><span>一道关于 len 函数的诡异 Go 面试题解析</span>
+			<a class="next-post" href="https://polarisxu.studygolang.com/posts/go/dynamic/golang.org-change/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;新</span><br><span>Go 官网要变天。。。</span>
 			</a>
-			<a class="prev-post" href="https://polarisxu.studygolang.com/posts/go/dynamic/go1.17-build-contraints/">
-				<span class="post-nav-label">旧&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>Go1.17 新特性：新版构建约束</span>
+			<a class="prev-post" href="https://polarisxu.studygolang.com/posts/go/dynamic/go-generic/">
+				<span class="post-nav-label">旧&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>扬眉吐气：刚刚，Go 已经默认支持泛型了</span>
 			</a>
 		</div>
 		<div id="comments" class="thin"><script src="https://utteranc.es/client.js"

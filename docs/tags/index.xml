@@ -7,13 +7,31 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Sun, 22 Aug 2021 22:10:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 24 Aug 2021 22:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Go</title>
       <link>https://polarisxu.studygolang.com/tags/go/</link>
-      <pubDate>Sun, 22 Aug 2021 22:10:00 +0800</pubDate>
+      <pubDate>Tue, 24 Aug 2021 22:00:00 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/tags/go/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>官网</title>
+      <link>https://polarisxu.studygolang.com/tags/%E5%AE%98%E7%BD%91/</link>
+      <pubDate>Tue, 24 Aug 2021 22:00:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/tags/%E5%AE%98%E7%BD%91/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Gin</title>
+      <link>https://polarisxu.studygolang.com/tags/gin/</link>
+      <pubDate>Mon, 23 Aug 2021 22:00:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/tags/gin/</guid>
       <description></description>
     </item>
     
@@ -77,24 +95,6 @@
       <pubDate>Mon, 26 Jul 2021 22:10:00 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/tags/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>面试题</title>
-      <link>https://polarisxu.studygolang.com/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/</link>
-      <pubDate>Sun, 25 Jul 2021 22:22:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>新特性</title>
-      <link>https://polarisxu.studygolang.com/tags/%E6%96%B0%E7%89%B9%E6%80%A7/</link>
-      <pubDate>Thu, 15 Jul 2021 22:10:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/tags/%E6%96%B0%E7%89%B9%E6%80%A7/</guid>
       <description></description>
     </item>
     

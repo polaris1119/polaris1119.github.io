@@ -4,26 +4,46 @@
   
   <url>
     <loc>https://polarisxu.studygolang.com/tags/go/</loc>
-    <lastmod>2021-08-22T22:10:00+08:00</lastmod>
+    <lastmod>2021-08-24T22:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polarisxu.studygolang.com/posts/go/dynamic/golang.org-change/</loc>
+    <lastmod>2021-08-24T22:00:00+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://polarisxu.studygolang.com/</loc>
-    <lastmod>2021-08-22T22:10:00+08:00</lastmod>
+    <lastmod>2021-08-24T22:00:00+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://polarisxu.studygolang.com/tags/</loc>
-    <lastmod>2021-08-22T22:10:00+08:00</lastmod>
+    <lastmod>2021-08-24T22:00:00+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://polarisxu.studygolang.com/posts/go/dynamic/go-generic/</loc>
-    <lastmod>2021-08-22T22:10:00+08:00</lastmod>
+    <loc>https://polarisxu.studygolang.com/tags/%E5%AE%98%E7%BD%91/</loc>
+    <lastmod>2021-08-24T22:00:00+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://polarisxu.studygolang.com/posts/</loc>
+    <lastmod>2021-08-24T22:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polarisxu.studygolang.com/tags/gin/</loc>
+    <lastmod>2021-08-23T22:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polarisxu.studygolang.com/posts/go/web-service-gin/</loc>
+    <lastmod>2021-08-23T22:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polarisxu.studygolang.com/posts/go/dynamic/go-generic/</loc>
     <lastmod>2021-08-22T22:10:00+08:00</lastmod>
   </url>
   
@@ -199,11 +219,6 @@
   
   <url>
     <loc>https://polarisxu.studygolang.com/posts/go/golangorg-website/</loc>
-    <lastmod>2021-06-14T20:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://polarisxu.studygolang.com/tags/%E5%AE%98%E7%BD%91/</loc>
     <lastmod>2021-06-14T20:30:00+08:00</lastmod>
   </url>
   

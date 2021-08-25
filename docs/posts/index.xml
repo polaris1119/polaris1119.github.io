@@ -6,8 +6,62 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en</language>
 		<copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-		<lastBuildDate>Sun, 22 Aug 2021 22:10:00 +0800</lastBuildDate>
+		<lastBuildDate>Tue, 24 Aug 2021 22:00:00 +0800</lastBuildDate>
 		<atom:link href="https://polarisxu.studygolang.com/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>Go 官网要变天。。。</title>
+			<link>https://polarisxu.studygolang.com/posts/go/dynamic/golang.org-change/</link>
+			<pubDate>Tue, 24 Aug 2021 22:00:00 +0800</pubDate>
+			
+			<guid>https://polarisxu.studygolang.com/posts/go/dynamic/golang.org-change/</guid>
+			<description>大家好，我是 polarisxu。 Golang 官网，有些人可能从来没有访问过，因为国内一般访问不了。但我经常和「它」打交道，因为 Go 语言中文网很早就对 Go 官网做了一个镜像。最近 Go1.17 发布了，利用周末，我把 Go 官网镜像升级了下，但折腾了很久。。。发现 Go 官网要「变天」了！ 之前写过一篇文章：《回顾 Go 官网的演变史》 ，没看的可以看看。 01 这次又变了 如果你访问了 Go 官网（golang.org），</description>
+			<content type="html"><![CDATA[<p>大家好，我是 polarisxu。</p>
+<p>Golang 官网，有些人可能从来没有访问过，因为国内一般访问不了。但我经常和「它」打交道，因为 Go 语言中文网很早就对 Go 官网做了一个镜像。最近 Go1.17 发布了，利用周末，我把 Go 官网镜像升级了下，但折腾了很久。。。发现 Go 官网要「变天」了！</p>
+<p>之前写过一篇文章：<a href="https://mp.weixin.qq.com/s/7lkBRmjEkElvqHmJVVBWwQ" target="_blank" rel="noopener">《回顾 Go 官网的演变史》</a>
+，没看的可以看看。</p>
+<h2 id="01-这次又变了">01 这次又变了</h2>
+<p>如果你访问了 Go 官网（golang.org），会发现：点击 Packages，跳转到 pkg.go.dev 去了；点击 Blog，跳转到 <a href="https://go.dev/blog/">https://go.dev/blog/</a> 了。而且，<a href="https://go.dev/blog/tidy-web" target="_blank" rel="noopener">Russ Cox 发博文</a>
+说，在接下来的 1、2 个月内，要将 golang.org 合并入 go.dev。根据 Russ Cox 的说法，现在 Go 相关网站很混乱：</p>
+<blockquote>
+<p>go.dev 包含了一些有用的信息来帮助人们评估 Go，但是 golang. org 继续提供分发下载、文档和标准库的包参考。其他网站 &mdash;- blog.golang. org、 play.golang. org、 talks.golang.org 和 tour.golang. org&mdash;- 也提供其他材料。这一切都有点支离破碎，令人困惑。</p>
+</blockquote>
+<p>所以，Go 官方希望能够统一。</p>
+<h2 id="02-目前-go-语言中文网继续提供原风格镜像">02 目前 Go 语言中文网继续提供原风格镜像</h2>
+<p>实话说，我个人不太喜欢 go.dev 的风格，特别是看标准库，有点别扭，不过可能迟早要习惯！</p>
+<p>因为官方大的变动，导致每次想搭建一个镜像，特别费劲。经过折腾，目前依然保持了原 golang.org 风格的官网镜像：<a href="https://docs.studygolang.com">https://docs.studygolang.com</a>，国内随便访问，同时 blog、play 等都可以正常访问。</p>
+<p>不过，如果 golang.org 彻底废弃，这个镜像可能很难维持原风格，毕竟需要保持更新。还有一种方案就是，更新的内容，我处理成兼容原风格版本！我尽量努力做到，因为我还在基于这个风格翻译成中文版。</p>
+<hr>
+<p>你喜欢 go.dev 的风格吗？欢迎留言交流！</p>
+]]></content>
+		</item>
+		
+		<item>
+			<title>Gin 这是要成为 Go 官方框架？</title>
+			<link>https://polarisxu.studygolang.com/posts/go/web-service-gin/</link>
+			<pubDate>Mon, 23 Aug 2021 22:00:00 +0800</pubDate>
+			
+			<guid>https://polarisxu.studygolang.com/posts/go/web-service-gin/</guid>
+			<description>大家好，我是 polarisxu。 常浏览 Go 官方网站的朋友可能留意到，Go 网站近一段时间增加了不少文档、教程。可能官方意识到，Go 被越来越多的用于 API 开发，于是近期又出了一个这方面的教程：《Tutorial: Developing a RESTful API with Go and Gin》 。 是的，基于 Gin 框架。在众多框架中，Go 官方选择了 Gin 框架，可见这个框架的受欢迎程度。 这份官方的教程包含以下几个方面： 设计 API 接口：以一个虚拟</description>
+			<content type="html"><![CDATA[<p>大家好，我是 polarisxu。</p>
+<p>常浏览 Go 官方网站的朋友可能留意到，Go 网站近一段时间增加了不少文档、教程。可能官方意识到，Go 被越来越多的用于 API 开发，于是近期又出了一个这方面的教程：<a href="https://docs.studygolang.com/doc/tutorial/web-service-gin" target="_blank" rel="noopener">《Tutorial: Developing a RESTful API with Go and Gin》</a>
+。</p>
+<p>是的，基于 Gin 框架。在众多框架中，Go 官方选择了 Gin 框架，可见这个框架的受欢迎程度。</p>
+<p>这份官方的教程包含以下几个方面：</p>
+<ul>
+<li>设计 API 接口：以一个虚拟相册应用为例</li>
+<li>创建项目目录结构</li>
+<li>构建需要的数据</li>
+<li>处理器（handler）：获取所有相册数据、创建一条记录、获取一条记录</li>
+</ul>
+<p>这是一个超级简单的入门教程，完整代码也就 60 多行。这份教程让你对 Gin 框架有一个基本了解，同时如何构建一个项目有一定的参考。</p>
+<p>这个教程出现在 Go 官方网站，对 Gin 来说是大好事，毕竟 Go 框架那么多，现在一定程度上说是得到了官方的认可。</p>
+<p>目前 Gin 项目有 50k+ 的 Star，Go 框架类 Star 数第一，甚至在 GitHub 整个 Go Topic 下都排第 6。它的官方文档也已经有各国语言翻译版，其中包括简体中文版：<a href="https://gin-gonic.com/zh-cn/docs/">https://gin-gonic.com/zh-cn/docs/</a>。</p>
+<p>Gin 官方也有很多示例：<a href="https://github.com/gin-gonic/examples">https://github.com/gin-gonic/examples</a>。</p>
+<p>此外，Gin 这个框架的教程也很多，框架也有了马太效应。。。</p>
+<p>所以，这个框架建议你了解、试用下。当然，也顺带推荐我一直在用的一个框架：<a href="https://github.com/labstack/echo">https://github.com/labstack/echo</a>。</p>
+]]></content>
+		</item>
 		
 		<item>
 			<title>扬眉吐气：刚刚，Go 已经默认支持泛型了</title>

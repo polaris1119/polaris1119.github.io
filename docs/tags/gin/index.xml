@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Gin on polarisxu</title>
+    <link>https://polarisxu.studygolang.com/tags/gin/</link>
+    <description>Recent content in Gin on polarisxu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
+    <lastBuildDate>Mon, 23 Aug 2021 22:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/gin/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Gin 这是要成为 Go 官方框架？</title>
+      <link>https://polarisxu.studygolang.com/posts/go/web-service-gin/</link>
+      <pubDate>Mon, 23 Aug 2021 22:00:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/web-service-gin/</guid>
+      <description>大家好，我是 polarisxu。 常浏览 Go 官方网站的朋友可能留意到，Go 网站近一段时间增加了不少文档、教程。可能官方意识到，Go 被越来越多的用于 API 开发，于是近期又出了一个这方面的教程：《Tutorial: Developing a RESTful API with Go and Gin》 。 是的，基于 Gin 框架。在众多框架中，Go 官方选择了 Gin 框架，可见这个框架的受欢迎程度。 这份官方的教程包含以下几个方面： 设计 API 接口：以一个虚拟</description>
+    </item>
+    
+  </channel>
+</rss>

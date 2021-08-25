@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Mon, 14 Jun 2021 20:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/%E5%AE%98%E7%BD%91/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 24 Aug 2021 22:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/%E5%AE%98%E7%BD%91/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go 官网要变天。。。</title>
+      <link>https://polarisxu.studygolang.com/posts/go/dynamic/golang.org-change/</link>
+      <pubDate>Tue, 24 Aug 2021 22:00:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/dynamic/golang.org-change/</guid>
+      <description>大家好，我是 polarisxu。 Golang 官网，有些人可能从来没有访问过，因为国内一般访问不了。但我经常和「它」打交道，因为 Go 语言中文网很早就对 Go 官网做了一个镜像。最近 Go1.17 发布了，利用周末，我把 Go 官网镜像升级了下，但折腾了很久。。。发现 Go 官网要「变天」了！ 之前写过一篇文章：《回顾 Go 官网的演变史》 ，没看的可以看看。 01 这次又变了 如果你访问了 Go 官网（golang.org），</description>
+    </item>
+    
     <item>
       <title>回顾 Go 官网的演变史</title>
       <link>https://polarisxu.studygolang.com/posts/go/golangorg-website/</link>

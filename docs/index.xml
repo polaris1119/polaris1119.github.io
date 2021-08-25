@@ -7,7 +7,25 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Sun, 22 Aug 2021 22:10:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 24 Aug 2021 22:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go 官网要变天。。。</title>
+      <link>https://polarisxu.studygolang.com/posts/go/dynamic/golang.org-change/</link>
+      <pubDate>Tue, 24 Aug 2021 22:00:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/dynamic/golang.org-change/</guid>
+      <description>大家好，我是 polarisxu。 Golang 官网，有些人可能从来没有访问过，因为国内一般访问不了。但我经常和「它」打交道，因为 Go 语言中文网很早就对 Go 官网做了一个镜像。最近 Go1.17 发布了，利用周末，我把 Go 官网镜像升级了下，但折腾了很久。。。发现 Go 官网要「变天」了！ 之前写过一篇文章：《回顾 Go 官网的演变史》 ，没看的可以看看。 01 这次又变了 如果你访问了 Go 官网（golang.org），</description>
+    </item>
+    
+    <item>
+      <title>Gin 这是要成为 Go 官方框架？</title>
+      <link>https://polarisxu.studygolang.com/posts/go/web-service-gin/</link>
+      <pubDate>Mon, 23 Aug 2021 22:00:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/web-service-gin/</guid>
+      <description>大家好，我是 polarisxu。 常浏览 Go 官方网站的朋友可能留意到，Go 网站近一段时间增加了不少文档、教程。可能官方意识到，Go 被越来越多的用于 API 开发，于是近期又出了一个这方面的教程：《Tutorial: Developing a RESTful API with Go and Gin》 。 是的，基于 Gin 框架。在众多框架中，Go 官方选择了 Gin 框架，可见这个框架的受欢迎程度。 这份官方的教程包含以下几个方面： 设计 API 接口：以一个虚拟</description>
+    </item>
+    
     <item>
       <title>扬眉吐气：刚刚，Go 已经默认支持泛型了</title>
       <link>https://polarisxu.studygolang.com/posts/go/dynamic/go-generic/</link>
@@ -78,24 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/action/weekly-question-104/</guid>
       <description>大家好，我是 polarisxu。 在 Go语言爱好者周刊第 104 期有一道题目，以下代码输出什么： package main func main() { var x *struct { s [][32]byte } println(len(x.s[99])) } 答题结果如下： 正确率只有 16%。 本文就讲解下为什么结果是 32。 01 解析题目 先剖析下这段代码，x 变量： var x *struct { s [][32]byte } 注意这里不是定义一个结构体类型，而是定义一个结构体类型指针变量，即 x 是一个指针，指针类型是一个匿名结构体。很显然，x 的值是 nil，因</description>
-    </item>
-    
-    <item>
-      <title>厉害了我的 Go：推荐系统都有开源实现</title>
-      <link>https://polarisxu.studygolang.com/posts/go/project/recommender-gorse/</link>
-      <pubDate>Mon, 19 Jul 2021 14:10:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/project/recommender-gorse/</guid>
-      <description>大家好，我是 polarisxu。 看到一个项目：https://gorse.io/，这是一个用 Go 编写的开源推荐系统。Gorse 的目标是成为一个通用的开源推荐系统，可以迅速地引入到各种各样的在线服务中。通过将项目、用户和交互数据导入 Gorse，系统将自动训练模型，为每个用户生成推荐。 这个项目代码托管在 GitHub 上：https://github.com/zhenghaoz</description>
-    </item>
-    
-    <item>
-      <title>Go1.17 新特性：新版构建约束</title>
-      <link>https://polarisxu.studygolang.com/posts/go/dynamic/go1.17-build-contraints/</link>
-      <pubDate>Thu, 15 Jul 2021 22:10:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/dynamic/go1.17-build-contraints/</guid>
-      <description>大家好，我是 polarisxu。 Go 1.17 下个月就要正式发布了。很多人要问泛型了吧，泛型已经很明确了，Go1.18 会有。今天给大家介绍 Go1.17 的一个新特性：构建约束 — Build Constraints。 确切来说，这个特性相关的工作在 1.16 时就加入，但处于过度阶段，1.17 在各方面都更完善，更完整的支持，是时候了解它了。 01 什么是构建约束 构建约束（build constraint），也叫做</description>
     </item>
     
   </channel>

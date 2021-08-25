@@ -14,7 +14,7 @@
 <meta property="og:description" content="polarisxu,Go语言中文网,go,golang,源码分析,系列教程" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://polarisxu.studygolang.com/" />
-<meta property="og:updated_time" content="2021-08-22T22:10:00+08:00" />
+<meta property="og:updated_time" content="2021-08-24T22:00:00+08:00" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="polarisxu"/>
 <meta name="twitter:description" content="polarisxu,Go语言中文网,go,golang,源码分析,系列教程"/>
@@ -70,6 +70,46 @@
 		<main class="site-main section-inner thin animated fadeIn faster">
     
 		
+        <div class="post animated fadeInDown">
+            <div class="post-title">
+                <h2><a href="/posts/go/dynamic/go1.17-slice-to-array/">Go1.17 新特性之切片变数组</a>
+                </h2>
+            </div>
+            <div class="post-content">
+                <div class="p_part"><p>大家好，我是 polarisxu。 按计划，Go 1.17 会在 2021 年 8 月份发布（目前已经发布了 Beta1 版本）。目前，1.17 相关的功能已经开发差不多了，上次介绍了测试顺序随机的问题，今天介绍 1.17 中的另一个新功能：切片显式地转换成数组指针。 温馨提示，如果要试验该功能，需要升级到 1.17 Beta1 版本。另外一个主意事项就是如果在有 go.mod 的目录中试验，确保其中的版本改为 1.17，否则会报错：conver</p></div>
+            </div>
+            <div class="post-footer">
+                <div class="meta">
+                    <div class="info"><em class="fas fa-calendar-day"></em><span
+                                class="date">2021-06-17</span>
+                        <a class="tag"
+                                   href="/tags/go/">Go</a><a class="tag"
+                                   href="/tags/%E6%96%B0%E7%89%B9%E6%80%A7/">新特性</a>
+                    </div>
+                </div>
+            </div>
+				</div>
+    
+        <div class="post animated fadeInDown">
+            <div class="post-title">
+                <h2><a href="/posts/go/golangorg-website/">回顾 Go 官网的演变史</a>
+                </h2>
+            </div>
+            <div class="post-content">
+                <div class="p_part"><p>大家好，我是 polarisxu。 最近 618，阿里云等云厂商都在促销，我之前有一台服务器在华为云，正好要过期了，发现续费要 2500 左右。而阿里云新客买一台服务器，3 年才 179.9（1 核 2 G），用来镜像一个 Go 官网还是绰绰有余的。因为很早就镜像过 Go 官网，这次发现官网搭建又有了很大变化，因此决定回顾下 Go 官网的演变。 新人常年有优惠，比如 99 元/年。有兴趣的可以购买：https</p></div>
+            </div>
+            <div class="post-footer">
+                <div class="meta">
+                    <div class="info"><em class="fas fa-calendar-day"></em><span
+                                class="date">2021-06-14</span>
+                        <a class="tag"
+                                   href="/tags/go/">Go</a><a class="tag"
+                                   href="/tags/%E5%AE%98%E7%BD%91/">官网</a>
+                    </div>
+                </div>
+            </div>
+				</div>
+    
         <div class="post animated fadeInDown">
             <div class="post-title">
                 <h2><a href="/posts/talk/about-writing/">站长8年前的Go代码竟然进入大厂的项目里了</a>
@@ -224,45 +264,6 @@
                         <a class="tag"
                                    href="/tags/go/">Go</a><a class="tag"
                                    href="/tags/1.17/">1.17</a>
-                    </div>
-                </div>
-            </div>
-				</div>
-    
-        <div class="post animated fadeInDown">
-            <div class="post-title">
-                <h2><a href="/posts/rust/rust-tutorial-07/">Rust 劝退系列 07：流程控制</a>
-                </h2>
-            </div>
-            <div class="post-content">
-                <div class="p_part"><p>大家好，我是站长 polarisxu。 这是 Rust 劝退系列的第 7 个教程，探讨 Rust 中的流程控制。注意，跟其他语言一样，Rust 中有条件、循环，但没有 switch，而是有 match 模式匹配。 01 运算符 开始讲解流程控制之前，先补充一个知识点，那就是 Rust 的运算符。 Rust 支持算术运算符、关系运算符、逻辑运算符和位运算符 4 种，它们和其他语言没有什么不同，因此不细讲了，只提醒一点：Rust 中没有自</p></div>
-            </div>
-            <div class="post-footer">
-                <div class="meta">
-                    <div class="info"><em class="fas fa-calendar-day"></em><span
-                                class="date">2021-05-25</span>
-                        <a class="tag"
-                                   href="/tags/rust/">rust</a>
-                    </div>
-                </div>
-            </div>
-				</div>
-    
-        <div class="post animated fadeInDown">
-            <div class="post-title">
-                <h2><a href="/posts/go/managing-multiple-go-versions/">官方的 Go 多版本管理：使用和原理</a>
-                </h2>
-            </div>
-            <div class="post-content">
-                <div class="p_part"><p>大家好，我是 polarisxu。 有些人可能注意到，每次 Go 发布新版本，官方都会提供类似这样的升级截图： 这可以说是官方的 Go 多版本管理，也是升级 Go 的方式。今天就一起聊一聊这种多版本管理方式及其实现原理。（我之前介绍过一个第三方多版本管理工具 goup ，是我比较推荐的）。 注意，Windows 用户应该使用 WSL2。 01 为什么需要多个 Go 版本 有些人可能觉得没有这样的需求。实际工作中</p></div>
-            </div>
-            <div class="post-footer">
-                <div class="meta">
-                    <div class="info"><em class="fas fa-calendar-day"></em><span
-                                class="date">2021-05-24</span>
-                        <a class="tag"
-                                   href="/tags/go/">Go</a><a class="tag"
-                                   href="/tags/version/">version</a>
                     </div>
                 </div>
             </div>
