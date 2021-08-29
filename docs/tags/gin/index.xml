@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Mon, 23 Aug 2021 22:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/gin/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 25 Aug 2021 22:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/gin/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>新书推荐：用 Gin 框架构建分布式应用</title>
+      <link>https://polarisxu.studygolang.com/posts/go/book/building-distributed-applications-in-gin/</link>
+      <pubDate>Wed, 25 Aug 2021 22:00:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/book/building-distributed-applications-in-gin/</guid>
+      <description>大家好，我是 polarisxu。 有段时间没推荐新书了。最近看到一本书《Building Distributed Applications in Gin》，本书是学习如何使用 Gin 中的各种功能构建大规模分布式应用程序的有效指南。出版日期：2021 年 7 月 23 日，英文版（目前肯定没有中文版）。购买地址：https://www.packtpub.com/web-development/building-distribute</description>
+    </item>
+    
     <item>
       <title>Gin 这是要成为 Go 官方框架？</title>
       <link>https://polarisxu.studygolang.com/posts/go/web-service-gin/</link>
