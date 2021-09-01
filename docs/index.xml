@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Wed, 25 Aug 2021 22:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 30 Aug 2021 22:10:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>StackOverflow 上关于 Go select 死锁的问题</title>
+      <link>https://polarisxu.studygolang.com/posts/go/action/chained-channel-operations-in-a-single-select-case/</link>
+      <pubDate>Mon, 30 Aug 2021 22:10:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/action/chained-channel-operations-in-a-single-select-case/</guid>
+      <description>大家好，我是 polarisxu。 前两天，火丁笔记发了一篇文章：《一个 select 死锁问题》 ，又是一个小细节。我将其中的问题改一下，更好理解： package main import &amp;#34;sync&amp;#34; func main() { var wg sync.WaitGroup foo := make(chan int) bar := make(chan int) wg.Add(1) go func() { defer wg.Done() select { case foo &amp;lt;- &amp;lt;-bar: default: println(&amp;#34;default&amp;#34;) } }() wg.Wait() } 按常规理解，go func 中的 select 应该执行 default 分支，程序正常运行。但结果却不是，而是死锁。可以通过该链接测试：https://play.studygolang.com/p</description>
+    </item>
+    
     <item>
       <title>新书推荐：用 Gin 框架构建分布式应用</title>
       <link>https://polarisxu.studygolang.com/posts/go/book/building-distributed-applications-in-gin/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/dynamic/github-supply-chain-security-features-go-community/</guid>
       <description>大家好，我是 polarisxu。 关于 Go 安全相关的内容，我写过几篇文章：《Go 团队开始重视安全问题了》 、《Go Module 有漏洞？免费的 Go 漏洞扫描 VSCode 插件》 和《这个工具真好：看看你的Go项目依赖有无漏洞》 ，有兴趣的可以看看。 今天介绍另外一个关于安全的内容，是 GitHub 的。 大家都知晓，目前 Go 是严重依赖 GitHub 的，很多第三方库基本都托管在 GitHub 上。因为 Go 把 GitHub 既当作代码协作的平台，也当作发布包的</description>
-    </item>
-    
-    <item>
-      <title>Go开源项目推荐：500行代码确认请求时间花在哪</title>
-      <link>https://polarisxu.studygolang.com/posts/go/project/httpstat/</link>
-      <pubDate>Mon, 26 Jul 2021 22:10:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/project/httpstat/</guid>
-      <description>大家好，我是 polarisxu。 工作中遇到请求慢，难免想要查看时间都花在哪里了。办法肯定有不少，比如浏览器带的工具等。不过今天我要推荐一个命令行工具，目的有两个： 安装、使用方便，可以清晰的看出时间花在哪里了，建议放入自己的常用工具箱； Go 语言实现的，500 行左右代码，可以作为新手项目学习、练习、实战； 项目名称：httpstat，作者是 davecheney 大神。项目地址：http</description>
     </item>
     
   </channel>

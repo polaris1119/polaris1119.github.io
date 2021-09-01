@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>select on polarisxu</title>
+    <link>https://polarisxu.studygolang.com/tags/select/</link>
+    <description>Recent content in select on polarisxu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
+    <lastBuildDate>Mon, 30 Aug 2021 22:10:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/select/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>StackOverflow 上关于 Go select 死锁的问题</title>
+      <link>https://polarisxu.studygolang.com/posts/go/action/chained-channel-operations-in-a-single-select-case/</link>
+      <pubDate>Mon, 30 Aug 2021 22:10:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/action/chained-channel-operations-in-a-single-select-case/</guid>
+      <description>大家好，我是 polarisxu。 前两天，火丁笔记发了一篇文章：《一个 select 死锁问题》 ，又是一个小细节。我将其中的问题改一下，更好理解： package main import &amp;#34;sync&amp;#34; func main() { var wg sync.WaitGroup foo := make(chan int) bar := make(chan int) wg.Add(1) go func() { defer wg.Done() select { case foo &amp;lt;- &amp;lt;-bar: default: println(&amp;#34;default&amp;#34;) } }() wg.Wait() } 按常规理解，go func 中的 select 应该执行 default 分支，程序正常运行。但结果却不是，而是死锁。可以通过该链接测试：https://play.studygolang.com/p</description>
+    </item>
+    
+  </channel>
+</rss>

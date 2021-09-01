@@ -14,7 +14,7 @@
 <meta property="og:description" content="polarisxu,Go语言中文网,go,golang,源码分析,系列教程" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://polarisxu.studygolang.com/" />
-<meta property="og:updated_time" content="2021-08-25T22:00:00+08:00" />
+<meta property="og:updated_time" content="2021-08-30T22:10:00+08:00" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="polarisxu"/>
 <meta name="twitter:description" content="polarisxu,Go语言中文网,go,golang,源码分析,系列教程"/>
@@ -70,6 +70,26 @@
 		<main class="site-main section-inner thin animated fadeIn faster">
     
 		
+        <div class="post animated fadeInDown">
+            <div class="post-title">
+                <h2><a href="/posts/go/action/chained-channel-operations-in-a-single-select-case/">StackOverflow 上关于 Go select 死锁的问题</a>
+                </h2>
+            </div>
+            <div class="post-content">
+                <div class="p_part"><p>大家好，我是 polarisxu。 前两天，火丁笔记发了一篇文章：《一个 select 死锁问题》 ，又是一个小细节。我将其中的问题改一下，更好理解： package main import &#34;sync&#34; func main() { var wg sync.WaitGroup foo := make(chan int) bar := make(chan int) wg.Add(1) go func() { defer wg.Done() select { case foo &lt;- &lt;-bar: default: println(&#34;default&#34;) } }() wg.Wait() } 按常规理解，go func 中的 select 应该执行 default 分支，程序正常运行。但结果却不是，而是死锁。可以通过该链接测试：https://play.studygolang.com/p</p></div>
+            </div>
+            <div class="post-footer">
+                <div class="meta">
+                    <div class="info"><em class="fas fa-calendar-day"></em><span
+                                class="date">2021-08-30</span>
+                        <a class="tag"
+                                   href="/tags/go/">Go</a><a class="tag"
+                                   href="/tags/select/">select</a>
+                    </div>
+                </div>
+            </div>
+				</div>
+    
         <div class="post animated fadeInDown">
             <div class="post-title">
                 <h2><a href="/posts/go/book/building-distributed-applications-in-gin/">新书推荐：用 Gin 框架构建分布式应用</a>
@@ -245,26 +265,6 @@
                         <a class="tag"
                                    href="/tags/go/">Go</a><a class="tag"
                                    href="/tags/github/">GitHub</a>
-                    </div>
-                </div>
-            </div>
-				</div>
-    
-        <div class="post animated fadeInDown">
-            <div class="post-title">
-                <h2><a href="/posts/go/project/httpstat/">Go开源项目推荐：500行代码确认请求时间花在哪</a>
-                </h2>
-            </div>
-            <div class="post-content">
-                <div class="p_part"><p>大家好，我是 polarisxu。 工作中遇到请求慢，难免想要查看时间都花在哪里了。办法肯定有不少，比如浏览器带的工具等。不过今天我要推荐一个命令行工具，目的有两个： 安装、使用方便，可以清晰的看出时间花在哪里了，建议放入自己的常用工具箱； Go 语言实现的，500 行左右代码，可以作为新手项目学习、练习、实战； 项目名称：httpstat，作者是 davecheney 大神。项目地址：http</p></div>
-            </div>
-            <div class="post-footer">
-                <div class="meta">
-                    <div class="info"><em class="fas fa-calendar-day"></em><span
-                                class="date">2021-07-26</span>
-                        <a class="tag"
-                                   href="/tags/go/">Go</a><a class="tag"
-                                   href="/tags/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/">开源项目</a>
                     </div>
                 </div>
             </div>

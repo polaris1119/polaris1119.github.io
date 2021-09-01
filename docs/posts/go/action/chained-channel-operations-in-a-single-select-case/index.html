@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#fcfcfc">
+	<meta name="msapplication-TileColor" content="#fcfcfc">
+<meta itemprop="name" content="StackOverflow 上关于 Go select 死锁的问题">
+<meta itemprop="description" content="大家好，我是 polarisxu。 前两天，火丁笔记发了一篇文章：《一个 select 死锁问题》 ，又是一个小细节。我将其中的问题改一下，更好理解： package main import &#34;sync&#34; func main() { var wg sync.WaitGroup foo := make(chan int) bar := make(chan int) wg.Add(1) go func() { defer wg.Done() select { case foo &lt;- &lt;-bar: default: println(&#34;default&#34;) } }() wg.Wait() } 按常规理解，go func 中的 select 应该执行 default 分支，程序正常运行。但结果却不是，而是死锁。可以通过该链接测试：https://play.studygolang.com/p">
+<meta itemprop="datePublished" content="2021-08-30T22:10:00+08:00" />
+<meta itemprop="dateModified" content="2021-08-30T22:10:00+08:00" />
+<meta itemprop="wordCount" content="1504">
+
+
+
+<meta itemprop="keywords" content="Go,select," />
+<meta property="og:title" content="StackOverflow 上关于 Go select 死锁的问题" />
+<meta property="og:description" content="大家好，我是 polarisxu。 前两天，火丁笔记发了一篇文章：《一个 select 死锁问题》 ，又是一个小细节。我将其中的问题改一下，更好理解： package main import &#34;sync&#34; func main() { var wg sync.WaitGroup foo := make(chan int) bar := make(chan int) wg.Add(1) go func() { defer wg.Done() select { case foo &lt;- &lt;-bar: default: println(&#34;default&#34;) } }() wg.Wait() } 按常规理解，go func 中的 select 应该执行 default 分支，程序正常运行。但结果却不是，而是死锁。可以通过该链接测试：https://play.studygolang.com/p" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/action/chained-channel-operations-in-a-single-select-case/" />
+<meta property="article:published_time" content="2021-08-30T22:10:00+08:00" />
+<meta property="article:modified_time" content="2021-08-30T22:10:00+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="StackOverflow 上关于 Go select 死锁的问题"/>
+<meta name="twitter:description" content="大家好，我是 polarisxu。 前两天，火丁笔记发了一篇文章：《一个 select 死锁问题》 ，又是一个小细节。我将其中的问题改一下，更好理解： package main import &#34;sync&#34; func main() { var wg sync.WaitGroup foo := make(chan int) bar := make(chan int) wg.Add(1) go func() { defer wg.Done() select { case foo &lt;- &lt;-bar: default: println(&#34;default&#34;) } }() wg.Wait() } 按常规理解，go func 中的 select 应该执行 default 分支，程序正常运行。但结果却不是，而是死锁。可以通过该链接测试：https://play.studygolang.com/p"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>StackOverflow 上关于 Go select 死锁的问题</title>
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
+	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/styles.css">
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://polarisxu.studygolang.com">polarisxu</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+  <a href="https://polarisxu.studygolang.com/">首页</a>
+  <a href="https://polarisxu.studygolang.com/categories/echo%E7%B3%BB%E5%88%97/">Echo系列</a>
+  <a href="https://polarisxu.studygolang.com/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a>
+  <a href="https://polarisxu.studygolang.com/posts/">归档</a>
+  <a href="https://polarisxu.studygolang.com/about/">关于</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<button id="toc-btn" class="hdr-btn desktop-only-ib" title="目录"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3" y2="6"></line><line x1="3" y1="12" x2="3" y2="12"></line><line x1="3" y1="18" x2="3" y2="18"></line></svg></button><span class="hdr-social hide-in-mobile"><a href="https://github.com/polaris1119" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a><a href="https://twitter.com/polaris1119" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="菜单"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://polarisxu.studygolang.com/">首页</a></li>
+			<li><a href="https://polarisxu.studygolang.com/categories/echo%E7%B3%BB%E5%88%97/">Echo系列</a></li>
+			<li><a href="https://polarisxu.studygolang.com/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a></li>
+			<li><a href="https://polarisxu.studygolang.com/posts/">归档</a></li>
+			<li><a href="https://polarisxu.studygolang.com/about/">关于</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Aug 30, 2021</span></div>
+				<h1>StackOverflow 上关于 Go select 死锁的问题</h1>
+			</header>
+			<div class="content">
+				<p>大家好，我是 polarisxu。</p>
+<p>前两天，火丁笔记发了一篇文章：<a href="https://blog.huoding.com/2021/08/29/947" target="_blank" rel="noopener">《一个 select 死锁问题》</a>
+，又是一个小细节。我将其中的问题改一下，更好理解：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="s">&#34;sync&#34;</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="kd">var</span> <span class="nx">wg</span> <span class="nx">sync</span><span class="p">.</span><span class="nx">WaitGroup</span>
+	<span class="nx">foo</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">int</span><span class="p">)</span>
+	<span class="nx">bar</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">int</span><span class="p">)</span>
+	<span class="nx">wg</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+	<span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+		<span class="k">defer</span> <span class="nx">wg</span><span class="p">.</span><span class="nf">Done</span><span class="p">()</span>
+		<span class="k">select</span> <span class="p">{</span>
+		<span class="k">case</span> <span class="nx">foo</span> <span class="o">&lt;-</span> <span class="o">&lt;-</span><span class="nx">bar</span><span class="p">:</span>
+		<span class="k">default</span><span class="p">:</span>
+			<span class="nb">println</span><span class="p">(</span><span class="s">&#34;default&#34;</span><span class="p">)</span>
+		<span class="p">}</span>
+	<span class="p">}()</span>
+	<span class="nx">wg</span><span class="p">.</span><span class="nf">Wait</span><span class="p">()</span>
+<span class="p">}</span>
+</code></pre></div><p>按常规理解，go func 中的 select 应该执行 default 分支，程序正常运行。但结果却不是，而是死锁。可以通过该链接测试：<a href="https://play.studygolang.com/p/kF4pOjYXbXf">https://play.studygolang.com/p/kF4pOjYXbXf</a>。</p>
+<p>原因文章也解释了，Go 语言规范中有这么一句：</p>
+<blockquote>
+<p>For all the cases in the statement, the channel operands of receive operations and the channel and right-hand-side expressions of send statements are evaluated exactly once, in source order, upon entering the “select” statement. The result is a set of channels to receive from or send to, and the corresponding values to send. Any side effects in that evaluation will occur irrespective of which (if any) communication operation is selected to proceed. Expressions on the left-hand side of a RecvStmt with a short variable declaration or assignment are not yet evaluated.</p>
+</blockquote>
+<p>不知道大家看懂没有？于是，最后来了一个例子验证你是否理解了：为什么每次都是输出一半数据，然后死锁？（同样，这里可以运行查看结果：<a href="https://play.studygolang.com/p/zoJtTzI7K5T">https://play.studygolang.com/p/zoJtTzI7K5T</a>）</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+	<span class="s">&#34;fmt&#34;</span>
+	<span class="s">&#34;time&#34;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nf">talk</span><span class="p">(</span><span class="nx">msg</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">sleep</span> <span class="kt">int</span><span class="p">)</span> <span class="o">&lt;-</span><span class="kd">chan</span> <span class="kt">string</span> <span class="p">{</span>
+	<span class="nx">ch</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">string</span><span class="p">)</span>
+	<span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+		<span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="mi">5</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+			<span class="nx">ch</span> <span class="o">&lt;-</span> <span class="nx">fmt</span><span class="p">.</span><span class="nf">Sprintf</span><span class="p">(</span><span class="s">&#34;%s %d&#34;</span><span class="p">,</span> <span class="nx">msg</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span>
+			<span class="nx">time</span><span class="p">.</span><span class="nf">Sleep</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nf">Duration</span><span class="p">(</span><span class="nx">sleep</span><span class="p">)</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Millisecond</span><span class="p">)</span>
+		<span class="p">}</span>
+	<span class="p">}()</span>
+	<span class="k">return</span> <span class="nx">ch</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">fanIn</span><span class="p">(</span><span class="nx">input1</span><span class="p">,</span> <span class="nx">input2</span> <span class="o">&lt;-</span><span class="kd">chan</span> <span class="kt">string</span><span class="p">)</span> <span class="o">&lt;-</span><span class="kd">chan</span> <span class="kt">string</span> <span class="p">{</span>
+	<span class="nx">ch</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">string</span><span class="p">)</span>
+	<span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+		<span class="k">for</span> <span class="p">{</span>
+			<span class="k">select</span> <span class="p">{</span>
+			<span class="k">case</span> <span class="nx">ch</span> <span class="o">&lt;-</span> <span class="o">&lt;-</span><span class="nx">input1</span><span class="p">:</span>
+			<span class="k">case</span> <span class="nx">ch</span> <span class="o">&lt;-</span> <span class="o">&lt;-</span><span class="nx">input2</span><span class="p">:</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+	<span class="p">}()</span>
+	<span class="k">return</span> <span class="nx">ch</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="nx">ch</span> <span class="o">:=</span> <span class="nf">fanIn</span><span class="p">(</span><span class="nf">talk</span><span class="p">(</span><span class="s">&#34;A&#34;</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="nf">talk</span><span class="p">(</span><span class="s">&#34;B&#34;</span><span class="p">,</span> <span class="mi">1000</span><span class="p">))</span>
+	<span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;%q\n&#34;</span><span class="p">,</span> <span class="o">&lt;-</span><span class="nx">ch</span><span class="p">)</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><p>有没有这种感觉：</p>
+<p><p class="md__image">
+  <img src="../imgs/select-channel-deadlock.png"
+    alt="算法入门"  />
+</p>
+</p>
+<p>这是 StackOverflow 上的一个问题：<a href="https://stackoverflow.com/questions/51167940/chained-channel-operations-in-a-single-select-case">https://stackoverflow.com/questions/51167940/chained-channel-operations-in-a-single-select-case</a>。</p>
+<p>关键点和文章开头例子一样，在于 select case 中两个 channel 串起来，即 fanIn 函数中：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="k">select</span> <span class="p">{</span>
+<span class="k">case</span> <span class="nx">ch</span> <span class="o">&lt;-</span> <span class="o">&lt;-</span><span class="nx">input1</span><span class="p">:</span>
+<span class="k">case</span> <span class="nx">ch</span> <span class="o">&lt;-</span> <span class="o">&lt;-</span><span class="nx">input2</span><span class="p">:</span>
+<span class="p">}</span>
+</code></pre></div><p>如果改为这样就一切正常：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="k">select</span> <span class="p">{</span>
+<span class="k">case</span> <span class="nx">t</span> <span class="o">:=</span> <span class="o">&lt;-</span><span class="nx">input1</span><span class="p">:</span>
+  <span class="nx">ch</span> <span class="o">&lt;-</span> <span class="nx">t</span>
+<span class="k">case</span> <span class="nx">t</span> <span class="o">:=</span> <span class="o">&lt;-</span><span class="nx">input2</span><span class="p">:</span>
+  <span class="nx">ch</span> <span class="o">&lt;-</span> <span class="nx">t</span>
+<span class="p">}</span>
+</code></pre></div><p>结合这个更复杂的例子分析 Go 语言规范中的那句话。</p>
+<p>对于 select 语句，在进入该语句时，会按源码的顺序对没一个 case 子句进行求值：这个求值只针对发送或接收操作的额外表达式。</p>
+<p>比如：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// ch 是一个 chan int；
+</span><span class="c1">// getVal() 返回 int
+</span><span class="c1">// input 是 chan int
+</span><span class="c1">// getch() 返回 chan int
+</span><span class="c1"></span><span class="k">select</span> <span class="p">{</span>
+  <span class="k">case</span> <span class="nx">ch</span> <span class="o">&lt;-</span> <span class="nf">getVal</span><span class="p">():</span>
+  <span class="k">case</span> <span class="nx">ch</span> <span class="o">&lt;-</span> <span class="o">&lt;-</span><span class="nx">input</span><span class="p">:</span>
+  <span class="k">case</span> <span class="nf">getch</span><span class="p">()</span> <span class="o">&lt;-</span> <span class="mi">1</span><span class="p">:</span>
+  <span class="k">case</span> <span class="o">&lt;-</span> <span class="nf">getch</span><span class="p">():</span>
+<span class="p">}</span>
+</code></pre></div><p>在没有选择某个具体 case 执行前，例子中的 <code>getVal()</code>、<code>&lt;-input</code> 和 <code>getch()</code> 会执行。这里有一个验证的例子：<a href="https://play.studygolang.com/p/DkpCq3aQ1TE">https://play.studygolang.com/p/DkpCq3aQ1TE</a>。</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+	<span class="s">&#34;fmt&#34;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="nx">ch</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">int</span><span class="p">)</span>
+	<span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+		<span class="k">select</span> <span class="p">{</span>
+		<span class="k">case</span> <span class="nx">ch</span> <span class="o">&lt;-</span> <span class="nf">getVal</span><span class="p">(</span><span class="mi">1</span><span class="p">):</span>
+			<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;in first case&#34;</span><span class="p">)</span>
+		<span class="k">case</span> <span class="nx">ch</span> <span class="o">&lt;-</span> <span class="nf">getVal</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
+			<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;in second case&#34;</span><span class="p">)</span>
+		<span class="k">default</span><span class="p">:</span>
+			<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;default&#34;</span><span class="p">)</span>
+		<span class="p">}</span>
+	<span class="p">}()</span>
+
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;The val:&#34;</span><span class="p">,</span> <span class="o">&lt;-</span><span class="nx">ch</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">getVal</span><span class="p">(</span><span class="nx">i</span> <span class="kt">int</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;getVal, i=&#34;</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span>
+	<span class="k">return</span> <span class="nx">i</span>
+<span class="p">}</span>
+</code></pre></div><p>无论 select 最终选择了哪个 case，<code>getVal()</code> 都会按照源码顺序执行：<code>getVal(1)</code> 和 <code>getVal(2)</code>，也就是它们必然先输出：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">getVal, <span class="nv">i</span><span class="o">=</span> <span class="m">1</span>
+getVal, <span class="nv">i</span><span class="o">=</span> <span class="m">2</span>
+</code></pre></div><p>你可以仔细琢磨一下。</p>
+<p>现在回到 StackOverflow 上的那个问题。</p>
+<p>每次进入以下 select 语句时：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="k">select</span> <span class="p">{</span>
+<span class="k">case</span> <span class="nx">ch</span> <span class="o">&lt;-</span> <span class="o">&lt;-</span><span class="nx">input1</span><span class="p">:</span>
+<span class="k">case</span> <span class="nx">ch</span> <span class="o">&lt;-</span> <span class="o">&lt;-</span><span class="nx">input2</span><span class="p">:</span>
+<span class="p">}</span>
+</code></pre></div><p><code>&lt;-input1</code> 和 <code>&lt;-input2</code> 都会执行，相应的值是：A x 和 B x（其中 x 是 0-5）。但每次 select 只会选择其中一个 case 执行，所以 <code>&lt;-input1</code> 和 <code>&lt;-input2</code> 的结果，必然有一个被丢弃了，也就是不会被写入 ch 中。因此，一共只会输出 5 次，另外 5 次结果丢掉了。（你会发现，输出的 5 次结果中，x 比如是 0 1 2 3 4）</p>
+<p>而 main 中循环 10 次，只获得 5 次结果，所以输出 5 此后，报死锁。</p>
+<hr>
+<p>虽然这是一个小细节，但实际开发中还是有可能出现的。比如文章提到的例子写法：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// ch 是一个 chan int；
+</span><span class="c1">// getVal() 返回 int
+</span><span class="c1">// input 是 chan int
+</span><span class="c1">// getch() 返回 chan int
+</span><span class="c1"></span><span class="k">select</span> <span class="p">{</span>
+  <span class="k">case</span> <span class="nx">ch</span> <span class="o">&lt;-</span> <span class="nf">getVal</span><span class="p">():</span>
+  <span class="k">case</span> <span class="nx">ch</span> <span class="o">&lt;-</span> <span class="o">&lt;-</span><span class="nx">input</span><span class="p">:</span>
+  <span class="k">case</span> <span class="nf">getch</span><span class="p">()</span> <span class="o">&lt;-</span> <span class="mi">1</span><span class="p">:</span>
+  <span class="k">case</span> <span class="o">&lt;-</span> <span class="nf">getch</span><span class="p">():</span>
+<span class="p">}</span>
+</code></pre></div><p>因此在使用 select 时，一定要注意这种可能的问题。</p>
+<p>不要以为这个问题不会遇到，其实很常见。最多的就是 time.After 导致内存泄露问题，网上有很多文章解释原因，如何避免，其实最根本原因就是因为 select 这个机制导致的。</p>
+<p>比如如下代码，有内存泄露（传递给 time.After 的时间参数越大，泄露会越厉害），你能解释原因吗？</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&#34;time&#34;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span>  <span class="p">{</span>
+    <span class="nx">ch</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">int</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+
+    <span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">i</span> <span class="p">=</span> <span class="mi">1</span>
+        <span class="k">for</span> <span class="p">{</span>
+            <span class="nx">i</span><span class="o">++</span>
+            <span class="nx">ch</span> <span class="o">&lt;-</span> <span class="nx">i</span>
+        <span class="p">}</span>
+    <span class="p">}()</span>
+
+    <span class="k">for</span> <span class="p">{</span>
+        <span class="k">select</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="nx">x</span> <span class="o">:=</span> <span class="o">&lt;-</span> <span class="nx">ch</span><span class="p">:</span>
+            <span class="nb">println</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span>
+        <span class="k">case</span> <span class="o">&lt;-</span> <span class="nx">time</span><span class="p">.</span><span class="nf">After</span><span class="p">(</span><span class="mi">30</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">):</span>
+            <span class="nb">println</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nf">Now</span><span class="p">().</span><span class="nf">Unix</span><span class="p">())</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+			</div><div class="content">
+	<br>
+	<img src="https://static.studygolang.com/static/img/polarisxu-qrcode-soso-s.png">
+</div>
+
+<div class="related-posts thin">
+	<h2>相关推荐</h2>
+	<ul>
+	
+	<li><a href="/posts/go/book/building-distributed-applications-in-gin/">新书推荐：用 Gin 框架构建分布式应用</a></li>
+	
+	<li><a href="/posts/go/dynamic/golang.org-change/">Go 官网要变天。。。</a></li>
+	
+	<li><a href="/posts/go/web-service-gin/">Gin 这是要成为 Go 官方框架？</a></li>
+	
+	<li><a href="/posts/go/dynamic/go-generic/">扬眉吐气：刚刚，Go 已经默认支持泛型了</a></li>
+	
+	<li><a href="/posts/go/dynamic/go1.17-module/">Go 1.17 新特性：Module 有哪些变化？</a></li>
+	
+	</ul>
+</div>
+
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://polarisxu.studygolang.com/tags/go">Go</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/select">select</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1504 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2021-08-30 22:10 &#43;0800</p>
+			</footer>
+		</article>
+		<aside id="toc">
+			<div class="toc-title">目录</div>
+			<nav id="TableOfContents"></nav>
+		</aside>
+		<div class="post-nav thin">
+			<a class="prev-post" href="https://polarisxu.studygolang.com/posts/go/book/building-distributed-applications-in-gin/">
+				<span class="post-nav-label">旧&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>新书推荐：用 Gin 框架构建分布式应用</span>
+			</a>
+		</div>
+		<div id="comments" class="thin"><script src="https://utteranc.es/client.js"
+	repo="polaris1119/polarisxu"
+	issue-term="pathname"
+	theme="github-light"
+	crossorigin="anonymous"
+	async>
+</script>
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2019 - 2021 <a href="https://polarisxu.studygolang.com">polarisxu</a> &#183; <a href="https://beian.miit.gov.cn/">京ICP备14030343号-1</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://polarisxu.studygolang.com/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+		<span id="busuanzi_container" style="color: #666;">
+			本站总访客数/访问量：<span id="busuanzi_value_site_uv"></span>/<span id="busuanzi_value_site_pv"></span>
+		</span>
+	</footer>
+
+
+
+	<script src="https://polarisxu.studygolang.com/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw=" crossorigin="anonymous"></script>
+	<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?224c227cd9239761ec770bc8c1fb134c";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+</body>
+
+</html>
