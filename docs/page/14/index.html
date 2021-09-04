@@ -14,7 +14,7 @@
 <meta property="og:description" content="polarisxu,Go语言中文网,go,golang,源码分析,系列教程" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://polarisxu.studygolang.com/" />
-<meta property="og:updated_time" content="2021-09-04T19:10:00+08:00" />
+<meta property="og:updated_time" content="2021-09-04T20:10:00+08:00" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="polarisxu"/>
 <meta name="twitter:description" content="polarisxu,Go语言中文网,go,golang,源码分析,系列教程"/>
@@ -70,6 +70,27 @@
 		<main class="site-main section-inner thin animated fadeIn faster">
     
 		
+        <div class="post animated fadeInDown">
+            <div class="post-title">
+                <h2><a href="/posts/go/translation/go-error-printing-catastrophe/">Go error 打印灾难 —  CockroachDB errors 库（第3篇）</a>
+                </h2>
+            </div>
+            <div class="post-content">
+                <div class="p_part"><p>这篇文章是关于 “CockroachDB errors 库” 的系列文章的第 3 篇，“CockroachDB errors 库”实际上是 Go 的标准 errors 包的通用、开放源码的替代品。 Go 1.13 的标准库采用了 Dave Cheney 自 2015 年以来对错误处理的主要贡献：将 Go 错误对象构造为链表的想法。 唉，这种方式给 Go 开发人员造成了巨大的障碍：使打印错误对象变得困难、几乎不可能。 这就是我所说的 “Go error 打印灾难&quot;，下面我们将准确</p></div>
+            </div>
+            <div class="post-footer">
+                <div class="meta">
+                    <div class="info"><em class="fas fa-calendar-day"></em><span
+                                class="date">2020-10-26</span>
+                        <a class="tag"
+                                   href="/tags/go/">Go</a><a class="tag"
+                                   href="/tags/cockroachdb/">CockroachDB</a><a class="tag"
+                                   href="/tags/error/">error</a>
+                    </div>
+                </div>
+            </div>
+				</div>
+    
         <div class="post animated fadeInDown">
             <div class="post-title">
                 <h2><a href="/posts/go/translation/go-formatting-apis/">Go 格式化 API —  CockroachDB errors 库（第2篇）</a>
@@ -258,27 +279,6 @@
                                    href="/tags/float/">Float</a><a class="tag"
                                    href="/tags/go/">Go</a><a class="tag"
                                    href="/tags/golang/">Golang</a>
-                    </div>
-                </div>
-            </div>
-				</div>
-    
-        <div class="post animated fadeInDown">
-            <div class="post-title">
-                <h2><a href="/posts/go/action/interview-len-shift/">这么一道“简单”的题，为什么结果出乎我的意料</a>
-                </h2>
-            </div>
-            <div class="post-content">
-                <div class="p_part"><p>今天在《Go语言爱好者周刊：第62期》 中贴了一道 Go101 的题，原题如下： package main const s = &#34;Go101.org&#34; // len(s) == 9 // 1 &lt;&lt; 9 == 512 // 512 / 128 == 4 var a byte = 1 &lt;&lt; len(s) / 128 var b byte = 1 &lt;&lt; len(s[:]) / 128 func main() { println(a, b) } 答案是 4 0。 不少人对这个结果应该很吃惊，因为从答题结果看，不到一半的人答对了。而且，如果只给 var b byte = 1 &lt;&lt; len(s[:]) / 128，没有 a 对比，我想答对的人会更少。因为有对比，很多人虽然直觉是 4 4，但想到一定有陷阱，所</p></div>
-            </div>
-            <div class="post-footer">
-                <div class="meta">
-                    <div class="info"><em class="fas fa-calendar-day"></em><span
-                                class="date">2020-09-27</span>
-                        <a class="tag"
-                                   href="/tags/go/">Go</a><a class="tag"
-                                   href="/tags/golang/">Golang</a><a class="tag"
-                                   href="/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/">面试题</a>
                     </div>
                 </div>
             </div>

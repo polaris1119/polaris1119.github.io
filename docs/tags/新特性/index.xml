@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Thu, 15 Jul 2021 22:10:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/%E6%96%B0%E7%89%B9%E6%80%A7/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 04 Sep 2021 20:10:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/%E6%96%B0%E7%89%B9%E6%80%A7/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go1.17 新特性：go get 变了</title>
+      <link>https://polarisxu.studygolang.com/posts/go/dynamic/1.17-golang-go-get-updated/</link>
+      <pubDate>Sat, 04 Sep 2021 20:10:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/dynamic/1.17-golang-go-get-updated/</guid>
+      <description>大家好，我是 polarisxu。 为什么把 Go 的一些小变化单独写文章，而不是一篇文章介绍所有的变化？主要是想让大家对某一个特性有更深的记忆。全部列出，很容易一眼而过，过段时间就忘记了。但一个变化，专门一篇文章介绍，更容易记住。 01 安装命令会警告 一直以来，go get 用于下载并安装 Go 包、命令等，而 go install 在 module 时代几乎很少使用，在 GOPATH 年代，go install 用来编译安装本地项目。 自 1.16 起，官方</description>
+    </item>
+    
     <item>
       <title>Go1.17 新特性：新版构建约束</title>
       <link>https://polarisxu.studygolang.com/posts/go/dynamic/go1.17-build-contraints/</link>
