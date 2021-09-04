@@ -14,7 +14,7 @@
 <meta property="og:description" content="polarisxu,Go语言中文网,go,golang,源码分析,系列教程" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://polarisxu.studygolang.com/" />
-<meta property="og:updated_time" content="2021-08-30T22:10:00+08:00" />
+<meta property="og:updated_time" content="2021-09-04T19:10:00+08:00" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="polarisxu"/>
 <meta name="twitter:description" content="polarisxu,Go语言中文网,go,golang,源码分析,系列教程"/>
@@ -70,6 +70,27 @@
 		<main class="site-main section-inner thin animated fadeIn faster">
     
 		
+        <div class="post animated fadeInDown">
+            <div class="post-title">
+                <h2><a href="/posts/go/translation/how-to-find-goroutines-during-debugging/">如何在调试过程中查找 Goroutine</a>
+                </h2>
+            </div>
+            <div class="post-content">
+                <div class="p_part"><p>Goroutines 是大多数用 Go 编写的程序的重要组成部分。但是，使用大量 goroutines 会使程序难以调试。那怎么办？在此博文中，我们将介绍如何使用自定义数据为 goroutine 加上标签，这是 GoLand 2020.1（现已包含在 EAP 中）的最新功能之一。 目录 在 IDE 下使用 在命令行下使用 性能影响 使用自定义库启用调试标签 让我们以向 Web 服务器发出请求的应用程序为例： package main import ( &#34;io&#34; &#34;io/ioutil&#34; &#34;math/rand&#34; &#34;net/http&#34; &#34;strconv&#34; &#34;strings&#34; &#34;time&#34; ) func fakeTraffic() { // Wait for the server to start time.Sleep(1 * time.Second) pages := []string{&#34;/&#34;, &#34;/login&#34;, &#34;/logout&#34;, &#34;/products&#34;, &#34;/product/{productID}&#34;, &#34;/basket&#34;, &#34;/about&#34;}</p></div>
+            </div>
+            <div class="post-footer">
+                <div class="meta">
+                    <div class="info"><em class="fas fa-calendar-day"></em><span
+                                class="date">2020-09-18</span>
+                        <a class="tag"
+                                   href="/tags/go/">Go</a><a class="tag"
+                                   href="/tags/goroutine/">goroutine</a><a class="tag"
+                                   href="/tags/debug/">Debug</a>
+                    </div>
+                </div>
+            </div>
+				</div>
+    
         <div class="post animated fadeInDown">
             <div class="post-title">
                 <h2><a href="/posts/go/translation/running-go-code-on-ios-and-android/">在 iOS 和 Android 上运行 Go 代码</a>
@@ -272,26 +293,6 @@ IDE 将识别自定义位置，并将其用于具有依赖关系的所有后续�
                                    href="/tags/rust/">Rust</a><a class="tag"
                                    href="/tags/grpc/">gRPC</a><a class="tag"
                                    href="/tags/%E5%9F%BA%E5%87%86%E6%B5%8B%E8%AF%95/">基准测试</a>
-                    </div>
-                </div>
-            </div>
-				</div>
-    
-        <div class="post animated fadeInDown">
-            <div class="post-title">
-                <h2><a href="/posts/talk/sell-my-book/">从签名售书说起</a>
-                </h2>
-            </div>
-            <div class="post-content">
-                <div class="p_part"><p>上周通过公众号对外公布新手开卖后，有人想要签名版。由于双作者，涉及到双签，知道可能会很麻烦，但第一次，也有可能是最后一次，和煎鱼沟通后决定搞搞。 大概谈谈我们的操作过程。 1、编辑帮我们买书，104 本；也是想办法弄到了当时最便宜的价格； 2、寄到我家里。周六、日分批到的，去封皮签名，大部分还写了一些 Go 箴言，但还有 26 本周末没到； 3、弄好后寄到深圳。用什么快递也是有讲</p></div>
-            </div>
-            <div class="post-footer">
-                <div class="meta">
-                    <div class="info"><em class="fas fa-calendar-day"></em><span
-                                class="date">2020-07-09</span>
-                        <a class="tag"
-                                   href="/tags/go/">Go</a><a class="tag"
-                                   href="/tags/%E5%9B%BE%E4%B9%A6/">图书</a>
                     </div>
                 </div>
             </div>

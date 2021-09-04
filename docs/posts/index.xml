@@ -6,8 +6,54 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en</language>
 		<copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-		<lastBuildDate>Mon, 30 Aug 2021 22:10:00 +0800</lastBuildDate>
+		<lastBuildDate>Sat, 04 Sep 2021 19:10:00 +0800</lastBuildDate>
 		<atom:link href="https://polarisxu.studygolang.com/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>Go1.17 新特性：testing 包的相关变化</title>
+			<link>https://polarisxu.studygolang.com/posts/go/dynamic/go-1-17-new-features-added-to-testing/</link>
+			<pubDate>Sat, 04 Sep 2021 19:10:00 +0800</pubDate>
+			
+			<guid>https://polarisxu.studygolang.com/posts/go/dynamic/go-1-17-new-features-added-to-testing/</guid>
+			<description>大家好，我是 polarisxu。 今天介绍下 Go1.17 中的特性：testing 包的一些变化。先看 Release Notes 关于 testing 变化的描述： Added a new testing flag -shuffle which controls the execution order of tests and benchmarks. The new T.Setenv and B.Setenv methods support setting an environment variable for the duration of the test or benchmark. 关于 shuffle 这个 flag，1.17 还未发布时，我就写过文章介绍：Go1.17这个新特性竟然是6年前提出来的 。关于它的作用，记住关键一点：我们写测试时，测试之间别相互依赖，应该是独立的。 本文着</description>
+			<content type="html"><![CDATA[<p>大家好，我是 polarisxu。</p>
+<p>今天介绍下 Go1.17 中的特性：testing 包的一些变化。先看 Release Notes 关于 testing 变化的描述：</p>
+<blockquote>
+<p>Added a new testing flag -shuffle which controls the execution order of tests and benchmarks.</p>
+<p>The new T.Setenv and B.Setenv methods support setting an environment variable for the duration of the test or benchmark.</p>
+</blockquote>
+<p>关于 shuffle 这个 flag，1.17 还未发布时，我就写过文章介绍：<a href="https://mp.weixin.qq.com/s/8Ju2-daS0s-esDAezP-lZw" target="_blank" rel="noopener">Go1.17这个新特性竟然是6年前提出来的</a>
+。关于它的作用，记住关键一点：我们写测试时，测试之间别相互依赖，应该是独立的。</p>
+<p>本文着重介绍另外一个特性：T.Setenv 和 B.Setenv。</p>
+<p>从名字可以看出，这是设置环境变量用的。T 是单元测试，而 B 是基准测试。</p>
+<p>你可能会说，os 包不是有 Setenv 吗？</p>
+<p><code>os.Setenv</code> 会影响当前进程的环境变量，而 T.Setenv 和 B.Setenv 只会影响当前测试函数的环境变量，不会对其他测试函数造成影响。通过它们，可以做到每个测试有自己的独立的环境变量。</p>
+<p>Go 源码中，有不少测试文件使用了这个新功能，比如：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">TestImportVendor</span><span class="p">(</span><span class="nx">t</span> <span class="o">*</span><span class="nx">testing</span><span class="p">.</span><span class="nx">T</span><span class="p">)</span> <span class="p">{</span>
+	<span class="nx">testenv</span><span class="p">.</span><span class="nf">MustHaveGoBuild</span><span class="p">(</span><span class="nx">t</span><span class="p">)</span> <span class="c1">// really must just have source
+</span><span class="c1"></span>
+	<span class="nx">t</span><span class="p">.</span><span class="nf">Setenv</span><span class="p">(</span><span class="s">&#34;GO111MODULE&#34;</span><span class="p">,</span> <span class="s">&#34;off&#34;</span><span class="p">)</span>
+
+	<span class="nx">ctxt</span> <span class="o">:=</span> <span class="nx">Default</span>
+	<span class="nx">wd</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">os</span><span class="p">.</span><span class="nf">Getwd</span><span class="p">()</span>
+	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+		<span class="nx">t</span><span class="p">.</span><span class="nf">Fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+	<span class="p">}</span>
+	<span class="nx">ctxt</span><span class="p">.</span><span class="nx">GOPATH</span> <span class="p">=</span> <span class="nx">filepath</span><span class="p">.</span><span class="nf">Join</span><span class="p">(</span><span class="nx">wd</span><span class="p">,</span> <span class="s">&#34;testing/demo&#34;</span><span class="p">)</span>
+	<span class="nx">p</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">ctxt</span><span class="p">.</span><span class="nf">Import</span><span class="p">(</span><span class="s">&#34;c/d&#34;</span><span class="p">,</span> <span class="nx">filepath</span><span class="p">.</span><span class="nf">Join</span><span class="p">(</span><span class="nx">ctxt</span><span class="p">.</span><span class="nx">GOPATH</span><span class="p">,</span> <span class="s">&#34;src/a/b&#34;</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>
+	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+		<span class="nx">t</span><span class="p">.</span><span class="nf">Fatalf</span><span class="p">(</span><span class="s">&#34;cannot find vendored c/d from testdata src/a/b directory: %v&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+	<span class="p">}</span>
+	<span class="nx">want</span> <span class="o">:=</span> <span class="s">&#34;a/vendor/c/d&#34;</span>
+	<span class="k">if</span> <span class="nx">p</span><span class="p">.</span><span class="nx">ImportPath</span> <span class="o">!=</span> <span class="nx">want</span> <span class="p">{</span>
+		<span class="nx">t</span><span class="p">.</span><span class="nf">Fatalf</span><span class="p">(</span><span class="s">&#34;Import succeeded but found %q, want %q&#34;</span><span class="p">,</span> <span class="nx">p</span><span class="p">.</span><span class="nx">ImportPath</span><span class="p">,</span> <span class="nx">want</span><span class="p">)</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><p>具体源码：<a href="https://github.com/golang/go/blob/891547e2d4bc2a23973e2c9f972ce69b2b48478e/src/go/build/build_test.go#L556">https://github.com/golang/go/blob/891547e2d4bc2a23973e2c9f972ce69b2b48478e/src/go/build/build_test.go#L556</a>。</p>
+<p>如果你项目中的测试依赖环境变量，可以考虑使用这个新的函数。</p>
+<p>注意：在 Parallel 测试中不能使用 Setenv。</p>
+]]></content>
+		</item>
 		
 		<item>
 			<title>StackOverflow 上关于 Go select 死锁的问题</title>

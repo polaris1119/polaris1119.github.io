@@ -14,7 +14,7 @@
 <meta property="og:description" content="polarisxu,Go语言中文网,go,golang,源码分析,系列教程" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://polarisxu.studygolang.com/" />
-<meta property="og:updated_time" content="2021-08-30T22:10:00+08:00" />
+<meta property="og:updated_time" content="2021-09-04T19:10:00+08:00" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="polarisxu"/>
 <meta name="twitter:description" content="polarisxu,Go语言中文网,go,golang,源码分析,系列教程"/>
@@ -70,6 +70,27 @@
 		<main class="site-main section-inner thin animated fadeIn faster">
     
 		
+        <div class="post animated fadeInDown">
+            <div class="post-title">
+                <h2><a href="/posts/go/echo/custom05-error-handler/">Echo 系列教程——定制篇5：自定义 HTTP Error Handler，让 HTTP 错误处理更友好</a>
+                </h2>
+            </div>
+            <div class="post-content">
+                <div class="p_part"><p>Echo 倡导通过从中间件和 Handler 返回错误来进行集中式 HTTP 错误处理。集中式错误处理程序使我们能够从统一位置将错误记录到外部服务，并向客户端发送自定义的 HTTP 响应。本节一起学习如何定制化，进行集中式错误处理。 默认的错误处理 在定制篇 4 中，我们讲到了 Render。如果在 Handler 中调用了 Render，但是并没有给 Echo.Renderer 赋值或其他原因，导致出错，页面看到的信息如下： { &#34;message&#34;: &#34;Internal Server Error&#34; } 这是 Echo 默认的 HTTP Error H</p></div>
+            </div>
+            <div class="post-footer">
+                <div class="meta">
+                    <div class="info"><em class="fas fa-calendar-day"></em><span
+                                class="date">2020-03-16</span>
+                        <a class="tag"
+                                   href="/tags/echo/">echo</a><a class="tag"
+                                   href="/tags/web%E6%A1%86%E6%9E%B6/">web框架</a><a class="tag"
+                                   href="/tags/%E6%A8%A1%E6%9D%BF%E5%BC%95%E6%93%8E/">模板引擎</a>
+                    </div>
+                </div>
+            </div>
+				</div>
+    
         <div class="post animated fadeInDown">
             <div class="post-title">
                 <h2><a href="/posts/go/echo/custom06-ext-server/">Echo 系列教程——定制篇6：自定义 Server 相关，替换或扩展默认的 Server</a>
@@ -275,27 +296,6 @@ fori 模板插入经典 for 循环的样板代码。
                                    href="/tags/echo/">echo</a><a class="tag"
                                    href="/tags/web%E6%A1%86%E6%9E%B6/">web框架</a><a class="tag"
                                    href="/tags/%E4%BA%AE%E7%82%B9/">亮点</a>
-                    </div>
-                </div>
-            </div>
-				</div>
-    
-        <div class="post animated fadeInDown">
-            <div class="post-title">
-                <h2><a href="/posts/go/echo/basic01-env/">Echo 系列教程——基础篇1：搭建 Echo 开发环境</a>
-                </h2>
-            </div>
-            <div class="post-content">
-                <div class="p_part"><p>工欲善其事必先利其器。我们先搞定 Echo 环境。 Go 开发环境 这个系列基于 Go1.14.4，Linux 系统。 安装 Go 的方式有很多，可以在这里 https://studygolang.com/dl 下载对应操作系统的版本。我自己比较喜欢通过源码安装。我将我的方式告诉大家。（Windows 环境比较建议直接下载对应的包进行安装 https://studygolang.com/dl/golang/go1.14.4.windows-am</p></div>
-            </div>
-            <div class="post-footer">
-                <div class="meta">
-                    <div class="info"><em class="fas fa-calendar-day"></em><span
-                                class="date">2019-10-21</span>
-                        <a class="tag"
-                                   href="/tags/echo/">echo</a><a class="tag"
-                                   href="/tags/web%E6%A1%86%E6%9E%B6/">web框架</a><a class="tag"
-                                   href="/tags/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/">开发环境</a>
                     </div>
                 </div>
             </div>

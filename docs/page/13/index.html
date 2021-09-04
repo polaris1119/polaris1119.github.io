@@ -14,7 +14,7 @@
 <meta property="og:description" content="polarisxu,Go语言中文网,go,golang,源码分析,系列教程" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://polarisxu.studygolang.com/" />
-<meta property="og:updated_time" content="2021-08-30T22:10:00+08:00" />
+<meta property="og:updated_time" content="2021-09-04T19:10:00+08:00" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="polarisxu"/>
 <meta name="twitter:description" content="polarisxu,Go语言中文网,go,golang,源码分析,系列教程"/>
@@ -70,6 +70,27 @@
 		<main class="site-main section-inner thin animated fadeIn faster">
     
 		
+        <div class="post animated fadeInDown">
+            <div class="post-title">
+                <h2><a href="/posts/go/dynamic/go-opensource-11-years/">祝贺 Go 开源 11 周年</a>
+                </h2>
+            </div>
+            <div class="post-content">
+                <div class="p_part"><p>题图来自《了不起的程序员》 今天是 Go 语言开源 11 周年。有些人可能不太知道，简单回顾下 Go 的历史。 2007 年 Rob Pike, Robert Griesemer 和 Ken Thompson 一起创建了 Go 语言。从代码提交记录看，2008 年 3 月 3 日有了 Go 最初的规范 。 2009 年 11 月 10 日，Go 语言以开放源代码的方式向全球发布，当年获得了 TIOBE 年度编程语言称号； 2011 年 3 月 16 日，Go 语言的第一个稳定版本 r56 发布； 2012 年 3 月 28 日，Go 语言的第一个正式版本 Go1 发布，并承诺</p></div>
+            </div>
+            <div class="post-footer">
+                <div class="meta">
+                    <div class="info"><em class="fas fa-calendar-day"></em><span
+                                class="date">2020-11-10</span>
+                        <a class="tag"
+                                   href="/tags/golang/">Golang</a><a class="tag"
+                                   href="/tags/go/">Go</a><a class="tag"
+                                   href="/tags/%E5%9B%BE%E4%B9%A6/">图书</a>
+                    </div>
+                </div>
+            </div>
+				</div>
+    
         <div class="post animated fadeInDown">
             <div class="post-title">
                 <h2><a href="/posts/go/translation/rust-vs-go/">客观、全面的比较 Rust 与 Go</a>
@@ -249,27 +270,6 @@
                 <div class="meta">
                     <div class="info"><em class="fas fa-calendar-day"></em><span
                                 class="date">2020-10-26</span>
-                        <a class="tag"
-                                   href="/tags/go/">Go</a><a class="tag"
-                                   href="/tags/cockroachdb/">CockroachDB</a><a class="tag"
-                                   href="/tags/error/">error</a>
-                    </div>
-                </div>
-            </div>
-				</div>
-    
-        <div class="post animated fadeInDown">
-            <div class="post-title">
-                <h2><a href="/posts/go/translation/go-formatting-apis/">Go 格式化 API —  CockroachDB errors 库（第2篇）</a>
-                </h2>
-            </div>
-            <div class="post-content">
-                <div class="p_part"><p>这篇文章是关于 “CockroachDB errors 库” 的系列文章的第 2 篇，“CockroachDB errors 库”实际上是 Go 的标准 errors 包的通用、开放源码的替代品。 以下面的代码为例： import &#34;fmt&#34; type T struct { x int } func main() { v := T{123} fmt.Println(v) } 这个程序打印 {123}，尽管我们没有教 Go 如何打印我们的 T 类型。它是如何做到这一点的？ printer 的等效性 fmt 包中的逻辑在所有 printer 之间共享，因此以下调用都保证等效： fmt.Print(x) fmt.Printf(&quot;%v&quot;, x) os.Stdout.Write([]byte(fmt.Sprint(x))) os.Stdout.Write([]byte(fmt.Sprintf(&quot;%v&quot;, x))) 换句话说</p></div>
-            </div>
-            <div class="post-footer">
-                <div class="meta">
-                    <div class="info"><em class="fas fa-calendar-day"></em><span
-                                class="date">2020-10-24</span>
                         <a class="tag"
                                    href="/tags/go/">Go</a><a class="tag"
                                    href="/tags/cockroachdb/">CockroachDB</a><a class="tag"

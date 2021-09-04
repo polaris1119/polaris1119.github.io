@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>testing on polarisxu</title>
+    <link>https://polarisxu.studygolang.com/tags/testing/</link>
+    <description>Recent content in testing on polarisxu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
+    <lastBuildDate>Sat, 04 Sep 2021 19:10:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/testing/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go1.17 新特性：testing 包的相关变化</title>
+      <link>https://polarisxu.studygolang.com/posts/go/dynamic/go-1-17-new-features-added-to-testing/</link>
+      <pubDate>Sat, 04 Sep 2021 19:10:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/dynamic/go-1-17-new-features-added-to-testing/</guid>
+      <description>大家好，我是 polarisxu。 今天介绍下 Go1.17 中的特性：testing 包的一些变化。先看 Release Notes 关于 testing 变化的描述： Added a new testing flag -shuffle which controls the execution order of tests and benchmarks. The new T.Setenv and B.Setenv methods support setting an environment variable for the duration of the test or benchmark. 关于 shuffle 这个 flag，1.17 还未发布时，我就写过文章介绍：Go1.17这个新特性竟然是6年前提出来的 。关于它的作用，记住关键一点：我们写测试时，测试之间别相互依赖，应该是独立的。 本文着</description>
+    </item>
+    
+  </channel>
+</rss>
