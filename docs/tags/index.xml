@@ -7,13 +7,22 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Sat, 04 Sep 2021 20:10:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 12 Sep 2021 17:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Go</title>
       <link>https://polarisxu.studygolang.com/tags/go/</link>
-      <pubDate>Sat, 04 Sep 2021 20:10:00 +0800</pubDate>
+      <pubDate>Sun, 12 Sep 2021 17:00:00 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/tags/go/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Module</title>
+      <link>https://polarisxu.studygolang.com/tags/module/</link>
+      <pubDate>Sun, 12 Sep 2021 17:00:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/tags/module/</guid>
       <description></description>
     </item>
     
@@ -68,15 +77,6 @@
       <pubDate>Sun, 22 Aug 2021 22:10:00 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/tags/%E6%B3%9B%E5%9E%8B/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Module</title>
-      <link>https://polarisxu.studygolang.com/tags/module/</link>
-      <pubDate>Sat, 21 Aug 2021 22:10:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/tags/module/</guid>
       <description></description>
     </item>
     
