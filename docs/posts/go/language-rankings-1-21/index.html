@@ -8,20 +8,16 @@
 	<meta name="theme-color" content="#fcfcfc">
 	<meta name="msapplication-TileColor" content="#fcfcfc">
 <meta itemprop="name" content="RedMonk 编程语言排行榜，说 Go 正走向衰退，你认可吗？">
-<meta itemprop="description" content="大家好，我是站长 polarisxu。 2021 年 3 月 1 日，RedMonk 发布了 2021 年 1 月 编程语言排行榜（实际是 1 月 和 2 月的数据）。 先介绍下这个排名的依据。RedMonk 从 GitHub 和 Stack Overflow 中提取语言排名，并将它们合并为一个排名，试图反映代码（GitHub）和问答（Stack Overflow）的吸引力。这个想法并不是为了提供一个统计上有效的当前使用情况的表示，而是为了将语言的问答">
-<meta itemprop="datePublished" content="2021-03-10T14:30:00+08:00" />
+<meta itemprop="description" content="大家好，我是站长 polarisxu。 2021 年 3 月 1 日，RedMonk 发布了 2021 年 1 月 编程语言排行榜（实际是 1 月 和 2 月的数据）。 先介绍下这个排名的依据。RedMonk 从 GitHub 和 Stack Overflow 中提取语言排名，并将它们合并为一个排名，试图反映代码（GitHub）和问答（Stack Overflow）的吸引力。这个想法并不是为了提供一个统计上有效的当前使用情况的表示，而是为了将语言的问答"><meta itemprop="datePublished" content="2021-03-10T14:30:00+08:00" />
 <meta itemprop="dateModified" content="2021-03-10T14:30:00+08:00" />
 <meta itemprop="wordCount" content="1486">
-
-
-
-<meta itemprop="keywords" content="排行榜,Go," />
-<meta property="og:title" content="RedMonk 编程语言排行榜，说 Go 正走向衰退，你认可吗？" />
+<meta itemprop="keywords" content="排行榜,Go," /><meta property="og:title" content="RedMonk 编程语言排行榜，说 Go 正走向衰退，你认可吗？" />
 <meta property="og:description" content="大家好，我是站长 polarisxu。 2021 年 3 月 1 日，RedMonk 发布了 2021 年 1 月 编程语言排行榜（实际是 1 月 和 2 月的数据）。 先介绍下这个排名的依据。RedMonk 从 GitHub 和 Stack Overflow 中提取语言排名，并将它们合并为一个排名，试图反映代码（GitHub）和问答（Stack Overflow）的吸引力。这个想法并不是为了提供一个统计上有效的当前使用情况的表示，而是为了将语言的问答" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/language-rankings-1-21/" />
+<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/language-rankings-1-21/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-03-10T14:30:00+08:00" />
 <meta property="article:modified_time" content="2021-03-10T14:30:00+08:00" />
+
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="RedMonk 编程语言排行榜，说 Go 正走向衰退，你认可吗？"/>
 <meta name="twitter:description" content="大家好，我是站长 polarisxu。 2021 年 3 月 1 日，RedMonk 发布了 2021 年 1 月 编程语言排行榜（实际是 1 月 和 2 月的数据）。 先介绍下这个排名的依据。RedMonk 从 GitHub 和 Stack Overflow 中提取语言排名，并将它们合并为一个排名，试图反映代码（GitHub）和问答（Stack Overflow）的吸引力。这个想法并不是为了提供一个统计上有效的当前使用情况的表示，而是为了将语言的问答"/>
@@ -86,7 +82,8 @@
 <p>先介绍下这个排名的依据。RedMonk 从 GitHub 和 Stack Overflow 中提取语言排名，并将它们合并为一个排名，试图反映代码（GitHub）和问答（Stack Overflow）的吸引力。这个想法并不是为了提供一个统计上有效的当前使用情况的表示，而是为了将语言的问答和使用联系起来，努力提取对潜在的未来使用趋势的洞察。</p>
 <h2 id="01">01<a href="#01" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>那这个排名具体是怎么得来的呢？</p>
-<p>对于 GitHub，使用的数据源是 GitHub Archive（即某个具体归档点，参考：<a href="https://archiveprogram.github.com/">https://archiveprogram.github.com/</a>）。</p>
+<p>对于 GitHub，使用的数据源是 GitHub Archive（即某个具体归档点，参考：<a href="https://archiveprogram.github.com/" target="_blank" rel="noopener">https://archiveprogram.github.com/</a>
+）。</p>
 <ul>
 <li>基于仓库的主语言；</li>
 <li>排除了 fork；</li>
@@ -110,7 +107,7 @@
 </p>
 </p>
 <p>但这张图，看起来挺费劲的。于是 RedMonk 提供了一份数字排名：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="m">1</span> JavaScript
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="m">1</span> JavaScript
 <span class="m">2</span> Python
 <span class="m">3</span> Java
 <span class="m">4</span> PHP
@@ -144,7 +141,8 @@
 <h2 id="03">03<a href="#03" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>此外 RedMonk 还有对其他一些语言的分析、评价，整体上，我很不认可通过这个排名做出的一些判断（哈哈哈，不知道有没有个人情感因素在里面）。你怎么认为？欢迎交流！</p>
 <blockquote>
-<p>详细排名和分析见 <a href="https://redmonk.com/sogrady/2021/03/01/language-rankings-1-21/">https://redmonk.com/sogrady/2021/03/01/language-rankings-1-21/</a></p>
+<p>详细排名和分析见 <a href="https://redmonk.com/sogrady/2021/03/01/language-rankings-1-21/" target="_blank" rel="noopener">https://redmonk.com/sogrady/2021/03/01/language-rankings-1-21/</a>
+</p>
 </blockquote>
 
 			</div><div class="content">
@@ -156,6 +154,8 @@
 	<h2>相关推荐</h2>
 	<ul>
 	
+	<li><a href="/posts/go/fiber/go-fiber-basic-tutorial01/">Go Fiber 框架系列教程 01: 和 Express 对比学习</a></li>
+	
 	<li><a href="/posts/go/action/go-illegal-private-import/">Go Module：私有不合规库怎么解决引用问题</a></li>
 	
 	<li><a href="/posts/go/dynamic/1.17-golang-go-get-updated/">Go1.17 新特性：go get 变了</a></li>
@@ -163,8 +163,6 @@
 	<li><a href="/posts/go/dynamic/go-1-17-new-features-added-to-testing/">Go1.17 新特性：testing 包的相关变化</a></li>
 	
 	<li><a href="/posts/go/action/chained-channel-operations-in-a-single-select-case/">StackOverflow 上关于 Go select 死锁的问题</a></li>
-	
-	<li><a href="/posts/go/book/building-distributed-applications-in-gin/">新书推荐：用 Gin 框架构建分布式应用</a></li>
 	
 	</ul>
 </div>
@@ -218,7 +216,7 @@
 
 
 
-	<script src="https://polarisxu.studygolang.com/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw=" crossorigin="anonymous"></script>
+	<script src="https://polarisxu.studygolang.com/js/main.min.4eaa15feccc672488716f0338ac605e08c7553ce0ce175e13fa00a873636bf98.js" integrity="sha256-TqoV/szGckiHFvAzisYF4Ix1U84M4XXhP6AKhzY2v5g=" crossorigin="anonymous"></script>
 	<script>
 var _hmt = _hmt || [];
 (function() {

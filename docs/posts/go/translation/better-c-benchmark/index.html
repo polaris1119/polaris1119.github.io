@@ -8,20 +8,16 @@
 	<meta name="theme-color" content="#fcfcfc">
 	<meta name="msapplication-TileColor" content="#fcfcfc">
 <meta itemprop="name" content="那些想替代 C 的语言怎么样？Go、Rust、C&#43;&#43; 和 Zig 生产力对比">
-<meta itemprop="description" content="C 已经快 50 岁了。对于一瓶葡萄酒来说，这个年龄很棒，但对于快速发展的行业中的编程语言而言，它就不同了。在过去的十年中，出现了许多具有不同风格的新语言，所有这些语言都试图在某种程度上成为 C 语言的替代者。 当一种新语言或多或少变得流行时 —— 开发人员开始编写基准测试，以展示该语言编写的软件性能，CPU 利用率和内存使用量以及二进制文件的大小等等。 在这里，我想在不同的层面">
-<meta itemprop="datePublished" content="2021-04-01T12:30:00+08:00" />
+<meta itemprop="description" content="C 已经快 50 岁了。对于一瓶葡萄酒来说，这个年龄很棒，但对于快速发展的行业中的编程语言而言，它就不同了。在过去的十年中，出现了许多具有不同风格的新语言，所有这些语言都试图在某种程度上成为 C 语言的替代者。 当一种新语言或多或少变得流行时 —— 开发人员开始编写基准测试，以展示该语言编写的软件性能，CPU 利用率和内存使用量以及二进制文件的大小等等。 在这里，我想在不同的层面"><meta itemprop="datePublished" content="2021-04-01T12:30:00+08:00" />
 <meta itemprop="dateModified" content="2021-04-01T12:30:00+08:00" />
-<meta itemprop="wordCount" content="3479">
-
-
-
-<meta itemprop="keywords" content="Go,Rust," />
-<meta property="og:title" content="那些想替代 C 的语言怎么样？Go、Rust、C&#43;&#43; 和 Zig 生产力对比" />
+<meta itemprop="wordCount" content="3445">
+<meta itemprop="keywords" content="Go,Rust," /><meta property="og:title" content="那些想替代 C 的语言怎么样？Go、Rust、C&#43;&#43; 和 Zig 生产力对比" />
 <meta property="og:description" content="C 已经快 50 岁了。对于一瓶葡萄酒来说，这个年龄很棒，但对于快速发展的行业中的编程语言而言，它就不同了。在过去的十年中，出现了许多具有不同风格的新语言，所有这些语言都试图在某种程度上成为 C 语言的替代者。 当一种新语言或多或少变得流行时 —— 开发人员开始编写基准测试，以展示该语言编写的软件性能，CPU 利用率和内存使用量以及二进制文件的大小等等。 在这里，我想在不同的层面" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/translation/better-c-benchmark/" />
+<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/translation/better-c-benchmark/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-04-01T12:30:00+08:00" />
 <meta property="article:modified_time" content="2021-04-01T12:30:00+08:00" />
+
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="那些想替代 C 的语言怎么样？Go、Rust、C&#43;&#43; 和 Zig 生产力对比"/>
 <meta name="twitter:description" content="C 已经快 50 岁了。对于一瓶葡萄酒来说，这个年龄很棒，但对于快速发展的行业中的编程语言而言，它就不同了。在过去的十年中，出现了许多具有不同风格的新语言，所有这些语言都试图在某种程度上成为 C 语言的替代者。 当一种新语言或多或少变得流行时 —— 开发人员开始编写基准测试，以展示该语言编写的软件性能，CPU 利用率和内存使用量以及二进制文件的大小等等。 在这里，我想在不同的层面"/>
@@ -90,7 +86,8 @@
 <p>我发现这个问题是一个很好的练习，因为它展示了如何实现非常简单的通配符匹配算法（该算法可用于字符串和数字之类的纯数据，无需学习任何库或 API）。该算法应通过一些非常简单的测试。然后，它需要一些非常通用的底层 API，例如递归扫描目录或逐行读取文件。问题的所有部分都非常简单，小巧且范围广泛。这个小程序当然也可以用其他任何语言实现。</p>
 <p>我想测试该语言与常规的 “write-compile-run-debug” 循环的“友好”程度，为匹配算法编写测试的复杂度，找到与文件一起使用所需的 API、系统和基本 I/O 的难易度，指出错误时编译器的友好程度，语言的“直观性”等等。</p>
 <p>我的样本量相当谦逊 —— 仅我本人。但是为了避免偏见，建议你自己做（不要花太长时间）并比较结果。用不同的语言编写小程序后，我让同行的开发人员（约 20 人）阅读并给我反馈，哪些界限不清楚，哪些阅读和理解起来“更容易”。这些开发人员没有使用这种语言的经验，但是能熟练使用其他语言，例如 Java，C＃，JavaScript，Kotlin 和 Swift 等。</p>
-<p>我在这里测试的语言是 C++，Go，Rust 和 Zig。我得到的结果程序可以在 GitHub 找到： <a href="https://github.com/zserge/glob-grep">https://github.com/zserge/glob-grep</a>，请随时批评。</p>
+<p>我在这里测试的语言是 C++，Go，Rust 和 Zig。我得到的结果程序可以在 GitHub 找到： <a href="https://github.com/zserge/glob-grep" target="_blank" rel="noopener">https://github.com/zserge/glob-grep</a>
+，请随时批评。</p>
 <h2 id="zig">Zig<a href="#zig" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>从 Zig 开始，因为我想看看 Zig 是什么类型的语言。之前听到过这个语言有不错的反馈，但是一直没用过。没有经验可谈，我打开了 Vim 并开始编写代码。</p>
 <p>我花了大约 1 个小时来完成程序。通配符匹配算法（我以前知道，只需要在 Zig 中实现）花了我大约 20 分钟的时间。其余主要在寻找 API 来进行目录扫描和文件读取。</p>
@@ -163,7 +160,7 @@
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://polarisxu.studygolang.com/tags/go">Go</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/rust">Rust</a></span>
 				</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>3479 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>3445 字</p>
 				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2021-04-01 12:30 &#43;0800</p>
 			</footer>
 		</article>
@@ -210,7 +207,7 @@
 
 
 
-	<script src="https://polarisxu.studygolang.com/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw=" crossorigin="anonymous"></script>
+	<script src="https://polarisxu.studygolang.com/js/main.min.4eaa15feccc672488716f0338ac605e08c7553ce0ce175e13fa00a873636bf98.js" integrity="sha256-TqoV/szGckiHFvAzisYF4Ix1U84M4XXhP6AKhzY2v5g=" crossorigin="anonymous"></script>
 	<script>
 var _hmt = _hmt || [];
 (function() {

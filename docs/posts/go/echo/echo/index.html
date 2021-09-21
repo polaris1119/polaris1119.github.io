@@ -8,20 +8,16 @@
 	<meta name="theme-color" content="#fcfcfc">
 	<meta name="msapplication-TileColor" content="#fcfcfc">
 <meta itemprop="name" content="Echo 系列教程——Go 语言 Web 框架 Echo 系列教程">
-<meta itemprop="description" content="大家好，从今天起，我们一起来学习 Echo 框架。 这几年，随着 Go 语言的发展，各种 Web 框架也出现了。常言道：没有选择是一种无奈，有选择是一种痛苦。所以，大家总是问：Web 框架大佬推荐哪个？ 这一年，国内推荐 Gin 的人很多，也让 Gin 的 Star 数增加到了 32k&#43;（2019-10-17），网络上 Gin 相关的教程也很多。总体来说，Gin、Echo 等都比较轻量，易用性也差距不大，而 Gin 最大的一个优势是">
-<meta itemprop="datePublished" content="2019-10-21T13:42:51+08:00" />
+<meta itemprop="description" content="大家好，从今天起，我们一起来学习 Echo 框架。 这几年，随着 Go 语言的发展，各种 Web 框架也出现了。常言道：没有选择是一种无奈，有选择是一种痛苦。所以，大家总是问：Web 框架大佬推荐哪个？ 这一年，国内推荐 Gin 的人很多，也让 Gin 的 Star 数增加到了 32k&#43;（2019-10-17），网络上 Gin 相关的教程也很多。总体来说，Gin、Echo 等都比较轻量，易用性也差距不大，而 Gin 最大的一个优势是"><meta itemprop="datePublished" content="2019-10-21T13:42:51+08:00" />
 <meta itemprop="dateModified" content="2019-10-21T13:42:51+08:00" />
 <meta itemprop="wordCount" content="865">
-
-
-
-<meta itemprop="keywords" content="echo,web框架," />
-<meta property="og:title" content="Echo 系列教程——Go 语言 Web 框架 Echo 系列教程" />
+<meta itemprop="keywords" content="echo,web框架," /><meta property="og:title" content="Echo 系列教程——Go 语言 Web 框架 Echo 系列教程" />
 <meta property="og:description" content="大家好，从今天起，我们一起来学习 Echo 框架。 这几年，随着 Go 语言的发展，各种 Web 框架也出现了。常言道：没有选择是一种无奈，有选择是一种痛苦。所以，大家总是问：Web 框架大佬推荐哪个？ 这一年，国内推荐 Gin 的人很多，也让 Gin 的 Star 数增加到了 32k&#43;（2019-10-17），网络上 Gin 相关的教程也很多。总体来说，Gin、Echo 等都比较轻量，易用性也差距不大，而 Gin 最大的一个优势是" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/echo/echo/" />
+<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/echo/echo/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2019-10-21T13:42:51+08:00" />
 <meta property="article:modified_time" content="2019-10-21T13:42:51+08:00" />
+
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Echo 系列教程——Go 语言 Web 框架 Echo 系列教程"/>
 <meta name="twitter:description" content="大家好，从今天起，我们一起来学习 Echo 框架。 这几年，随着 Go 语言的发展，各种 Web 框架也出现了。常言道：没有选择是一种无奈，有选择是一种痛苦。所以，大家总是问：Web 框架大佬推荐哪个？ 这一年，国内推荐 Gin 的人很多，也让 Gin 的 Star 数增加到了 32k&#43;（2019-10-17），网络上 Gin 相关的教程也很多。总体来说，Gin、Echo 等都比较轻量，易用性也差距不大，而 Gin 最大的一个优势是"/>
@@ -293,8 +289,9 @@
 <li>(3): Heap Memory (B/op), lower is better</li>
 <li>(4): Average Allocations per Repetition (allocs/op), lower is better</li>
 </ul>
-<p>然而我下载 Gin 上提供的测试代码，发现 Echo 性能更好（或至少不比 Gin 差），下面是和上面对应的在我本地的测试（MacOS 4核 8G），测试代码：<a href="https://github.com/julienschmidt/go-http-routing-benchmark">https://github.com/julienschmidt/go-http-routing-benchmark</a></p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">BenchmarkEcho_GithubAll               	   35334	     <span class="m">34642</span> ns/op	       <span class="m">0</span> B/op	       <span class="m">0</span> allocs/op
+<p>然而我下载 Gin 上提供的测试代码，发现 Echo 性能更好（或至少不比 Gin 差），下面是和上面对应的在我本地的测试（MacOS 4核 8G），测试代码：<a href="https://github.com/julienschmidt/go-http-routing-benchmark" target="_blank" rel="noopener">https://github.com/julienschmidt/go-http-routing-benchmark</a>
+</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">BenchmarkEcho_GithubAll               	   35334	     <span class="m">34642</span> ns/op	       <span class="m">0</span> B/op	       <span class="m">0</span> allocs/op
 BenchmarkGin_GithubAll                	   34724	     <span class="m">34696</span> ns/op	       <span class="m">0</span> B/op	       <span class="m">0</span> allocs/op
 </code></pre></div><p>而且 Echo 上提供的测试结果也表明了这一点（我本地试验了，确实如此）：</p>
 <p><p class="md__image">
@@ -399,7 +396,7 @@ BenchmarkGin_GithubAll                	   34724	     <span class="m">34696</span
 
 
 
-	<script src="https://polarisxu.studygolang.com/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw=" crossorigin="anonymous"></script>
+	<script src="https://polarisxu.studygolang.com/js/main.min.4eaa15feccc672488716f0338ac605e08c7553ce0ce175e13fa00a873636bf98.js" integrity="sha256-TqoV/szGckiHFvAzisYF4Ix1U84M4XXhP6AKhzY2v5g=" crossorigin="anonymous"></script>
 	<script>
 var _hmt = _hmt || [];
 (function() {

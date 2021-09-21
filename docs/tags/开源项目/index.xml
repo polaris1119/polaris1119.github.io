@@ -23,7 +23,7 @@
       <pubDate>Mon, 19 Jul 2021 14:10:00 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/posts/go/project/recommender-gorse/</guid>
-      <description>大家好，我是 polarisxu。 看到一个项目：https://gorse.io/，这是一个用 Go 编写的开源推荐系统。Gorse 的目标是成为一个通用的开源推荐系统，可以迅速地引入到各种各样的在线服务中。通过将项目、用户和交互数据导入 Gorse，系统将自动训练模型，为每个用户生成推荐。 这个项目代码托管在 GitHub 上：https://github.com/zhenghaoz</description>
+      <description>大家好，我是 polarisxu。 看到一个项目：https://gorse.io/ ，这是一个用 Go 编写的开源推荐系统。Gorse 的目标是成为一个通用的开源推荐系统，可以迅速地引入到各种各样的在线服务中。通过将项目、用户和交互数据导入 Gorse，系统将自动训练模型，为每个用户生成推荐。 这个项目代码托管在 GitHub 上：https://github.com/zhenghaoz</description>
     </item>
     
   </channel>

@@ -1,1709 +1,1033 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  
   <url>
+    <loc>https://polarisxu.studygolang.com/tags/fiber/</loc>
+    <lastmod>2021-09-20T22:30:00+08:00</lastmod>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/go/</loc>
-    <lastmod>2021-09-12T17:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
+    <lastmod>2021-09-20T22:30:00+08:00</lastmod>
+  </url><url>
+    <loc>https://polarisxu.studygolang.com/posts/go/fiber/go-fiber-basic-tutorial01/</loc>
+    <lastmod>2021-09-20T22:30:00+08:00</lastmod>
+  </url><url>
+    <loc>https://polarisxu.studygolang.com/</loc>
+    <lastmod>2021-09-20T22:30:00+08:00</lastmod>
+  </url><url>
+    <loc>https://polarisxu.studygolang.com/tags/</loc>
+    <lastmod>2021-09-20T22:30:00+08:00</lastmod>
+  </url><url>
+    <loc>https://polarisxu.studygolang.com/posts/</loc>
+    <lastmod>2021-09-20T22:30:00+08:00</lastmod>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/action/go-illegal-private-import/</loc>
     <lastmod>2021-09-12T17:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/module/</loc>
     <lastmod>2021-09-12T17:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://polarisxu.studygolang.com/</loc>
-    <lastmod>2021-09-12T17:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://polarisxu.studygolang.com/tags/</loc>
-    <lastmod>2021-09-12T17:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://polarisxu.studygolang.com/posts/</loc>
-    <lastmod>2021-09-12T17:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/dynamic/1.17-golang-go-get-updated/</loc>
     <lastmod>2021-09-04T20:10:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/%E6%96%B0%E7%89%B9%E6%80%A7/</loc>
     <lastmod>2021-09-04T20:10:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/dynamic/go-1-17-new-features-added-to-testing/</loc>
     <lastmod>2021-09-04T19:10:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/testing/</loc>
     <lastmod>2021-09-04T19:10:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/select/</loc>
     <lastmod>2021-08-30T22:10:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/action/chained-channel-operations-in-a-single-select-case/</loc>
     <lastmod>2021-08-30T22:10:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/gin/</loc>
     <lastmod>2021-08-25T22:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/book/building-distributed-applications-in-gin/</loc>
     <lastmod>2021-08-25T22:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/dynamic/golang.org-change/</loc>
     <lastmod>2021-08-24T22:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/%E5%AE%98%E7%BD%91/</loc>
     <lastmod>2021-08-24T22:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/web-service-gin/</loc>
     <lastmod>2021-08-23T22:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/dynamic/go-generic/</loc>
     <lastmod>2021-08-22T22:10:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/%E6%B3%9B%E5%9E%8B/</loc>
     <lastmod>2021-08-22T22:10:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/dynamic/go1.17-module/</loc>
     <lastmod>2021-08-21T22:10:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/pkg/cast/</loc>
     <lastmod>2021-08-10T22:10:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/%E5%B7%A5%E5%85%B7/</loc>
     <lastmod>2021-08-10T22:10:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/project/gosec-tool-intro/</loc>
     <lastmod>2021-08-10T22:10:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93/</loc>
     <lastmod>2021-08-10T22:10:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/why-time-use-2006/</loc>
     <lastmod>2021-08-03T22:10:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/time/</loc>
     <lastmod>2021-08-03T22:10:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/github/</loc>
     <lastmod>2021-07-29T22:10:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/dynamic/github-supply-chain-security-features-go-community/</loc>
     <lastmod>2021-07-29T22:10:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/project/httpstat/</loc>
     <lastmod>2021-07-26T22:10:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/</loc>
     <lastmod>2021-07-26T22:10:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/action/weekly-question-104/</loc>
     <lastmod>2021-07-25T22:22:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/</loc>
     <lastmod>2021-07-25T22:22:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/project/recommender-gorse/</loc>
     <lastmod>2021-07-19T14:10:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/dynamic/go1.17-build-contraints/</loc>
     <lastmod>2021-07-15T22:10:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/project/google-deps/</loc>
     <lastmod>2021-07-11T22:10:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/%E5%B9%B6%E5%8F%91/</loc>
     <lastmod>2021-07-07T22:10:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/action/studygolang-downloader-bug/</loc>
     <lastmod>2021-07-07T22:10:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/rust/</loc>
     <lastmod>2021-07-03T22:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/rust/rust-tutorial-09/</loc>
     <lastmod>2021-07-03T22:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/%E5%87%BD%E6%95%B0/</loc>
     <lastmod>2021-07-03T22:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/action/build-a-concurrent-file-downloader/</loc>
     <lastmod>2021-07-03T22:10:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/%E5%9B%BE%E4%B9%A6/</loc>
     <lastmod>2021-06-29T22:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/book/100-go-mistakes/</loc>
     <lastmod>2021-06-29T22:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/dynamic/collectives-go/</loc>
     <lastmod>2021-06-24T23:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/%E7%A4%BE%E5%8C%BA/</loc>
     <lastmod>2021-06-24T23:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/%E5%BE%AE%E8%BD%AF/</loc>
     <lastmod>2021-06-24T12:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/dynamic/microsoft-go/</loc>
     <lastmod>2021-06-24T12:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/pkg/go1.17-std/</loc>
     <lastmod>2021-06-22T12:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/%E6%A0%87%E5%87%86%E5%BA%93/</loc>
     <lastmod>2021-06-22T12:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/dynamic/go1.17-slice-to-array/</loc>
     <lastmod>2021-06-17T07:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/golangorg-website/</loc>
     <lastmod>2021-06-14T20:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/rsa/</loc>
     <lastmod>2021-06-13T20:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/talk/about-writing/</loc>
     <lastmod>2021-06-13T20:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/book/practical-go-lessons-decline/</loc>
     <lastmod>2021-06-12T21:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/book/practical-go-lessons-translate/</loc>
     <lastmod>2021-06-10T23:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/match/</loc>
     <lastmod>2021-06-08T22:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/rust/rust-tutorial-08/</loc>
     <lastmod>2021-06-08T22:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/book/practical-go-lessons/</loc>
     <lastmod>2021-06-07T21:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/talk/explain-you-programming-in-go/</loc>
     <lastmod>2021-06-04T18:12:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/signal-notifycontext/</loc>
     <lastmod>2021-06-01T12:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/%E4%BF%A1%E5%8F%B7/</loc>
     <lastmod>2021-06-01T12:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/1.17/</loc>
     <lastmod>2021-05-30T22:20:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/dynamic/go1.17-testing-shuffle-flag/</loc>
     <lastmod>2021-05-30T22:20:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/rust/rust-tutorial-07/</loc>
     <lastmod>2021-05-25T22:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/version/</loc>
     <lastmod>2021-05-24T20:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/managing-multiple-go-versions/</loc>
     <lastmod>2021-05-24T20:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/rust/rust-new-book-20210520/</loc>
     <lastmod>2021-05-20T22:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/action/weekly-question-94/</loc>
     <lastmod>2021-05-20T12:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/%E5%85%AC%E5%8F%B8/</loc>
     <lastmod>2021-05-19T12:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/action/companies-using-golang/</loc>
     <lastmod>2021-05-19T12:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/translation/half-a-million-lines-of-go/</loc>
     <lastmod>2021-05-17T20:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/rust/rust-tutorial-06/</loc>
     <lastmod>2021-05-13T22:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/%E5%B8%B8%E9%87%8F/</loc>
     <lastmod>2021-05-13T22:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/profiler/</loc>
     <lastmod>2021-05-13T12:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/uber/</loc>
     <lastmod>2021-05-13T12:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/dynamic/uber-pprof-pp/</loc>
     <lastmod>2021-05-13T12:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/pkg/rsc-tmplfunc/</loc>
     <lastmod>2021-05-12T12:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/rsc/</loc>
     <lastmod>2021-05-12T12:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/tmplfunc/</loc>
     <lastmod>2021-05-12T12:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/dynamic/support-int128/</loc>
     <lastmod>2021-05-09T23:40:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/%E5%AF%B9%E8%AF%9D/</loc>
     <lastmod>2021-05-09T23:40:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/%E6%97%A0%E9%97%BB/</loc>
     <lastmod>2021-05-09T23:40:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/rust/rust-tutorial-05/</loc>
     <lastmod>2021-05-06T22:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/%E7%B1%BB%E5%9E%8B/</loc>
     <lastmod>2021-05-06T22:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/law/hyrumslaw-go/</loc>
     <lastmod>2021-05-06T13:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/%E6%B5%B7%E5%8B%92%E5%A7%86%E5%AE%9A%E5%BE%8B/</loc>
     <lastmod>2021-05-06T13:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/fyne/</loc>
     <lastmod>2021-04-28T18:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/book/go-gui-book/</loc>
     <lastmod>2021-04-28T18:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/gui/</loc>
     <lastmod>2021-04-28T18:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/rust/rust-tutorial-04/</loc>
     <lastmod>2021-04-25T12:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/%E4%B9%A6%E5%8D%95/</loc>
     <lastmod>2021-04-23T12:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/book/20210423-go-book-list/</loc>
     <lastmod>2021-04-23T12:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/rust/rust-tutorial-03/</loc>
     <lastmod>2021-04-19T12:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/%E5%8F%98%E9%87%8F/</loc>
     <lastmod>2021-04-19T12:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/ddd/</loc>
     <lastmod>2021-04-19T08:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/book/go-with-the-domain/</loc>
     <lastmod>2021-04-19T08:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/linkname/</loc>
     <lastmod>2021-04-15T20:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/%E6%8C%87%E4%BB%A4/</loc>
     <lastmod>2021-04-15T20:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/go-linkname/</loc>
     <lastmod>2021-04-15T20:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/wechat/</loc>
     <lastmod>2021-04-14T18:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/%E5%85%AC%E4%BC%97%E5%8F%B7/</loc>
     <lastmod>2021-04-14T18:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/%E5%BE%AE%E4%BF%A1/</loc>
     <lastmod>2021-04-14T18:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/wechat/2021-04-wechat-changes/</loc>
     <lastmod>2021-04-14T18:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/action/go-closure/</loc>
     <lastmod>2021-04-13T18:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/%E9%97%AD%E5%8C%85/</loc>
     <lastmod>2021-04-13T18:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/rust/rust-tutorial-02/</loc>
     <lastmod>2021-04-11T22:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/vscode/</loc>
     <lastmod>2021-04-11T22:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/rust/rust-tutorial-01/</loc>
     <lastmod>2021-04-08T10:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/%E5%88%AB%E5%90%8D/</loc>
     <lastmod>2021-04-07T17:20:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/action/type-and-alias/</loc>
     <lastmod>2021-04-07T17:20:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/talk/holiday-20210405/</loc>
     <lastmod>2021-04-05T11:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/%E5%81%87%E6%9C%9F/</loc>
     <lastmod>2021-04-05T11:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/%E5%AD%A6%E4%B9%A0/</loc>
     <lastmod>2021-04-05T11:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/translation/better-c-benchmark/</loc>
     <lastmod>2021-04-01T12:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/action/operator/</loc>
     <lastmod>2021-03-31T20:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/action/weekly-question-88/</loc>
     <lastmod>2021-03-30T12:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/goland/</loc>
     <lastmod>2021-03-27T15:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/devtool/goland/goland-remote-projector/</loc>
     <lastmod>2021-03-27T15:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/projector/</loc>
     <lastmod>2021-03-27T15:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/grpc/</loc>
     <lastmod>2021-03-25T11:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/%E5%8F%8C%E8%B5%A2/</loc>
     <lastmod>2021-03-25T11:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/talk/double-win-after-grpc/</loc>
     <lastmod>2021-03-25T11:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/%E4%BA%91%E7%9B%98/</loc>
     <lastmod>2021-03-22T18:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/%E7%AB%9E%E4%BA%89/</loc>
     <lastmod>2021-03-22T18:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/talk/competition-aliyundriver/</loc>
     <lastmod>2021-03-22T18:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/go-version-detail/</loc>
     <lastmod>2021-03-19T17:50:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/%E7%89%88%E6%9C%AC/</loc>
     <lastmod>2021-03-19T17:50:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/choose-map-or-switch/</loc>
     <lastmod>2021-03-17T23:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/%E5%9F%BA%E5%87%86%E6%B5%8B%E8%AF%95/</loc>
     <lastmod>2021-03-17T23:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/translation/golang-slower/</loc>
     <lastmod>2021-03-17T20:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/%E6%80%A7%E8%83%BD/</loc>
     <lastmod>2021-03-17T20:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/grpc/grpc-cncf-with-go-and-java/</loc>
     <lastmod>2021-03-16T10:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/wechat/mac-wechat-3.0/</loc>
     <lastmod>2021-03-12T00:10:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/%E8%A7%86%E9%A2%91%E5%8F%B7/</loc>
     <lastmod>2021-03-12T00:10:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/bug/</loc>
     <lastmod>2021-03-11T18:12:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/dynamic/go1.16.1-release/</loc>
     <lastmod>2021-03-11T18:12:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/language-rankings-1-21/</loc>
     <lastmod>2021-03-10T14:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/%E6%8E%92%E8%A1%8C%E6%A6%9C/</loc>
     <lastmod>2021-03-10T14:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/dialogue/vs-wuwen/</loc>
     <lastmod>2021-03-08T15:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/talk/sh-is-shanghai/</loc>
     <lastmod>2021-03-03T11:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/%E6%9D%82%E8%B0%88/</loc>
     <lastmod>2021-03-03T11:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/echo/</loc>
     <lastmod>2021-03-02T22:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/</loc>
     <lastmod>2021-03-02T22:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/translation/top-10-framework-golang-library-to-build-microservice/</loc>
     <lastmod>2021-03-02T22:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/goplus/</loc>
     <lastmod>2021-03-01T18:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/tengo/</loc>
     <lastmod>2021-03-01T18:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/programming-language-implemented-by-go/</loc>
     <lastmod>2021-03-01T18:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/%E6%B1%82%E8%81%8C/</loc>
     <lastmod>2021-02-27T20:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/%E8%81%8C%E5%9C%BA/</loc>
     <lastmod>2021-02-27T20:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/talk/2021-change-job/</loc>
     <lastmod>2021-02-27T20:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/go-need-like-rustup-tool/</loc>
     <lastmod>2021-02-25T15:10:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/rustup/</loc>
     <lastmod>2021-02-25T15:10:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/talk/restraint-is-hard/</loc>
     <lastmod>2021-02-24T00:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/chi/</loc>
     <lastmod>2021-02-23T18:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/action/go-chi-use-retract/</loc>
     <lastmod>2021-02-23T18:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/rust/why-rust-and-study-book/</loc>
     <lastmod>2021-02-20T17:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/dynamic/go1.17-will-remove-gopath/</loc>
     <lastmod>2021-02-19T09:20:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/rust/rust-first-impression/</loc>
     <lastmod>2021-02-14T23:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/translation/use-mac-apis-and-build-mac-apps-with-go/</loc>
     <lastmod>2021-02-10T23:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/mac/</loc>
     <lastmod>2021-02-10T23:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/talk/2021-02-10-talking/</loc>
     <lastmod>2021-02-10T21:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/book/2021-go-book/</loc>
     <lastmod>2021-02-07T11:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/%E8%BF%9B%E9%98%B6/</loc>
     <lastmod>2021-02-07T11:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/translation/7-reasons-you-should-try-use-go/</loc>
     <lastmod>2021-02-05T22:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/java/</loc>
     <lastmod>2021-02-05T22:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/clubhouse/</loc>
     <lastmod>2021-02-05T15:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/wechat/myself-wechat-red-cover/</loc>
     <lastmod>2021-02-05T15:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/how-realize-go-std-version-show/</loc>
     <lastmod>2021-02-04T15:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/devtool/go-top-ide/</loc>
     <lastmod>2021-02-03T20:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/ide/</loc>
     <lastmod>2021-02-03T20:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/markdown/</loc>
     <lastmod>2021-02-02T11:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/wechat/article-pretty/</loc>
     <lastmod>2021-02-02T11:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/bit/</loc>
     <lastmod>2021-01-28T15:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/mysql/</loc>
     <lastmod>2021-01-28T15:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/action/mysql-bit-go/</loc>
     <lastmod>2021-01-28T15:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/%E5%BC%80%E5%8F%91%E8%80%85/</loc>
     <lastmod>2021-01-27T10:20:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/%E7%99%BE%E5%BA%A6/</loc>
     <lastmod>2021-01-27T10:20:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/talk/baidu-kaifa-search/</loc>
     <lastmod>2021-01-27T10:20:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/error/</loc>
     <lastmod>2021-01-25T11:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/wechat/wechat-8.0/</loc>
     <lastmod>2021-01-25T11:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/unicode/</loc>
     <lastmod>2021-01-21T22:40:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/basic/char-set-encoding/</loc>
     <lastmod>2021-01-21T22:40:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/utf8/</loc>
     <lastmod>2021-01-21T22:40:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/wechat/wechat-add-follow/</loc>
     <lastmod>2021-01-20T22:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/%E7%B2%89%E4%B8%9D/</loc>
     <lastmod>2021-01-20T22:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/channel/</loc>
     <lastmod>2021-01-18T11:25:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/goroutine/</loc>
     <lastmod>2021-01-18T11:25:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/%E5%91%A8%E5%88%8A/</loc>
     <lastmod>2021-01-18T11:25:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/action/weekly-question-78/</loc>
     <lastmod>2021-01-18T11:25:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/low-code/</loc>
     <lastmod>2021-01-16T20:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/%E4%BD%8E%E4%BB%A3%E7%A0%81/</loc>
     <lastmod>2021-01-16T20:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/talk/low-code/</loc>
     <lastmod>2021-01-16T20:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/action/stat-words/</loc>
     <lastmod>2021-01-14T17:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/wechat/why-wechat/</loc>
     <lastmod>2021-01-11T20:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/embed/</loc>
     <lastmod>2021-01-10T22:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/http/</loc>
     <lastmod>2021-01-10T22:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/action/hashfs-http-cache/</loc>
     <lastmod>2021-01-10T22:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/996/</loc>
     <lastmod>2021-01-05T18:25:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/talk/2020-996-rank/</loc>
     <lastmod>2021-01-05T18:25:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/%E5%88%9B%E4%B8%9A/</loc>
     <lastmod>2021-01-05T18:25:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/wechat/2021-01-wechat-changes/</loc>
     <lastmod>2021-01-04T18:25:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/2020/</loc>
     <lastmod>2020-12-31T16:40:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/talk/2020-summary/</loc>
     <lastmod>2020-12-31T16:40:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/%E6%80%BB%E7%BB%93/</loc>
     <lastmod>2020-12-31T16:40:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/1.16/</loc>
     <lastmod>2020-12-27T22:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/dynamic/go-get-install/</loc>
     <lastmod>2020-12-27T22:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/%E5%AE%89%E8%A3%85/</loc>
     <lastmod>2020-12-27T22:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/viper/</loc>
     <lastmod>2020-12-26T10:12:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/</loc>
     <lastmod>2020-12-26T10:12:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/translation/environment-variables-in-golang/</loc>
     <lastmod>2020-12-26T10:12:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/%E5%86%85%E5%B5%8C%E7%B1%BB%E5%9E%8B/</loc>
     <lastmod>2020-12-21T16:12:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/%E5%91%A8%E5%88%8A%E9%A2%98%E8%A7%A3/</loc>
     <lastmod>2020-12-21T16:12:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/action/weekly-question-embed-time/</loc>
     <lastmod>2020-12-21T16:12:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/apple/</loc>
     <lastmod>2020-12-19T15:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/m1/</loc>
     <lastmod>2020-12-19T15:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/apple/is-apple-m1-ready/</loc>
     <lastmod>2020-12-19T15:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/pkgsite/</loc>
     <lastmod>2020-12-17T17:15:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/dynamic/view-go-history-std-version/</loc>
     <lastmod>2020-12-17T17:15:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/action/apple-m1-install-go/</loc>
     <lastmod>2020-12-16T20:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/action/weekly-question-analysis-embed-interface/</loc>
     <lastmod>2020-12-14T17:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/php/</loc>
     <lastmod>2020-12-08T11:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/php8/</loc>
     <lastmod>2020-12-08T11:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/php/php8-intro/</loc>
     <lastmod>2020-12-08T11:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/golang/</loc>
     <lastmod>2020-12-07T18:12:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/%E5%88%86%E4%BA%AB%E5%8F%91%E7%8E%B0/</loc>
     <lastmod>2020-12-07T18:12:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/share/programming-idioms/</loc>
     <lastmod>2020-12-07T18:12:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/categories/</loc>
     <lastmod>2020-12-04T22:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/devtool/goland/goland-2020-3-release/</loc>
     <lastmod>2020-12-04T22:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/</loc>
     <lastmod>2020-12-04T22:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/go1.16/</loc>
     <lastmod>2020-12-02T19:20:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/dynamic/go1.16-changes-2020/</loc>
     <lastmod>2020-12-02T19:20:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/%E5%8A%A8%E6%80%81/</loc>
     <lastmod>2020-12-02T19:20:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/hugo/</loc>
     <lastmod>2020-12-01T11:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/talk/myblog-with-hugo-github-pages/</loc>
     <lastmod>2020-12-01T11:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/talk/go-rsc-dynamic/</loc>
     <lastmod>2020-11-21T21:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/tool/</loc>
     <lastmod>2020-11-21T21:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/talk/go-celebrity-rsc/</loc>
     <lastmod>2020-11-19T19:20:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/rob/</loc>
     <lastmod>2020-11-19T19:20:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/tidb/</loc>
     <lastmod>2020-11-18T18:40:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/talk/go-and-business/</loc>
     <lastmod>2020-11-18T18:40:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/%E7%BB%9F%E8%AE%A1/</loc>
     <lastmod>2020-11-17T15:12:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/pkg/statsview/</loc>
     <lastmod>2020-11-17T15:12:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/action/bytedance-interview-201112/</loc>
     <lastmod>2020-11-12T18:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/talk/view-github-discussions/</loc>
     <lastmod>2020-11-12T10:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/nitro/</loc>
     <lastmod>2020-11-12T10:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/dynamic/go-opensource-11-years/</loc>
     <lastmod>2020-11-10T09:30:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/translation/rust-vs-go/</loc>
     <lastmod>2020-11-10T00:07:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/micro/</loc>
     <lastmod>2020-11-09T15:50:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/micro/micro-3.0.0-m3o/</loc>
     <lastmod>2020-11-09T15:50:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/cockroachdb/</loc>
     <lastmod>2020-11-04T21:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/translation/cockroachdb-errors-everyday/</loc>
     <lastmod>2020-11-04T21:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/cheatsheet/</loc>
     <lastmod>2020-11-03T18:12:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/devtool/cheat-sh/</loc>
     <lastmod>2020-11-03T18:12:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/dynamic/go-embed-try/</loc>
     <lastmod>2020-11-01T18:12:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/programming/</loc>
     <lastmod>2020-10-30T15:12:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/survey/</loc>
     <lastmod>2020-10-30T15:12:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/dynamic/hackerearth-developer-survey/</loc>
     <lastmod>2020-10-30T15:12:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/ai/</loc>
     <lastmod>2020-10-29T21:40:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/translation/golang-ai-programming-language/</loc>
     <lastmod>2020-10-29T21:40:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/datascience/</loc>
     <lastmod>2020-10-29T21:40:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/python/</loc>
     <lastmod>2020-10-29T21:40:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/categories/go%E9%9D%A2%E8%AF%95%E5%92%8C%E5%AE%9E%E6%88%98/</loc>
     <lastmod>2020-10-26T18:12:51+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/action/talk-geek-time-live/</loc>
     <lastmod>2020-10-26T18:12:51+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/%E9%9D%A2%E8%AF%95/</loc>
     <lastmod>2020-10-26T18:12:51+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/translation/go-error-printing-catastrophe/</loc>
     <lastmod>2020-10-26T11:15:51+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/go-categories/</loc>
     <lastmod>2020-10-26T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/devtool-categories/</loc>
     <lastmod>2020-10-26T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/about/</loc>
     <lastmod>2020-10-26T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/translation/go-formatting-apis/</loc>
     <lastmod>2020-10-24T11:15:51+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/translation/cockroachdb-errors-std-api/</loc>
     <lastmod>2020-10-23T11:15:51+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/json/</loc>
     <lastmod>2020-10-18T14:18:50+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/action/interview-slice-json/</loc>
     <lastmod>2020-10-18T14:18:50+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/%E5%88%87%E7%89%87/</loc>
     <lastmod>2020-10-18T14:18:50+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/pkg/statsviz/</loc>
     <lastmod>2020-10-15T18:12:51+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/project/usingg-gpgsync/</loc>
     <lastmod>2020-10-09T18:12:51+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/playground/</loc>
     <lastmod>2020-10-09T18:12:51+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/project/go-version-manager/</loc>
     <lastmod>2020-10-09T18:12:51+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/float/</loc>
     <lastmod>2020-10-03T18:12:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/basic/complement/</loc>
     <lastmod>2020-10-03T18:12:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/translation/when-to-use-rust-and-when-to-use-golang/</loc>
     <lastmod>2020-09-30T11:15:51+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/basic/diagram-float-point/</loc>
     <lastmod>2020-09-29T18:12:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/action/interview-len-shift/</loc>
     <lastmod>2020-09-27T14:52:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/debug/</loc>
     <lastmod>2020-09-18T18:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/translation/how-to-find-goroutines-during-debugging/</loc>
     <lastmod>2020-09-18T18:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/mobile/</loc>
     <lastmod>2020-09-14T11:15:51+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/translation/running-go-code-on-ios-and-android/</loc>
     <lastmod>2020-09-14T11:15:51+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/%E4%BC%81%E4%B8%9A%E7%B3%BB%E7%BB%9F/</loc>
     <lastmod>2020-09-12T11:15:51+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/translation/golang-is-not-ready-for-enterprise-systems-yet-and-heres-why/</loc>
     <lastmod>2020-09-12T11:15:51+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/google/</loc>
     <lastmod>2020-09-08T11:15:51+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/translation/google-go-coredata/</loc>
     <lastmod>2020-09-08T11:15:51+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/dynamic/about-go-generic-progress/</loc>
     <lastmod>2020-08-23T18:12:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/devtool/compare-three-playground/</loc>
     <lastmod>2020-08-19T18:12:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/goui/</loc>
     <lastmod>2020-08-17T11:15:51+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/translation/goui-a-very-simple-ui-framework/</loc>
     <lastmod>2020-08-17T11:15:51+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/translation/easter-eggs-in-go-source-code-2l02/</loc>
     <lastmod>2020-07-17T11:15:51+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/%E6%BA%90%E7%A0%81/</loc>
     <lastmod>2020-07-17T11:15:51+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/devtool/goland/2020.2.beta/</loc>
     <lastmod>2020-07-16T14:17:51+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/</loc>
     <lastmod>2020-07-16T14:17:51+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/translation/benchmarking-grpc-in-rust-go/</loc>
     <lastmod>2020-07-16T11:15:51+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/talk/sell-my-book/</loc>
     <lastmod>2020-07-09T18:12:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/talk/my-first-action-book/</loc>
     <lastmod>2020-07-02T20:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/awesome/</loc>
     <lastmod>2020-06-22T11:15:51+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/translation/go-is-awesome/</loc>
     <lastmod>2020-06-22T11:15:51+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/translation/go-is-terrible/</loc>
     <lastmod>2020-06-22T11:15:51+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/echo/action00-intro/</loc>
     <lastmod>2020-05-16T15:08:51+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/%E5%8D%9A%E5%AE%A2%E7%B3%BB%E7%BB%9F/</loc>
     <lastmod>2020-05-16T15:08:51+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/kubernetes/</loc>
     <lastmod>2020-05-11T14:17:51+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/devtool/goland/using-kubernetes-from-goland/</loc>
     <lastmod>2020-05-11T14:17:51+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/compose/</loc>
     <lastmod>2020-05-08T14:17:51+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/docker/</loc>
     <lastmod>2020-05-08T14:17:51+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/devtool/goland/running-go-applications-using-docker-compose-in-goland/</loc>
     <lastmod>2020-05-08T14:17:51+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/devtool/goland/debugging-a-go-application-inside-a-docker-container/</loc>
     <lastmod>2020-05-04T14:17:51+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/%E5%8F%91%E5%B8%83/</loc>
     <lastmod>2020-04-10T14:17:51+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/devtool/goland/goland-2020-1-release/</loc>
     <lastmod>2020-04-10T14:17:51+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/echo/custom04-renderer/</loc>
     <lastmod>2020-03-16T10:17:51+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/echo/custom05-error-handler/</loc>
     <lastmod>2020-03-16T10:17:51+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/echo/custom06-ext-server/</loc>
     <lastmod>2020-03-16T10:17:51+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/categories/echo%E7%B3%BB%E5%88%97/</loc>
     <lastmod>2020-03-16T10:17:51+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/server/</loc>
     <lastmod>2020-03-16T10:17:51+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/web%E6%A1%86%E6%9E%B6/</loc>
     <lastmod>2020-03-16T10:17:51+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/%E6%89%A9%E5%B1%95/</loc>
     <lastmod>2020-03-16T10:17:51+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/%E6%A8%A1%E6%9D%BF%E5%BC%95%E6%93%8E/</loc>
     <lastmod>2020-03-16T10:17:51+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/echo/custom03-logger/</loc>
     <lastmod>2020-03-06T11:50:51+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/%E6%97%A5%E5%BF%97%E5%BA%93/</loc>
     <lastmod>2020-03-06T11:50:51+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/echo/custom02-validator/</loc>
     <lastmod>2020-02-28T18:53:51+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/validator/</loc>
     <lastmod>2020-02-28T18:53:51+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/echo/custom01-binder/</loc>
     <lastmod>2020-02-21T19:26:51+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A/</loc>
     <lastmod>2020-02-21T19:26:51+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/echo/custom00-intro/</loc>
     <lastmod>2020-02-21T19:24:51+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/%E5%AE%9A%E5%88%B6/</loc>
     <lastmod>2020-02-21T19:24:51+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/devtool/goland/welcome-to-the-goland-2020-1-eap/</loc>
     <lastmod>2019-12-24T14:17:51+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/echo/basic03-example/</loc>
     <lastmod>2019-12-03T20:31:51+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/%E4%BE%8B%E5%AD%90/</loc>
     <lastmod>2019-12-03T20:31:51+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/pkg/</loc>
     <lastmod>2019-11-15T08:52:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/dynamic/pkg-go-dev-plan/</loc>
     <lastmod>2019-11-15T08:52:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/echo/basic02-feature/</loc>
     <lastmod>2019-10-28T11:15:51+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/%E4%BA%AE%E7%82%B9/</loc>
     <lastmod>2019-10-28T11:15:51+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/echo/basic01-env/</loc>
     <lastmod>2019-10-21T14:17:51+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/</loc>
     <lastmod>2019-10-21T14:17:51+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/echo/echo/</loc>
     <lastmod>2019-10-21T13:42:51+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/systemprogramming/go/01/</loc>
   </url>
-  
 </urlset>

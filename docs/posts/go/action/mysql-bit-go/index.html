@@ -8,23 +8,19 @@
 	<meta name="theme-color" content="#fcfcfc">
 	<meta name="msapplication-TileColor" content="#fcfcfc">
 <meta itemprop="name" content="从网友对 MySQL 手册的一个疑问聊起">
-<meta itemprop="description" content="在 Go 语言中文网微信群有人提出了这样的疑问，如下图（文档地址：https://dev.mysql.com/doc/internals/en/date-and-time-data-type-representation.html） 不理解为什么 DATE 是通过 YYYY×16×32 &#43; MM×32 &#43; DD 表示，主要不理解为什么 16、32。我做了讲解，但似乎他还是不太理解。干脆我写篇">
-<meta itemprop="datePublished" content="2021-01-28T15:00:00+08:00" />
+<meta itemprop="description" content="在 Go 语言中文网微信群有人提出了这样的疑问，如下图（文档地址：https://dev.mysql.com/doc/internals/en/date-and-time-data-type-representation.html ） 不理解为什么 DATE 是通过 YYYY×16×32 &#43; MM×32 &#43; DD 表示，主要不理解为什么 16、32。我做了讲解，但似乎他还是不太理解。干脆我写篇"><meta itemprop="datePublished" content="2021-01-28T15:00:00+08:00" />
 <meta itemprop="dateModified" content="2021-01-28T15:00:00+08:00" />
 <meta itemprop="wordCount" content="1234">
-
-
-
-<meta itemprop="keywords" content="MySQL,Go,bit," />
-<meta property="og:title" content="从网友对 MySQL 手册的一个疑问聊起" />
-<meta property="og:description" content="在 Go 语言中文网微信群有人提出了这样的疑问，如下图（文档地址：https://dev.mysql.com/doc/internals/en/date-and-time-data-type-representation.html） 不理解为什么 DATE 是通过 YYYY×16×32 &#43; MM×32 &#43; DD 表示，主要不理解为什么 16、32。我做了讲解，但似乎他还是不太理解。干脆我写篇" />
+<meta itemprop="keywords" content="MySQL,Go,bit," /><meta property="og:title" content="从网友对 MySQL 手册的一个疑问聊起" />
+<meta property="og:description" content="在 Go 语言中文网微信群有人提出了这样的疑问，如下图（文档地址：https://dev.mysql.com/doc/internals/en/date-and-time-data-type-representation.html ） 不理解为什么 DATE 是通过 YYYY×16×32 &#43; MM×32 &#43; DD 表示，主要不理解为什么 16、32。我做了讲解，但似乎他还是不太理解。干脆我写篇" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/action/mysql-bit-go/" />
+<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/action/mysql-bit-go/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-01-28T15:00:00+08:00" />
 <meta property="article:modified_time" content="2021-01-28T15:00:00+08:00" />
+
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="从网友对 MySQL 手册的一个疑问聊起"/>
-<meta name="twitter:description" content="在 Go 语言中文网微信群有人提出了这样的疑问，如下图（文档地址：https://dev.mysql.com/doc/internals/en/date-and-time-data-type-representation.html） 不理解为什么 DATE 是通过 YYYY×16×32 &#43; MM×32 &#43; DD 表示，主要不理解为什么 16、32。我做了讲解，但似乎他还是不太理解。干脆我写篇"/>
+<meta name="twitter:description" content="在 Go 语言中文网微信群有人提出了这样的疑问，如下图（文档地址：https://dev.mysql.com/doc/internals/en/date-and-time-data-type-representation.html ） 不理解为什么 DATE 是通过 YYYY×16×32 &#43; MM×32 &#43; DD 表示，主要不理解为什么 16、32。我做了讲解，但似乎他还是不太理解。干脆我写篇"/>
 
 	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -81,7 +77,8 @@
 				<h1>从网友对 MySQL 手册的一个疑问聊起</h1>
 			</header>
 			<div class="content">
-				<p>在 Go 语言中文网微信群有人提出了这样的疑问，如下图（文档地址：<a href="https://dev.mysql.com/doc/internals/en/date-and-time-data-type-representation.html">https://dev.mysql.com/doc/internals/en/date-and-time-data-type-representation.html</a>）</p>
+				<p>在 Go 语言中文网微信群有人提出了这样的疑问，如下图（文档地址：<a href="https://dev.mysql.com/doc/internals/en/date-and-time-data-type-representation.html" target="_blank" rel="noopener">https://dev.mysql.com/doc/internals/en/date-and-time-data-type-representation.html</a>
+）</p>
 <p><p class="md__image">
   <img src="../imgs/mysql-bit01.png"
     alt=""  />
@@ -123,6 +120,8 @@
 	<h2>相关推荐</h2>
 	<ul>
 	
+	<li><a href="/posts/go/fiber/go-fiber-basic-tutorial01/">Go Fiber 框架系列教程 01: 和 Express 对比学习</a></li>
+	
 	<li><a href="/posts/go/action/go-illegal-private-import/">Go Module：私有不合规库怎么解决引用问题</a></li>
 	
 	<li><a href="/posts/go/dynamic/1.17-golang-go-get-updated/">Go1.17 新特性：go get 变了</a></li>
@@ -130,8 +129,6 @@
 	<li><a href="/posts/go/dynamic/go-1-17-new-features-added-to-testing/">Go1.17 新特性：testing 包的相关变化</a></li>
 	
 	<li><a href="/posts/go/action/chained-channel-operations-in-a-single-select-case/">StackOverflow 上关于 Go select 死锁的问题</a></li>
-	
-	<li><a href="/posts/go/book/building-distributed-applications-in-gin/">新书推荐：用 Gin 框架构建分布式应用</a></li>
 	
 	</ul>
 </div>
@@ -185,7 +182,7 @@
 
 
 
-	<script src="https://polarisxu.studygolang.com/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw=" crossorigin="anonymous"></script>
+	<script src="https://polarisxu.studygolang.com/js/main.min.4eaa15feccc672488716f0338ac605e08c7553ce0ce175e13fa00a873636bf98.js" integrity="sha256-TqoV/szGckiHFvAzisYF4Ix1U84M4XXhP6AKhzY2v5g=" crossorigin="anonymous"></script>
 	<script>
 var _hmt = _hmt || [];
 (function() {

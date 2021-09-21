@@ -8,20 +8,16 @@
 	<meta name="theme-color" content="#fcfcfc">
 	<meta name="msapplication-TileColor" content="#fcfcfc">
 <meta itemprop="name" content="Echo 系列教程——基础篇3：通过一个例子串联各特性">
-<meta itemprop="description" content="通过前面的介绍，相信对 echo 有了一个初步的认识。本文我们通过一个简单的登录页面来串联 echo 的相关特性。因为该文主要关注各个特性，所以在目录结构和代码组织方面很随意。 本节最终效果 1）登录页面 2）登录失败 3）登录成功 main 函数骨架 使用 echo 框架，在程序入口处一般包含如下内容： func main() { // 创建 echo 实例 e := echo.New() // 配置日志 configLogger(e) // 注册静态文件路由 e.Static(&#34;img&#34;, &#34;img&#34;) e.File(&#34;/favicon.ico&#34;, &#34;img/favicon.ico&#34;) // 设置中间件 setMiddleware(e) // 注册路由 RegisterRoutes(e) // 启动服务 e.Logger.Fatal(e.Start(&#34;:2019&#34;)) } 日">
-<meta itemprop="datePublished" content="2019-12-03T20:31:51+08:00" />
+<meta itemprop="description" content="通过前面的介绍，相信对 echo 有了一个初步的认识。本文我们通过一个简单的登录页面来串联 echo 的相关特性。因为该文主要关注各个特性，所以在目录结构和代码组织方面很随意。 本节最终效果 1）登录页面 2）登录失败 3）登录成功 main 函数骨架 使用 echo 框架，在程序入口处一般包含如下内容： func main() { // 创建 echo 实例 e := echo.New() // 配置日志 configLogger(e) // 注册静态文件路由 e.Static(&#34;img&#34;, &#34;img&#34;) e.File(&#34;/favicon.ico&#34;, &#34;img/favicon.ico&#34;) // 设置中间件 setMiddleware(e) // 注册路由 RegisterRoutes(e) // 启动服务 e.Logger.Fatal(e.Start(&#34;:2019&#34;)) } 日"><meta itemprop="datePublished" content="2019-12-03T20:31:51+08:00" />
 <meta itemprop="dateModified" content="2019-12-03T20:31:51+08:00" />
 <meta itemprop="wordCount" content="1754">
-
-
-
-<meta itemprop="keywords" content="echo,web框架,例子," />
-<meta property="og:title" content="Echo 系列教程——基础篇3：通过一个例子串联各特性" />
+<meta itemprop="keywords" content="echo,web框架,例子," /><meta property="og:title" content="Echo 系列教程——基础篇3：通过一个例子串联各特性" />
 <meta property="og:description" content="通过前面的介绍，相信对 echo 有了一个初步的认识。本文我们通过一个简单的登录页面来串联 echo 的相关特性。因为该文主要关注各个特性，所以在目录结构和代码组织方面很随意。 本节最终效果 1）登录页面 2）登录失败 3）登录成功 main 函数骨架 使用 echo 框架，在程序入口处一般包含如下内容： func main() { // 创建 echo 实例 e := echo.New() // 配置日志 configLogger(e) // 注册静态文件路由 e.Static(&#34;img&#34;, &#34;img&#34;) e.File(&#34;/favicon.ico&#34;, &#34;img/favicon.ico&#34;) // 设置中间件 setMiddleware(e) // 注册路由 RegisterRoutes(e) // 启动服务 e.Logger.Fatal(e.Start(&#34;:2019&#34;)) } 日" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/echo/basic03-example/" />
+<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/echo/basic03-example/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2019-12-03T20:31:51+08:00" />
 <meta property="article:modified_time" content="2019-12-03T20:31:51+08:00" />
+
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Echo 系列教程——基础篇3：通过一个例子串联各特性"/>
 <meta name="twitter:description" content="通过前面的介绍，相信对 echo 有了一个初步的认识。本文我们通过一个简单的登录页面来串联 echo 的相关特性。因为该文主要关注各个特性，所以在目录结构和代码组织方面很随意。 本节最终效果 1）登录页面 2）登录失败 3）登录成功 main 函数骨架 使用 echo 框架，在程序入口处一般包含如下内容： func main() { // 创建 echo 实例 e := echo.New() // 配置日志 configLogger(e) // 注册静态文件路由 e.Static(&#34;img&#34;, &#34;img&#34;) e.File(&#34;/favicon.ico&#34;, &#34;img/favicon.ico&#34;) // 设置中间件 setMiddleware(e) // 注册路由 RegisterRoutes(e) // 启动服务 e.Logger.Fatal(e.Start(&#34;:2019&#34;)) } 日"/>
@@ -103,7 +99,7 @@
 </p>
 <h2 id="main-函数骨架">main 函数骨架<a href="#main-函数骨架" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>使用 echo 框架，在程序入口处一般包含如下内容：</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
 	<span class="c1">// 创建 echo 实例
 </span><span class="c1"></span>	<span class="nx">e</span> <span class="o">:=</span> <span class="nx">echo</span><span class="p">.</span><span class="nf">New</span><span class="p">()</span>
 
@@ -128,7 +124,7 @@
 ，而 <a href="https://pkg.go.dev/github.com/labstack/echo?tab=doc#Echo" target="_blank" rel="noopener">Echo 结构体</a>
 有一个该接口的字段，这也就是 main 函数最后一句：<code>e.Logger.Fatal</code> 可以这么用的原因。框架中该接口的具体实现使用的是 <code>github.com/labstack/gommon/log</code>，如果需要，我们可以采用自己的实现，替换框架默认的。</p>
 <p>默认情况下，日志输出到终端，而且 Level 级别是 ERROR，我们可以方便的通过 Logger 接口提供的方法进行修改：</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">configLogger</span><span class="p">(</span><span class="nx">e</span> <span class="o">*</span><span class="nx">echo</span><span class="p">.</span><span class="nx">Echo</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">configLogger</span><span class="p">(</span><span class="nx">e</span> <span class="o">*</span><span class="nx">echo</span><span class="p">.</span><span class="nx">Echo</span><span class="p">)</span> <span class="p">{</span>
 	<span class="c1">// 定义日志级别
 </span><span class="c1"></span>	<span class="nx">e</span><span class="p">.</span><span class="nx">Logger</span><span class="p">.</span><span class="nf">SetLevel</span><span class="p">(</span><span class="nx">log</span><span class="p">.</span><span class="nx">INFO</span><span class="p">)</span>
 	<span class="c1">// 记录业务日志
@@ -145,9 +141,9 @@
 <p>以 Recover 中间件为例讲解。</p>
 <h3 id="中间件标准签名">中间件标准签名<a href="#中间件标准签名" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>通过 <code>Echo.Use</code> 方法知晓，中间件是 MiddlewareFunc 类型，它的定义如下：</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">MiddlewareFunc</span> <span class="kd">func</span><span class="p">(</span><span class="nx">echo</span><span class="p">.</span><span class="nx">HandlerFunc</span><span class="p">)</span> <span class="nx">echo</span><span class="p">.</span><span class="nx">HandlerFunc</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">MiddlewareFunc</span> <span class="kd">func</span><span class="p">(</span><span class="nx">echo</span><span class="p">.</span><span class="nx">HandlerFunc</span><span class="p">)</span> <span class="nx">echo</span><span class="p">.</span><span class="nx">HandlerFunc</span>
 </code></pre></div><p>也就是说，一个中间件应该是 MiddlewareFunc 类型。所以，一个函数，只要返回 MiddlewareFunc 类型就是一个 Echo 中间件。</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">Recover</span><span class="p">()</span> <span class="nx">echo</span><span class="p">.</span><span class="nx">MiddlewareFunc</span> <span class="p">{</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">Recover</span><span class="p">()</span> <span class="nx">echo</span><span class="p">.</span><span class="nx">MiddlewareFunc</span> <span class="p">{</span>
   <span class="o">...</span>
 <span class="p">}</span>
 </code></pre></div><h3 id="支持配置的中间件">支持配置的中间件<a href="#支持配置的中间件" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
@@ -164,7 +160,7 @@
 <li>定义一个不带参数的函数，返回中间件类型，内部调用带参数的中间件函数，参数用默认实例，如：Recover，它的实现是直接调用 <code>RecoverWithConfig(DefaultRecoverConfig)</code>；</li>
 </ul>
 <p>我们的例子代码中就通过配置修改了中间件行为：</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// access log 输出到文件中
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// access log 输出到文件中
 </span><span class="c1"></span>	<span class="nx">accessLog</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">os</span><span class="p">.</span><span class="nf">OpenFile</span><span class="p">(</span><span class="s">&#34;log/access.log&#34;</span><span class="p">,</span> <span class="nx">os</span><span class="p">.</span><span class="nx">O_CREATE</span><span class="p">|</span><span class="nx">os</span><span class="p">.</span><span class="nx">O_WRONLY</span><span class="p">|</span><span class="nx">os</span><span class="p">.</span><span class="nx">O_APPEND</span><span class="p">,</span> <span class="mo">0644</span><span class="p">)</span>
 	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
 		<span class="nb">panic</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
@@ -174,7 +170,7 @@
 	<span class="nx">e</span><span class="p">.</span><span class="nf">Use</span><span class="p">(</span><span class="nx">middleware</span><span class="p">.</span><span class="nf">Logger</span><span class="p">())</span>
 </code></pre></div><h3 id="自己定义一个简单中间件">自己定义一个简单中间件<a href="#自己定义一个简单中间件" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>很多时候，我们业务的中间件，不需要那么灵活，没必要通过配置来控制行为，这时候可以像例子中的 AutoLogin 一样：</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// AutoLogin 如果上次记住了，则自动登录
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// AutoLogin 如果上次记住了，则自动登录
 </span><span class="c1"></span><span class="kd">func</span> <span class="nf">AutoLogin</span><span class="p">(</span><span class="nx">next</span> <span class="nx">echo</span><span class="p">.</span><span class="nx">HandlerFunc</span><span class="p">)</span> <span class="nx">echo</span><span class="p">.</span><span class="nx">HandlerFunc</span> <span class="p">{</span>
 	<span class="k">return</span> <span class="kd">func</span><span class="p">(</span><span class="nx">ctx</span> <span class="nx">echo</span><span class="p">.</span><span class="nx">Context</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
 		<span class="nx">cookie</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">ctx</span><span class="p">.</span><span class="nf">Cookie</span><span class="p">(</span><span class="s">&#34;username&#34;</span><span class="p">)</span>
@@ -196,7 +192,7 @@
  了解下。</p>
 <p>在 Go 中，Session 相关功能最常用的包是 <code>github.com/gorilla/sessions</code>。Echo 提供了 Session 中间件，使用的就是该包。这里我们主要讲解一下登录需要用到的功能。</p>
 <h3 id="登录成功种-cookie">登录成功种 Cookie<a href="#登录成功种-cookie" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// 用标准库种 cookie
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// 用标准库种 cookie
 </span><span class="c1"></span><span class="nx">cookie</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">http</span><span class="p">.</span><span class="nx">Cookie</span><span class="p">{</span>
   <span class="nx">Name</span><span class="p">:</span>     <span class="s">&#34;username&#34;</span><span class="p">,</span>
   <span class="nx">Value</span><span class="p">:</span>    <span class="nx">username</span><span class="p">,</span>
@@ -210,18 +206,19 @@
 <h3 id="重定向保留用户名">重定向保留用户名<a href="#重定向保留用户名" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>在登录失败后，为了避免用户再次输入用户名，这里借用 <code>github.com/gorilla/sessions</code> 包的 Flash Message 功能。</p>
 <p><code>github.com/gorilla/sessions</code> 实现了 Cookie 和文件系统 Session，默认情况下，使用 Cookie。</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">sess</span> <span class="o">:=</span> <span class="nf">getCookieSession</span><span class="p">(</span><span class="nx">ctx</span><span class="p">)</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="nx">sess</span> <span class="o">:=</span> <span class="nf">getCookieSession</span><span class="p">(</span><span class="nx">ctx</span><span class="p">)</span>
 <span class="nx">sess</span><span class="p">.</span><span class="nf">AddFlash</span><span class="p">(</span><span class="nx">username</span><span class="p">,</span> <span class="s">&#34;username&#34;</span><span class="p">)</span>
 <span class="nx">err</span> <span class="o">:=</span> <span class="nx">sess</span><span class="p">.</span><span class="nf">Save</span><span class="p">(</span><span class="nx">ctx</span><span class="p">.</span><span class="nf">Request</span><span class="p">(),</span> <span class="nx">ctx</span><span class="p">.</span><span class="nf">Response</span><span class="p">())</span>
 </code></pre></div><p>在读 Flash Message 的地方，一定要注意，需要再次执行 session.Save：</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">sess</span> <span class="o">:=</span> <span class="nf">getCookieSession</span><span class="p">(</span><span class="nx">ctx</span><span class="p">)</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="nx">sess</span> <span class="o">:=</span> <span class="nf">getCookieSession</span><span class="p">(</span><span class="nx">ctx</span><span class="p">)</span>
 <span class="k">if</span> <span class="nx">flashes</span> <span class="o">:=</span> <span class="nx">sess</span><span class="p">.</span><span class="nf">Flashes</span><span class="p">(</span><span class="s">&#34;username&#34;</span><span class="p">);</span> <span class="nb">len</span><span class="p">(</span><span class="nx">flashes</span><span class="p">)</span> <span class="p">&gt;</span> <span class="mi">0</span> <span class="p">{</span>
   <span class="nx">data</span><span class="p">[</span><span class="s">&#34;username&#34;</span><span class="p">]</span> <span class="p">=</span> <span class="nx">flashes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 <span class="p">}</span>
 <span class="nx">sess</span><span class="p">.</span><span class="nf">Save</span><span class="p">(</span><span class="nx">ctx</span><span class="p">.</span><span class="nf">Request</span><span class="p">(),</span> <span class="nx">ctx</span><span class="p">.</span><span class="nf">Response</span><span class="p">())</span>
 </code></pre></div><h2 id="总结">总结<a href="#总结" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>一个简单的登录，涉及到的知识点还是不少的，但依然有不少 Echo 框架的功能没包括。后面我们会介绍更多 Echo 的特性和功能，这个简单的例子，希望能够让你对 Echo 更有感觉。</p>
-<p>完整示例代码：<a href="https://github.com/polaris1119/echo-login-example">https://github.com/polaris1119/echo-login-example</a></p>
+<p>完整示例代码：<a href="https://github.com/polaris1119/echo-login-example" target="_blank" rel="noopener">https://github.com/polaris1119/echo-login-example</a>
+</p>
 
 			</div><div class="content">
 	<br>
@@ -308,7 +305,7 @@
 
 
 
-	<script src="https://polarisxu.studygolang.com/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw=" crossorigin="anonymous"></script>
+	<script src="https://polarisxu.studygolang.com/js/main.min.4eaa15feccc672488716f0338ac605e08c7553ce0ce175e13fa00a873636bf98.js" integrity="sha256-TqoV/szGckiHFvAzisYF4Ix1U84M4XXhP6AKhzY2v5g=" crossorigin="anonymous"></script>
 	<script>
 var _hmt = _hmt || [];
 (function() {

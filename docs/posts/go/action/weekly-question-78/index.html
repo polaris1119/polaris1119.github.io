@@ -8,20 +8,16 @@
 	<meta name="theme-color" content="#fcfcfc">
 	<meta name="msapplication-TileColor" content="#fcfcfc">
 <meta itemprop="name" content="第 78 期周刊题目解析：答题正确率有点低">
-<meta itemprop="description" content="大家好，我是站长 polarisxu。 昨天在 Go语言爱好者周刊第 78 期 出了一道题，以下代码输出什么？ package main import ( &#34;fmt&#34; &#34;time&#34; ) func main() { ch1 := make(chan int) go fmt.Println(&lt;-ch1) ch1 &lt;- 5 time.Sleep(1 * time.Second) } A：5；B：编译不通过；C：运行时死锁 如果你没有做这道题，往下看之前，先思考下。 今天看了下答题结果，正确率有点低，才 35%： 可见不少人的基础还是不扎实。 此题如果改为这样： package main import ( &#34;fmt&#34; &#34;time&#34; ) func main() { ch1 := make(chan int) go func(){ fmt.Println(&lt;-ch1) }() ch1 &lt;- 5 time.Sleep(1 * time.Second)">
-<meta itemprop="datePublished" content="2021-01-18T11:25:00+08:00" />
+<meta itemprop="description" content="大家好，我是站长 polarisxu。 昨天在 Go语言爱好者周刊第 78 期 出了一道题，以下代码输出什么？ package main import ( &#34;fmt&#34; &#34;time&#34; ) func main() { ch1 := make(chan int) go fmt.Println(&lt;-ch1) ch1 &lt;- 5 time.Sleep(1 * time.Second) } A：5；B：编译不通过；C：运行时死锁 如果你没有做这道题，往下看之前，先思考下。 今天看了下答题结果，正确率有点低，才 35%： 可见不少人的基础还是不扎实。 此题如果改为这样： package main import ( &#34;fmt&#34; &#34;time&#34; ) func main() { ch1 := make(chan int) go func(){ fmt.Println(&lt;-ch1) }() ch1 &lt;- 5 time.Sleep(1 * time.Second)"><meta itemprop="datePublished" content="2021-01-18T11:25:00+08:00" />
 <meta itemprop="dateModified" content="2021-01-18T11:25:00+08:00" />
 <meta itemprop="wordCount" content="546">
-
-
-
-<meta itemprop="keywords" content="周刊,goroutine,channel," />
-<meta property="og:title" content="第 78 期周刊题目解析：答题正确率有点低" />
+<meta itemprop="keywords" content="周刊,goroutine,channel," /><meta property="og:title" content="第 78 期周刊题目解析：答题正确率有点低" />
 <meta property="og:description" content="大家好，我是站长 polarisxu。 昨天在 Go语言爱好者周刊第 78 期 出了一道题，以下代码输出什么？ package main import ( &#34;fmt&#34; &#34;time&#34; ) func main() { ch1 := make(chan int) go fmt.Println(&lt;-ch1) ch1 &lt;- 5 time.Sleep(1 * time.Second) } A：5；B：编译不通过；C：运行时死锁 如果你没有做这道题，往下看之前，先思考下。 今天看了下答题结果，正确率有点低，才 35%： 可见不少人的基础还是不扎实。 此题如果改为这样： package main import ( &#34;fmt&#34; &#34;time&#34; ) func main() { ch1 := make(chan int) go func(){ fmt.Println(&lt;-ch1) }() ch1 &lt;- 5 time.Sleep(1 * time.Second)" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/action/weekly-question-78/" />
+<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/action/weekly-question-78/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-01-18T11:25:00+08:00" />
 <meta property="article:modified_time" content="2021-01-18T11:25:00+08:00" />
+
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="第 78 期周刊题目解析：答题正确率有点低"/>
 <meta name="twitter:description" content="大家好，我是站长 polarisxu。 昨天在 Go语言爱好者周刊第 78 期 出了一道题，以下代码输出什么？ package main import ( &#34;fmt&#34; &#34;time&#34; ) func main() { ch1 := make(chan int) go fmt.Println(&lt;-ch1) ch1 &lt;- 5 time.Sleep(1 * time.Second) } A：5；B：编译不通过；C：运行时死锁 如果你没有做这道题，往下看之前，先思考下。 今天看了下答题结果，正确率有点低，才 35%： 可见不少人的基础还是不扎实。 此题如果改为这样： package main import ( &#34;fmt&#34; &#34;time&#34; ) func main() { ch1 := make(chan int) go func(){ fmt.Println(&lt;-ch1) }() ch1 &lt;- 5 time.Sleep(1 * time.Second)"/>
@@ -84,7 +80,7 @@
 				<p>大家好，我是站长 polarisxu。</p>
 <p>昨天在 <a href="https://mp.weixin.qq.com/s/kma8hvdLVPIkZnKw_MaSKg" target="_blank" rel="noopener">Go语言爱好者周刊第 78 期</a>
 出了一道题，以下代码输出什么？</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
 	<span class="s">&#34;fmt&#34;</span>
@@ -107,7 +103,7 @@
 </p>
 <p>可见不少人的基础还是不扎实。</p>
 <p>此题如果改为这样：</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
 	<span class="s">&#34;fmt&#34;</span>
@@ -126,7 +122,7 @@
 <p>在 Go 语言规范中，关于 <a href="https://docs.studygolang.com/ref/spec#Go_statements" target="_blank" rel="noopener">go 语句</a>
 有这么一句描述：</p>
 <blockquote>
-<pre><code>GoStmt = &quot;go&quot; Expression .
+<pre tabindex="0"><code>GoStmt = &quot;go&quot; Expression .
 </code></pre><p>The expression must be a function or method call; it cannot be parenthesized. Calls of built-in functions are restricted as for <a href="https://docs.studygolang.com/ref/spec#Expression_statements" target="_blank" rel="noopener">expression statements</a>
 .</p>
 <p>The function value and parameters are <a href="https://docs.studygolang.com/ref/spec#Calls" target="_blank" rel="noopener">evaluated as usual</a>
@@ -136,7 +132,7 @@
 是这样描述的：</p>
 <blockquote>
 <p>Given an expression <code>f</code> of function type <code>F</code>,</p>
-<pre><code>f(a1, a2, … an)
+<pre tabindex="0"><code>f(a1, a2, … an)
 </code></pre><p>calls <code>f</code> with arguments <code>a1, a2, … an</code>. Except for one special case, arguments must be single-valued expressions <a href="https://docs.studygolang.com/ref/spec#Assignability" target="_blank" rel="noopener">assignable</a>
  to the parameter types of <code>F</code> and are evaluated before the function is called.</p>
 </blockquote>
@@ -144,9 +140,9 @@
 <p>因此这道题目 <code>go fmt.Println(&lt;-ch1)</code> 语句中的 <code>&lt;-ch1</code> 是在 main goroutine 中求值的。这相当于一个无缓冲的 chan，发送和接收操作都在一个 goroutine 中（main goroutine）进行，因此造成死锁。</p>
 <p>更进一步，大家可以通过汇编看看上面两种方式的不同。</p>
 <p>此外，defer 语句也要注意。比如下面的做法是不对的：</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="k">defer</span> <span class="nb">recover</span><span class="p">()</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="k">defer</span> <span class="nb">recover</span><span class="p">()</span>
 </code></pre></div><p>而应该使用这样的方式：</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="k">defer</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="k">defer</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
   <span class="nb">recover</span><span class="p">()</span>
 <span class="p">}()</span>
 </code></pre></div>
@@ -207,7 +203,7 @@
 
 
 
-	<script src="https://polarisxu.studygolang.com/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw=" crossorigin="anonymous"></script>
+	<script src="https://polarisxu.studygolang.com/js/main.min.4eaa15feccc672488716f0338ac605e08c7553ce0ce175e13fa00a873636bf98.js" integrity="sha256-TqoV/szGckiHFvAzisYF4Ix1U84M4XXhP6AKhzY2v5g=" crossorigin="anonymous"></script>
 	<script>
 var _hmt = _hmt || [];
 (function() {

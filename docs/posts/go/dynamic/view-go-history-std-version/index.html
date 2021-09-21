@@ -8,20 +8,16 @@
 	<meta name="theme-color" content="#fcfcfc">
 	<meta name="msapplication-TileColor" content="#fcfcfc">
 <meta itemprop="name" content="听说你还不知道如何查看 Go 历史文档？">
-<meta itemprop="description" content="大家好，我是站长 polarisxu。 这是一篇短文，写这篇文章主要是看到了两个信息： tonybai 写的《如何查看历史版本的 Go 文档？》 Go 官方发博文，2021 年初开始，godoc.org 默认将重定向到 pkg.go.dev ； tonybai 在文章中说了两种方法： 利用 go doc，可行，但非最优。比如 go doc http.Request。通过切换本地的 Go 版本实现查看不同版本的 Go 标准库文档； 使用 godoc 建立历史版本的 Web 化文档中心。">
-<meta itemprop="datePublished" content="2020-12-17T17:15:00+08:00" />
+<meta itemprop="description" content="大家好，我是站长 polarisxu。 这是一篇短文，写这篇文章主要是看到了两个信息： tonybai 写的《如何查看历史版本的 Go 文档？》 Go 官方发博文，2021 年初开始，godoc.org 默认将重定向到 pkg.go.dev ； tonybai 在文章中说了两种方法： 利用 go doc，可行，但非最优。比如 go doc http.Request。通过切换本地的 Go 版本实现查看不同版本的 Go 标准库文档； 使用 godoc 建立历史版本的 Web 化文档中心。"><meta itemprop="datePublished" content="2020-12-17T17:15:00+08:00" />
 <meta itemprop="dateModified" content="2020-12-17T17:15:00+08:00" />
 <meta itemprop="wordCount" content="559">
-
-
-
-<meta itemprop="keywords" content="Go,标准库,pkgsite," />
-<meta property="og:title" content="听说你还不知道如何查看 Go 历史文档？" />
+<meta itemprop="keywords" content="Go,标准库,pkgsite," /><meta property="og:title" content="听说你还不知道如何查看 Go 历史文档？" />
 <meta property="og:description" content="大家好，我是站长 polarisxu。 这是一篇短文，写这篇文章主要是看到了两个信息： tonybai 写的《如何查看历史版本的 Go 文档？》 Go 官方发博文，2021 年初开始，godoc.org 默认将重定向到 pkg.go.dev ； tonybai 在文章中说了两种方法： 利用 go doc，可行，但非最优。比如 go doc http.Request。通过切换本地的 Go 版本实现查看不同版本的 Go 标准库文档； 使用 godoc 建立历史版本的 Web 化文档中心。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/dynamic/view-go-history-std-version/" />
+<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/dynamic/view-go-history-std-version/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2020-12-17T17:15:00+08:00" />
 <meta property="article:modified_time" content="2020-12-17T17:15:00+08:00" />
+
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="听说你还不知道如何查看 Go 历史文档？"/>
 <meta name="twitter:description" content="大家好，我是站长 polarisxu。 这是一篇短文，写这篇文章主要是看到了两个信息： tonybai 写的《如何查看历史版本的 Go 文档？》 Go 官方发博文，2021 年初开始，godoc.org 默认将重定向到 pkg.go.dev ； tonybai 在文章中说了两种方法： 利用 go doc，可行，但非最优。比如 go doc http.Request。通过切换本地的 Go 版本实现查看不同版本的 Go 标准库文档； 使用 godoc 建立历史版本的 Web 化文档中心。"/>
@@ -94,7 +90,8 @@
 <li>利用 go doc，可行，但非最优。比如 go doc http.Request。通过切换本地的 Go 版本实现查看不同版本的 Go 标准库文档；</li>
 <li>使用 godoc 建立历史版本的 Web 化文档中心。这种方式需要额外安装 godoc：<code>go get golang.org/x/tools/cmd/godoc</code>。这种方法相当于本地启动一个旧版 Go 官网。godoc 支持一个参数 -goroot 来指定不同的 Go 版本目录树；</li>
 </ul>
-<p>但这两种方法都挺费劲的，因为需要你本地有各个版本的 Go 源码。以前没有更好的方法，但自从有了 pkg.go.dev，查看历史文档方便多了。因为 pkg.go.dev 更懂 Go module，通过它不仅可以查看标准库的历史版本文档，而且可以查看第三方库的历史版本。具体可以查看这里：<a href="https://pkg.go.dev/std?tab=versions">https://pkg.go.dev/std?tab=versions</a>。</p>
+<p>但这两种方法都挺费劲的，因为需要你本地有各个版本的 Go 源码。以前没有更好的方法，但自从有了 pkg.go.dev，查看历史文档方便多了。因为 pkg.go.dev 更懂 Go module，通过它不仅可以查看标准库的历史版本文档，而且可以查看第三方库的历史版本。具体可以查看这里：<a href="https://pkg.go.dev/std?tab=versions" target="_blank" rel="noopener">https://pkg.go.dev/std?tab=versions</a>
+。</p>
 <p>虽然 godoc.org 也可以同时查看标准库文档和第三方库文档，但没有历史版本。pkg.go.dev 经过一年多的发展，经历了开源、重构等，官方终于决定正式弃用 godoc.org，将其重定向到 pkg.go.dev。</p>
 <p>所以，是时候使用 pkg.go.dev 了，而且它可以直接访问，而不像 golang.org 不能访问。</p>
 
@@ -163,7 +160,7 @@
 
 
 
-	<script src="https://polarisxu.studygolang.com/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw=" crossorigin="anonymous"></script>
+	<script src="https://polarisxu.studygolang.com/js/main.min.4eaa15feccc672488716f0338ac605e08c7553ce0ce175e13fa00a873636bf98.js" integrity="sha256-TqoV/szGckiHFvAzisYF4Ix1U84M4XXhP6AKhzY2v5g=" crossorigin="anonymous"></script>
 	<script>
 var _hmt = _hmt || [];
 (function() {

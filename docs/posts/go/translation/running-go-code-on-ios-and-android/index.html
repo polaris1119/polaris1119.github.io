@@ -8,20 +8,16 @@
 	<meta name="theme-color" content="#fcfcfc">
 	<meta name="msapplication-TileColor" content="#fcfcfc">
 <meta itemprop="name" content="在 iOS 和 Android 上运行 Go 代码">
-<meta itemprop="description" content="在本教程中，我们将构建一个简单的 Go 包，您可以从 iOS 应用程序（Swift）和 Android 应用程序（Kotlin）运行该软件包。 本教程不会使用go mobile 框架。相反，它使用 Cgo 构建可导入到您的移动项目中的原始静态（iOS）和共享（Android） C 库（Go Mobile 框架在后台进行此操作）。 构建 在本教程中，我们将创建具有以下结构的简单 monorepo： . ├── android/ ├── go/ │ ├── cmd/ │ │ └── libfoo/">
-<meta itemprop="datePublished" content="2020-09-14T11:15:51+08:00" />
+<meta itemprop="description" content="在本教程中，我们将构建一个简单的 Go 包，您可以从 iOS 应用程序（Swift）和 Android 应用程序（Kotlin）运行该软件包。 本教程不会使用go mobile 框架。相反，它使用 Cgo 构建可导入到您的移动项目中的原始静态（iOS）和共享（Android） C 库（Go Mobile 框架在后台进行此操作）。 构建 在本教程中，我们将创建具有以下结构的简单 monorepo： . ├── android/ ├── go/ │ ├── cmd/ │ │ └── libfoo/"><meta itemprop="datePublished" content="2020-09-14T11:15:51+08:00" />
 <meta itemprop="dateModified" content="2020-09-14T11:15:51+08:00" />
 <meta itemprop="wordCount" content="2275">
-
-
-
-<meta itemprop="keywords" content="Go,Golang,Mobile," />
-<meta property="og:title" content="在 iOS 和 Android 上运行 Go 代码" />
+<meta itemprop="keywords" content="Go,Golang,Mobile," /><meta property="og:title" content="在 iOS 和 Android 上运行 Go 代码" />
 <meta property="og:description" content="在本教程中，我们将构建一个简单的 Go 包，您可以从 iOS 应用程序（Swift）和 Android 应用程序（Kotlin）运行该软件包。 本教程不会使用go mobile 框架。相反，它使用 Cgo 构建可导入到您的移动项目中的原始静态（iOS）和共享（Android） C 库（Go Mobile 框架在后台进行此操作）。 构建 在本教程中，我们将创建具有以下结构的简单 monorepo： . ├── android/ ├── go/ │ ├── cmd/ │ │ └── libfoo/" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/translation/running-go-code-on-ios-and-android/" />
+<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/translation/running-go-code-on-ios-and-android/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2020-09-14T11:15:51+08:00" />
 <meta property="article:modified_time" content="2020-09-14T11:15:51+08:00" />
+
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="在 iOS 和 Android 上运行 Go 代码"/>
 <meta name="twitter:description" content="在本教程中，我们将构建一个简单的 Go 包，您可以从 iOS 应用程序（Swift）和 Android 应用程序（Kotlin）运行该软件包。 本教程不会使用go mobile 框架。相反，它使用 Cgo 构建可导入到您的移动项目中的原始静态（iOS）和共享（Android） C 库（Go Mobile 框架在后台进行此操作）。 构建 在本教程中，我们将创建具有以下结构的简单 monorepo： . ├── android/ ├── go/ │ ├── cmd/ │ │ └── libfoo/"/>
@@ -86,7 +82,7 @@
  框架。相反，它使用 Cgo 构建可导入到您的移动项目中的原始静态（iOS）和共享（Android） C 库（Go Mobile 框架在后台进行此操作）。</p>
 <h2 id="构建">构建<a href="#构建" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>在本教程中，我们将创建具有以下结构的简单 monorepo：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">.
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">.
 ├── android/
 ├── go/
 │   ├── cmd/
@@ -99,10 +95,10 @@
 └── ios/
 $ mkdir -p android ios go/cmd/libfoo go/foo
 </code></pre></div><p>我们将从 Go 代码开始，稍后再返回创建 iOS 和 Android 项目。</p>
-<div class="highlight"><pre class="chroma"><code class="language-zsh" data-lang="zsh">$ <span class="nb">cd</span> go
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh">$ <span class="nb">cd</span> go
 $ go mod init rogchap.com/libfoo
 </code></pre></div><h2 id="foo-包">Foo 包<a href="#foo-包" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// go/foo/foo.go
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// go/foo/foo.go
 </span><span class="c1"></span><span class="kn">package</span> <span class="nx">foo</span>
 
 <span class="c1">// Reverse reverses the given string by each utf8 character
@@ -122,7 +118,7 @@ $ go mod init rogchap.com/libfoo
 </code></pre></div><p>我们的<code>foo</code>程序包有一个函数<code>Reverse</code>，该函数具有单个字符串参数<code>in</code>和单个字符串输出。</p>
 <h2 id="导出为-c">导出为 C<a href="#导出为-c" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>为了使我们的 C 库调用我们的<code>foo</code>包，我们需要导出所有要公开给 C 的函数，并带有特殊<code>export</code>注释。该包装器必须位于<code>main</code>包装中：</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// go/cmd/libfoo/main.go
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// go/cmd/libfoo/main.go
 </span><span class="c1"></span><span class="nx">pacakge</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="s">&#34;C&#34;</span>
@@ -141,15 +137,15 @@ $ go mod init rogchap.com/libfoo
 </code></pre></div><p>我们正在使用特殊的 <code>C.GoString()</code>和<code>C.CString()</code>函数在 Go 字符串和 C 字符串之间进行转换。</p>
 <p>*注意：*我们要导出的函数不必是导出的 Go 函数（即以大写字母开头）。还要注意是空<code>main</code>函数；这对于 Go 代码进行编译是必需的，否则会出现 <code>function main is undeclared in the main package</code>错误。</p>
 <p>让我们通过使用 <code>-buildmode</code> 标志创建一个静态 C 库来测试我们的构建：</p>
-<pre><code>go build -buildmode=c-archive -o foo.a ./cmd/libfoo
+<pre tabindex="0"><code>go build -buildmode=c-archive -o foo.a ./cmd/libfoo
 </code></pre><p>这应该已经输出了 C 库：<code>foo.a</code>和头文件：<code>foo.h</code>。您应该在头文件的底部看到导出的函数：</p>
-<div class="highlight"><pre class="chroma"><code class="language-C" data-lang="C"><span class="k">extern</span> <span class="kt">char</span><span class="o">*</span> <span class="nf">reverse</span><span class="p">(</span><span class="kt">char</span><span class="o">*</span> <span class="n">in</span><span class="p">);</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="k">extern</span> <span class="kt">char</span><span class="o">*</span> <span class="nf">reverse</span><span class="p">(</span><span class="kt">char</span><span class="o">*</span> <span class="n">in</span><span class="p">);</span>
 </code></pre></div><h2 id="为-ios-构建">为 iOS 构建<a href="#为-ios-构建" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>我们的目标是创建一个可以在 iOS 设备和 iOS 模拟器上使用的 <a href="https://en.wikipedia.org/wiki/Fat_binary" target="_blank" rel="noopener">Fat 二进制文件</a>
 。</p>
 <p>Go 标准库包含用于构建 iOS 的脚本： <a href="https://golang.org/misc/ios/clangwrap.sh" target="_blank" rel="noopener"><code>$GOROOT/misc/ios/clangwrap.sh</code></a>
 ，但是该脚本仅针对生成<code>arm64</code>，而<code>x86_64</code>iOS Simulator 也需要该脚本 。因此，我们将创建自己的<code>clangwrap.sh</code>：</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"><span class="cp">#!/bin/sh
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="cp">#!/bin/sh
 </span><span class="cp"></span>
 <span class="c1"># go/clangwrap.sh</span>
 
@@ -164,9 +160,9 @@ $ go mod init rogchap.com/libfoo
 
 <span class="nb">exec</span> <span class="nv">$CLANG</span> -arch <span class="nv">$CARCH</span> -isysroot <span class="nv">$SDK_PATH</span> -mios-version-min<span class="o">=</span>10.0 <span class="s2">&#34;</span><span class="nv">$@</span><span class="s2">&#34;</span>
 </code></pre></div><p>不要忘记让它可执行：</p>
-<pre><code>chmod +x clangwrap.sh
+<pre tabindex="0"><code>chmod +x clangwrap.sh
 </code></pre><p>现在，我们可以为每种体系结构构建库，并使用该<code>lipo</code>工具（通过 Makefile）合并为 Fat 二进制文件：</p>
-<div class="highlight"><pre class="chroma"><code class="language-makefile" data-lang="makefile"><span class="c"># go/Makefile
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-makefile" data-lang="makefile"><span class="c"># go/Makefile
 </span><span class="c"></span>
 <span class="nf">ios-arm64</span><span class="o">:</span>
 	<span class="nv">CGO_ENABLED</span><span class="o">=</span><span class="m">1</span> <span class="se">\
@@ -190,7 +186,7 @@ $ go mod init rogchap.com/libfoo
 	cp <span class="k">$(</span>IOS_OUT<span class="k">)</span>/arm64.h <span class="k">$(</span>IOS_OUT<span class="k">)</span>/foo.h
 </code></pre></div><h2 id="创建我们的-ios-应用程序">创建我们的 iOS 应用程序<a href="#创建我们的-ios-应用程序" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>使用 XCode，我们可以创建一个简单的单页应用程序。我将使用 Swift UI，但这与 UIKit 一样容易：</p>
-<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="c1">// ios/foobar/ContentView.swift</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="c1">// ios/foobar/ContentView.swift</span>
 
 <span class="kd">struct</span> <span class="nc">ContentView</span><span class="p">:</span> <span class="n">View</span> <span class="p">{</span>
 
@@ -209,13 +205,13 @@ $ go mod init rogchap.com/libfoo
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div><p>在 Xcode 中，将新生成的<code>foo.a</code> 和 <code>foo.h</code> 拖进我们的项目。为了使我们的 Swift 代码与我们的库互操作，我们需要创建一个桥接头文件：</p>
-<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="c1">// ios/foobar/foobar-Bridging-Header.h
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="c1">// ios/foobar/foobar-Bridging-Header.h
 </span><span class="c1"></span>
 <span class="cp">#import &#34;foo.h&#34;
 </span></code></pre></div><p>在 Xcode <code>Build Settings</code> 中，<code>Swift Compiler - General</code> 下，设置 <code>Objective-C Bridging Header</code> 为我们刚刚创建的文件：<code>foobar/foobar-Bridging-Header.h</code>。</p>
 <p>我们还需要设置 <code>Library Search Paths</code> 为包括我们生成的头文件 <code>foo.h</code> 的目录。（当您将文件拖放到项目中时，Xcode 可能已经为您完成了此操作）。</p>
 <p>现在我们可以从 Swift 调用函数，然后构建并运行：</p>
-<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="c1">// ios/foobar/ContentView.swift</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="c1">// ios/foobar/ContentView.swift</span>
 
 <span class="n">Button</span><span class="p">(</span><span class="s">&#34;Reverse&#34;</span><span class="p">){</span>
     <span class="kd">let</span> <span class="nv">str</span> <span class="p">=</span> <span class="bp">reverse</span><span class="p">(</span><span class="nb">UnsafeMutablePointer</span><span class="p">&lt;</span><span class="nb">Int8</span><span class="p">&gt;(</span><span class="kr">mutating</span><span class="p">:</span> <span class="p">(</span><span class="kc">self</span><span class="p">.</span><span class="n">txt</span> <span class="k">as</span> <span class="n">NSString</span><span class="p">).</span><span class="n">utf8String</span><span class="p">))</span>
@@ -231,7 +227,7 @@ $ go mod init rogchap.com/libfoo
 <h2 id="创建-android-应用程序">创建 Android 应用程序<a href="#创建-android-应用程序" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>使用 Android Studio，我们将创建一个新的 Android 项目。从 Project Templates 中选择 <code>Native C++</code>，这将创建一个带有 Empty Activity 的项目，该项目被配置为使用 Java Native Interface（JNI）。我们仍将选择 <code>Kotlin</code> 作为该项目的语言。</p>
 <p>创建一个简单的 Activity 后，加上 <code>EditText</code> 和，<code>Button</code> 两个控件，为应用创建基本功能：</p>
-<div class="highlight"><pre class="chroma"><code class="language-kotlin" data-lang="kotlin"><span class="c1">// android/app/src/main/java/com/rogchap/foobar/MainActivity.kt
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-kotlin" data-lang="kotlin"><span class="c1">// android/app/src/main/java/com/rogchap/foobar/MainActivity.kt
 </span><span class="c1"></span>
 <span class="k">class</span> <span class="nc">MainActivity</span> <span class="p">:</span> <span class="n">AppCompatActivity</span><span class="p">()</span> <span class="p">{</span>
 
@@ -258,7 +254,7 @@ $ go mod init rogchap.com/libfoo
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div><p>我们创建了（并调用）一个外部函数 <code>reverse</code>，我们需要在 JNI （C++）实现：</p>
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// android/app/src/main/cpp/native-lib.cpp
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// android/app/src/main/cpp/native-lib.cpp
 </span><span class="c1"></span>
 <span class="k">extern</span> <span class="s">&#34;C&#34;</span> <span class="p">{</span>
     <span class="n">jstring</span>
@@ -271,7 +267,7 @@ $ go mod init rogchap.com/libfoo
 <h2 id="为-android-构建">为 Android 构建<a href="#为-android-构建" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>在许多版本的 Android 和 NDK 中，JNI 与外部库的工作方式已发生变化。当前（也是最简单的方法）是将输出的库放置到一个特殊的 <code>jniLibs</code> 文件夹中，该文件夹将复制到我们的最终 APK 文件中。</p>
 <p>与创建 Fat 二进制文件（就像我们在 iOS 中所做的那样）不同，我将每个体系结构放置在正确的文件夹中。同样，对于 JNI，约定很重要。</p>
-<div class="highlight"><pre class="chroma"><code class="language-makefile" data-lang="makefile"><span class="err">//</span> <span class="err">go/Makefile</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-makefile" data-lang="makefile"><span class="err">//</span> <span class="err">go/Makefile</span>
 
 <span class="nv">ANDROID_OUT</span><span class="o">=</span>../android/app/src/main/jniLibs
 <span class="nv">ANDROID_SDK</span><span class="o">=</span><span class="k">$(</span>HOME<span class="k">)</span>/Library/Android/sdk
@@ -309,7 +305,7 @@ $ go mod init rogchap.com/libfoo
 <span class="nf">android</span><span class="o">:</span> <span class="n">android</span>-<span class="n">armv</span>7<span class="n">a</span> <span class="n">android</span>-<span class="n">arm</span>64 <span class="n">android</span>-<span class="n">x</span>86 <span class="n">android</span>-<span class="n">x</span>86<span class="n">_</span>64
 </code></pre></div><p><strong>注意</strong>确保为您的 Android SDK 和已下载的 NDK 版本设置正确的位置。</p>
 <p><code>make android</code> 将我们需要的所有共享库构建到正确的文件夹中。现在，我们需要将库添加到 CMake：</p>
-<div class="highlight"><pre class="chroma"><code class="language-cmake" data-lang="cmake"><span class="err">//</span> <span class="err">android/app/src/main/cpp/CMakeLists.txt
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cmake" data-lang="cmake"><span class="err">//</span> <span class="err">android/app/src/main/cpp/CMakeLists.txt
 </span><span class="err">
 </span><span class="err">//</span> <span class="err">...
 </span><span class="err">
@@ -323,7 +319,7 @@ $ go mod init rogchap.com/libfoo
 </span><span class="err"></span><span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">native-lib</span> <span class="s">lib_foo</span> <span class="o">${</span><span class="nv">log-lib</span><span class="o">}</span><span class="p">)</span><span class="err">
 </span></code></pre></div><p>我花了一段时间才弄清楚这些设置，再次命名很重要，因此使用库命名 <code>lib_xxxx</code> 并设置属性很重要，同时设置 <code>IMPORTED_NO_SONAME 1</code>，否则您的 apk 会在错误的位置查找你的库。</p>
 <p>现在，我们可以将 JN I 代码连接到 Go 库中，然后运行我们的应用程序：</p>
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// android/app/src/main/cpp/native-lib.cpp
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// android/app/src/main/cpp/native-lib.cpp
 </span><span class="c1"></span>
 <span class="cp">#include</span> <span class="cpf">&#34;libfoo.h&#34;</span><span class="cp">
 </span><span class="cp"></span>
@@ -345,7 +341,8 @@ $ go mod init rogchap.com/libfoo
 </p>
 <h2 id="结论">结论<a href="#结论" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>Go 的优势之一就是它是跨平台的，这不仅意味着 Window，Mac 和 Linux，Go 还可以针对许多其他体系结构，包括 iOS 和 Android。现在，您可以在工具栏中找到另一个选项，以创建在服务器、移动应用程序甚至 Web（通过 Web 程序集）上运行的共享库。</p>
-<p>本教程的所有代码均可在 GitHub 上获得：<a href="https://github.com/rogchap/libfoo">https://github.com/rogchap/libfoo</a></p>
+<p>本教程的所有代码均可在 GitHub 上获得：<a href="https://github.com/rogchap/libfoo" target="_blank" rel="noopener">https://github.com/rogchap/libfoo</a>
+</p>
 <p>期待听到您使用 Go 构建的新杀手级应用程序。</p>
 <blockquote>
 <p>原文链接：https://rogchap.com/2020/09/14/running-go-code-on-ios-and-android/</p>
@@ -429,7 +426,7 @@ $ go mod init rogchap.com/libfoo
 
 
 
-	<script src="https://polarisxu.studygolang.com/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw=" crossorigin="anonymous"></script>
+	<script src="https://polarisxu.studygolang.com/js/main.min.4eaa15feccc672488716f0338ac605e08c7553ce0ce175e13fa00a873636bf98.js" integrity="sha256-TqoV/szGckiHFvAzisYF4Ix1U84M4XXhP6AKhzY2v5g=" crossorigin="anonymous"></script>
 	<script>
 var _hmt = _hmt || [];
 (function() {

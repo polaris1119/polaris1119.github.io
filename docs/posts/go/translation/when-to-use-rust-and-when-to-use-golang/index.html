@@ -8,20 +8,16 @@
 	<meta name="theme-color" content="#fcfcfc">
 	<meta name="msapplication-TileColor" content="#fcfcfc">
 <meta itemprop="name" content="何时使用 Rust 和何时使用 Golang">
-<meta itemprop="description" content="Golang 和 Rust 之间有明显的区别。Golang 更加注重构建可以无限扩展的 Web API 和小型服务，尤其是在 goroutine 的强大支持下。Rust 也可以用于小型服务，但是从开发人员的经验来看，事情要困难得多。 Rust 非常适合处理大量数据和其他 CPU 密集型操作，例如执行算法。这是 Rust 超过 Golang 的最大优势。要求高性能的项目通常更适合 Rust。 在本教程中，我们将就 Golang 和 Rust 进行比较和对比，评估这两种编程语言的性能，并发">
-<meta itemprop="datePublished" content="2020-09-30T11:15:51+08:00" />
+<meta itemprop="description" content="Golang 和 Rust 之间有明显的区别。Golang 更加注重构建可以无限扩展的 Web API 和小型服务，尤其是在 goroutine 的强大支持下。Rust 也可以用于小型服务，但是从开发人员的经验来看，事情要困难得多。 Rust 非常适合处理大量数据和其他 CPU 密集型操作，例如执行算法。这是 Rust 超过 Golang 的最大优势。要求高性能的项目通常更适合 Rust。 在本教程中，我们将就 Golang 和 Rust 进行比较和对比，评估这两种编程语言的性能，并发"><meta itemprop="datePublished" content="2020-09-30T11:15:51+08:00" />
 <meta itemprop="dateModified" content="2020-09-30T11:15:51+08:00" />
 <meta itemprop="wordCount" content="2964">
-
-
-
-<meta itemprop="keywords" content="Go,Golang,Rust," />
-<meta property="og:title" content="何时使用 Rust 和何时使用 Golang" />
+<meta itemprop="keywords" content="Go,Golang,Rust," /><meta property="og:title" content="何时使用 Rust 和何时使用 Golang" />
 <meta property="og:description" content="Golang 和 Rust 之间有明显的区别。Golang 更加注重构建可以无限扩展的 Web API 和小型服务，尤其是在 goroutine 的强大支持下。Rust 也可以用于小型服务，但是从开发人员的经验来看，事情要困难得多。 Rust 非常适合处理大量数据和其他 CPU 密集型操作，例如执行算法。这是 Rust 超过 Golang 的最大优势。要求高性能的项目通常更适合 Rust。 在本教程中，我们将就 Golang 和 Rust 进行比较和对比，评估这两种编程语言的性能，并发" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/translation/when-to-use-rust-and-when-to-use-golang/" />
+<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/translation/when-to-use-rust-and-when-to-use-golang/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2020-09-30T11:15:51+08:00" />
 <meta property="article:modified_time" content="2020-09-30T11:15:51+08:00" />
+
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="何时使用 Rust 和何时使用 Golang"/>
 <meta name="twitter:description" content="Golang 和 Rust 之间有明显的区别。Golang 更加注重构建可以无限扩展的 Web API 和小型服务，尤其是在 goroutine 的强大支持下。Rust 也可以用于小型服务，但是从开发人员的经验来看，事情要困难得多。 Rust 非常适合处理大量数据和其他 CPU 密集型操作，例如执行算法。这是 Rust 超过 Golang 的最大优势。要求高性能的项目通常更适合 Rust。 在本教程中，我们将就 Golang 和 Rust 进行比较和对比，评估这两种编程语言的性能，并发"/>
@@ -96,7 +92,7 @@
 <p>Golang 最初是由 Google 的工程师设计的，于 2009 年向公众推出。它的创建是为 C++提供替代方案，该替代方案易于学习和编码，并且经过优化可在多核 CPU 上运行。</p>
 <p>从那时起，Golang 对于希望利用该语言提供的并发性的开发人员来说非常有用。该语言提供了 goroutine，使您可以将函数作为 goroutine 运行。</p>
 <p>Golang 的一大优势是您可以轻松使用 goroutines。只需将<code>go</code>添加到函数前即可使其作为 goroutine 运行。Golang 的并发模型允许您跨多个 CPU 内核部署工作负载，从而使其成为一种非常有效的语言。</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
     <span class="s">&#34;fmt&#34;</span>
@@ -131,7 +127,7 @@
 <p>如上所述，Golang 支持并发。例如，假设您正在运行一个处理 API 请求的 Web 服务器。您可以使用 Golang 的 goroutine 程序将每个请求作为 goroutine 运行，通过将任务分发到所有可用的 CPU 内核来最大程度地提高效率。</p>
 <p>Goroutines 是 Golang 内置功能的一部分，而 Rust 仅支持本地 async/await 语法来支持并发。因此，在并发方面，Golang 的开发人员有经验优势。但是，Rust 在保证内存安全方面要好得多。</p>
 <p>这是 Rust 的简化线程的示例：</p>
-<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="k">use</span><span class="w"> </span><span class="n">std</span>::<span class="n">thread</span><span class="p">;</span><span class="w">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="k">use</span><span class="w"> </span><span class="n">std</span>::<span class="n">thread</span><span class="p">;</span><span class="w">
 </span><span class="w"></span><span class="k">use</span><span class="w"> </span><span class="n">std</span>::<span class="n">time</span>::<span class="n">Duration</span><span class="p">;</span><span class="w">
 </span><span class="w">
 </span><span class="w"></span><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -292,7 +288,7 @@
 
 
 
-	<script src="https://polarisxu.studygolang.com/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw=" crossorigin="anonymous"></script>
+	<script src="https://polarisxu.studygolang.com/js/main.min.4eaa15feccc672488716f0338ac605e08c7553ce0ce175e13fa00a873636bf98.js" integrity="sha256-TqoV/szGckiHFvAzisYF4Ix1U84M4XXhP6AKhzY2v5g=" crossorigin="anonymous"></script>
 	<script>
 var _hmt = _hmt || [];
 (function() {

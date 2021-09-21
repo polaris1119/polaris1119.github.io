@@ -8,20 +8,16 @@
 	<meta name="theme-color" content="#fcfcfc">
 	<meta name="msapplication-TileColor" content="#fcfcfc">
 <meta itemprop="name" content="Go 1.17 新特性：Module 有哪些变化？">
-<meta itemprop="description" content="大家好，我是 polarisxu。 自从 Go1.11 增加 Go Module 以来，每个版本都在不断改进 Module。Go1.17 也不例外。这次最主要的变化有两点： Module graph pruning：Module 依赖图修剪 Lazy Loading：Module 延迟加载 此外还有 Deprecated 注释等。本文就一起探究下这些新变化，因为有人没看懂，不知道这些变化是什么意思。 01 Module 依赖图修剪 要搞懂这个知识点，需要对比 1.17 之前的情况。 注意，">
-<meta itemprop="datePublished" content="2021-08-21T22:10:00+08:00" />
+<meta itemprop="description" content="大家好，我是 polarisxu。 自从 Go1.11 增加 Go Module 以来，每个版本都在不断改进 Module。Go1.17 也不例外。这次最主要的变化有两点： Module graph pruning：Module 依赖图修剪 Lazy Loading：Module 延迟加载 此外还有 Deprecated 注释等。本文就一起探究下这些新变化，因为有人没看懂，不知道这些变化是什么意思。 01 Module 依赖图修剪 要搞懂这个知识点，需要对比 1.17 之前的情况。 注意，"><meta itemprop="datePublished" content="2021-08-21T22:10:00+08:00" />
 <meta itemprop="dateModified" content="2021-08-21T22:10:00+08:00" />
-<meta itemprop="wordCount" content="1892">
-
-
-
-<meta itemprop="keywords" content="Go,Module," />
-<meta property="og:title" content="Go 1.17 新特性：Module 有哪些变化？" />
+<meta itemprop="wordCount" content="1885">
+<meta itemprop="keywords" content="Go,Module," /><meta property="og:title" content="Go 1.17 新特性：Module 有哪些变化？" />
 <meta property="og:description" content="大家好，我是 polarisxu。 自从 Go1.11 增加 Go Module 以来，每个版本都在不断改进 Module。Go1.17 也不例外。这次最主要的变化有两点： Module graph pruning：Module 依赖图修剪 Lazy Loading：Module 延迟加载 此外还有 Deprecated 注释等。本文就一起探究下这些新变化，因为有人没看懂，不知道这些变化是什么意思。 01 Module 依赖图修剪 要搞懂这个知识点，需要对比 1.17 之前的情况。 注意，" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/dynamic/go1.17-module/" />
+<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/dynamic/go1.17-module/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-08-21T22:10:00+08:00" />
 <meta property="article:modified_time" content="2021-08-21T22:10:00+08:00" />
+
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Go 1.17 新特性：Module 有哪些变化？"/>
 <meta name="twitter:description" content="大家好，我是 polarisxu。 自从 Go1.11 增加 Go Module 以来，每个版本都在不断改进 Module。Go1.17 也不例外。这次最主要的变化有两点： Module graph pruning：Module 依赖图修剪 Lazy Loading：Module 延迟加载 此外还有 Deprecated 注释等。本文就一起探究下这些新变化，因为有人没看懂，不知道这些变化是什么意思。 01 Module 依赖图修剪 要搞懂这个知识点，需要对比 1.17 之前的情况。 注意，"/>
@@ -104,7 +100,7 @@
 <p>很显然，对我们的项目 studymod 来说，模块 c 的代码根本没用上。Go 1.17 对 module 的改进主要就是在这种没用上的模块上。</p>
 <h3 id="基于-go116">基于 Go1.16<a href="#基于-go116" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>假定在 <code>$HOME</code> 下创建一个新目录 gomod116，构建如下目录结构：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>xuxinhua@/Users/xuxinhua/gomod116<span class="o">]</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>xuxinhua@/Users/xuxinhua/gomod116<span class="o">]</span>
 $ tree -L <span class="m">3</span>
 .
 ├── a
@@ -118,7 +114,7 @@ $ tree -L <span class="m">3</span>
 │   └── c.go
 └── studymod.go
 </code></pre></div><p>在 Go 文件中只是简单的定义包和 import。几个 go 文件的内容分别如下：</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// x.go
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// x.go
 </span><span class="c1"></span><span class="kn">package</span> <span class="nx">x</span>
 
 <span class="kn">import</span> <span class="nx">_</span> <span class="s">&#34;b&#34;</span>
@@ -140,7 +136,7 @@ $ tree -L <span class="m">3</span>
 <span class="kn">import</span> <span class="nx">_</span> <span class="s">&#34;a/x&#34;</span>
 </code></pre></div><p>进入 gomod116 目录，将 Go 版本切换到 Go1.16.x（多版本发挥作用了，多版本问题，可以看看这篇文章：<a href="https://mp.weixin.qq.com/s/yTblk9Js1Zcq5aWVcYGjOA" target="_blank" rel="noopener">终于找到了一款我喜欢的安装和管理 Go 版本的工具</a>
 ），然后执行下列命令：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ go mod init studymod
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ go mod init studymod
 $ <span class="nb">cd</span> a
 $ go mod init a
 $ <span class="nb">cd</span> ../b
@@ -148,7 +144,7 @@ $ go mod init b
 $ <span class="nb">cd</span> ../c
 $ go mod init c
 </code></pre></div><p>因为模块 a 依赖模块 b 和 c，往 a/go.mod 增加如下代码：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">module a
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">module a
 
 go 1.16
 
@@ -157,7 +153,7 @@ require <span class="o">(</span>
     c v0.1.0
 <span class="o">)</span>
 </code></pre></div><p>在 gomod116 根目录的 go.mod 增加如下代码：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">module studymod
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">module studymod
 
 go 1.16
 
@@ -170,22 +166,22 @@ replace <span class="o">(</span>
 <span class="o">)</span>
 </code></pre></div><p>因为 studymod 只直接依赖模块 a。replace 部分可以忽略，只是为了本地能够正常引入模块。</p>
 <p>此时，在 gomod116 目录下执行 go build，如果不报错，表示一切正常，我们可以执行如下命令看到依赖关系：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ go mod graph
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ go mod graph
 studymod a@v0.1.0
 a@v0.1.0 b@v0.1.0
 a@v0.1.0 c@v0.1.0
 </code></pre></div><p>studymod 依赖 a，a 依赖 b 和 c。</p>
 <p>但我们知道，studymod 模块实际根本不需要模块 c，因此，我们尝试在 studymod 模块中删除模块 c 的引用，即删除 go.mod 中 replace 部分的 <code> c v0.1.0 =&gt; ./c</code>，再次执行 go build：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ go build
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ go build
 go: a@v0.1.0 requires
 	c@v0.1.0: missing go.sum entry<span class="p">;</span> to add it:
 	go mod download c
 </code></pre></div><p>可见模块 c 不能少。（验证后，记得将 go.mod 恢复原样）</p>
 <h3 id="基于-go117">基于 Go1.17<a href="#基于-go117" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>现在我们基于 Go1.17 做类似的验证，将 Go 切到 1.17，执行如下命令，将 gomod116 拷贝一份：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ cp -rf gomod116 gomod117
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ cp -rf gomod116 gomod117
 </code></pre></div><p>然后进入 gomod117 目录，将 go.mod 的 版本由 1.16 改为 1.17：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">module studymod
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">module studymod
 
 go 1.17
 
@@ -197,7 +193,7 @@ replace <span class="o">(</span>
     c v0.1.0 <span class="o">=</span>&gt; ./c
 <span class="o">)</span>
 </code></pre></div><p>接着执行 go mod tidy，发现 go.mod 变成这样：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">module studymod
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">module studymod
 
 go 1.17
 
@@ -210,9 +206,10 @@ replace <span class="o">(</span>
         b v0.1.0 <span class="o">=</span>&gt; ./b
         c v0.1.0 <span class="o">=</span>&gt; ./c
 <span class="o">)</span>
-</code></pre></div><p>多了一行 require，记录了 module studymod 的间接依赖：module <a href="mailto:b@v0.1.0">b@v0.1.0</a>。执行 go build 一切正常。</p>
+</code></pre></div><p>多了一行 require，记录了 module studymod 的间接依赖：module <a href="mailto:b@v0.1.0">b@v0.1.0</a>
+。执行 go build 一切正常。</p>
 <p>跟 Go1.16 一样，删除掉 <code>c v0.1.0 =&gt; ./c</code> 这行，再次执行 go build，依然正常。这就是依赖图裁剪，再看依赖关系，跟 Go1.16 是不一样的。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ go mod graph
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ go mod graph
 studymod a@v0.1.0
 studymod b@v0.1.0
 a@v0.1.0 b@v0.1.0
@@ -220,8 +217,9 @@ a@v0.1.0 c@v0.1.0
 </code></pre></div><h3 id="这么做的优劣">这么做的优劣<a href="#这么做的优劣" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>这么做是基于社区的反馈，有兴趣的可以看看这个提案：<a href="https://go.googlesource.com/proposal/&#43;/master/design/36460-lazy-module-loading.md" target="_blank" rel="noopener">Proposal: Lazy Module Loading</a>
 ，这也是合理的，毕竟没有用到的代码为什么一定需要呢？</p>
-<p>此外，裁剪后，go.mod 中会包含入更多的依赖项（完整的依赖列表），新包含的依赖项单独放在一个 require 下。可以通过 <a href="https://github.com/studygolang/studygolang">https://github.com/studygolang/studygolang</a> 试验下。下载该代码后，执行如下命令：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ go mod tidy -go<span class="o">=</span>1.17
+<p>此外，裁剪后，go.mod 中会包含入更多的依赖项（完整的依赖列表），新包含的依赖项单独放在一个 require 下。可以通过 <a href="https://github.com/studygolang/studygolang" target="_blank" rel="noopener">https://github.com/studygolang/studygolang</a>
+ 试验下。下载该代码后，执行如下命令：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ go mod tidy -go<span class="o">=</span>1.17
 </code></pre></div><p>diff 后，在原来的基础上多出了如下的 require：</p>
 <p><p class="md__image">
   <img src="../imgs/study1.17mod02.png"
@@ -234,7 +232,7 @@ a@v0.1.0 c@v0.1.0
 <p>理解了上面依赖图的裁剪，延迟加载就一句话：那些根本没有用上的模块（比如上面例子中的模块 c），Go 1.17 后，Go 命令不会去读取其 go.mod 文件。如果之后需要了，再去加载。</p>
 <h2 id="03-deprecated-注释">03 Deprecated 注释<a href="#03-deprecated-注释" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>Go1.17 go.mod 中支持 Deprecated 注释，用来标明该模块废弃了。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">// Deprecated: use example.com/mod/v2 instead.
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">// Deprecated: use example.com/mod/v2 instead.
 module example.com/mod
 </code></pre></div><p>对于那些使用了被废弃的 module 的 go 项目，go list、go get 命令都会给出 warning。</p>
 <p>看过我这篇文章：<a href="https://mp.weixin.qq.com/s/mBJ3hQ6oR1V9YtdXpkTnow" target="_blank" rel="noopener">《从 go-chi 框架撤回所有主版本聊 Go1.16 的新特性》</a>
@@ -248,7 +246,8 @@ module example.com/mod
 <p>而 Deprecated 是用来作废整个 module 的，也就是说，不能废弃某个 minor 或 patch 版本。Deprecated 更多用来提示使用者升级到更新的 major 版本，比如要废弃 v1，希望大家升级到 v2，就应该使用 Deprecated。</p>
 <h2 id="04-总结">04 总结<a href="#04-总结" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>还有其他一些小的变动，这里不一一列举。提醒下大家，从 Go1.16 版本开始，下载安装 Go 二进制程序，不再使用 go get，而是 go install，go get 只用来下载普通包。</p>
-<p>因为 module 越来越完善，官方针对 module 也有更完整的文档：<a href="https://docs.studygolang.com/ref/mod">https://docs.studygolang.com/ref/mod</a>。</p>
+<p>因为 module 越来越完善，官方针对 module 也有更完整的文档：<a href="https://docs.studygolang.com/ref/mod" target="_blank" rel="noopener">https://docs.studygolang.com/ref/mod</a>
+。</p>
 
 			</div><div class="content">
 	<br>
@@ -265,9 +264,9 @@ module example.com/mod
 	
 	<li><a href="/posts/go/dynamic/pkg-go-dev-plan/">更懂 module 的包资源中心：关于 pkg.go.dev 的前世今生和未来</a></li>
 	
-	<li><a href="/posts/go/dynamic/1.17-golang-go-get-updated/">Go1.17 新特性：go get 变了</a></li>
+	<li><a href="/posts/go/fiber/go-fiber-basic-tutorial01/">Go Fiber 框架系列教程 01: 和 Express 对比学习</a></li>
 	
-	<li><a href="/posts/go/dynamic/go-1-17-new-features-added-to-testing/">Go1.17 新特性：testing 包的相关变化</a></li>
+	<li><a href="/posts/go/dynamic/1.17-golang-go-get-updated/">Go1.17 新特性：go get 变了</a></li>
 	
 	</ul>
 </div>
@@ -277,7 +276,7 @@ module example.com/mod
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://polarisxu.studygolang.com/tags/go">Go</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/module">Module</a></span>
 				</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1892 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1885 字</p>
 				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2021-08-21 22:10 &#43;0800</p>
 			</footer>
 		</article>
@@ -328,7 +327,7 @@ module example.com/mod
 
 
 
-	<script src="https://polarisxu.studygolang.com/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw=" crossorigin="anonymous"></script>
+	<script src="https://polarisxu.studygolang.com/js/main.min.4eaa15feccc672488716f0338ac605e08c7553ce0ce175e13fa00a873636bf98.js" integrity="sha256-TqoV/szGckiHFvAzisYF4Ix1U84M4XXhP6AKhzY2v5g=" crossorigin="anonymous"></script>
 	<script>
 var _hmt = _hmt || [];
 (function() {

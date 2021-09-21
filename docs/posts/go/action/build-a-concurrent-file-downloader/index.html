@@ -8,20 +8,16 @@
 	<meta name="theme-color" content="#fcfcfc">
 	<meta name="msapplication-TileColor" content="#fcfcfc">
 <meta itemprop="name" content="Go项目实战：一步步构建一个并发文件下载器">
-<meta itemprop="description" content="大家好，我是 polarisxu。 今天为大家带来一个实战项目。建议你一定要动手实践。 在往下看之前，你不妨思考下，用 Go 如何实现一个并发下载器。（我之前有推荐过一个类似的开源项目：推荐三个Go实战开源项目 ） 01 原理 对于服务器上的某个文件，我们要并发下载到本地，很容易想到，应该将文件分成多个部分，然后开多个 goroutine 并发地去下载，最后将这多个部分合并成一个文件，实现并发下载的">
-<meta itemprop="datePublished" content="2021-07-03T22:10:00+08:00" />
+<meta itemprop="description" content="大家好，我是 polarisxu。 今天为大家带来一个实战项目。建议你一定要动手实践。 在往下看之前，你不妨思考下，用 Go 如何实现一个并发下载器。（我之前有推荐过一个类似的开源项目：推荐三个Go实战开源项目 ） 01 原理 对于服务器上的某个文件，我们要并发下载到本地，很容易想到，应该将文件分成多个部分，然后开多个 goroutine 并发地去下载，最后将这多个部分合并成一个文件，实现并发下载的"><meta itemprop="datePublished" content="2021-07-03T22:10:00+08:00" />
 <meta itemprop="dateModified" content="2021-07-03T22:10:00+08:00" />
 <meta itemprop="wordCount" content="2549">
-
-
-
-<meta itemprop="keywords" content="Go,并发," />
-<meta property="og:title" content="Go项目实战：一步步构建一个并发文件下载器" />
+<meta itemprop="keywords" content="Go,并发," /><meta property="og:title" content="Go项目实战：一步步构建一个并发文件下载器" />
 <meta property="og:description" content="大家好，我是 polarisxu。 今天为大家带来一个实战项目。建议你一定要动手实践。 在往下看之前，你不妨思考下，用 Go 如何实现一个并发下载器。（我之前有推荐过一个类似的开源项目：推荐三个Go实战开源项目 ） 01 原理 对于服务器上的某个文件，我们要并发下载到本地，很容易想到，应该将文件分成多个部分，然后开多个 goroutine 并发地去下载，最后将这多个部分合并成一个文件，实现并发下载的" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/action/build-a-concurrent-file-downloader/" />
+<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/action/build-a-concurrent-file-downloader/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-07-03T22:10:00+08:00" />
 <meta property="article:modified_time" content="2021-07-03T22:10:00+08:00" />
+
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Go项目实战：一步步构建一个并发文件下载器"/>
 <meta name="twitter:description" content="大家好，我是 polarisxu。 今天为大家带来一个实战项目。建议你一定要动手实践。 在往下看之前，你不妨思考下，用 Go 如何实现一个并发下载器。（我之前有推荐过一个类似的开源项目：推荐三个Go实战开源项目 ） 01 原理 对于服务器上的某个文件，我们要并发下载到本地，很容易想到，应该将文件分成多个部分，然后开多个 goroutine 并发地去下载，最后将这多个部分合并成一个文件，实现并发下载的"/>
@@ -90,14 +86,14 @@
 <p>现在的问题是，服务器上的一个文件，我们怎么做到分成多个呢？</p>
 <p>这需要 HTTP 协议相关知识了。</p>
 <p>HTTP 协议有一个响应头：Accept-Ranges，服务器通过该头来标识自身支持部分请求（partial requests），也叫范围请求。如果服务端支持部分请求，我们就可以实现并发下载。该头有两个可能的值：</p>
-<pre><code>Accept-Ranges: bytes
+<pre tabindex="0"><code>Accept-Ranges: bytes
 Accept-Ranges: none
 </code></pre><ul>
 <li>none：不支持任何部分请求单位，由于其等同于没有返回此头部，因此很少使用。不过一些浏览器，比如 IE9，会依据该头部去禁用或者移除下载管理器的暂停按钮。</li>
 <li>bytes：部分请求的单位是 bytes （字节）。</li>
 </ul>
 <p>所以，我们在并发下载之前，应该先发起一个 Head 请求，来确认服务端是否支持部分请求。比如：</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">resp</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">http</span><span class="p">.</span><span class="nf">Head</span><span class="p">(</span><span class="s">&#34;https://studygolang.com/dl/golang/go1.16.5.src.tar.gz&#34;</span><span class="p">)</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="nx">resp</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">http</span><span class="p">.</span><span class="nf">Head</span><span class="p">(</span><span class="s">&#34;https://studygolang.com/dl/golang/go1.16.5.src.tar.gz&#34;</span><span class="p">)</span>
 <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
   <span class="k">return</span> <span class="nx">err</span>
 <span class="p">}</span>
@@ -106,10 +102,11 @@ Accept-Ranges: none
   <span class="c1">// 支持部分请求
 </span><span class="c1"></span><span class="p">}</span>
 </code></pre></div><p>确认了服务器支持部分请求，接下来就是如何进行部分请求。</p>
-<p>这就用到 HTTP 的一个请求头部：Range。（详情参考：<a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Range">https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Range</a>）</p>
+<p>这就用到 HTTP 的一个请求头部：Range。（详情参考：<a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Range" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Range</a>
+）</p>
 <p>Range 告知服务器返回文件的哪一部分。在一个  Range 头部中，可以一次性请求多个部分，服务器会以 multipart 文件的形式将其返回。如果服务器返回的是范围响应，需要使用 206 Partial Content 状态码。假如所请求的范围不合法，那么服务器会返回  416 Range Not Satisfiable 状态码，表示客户端错误。服务器允许忽略  Range  首部，从而返回整个文件，状态码用 200。</p>
 <p>具体语法：</p>
-<pre><code>Range: &lt;unit&gt;=&lt;range-start&gt;-
+<pre tabindex="0"><code>Range: &lt;unit&gt;=&lt;range-start&gt;-
 Range: &lt;unit&gt;=&lt;range-start&gt;-&lt;range-end&gt;
 Range: &lt;unit&gt;=&lt;range-start&gt;-&lt;range-end&gt;, &lt;range-start&gt;-&lt;range-end&gt;
 Range: &lt;unit&gt;=&lt;range-start&gt;-&lt;range-end&gt;, &lt;range-start&gt;-&lt;range-end&gt;, &lt;range-start&gt;-&lt;range-end&gt;
@@ -128,18 +125,18 @@ Range: &lt;unit&gt;=&lt;range-start&gt;-&lt;range-end&gt;, &lt;range-start&gt;-&
 </li>
 </ul>
 <p>例如：</p>
-<pre><code>Range: bytes=200-1000, 2000-6576, 19000-
+<pre tabindex="0"><code>Range: bytes=200-1000, 2000-6576, 19000-
 </code></pre><p>掌握了以上知识点，最后要做的就是将下载下来的各个部分合并成一个文件。需要注意各个部分的顺序，比如根据顺序，按 1、2、3 等编号。</p>
 <h2 id="02-动手实现一个">02 动手实现一个<a href="#02-动手实现一个" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>知道了原理不代表你真的就会了，我们应该实际动手实现一个，加深理解。</p>
 <p>在本地某个目录下创建目录：downloader。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ mkdir downloader
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ mkdir downloader
 $ <span class="nb">cd</span> downloader
 $ go mod init github.com/polaris1119/downloader
 </code></pre></div><h3 id="命令行参数控制">命令行参数控制<a href="#命令行参数控制" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>为了让工具更好用，我们应该支持命令行参数，而不是代码写死一个，比如要下载的 URL、并发数、输出的文件名等。关于命令行参数控制，除了使用标准库 flag，我比较喜欢 github.com/urfave/cli，最新版本 v2。</p>
 <p>创建一个文件 main.go，内容如下：</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
 	<span class="s">&#34;log&#34;</span>
@@ -186,7 +183,7 @@ $ go mod init github.com/polaris1119/downloader
 	<span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div><p>执行 go mod tidy，下载必要的包。然后执行：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ go run main.go -h
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ go run main.go -h
 NAME:
    downloader - File concurrency downloader
 
@@ -204,7 +201,7 @@ GLOBAL OPTIONS:
 </code></pre></div><p>关于 cli 这个库的使用，可以参阅官方文档，写的很详细，也有很多例子。</p>
 <h3 id="检查是否支持并发下载">检查是否支持并发下载<a href="#检查是否支持并发下载" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>创建另外一个文件 downloader.go，定义一个结构体 Dowloader：</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kd">type</span> <span class="nx">Downloader</span> <span class="kd">struct</span> <span class="p">{</span>
 	<span class="nx">concurrency</span> <span class="kt">int</span>
@@ -214,7 +211,7 @@ GLOBAL OPTIONS:
 	<span class="k">return</span> <span class="o">&amp;</span><span class="nx">Downloader</span><span class="p">{</span><span class="nx">concurrency</span><span class="p">:</span> <span class="nx">concurrency</span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div><p>为该结构体增加 Download 方法：</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="p">(</span><span class="nx">d</span> <span class="o">*</span><span class="nx">Downloader</span><span class="p">)</span> <span class="nf">Download</span><span class="p">(</span><span class="nx">strURL</span><span class="p">,</span> <span class="nx">filename</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="p">(</span><span class="nx">d</span> <span class="o">*</span><span class="nx">Downloader</span><span class="p">)</span> <span class="nf">Download</span><span class="p">(</span><span class="nx">strURL</span><span class="p">,</span> <span class="nx">filename</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
 	<span class="k">if</span> <span class="nx">filename</span> <span class="o">==</span> <span class="s">&#34;&#34;</span> <span class="p">{</span>
 		<span class="nx">filename</span> <span class="p">=</span> <span class="nx">path</span><span class="p">.</span><span class="nf">Base</span><span class="p">(</span><span class="nx">strURL</span><span class="p">)</span>
 	<span class="p">}</span>
@@ -245,7 +242,7 @@ GLOBAL OPTIONS:
 <p>当支持部分请求时，文件总大小通过 Head 请求的响应中的 ContentLength 可以获得。有了文件总大小和并发数，就可以知道每个部分的大小了。</p>
 <h3 id="并发下载">并发下载<a href="#并发下载" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>这部分第一个要点是如何发起部分请求：</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">req</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">http</span><span class="p">.</span><span class="nf">NewRequest</span><span class="p">(</span><span class="s">&#34;GET&#34;</span><span class="p">,</span> <span class="s">&#34;https://apache.claz.org/zookeeper/zookeeper-3.7.0/apache-zookeeper-3.7.0-bin.tar.gz&#34;</span><span class="p">,</span> <span class="kc">nil</span><span class="p">)</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="nx">req</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">http</span><span class="p">.</span><span class="nf">NewRequest</span><span class="p">(</span><span class="s">&#34;GET&#34;</span><span class="p">,</span> <span class="s">&#34;https://apache.claz.org/zookeeper/zookeeper-3.7.0/apache-zookeeper-3.7.0-bin.tar.gz&#34;</span><span class="p">,</span> <span class="kc">nil</span><span class="p">)</span>
 <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
     <span class="k">return</span> <span class="nx">err</span>
 <span class="p">}</span>
@@ -255,7 +252,7 @@ GLOBAL OPTIONS:
 
 <span class="nx">res</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">http</span><span class="p">.</span><span class="nx">DefaultClient</span><span class="p">.</span><span class="nf">Do</span><span class="p">(</span><span class="nx">req</span><span class="p">)</span>
 </code></pre></div><p>我们可以将其封装成一个方法：</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="p">(</span><span class="nx">d</span> <span class="o">*</span><span class="nx">Downloader</span><span class="p">)</span> <span class="nf">downloadPartial</span><span class="p">(</span><span class="nx">strURL</span><span class="p">,</span> <span class="nx">filename</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">rangeStart</span><span class="p">,</span> <span class="nx">rangeEnd</span><span class="p">,</span> <span class="nx">i</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="p">(</span><span class="nx">d</span> <span class="o">*</span><span class="nx">Downloader</span><span class="p">)</span> <span class="nf">downloadPartial</span><span class="p">(</span><span class="nx">strURL</span><span class="p">,</span> <span class="nx">filename</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">rangeStart</span><span class="p">,</span> <span class="nx">rangeEnd</span><span class="p">,</span> <span class="nx">i</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
 	<span class="k">if</span> <span class="nx">rangeStart</span> <span class="o">&gt;=</span> <span class="nx">rangeEnd</span> <span class="p">{</span>
 		<span class="k">return</span>
 	<span class="p">}</span>
@@ -305,7 +302,7 @@ GLOBAL OPTIONS:
 <li>rangeStart 和 rangeEnd 分别表示 Range 的开始和结束；</li>
 </ul>
 <p>然后就是 multiDownload 方法中怎么分部分，这和并发请求多个 URL 很类似，使用 sync.WaitGroup 进行控制：</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="p">(</span><span class="nx">d</span> <span class="o">*</span><span class="nx">Downloader</span><span class="p">)</span> <span class="nf">multiDownload</span><span class="p">(</span><span class="nx">strURL</span><span class="p">,</span> <span class="nx">filename</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">contentLen</span> <span class="kt">int</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="p">(</span><span class="nx">d</span> <span class="o">*</span><span class="nx">Downloader</span><span class="p">)</span> <span class="nf">multiDownload</span><span class="p">(</span><span class="nx">strURL</span><span class="p">,</span> <span class="nx">filename</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">contentLen</span> <span class="kt">int</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
 	<span class="nx">partSize</span> <span class="o">:=</span> <span class="nx">contentLen</span> <span class="o">/</span> <span class="nx">d</span><span class="p">.</span><span class="nx">concurrency</span>
 
   <span class="c1">// 创建部分文件的存放目录
@@ -354,7 +351,7 @@ GLOBAL OPTIONS:
 <li>所有部分都请求完成后，需要进行合并；</li>
 </ul>
 <p>因为把每部分单独保存为文件了，所以合并只需要按照顺序处理这些文件即可：</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="p">(</span><span class="nx">d</span> <span class="o">*</span><span class="nx">Downloader</span><span class="p">)</span> <span class="nf">merge</span><span class="p">(</span><span class="nx">filename</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="p">(</span><span class="nx">d</span> <span class="o">*</span><span class="nx">Downloader</span><span class="p">)</span> <span class="nf">merge</span><span class="p">(</span><span class="nx">filename</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
 	<span class="nx">destFile</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">os</span><span class="p">.</span><span class="nf">OpenFile</span><span class="p">(</span><span class="nx">filename</span><span class="p">,</span> <span class="nx">os</span><span class="p">.</span><span class="nx">O_CREATE</span><span class="p">|</span><span class="nx">os</span><span class="p">.</span><span class="nx">O_WRONLY</span><span class="p">,</span> <span class="mo">0666</span><span class="p">)</span>
 	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
 		<span class="k">return</span> <span class="nx">err</span>
@@ -376,14 +373,14 @@ GLOBAL OPTIONS:
 <span class="p">}</span>
 </code></pre></div><h3 id="连接程序">连接程序<a href="#连接程序" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>到这里，程序的核心部分已经完成。接下来该在 main.go 中的 Action 作如下处理：</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">Action</span><span class="p">:</span> <span class="kd">func</span><span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">cli</span><span class="p">.</span><span class="nx">Context</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="nx">Action</span><span class="p">:</span> <span class="kd">func</span><span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">cli</span><span class="p">.</span><span class="nx">Context</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
   <span class="nx">strURL</span> <span class="o">:=</span> <span class="nx">c</span><span class="p">.</span><span class="nf">String</span><span class="p">(</span><span class="s">&#34;url&#34;</span><span class="p">)</span>
   <span class="nx">filename</span> <span class="o">:=</span> <span class="nx">c</span><span class="p">.</span><span class="nf">String</span><span class="p">(</span><span class="s">&#34;output&#34;</span><span class="p">)</span>
   <span class="nx">concurrency</span> <span class="o">:=</span> <span class="nx">c</span><span class="p">.</span><span class="nf">Int</span><span class="p">(</span><span class="s">&#34;concurrency&#34;</span><span class="p">)</span>
   <span class="k">return</span> <span class="nf">NewDownloader</span><span class="p">(</span><span class="nx">concurrency</span><span class="p">).</span><span class="nf">Download</span><span class="p">(</span><span class="nx">strURL</span><span class="p">,</span> <span class="nx">filename</span><span class="p">)</span>
 <span class="p">},</span>
 </code></pre></div><p>到这里可以运行测试下：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">go run . --url https://apache.claz.org/zookeeper/zookeeper-3.7.0/apache-zookeeper-3.7.0-bin.tar.gz
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">go run . --url https://apache.claz.org/zookeeper/zookeeper-3.7.0/apache-zookeeper-3.7.0-bin.tar.gz
 </code></pre></div><p>不出意外的话文件会下载成功。</p>
 <h2 id="03-总结">03 总结<a href="#03-总结" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>实现了基本功能，读者朋友们可以进一步做优化、完善。比如：</p>
@@ -398,7 +395,8 @@ GLOBAL OPTIONS:
     alt=""  />
 </p>
 </p>
-<p>这个实现的完整代码我放在了 GitHub：<a href="https://github.com/polaris1119/downloader">https://github.com/polaris1119/downloader</a>。</p>
+<p>这个实现的完整代码我放在了 GitHub：<a href="https://github.com/polaris1119/downloader" target="_blank" rel="noopener">https://github.com/polaris1119/downloader</a>
+。</p>
 <p>还有两点大家可以注意下：</p>
 <ul>
 <li>并发下载并不一定总是比简单下载快，一般文件越大，并发下载的优势才能体现。不过，并发下载可以端点续传；</li>
@@ -417,13 +415,13 @@ GLOBAL OPTIONS:
 	
 	<li><a href="/posts/go/action/studygolang-downloader-bug/">网友很强大，发现了Go并发下载的Bug</a></li>
 	
+	<li><a href="/posts/go/fiber/go-fiber-basic-tutorial01/">Go Fiber 框架系列教程 01: 和 Express 对比学习</a></li>
+	
 	<li><a href="/posts/go/action/go-illegal-private-import/">Go Module：私有不合规库怎么解决引用问题</a></li>
 	
 	<li><a href="/posts/go/dynamic/1.17-golang-go-get-updated/">Go1.17 新特性：go get 变了</a></li>
 	
 	<li><a href="/posts/go/dynamic/go-1-17-new-features-added-to-testing/">Go1.17 新特性：testing 包的相关变化</a></li>
-	
-	<li><a href="/posts/go/action/chained-channel-operations-in-a-single-select-case/">StackOverflow 上关于 Go select 死锁的问题</a></li>
 	
 	</ul>
 </div>
@@ -484,7 +482,7 @@ GLOBAL OPTIONS:
 
 
 
-	<script src="https://polarisxu.studygolang.com/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw=" crossorigin="anonymous"></script>
+	<script src="https://polarisxu.studygolang.com/js/main.min.4eaa15feccc672488716f0338ac605e08c7553ce0ce175e13fa00a873636bf98.js" integrity="sha256-TqoV/szGckiHFvAzisYF4Ix1U84M4XXhP6AKhzY2v5g=" crossorigin="anonymous"></script>
 	<script>
 var _hmt = _hmt || [];
 (function() {

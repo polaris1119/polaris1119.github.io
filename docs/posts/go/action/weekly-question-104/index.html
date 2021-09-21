@@ -8,20 +8,16 @@
 	<meta name="theme-color" content="#fcfcfc">
 	<meta name="msapplication-TileColor" content="#fcfcfc">
 <meta itemprop="name" content="一道关于 len 函数的诡异 Go 面试题解析">
-<meta itemprop="description" content="大家好，我是 polarisxu。 在 Go语言爱好者周刊第 104 期有一道题目，以下代码输出什么： package main func main() { var x *struct { s [][32]byte } println(len(x.s[99])) } 答题结果如下： 正确率只有 16%。 本文就讲解下为什么结果是 32。 01 解析题目 先剖析下这段代码，x 变量： var x *struct { s [][32]byte } 注意这里不是定义一个结构体类型，而是定义一个结构体类型指针变量，即 x 是一个指针，指针类型是一个匿名结构体。很显然，x 的值是 nil，因">
-<meta itemprop="datePublished" content="2021-07-25T22:22:00+08:00" />
+<meta itemprop="description" content="大家好，我是 polarisxu。 在 Go语言爱好者周刊第 104 期有一道题目，以下代码输出什么： package main func main() { var x *struct { s [][32]byte } println(len(x.s[99])) } 答题结果如下： 正确率只有 16%。 本文就讲解下为什么结果是 32。 01 解析题目 先剖析下这段代码，x 变量： var x *struct { s [][32]byte } 注意这里不是定义一个结构体类型，而是定义一个结构体类型指针变量，即 x 是一个指针，指针类型是一个匿名结构体。很显然，x 的值是 nil，因"><meta itemprop="datePublished" content="2021-07-25T22:22:00+08:00" />
 <meta itemprop="dateModified" content="2021-07-25T22:22:00+08:00" />
 <meta itemprop="wordCount" content="1288">
-
-
-
-<meta itemprop="keywords" content="Go,面试题," />
-<meta property="og:title" content="一道关于 len 函数的诡异 Go 面试题解析" />
+<meta itemprop="keywords" content="Go,面试题," /><meta property="og:title" content="一道关于 len 函数的诡异 Go 面试题解析" />
 <meta property="og:description" content="大家好，我是 polarisxu。 在 Go语言爱好者周刊第 104 期有一道题目，以下代码输出什么： package main func main() { var x *struct { s [][32]byte } println(len(x.s[99])) } 答题结果如下： 正确率只有 16%。 本文就讲解下为什么结果是 32。 01 解析题目 先剖析下这段代码，x 变量： var x *struct { s [][32]byte } 注意这里不是定义一个结构体类型，而是定义一个结构体类型指针变量，即 x 是一个指针，指针类型是一个匿名结构体。很显然，x 的值是 nil，因" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/action/weekly-question-104/" />
+<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/action/weekly-question-104/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-07-25T22:22:00+08:00" />
 <meta property="article:modified_time" content="2021-07-25T22:22:00+08:00" />
+
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="一道关于 len 函数的诡异 Go 面试题解析"/>
 <meta name="twitter:description" content="大家好，我是 polarisxu。 在 Go语言爱好者周刊第 104 期有一道题目，以下代码输出什么： package main func main() { var x *struct { s [][32]byte } println(len(x.s[99])) } 答题结果如下： 正确率只有 16%。 本文就讲解下为什么结果是 32。 01 解析题目 先剖析下这段代码，x 变量： var x *struct { s [][32]byte } 注意这里不是定义一个结构体类型，而是定义一个结构体类型指针变量，即 x 是一个指针，指针类型是一个匿名结构体。很显然，x 的值是 nil，因"/>
@@ -83,7 +79,7 @@
 			<div class="content">
 				<p>大家好，我是 polarisxu。</p>
 <p>在 Go语言爱好者周刊第 104 期有一道题目，以下代码输出什么：</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
   <span class="kd">var</span> <span class="nx">x</span> <span class="o">*</span><span class="kd">struct</span> <span class="p">{</span>
@@ -102,11 +98,11 @@
 <p>本文就讲解下为什么结果是 32。</p>
 <h2 id="01-解析题目">01 解析题目<a href="#01-解析题目" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>先剖析下这段代码，x 变量：</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">var</span> <span class="nx">x</span> <span class="o">*</span><span class="kd">struct</span> <span class="p">{</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">var</span> <span class="nx">x</span> <span class="o">*</span><span class="kd">struct</span> <span class="p">{</span>
   <span class="nx">s</span> <span class="p">[][</span><span class="mi">32</span><span class="p">]</span><span class="kt">byte</span>
 <span class="p">}</span>
 </code></pre></div><p>注意这里不是定义一个结构体类型，而是定义一个结构体类型指针变量，即 x 是一个指针，指针类型是一个匿名结构体。很显然，x 的值是 nil，因为没有初始化，可以打印证实这一点。</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="s">&#34;fmt&#34;</span>
 
@@ -118,14 +114,14 @@
 	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;x.Type = %T; x.Value= %v\n&#34;</span><span class="p">,</span> <span class="nx">x</span><span class="p">,</span> <span class="nx">x</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre></div><p>输出：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">x.Type <span class="o">=</span> *struct <span class="o">{</span> s <span class="o">[][</span>32<span class="o">]</span>uint8 <span class="o">}</span><span class="p">;</span> x.Value<span class="o">=</span> &lt;nil&gt;
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">x.Type <span class="o">=</span> *struct <span class="o">{</span> s <span class="o">[][</span>32<span class="o">]</span>uint8 <span class="o">}</span><span class="p">;</span> x.Value<span class="o">=</span> &lt;nil&gt;
 </code></pre></div><p>这也是为什么 48% 的人选择 A （panic） 的原因，毕竟 x 是 nil，panic 很自然的。比如这样就会 panic：</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nb">println</span><span class="p">(</span><span class="nx">x</span><span class="p">.</span><span class="nx">s</span><span class="p">)</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="nb">println</span><span class="p">(</span><span class="nx">x</span><span class="p">.</span><span class="nx">s</span><span class="p">)</span>
 <span class="c1">// panic: runtime error: invalid memory address or nil pointer dereference
 </span></code></pre></div><p>相应的，fmt.Println(x.s[99]) 也会 panic。但为什么 <code>len(x.s[99])</code> 就不 panic 了呢？所以得从 len 入手一探究竟。</p>
 <h2 id="02-len-详解">02 len 详解<a href="#02-len-详解" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>len 函数是一个内置类型，什么意思？就是由编译器实现的。它的参数可以接收多种类型，有泛型的味道。</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nb">len</span><span class="p">(</span><span class="nx">v</span> <span class="nx">Type</span><span class="p">)</span> <span class="kt">int</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nb">len</span><span class="p">(</span><span class="nx">v</span> <span class="nx">Type</span><span class="p">)</span> <span class="kt">int</span>
 </code></pre></div><p>关于它的说明，标准库文档有说明：</p>
 <blockquote>
 <p>内建函数 len 返回 v 的长度，这取决于具体类型：</p>
@@ -152,7 +148,7 @@
 <p>首先，x.s[99] 的类型是 <code>[32]byte</code>，它是一个数组，且表达式 <code>x.s[99]</code> 没有包含 channel 接收也不是函数调用，因此不会对  x.s[99] 进行求值，不求值自然不会 panic（想不明白？可以想成没有解引用操作）。也就是说，编译器能够在编译阶段分析出 x.s[99] 的类型是 [32]byte，且不需要对 x.s[99] 求值，因此直接返回数组的长度，即 32。</p>
 <h2 id="03-其他类似情况">03 其他类似情况<a href="#03-其他类似情况" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>类似这样不求值的情况还有没有？还真有。比如下面的代码：</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">var</span> <span class="nx">testdata</span> <span class="o">*</span><span class="kd">struct</span> <span class="p">{</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">var</span> <span class="nx">testdata</span> <span class="o">*</span><span class="kd">struct</span> <span class="p">{</span>
   <span class="nx">a</span> <span class="o">*</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span><span class="kt">int</span>
 <span class="p">}</span>
 <span class="k">for</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">_</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">testdata</span><span class="p">.</span><span class="nx">a</span> <span class="p">{</span>
@@ -163,7 +159,7 @@
 <p>&ldquo;range&rdquo; 子句中右侧的表达式被称为 range 表达式 ，它可以是数组、数组的指针、切片、字符串、map或是允许接收操作 的 channel。range 表达式会在开始此循环前被求值一次，但有一个例外：当存在最多一个迭代变量且 <code>len(x)</code> 是常量时，range 表达式是不被求值的。</p>
 <p>所以上面代码中 testdata.a 不会被求值，因为 len(testdata.a) 是常量。</p>
 <p>但如果改为这样：</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">var</span> <span class="nx">testdata</span> <span class="o">*</span><span class="kd">struct</span> <span class="p">{</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">var</span> <span class="nx">testdata</span> <span class="o">*</span><span class="kd">struct</span> <span class="p">{</span>
   <span class="nx">a</span> <span class="o">*</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span><span class="kt">int</span>
 <span class="p">}</span>
 <span class="k">for</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">j</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">testdata</span><span class="p">.</span><span class="nx">a</span> <span class="p">{</span>
@@ -245,7 +241,7 @@
 
 
 
-	<script src="https://polarisxu.studygolang.com/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw=" crossorigin="anonymous"></script>
+	<script src="https://polarisxu.studygolang.com/js/main.min.4eaa15feccc672488716f0338ac605e08c7553ce0ce175e13fa00a873636bf98.js" integrity="sha256-TqoV/szGckiHFvAzisYF4Ix1U84M4XXhP6AKhzY2v5g=" crossorigin="anonymous"></script>
 	<script>
 var _hmt = _hmt || [];
 (function() {

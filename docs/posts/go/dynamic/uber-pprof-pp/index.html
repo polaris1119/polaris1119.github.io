@@ -8,20 +8,16 @@
 	<meta name="theme-color" content="#fcfcfc">
 	<meta name="msapplication-TileColor" content="#fcfcfc">
 <meta itemprop="name" content="Uber 使用 Go 的规模这么大？！都自己定制的 Go 编译器了">
-<meta itemprop="description" content="大家好，我是站长 polarisxu。 今天看到 Uber 使用 Go 的情况，挺吃惊的，给大家分享下情况。 01 Uber 使用 Go 的情况 Uber 有数千个后端服务是使用 Go 实现的，它们运行在数百万个 CPU 内核上。因此，对于 Uber 来说，详细准确掌握 CPU 瓶颈至关重要。这不仅为了减少服务延迟，同时也能提高计算机运行效率。Uber 这个量级的规模，要求对代码和微观结构的影响有深入的了解。 02 定制 Go 编译器 其实说定制 Go 编译器">
-<meta itemprop="datePublished" content="2021-05-13T12:30:00+08:00" />
+<meta itemprop="description" content="大家好，我是站长 polarisxu。 今天看到 Uber 使用 Go 的情况，挺吃惊的，给大家分享下情况。 01 Uber 使用 Go 的情况 Uber 有数千个后端服务是使用 Go 实现的，它们运行在数百万个 CPU 内核上。因此，对于 Uber 来说，详细准确掌握 CPU 瓶颈至关重要。这不仅为了减少服务延迟，同时也能提高计算机运行效率。Uber 这个量级的规模，要求对代码和微观结构的影响有深入的了解。 02 定制 Go 编译器 其实说定制 Go 编译器"><meta itemprop="datePublished" content="2021-05-13T12:30:00+08:00" />
 <meta itemprop="dateModified" content="2021-05-13T12:30:00+08:00" />
 <meta itemprop="wordCount" content="933">
-
-
-
-<meta itemprop="keywords" content="Go,Uber,Profiler," />
-<meta property="og:title" content="Uber 使用 Go 的规模这么大？！都自己定制的 Go 编译器了" />
+<meta itemprop="keywords" content="Go,Uber,Profiler," /><meta property="og:title" content="Uber 使用 Go 的规模这么大？！都自己定制的 Go 编译器了" />
 <meta property="og:description" content="大家好，我是站长 polarisxu。 今天看到 Uber 使用 Go 的情况，挺吃惊的，给大家分享下情况。 01 Uber 使用 Go 的情况 Uber 有数千个后端服务是使用 Go 实现的，它们运行在数百万个 CPU 内核上。因此，对于 Uber 来说，详细准确掌握 CPU 瓶颈至关重要。这不仅为了减少服务延迟，同时也能提高计算机运行效率。Uber 这个量级的规模，要求对代码和微观结构的影响有深入的了解。 02 定制 Go 编译器 其实说定制 Go 编译器" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/dynamic/uber-pprof-pp/" />
+<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/dynamic/uber-pprof-pp/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-05-13T12:30:00+08:00" />
 <meta property="article:modified_time" content="2021-05-13T12:30:00+08:00" />
+
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Uber 使用 Go 的规模这么大？！都自己定制的 Go 编译器了"/>
 <meta name="twitter:description" content="大家好，我是站长 polarisxu。 今天看到 Uber 使用 Go 的情况，挺吃惊的，给大家分享下情况。 01 Uber 使用 Go 的情况 Uber 有数千个后端服务是使用 Go 实现的，它们运行在数百万个 CPU 内核上。因此，对于 Uber 来说，详细准确掌握 CPU 瓶颈至关重要。这不仅为了减少服务延迟，同时也能提高计算机运行效率。Uber 这个量级的规模，要求对代码和微观结构的影响有深入的了解。 02 定制 Go 编译器 其实说定制 Go 编译器"/>
@@ -102,8 +98,10 @@
     alt=""  />
 </p>
 </p>
-<p>关于这些事件的使用，以及 pprof++ 的更详细信息可以参考：<a href="https://eng.uber.com/pprof-go-profiler/">https://eng.uber.com/pprof-go-profiler/</a>。</p>
-<p>Uber fork 的 Go 仓库地址：<a href="https://github.com/uber-research/go">https://github.com/uber-research/go</a>。</p>
+<p>关于这些事件的使用，以及 pprof++ 的更详细信息可以参考：<a href="https://eng.uber.com/pprof-go-profiler/" target="_blank" rel="noopener">https://eng.uber.com/pprof-go-profiler/</a>
+。</p>
+<p>Uber fork 的 Go 仓库地址：<a href="https://github.com/uber-research/go" target="_blank" rel="noopener">https://github.com/uber-research/go</a>
+。</p>
 <h2 id="03-感想">03 感想<a href="#03-感想" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>看到这个消息，惊叹 Uber 对 Go 的使用和研究之深，也证明了 Go 被大公司的规模使用，看好 Go 的前途。</p>
 <p>不知道 Uber 开发的 pprof++，有没有和 Go Team 沟通，尝试合入 Go 官方仓库，毕竟既然开源出来了，如果能够在官方中使用，可以让更多人收益。当然，因为目前只支持 Linux 系统，可能不太适合合入。至少，不希望 Go 出现分裂！</p>
@@ -117,6 +115,8 @@
 	<h2>相关推荐</h2>
 	<ul>
 	
+	<li><a href="/posts/go/fiber/go-fiber-basic-tutorial01/">Go Fiber 框架系列教程 01: 和 Express 对比学习</a></li>
+	
 	<li><a href="/posts/go/action/go-illegal-private-import/">Go Module：私有不合规库怎么解决引用问题</a></li>
 	
 	<li><a href="/posts/go/dynamic/1.17-golang-go-get-updated/">Go1.17 新特性：go get 变了</a></li>
@@ -124,8 +124,6 @@
 	<li><a href="/posts/go/dynamic/go-1-17-new-features-added-to-testing/">Go1.17 新特性：testing 包的相关变化</a></li>
 	
 	<li><a href="/posts/go/action/chained-channel-operations-in-a-single-select-case/">StackOverflow 上关于 Go select 死锁的问题</a></li>
-	
-	<li><a href="/posts/go/book/building-distributed-applications-in-gin/">新书推荐：用 Gin 框架构建分布式应用</a></li>
 	
 	</ul>
 </div>
@@ -179,7 +177,7 @@
 
 
 
-	<script src="https://polarisxu.studygolang.com/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw=" crossorigin="anonymous"></script>
+	<script src="https://polarisxu.studygolang.com/js/main.min.4eaa15feccc672488716f0338ac605e08c7553ce0ce175e13fa00a873636bf98.js" integrity="sha256-TqoV/szGckiHFvAzisYF4Ix1U84M4XXhP6AKhzY2v5g=" crossorigin="anonymous"></script>
 	<script>
 var _hmt = _hmt || [];
 (function() {

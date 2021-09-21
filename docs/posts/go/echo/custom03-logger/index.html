@@ -8,20 +8,16 @@
 	<meta name="theme-color" content="#fcfcfc">
 	<meta name="msapplication-TileColor" content="#fcfcfc">
 <meta itemprop="name" content="Echo 系列教程——定制篇3：自定义 Logger，用你喜欢的日志库">
-<meta itemprop="description" content="在知识星球简书项目中，我们分析对比了目前的一些日志库。虽然 Go 标准库有一个 log，但功能有限，所以才出现了很多第三方的日志库。在 用 Go 实现一个简书 8：日志记录和优秀库的学习 中，我们得出结论，推荐大家使用 zerolog 。现在我们就将 zerolog 集成进 Echo 框架中。 Echo 默认的 Logger Echo 日志记录的默认格式是 JSON，可以通过修改标头来更改，即 Echo#Logger.SetHeader(io.Write">
-<meta itemprop="datePublished" content="2020-03-06T11:50:51+08:00" />
+<meta itemprop="description" content="在知识星球简书项目中，我们分析对比了目前的一些日志库。虽然 Go 标准库有一个 log，但功能有限，所以才出现了很多第三方的日志库。在 用 Go 实现一个简书 8：日志记录和优秀库的学习 中，我们得出结论，推荐大家使用 zerolog 。现在我们就将 zerolog 集成进 Echo 框架中。 Echo 默认的 Logger Echo 日志记录的默认格式是 JSON，可以通过修改标头来更改，即 Echo#Logger.SetHeader(io.Write"><meta itemprop="datePublished" content="2020-03-06T11:50:51+08:00" />
 <meta itemprop="dateModified" content="2020-03-06T11:50:51+08:00" />
 <meta itemprop="wordCount" content="1491">
-
-
-
-<meta itemprop="keywords" content="echo,web框架,日志库," />
-<meta property="og:title" content="Echo 系列教程——定制篇3：自定义 Logger，用你喜欢的日志库" />
+<meta itemprop="keywords" content="echo,web框架,日志库," /><meta property="og:title" content="Echo 系列教程——定制篇3：自定义 Logger，用你喜欢的日志库" />
 <meta property="og:description" content="在知识星球简书项目中，我们分析对比了目前的一些日志库。虽然 Go 标准库有一个 log，但功能有限，所以才出现了很多第三方的日志库。在 用 Go 实现一个简书 8：日志记录和优秀库的学习 中，我们得出结论，推荐大家使用 zerolog 。现在我们就将 zerolog 集成进 Echo 框架中。 Echo 默认的 Logger Echo 日志记录的默认格式是 JSON，可以通过修改标头来更改，即 Echo#Logger.SetHeader(io.Write" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/echo/custom03-logger/" />
+<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/echo/custom03-logger/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2020-03-06T11:50:51+08:00" />
 <meta property="article:modified_time" content="2020-03-06T11:50:51+08:00" />
+
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Echo 系列教程——定制篇3：自定义 Logger，用你喜欢的日志库"/>
 <meta name="twitter:description" content="在知识星球简书项目中，我们分析对比了目前的一些日志库。虽然 Go 标准库有一个 log，但功能有限，所以才出现了很多第三方的日志库。在 用 Go 实现一个简书 8：日志记录和优秀库的学习 中，我们得出结论，推荐大家使用 zerolog 。现在我们就将 zerolog 集成进 Echo 框架中。 Echo 默认的 Logger Echo 日志记录的默认格式是 JSON，可以通过修改标头来更改，即 Echo#Logger.SetHeader(io.Write"/>
@@ -88,9 +84,9 @@
 <p>Echo 日志记录的默认格式是 JSON，可以通过修改标头来更改，即 <code>Echo#Logger.SetHeader(io.Writer)</code>。</p>
 <h3 id="log-header">Log Header<a href="#log-header" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>标头默认值为：</p>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span><span class="nt">&#34;time&#34;</span><span class="p">:</span><span class="s2">&#34;${time_rfc3339_nano}&#34;</span><span class="p">,</span><span class="nt">&#34;level&#34;</span><span class="p">:</span><span class="s2">&#34;${level}&#34;</span><span class="p">,</span><span class="nt">&#34;prefix&#34;</span><span class="p">:</span><span class="s2">&#34;${prefix}&#34;</span><span class="p">,</span><span class="nt">&#34;file&#34;</span><span class="p">:</span><span class="s2">&#34;${short_file}&#34;</span><span class="p">,</span><span class="nt">&#34;line&#34;</span><span class="p">:</span><span class="s2">&#34;${line}&#34;</span><span class="p">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span><span class="nt">&#34;time&#34;</span><span class="p">:</span><span class="s2">&#34;${time_rfc3339_nano}&#34;</span><span class="p">,</span><span class="nt">&#34;level&#34;</span><span class="p">:</span><span class="s2">&#34;${level}&#34;</span><span class="p">,</span><span class="nt">&#34;prefix&#34;</span><span class="p">:</span><span class="s2">&#34;${prefix}&#34;</span><span class="p">,</span><span class="nt">&#34;file&#34;</span><span class="p">:</span><span class="s2">&#34;${short_file}&#34;</span><span class="p">,</span><span class="nt">&#34;line&#34;</span><span class="p">:</span><span class="s2">&#34;${line}&#34;</span><span class="p">}</span>
 </code></pre></div><p>因为 Echo 默认使用的 Logger 是作者开发的 <code>github.com/labstack/gommon/log</code> 库，我们看看怎么自定义默认标头。</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">import</span> <span class="s">&#34;github.com/labstack/gommon/log&#34;</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">import</span> <span class="s">&#34;github.com/labstack/gommon/log&#34;</span>
 
 <span class="cm">/* ... */</span>
 
@@ -126,7 +122,7 @@
 <p>以上就是 Echo 框架提供的可以定制 Log 的相关接口。</p>
 <h2 id="自定义-logger">自定义 Logger<a href="#自定义-logger" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>Echo 支持通过<code>Echo#Logger</code> 注册自定义的 Logger，前提是这个 Logger 必须实现 Echo 提供的接口：echo.Logger：</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">Logger</span> <span class="kd">interface</span> <span class="p">{</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">Logger</span> <span class="kd">interface</span> <span class="p">{</span>
     <span class="nf">Output</span><span class="p">()</span> <span class="nx">io</span><span class="p">.</span><span class="nx">Writer</span>
     <span class="nf">SetOutput</span><span class="p">(</span><span class="nx">w</span> <span class="nx">io</span><span class="p">.</span><span class="nx">Writer</span><span class="p">)</span>
     <span class="nf">Prefix</span><span class="p">()</span> <span class="kt">string</span>
@@ -158,12 +154,12 @@
 <span class="p">}</span>
 </code></pre></div><p>这个接口看着很吓人，基本上是几个日志级别对应的方法。因此，如果我们要将 zerolog 集成进 Echo，让 zerolog 实现该接口（zerolog 本身肯定没有实现该接口）。</p>
 <p>因为 zerolog 库的设计和 API 与 echo.Logger 接口差异极大，想要直接为 zerolog 实现一个 Adapter 以便实现 echo.Logger 接口不太现实。于是我们做如下处理来进行适配：</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">Logger</span> <span class="kd">struct</span> <span class="p">{</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">Logger</span> <span class="kd">struct</span> <span class="p">{</span>
 	<span class="o">*</span><span class="nx">log</span><span class="p">.</span><span class="nx">Logger</span>
 	<span class="nx">ZeroLog</span> <span class="nx">zerolog</span><span class="p">.</span><span class="nx">Logger</span>
 <span class="p">}</span>
 </code></pre></div><p>我们定义一个自己的 Logger 结构体，内嵌一个 github.com/labstack/gommon/log 库的 Logger 指针，这样默认就实现了 echo.Logger 接口，然后再是 zerolog.Logger。看看构造函数如何实现？</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">New</span><span class="p">(</span><span class="nx">writer</span> <span class="nx">io</span><span class="p">.</span><span class="nx">Writer</span><span class="p">)</span> <span class="o">*</span><span class="nx">Logger</span> <span class="p">{</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">New</span><span class="p">(</span><span class="nx">writer</span> <span class="nx">io</span><span class="p">.</span><span class="nx">Writer</span><span class="p">)</span> <span class="o">*</span><span class="nx">Logger</span> <span class="p">{</span>
 	<span class="nx">l</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">Logger</span><span class="p">{</span>
 		<span class="nx">Logger</span><span class="p">:</span>  <span class="nx">log</span><span class="p">.</span><span class="nf">New</span><span class="p">(</span><span class="s">&#34;-&#34;</span><span class="p">),</span>
 		<span class="nx">ZeroLog</span><span class="p">:</span> <span class="nx">zerolog</span><span class="p">.</span><span class="nf">New</span><span class="p">(</span><span class="nx">writer</span><span class="p">).</span><span class="nf">With</span><span class="p">().</span><span class="nf">Caller</span><span class="p">().</span><span class="nf">Timestamp</span><span class="p">().</span><span class="nf">Logger</span><span class="p">(),</span>
@@ -183,7 +179,7 @@
 <li>通过一个日志库，既可以做到单独控制 echo 的行为，也可以单独控制 zerolog 的行为；</li>
 </ul>
 <p>那统一控制行为如何实现呢？这里实现了两个，控制输出目的地和日志级别。</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="p">(</span><span class="nx">l</span> <span class="o">*</span><span class="nx">Logger</span><span class="p">)</span> <span class="nf">SetOutput</span><span class="p">(</span><span class="nx">writer</span> <span class="nx">io</span><span class="p">.</span><span class="nx">Writer</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="p">(</span><span class="nx">l</span> <span class="o">*</span><span class="nx">Logger</span><span class="p">)</span> <span class="nf">SetOutput</span><span class="p">(</span><span class="nx">writer</span> <span class="nx">io</span><span class="p">.</span><span class="nx">Writer</span><span class="p">)</span> <span class="p">{</span>
 	<span class="nx">l</span><span class="p">.</span><span class="nx">Logger</span><span class="p">.</span><span class="nf">SetOutput</span><span class="p">(</span><span class="nx">writer</span><span class="p">)</span>
 	<span class="nx">l</span><span class="p">.</span><span class="nx">ZeroLog</span><span class="p">.</span><span class="nf">Output</span><span class="p">(</span><span class="nx">writer</span><span class="p">)</span>
 <span class="p">}</span>
@@ -198,11 +194,12 @@
 	<span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div><p>当然这种方式也有麻烦的地方，那就是通过 echo 的 Context 获得 zerolog 日志实例：</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">zerolog</span> <span class="o">:=</span> <span class="nx">ctx</span><span class="p">.</span><span class="nf">Logger</span><span class="p">().(</span><span class="o">*</span><span class="nx">logger</span><span class="p">.</span><span class="nx">Logger</span><span class="p">).</span><span class="nx">ZeroLog</span>
-</code></pre></div><p>这样自定义日志库就完成了。该库完整代码见：<a href="https://github.com/polaris1119/go-echo-example/blob/master/pkg/logger/logger.go">https://github.com/polaris1119/go-echo-example/blob/master/pkg/logger/logger.go</a>。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="nx">zerolog</span> <span class="o">:=</span> <span class="nx">ctx</span><span class="p">.</span><span class="nf">Logger</span><span class="p">().(</span><span class="o">*</span><span class="nx">logger</span><span class="p">.</span><span class="nx">Logger</span><span class="p">).</span><span class="nx">ZeroLog</span>
+</code></pre></div><p>这样自定义日志库就完成了。该库完整代码见：<a href="https://github.com/polaris1119/go-echo-example/blob/master/pkg/logger/logger.go" target="_blank" rel="noopener">https://github.com/polaris1119/go-echo-example/blob/master/pkg/logger/logger.go</a>
+。</p>
 <h2 id="在-echo-项目中使用自定义日志库">在 Echo 项目中使用自定义日志库<a href="#在-echo-项目中使用自定义日志库" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>在 go-echo-example 项目的 cmd 下创建一个目录 gopher，将来我们的实战篇就用它作为入口。之后创建一个 main.go 文件，核心代码如下：</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
 	<span class="nx">e</span> <span class="o">:=</span> <span class="nx">echo</span><span class="p">.</span><span class="nf">New</span><span class="p">()</span>
 
 	<span class="nx">e</span><span class="p">.</span><span class="nx">Logger</span> <span class="p">=</span> <span class="nx">logger</span><span class="p">.</span><span class="nf">New</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Stdout</span><span class="p">)</span>
@@ -303,7 +300,7 @@
 
 
 
-	<script src="https://polarisxu.studygolang.com/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw=" crossorigin="anonymous"></script>
+	<script src="https://polarisxu.studygolang.com/js/main.min.4eaa15feccc672488716f0338ac605e08c7553ce0ce175e13fa00a873636bf98.js" integrity="sha256-TqoV/szGckiHFvAzisYF4Ix1U84M4XXhP6AKhzY2v5g=" crossorigin="anonymous"></script>
 	<script>
 var _hmt = _hmt || [];
 (function() {

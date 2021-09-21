@@ -8,20 +8,16 @@
 	<meta name="theme-color" content="#fcfcfc">
 	<meta name="msapplication-TileColor" content="#fcfcfc">
 <meta itemprop="name" content="Go1.17 快报：将移除 GOPATH">
-<meta itemprop="description" content="大家好，我是站长 polarisxu。 是的，没看错，Go 1.16 刚正式发布，但这里说的是 Go1.17 将会包含的改变（不出意外的话），我会出一系列文章介绍 Go1.17 的变化。 关于 Go 1.16 的变化。Reddit 上有一张图总结的挺好的： 相关的知识点，我之前也写过很好几篇文章，有兴趣的可以看看： Go 1.16 的这个新变化需要适应下：go get 和 go install 的变化 提前试用将在 Go1.16 中发布的内嵌静态资源功能 基于 Go1.16 实现静态文件的 HTTP">
-<meta itemprop="datePublished" content="2021-02-19T09:20:00+08:00" />
+<meta itemprop="description" content="大家好，我是站长 polarisxu。 是的，没看错，Go 1.16 刚正式发布，但这里说的是 Go1.17 将会包含的改变（不出意外的话），我会出一系列文章介绍 Go1.17 的变化。 关于 Go 1.16 的变化。Reddit 上有一张图总结的挺好的： 相关的知识点，我之前也写过很好几篇文章，有兴趣的可以看看： Go 1.16 的这个新变化需要适应下：go get 和 go install 的变化 提前试用将在 Go1.16 中发布的内嵌静态资源功能 基于 Go1.16 实现静态文件的 HTTP"><meta itemprop="datePublished" content="2021-02-19T09:20:00+08:00" />
 <meta itemprop="dateModified" content="2021-02-19T09:20:00+08:00" />
 <meta itemprop="wordCount" content="795">
-
-
-
-<meta itemprop="keywords" content="Rust,Go," />
-<meta property="og:title" content="Go1.17 快报：将移除 GOPATH" />
+<meta itemprop="keywords" content="Rust,Go," /><meta property="og:title" content="Go1.17 快报：将移除 GOPATH" />
 <meta property="og:description" content="大家好，我是站长 polarisxu。 是的，没看错，Go 1.16 刚正式发布，但这里说的是 Go1.17 将会包含的改变（不出意外的话），我会出一系列文章介绍 Go1.17 的变化。 关于 Go 1.16 的变化。Reddit 上有一张图总结的挺好的： 相关的知识点，我之前也写过很好几篇文章，有兴趣的可以看看： Go 1.16 的这个新变化需要适应下：go get 和 go install 的变化 提前试用将在 Go1.16 中发布的内嵌静态资源功能 基于 Go1.16 实现静态文件的 HTTP" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/dynamic/go1.17-will-remove-gopath/" />
+<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/dynamic/go1.17-will-remove-gopath/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-02-19T09:20:00+08:00" />
 <meta property="article:modified_time" content="2021-02-19T09:20:00+08:00" />
+
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Go1.17 快报：将移除 GOPATH"/>
 <meta name="twitter:description" content="大家好，我是站长 polarisxu。 是的，没看错，Go 1.16 刚正式发布，但这里说的是 Go1.17 将会包含的改变（不出意外的话），我会出一系列文章介绍 Go1.17 的变化。 关于 Go 1.16 的变化。Reddit 上有一张图总结的挺好的： 相关的知识点，我之前也写过很好几篇文章，有兴趣的可以看看： Go 1.16 的这个新变化需要适应下：go get 和 go install 的变化 提前试用将在 Go1.16 中发布的内嵌静态资源功能 基于 Go1.16 实现静态文件的 HTTP"/>
@@ -111,7 +107,8 @@
 <li>如果还没有迁移到支持 Module 的版本，这半年时间尽快迁移吧，毕竟现在的库基本会基于 Module 构建，Go 1.17 预计 2021 年 8 月发布，距离 Go 1.11 过去好几个版本了，给了充足的过度时间。</li>
 </ul>
 <p>此外，在 Go1.17 中关于 module 的特性还会有其他改进，比如支持 <a href="https://github.com/golang/go/issues/36460" target="_blank" rel="noopener">lazy module loading</a>
-，这应该会使模块加载过程更快，更稳定。对 Go1.17 中其他设计模块变化的部分，可以通过 <a href="https://github.com/golang/go/labels/modules">https://github.com/golang/go/labels/modules</a> 查看。</p>
+，这应该会使模块加载过程更快，更稳定。对 Go1.17 中其他设计模块变化的部分，可以通过 <a href="https://github.com/golang/go/labels/modules" target="_blank" rel="noopener">https://github.com/golang/go/labels/modules</a>
+ 查看。</p>
 <p>对于 Go 做出废弃 GOPATH 的决定，你怎么看？</p>
 
 			</div><div class="content">
@@ -179,7 +176,7 @@
 
 
 
-	<script src="https://polarisxu.studygolang.com/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw=" crossorigin="anonymous"></script>
+	<script src="https://polarisxu.studygolang.com/js/main.min.4eaa15feccc672488716f0338ac605e08c7553ce0ce175e13fa00a873636bf98.js" integrity="sha256-TqoV/szGckiHFvAzisYF4Ix1U84M4XXhP6AKhzY2v5g=" crossorigin="anonymous"></script>
 	<script>
 var _hmt = _hmt || [];
 (function() {

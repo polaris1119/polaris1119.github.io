@@ -8,20 +8,16 @@
 	<meta name="theme-color" content="#fcfcfc">
 	<meta name="msapplication-TileColor" content="#fcfcfc">
 <meta itemprop="name" content="网友很强大，发现了Go并发下载的Bug">
-<meta itemprop="description" content="大家好，我是 polarisxu。 前几天我写了一篇文章：Go项目实战：一步步构建一个并发文件下载器 ，有小伙伴评论问，请求 https://studygolang.com/dl/golang/go1.16.5.src.tar.gz 为什么没有返回 Accept-Ranges。在写那篇文章时，我也试了，确实没有返回，因此我以为它不支持。 但有一个小伙伴很认真，他改用 GET 方法请求这个地址，结果却有 Accept-Ranges，于是就很困惑，问我什么原因。经过一顿操作猛如虎，终于知">
-<meta itemprop="datePublished" content="2021-07-07T22:10:00+08:00" />
+<meta itemprop="description" content="大家好，我是 polarisxu。 前几天我写了一篇文章：Go项目实战：一步步构建一个并发文件下载器 ，有小伙伴评论问，请求 https://studygolang.com/dl/golang/go1.16.5.src.tar.gz 为什么没有返回 Accept-Ranges。在写那篇文章时，我也试了，确实没有返回，因此我以为它不支持。 但有一个小伙伴很认真，他改用 GET 方法请求这个地址，结果却有 Accept-Ranges，于是就很困惑，问我什么原因。经过一顿操作猛如虎，终于知"><meta itemprop="datePublished" content="2021-07-07T22:10:00+08:00" />
 <meta itemprop="dateModified" content="2021-07-07T22:10:00+08:00" />
-<meta itemprop="wordCount" content="2271">
-
-
-
-<meta itemprop="keywords" content="Go,并发," />
-<meta property="og:title" content="网友很强大，发现了Go并发下载的Bug" />
+<meta itemprop="wordCount" content="2202">
+<meta itemprop="keywords" content="Go,并发," /><meta property="og:title" content="网友很强大，发现了Go并发下载的Bug" />
 <meta property="og:description" content="大家好，我是 polarisxu。 前几天我写了一篇文章：Go项目实战：一步步构建一个并发文件下载器 ，有小伙伴评论问，请求 https://studygolang.com/dl/golang/go1.16.5.src.tar.gz 为什么没有返回 Accept-Ranges。在写那篇文章时，我也试了，确实没有返回，因此我以为它不支持。 但有一个小伙伴很认真，他改用 GET 方法请求这个地址，结果却有 Accept-Ranges，于是就很困惑，问我什么原因。经过一顿操作猛如虎，终于知" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/action/studygolang-downloader-bug/" />
+<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/action/studygolang-downloader-bug/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-07-07T22:10:00+08:00" />
 <meta property="article:modified_time" content="2021-07-07T22:10:00+08:00" />
+
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="网友很强大，发现了Go并发下载的Bug"/>
 <meta name="twitter:description" content="大家好，我是 polarisxu。 前几天我写了一篇文章：Go项目实战：一步步构建一个并发文件下载器 ，有小伙伴评论问，请求 https://studygolang.com/dl/golang/go1.16.5.src.tar.gz 为什么没有返回 Accept-Ranges。在写那篇文章时，我也试了，确实没有返回，因此我以为它不支持。 但有一个小伙伴很认真，他改用 GET 方法请求这个地址，结果却有 Accept-Ranges，于是就很困惑，问我什么原因。经过一顿操作猛如虎，终于知"/>
@@ -87,7 +83,7 @@
 <p>但有一个小伙伴很认真，他改用 GET 方法请求这个地址，结果却有 Accept-Ranges，于是就很困惑，问我什么原因。经过一顿操作猛如虎，终于知道原因了。记录下排查过程，供大家参考！（小伙伴的留言可以查看那篇文章）</p>
 <h2 id="01-排查过程">01 排查过程<a href="#01-排查过程" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>通过 curl 命令，分别用 GET 和 HEAD 方法请求这个地址，结果如下：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ curl -X GET --head https://studygolang.com/dl/golang/go1.16.5.src.tar.gz
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ curl -X GET --head https://studygolang.com/dl/golang/go1.16.5.src.tar.gz
 HTTP/1.1 <span class="m">303</span> See Other
 Server: nginx
 Date: Wed, <span class="m">07</span> Jul <span class="m">2021</span> 09:09:35 GMT
@@ -105,7 +101,7 @@ X-Request-Id: f2ba473d-5bee-44c3-a591-02c358551235
 </code></pre></div><p>虽然都没有 Accept-Ranges，但有一个奇怪现象：一个状态码是 303，一个是 200。很显然，303 是正确的，HEAD 为什么会是 200？</p>
 <p>我以为是 Nginx 对 HEAD 请求做了特殊处理，于是直接访问 Go 服务的方式（不经过 Nginx 代理），结果一样。</p>
 <p>于是，我用 Go 实现一个简单的 Web 服务，Handler 里面也重定向。</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
 	<span class="nx">http</span><span class="p">.</span><span class="nf">HandleFunc</span><span class="p">(</span><span class="s">&#34;/dl&#34;</span><span class="p">,</span> <span class="kd">func</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="p">{</span>
 		<span class="nx">http</span><span class="p">.</span><span class="nf">Redirect</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="nx">r</span><span class="p">,</span> <span class="s">&#34;/&#34;</span><span class="p">,</span> <span class="nx">http</span><span class="p">.</span><span class="nx">StatusSeeOther</span><span class="p">)</span>
 	<span class="p">})</span>
@@ -116,7 +112,7 @@ X-Request-Id: f2ba473d-5bee-44c3-a591-02c358551235
 <span class="p">}</span>
 </code></pre></div><p>用 curl 请求 <code>http://localhost:2022/dl</code>，GET 和 HEAD 都返回 303。于是我怀疑是不是 Echo 框架哪里的问题（studygolang 使用 Echo 框架构建的）。</p>
 <p>所以，我用 Echo 框架写个 Web 服务测试：</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
 	<span class="nx">e</span> <span class="o">:=</span> <span class="nx">echo</span><span class="p">.</span><span class="nf">New</span><span class="p">()</span>
   
 	<span class="nx">e</span><span class="p">.</span><span class="nf">GET</span><span class="p">(</span><span class="s">&#34;/dl&#34;</span><span class="p">,</span> <span class="kd">func</span><span class="p">(</span><span class="nx">ctx</span> <span class="nx">echo</span><span class="p">.</span><span class="nx">Context</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
@@ -130,7 +126,7 @@ X-Request-Id: f2ba473d-5bee-44c3-a591-02c358551235
 <span class="p">}</span>
 </code></pre></div><p>同样用 curl 请求  <code>http://localhost:2022/dl</code>，GET 返回 303，而 HEAD 报 405 Method Not Allowed，这符合预期。我们的路由设置只允许 GET 请求。但为什么 studygolang 没有返回 405，因为它也限制只能 GET 请求。</p>
 <p>于是我对随便一个地址发起 HEAD 请求，发现都返回 200，可见 HTTP 错误被“吞掉”了。查找 studygolang 的中间件，发现了这个：</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">HTTPError</span><span class="p">()</span> <span class="nx">echo</span><span class="p">.</span><span class="nx">MiddlewareFunc</span> <span class="p">{</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">HTTPError</span><span class="p">()</span> <span class="nx">echo</span><span class="p">.</span><span class="nx">MiddlewareFunc</span> <span class="p">{</span>
 	<span class="k">return</span> <span class="kd">func</span><span class="p">(</span><span class="nx">next</span> <span class="nx">echo</span><span class="p">.</span><span class="nx">HandlerFunc</span><span class="p">)</span> <span class="nx">echo</span><span class="p">.</span><span class="nx">HandlerFunc</span> <span class="p">{</span>
 		<span class="k">return</span> <span class="kd">func</span><span class="p">(</span><span class="nx">ctx</span> <span class="nx">echo</span><span class="p">.</span><span class="nx">Context</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
 			<span class="k">if</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nf">next</span><span class="p">(</span><span class="nx">ctx</span><span class="p">);</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
@@ -161,13 +157,13 @@ X-Request-Id: f2ba473d-5bee-44c3-a591-02c358551235
 	<span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div><p>这里对 404、403、500 错误都做了处理，但其他 HTTP 错误直接忽略了，导致最后返回了 200 OK。只需要在上面 switch 语句加一个 default 分支，同时把 err 原样 return，采用系统默认处理方式：</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="k">default</span><span class="p">:</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="k">default</span><span class="p">:</span>
 	<span class="k">return</span> <span class="nx">err</span>
 </code></pre></div><p>这样 405 Method Not Allowed 会正常返回。</p>
 <p>同时，为了解决 HEAD 能用来判断下载行为，针对下载路由，我加上了允许 HEAD 请求，这样就解决了小伙伴们的困惑。</p>
 <h2 id="02-curl-和-go-代码行为异同">02 curl 和 Go 代码行为异同<a href="#02-curl-和-go-代码行为异同" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>不知道大家发现没有，通过 curl 请求 <code>https://studygolang.com/dl/golang/go1.16.5.src.tar.gz</code> 和 Go 代码请求，结果是不一样的：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ curl -X GET --head https://studygolang.com/dl/golang/go1.16.5.src.tar.gz
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ curl -X GET --head https://studygolang.com/dl/golang/go1.16.5.src.tar.gz
 HTTP/1.1 <span class="m">303</span> See Other
 Server: nginx
 Date: Thu, <span class="m">08</span> Jul <span class="m">2021</span> 02:05:10 GMT
@@ -177,7 +173,7 @@ Location: https://golang.google.cn/dl/go1.16.5.src.tar.gz
 X-Request-Id: 14d741ca-65c1-4b05-90b8-bef5c8b5a0a3
 </code></pre></div><p>返回的是 303 重定向，自然没有 Accept-Ranges 头。</p>
 <p>但改用如下 Go 代码：</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">resp</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">http</span><span class="p">.</span><span class="nf">Get</span><span class="p">(</span><span class="s">&#34;https://studygolang.com/dl/golang/go1.16.5.src.tar.gz&#34;</span><span class="p">)</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="nx">resp</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">http</span><span class="p">.</span><span class="nf">Get</span><span class="p">(</span><span class="s">&#34;https://studygolang.com/dl/golang/go1.16.5.src.tar.gz&#34;</span><span class="p">)</span>
 <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
   <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;get err&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
   <span class="k">return</span>
@@ -186,8 +182,9 @@ X-Request-Id: 14d741ca-65c1-4b05-90b8-bef5c8b5a0a3
 <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">resp</span><span class="p">)</span>
 <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;ranges&#34;</span><span class="p">,</span> <span class="nx">resp</span><span class="p">.</span><span class="nx">Header</span><span class="p">.</span><span class="nf">Get</span><span class="p">(</span><span class="s">&#34;Accept-Ranges&#34;</span><span class="p">))</span>
 </code></pre></div><p>返回的是 200，且有 Accept-Ranges 头。可以猜测，应该是 Go 根据重定向递归请求重定向后的地址。可以查看源码确认下。</p>
-<p>通过这个可以看到：<a href="https://docs.studygolang.com/src/net/http/client.go?s=20406:20458#L574">https://docs.studygolang.com/src/net/http/client.go?s=20406:20458#L574</a>，核心代码如下（比较容易看懂）：</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// 循环处理所有需要处理的 url（包括重定向后的）
+<p>通过这个可以看到：<a href="https://docs.studygolang.com/src/net/http/client.go?s=20406:20458#L574" target="_blank" rel="noopener">https://docs.studygolang.com/src/net/http/client.go?s=20406:20458#L574</a>
+，核心代码如下（比较容易看懂）：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// 循环处理所有需要处理的 url（包括重定向后的）
 </span><span class="c1"></span><span class="k">for</span> <span class="p">{</span>
 		<span class="c1">// For all but the first request, create the next
 </span><span class="c1"></span>		<span class="c1">// request hop and replace req.
@@ -298,8 +295,9 @@ X-Request-Id: 14d741ca-65c1-4b05-90b8-bef5c8b5a0a3
 
 		<span class="nx">req</span><span class="p">.</span><span class="nf">closeBody</span><span class="p">()</span>
 	<span class="p">}</span>
-</code></pre></div><p>可以进一步看 redirectBehavior 函数 <a href="https://docs.studygolang.com/src/net/http/client.go?s=20406:20458#L497">https://docs.studygolang.com/src/net/http/client.go?s=20406:20458#L497</a>：</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">redirectBehavior</span><span class="p">(</span><span class="nx">reqMethod</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">resp</span> <span class="o">*</span><span class="nx">Response</span><span class="p">,</span> <span class="nx">ireq</span> <span class="o">*</span><span class="nx">Request</span><span class="p">)</span> <span class="p">(</span><span class="nx">redirectMethod</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">shouldRedirect</span><span class="p">,</span> <span class="nx">includeBody</span> <span class="kt">bool</span><span class="p">)</span> <span class="p">{</span>
+</code></pre></div><p>可以进一步看 redirectBehavior 函数 <a href="https://docs.studygolang.com/src/net/http/client.go?s=20406:20458#L497" target="_blank" rel="noopener">https://docs.studygolang.com/src/net/http/client.go?s=20406:20458#L497</a>
+：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">redirectBehavior</span><span class="p">(</span><span class="nx">reqMethod</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">resp</span> <span class="o">*</span><span class="nx">Response</span><span class="p">,</span> <span class="nx">ireq</span> <span class="o">*</span><span class="nx">Request</span><span class="p">)</span> <span class="p">(</span><span class="nx">redirectMethod</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">shouldRedirect</span><span class="p">,</span> <span class="nx">includeBody</span> <span class="kt">bool</span><span class="p">)</span> <span class="p">{</span>
 	<span class="k">switch</span> <span class="nx">resp</span><span class="p">.</span><span class="nx">StatusCode</span> <span class="p">{</span>
 	<span class="k">case</span> <span class="mi">301</span><span class="p">,</span> <span class="mi">302</span><span class="p">,</span> <span class="mi">303</span><span class="p">:</span>
 		<span class="nx">redirectMethod</span> <span class="p">=</span> <span class="nx">reqMethod</span>
@@ -355,13 +353,13 @@ X-Request-Id: 14d741ca-65c1-4b05-90b8-bef5c8b5a0a3
 	
 	<li><a href="/posts/go/action/build-a-concurrent-file-downloader/">Go项目实战：一步步构建一个并发文件下载器</a></li>
 	
+	<li><a href="/posts/go/fiber/go-fiber-basic-tutorial01/">Go Fiber 框架系列教程 01: 和 Express 对比学习</a></li>
+	
 	<li><a href="/posts/go/action/go-illegal-private-import/">Go Module：私有不合规库怎么解决引用问题</a></li>
 	
 	<li><a href="/posts/go/dynamic/1.17-golang-go-get-updated/">Go1.17 新特性：go get 变了</a></li>
 	
 	<li><a href="/posts/go/dynamic/go-1-17-new-features-added-to-testing/">Go1.17 新特性：testing 包的相关变化</a></li>
-	
-	<li><a href="/posts/go/action/chained-channel-operations-in-a-single-select-case/">StackOverflow 上关于 Go select 死锁的问题</a></li>
 	
 	</ul>
 </div>
@@ -371,7 +369,7 @@ X-Request-Id: 14d741ca-65c1-4b05-90b8-bef5c8b5a0a3
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://polarisxu.studygolang.com/tags/go">Go</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/%E5%B9%B6%E5%8F%91">并发</a></span>
 				</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>2271 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>2202 字</p>
 				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2021-07-07 22:10 &#43;0800</p>
 			</footer>
 		</article>
@@ -415,7 +413,7 @@ X-Request-Id: 14d741ca-65c1-4b05-90b8-bef5c8b5a0a3
 
 
 
-	<script src="https://polarisxu.studygolang.com/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw=" crossorigin="anonymous"></script>
+	<script src="https://polarisxu.studygolang.com/js/main.min.4eaa15feccc672488716f0338ac605e08c7553ce0ce175e13fa00a873636bf98.js" integrity="sha256-TqoV/szGckiHFvAzisYF4Ix1U84M4XXhP6AKhzY2v5g=" crossorigin="anonymous"></script>
 	<script>
 var _hmt = _hmt || [];
 (function() {

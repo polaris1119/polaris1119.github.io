@@ -8,20 +8,16 @@
 	<meta name="theme-color" content="#fcfcfc">
 	<meta name="msapplication-TileColor" content="#fcfcfc">
 <meta itemprop="name" content="Echo 系列教程——定制篇2：自定义 Validator，进行输入校验">
-<meta itemprop="description" content="上一篇讲 Binder 时提到，参数自动绑定和校验是 Web 框架很重要的两个功能，可以极大的提升开发速度，并更好的保证数据的可靠性（服务端数据校验很重要）。本节，我们就一起看看如何自定义 Echo 的表单校验功能。 不同于 Binder，Echo 并没有内置数据校验的能力，也就是没有默认的 Validator 实现。然而，你可以很方便的集成第三方的数据校验库。跟 Binder 类似，Echo 提供了一个 Validator 接口，方便将第三方数据校">
-<meta itemprop="datePublished" content="2020-02-28T18:53:51+08:00" />
+<meta itemprop="description" content="上一篇讲 Binder 时提到，参数自动绑定和校验是 Web 框架很重要的两个功能，可以极大的提升开发速度，并更好的保证数据的可靠性（服务端数据校验很重要）。本节，我们就一起看看如何自定义 Echo 的表单校验功能。 不同于 Binder，Echo 并没有内置数据校验的能力，也就是没有默认的 Validator 实现。然而，你可以很方便的集成第三方的数据校验库。跟 Binder 类似，Echo 提供了一个 Validator 接口，方便将第三方数据校"><meta itemprop="datePublished" content="2020-02-28T18:53:51+08:00" />
 <meta itemprop="dateModified" content="2020-02-28T18:53:51+08:00" />
 <meta itemprop="wordCount" content="3893">
-
-
-
-<meta itemprop="keywords" content="echo,web框架,validator," />
-<meta property="og:title" content="Echo 系列教程——定制篇2：自定义 Validator，进行输入校验" />
+<meta itemprop="keywords" content="echo,web框架,validator," /><meta property="og:title" content="Echo 系列教程——定制篇2：自定义 Validator，进行输入校验" />
 <meta property="og:description" content="上一篇讲 Binder 时提到，参数自动绑定和校验是 Web 框架很重要的两个功能，可以极大的提升开发速度，并更好的保证数据的可靠性（服务端数据校验很重要）。本节，我们就一起看看如何自定义 Echo 的表单校验功能。 不同于 Binder，Echo 并没有内置数据校验的能力，也就是没有默认的 Validator 实现。然而，你可以很方便的集成第三方的数据校验库。跟 Binder 类似，Echo 提供了一个 Validator 接口，方便将第三方数据校" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/echo/custom02-validator/" />
+<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/echo/custom02-validator/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2020-02-28T18:53:51+08:00" />
 <meta property="article:modified_time" content="2020-02-28T18:53:51+08:00" />
+
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Echo 系列教程——定制篇2：自定义 Validator，进行输入校验"/>
 <meta name="twitter:description" content="上一篇讲 Binder 时提到，参数自动绑定和校验是 Web 框架很重要的两个功能，可以极大的提升开发速度，并更好的保证数据的可靠性（服务端数据校验很重要）。本节，我们就一起看看如何自定义 Echo 的表单校验功能。 不同于 Binder，Echo 并没有内置数据校验的能力，也就是没有默认的 Validator 实现。然而，你可以很方便的集成第三方的数据校验库。跟 Binder 类似，Echo 提供了一个 Validator 接口，方便将第三方数据校"/>
@@ -83,10 +79,12 @@
 			<div class="content">
 				<p>上一篇讲 Binder 时提到，参数自动绑定和校验是 Web 框架很重要的两个功能，可以极大的提升开发速度，并更好的保证数据的可靠性（服务端数据校验很重要）。本节，我们就一起看看如何自定义 Echo 的表单校验功能。</p>
 <p>不同于 Binder，Echo 并没有内置数据校验的能力，也就是没有默认的 Validator 实现。然而，你可以很方便的集成第三方的数据校验库。跟 Binder 类似，Echo 提供了一个 Validator 接口，方便将第三方数据校验库集成进来。</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">Validator</span> <span class="kd">interface</span> <span class="p">{</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="nx">Validator</span> <span class="kd">interface</span> <span class="p">{</span>
   <span class="nf">Validate</span><span class="p">(</span><span class="nx">i</span> <span class="kd">interface</span><span class="p">{})</span> <span class="kt">error</span>
 <span class="p">}</span>
-</code></pre></div><p>通过这个实现这个接口，可以很方便的将任何第三方数据校验库集成到 Echo 中。在 Awesome-Go 上可以找到第三方数据校验库：<a href="https://github.com/avelino/awesome-go#validation">https://github.com/avelino/awesome-go#validation</a>。本文我们使用最流行的 <a href="https://github.com/go-playground/validator">https://github.com/go-playground/validator</a> 库来讲解。</p>
+</code></pre></div><p>通过这个实现这个接口，可以很方便的将任何第三方数据校验库集成到 Echo 中。在 Awesome-Go 上可以找到第三方数据校验库：<a href="https://github.com/avelino/awesome-go#validation" target="_blank" rel="noopener">https://github.com/avelino/awesome-go#validation</a>
+。本文我们使用最流行的 <a href="https://github.com/go-playground/validator" target="_blank" rel="noopener">https://github.com/go-playground/validator</a>
+ 库来讲解。</p>
 <h2 id="go-playgroundvalidator">go-playground/validator<a href="#go-playgroundvalidator" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>这是一个 Go 结构体及字段校验器，包括：跨字段和跨结构体校验，Map，切片和数组，是目前校验器相关库中 Star 数最高的一个，对国际化支持也很好，建议大家使用它。</p>
 <p>它具有以下独特功能：</p>
@@ -103,7 +101,7 @@
 </ul>
 <h3 id="一个简单的例子">一个简单的例子<a href="#一个简单的例子" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>通过一个简单例子来看看如何使用该库。</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
 	<span class="s">&#34;fmt&#34;</span>
@@ -146,17 +144,18 @@
 	<span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div><p>执行如下命令，运行代码：</p>
-<pre><code>go run main.go -name studygolang -age 7 -email polaris@studygolang.com
+<pre tabindex="0"><code>go run main.go -name studygolang -age 7 -email polaris@studygolang.com
 </code></pre><p>什么都没有输出，表示一切正常。如果我们提供一个非法的邮箱地址：</p>
-<pre><code>go run main.go -name studygolang -age 7 -email polaris@studygolang
+<pre tabindex="0"><code>go run main.go -name studygolang -age 7 -email polaris@studygolang
 </code></pre><p>输出如下错误：</p>
-<pre><code>Key: 'User.Email' Error:Field validation for 'Email' failed on the 'email' tag
+<pre tabindex="0"><code>Key: 'User.Email' Error:Field validation for 'Email' failed on the 'email' tag
 </code></pre><p>错误显示不友好。怎么能够更友好，并进行国际化呢？</p>
 <h3 id="国际化i18n">国际化（i18n）<a href="#国际化i18n" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>在介绍校验库错误消息国际化之前，有一个概念需要了解下，那就是 CLDR。</p>
 <h4 id="什么是-cldr">什么是 CLDR？<a href="#什么是-cldr" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
 <p>它是 i18n 的一套核心规范（ Common Locale Data Respository），即通用的本地化数据存储库，什么意思呢？比如我们的手机，电脑都可以选择语言模式为 英语、汉语、日语、法语等等，这套操作背后的规范，就是 CLDR；CLDR 是以 Unicode 的编码标准作为前提，将多国的语言文字进行编码的。</p>
-<p>看看官方对于 CLDR 的说明，官方网址：<a href="http://cldr.unicode.org/">http://cldr.unicode.org/</a></p>
+<p>看看官方对于 CLDR 的说明，官方网址：<a href="http://cldr.unicode.org/" target="_blank" rel="noopener">http://cldr.unicode.org/</a>
+</p>
 <blockquote>
 <p>Unicode CLDR 提供了支持世界语言的软件的关键构建块，并且具有最大和最广泛的本地设置数据标准存储库。大量的公司使用此数据进行软件的国际化和本地化，使它们的软件适应此类通用软件任务的不同语言的约定。</p>
 </blockquote>
@@ -172,7 +171,8 @@
 <p>本文讲解的校验库是 go-playground 这个组织创建的，它们还提供了其他的一些有用库，其中就包括了 CLDR 的 Go 语言实现，这就是 <a href="https://github.com/go-playground/locales" target="_blank" rel="noopener">locales</a>
 。</p>
 <blockquote>
-<p>该库是从 CLDR 项目生成的一组语言环境，可以单独使用或在 i18n 软件包中使用；这些是专为 <a href="https://github.com/go-playground/universal-translator">https://github.com/go-playground/universal-translator</a> 构建的，但也可以单独他用。</p>
+<p>该库是从 CLDR 项目生成的一组语言环境，可以单独使用或在 i18n 软件包中使用；这些是专为 <a href="https://github.com/go-playground/universal-translator" target="_blank" rel="noopener">https://github.com/go-playground/universal-translator</a>
+ 构建的，但也可以单独他用。</p>
 </blockquote>
 <p>这引出了该组织的另外一个库：<a href="https://github.com/go-playground/universal-translator" target="_blank" rel="noopener">universal-translator</a>
 。</p>
@@ -182,7 +182,7 @@
 <h4 id="universal-translator-简明教程">universal-translator 简明教程<a href="#universal-translator-简明教程" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
 <p>这个通用的翻译器包主要包含了两个核心数据结构：Translator 接口和 UniversalTranslator 结构体，其他的是错误类型。我们先看 Translator 接口。（注意，该包的包名是 ut）</p>
 <p><strong>Translator 接口</strong></p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">Translator</span> <span class="kd">interface</span> <span class="p">{</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">Translator</span> <span class="kd">interface</span> <span class="p">{</span>
     <span class="nx">locales</span><span class="p">.</span><span class="nx">Translator</span>
 
     <span class="c1">// adds a normal translation for a particular language/locale
@@ -240,22 +240,22 @@
 </ul>
 <p><strong>UniversalTranslator 结构体</strong></p>
 <p>它用于保存所有语言环境和翻译数据。该结构体方法不多，我们关注几个核心的。</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">New</span><span class="p">(</span><span class="nx">fallback</span> <span class="nx">locales</span><span class="p">.</span><span class="nx">Translator</span><span class="p">,</span> <span class="nx">supportedLocales</span> <span class="o">...</span><span class="nx">locales</span><span class="p">.</span><span class="nx">Translator</span><span class="p">)</span> <span class="o">*</span><span class="nx">UniversalTranslator</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">New</span><span class="p">(</span><span class="nx">fallback</span> <span class="nx">locales</span><span class="p">.</span><span class="nx">Translator</span><span class="p">,</span> <span class="nx">supportedLocales</span> <span class="o">...</span><span class="nx">locales</span><span class="p">.</span><span class="nx">Translator</span><span class="p">)</span> <span class="o">*</span><span class="nx">UniversalTranslator</span>
 </code></pre></div><p>New 返回一个 UniversalTranslator 实例，该实例具有后备语言环境（fallback）和应支持的语言环境（supportedLocales）。可以看到，New 函数接收的参数是 locales.Translator 类型，因此我们肯定需要用到 locales 包。</p>
 <p>得到 UniversalTranslator 实例后，需要获得 universal-translator 包中的 Translator 接口实例，这就用到了下面几个方法。</p>
 <p>1）GetTranslator</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="p">(</span><span class="nx">t</span> <span class="o">*</span><span class="nx">UniversalTranslator</span><span class="p">)</span> <span class="nf">GetTranslator</span><span class="p">(</span><span class="nx">locale</span> <span class="kt">string</span><span class="p">)</span> <span class="p">(</span><span class="nx">trans</span> <span class="nx">Translator</span><span class="p">,</span> <span class="nx">found</span> <span class="kt">bool</span><span class="p">)</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="p">(</span><span class="nx">t</span> <span class="o">*</span><span class="nx">UniversalTranslator</span><span class="p">)</span> <span class="nf">GetTranslator</span><span class="p">(</span><span class="nx">locale</span> <span class="kt">string</span><span class="p">)</span> <span class="p">(</span><span class="nx">trans</span> <span class="nx">Translator</span><span class="p">,</span> <span class="nx">found</span> <span class="kt">bool</span><span class="p">)</span>
 </code></pre></div><p>返回给定语言环境的指定翻译器，如果未找到，则返回后备语言环境的翻译器（即 New 中的 fallback）。</p>
 <p>2）GetFallback</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="p">(</span><span class="nx">t</span> <span class="o">*</span><span class="nx">UniversalTranslator</span><span class="p">)</span> <span class="nf">GetFallback</span><span class="p">()</span> <span class="nx">Translator</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="p">(</span><span class="nx">t</span> <span class="o">*</span><span class="nx">UniversalTranslator</span><span class="p">)</span> <span class="nf">GetFallback</span><span class="p">()</span> <span class="nx">Translator</span>
 </code></pre></div><p>直接返回后备语言环境的翻译器。</p>
 <p>3）FindTranslator</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="p">(</span><span class="nx">t</span> <span class="o">*</span><span class="nx">UniversalTranslator</span><span class="p">)</span> <span class="nf">FindTranslator</span><span class="p">(</span><span class="nx">locales</span> <span class="o">...</span><span class="kt">string</span><span class="p">)</span> <span class="p">(</span><span class="nx">trans</span> <span class="nx">Translator</span><span class="p">,</span> <span class="nx">found</span> <span class="kt">bool</span><span class="p">)</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="p">(</span><span class="nx">t</span> <span class="o">*</span><span class="nx">UniversalTranslator</span><span class="p">)</span> <span class="nf">FindTranslator</span><span class="p">(</span><span class="nx">locales</span> <span class="o">...</span><span class="kt">string</span><span class="p">)</span> <span class="p">(</span><span class="nx">trans</span> <span class="nx">Translator</span><span class="p">,</span> <span class="nx">found</span> <span class="kt">bool</span><span class="p">)</span>
 </code></pre></div><p>尝试根据语言环境数组查找翻译器，并返回它可以找到的第一个翻译器，否则返回后备翻译器。</p>
 <p>总结来说，New 函数加上这三个方法，相当于是 locales.Translator 到 ut.Translator 的转换。</p>
 <p><strong>示例</strong></p>
 <p>通过一个实际的例子来学习下这两个包的使用。</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
 	<span class="s">&#34;flag&#34;</span>
@@ -307,9 +307,9 @@
 </ul>
 <h3 id="validator-怎么和以上两个库集成提供-i18n">Validator 怎么和以上两个库集成提供 i18n<a href="#validator-怎么和以上两个库集成提供-i18n" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>Validator 库提供了相应的子库，对以上两个库进行了封装。比如中文的库：github.com/go-playground/validator/translations/zh ，这些子库提供了一个 RegisterDefaultTranslations ，为所有内置标签的验证器注册一组默认翻译。</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">RegisterDefaultTranslations</span><span class="p">(</span><span class="nx">v</span> <span class="o">*</span><span class="nx">validator</span><span class="p">.</span><span class="nx">Validate</span><span class="p">,</span> <span class="nx">trans</span> <span class="nx">ut</span><span class="p">.</span><span class="nx">Translator</span><span class="p">)</span> <span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">)</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">RegisterDefaultTranslations</span><span class="p">(</span><span class="nx">v</span> <span class="o">*</span><span class="nx">validator</span><span class="p">.</span><span class="nx">Validate</span><span class="p">,</span> <span class="nx">trans</span> <span class="nx">ut</span><span class="p">.</span><span class="nx">Translator</span><span class="p">)</span> <span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">)</span>
 </code></pre></div><p>具体怎么做？还是看最开始的例子，其他不变，main 函数改为如下：</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
 	<span class="nx">flag</span><span class="p">.</span><span class="nf">Parse</span><span class="p">()</span>
 
 	<span class="nx">user</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">User</span><span class="p">{</span>
@@ -342,7 +342,7 @@ Email为必填字段</p>
 <p>大功告成。</p>
 <h2 id="将-validator-集成到-echo-中">将 Validator 集成到 Echo 中<a href="#将-validator-集成到-echo-中" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>首先，需要定义一个类型，实现 Echo 的接口 Validator ：</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">CustomValidator</span> <span class="kd">struct</span> <span class="p">{</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">CustomValidator</span> <span class="kd">struct</span> <span class="p">{</span>
 	<span class="nx">once</span>     <span class="nx">sync</span><span class="p">.</span><span class="nx">Once</span>
 	<span class="nx">validate</span> <span class="o">*</span><span class="nx">validator</span><span class="p">.</span><span class="nx">Validate</span>
 <span class="p">}</span>
@@ -359,12 +359,13 @@ Email为必填字段</p>
 <span class="p">}</span>
 </code></pre></div><p>因为 validator.Validate 实例化做了不少事情，这里将实例化推迟到使用时。简单几行代码就实现了一个自定义的 Validator。</p>
 <p>接下来和 Echo 集成起来就很容易了。</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">e</span> <span class="o">:=</span> <span class="nx">echo</span><span class="p">.</span><span class="nf">New</span><span class="p">()</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="nx">e</span> <span class="o">:=</span> <span class="nx">echo</span><span class="p">.</span><span class="nf">New</span><span class="p">()</span>
 <span class="nx">e</span><span class="p">.</span><span class="nx">Validator</span> <span class="p">=</span> <span class="o">&amp;</span><span class="nx">CustomValidator</span><span class="p">{}</span>
 </code></pre></div><p>之后就可以在需要进行表单校验的地方通过 <code>ctx.Validate()</code> 进行校验。</p>
 <p>自此我们完成了 Validator 集成到 Echo 的功能。</p>
 <p>还剩最后一块内容，那就是校验错误信息的国际化显示。国际化相关的内容，上面有了较详细的介绍，Validator 集成到 Echo 后如何国际化我们在后面实战篇再讲。</p>
-<p>完整代码见：<a href="https://github.com/polaris1119/go-echo-example/blob/master/pkg/validator/validator.go">https://github.com/polaris1119/go-echo-example/blob/master/pkg/validator/validator.go</a>。</p>
+<p>完整代码见：<a href="https://github.com/polaris1119/go-echo-example/blob/master/pkg/validator/validator.go" target="_blank" rel="noopener">https://github.com/polaris1119/go-echo-example/blob/master/pkg/validator/validator.go</a>
+。</p>
 
 			</div><div class="content">
 	<br>
@@ -442,7 +443,7 @@ Email为必填字段</p>
 
 
 
-	<script src="https://polarisxu.studygolang.com/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw=" crossorigin="anonymous"></script>
+	<script src="https://polarisxu.studygolang.com/js/main.min.4eaa15feccc672488716f0338ac605e08c7553ce0ce175e13fa00a873636bf98.js" integrity="sha256-TqoV/szGckiHFvAzisYF4Ix1U84M4XXhP6AKhzY2v5g=" crossorigin="anonymous"></script>
 	<script>
 var _hmt = _hmt || [];
 (function() {

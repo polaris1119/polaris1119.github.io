@@ -8,20 +8,16 @@
 	<meta name="theme-color" content="#fcfcfc">
 	<meta name="msapplication-TileColor" content="#fcfcfc">
 <meta itemprop="name" content="Go 1.17 新特性提前学之测试执行随机化">
-<meta itemprop="description" content="大家好，我是 polarisxu。 Go1.17 预计在 8 月份发布。目前 tip.golang.org 可以浏览 Go1.17 的相关内容，https://tip.golang.org/doc/go1.17 也有了 Go1.17 相关改动的部分文档。这段时间，我会陆续给大家分享 Go1.17 中相关的新特性，提前学习。。。好吧，提前卷了~ 今天先聊聊在测试中增加的随机化 flag：shuffle。 01 安装 tip 版本 由于 Go1.17 还未发布，因此为了体验它的新特性，我">
-<meta itemprop="datePublished" content="2021-05-30T22:20:00+08:00" />
+<meta itemprop="description" content="大家好，我是 polarisxu。 Go1.17 预计在 8 月份发布。目前 tip.golang.org 可以浏览 Go1.17 的相关内容，https://tip.golang.org/doc/go1.17 也有了 Go1.17 相关改动的部分文档。这段时间，我会陆续给大家分享 Go1.17 中相关的新特性，提前学习。。。好吧，提前卷了~ 今天先聊聊在测试中增加的随机化 flag：shuffle。 01 安装 tip 版本 由于 Go1.17 还未发布，因此为了体验它的新特性，我"><meta itemprop="datePublished" content="2021-05-30T22:20:00+08:00" />
 <meta itemprop="dateModified" content="2021-05-30T22:20:00+08:00" />
 <meta itemprop="wordCount" content="1322">
-
-
-
-<meta itemprop="keywords" content="Go,1.17," />
-<meta property="og:title" content="Go 1.17 新特性提前学之测试执行随机化" />
+<meta itemprop="keywords" content="Go,1.17," /><meta property="og:title" content="Go 1.17 新特性提前学之测试执行随机化" />
 <meta property="og:description" content="大家好，我是 polarisxu。 Go1.17 预计在 8 月份发布。目前 tip.golang.org 可以浏览 Go1.17 的相关内容，https://tip.golang.org/doc/go1.17 也有了 Go1.17 相关改动的部分文档。这段时间，我会陆续给大家分享 Go1.17 中相关的新特性，提前学习。。。好吧，提前卷了~ 今天先聊聊在测试中增加的随机化 flag：shuffle。 01 安装 tip 版本 由于 Go1.17 还未发布，因此为了体验它的新特性，我" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/dynamic/go1.17-testing-shuffle-flag/" />
+<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/dynamic/go1.17-testing-shuffle-flag/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-05-30T22:20:00+08:00" />
 <meta property="article:modified_time" content="2021-05-30T22:20:00+08:00" />
+
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Go 1.17 新特性提前学之测试执行随机化"/>
 <meta name="twitter:description" content="大家好，我是 polarisxu。 Go1.17 预计在 8 月份发布。目前 tip.golang.org 可以浏览 Go1.17 的相关内容，https://tip.golang.org/doc/go1.17 也有了 Go1.17 相关改动的部分文档。这段时间，我会陆续给大家分享 Go1.17 中相关的新特性，提前学习。。。好吧，提前卷了~ 今天先聊聊在测试中增加的随机化 flag：shuffle。 01 安装 tip 版本 由于 Go1.17 还未发布，因此为了体验它的新特性，我"/>
@@ -82,27 +78,29 @@
 			</header>
 			<div class="content">
 				<p>大家好，我是 polarisxu。</p>
-<p>Go1.17 预计在 8 月份发布。目前 tip.golang.org 可以浏览 Go1.17 的相关内容，<a href="https://tip.golang.org/doc/go1.17">https://tip.golang.org/doc/go1.17</a> 也有了 Go1.17 相关改动的部分文档。这段时间，我会陆续给大家分享 Go1.17 中相关的新特性，提前学习。。。好吧，提前卷了~</p>
+<p>Go1.17 预计在 8 月份发布。目前 tip.golang.org 可以浏览 Go1.17 的相关内容，<a href="https://tip.golang.org/doc/go1.17" target="_blank" rel="noopener">https://tip.golang.org/doc/go1.17</a>
+ 也有了 Go1.17 相关改动的部分文档。这段时间，我会陆续给大家分享 Go1.17 中相关的新特性，提前学习。。。好吧，提前卷了~</p>
 <p>今天先聊聊在测试中增加的随机化 flag：shuffle。</p>
 <h2 id="01-安装-tip-版本">01 安装 tip 版本<a href="#01-安装-tip-版本" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>由于 Go1.17 还未发布，因此为了体验它的新特性，我们需要安装 tip 版本。这是一个正在开发的版本，也就是仓库的 master 分支代码。因此，我们需要通过源码编译安装。</p>
 <p>这里我使用 <a href="https://mp.weixin.qq.com/s/yTblk9Js1Zcq5aWVcYGjOA" target="_blank" rel="noopener">goup</a>
  这个管理工具进行安装：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ goup install tip
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ goup install tip
 </code></pre></div><p>安装成功后，查看版本信息（你看到的大概率和我的不一样）：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ go version
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ go version
 go version devel go1.17-1607c28172 Sun May <span class="m">30</span> 02:37:38 <span class="m">2021</span> +0000 darwin/amd64
 </code></pre></div><h2 id="02-新的-shuffle-flag">02 新的 shuffle flag<a href="#02-新的-shuffle-flag" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>安装完 tip 版本后，执行如下命令：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ go <span class="nb">help</span> testflag
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ go <span class="nb">help</span> testflag
 </code></pre></div><p>然后找到下面这个 flag：</p>
-<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">-shuffle off,on,N
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text">-shuffle off,on,N
 		Randomize the execution order of tests and benchmarks.
 		It is off by default. If -shuffle is set to on, then it will seed
 		the randomizer using the system clock. If -shuffle is set to an
 		integer N, then N will be used as the seed value. In both cases,
 		the seed will be reported for reproducibility.
-</code></pre></div><p>这是 Go1.17 新增的，提交的代码见：<a href="https://golang.org/cl/310033">https://golang.org/cl/310033</a>。</p>
+</code></pre></div><p>这是 Go1.17 新增的，提交的代码见：<a href="https://golang.org/cl/310033" target="_blank" rel="noopener">https://golang.org/cl/310033</a>
+。</p>
 <p>从名称可以看出，这是控制测试执行顺序是否随机的 flag。它有三个值：off、on 和 N，其中默认是 off，即不启用随机，这相当于 Go1.17 版本之前的测试行为。而 on 表示启用 shuffle，那 N 是什么意思？它也表示启用随机。on 和 N 的区别解释下：</p>
 <blockquote>
 <p>因为是随机，就涉及到随机种子（seed）问题。当值是 on 时，随机数种子使用系统时钟；如果值是 N，则直接用这个 N 当做随机数种子。注意 N 是整数。</p>
@@ -110,7 +108,7 @@ go version devel go1.17-1607c28172 Sun May <span class="m">30</span> 02:37:38 <s
 </blockquote>
 <h2 id="03-例子体验下">03 例子体验下<a href="#03-例子体验下" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>创建一个包 calc，增加「加减乘除」四个函数：</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">Add</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span> <span class="kt">int</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">Add</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span> <span class="kt">int</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
 	<span class="k">return</span> <span class="nx">x</span> <span class="o">+</span> <span class="nx">y</span>
 <span class="p">}</span>
 
@@ -126,7 +124,7 @@ go version devel go1.17-1607c28172 Sun May <span class="m">30</span> 02:37:38 <s
 	<span class="k">return</span> <span class="nx">x</span> <span class="o">/</span> <span class="nx">y</span>
 <span class="p">}</span>
 </code></pre></div><p>并为这四个函数写好单元测试（代码太长，这里只列出 Add 的，写法不重要，按你喜欢的方式写单元测试即可）：</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">TestAdd</span><span class="p">(</span><span class="nx">t</span> <span class="o">*</span><span class="nx">testing</span><span class="p">.</span><span class="nx">T</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">TestAdd</span><span class="p">(</span><span class="nx">t</span> <span class="o">*</span><span class="nx">testing</span><span class="p">.</span><span class="nx">T</span><span class="p">)</span> <span class="p">{</span>
 	<span class="kd">type</span> <span class="nx">args</span> <span class="kd">struct</span> <span class="p">{</span>
 		<span class="nx">x</span> <span class="kt">int</span>
 		<span class="nx">y</span> <span class="kt">int</span>
@@ -151,7 +149,7 @@ go version devel go1.17-1607c28172 Sun May <span class="m">30</span> 02:37:38 <s
 	<span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div><p>然后运行单元测试（不加 shuffle flag）：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ go <span class="nb">test</span> -v ./...
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ go <span class="nb">test</span> -v ./...
 <span class="o">===</span> RUN   TestAdd
     calc_test.go:27: Add<span class="o">()</span> <span class="o">=</span> 2, want <span class="m">3</span>
 --- FAIL: TestAdd <span class="o">(</span>0.00s<span class="o">)</span>
@@ -166,7 +164,7 @@ FAIL	test/shuffle	0.441s
 FAIL
 </code></pre></div><p>多次运行，发现执行顺序都是你文件中写好的单元测试顺序，我这里是 Add、Minus、Mul、Div。</p>
 <p>加上 shuffle flag 后运行：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ go <span class="nb">test</span> -v -shuffle<span class="o">=</span>on ./...
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ go <span class="nb">test</span> -v -shuffle<span class="o">=</span>on ./...
 -test.shuffle <span class="nv">1622383890431866000</span>
 <span class="o">===</span> RUN   TestMul
 --- PASS: TestMul <span class="o">(</span>0.00s<span class="o">)</span>
@@ -201,6 +199,8 @@ FAIL
 	<h2>相关推荐</h2>
 	<ul>
 	
+	<li><a href="/posts/go/fiber/go-fiber-basic-tutorial01/">Go Fiber 框架系列教程 01: 和 Express 对比学习</a></li>
+	
 	<li><a href="/posts/go/action/go-illegal-private-import/">Go Module：私有不合规库怎么解决引用问题</a></li>
 	
 	<li><a href="/posts/go/dynamic/1.17-golang-go-get-updated/">Go1.17 新特性：go get 变了</a></li>
@@ -208,8 +208,6 @@ FAIL
 	<li><a href="/posts/go/dynamic/go-1-17-new-features-added-to-testing/">Go1.17 新特性：testing 包的相关变化</a></li>
 	
 	<li><a href="/posts/go/action/chained-channel-operations-in-a-single-select-case/">StackOverflow 上关于 Go select 死锁的问题</a></li>
-	
-	<li><a href="/posts/go/book/building-distributed-applications-in-gin/">新书推荐：用 Gin 框架构建分布式应用</a></li>
 	
 	</ul>
 </div>
@@ -264,7 +262,7 @@ FAIL
 
 
 
-	<script src="https://polarisxu.studygolang.com/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw=" crossorigin="anonymous"></script>
+	<script src="https://polarisxu.studygolang.com/js/main.min.4eaa15feccc672488716f0338ac605e08c7553ce0ce175e13fa00a873636bf98.js" integrity="sha256-TqoV/szGckiHFvAzisYF4Ix1U84M4XXhP6AKhzY2v5g=" crossorigin="anonymous"></script>
 	<script>
 var _hmt = _hmt || [];
 (function() {

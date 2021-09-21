@@ -8,20 +8,16 @@
 	<meta name="theme-color" content="#fcfcfc">
 	<meta name="msapplication-TileColor" content="#fcfcfc">
 <meta itemprop="name" content="编写了50万行Go代码是一种什么体验">
-<meta itemprop="description" content="大家好，我是 polarisxu。 今天看到一篇文章，分享给大家，看看写了 50 万行代码的 Gopher 对 Go 有什么感想。 先简单介绍下可汗学院（Khan Academy）。 这是一个非营利性组织，其使命是在任何地方为任何人提供免费的、世界级的教育。 全球有 6.17 亿儿童缺乏基本的数学和阅读技能。可汗学院是一个提供他们所需教育的非营利组织，因此需要大家的帮助，你的帮忙可以改变一个孩子的一生。 所">
-<meta itemprop="datePublished" content="2021-05-17T20:30:00+08:00" />
+<meta itemprop="description" content="大家好，我是 polarisxu。 今天看到一篇文章，分享给大家，看看写了 50 万行代码的 Gopher 对 Go 有什么感想。 先简单介绍下可汗学院（Khan Academy）。 这是一个非营利性组织，其使命是在任何地方为任何人提供免费的、世界级的教育。 全球有 6.17 亿儿童缺乏基本的数学和阅读技能。可汗学院是一个提供他们所需教育的非营利组织，因此需要大家的帮助，你的帮忙可以改变一个孩子的一生。 所"><meta itemprop="datePublished" content="2021-05-17T20:30:00+08:00" />
 <meta itemprop="dateModified" content="2021-05-17T20:30:00+08:00" />
 <meta itemprop="wordCount" content="1432">
-
-
-
-<meta itemprop="keywords" content="Go," />
-<meta property="og:title" content="编写了50万行Go代码是一种什么体验" />
+<meta itemprop="keywords" content="Go," /><meta property="og:title" content="编写了50万行Go代码是一种什么体验" />
 <meta property="og:description" content="大家好，我是 polarisxu。 今天看到一篇文章，分享给大家，看看写了 50 万行代码的 Gopher 对 Go 有什么感想。 先简单介绍下可汗学院（Khan Academy）。 这是一个非营利性组织，其使命是在任何地方为任何人提供免费的、世界级的教育。 全球有 6.17 亿儿童缺乏基本的数学和阅读技能。可汗学院是一个提供他们所需教育的非营利组织，因此需要大家的帮助，你的帮忙可以改变一个孩子的一生。 所" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/translation/half-a-million-lines-of-go/" />
+<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/translation/half-a-million-lines-of-go/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-05-17T20:30:00+08:00" />
 <meta property="article:modified_time" content="2021-05-17T20:30:00+08:00" />
+
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="编写了50万行Go代码是一种什么体验"/>
 <meta name="twitter:description" content="大家好，我是 polarisxu。 今天看到一篇文章，分享给大家，看看写了 50 万行代码的 Gopher 对 Go 有什么感想。 先简单介绍下可汗学院（Khan Academy）。 这是一个非营利性组织，其使命是在任何地方为任何人提供免费的、世界级的教育。 全球有 6.17 亿儿童缺乏基本的数学和阅读技能。可汗学院是一个提供他们所需教育的非营利组织，因此需要大家的帮助，你的帮忙可以改变一个孩子的一生。 所"/>
@@ -87,10 +83,12 @@
 <blockquote>
 <p>这是一个非营利性组织，其使命是在任何地方为任何人提供免费的、世界级的教育。</p>
 <p>全球有 6.17 亿儿童缺乏基本的数学和阅读技能。可汗学院是一个提供他们所需教育的非营利组织，因此需要大家的帮助，你的帮忙可以改变一个孩子的一生。</p>
-<p>所以，从网站介绍可以看出，这个组织主要靠大家的赞助维持运营。如果你支持这样的公益事业，可以到官网：<a href="https://www.khanacademy.org/">https://www.khanacademy.org/</a> 赞助。</p>
+<p>所以，从网站介绍可以看出，这个组织主要靠大家的赞助维持运营。如果你支持这样的公益事业，可以到官网：<a href="https://www.khanacademy.org/" target="_blank" rel="noopener">https://www.khanacademy.org/</a>
+ 赞助。</p>
 </blockquote>
 <h2 id="从-python2-迁移到-go">从 Python2 迁移到 Go<a href="#从-python2-迁移到-go" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-<p>可汗学院的项目 Goliath，最开始使用 Python2 实现的，2019 年逐步将其迁移到了 Go。这里有一篇文章介绍了迁移的事情：<a href="https://blog.khanacademy.org/go-services-one-goliath-project/">https://blog.khanacademy.org/go-services-one-goliath-project/</a>。</p>
+<p>可汗学院的项目 Goliath，最开始使用 Python2 实现的，2019 年逐步将其迁移到了 Go。这里有一篇文章介绍了迁移的事情：<a href="https://blog.khanacademy.org/go-services-one-goliath-project/" target="_blank" rel="noopener">https://blog.khanacademy.org/go-services-one-goliath-project/</a>
+。</p>
 <p>因为这个决定，现在可汗学院所有的后端和全栈工程师都开始写 Go 代码，经过几年的积累，该项目跨域了一个巨大的里程碑：有超过 50 万行 Go 代码在线上运行着。这对于 Go 整个社区来说也是一件好事。</p>
 <h2 id="工程师很喜欢-go">工程师很喜欢 Go<a href="#工程师很喜欢-go" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>可汗学院的工程师们普遍认为「Go 很容易写和读」，用 Go 越多就越喜欢它。</p>
@@ -125,6 +123,8 @@
 	<h2>相关推荐</h2>
 	<ul>
 	
+	<li><a href="/posts/go/fiber/go-fiber-basic-tutorial01/">Go Fiber 框架系列教程 01: 和 Express 对比学习</a></li>
+	
 	<li><a href="/posts/go/action/go-illegal-private-import/">Go Module：私有不合规库怎么解决引用问题</a></li>
 	
 	<li><a href="/posts/go/dynamic/1.17-golang-go-get-updated/">Go1.17 新特性：go get 变了</a></li>
@@ -132,8 +132,6 @@
 	<li><a href="/posts/go/dynamic/go-1-17-new-features-added-to-testing/">Go1.17 新特性：testing 包的相关变化</a></li>
 	
 	<li><a href="/posts/go/action/chained-channel-operations-in-a-single-select-case/">StackOverflow 上关于 Go select 死锁的问题</a></li>
-	
-	<li><a href="/posts/go/book/building-distributed-applications-in-gin/">新书推荐：用 Gin 框架构建分布式应用</a></li>
 	
 	</ul>
 </div>
@@ -189,7 +187,7 @@
 
 
 
-	<script src="https://polarisxu.studygolang.com/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw=" crossorigin="anonymous"></script>
+	<script src="https://polarisxu.studygolang.com/js/main.min.4eaa15feccc672488716f0338ac605e08c7553ce0ce175e13fa00a873636bf98.js" integrity="sha256-TqoV/szGckiHFvAzisYF4Ix1U84M4XXhP6AKhzY2v5g=" crossorigin="anonymous"></script>
 	<script>
 var _hmt = _hmt || [];
 (function() {

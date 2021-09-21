@@ -8,20 +8,16 @@
 	<meta name="theme-color" content="#fcfcfc">
 	<meta name="msapplication-TileColor" content="#fcfcfc">
 <meta itemprop="name" content="一道 Go 闭包题，面试官说原来自己答错了：面别人也涨知识">
-<meta itemprop="description" content="大家好，我是站长 polarisxu。 通常，JS 面试，闭包应该是必考的题目。随着越来越多的语言对函数式范式的支持，闭包问题经常出现。在 Go 语言中也是如此。 本文从一道题引出 Go 中的闭包。这是 Go 语言爱好者周刊第 90 期的一道题目。以下代码输出什么？ package main import &#34;fmt&#34; func app() func(string) string { t := &#34;Hi&#34; c := func(b string) string { t = t &#43; &#34; &#34; &#43; b return t } return c } func main() { a := app() b := app() a(&#34;go&#34;) fmt.Println(b(&#34;All&#34;)) } 这道题目答对的人蛮多的：60%。不管你">
-<meta itemprop="datePublished" content="2021-04-13T18:30:00+08:00" />
+<meta itemprop="description" content="大家好，我是站长 polarisxu。 通常，JS 面试，闭包应该是必考的题目。随着越来越多的语言对函数式范式的支持，闭包问题经常出现。在 Go 语言中也是如此。 本文从一道题引出 Go 中的闭包。这是 Go 语言爱好者周刊第 90 期的一道题目。以下代码输出什么？ package main import &#34;fmt&#34; func app() func(string) string { t := &#34;Hi&#34; c := func(b string) string { t = t &#43; &#34; &#34; &#43; b return t } return c } func main() { a := app() b := app() a(&#34;go&#34;) fmt.Println(b(&#34;All&#34;)) } 这道题目答对的人蛮多的：60%。不管你"><meta itemprop="datePublished" content="2021-04-13T18:30:00+08:00" />
 <meta itemprop="dateModified" content="2021-04-13T18:30:00+08:00" />
 <meta itemprop="wordCount" content="2754">
-
-
-
-<meta itemprop="keywords" content="Go,闭包," />
-<meta property="og:title" content="一道 Go 闭包题，面试官说原来自己答错了：面别人也涨知识" />
+<meta itemprop="keywords" content="Go,闭包," /><meta property="og:title" content="一道 Go 闭包题，面试官说原来自己答错了：面别人也涨知识" />
 <meta property="og:description" content="大家好，我是站长 polarisxu。 通常，JS 面试，闭包应该是必考的题目。随着越来越多的语言对函数式范式的支持，闭包问题经常出现。在 Go 语言中也是如此。 本文从一道题引出 Go 中的闭包。这是 Go 语言爱好者周刊第 90 期的一道题目。以下代码输出什么？ package main import &#34;fmt&#34; func app() func(string) string { t := &#34;Hi&#34; c := func(b string) string { t = t &#43; &#34; &#34; &#43; b return t } return c } func main() { a := app() b := app() a(&#34;go&#34;) fmt.Println(b(&#34;All&#34;)) } 这道题目答对的人蛮多的：60%。不管你" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/action/go-closure/" />
+<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/action/go-closure/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-04-13T18:30:00+08:00" />
 <meta property="article:modified_time" content="2021-04-13T18:30:00+08:00" />
+
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="一道 Go 闭包题，面试官说原来自己答错了：面别人也涨知识"/>
 <meta name="twitter:description" content="大家好，我是站长 polarisxu。 通常，JS 面试，闭包应该是必考的题目。随着越来越多的语言对函数式范式的支持，闭包问题经常出现。在 Go 语言中也是如此。 本文从一道题引出 Go 中的闭包。这是 Go 语言爱好者周刊第 90 期的一道题目。以下代码输出什么？ package main import &#34;fmt&#34; func app() func(string) string { t := &#34;Hi&#34; c := func(b string) string { t = t &#43; &#34; &#34; &#43; b return t } return c } func main() { a := app() b := app() a(&#34;go&#34;) fmt.Println(b(&#34;All&#34;)) } 这道题目答对的人蛮多的：60%。不管你"/>
@@ -84,7 +80,7 @@
 				<p>大家好，我是站长 polarisxu。</p>
 <p>通常，JS 面试，闭包应该是必考的题目。随着越来越多的语言对函数式范式的支持，闭包问题经常出现。在 Go 语言中也是如此。</p>
 <p>本文从一道题引出 Go 中的闭包。这是 Go 语言爱好者周刊第 90 期的一道题目。以下代码输出什么？</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="s">&#34;fmt&#34;</span>
 
@@ -126,7 +122,7 @@
 <p>日常开发中，闭包是很常见的。举几个例子。</p>
 <h3 id="标准库">标准库<a href="#标准库" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>在 net/http 包中的函数 ProxyURL，实现如下：</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// ProxyURL returns a proxy function (for use in a Transport)
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// ProxyURL returns a proxy function (for use in a Transport)
 </span><span class="c1">// that always returns the same URL.
 </span><span class="c1"></span><span class="kd">func</span> <span class="nf">ProxyURL</span><span class="p">(</span><span class="nx">fixedURL</span> <span class="o">*</span><span class="nx">url</span><span class="p">.</span><span class="nx">URL</span><span class="p">)</span> <span class="kd">func</span><span class="p">(</span><span class="o">*</span><span class="nx">Request</span><span class="p">)</span> <span class="p">(</span><span class="o">*</span><span class="nx">url</span><span class="p">.</span><span class="nx">URL</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
 	<span class="k">return</span> <span class="kd">func</span><span class="p">(</span><span class="o">*</span><span class="nx">Request</span><span class="p">)</span> <span class="p">(</span><span class="o">*</span><span class="nx">url</span><span class="p">.</span><span class="nx">URL</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
@@ -134,11 +130,11 @@
 	<span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div><p>它的返回值是另一个函数，签名是：</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span><span class="p">(</span><span class="o">*</span><span class="nx">Request</span><span class="p">)</span> <span class="p">(</span><span class="o">*</span><span class="nx">url</span><span class="p">.</span><span class="nx">URL</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span><span class="p">(</span><span class="o">*</span><span class="nx">Request</span><span class="p">)</span> <span class="p">(</span><span class="o">*</span><span class="nx">url</span><span class="p">.</span><span class="nx">URL</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
 </code></pre></div><p>在返回的函数中，引用了父函数（ProxyURL）的参数 fixedURL，因此这是闭包。</p>
 <h3 id="web-中间件">Web 中间件<a href="#web-中间件" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>在 Web 开发中，中间件一般都会使用闭包。比如 Echo 框架中的一个中间件：</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// BasicAuthWithConfig returns an BasicAuth middleware with config.
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// BasicAuthWithConfig returns an BasicAuth middleware with config.
 </span><span class="c1">// See `BasicAuth()`.
 </span><span class="c1"></span><span class="kd">func</span> <span class="nf">BasicAuthWithConfig</span><span class="p">(</span><span class="nx">config</span> <span class="nx">BasicAuthConfig</span><span class="p">)</span> <span class="nx">echo</span><span class="p">.</span><span class="nx">MiddlewareFunc</span> <span class="p">{</span>
 	<span class="c1">// Defaults
@@ -154,14 +150,14 @@
 	<span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div><p>首先，echo.MiddlewareFunc 是一个函数：</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">MiddlewareFunc</span> <span class="kd">func</span><span class="p">(</span><span class="nx">HandlerFunc</span><span class="p">)</span> <span class="nx">HandlerFunc</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">MiddlewareFunc</span> <span class="kd">func</span><span class="p">(</span><span class="nx">HandlerFunc</span><span class="p">)</span> <span class="nx">HandlerFunc</span>
 </code></pre></div><p>而 echo.HandlerFunc 也是一个函数：</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">HandlerFunc</span> <span class="kd">func</span><span class="p">(</span><span class="nx">Context</span><span class="p">)</span> <span class="kt">error</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">HandlerFunc</span> <span class="kd">func</span><span class="p">(</span><span class="nx">Context</span><span class="p">)</span> <span class="kt">error</span>
 </code></pre></div><p>所以，上面的函数嵌套了几层，是典型的闭包。</p>
 <h3 id="这是闭包吗">这是闭包吗？<a href="#这是闭包吗" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>在 Go 中不支持函数嵌套定义，函数内嵌套函数，必须通过匿名函数的形式。匿名函数在 Go 中是很常见的，比如开启一个 goroutine，通常通过匿名函数。</p>
 <p>现在有一个问题，以下代码是闭包吗？</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>  
     <span class="s">&#34;fmt&#34;</span>
@@ -183,7 +179,7 @@
 <p><a href="https://docs.studygolang.com/doc/faq#closures_and_goroutines" target="_blank" rel="noopener">What happens with closures running as goroutines?</a>
 </p>
 <p>例子是：</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
     <span class="nx">done</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">bool</span><span class="p">)</span>
 
     <span class="nx">values</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&#34;a&#34;</span><span class="p">,</span> <span class="s">&#34;b&#34;</span><span class="p">,</span> <span class="s">&#34;c&#34;</span><span class="p">}</span>
@@ -202,9 +198,9 @@
 </code></pre></div><p>这是 Go 中很常见的代码（很容易写错的），FAQ 称开启 goroutine 的那个匿名函数是一个闭包。</p>
 <h2 id="03-汇编看看实现">03 汇编看看实现<a href="#03-汇编看看实现" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>回到开始的题目，我们通过汇编看看，Go 闭包的实现，是不是按照维基百科说的，「闭包在实现上是一个结构体，它存储了一个函数（通常是其入口地址）和一个关联的环境（相当于一个符号查找表）」。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ go tool compile -S main.go
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ go tool compile -S main.go
 </code></pre></div><p>看关键代码：</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="mh">0x0000</span> <span class="mo">00000</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">5</span><span class="p">)</span>	<span class="nx">TEXT</span>	<span class="s">&#34;&#34;</span><span class="p">.</span><span class="nf">app</span><span class="p">(</span><span class="nx">SB</span><span class="p">),</span> <span class="nx">ABIInternal</span><span class="p">,</span> <span class="err">$</span><span class="mi">24</span><span class="o">-</span><span class="mi">8</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="mh">0x0000</span> <span class="mo">00000</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">5</span><span class="p">)</span>	<span class="nx">TEXT</span>	<span class="s">&#34;&#34;</span><span class="p">.</span><span class="nf">app</span><span class="p">(</span><span class="nx">SB</span><span class="p">),</span> <span class="nx">ABIInternal</span><span class="p">,</span> <span class="err">$</span><span class="mi">24</span><span class="o">-</span><span class="mi">8</span>
 <span class="mh">0x0000</span> <span class="mo">00000</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">5</span><span class="p">)</span>	<span class="nf">MOVQ</span>	<span class="p">(</span><span class="nx">TLS</span><span class="p">),</span> <span class="nx">CX</span>
 <span class="mh">0x0009</span> <span class="mo">0000</span><span class="mi">9</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">5</span><span class="p">)</span>	<span class="nx">CMPQ</span>	<span class="nx">SP</span><span class="p">,</span> <span class="mi">16</span><span class="p">(</span><span class="nx">CX</span><span class="p">)</span>
 <span class="mh">0x000d</span> <span class="mo">00013</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">5</span><span class="p">)</span>	<span class="nx">PCDATA</span>	<span class="err">$</span><span class="mi">0</span><span class="p">,</span> <span class="err">$</span><span class="o">-</span><span class="mi">2</span>
@@ -232,7 +228,7 @@
 <span class="mh">0x005e</span> <span class="mo">000</span><span class="mi">94</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">10</span><span class="p">)</span>	<span class="nx">NOP</span>
 </code></pre></div><p>其中 <code>LEAQ	type.noalg.struct { F uintptr; &quot;&quot;.t string }(SB), AX</code> 这行表明 Go 对闭包的实现和维基百科说的类似。</p>
 <p>现在看看下面这种是不是这么实现的：</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>  
     <span class="s">&#34;fmt&#34;</span>
@@ -245,7 +241,7 @@
     <span class="p">}()</span>
 <span class="p">}</span>
 </code></pre></div><p>看看汇编</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ go tool compile -S test.go
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ go tool compile -S test.go
 <span class="s2">&#34;&#34;</span>.main.func1 STEXT <span class="nv">size</span><span class="o">=</span><span class="m">215</span> <span class="nv">args</span><span class="o">=</span>0x8 <span class="nv">locals</span><span class="o">=</span>0x50 <span class="nv">funcid</span><span class="o">=</span>0x0
   0x0000 <span class="m">00000</span> <span class="o">(</span>test.go:9<span class="o">)</span>	TEXT	<span class="s2">&#34;&#34;</span>.main.func1<span class="o">(</span>SB<span class="o">)</span>, ABIInternal, <span class="nv">$80</span>-8
   0x0000 <span class="m">00000</span> <span class="o">(</span>test.go:9<span class="o">)</span>	MOVQ	<span class="o">(</span>TLS<span class="o">)</span>, CX
@@ -309,6 +305,8 @@ F uintptr 更准确的说应该是 .F uintptr，编译器生成的符号大部�
 	<h2>相关推荐</h2>
 	<ul>
 	
+	<li><a href="/posts/go/fiber/go-fiber-basic-tutorial01/">Go Fiber 框架系列教程 01: 和 Express 对比学习</a></li>
+	
 	<li><a href="/posts/go/action/go-illegal-private-import/">Go Module：私有不合规库怎么解决引用问题</a></li>
 	
 	<li><a href="/posts/go/dynamic/1.17-golang-go-get-updated/">Go1.17 新特性：go get 变了</a></li>
@@ -316,8 +314,6 @@ F uintptr 更准确的说应该是 .F uintptr，编译器生成的符号大部�
 	<li><a href="/posts/go/dynamic/go-1-17-new-features-added-to-testing/">Go1.17 新特性：testing 包的相关变化</a></li>
 	
 	<li><a href="/posts/go/action/chained-channel-operations-in-a-single-select-case/">StackOverflow 上关于 Go select 死锁的问题</a></li>
-	
-	<li><a href="/posts/go/book/building-distributed-applications-in-gin/">新书推荐：用 Gin 框架构建分布式应用</a></li>
 	
 	</ul>
 </div>
@@ -378,7 +374,7 @@ F uintptr 更准确的说应该是 .F uintptr，编译器生成的符号大部�
 
 
 
-	<script src="https://polarisxu.studygolang.com/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw=" crossorigin="anonymous"></script>
+	<script src="https://polarisxu.studygolang.com/js/main.min.4eaa15feccc672488716f0338ac605e08c7553ce0ce175e13fa00a873636bf98.js" integrity="sha256-TqoV/szGckiHFvAzisYF4Ix1U84M4XXhP6AKhzY2v5g=" crossorigin="anonymous"></script>
 	<script>
 var _hmt = _hmt || [];
 (function() {

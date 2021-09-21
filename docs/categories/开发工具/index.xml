@@ -23,7 +23,7 @@
       <pubDate>Tue, 03 Nov 2020 18:12:00 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/posts/devtool/cheat-sh/</guid>
-      <description>大家好，我是站长 polarisxu。 在逛 GitHub Trending 时看到了这个项目：https://github.com/chubin/cheat.sh，因为之前我整理过一系列 cheatsheet，因此好奇的打开了这个项目。于是被它吸引了。。。 01 是什么 该项目的描述是： the only cheat sheet you need 简单一句话却很吸引人：这么强大，这一个 cheatsheet 就够了？ 因为在这一份清单中，包含了几乎所有开发者常见的东西，不</description>
+      <description>大家好，我是站长 polarisxu。 在逛 GitHub Trending 时看到了这个项目：https://github.com/chubin/cheat.sh ，因为之前我整理过一系列 cheatsheet，因此好奇的打开了这个项目。于是被它吸引了。。。 01 是什么 该项目的描述是： the only cheat sheet you need 简单一句话却很吸引人：这么强大，这一个 cheatsheet 就够了？ 因为在这一份清单中，包含了几乎所有开发者常见的东西，不</description>
     </item>
     
     <item>
@@ -32,7 +32,7 @@
       <pubDate>Wed, 19 Aug 2020 18:12:00 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/posts/devtool/compare-three-playground/</guid>
-      <description>曾几何时，语言的在线运行（Playground）似乎成了标配。确实，Playground 能够让我们可以快速试验一些想法。Go 语言在发布之初就提供了一个，这就是 https://play.golang.org。然而，由于众所周知的原因，我们访问不了。为了方便国内广大 gopher，我搞了一个国内镜像：https://play.studygolang.com，尽情使</description>
+      <description>曾几何时，语言的在线运行（Playground）似乎成了标配。确实，Playground 能够让我们可以快速试验一些想法。Go 语言在发布之初就提供了一个，这就是 https://play.golang.org 。然而，由于众所周知的原因，我们访问不了。为了方便国内广大 gopher，我搞了一个国内镜像：https://play.studygolang.com ，尽情使用、分享吧。 官方的 Playground 不得不说，Go 官方的 Playground 真</description>
     </item>
     
     <item>
@@ -133,7 +133,7 @@ version:&amp;#34;3.5&amp;#34;services:web:container_name:dockerdevbuild:./ports:
 在继续之前，我们需要 GoLand 2020.1.1 或更高版本，该版本带有最新的 Docker 插件。我们还需要一个相当现代的 Docker 版本，例如 17.06 或更高版本。注意：虽然旧版本的 IDE 在一定程度上可以使用，但是本文使用了新功能，并且 IDE 的外观可能有所不同。
 项目设置 让我们开始设置我们的项目。
 我们可以创建一个新的 Go Modules 项目，也可以使用现有的项目。
-项目结构应类似于此仓库中的结构：https://github.com/dlsniper/dockerdev。
+项目结构应类似于此仓库中的结构：https://github.com/dlsniper/dockerdev 。
 本教程不会介绍如何为你的系统安装和配置 Docker。
 相反，我们将从配置 Docker 服务器开始，以便我们可以运行我们的应用程序。将 Docker 安装到系统中后，转到 Settings/Preferences | Build, Execution, Deployment | Docker，然后单击 + 按钮添加新的 Docker 服务器连接。
 默认情况下，该插件将创建与本地计算机 Docker 服务器的连接，对于我们的教程而言已经足够了。单击确定按钮以创建服务器配置。

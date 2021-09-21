@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#fcfcfc">
+	<meta name="msapplication-TileColor" content="#fcfcfc">
+<meta itemprop="name" content="Go Fiber 框架系列教程 01: 和 Express 对比学习">
+<meta itemprop="description" content="大家好，我是 polarisxu。 每次发框架相关的文章，总有人提到 Go Fiber 框架。于是乎，学习了下 Fiber，感觉确实挺不错的。因此写下这个 Fiber 系列。 Fiber 项目地址：https://github.com/gofiber/fiber ，目前 Star 数 15.3k&#43;。 01 Fiber 框架 这是一个 Go 语言 Web 框架，启发自 NodeJS 框架：Express 。该框架基于 FastHTTP 构建，旨在简化、零内存分配和提高性能，以便快速开"><meta itemprop="datePublished" content="2021-09-20T22:30:00+08:00" />
+<meta itemprop="dateModified" content="2021-09-20T22:30:00+08:00" />
+<meta itemprop="wordCount" content="2082">
+<meta itemprop="keywords" content="Go,Fiber," /><meta property="og:title" content="Go Fiber 框架系列教程 01: 和 Express 对比学习" />
+<meta property="og:description" content="大家好，我是 polarisxu。 每次发框架相关的文章，总有人提到 Go Fiber 框架。于是乎，学习了下 Fiber，感觉确实挺不错的。因此写下这个 Fiber 系列。 Fiber 项目地址：https://github.com/gofiber/fiber ，目前 Star 数 15.3k&#43;。 01 Fiber 框架 这是一个 Go 语言 Web 框架，启发自 NodeJS 框架：Express 。该框架基于 FastHTTP 构建，旨在简化、零内存分配和提高性能，以便快速开" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/fiber/go-fiber-basic-tutorial01/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-09-20T22:30:00+08:00" />
+<meta property="article:modified_time" content="2021-09-20T22:30:00+08:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Go Fiber 框架系列教程 01: 和 Express 对比学习"/>
+<meta name="twitter:description" content="大家好，我是 polarisxu。 每次发框架相关的文章，总有人提到 Go Fiber 框架。于是乎，学习了下 Fiber，感觉确实挺不错的。因此写下这个 Fiber 系列。 Fiber 项目地址：https://github.com/gofiber/fiber ，目前 Star 数 15.3k&#43;。 01 Fiber 框架 这是一个 Go 语言 Web 框架，启发自 NodeJS 框架：Express 。该框架基于 FastHTTP 构建，旨在简化、零内存分配和提高性能，以便快速开"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>Go Fiber 框架系列教程 01: 和 Express 对比学习</title>
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
+	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/styles.css">
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://polarisxu.studygolang.com">polarisxu</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+  <a href="https://polarisxu.studygolang.com/">首页</a>
+  <a href="https://polarisxu.studygolang.com/categories/echo%E7%B3%BB%E5%88%97/">Echo系列</a>
+  <a href="https://polarisxu.studygolang.com/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a>
+  <a href="https://polarisxu.studygolang.com/posts/">归档</a>
+  <a href="https://polarisxu.studygolang.com/about/">关于</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<button id="toc-btn" class="hdr-btn desktop-only-ib" title="目录"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3" y2="6"></line><line x1="3" y1="12" x2="3" y2="12"></line><line x1="3" y1="18" x2="3" y2="18"></line></svg></button><span class="hdr-social hide-in-mobile"><a href="https://github.com/polaris1119" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a><a href="https://twitter.com/polaris1119" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="菜单"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://polarisxu.studygolang.com/">首页</a></li>
+			<li><a href="https://polarisxu.studygolang.com/categories/echo%E7%B3%BB%E5%88%97/">Echo系列</a></li>
+			<li><a href="https://polarisxu.studygolang.com/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a></li>
+			<li><a href="https://polarisxu.studygolang.com/posts/">归档</a></li>
+			<li><a href="https://polarisxu.studygolang.com/about/">关于</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Sep 20, 2021</span></div>
+				<h1>Go Fiber 框架系列教程 01: 和 Express 对比学习</h1>
+			</header>
+			<div class="content">
+				<p>大家好，我是 polarisxu。</p>
+<p>每次发框架相关的文章，总有人提到 Go Fiber 框架。于是乎，学习了下 Fiber，感觉确实挺不错的。因此写下这个 Fiber 系列。</p>
+<p>Fiber 项目地址：<a href="https://github.com/gofiber/fiber" target="_blank" rel="noopener">https://github.com/gofiber/fiber</a>
+，目前 Star 数 15.3k+。</p>
+<h2 id="01-fiber-框架">01 Fiber 框架<a href="#01-fiber-框架" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>这是一个 Go 语言 Web 框架，启发自 NodeJS 框架：<a href="https://github.com/expressjs/express" target="_blank" rel="noopener">Express</a>
+。该框架基于 <a href="https://github.com/valyala/fasthttp" target="_blank" rel="noopener">FastHTTP</a>
+ 构建，旨在<strong>简化</strong>、<strong>零内存分配</strong>和<strong>提高性能</strong>，以便<strong>快速</strong>开发。</p>
+<blockquote>
+<p>如果你是一位 NodeJS 开发者，想学习 Go，这个框架应该很适合你，同时这里还有一份专门为 NodeJS 开发者准备的 Go 学习资料：<a href="https://github.com/miguelmota/golang-for-nodejs-developers" target="_blank" rel="noopener">https://github.com/miguelmota/golang-for-nodejs-developers</a>
+</p>
+</blockquote>
+<p>这个框架是 2020 年 1 月份启动开发的，没想到短时间就受到很多人关注。从 README 的多国语言就可见一斑：</p>
+<p><p class="md__image">
+  <img src="../imgs/fiber-readme.png"
+    alt=""  />
+</p>
+</p>
+<p>从第三方性能测试结果看，Fiber 的表现比 Gin、Echo 好很多。这里有详细的 Benchmark 测试说明：<a href="https://docs.gofiber.io/extra/benchmarks" target="_blank" rel="noopener">https://docs.gofiber.io/extra/benchmarks</a>
+。</p>
+<p>摘抄一段官方关于 Fiber 的哲学：</p>
+<blockquote>
+<p>Fiber 作为一个 Web 框架 ，是按照极简主义的思想并遵循 UNIX 方式创建的，因此新的 gopher 可以在热烈和可信赖的欢迎中迅速进入 Go 的世界。</p>
+<p>Fiber 受到了互联网上最流行的 Web 框架 Express 的启发 。我们结合了 Express 的易用性和 Go 的原始性能 。如果您曾经在 Node.js 上实现过 Web 应用程序(使用 Express 或类似工具)，那么许多方法和原理对您来说应该非常易懂。</p>
+<p>我们关注 整个互联网 用户在 issues 和 Discord channel 的消息，为了创建一个迅速，灵活以及友好的 Go Web 框架，满足任何任务，最后期限和开发者技能。就像 Express 在 JavaScript 世界中一样。</p>
+</blockquote>
+<p>所以，总结一下 Fiber 的特点（优势）：</p>
+<ul>
+<li>强大的路由</li>
+<li>静态文件服务</li>
+<li>极致高性能</li>
+<li>内存占用低</li>
+<li>API 接口</li>
+<li>中间件和 Next 支持</li>
+<li>快速服务器端编程</li>
+<li>支持各种模版引擎</li>
+<li>WebSocket 支持</li>
+<li>频率限制器</li>
+<li>文档被翻译为 16 种语言</li>
+</ul>
+<p>不过有两点需要注意，Fiber 使用了 unsafe 和 fasthttp，所以可能和 Go 最新版本有兼容性问题。目前 Fiber 2.18.0 兼容 Go 1.14 到 Go1.17；但 fasthttp 和 net/http 是不兼容的，因此 net/http 生态的项目无法使用在 fiber 上。</p>
+<h2 id="02-和-express-的简短比较">02 和 Express 的简短比较<a href="#02-和-express-的简短比较" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>既然是受 Express 启发，那就和它比较下。</p>
+<h3 id="hello-world">Hello World<a href="#hello-world" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>基于 Express 的 Hello World 程序：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&#34;express&#34;</span><span class="p">);</span> <span class="c1">// 引用 Express library
+</span><span class="c1"></span><span class="kr">const</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">express</span><span class="p">();</span> <span class="c1">// 创建一个 Express 实例
+</span><span class="c1"></span>
+<span class="c1">// 路由：/ endpoint
+</span><span class="c1"></span><span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&#34;/&#34;</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s2">&#34;Hello World!&#34;</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="c1">// 在 3000 端口启动服务
+</span><span class="c1"></span><span class="nx">app</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="mi">3000</span><span class="p">);</span>
+</code></pre></div><p>确实挺简单，几行代码就搞定了一个 Web 服务。</p>
+<p>现在用 Fiber 实现类似上面的功能：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="s">&#34;github.com/gofiber/fiber/v2&#34;</span> <span class="c1">// 注意，最新版本是 v2.18.0，所以有 v2
+</span><span class="c1"></span>
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">app</span> <span class="o">:=</span> <span class="nx">fiber</span><span class="p">.</span><span class="nf">New</span><span class="p">()</span> <span class="c1">// 创建一个 Fiber 实例
+</span><span class="c1"></span>
+  <span class="c1">// 路由：/ endpoint
+</span><span class="c1"></span>  <span class="nx">app</span><span class="p">.</span><span class="nf">Get</span><span class="p">(</span><span class="s">&#34;/&#34;</span><span class="p">,</span> <span class="kd">func</span><span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">fiber</span><span class="p">.</span><span class="nx">Ctx</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">c</span><span class="p">.</span><span class="nf">SendString</span><span class="p">(</span><span class="s">&#34;Hello, World!&#34;</span><span class="p">)</span>
+  <span class="p">})</span>
+
+  <span class="c1">// 在 3000 端口启动服务
+</span><span class="c1"></span>  <span class="nx">app</span><span class="p">.</span><span class="nf">Listen</span><span class="p">(</span><span class="s">&#34;:3000&#34;</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div><p>目前，几乎所有 Go 框架都是类似的路子，没有太多好解释的。</p>
+<p>Fiber 启动后终端的输出结果：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ go run main.go
+
+ ┌───────────────────────────────────────────────────┐
+ │                   Fiber v2.18.0                   │
+ │               http://127.0.0.1:3000               │
+ │       <span class="o">(</span>bound on host 0.0.0.0 and port 3000<span class="o">)</span>       │
+ │                                                   │
+ │ Handlers ............. <span class="m">2</span>  Processes ........... <span class="m">1</span> │
+ │ Prefork ....... Disabled  PID ............. <span class="m">83538</span> │
+ └───────────────────────────────────────────────────┘
+</code></pre></div><h3 id="路由和端点">路由和端点<a href="#路由和端点" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>任何 Web 应用程序、微服务或 API 都包含一个基于描述 HTTP 方法的端点（endpoint）和处理程序函数的路由系统，只有在这个端点接收到客户端的请求后才会执行这个路由系统。</p>
+<p>除了上面的 HTTP GET 方法，Express 和 Fiber 还支持其他 HTTP 基本方法（当然还支持其他 HTTP 方法）。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="c1">// Endpoint for POST method
+</span><span class="c1"></span><span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s2">&#34;/&#34;</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="c1">// function that stores a new data
+</span><span class="c1"></span><span class="p">});</span>
+
+<span class="c1">// Endpoint for PUT method
+</span><span class="c1"></span><span class="nx">app</span><span class="p">.</span><span class="nx">put</span><span class="p">(</span><span class="s2">&#34;/&#34;</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="c1">// function that replaces the existing data
+</span><span class="c1"></span><span class="p">});</span>
+
+<span class="c1">// Endpoint for PATCH method
+</span><span class="c1"></span><span class="nx">app</span><span class="p">.</span><span class="nx">patch</span><span class="p">(</span><span class="s2">&#34;/&#34;</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="c1">// function that replaces part of the existing data
+</span><span class="c1"></span><span class="p">});</span>
+
+<span class="c1">// Endpoint for DELETE method
+</span><span class="c1"></span><span class="nx">app</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="s2">&#34;/&#34;</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="c1">// function that deletes the data
+</span><span class="c1"></span><span class="p">});</span>
+</code></pre></div><p>对应的 Fiber 代码：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// Endpoint for Post method
+</span><span class="c1"></span><span class="nx">app</span><span class="p">.</span><span class="nf">Post</span><span class="p">(</span><span class="s">&#34;/&#34;</span><span class="p">,</span> <span class="kd">func</span><span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">fiber</span><span class="p">.</span><span class="nx">Ctx</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
+  <span class="c1">// function that stores a new data
+</span><span class="c1"></span><span class="p">})</span>
+
+<span class="c1">// Endpoint for PUT method
+</span><span class="c1"></span><span class="nx">app</span><span class="p">.</span><span class="nf">Put</span><span class="p">(</span><span class="s">&#34;/&#34;</span><span class="p">,</span> <span class="kd">func</span><span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">fiber</span><span class="p">.</span><span class="nx">Ctx</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
+  <span class="c1">// function that replaces the existing data
+</span><span class="c1"></span><span class="p">})</span>
+
+<span class="c1">// Endpoint for PATH method
+</span><span class="c1"></span><span class="nx">app</span><span class="p">.</span><span class="nf">Path</span><span class="p">(</span><span class="s">&#34;/&#34;</span><span class="p">,</span> <span class="kd">func</span><span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">fiber</span><span class="p">.</span><span class="nx">Ctx</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
+  <span class="c1">// function that replaces part of the existing data
+</span><span class="c1"></span><span class="p">})</span>
+
+<span class="c1">// Endpoint for DELETE method
+</span><span class="c1"></span><span class="nx">app</span><span class="p">.</span><span class="nf">Delete</span><span class="p">(</span><span class="s">&#34;/&#34;</span><span class="p">,</span> <span class="kd">func</span><span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">fiber</span><span class="p">.</span><span class="nx">Ctx</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
+  <span class="c1">// function that deletes the data
+</span><span class="c1"></span><span class="p">})</span>
+</code></pre></div><h3 id="中间件">中间件<a href="#中间件" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>中间件函数可以访问 HTTP 请求和响应对象，以及调用下一个中间件函数。一般地，中间件函数执行如下动作：</p>
+<ul>
+<li>执行我们想让其执行的代码</li>
+<li>对请求或响应对象做任何修改</li>
+<li>完成请求-响应循环</li>
+<li>调用堆栈中的下一个中间件函数</li>
+</ul>
+<p>看一个中间件的例子，它们在 Express 和 Fiber 中如何写。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// 打印当前时间
+</span><span class="c1"></span>  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&#34;Date:&#34;</span><span class="p">,</span> <span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">());</span>
+
+  <span class="nx">next</span><span class="p">();</span>
+<span class="p">});</span>
+</code></pre></div><p>对应 Fiber 的代码如下：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="nx">app</span><span class="p">.</span><span class="nf">Use</span><span class="p">(</span><span class="kd">func</span><span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">fiber</span><span class="p">.</span><span class="nx">Ctx</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
+  <span class="c1">// 打印当前时间
+</span><span class="c1"></span>  <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Date:&#34;</span><span class="p">,</span> <span class="nx">time</span><span class="p">.</span><span class="nf">Now</span><span class="p">())</span>
+
+  <span class="k">return</span> <span class="nx">c</span><span class="p">.</span><span class="nf">Next</span><span class="p">()</span>
+<span class="p">})</span>
+</code></pre></div><h3 id="服务静态文件">服务静态文件<a href="#服务静态文件" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>Web 应用经常会有静态文件，它们需要能够被请求，比如图片、css/js 文件等。</p>
+<p>服务静态文件，一般基于如下几个点：</p>
+<ul>
+<li>一个存储静态文件的文件夹</li>
+<li>在 Web 程序中指定挂载点</li>
+<li>对挂载点进行引用</li>
+</ul>
+<p>看看 Express 如何做到的：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span>
+  <span class="s2">&#34;/static&#34;</span><span class="p">,</span> <span class="c1">// mount address
+</span><span class="c1"></span>  <span class="nx">express</span><span class="p">.</span><span class="kr">static</span><span class="p">(</span><span class="s2">&#34;public&#34;</span><span class="p">)</span> <span class="c1">// path to the file folder
+</span><span class="c1"></span><span class="p">);</span>
+</code></pre></div><p>对应 Fiber 的代码如下：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="nx">app</span><span class="p">.</span><span class="nf">Static</span><span class="p">(</span>
+  <span class="s">&#34;/static&#34;</span><span class="p">,</span>  <span class="c1">// mount address
+</span><span class="c1"></span>  <span class="s">&#34;./public&#34;</span><span class="p">,</span> <span class="c1">// path to the file folder
+</span><span class="c1"></span><span class="p">)</span>
+</code></pre></div><p>因此，我们对 <code>/static/</code> 下的文件访问，都对应到 public 下的文件。比如：</p>
+<blockquote>
+<p><code>http://localhost:3000/static/images/background.jpg</code> 对应是 <code>public/images/background.jpg</code> 文件</p>
+</blockquote>
+<h3 id="使用模板">使用模板<a href="#使用模板" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>目前，Go 很多框架对各种模板引擎支持是不够的。但 Fiber 做到了和 Express 类似，支持大量开箱即用的模板引擎，比如：<a href="https://pugjs.org/" target="_blank" rel="noopener">Pug</a>
+、<a href="https://jade-lang.com/" target="_blank" rel="noopener">Jade</a>
+、<a href="https://mustache.github.io/" target="_blank" rel="noopener">Mustache</a>
+ 和 <a href="https://handlebarsjs.com/" target="_blank" rel="noopener">Handlebars</a>
+ 等。</p>
+<p>以 Pug 为例，看看 Express 和 Fiber 如何使用的。（注意，以下代码会查找 ./views 目录下的 index.pug 文件，没有该文件会报错）</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="nx">app</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s2">&#34;view engine&#34;</span><span class="p">,</span> <span class="s2">&#34;pug&#34;</span><span class="p">);</span>
+
+<span class="c1">// 初始化模板文件夹
+</span><span class="c1"></span><span class="nx">app</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s2">&#34;views&#34;</span><span class="p">,</span> <span class="s2">&#34;./views&#34;</span><span class="p">);</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&#34;/&#34;</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s2">&#34;index&#34;</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">title</span><span class="o">:</span> <span class="s2">&#34;Hey!&#34;</span><span class="p">,</span>
+    <span class="nx">message</span><span class="o">:</span> <span class="s2">&#34;This is the index template.&#34;</span><span class="p">,</span>
+  <span class="p">});</span>
+<span class="p">});</span>
+</code></pre></div><p>对应的 Fiber 代码如下（注意，Fiber 对模板的支持是 <a href="https://github.com/gofiber/template" target="_blank" rel="noopener">https://github.com/gofiber/template</a>
+ 包）：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// 基于 ./views 文件夹初始化 Pug 模板引擎
+</span><span class="c1"></span><span class="nx">engine</span> <span class="o">:=</span> <span class="nx">pug</span><span class="p">.</span><span class="nf">New</span><span class="p">(</span><span class="s">&#34;./views&#34;</span><span class="p">,</span> <span class="s">&#34;.pug&#34;</span><span class="p">)</span>
+
+<span class="nx">app</span> <span class="o">:=</span> <span class="nx">fiber</span><span class="p">.</span><span class="nf">New</span><span class="p">(</span><span class="nx">fiber</span><span class="p">.</span><span class="nx">Config</span><span class="p">{</span>
+  <span class="nx">Views</span><span class="p">:</span> <span class="nx">engine</span><span class="p">,</span> <span class="c1">// 设置模板引擎
+</span><span class="c1"></span><span class="p">})</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nf">Get</span><span class="p">(</span><span class="s">&#34;/&#34;</span><span class="p">,</span> <span class="kd">func</span><span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">fiber</span><span class="p">.</span><span class="nx">Ctx</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">c</span><span class="p">.</span><span class="nf">Render</span><span class="p">(</span><span class="s">&#34;index&#34;</span><span class="p">,</span> <span class="nx">fiber</span><span class="p">.</span><span class="nx">Map</span><span class="p">{</span>
+    <span class="s">&#34;Title&#34;</span><span class="p">:</span>   <span class="s">&#34;Hey!&#34;</span><span class="p">,</span>
+    <span class="s">&#34;Message&#34;</span><span class="p">:</span> <span class="s">&#34;This is the index template.&#34;</span><span class="p">,</span>
+  <span class="p">})</span>
+<span class="p">})</span>
+</code></pre></div><h2 id="03-小结">03 小结<a href="#03-小结" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>本文简单介绍了 Fiber 的一些特性。因为 Fiber 是受 Express 启发实现的，因此和 Express 进行了对比。不知道你对 Fiber 有什么感觉？</p>
+<p>下篇文章会较详细的介绍 Fiber 的一些特性。</p>
+
+			</div><div class="content">
+	<br>
+	<img src="https://static.studygolang.com/static/img/polarisxu-qrcode-soso-s.png">
+</div>
+
+<div class="related-posts thin">
+	<h2>相关推荐</h2>
+	<ul>
+	
+	<li><a href="/posts/go/action/go-illegal-private-import/">Go Module：私有不合规库怎么解决引用问题</a></li>
+	
+	<li><a href="/posts/go/dynamic/1.17-golang-go-get-updated/">Go1.17 新特性：go get 变了</a></li>
+	
+	<li><a href="/posts/go/dynamic/go-1-17-new-features-added-to-testing/">Go1.17 新特性：testing 包的相关变化</a></li>
+	
+	<li><a href="/posts/go/action/chained-channel-operations-in-a-single-select-case/">StackOverflow 上关于 Go select 死锁的问题</a></li>
+	
+	<li><a href="/posts/go/book/building-distributed-applications-in-gin/">新书推荐：用 Gin 框架构建分布式应用</a></li>
+	
+	</ul>
+</div>
+
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://polarisxu.studygolang.com/tags/go">Go</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/fiber">Fiber</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>2082 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2021-09-20 22:30 &#43;0800</p>
+			</footer>
+		</article>
+		<aside id="toc">
+			<div class="toc-title">目录</div>
+			<nav id="TableOfContents">
+  <ul>
+    <li><a href="#01-fiber-框架">01 Fiber 框架</a></li>
+    <li><a href="#02-和-express-的简短比较">02 和 Express 的简短比较</a>
+      <ul>
+        <li><a href="#hello-world">Hello World</a></li>
+        <li><a href="#路由和端点">路由和端点</a></li>
+        <li><a href="#中间件">中间件</a></li>
+        <li><a href="#服务静态文件">服务静态文件</a></li>
+        <li><a href="#使用模板">使用模板</a></li>
+      </ul>
+    </li>
+    <li><a href="#03-小结">03 小结</a></li>
+  </ul>
+</nav>
+		</aside>
+		<div class="post-nav thin">
+			<a class="prev-post" href="https://polarisxu.studygolang.com/posts/go/action/go-illegal-private-import/">
+				<span class="post-nav-label">旧&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>Go Module：私有不合规库怎么解决引用问题</span>
+			</a>
+		</div>
+		<div id="comments" class="thin"><script src="https://utteranc.es/client.js"
+	repo="polaris1119/polarisxu"
+	issue-term="pathname"
+	theme="github-light"
+	crossorigin="anonymous"
+	async>
+</script>
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2019 - 2021 <a href="https://polarisxu.studygolang.com">polarisxu</a> &#183; <a href="https://beian.miit.gov.cn/">京ICP备14030343号-1</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://polarisxu.studygolang.com/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+		<span id="busuanzi_container" style="color: #666;">
+			本站总访客数/访问量：<span id="busuanzi_value_site_uv"></span>/<span id="busuanzi_value_site_pv"></span>
+		</span>
+	</footer>
+
+
+
+	<script src="https://polarisxu.studygolang.com/js/main.min.4eaa15feccc672488716f0338ac605e08c7553ce0ce175e13fa00a873636bf98.js" integrity="sha256-TqoV/szGckiHFvAzisYF4Ix1U84M4XXhP6AKhzY2v5g=" crossorigin="anonymous"></script>
+	<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?224c227cd9239761ec770bc8c1fb134c";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+</body>
+
+</html>

@@ -8,23 +8,19 @@
 	<meta name="theme-color" content="#fcfcfc">
 	<meta name="msapplication-TileColor" content="#fcfcfc">
 <meta itemprop="name" content="这本 Go 新书挺期待的：100 个常见错误">
-<meta itemprop="description" content="大家好，我是 polarisxu。 Go 虽然简单，但一样会有很多容易犯的错误。网上也有不少总结的 Go 常见错误。 Teiva Harsanyi 在 2019 年发表过一篇文章：《The Top 10 Most Common Mistakes I’ve Seen in Go Projects》 （这里有中文版：https://tomotoes.com/blog/the-top-10-most-common-mistakes-ive-seen-in-go-projects/）">
-<meta itemprop="datePublished" content="2021-06-29T22:30:00+08:00" />
+<meta itemprop="description" content="大家好，我是 polarisxu。 Go 虽然简单，但一样会有很多容易犯的错误。网上也有不少总结的 Go 常见错误。 Teiva Harsanyi 在 2019 年发表过一篇文章：《The Top 10 Most Common Mistakes I’ve Seen in Go Projects》 （这里有中文版：https://tomotoes.com/blog/the-top-10-most-common-mistakes-ive-seen-in-go-projects/ ）"><meta itemprop="datePublished" content="2021-06-29T22:30:00+08:00" />
 <meta itemprop="dateModified" content="2021-06-29T22:30:00+08:00" />
 <meta itemprop="wordCount" content="696">
-
-
-
-<meta itemprop="keywords" content="Go,图书," />
-<meta property="og:title" content="这本 Go 新书挺期待的：100 个常见错误" />
-<meta property="og:description" content="大家好，我是 polarisxu。 Go 虽然简单，但一样会有很多容易犯的错误。网上也有不少总结的 Go 常见错误。 Teiva Harsanyi 在 2019 年发表过一篇文章：《The Top 10 Most Common Mistakes I’ve Seen in Go Projects》 （这里有中文版：https://tomotoes.com/blog/the-top-10-most-common-mistakes-ive-seen-in-go-projects/）" />
+<meta itemprop="keywords" content="Go,图书," /><meta property="og:title" content="这本 Go 新书挺期待的：100 个常见错误" />
+<meta property="og:description" content="大家好，我是 polarisxu。 Go 虽然简单，但一样会有很多容易犯的错误。网上也有不少总结的 Go 常见错误。 Teiva Harsanyi 在 2019 年发表过一篇文章：《The Top 10 Most Common Mistakes I’ve Seen in Go Projects》 （这里有中文版：https://tomotoes.com/blog/the-top-10-most-common-mistakes-ive-seen-in-go-projects/ ）" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/book/100-go-mistakes/" />
+<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/book/100-go-mistakes/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-06-29T22:30:00+08:00" />
 <meta property="article:modified_time" content="2021-06-29T22:30:00+08:00" />
+
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="这本 Go 新书挺期待的：100 个常见错误"/>
-<meta name="twitter:description" content="大家好，我是 polarisxu。 Go 虽然简单，但一样会有很多容易犯的错误。网上也有不少总结的 Go 常见错误。 Teiva Harsanyi 在 2019 年发表过一篇文章：《The Top 10 Most Common Mistakes I’ve Seen in Go Projects》 （这里有中文版：https://tomotoes.com/blog/the-top-10-most-common-mistakes-ive-seen-in-go-projects/）"/>
+<meta name="twitter:description" content="大家好，我是 polarisxu。 Go 虽然简单，但一样会有很多容易犯的错误。网上也有不少总结的 Go 常见错误。 Teiva Harsanyi 在 2019 年发表过一篇文章：《The Top 10 Most Common Mistakes I’ve Seen in Go Projects》 （这里有中文版：https://tomotoes.com/blog/the-top-10-most-common-mistakes-ive-seen-in-go-projects/ ）"/>
 
 	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -84,9 +80,10 @@
 				<p>大家好，我是 polarisxu。</p>
 <p>Go 虽然简单，但一样会有很多容易犯的错误。网上也有不少总结的 Go 常见错误。</p>
 <p>Teiva Harsanyi 在 2019 年发表过一篇文章：<a href="https://itnext.io/the-top-10-most-common-mistakes-ive-seen-in-go-projects-4b79d4f6cd65" target="_blank" rel="noopener">《The Top 10 Most Common Mistakes I’ve Seen in Go Projects》</a>
-（这里有中文版：<a href="https://tomotoes.com/blog/the-top-10-most-common-mistakes-ive-seen-in-go-projects/">https://tomotoes.com/blog/the-top-10-most-common-mistakes-ive-seen-in-go-projects/</a>），总结了 Go 项目中常见的 10 个错误。这篇文章不仅分析每个错误的场景，还给出了最佳实践，值得一读。</p>
+（这里有中文版：<a href="https://tomotoes.com/blog/the-top-10-most-common-mistakes-ive-seen-in-go-projects/" target="_blank" rel="noopener">https://tomotoes.com/blog/the-top-10-most-common-mistakes-ive-seen-in-go-projects/</a>
+），总结了 Go 项目中常见的 10 个错误。这篇文章不仅分析每个错误的场景，还给出了最佳实践，值得一读。</p>
 <p>看其中一个例子：</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">Status</span> <span class="kt">uint32</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">Status</span> <span class="kt">uint32</span>
 
 <span class="kd">const</span> <span class="p">(</span>
   <span class="nx">StatusOpen</span> <span class="nx">Status</span> <span class="p">=</span> <span class="kc">iota</span>
@@ -97,13 +94,15 @@
 <p>最近这篇文章的作者发文说，因为那篇文章挺受欢迎，他就想着能不能写一本这方面的图书。于是，他不断收集各种常见问题，研究博文、图书等。</p>
 <p>去年年底，这样的错误达到了 100 个之多，于是他联系出版社准备出版该书。</p>
 <p>和作者那篇文章类似，每一个错误都将尽可能用现实生活中的例子来说明。目标是希望能够帮助 Go 开发者更高效地工作，减少不必要的错误，真正做到 Go 提倡的 Happy Working！</p>
-<p>目前这本书已经基本完成，在 manning 官方可以找到：<a href="https://www.manning.com/books/100-go-mistakes-how-to-avoid-them">https://www.manning.com/books/100-go-mistakes-how-to-avoid-them</a>，封面如下：</p>
+<p>目前这本书已经基本完成，在 manning 官方可以找到：<a href="https://www.manning.com/books/100-go-mistakes-how-to-avoid-them" target="_blank" rel="noopener">https://www.manning.com/books/100-go-mistakes-how-to-avoid-them</a>
+，封面如下：</p>
 <p><p class="md__image">
   <img src="../imgs/Harsanyi-MEAP-HI.png"
     alt=""  />
 </p>
 </p>
-<p>该书目前出于预售阶段，打 5 折。不过，其中前三章已经可以免费阅读。作者给出了本书的目录，希望大家提建议。（可以访问这里看详细目录：<a href="https://medium.com/solvingalgo/100-go-mistakes-2022-4debd9449a72">https://medium.com/solvingalgo/100-go-mistakes-2022-4debd9449a72</a>）</p>
+<p>该书目前出于预售阶段，打 5 折。不过，其中前三章已经可以免费阅读。作者给出了本书的目录，希望大家提建议。（可以访问这里看详细目录：<a href="https://medium.com/solvingalgo/100-go-mistakes-2022-4debd9449a72" target="_blank" rel="noopener">https://medium.com/solvingalgo/100-go-mistakes-2022-4debd9449a72</a>
+）</p>
 <p>从目录看，这本书挺适合作为手册翻阅的。作者预计，这本书得 2022 年春出版。期待一下！</p>
 
 			</div><div class="content">
@@ -171,7 +170,7 @@
 
 
 
-	<script src="https://polarisxu.studygolang.com/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw=" crossorigin="anonymous"></script>
+	<script src="https://polarisxu.studygolang.com/js/main.min.4eaa15feccc672488716f0338ac605e08c7553ce0ce175e13fa00a873636bf98.js" integrity="sha256-TqoV/szGckiHFvAzisYF4Ix1U84M4XXhP6AKhzY2v5g=" crossorigin="anonymous"></script>
 	<script>
 var _hmt = _hmt || [];
 (function() {

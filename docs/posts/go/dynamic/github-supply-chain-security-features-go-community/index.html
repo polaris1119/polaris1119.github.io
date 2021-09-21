@@ -8,20 +8,16 @@
 	<meta name="theme-color" content="#fcfcfc">
 	<meta name="msapplication-TileColor" content="#fcfcfc">
 <meta itemprop="name" content="GitHub 为 Go 社区带来安全支持">
-<meta itemprop="description" content="大家好，我是 polarisxu。 关于 Go 安全相关的内容，我写过几篇文章：《Go 团队开始重视安全问题了》 、《Go Module 有漏洞？免费的 Go 漏洞扫描 VSCode 插件》 和《这个工具真好：看看你的Go项目依赖有无漏洞》 ，有兴趣的可以看看。 今天介绍另外一个关于安全的内容，是 GitHub 的。 大家都知晓，目前 Go 是严重依赖 GitHub 的，很多第三方库基本都托管在 GitHub 上。因为 Go 把 GitHub 既当作代码协作的平台，也当作发布包的">
-<meta itemprop="datePublished" content="2021-07-29T22:10:00+08:00" />
+<meta itemprop="description" content="大家好，我是 polarisxu。 关于 Go 安全相关的内容，我写过几篇文章：《Go 团队开始重视安全问题了》 、《Go Module 有漏洞？免费的 Go 漏洞扫描 VSCode 插件》 和《这个工具真好：看看你的Go项目依赖有无漏洞》 ，有兴趣的可以看看。 今天介绍另外一个关于安全的内容，是 GitHub 的。 大家都知晓，目前 Go 是严重依赖 GitHub 的，很多第三方库基本都托管在 GitHub 上。因为 Go 把 GitHub 既当作代码协作的平台，也当作发布包的"><meta itemprop="datePublished" content="2021-07-29T22:10:00+08:00" />
 <meta itemprop="dateModified" content="2021-07-29T22:10:00+08:00" />
 <meta itemprop="wordCount" content="985">
-
-
-
-<meta itemprop="keywords" content="Go,GitHub," />
-<meta property="og:title" content="GitHub 为 Go 社区带来安全支持" />
+<meta itemprop="keywords" content="Go,GitHub," /><meta property="og:title" content="GitHub 为 Go 社区带来安全支持" />
 <meta property="og:description" content="大家好，我是 polarisxu。 关于 Go 安全相关的内容，我写过几篇文章：《Go 团队开始重视安全问题了》 、《Go Module 有漏洞？免费的 Go 漏洞扫描 VSCode 插件》 和《这个工具真好：看看你的Go项目依赖有无漏洞》 ，有兴趣的可以看看。 今天介绍另外一个关于安全的内容，是 GitHub 的。 大家都知晓，目前 Go 是严重依赖 GitHub 的，很多第三方库基本都托管在 GitHub 上。因为 Go 把 GitHub 既当作代码协作的平台，也当作发布包的" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/dynamic/github-supply-chain-security-features-go-community/" />
+<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/dynamic/github-supply-chain-security-features-go-community/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-07-29T22:10:00+08:00" />
 <meta property="article:modified_time" content="2021-07-29T22:10:00+08:00" />
+
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="GitHub 为 Go 社区带来安全支持"/>
 <meta name="twitter:description" content="大家好，我是 polarisxu。 关于 Go 安全相关的内容，我写过几篇文章：《Go 团队开始重视安全问题了》 、《Go Module 有漏洞？免费的 Go 漏洞扫描 VSCode 插件》 和《这个工具真好：看看你的Go项目依赖有无漏洞》 ，有兴趣的可以看看。 今天介绍另外一个关于安全的内容，是 GitHub 的。 大家都知晓，目前 Go 是严重依赖 GitHub 的，很多第三方库基本都托管在 GitHub 上。因为 Go 把 GitHub 既当作代码协作的平台，也当作发布包的"/>
@@ -100,7 +96,8 @@
 <p>从上图可以看到，目前这个数据库支持 PHP、Go、Java、JS、.NET、Python、Ruby 等语言，GitHub 发文宣布支持 Go 时，该数据库有 155 条 Go 相关记录，现在已经 164，你看到这篇文章时，应该会更多。正如 GitHub 宣称的，随着他们对现有漏洞和新发现的漏洞进行筛选，这个数字每天都在增长。</p>
 <h2 id="02-如何帮助发现漏洞">02 如何帮助发现漏洞<a href="#02-如何帮助发现漏洞" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>有这个数据库，那 GitHub 是如何帮助发现漏洞的呢？</p>
-<p>GitHub 很早就有一套安全策略，只是现在这套策略可以支持 Go 仓库。关于这套策略的详细信息，可以查看 GitHub 官方文档：<a href="https://docs.github.com/cn/code-security/getting-started/securing-your-repository">https://docs.github.com/cn/code-security/getting-started/securing-your-repository</a>，这里给的是中文版。</p>
+<p>GitHub 很早就有一套安全策略，只是现在这套策略可以支持 Go 仓库。关于这套策略的详细信息，可以查看 GitHub 官方文档：<a href="https://docs.github.com/cn/code-security/getting-started/securing-your-repository" target="_blank" rel="noopener">https://docs.github.com/cn/code-security/getting-started/securing-your-repository</a>
+，这里给的是中文版。</p>
 <p>这里简单介绍几个点。</p>
 <ul>
 <li>公开的仓库，默认启动了相关的安全策略；如果是私有仓库，需要你手动处理，文档中有说明；</li>
@@ -131,6 +128,8 @@
 	<h2>相关推荐</h2>
 	<ul>
 	
+	<li><a href="/posts/go/fiber/go-fiber-basic-tutorial01/">Go Fiber 框架系列教程 01: 和 Express 对比学习</a></li>
+	
 	<li><a href="/posts/go/action/go-illegal-private-import/">Go Module：私有不合规库怎么解决引用问题</a></li>
 	
 	<li><a href="/posts/go/dynamic/1.17-golang-go-get-updated/">Go1.17 新特性：go get 变了</a></li>
@@ -138,8 +137,6 @@
 	<li><a href="/posts/go/dynamic/go-1-17-new-features-added-to-testing/">Go1.17 新特性：testing 包的相关变化</a></li>
 	
 	<li><a href="/posts/go/action/chained-channel-operations-in-a-single-select-case/">StackOverflow 上关于 Go select 死锁的问题</a></li>
-	
-	<li><a href="/posts/go/book/building-distributed-applications-in-gin/">新书推荐：用 Gin 框架构建分布式应用</a></li>
 	
 	</ul>
 </div>
@@ -193,7 +190,7 @@
 
 
 
-	<script src="https://polarisxu.studygolang.com/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw=" crossorigin="anonymous"></script>
+	<script src="https://polarisxu.studygolang.com/js/main.min.4eaa15feccc672488716f0338ac605e08c7553ce0ce175e13fa00a873636bf98.js" integrity="sha256-TqoV/szGckiHFvAzisYF4Ix1U84M4XXhP6AKhzY2v5g=" crossorigin="anonymous"></script>
 	<script>
 var _hmt = _hmt || [];
 (function() {

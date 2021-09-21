@@ -8,20 +8,16 @@
 	<meta name="theme-color" content="#fcfcfc">
 	<meta name="msapplication-TileColor" content="#fcfcfc">
 <meta itemprop="name" content="终于找到了一款我喜欢的安装和管理 Go 版本的工具">
-<meta itemprop="description" content="一直以来，我都习惯通过源码安装 Go。我是这么做的： 1）Git clone Go 源码 $ git clone https://github.com/golang/go 2）需要安装什么版本就切换到对应的分支，比如安装 1.15.x $ git checkout -b release-branch.go1.15 origin/release-branch.go1.15 如果本地之前已经存在该分支，直接 git checkout release-branch.go1.15 即可。 3）将 go 整个目录复制到 /usr/local/go1.15，编译安装 4）创建软链： ln -s go1.15 go 之后加上环境变量等。 如果想要切换版本，只需要做类似上面的步骤，最后将 go 这个软链指向要切换的">
-<meta itemprop="datePublished" content="2020-10-09T18:12:51+08:00" />
+<meta itemprop="description" content="一直以来，我都习惯通过源码安装 Go。我是这么做的： 1）Git clone Go 源码 $ git clone https://github.com/golang/go 2）需要安装什么版本就切换到对应的分支，比如安装 1.15.x $ git checkout -b release-branch.go1.15 origin/release-branch.go1.15 如果本地之前已经存在该分支，直接 git checkout release-branch.go1.15 即可。 3）将 go 整个目录复制到 /usr/local/go1.15，编译安装 4）创建软链： ln -s go1.15 go 之后加上环境变量等。 如果想要切换版本，只需要做类似上面的步骤，最后将 go 这个软链指向要切换的"><meta itemprop="datePublished" content="2020-10-09T18:12:51+08:00" />
 <meta itemprop="dateModified" content="2020-10-09T18:12:51+08:00" />
 <meta itemprop="wordCount" content="2000">
-
-
-
-<meta itemprop="keywords" content="Go,Golang,版本,工具," />
-<meta property="og:title" content="终于找到了一款我喜欢的安装和管理 Go 版本的工具" />
+<meta itemprop="keywords" content="Go,Golang,版本,工具," /><meta property="og:title" content="终于找到了一款我喜欢的安装和管理 Go 版本的工具" />
 <meta property="og:description" content="一直以来，我都习惯通过源码安装 Go。我是这么做的： 1）Git clone Go 源码 $ git clone https://github.com/golang/go 2）需要安装什么版本就切换到对应的分支，比如安装 1.15.x $ git checkout -b release-branch.go1.15 origin/release-branch.go1.15 如果本地之前已经存在该分支，直接 git checkout release-branch.go1.15 即可。 3）将 go 整个目录复制到 /usr/local/go1.15，编译安装 4）创建软链： ln -s go1.15 go 之后加上环境变量等。 如果想要切换版本，只需要做类似上面的步骤，最后将 go 这个软链指向要切换的" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/project/go-version-manager/" />
+<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/project/go-version-manager/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2020-10-09T18:12:51+08:00" />
 <meta property="article:modified_time" content="2020-10-09T18:12:51+08:00" />
+
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="终于找到了一款我喜欢的安装和管理 Go 版本的工具"/>
 <meta name="twitter:description" content="一直以来，我都习惯通过源码安装 Go。我是这么做的： 1）Git clone Go 源码 $ git clone https://github.com/golang/go 2）需要安装什么版本就切换到对应的分支，比如安装 1.15.x $ git checkout -b release-branch.go1.15 origin/release-branch.go1.15 如果本地之前已经存在该分支，直接 git checkout release-branch.go1.15 即可。 3）将 go 整个目录复制到 /usr/local/go1.15，编译安装 4）创建软链： ln -s go1.15 go 之后加上环境变量等。 如果想要切换版本，只需要做类似上面的步骤，最后将 go 这个软链指向要切换的"/>
@@ -83,13 +79,13 @@
 			<div class="content">
 				<p>一直以来，我都习惯通过源码安装 Go。我是这么做的：</p>
 <p>1）Git clone Go 源码</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ git clone https://github.com/golang/go
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ git clone https://github.com/golang/go
 </code></pre></div><p>2）需要安装什么版本就切换到对应的分支，比如安装 1.15.x</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ git checkout -b release-branch.go1.15 origin/release-branch.go1.15
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ git checkout -b release-branch.go1.15 origin/release-branch.go1.15
 </code></pre></div><p>如果本地之前已经存在该分支，直接 git checkout release-branch.go1.15 即可。</p>
 <p>3）将 go 整个目录复制到 /usr/local/go1.15，编译安装</p>
 <p>4）创建软链：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">ln -s go1.15 go
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">ln -s go1.15 go
 </code></pre></div><p>之后加上环境变量等。</p>
 <p>如果想要切换版本，只需要做类似上面的步骤，最后将 go 这个软链指向要切换的版本。</p>
 <p>我这种方式存在两个问题：</p>
@@ -123,10 +119,10 @@
 </p>
 </p>
 <p>一行代码安装 goup（推荐的方式）：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ curl -sSf https://raw.githubusercontent.com/owenthereal/goup/master/install.sh <span class="p">|</span> sh
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ curl -sSf https://raw.githubusercontent.com/owenthereal/goup/master/install.sh <span class="p">|</span> sh
 </code></pre></div><h2 id="3使用介绍">3、使用介绍<a href="#3使用介绍" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>看看 goup 的帮助文档：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ goup <span class="nb">help</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ goup <span class="nb">help</span>
 The Go installer
 
 Usage:
@@ -149,7 +145,7 @@ Use <span class="s2">&#34;goup [command] --help&#34;</span> <span class="k">for<
 <li>init：会在 <code>$HOME/.go</code> 目录下生成一个 env 文件，内容是设置 PATH 环境变量，即将 <code>$HOME/.go/bin</code> 和 <code>$HOME/.go/current/bin</code> 加入 PATH 中；同时会往一些系统配置文件中加上 <code>source &quot;$HOME/.go/env&quot;</code>；</li>
 </ul>
 <p>比如我想试试还不支持 Module 的版本：1.10.8</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ goup install 1.10.8
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ goup install 1.10.8
 Downloaded   0.0% <span class="o">(</span>    <span class="m">3320</span> / <span class="m">87999054</span> bytes<span class="o">)</span> ...
 Downloaded   3.7% <span class="o">(</span> <span class="m">3260416</span> / <span class="m">87999054</span> bytes<span class="o">)</span> ...
 Downloaded  11.7% <span class="o">(</span><span class="m">10338304</span> / <span class="m">87999054</span> bytes<span class="o">)</span> ...
@@ -172,7 +168,7 @@ INFO<span class="o">[</span>0016<span class="o">]</span> Unpacking /Users/xuxinh
 INFO<span class="o">[</span>0020<span class="o">]</span> Success: go1.10.8 downloaded in /Users/xuxinhua/.go/go1.10.8
 INFO<span class="o">[</span>0020<span class="o">]</span> Default Go is <span class="nb">set</span> to <span class="s1">&#39;go1.10.8&#39;</span>
 </code></pre></div><p>你当前系统的 Go 版本就是 1.10.8 了。如果之前安装过，上面的下载过程就没有了：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ goup install 1.10.8
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ goup install 1.10.8
 INFO<span class="o">[</span>0000<span class="o">]</span> go1.10.8: already downloaded in /Users/xuxinhua/.go/go1.10.8
 INFO<span class="o">[</span>0000<span class="o">]</span> Default Go is <span class="nb">set</span> to <span class="s1">&#39;go1.10.8&#39;</span>
 
@@ -184,7 +180,7 @@ go1.10.8
 。</p>
 <p>它的工作原理很简单，在 <code>$HOME/.go</code> 目录下创建对应的版本目录，然后在这个目录创建一个软链 current 来控制当前使用哪个 Go 版本。这个思路和我一直源码安装的思路类似。唯一区别是，它是从 dl.google.com 上下载对应编译好的版本。但 tip 版本，则需要 clone Go 源码，进行编译安装，因此要求有 Go 环境。</p>
 <p>我本地 <code>$HOME/.go</code> 下的文件信息：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">lrwxr-xr-x   <span class="m">1</span> xuxinhua  staff   <span class="m">28</span> <span class="m">10</span>  <span class="m">9</span> 17:16 current -&gt; /Users/xuxinhua/.go/go1.10.8
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">lrwxr-xr-x   <span class="m">1</span> xuxinhua  staff   <span class="m">28</span> <span class="m">10</span>  <span class="m">9</span> 17:16 current -&gt; /Users/xuxinhua/.go/go1.10.8
 -rw-r--r--   <span class="m">1</span> xuxinhua  staff   <span class="m">57</span> <span class="m">10</span>  <span class="m">9</span> 16:46 env
 drwxr-xr-x  <span class="m">21</span> xuxinhua  staff  <span class="m">672</span> <span class="m">10</span>  <span class="m">9</span> 17:14 go1.10.8
 drwxr-xr-x  <span class="m">22</span> xuxinhua  staff  <span class="m">704</span> <span class="m">10</span>  <span class="m">9</span> 10:03 go1.14.9
@@ -193,7 +189,9 @@ drwxr-xr-x   <span class="m">2</span> xuxinhua  staff   <span class="m">64</span
 </code></pre></div><h2 id="5存在的一些问题">5、存在的一些问题<a href="#5存在的一些问题" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>这个工具才出来十几天，试用下来，还存在一些问题：</p>
 <ul>
-<li>安装最新版本，需要知道当前最新版本是哪个？这是从 <a href="https://golang.org/VERSION?m=text">https://golang.org/VERSION?m=text</a> 获取的，但这个网址咱们无法访问；同样的道理，安装 tip 版本，源码是从 <a href="https://go.googlesource.com/go">https://go.googlesource.com/go</a> 获取的。因此目前大陆还无法使用；不过我已经给作者提了 issue，应该很快就会支持；</li>
+<li>安装最新版本，需要知道当前最新版本是哪个？这是从 <a href="https://golang.org/VERSION?m=text" target="_blank" rel="noopener">https://golang.org/VERSION?m=text</a>
+ 获取的，但这个网址咱们无法访问；同样的道理，安装 tip 版本，源码是从 <a href="https://go.googlesource.com/go" target="_blank" rel="noopener">https://go.googlesource.com/go</a>
+ 获取的。因此目前大陆还无法使用；不过我已经给作者提了 issue，应该很快就会支持；</li>
 <li>缺失一些功能。比如我想安装某个版本，比如 1.12.x，但我希望安装的是 1.12 系列的最新版本，这时候你只能去找 1.12 的最新版本是哪个。</li>
 <li>。。。</li>
 </ul>
@@ -203,7 +201,8 @@ drwxr-xr-x   <span class="m">2</span> xuxinhua  staff   <span class="m">64</span
 <li>goup uninstall</li>
 </ul>
 <h2 id="6小结">6、小结<a href="#6小结" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-<p>整体上，目前 goup 的使用还是比较顺畅的。欢迎大家试用，可以顺便给个 star。对了，项目地址：<a href="https://github.com/owenthereal/goup">https://github.com/owenthereal/goup</a>。</p>
+<p>整体上，目前 goup 的使用还是比较顺畅的。欢迎大家试用，可以顺便给个 star。对了，项目地址：<a href="https://github.com/owenthereal/goup" target="_blank" rel="noopener">https://github.com/owenthereal/goup</a>
+。</p>
 <p>对了，至于为什么会需要管理多版本，我想很多人还会有这样的需求吧？！你为什么需要呢？欢迎留言。</p>
 <h2 id="7更新">7、更新<a href="#7更新" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>上面提到的点，目前差不多解决了。</p>
@@ -292,7 +291,7 @@ drwxr-xr-x   <span class="m">2</span> xuxinhua  staff   <span class="m">64</span
 
 
 
-	<script src="https://polarisxu.studygolang.com/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw=" crossorigin="anonymous"></script>
+	<script src="https://polarisxu.studygolang.com/js/main.min.4eaa15feccc672488716f0338ac605e08c7553ce0ce175e13fa00a873636bf98.js" integrity="sha256-TqoV/szGckiHFvAzisYF4Ix1U84M4XXhP6AKhzY2v5g=" crossorigin="anonymous"></script>
 	<script>
 var _hmt = _hmt || [];
 (function() {

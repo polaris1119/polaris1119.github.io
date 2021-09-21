@@ -14,7 +14,7 @@
       <pubDate>Tue, 29 Jun 2021 22:30:00 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/posts/go/book/100-go-mistakes/</guid>
-      <description>大家好，我是 polarisxu。 Go 虽然简单，但一样会有很多容易犯的错误。网上也有不少总结的 Go 常见错误。 Teiva Harsanyi 在 2019 年发表过一篇文章：《The Top 10 Most Common Mistakes I’ve Seen in Go Projects》 （这里有中文版：https://tomotoes.com/blog/the-top-10-most-common-mistakes-ive-seen-in-go-projects/）</description>
+      <description>大家好，我是 polarisxu。 Go 虽然简单，但一样会有很多容易犯的错误。网上也有不少总结的 Go 常见错误。 Teiva Harsanyi 在 2019 年发表过一篇文章：《The Top 10 Most Common Mistakes I’ve Seen in Go Projects》 （这里有中文版：https://tomotoes.com/blog/the-top-10-most-common-mistakes-ive-seen-in-go-projects/ ）</description>
     </item>
     
     <item>
@@ -41,7 +41,7 @@
       <pubDate>Mon, 07 Jun 2021 21:30:00 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/posts/go/book/practical-go-lessons/</guid>
-      <description>大家好，我是 polarisxu。 又一次为大家推荐 Go 图书，这是一本免费的 Go 语言在线图书：https://www.practical-go-lessons.com/。以下是该书的一个封面： 这本书采用渐进的方式讲解 Go 语言。作者还试图解释一些难以掌握的计算机科学概念，对于新人来说很有用。因此这本书对于那些没有计算机基础的人也有帮助。 我也写过书，也一直在坚持写文章，知</description>
+      <description>大家好，我是 polarisxu。 又一次为大家推荐 Go 图书，这是一本免费的 Go 语言在线图书：https://www.practical-go-lessons.com/ 。以下是该书的一个封面： 这本书采用渐进的方式讲解 Go 语言。作者还试图解释一些难以掌握的计算机科学概念，对于新人来说很有用。因此这本书对于那些没有计算机基础的人也有帮助。 我也写过书，也一直在坚持写文章，知</description>
     </item>
     
     <item>
@@ -86,7 +86,7 @@
       <pubDate>Sun, 07 Feb 2021 11:00:00 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/posts/go/book/2021-go-book/</guid>
-      <description>大家好，我是站长 polarisxu。 大家觉得 Go 的图书多吗？其实是很少的。今天聊下近期将要出版的基本 Go 图书。 01 《Go语言设计与实现》 这是一本 Go 语言进阶图书。作者历时两年，在他的网站可以免费阅读：https://draveness.me/golang/。他朋友圈透露，该书已经交稿，应该很快会出版。这本书绝对是 2021 年度最值得期待的 Go 图书。 作为支持，书出版时，我会送出</description>
+      <description>大家好，我是站长 polarisxu。 大家觉得 Go 的图书多吗？其实是很少的。今天聊下近期将要出版的基本 Go 图书。 01 《Go语言设计与实现》 这是一本 Go 语言进阶图书。作者历时两年，在他的网站可以免费阅读：https://draveness.me/golang/ 。他朋友圈透露，该书已经交稿，应该很快会出版。这本书绝对是 2021 年度最值得期待的 Go 图书。 作为支持，书出版时，我会送出</description>
     </item>
     
     <item>

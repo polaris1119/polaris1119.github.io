@@ -8,20 +8,16 @@
 	<meta name="theme-color" content="#fcfcfc">
 	<meta name="msapplication-TileColor" content="#fcfcfc">
 <meta itemprop="name" content="Go1.17 快报之标准库越来越注重易用性">
-<meta itemprop="description" content="大家好，我是 polarisxu。 说起 Go 的优点，很多人会提到 Go 拥有强大的标准库，比如开发一个 HTTP 服务，几行代码就搞定。不过，如果是一个 PHPer 转到 Go，又会觉得 Go 标准库不够便利，很多东西都需要自己二次封装。这其实是一个取舍的问题。 Go 官方也在不断完善、优化标准库，在坚持一定原则的基础上，尽可能让标准库好用、易用。今天就看看 Go1.17 中，官方在这方面做了哪些改进。 01 time 包 Unix 时间戳，">
-<meta itemprop="datePublished" content="2021-06-22T12:30:00+08:00" />
+<meta itemprop="description" content="大家好，我是 polarisxu。 说起 Go 的优点，很多人会提到 Go 拥有强大的标准库，比如开发一个 HTTP 服务，几行代码就搞定。不过，如果是一个 PHPer 转到 Go，又会觉得 Go 标准库不够便利，很多东西都需要自己二次封装。这其实是一个取舍的问题。 Go 官方也在不断完善、优化标准库，在坚持一定原则的基础上，尽可能让标准库好用、易用。今天就看看 Go1.17 中，官方在这方面做了哪些改进。 01 time 包 Unix 时间戳，"><meta itemprop="datePublished" content="2021-06-22T12:30:00+08:00" />
 <meta itemprop="dateModified" content="2021-06-22T12:30:00+08:00" />
 <meta itemprop="wordCount" content="1269">
-
-
-
-<meta itemprop="keywords" content="Go,标准库," />
-<meta property="og:title" content="Go1.17 快报之标准库越来越注重易用性" />
+<meta itemprop="keywords" content="Go,标准库," /><meta property="og:title" content="Go1.17 快报之标准库越来越注重易用性" />
 <meta property="og:description" content="大家好，我是 polarisxu。 说起 Go 的优点，很多人会提到 Go 拥有强大的标准库，比如开发一个 HTTP 服务，几行代码就搞定。不过，如果是一个 PHPer 转到 Go，又会觉得 Go 标准库不够便利，很多东西都需要自己二次封装。这其实是一个取舍的问题。 Go 官方也在不断完善、优化标准库，在坚持一定原则的基础上，尽可能让标准库好用、易用。今天就看看 Go1.17 中，官方在这方面做了哪些改进。 01 time 包 Unix 时间戳，" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/pkg/go1.17-std/" />
+<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/pkg/go1.17-std/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-06-22T12:30:00+08:00" />
 <meta property="article:modified_time" content="2021-06-22T12:30:00+08:00" />
+
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Go1.17 快报之标准库越来越注重易用性"/>
 <meta name="twitter:description" content="大家好，我是 polarisxu。 说起 Go 的优点，很多人会提到 Go 拥有强大的标准库，比如开发一个 HTTP 服务，几行代码就搞定。不过，如果是一个 PHPer 转到 Go，又会觉得 Go 标准库不够便利，很多东西都需要自己二次封装。这其实是一个取舍的问题。 Go 官方也在不断完善、优化标准库，在坚持一定原则的基础上，尽可能让标准库好用、易用。今天就看看 Go1.17 中，官方在这方面做了哪些改进。 01 time 包 Unix 时间戳，"/>
@@ -90,7 +86,7 @@
 <p>Unix 时间戳是从 1970 年 1 月 1 日（UTC/GMT 的午夜）开始所经过的秒数，不考虑闰秒。</p>
 </blockquote>
 <p>正因为如此，Go 标准库 time 包提供获取时间戳的方法是 <code>Unix()</code>，单位是秒：</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// Unix returns t as a Unix time, the number of seconds elapsed
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// Unix returns t as a Unix time, the number of seconds elapsed
 </span><span class="c1">// since January 1, 1970 UTC. The result does not depend on the
 </span><span class="c1">// location associated with t.
 </span><span class="c1">// Unix-like operating systems often record time as a 32-bit
@@ -100,22 +96,22 @@
 </code></pre></div><p>在和客户端/前端协商 API 时，一定要注意时间戳单位的问题。</p>
 <p>为了方便，Go1.17 增加加了 Time.UnixMilli 方法，返回 Unix 时间戳的毫秒数，同时也提供了 UnixNano 和 UnixMicro。</p>
 <p>此外，如果前端传递一个毫秒的时间戳，可以通过 Go1.17 新的函数 UnixMilli 转为 Time 类型：</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">UnixMilli</span><span class="p">(</span><span class="nx">msec</span> <span class="kt">int64</span><span class="p">)</span> <span class="nx">Time</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">UnixMilli</span><span class="p">(</span><span class="nx">msec</span> <span class="kt">int64</span><span class="p">)</span> <span class="nx">Time</span>
 </code></pre></div><p>注意 UnixMilli 函数和 Time.UnixMilli 方法的区别，互逆的关系。</p>
 <h2 id="02-neturl-包">02 net/url 包<a href="#02-neturl-包" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>在这个包中有一个类型 Values，定义如下：</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">Values</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">][]</span><span class="kt">string</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">Values</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">][]</span><span class="kt">string</span>
 </code></pre></div><p>它通常用于查询参数和表单值。它提供了 Set、Get、Del 等方法，但没有提供判断某个 key 是否设置了的方法（虽然自己实现不难，但形式不一致），而且这种需求还挺多的。Go1.17 就增加了一个方法：Has，用来判断某个 key 是否设置了。</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// Has checks whether a given key is set.
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// Has checks whether a given key is set.
 </span><span class="c1"></span><span class="kd">func</span> <span class="p">(</span><span class="nx">v</span> <span class="nx">Values</span><span class="p">)</span> <span class="nf">Has</span><span class="p">(</span><span class="nx">key</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">bool</span>
 </code></pre></div><h2 id="03-net-包">03 net 包<a href="#03-net-包" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>如何判断一个 IP 地址是否是内网地址？你查找标准库会发现没有这样的方法，这时只能自己实现，需要查找 IPv4 标准，看哪些是内网地址，还得处理 IPv6 的情况。</p>
 <p>Go1.17 中增加了一个方法：IsPrivate，用来判断一个 IP 地址是否是内网地址：</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// IsPrivate reports whether ip is a private address, according to
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// IsPrivate reports whether ip is a private address, according to
 </span><span class="c1">// RFC 1918 (IPv4 addresses) and RFC 4193 (IPv6 addresses).
 </span><span class="c1"></span><span class="kd">func</span> <span class="p">(</span><span class="nx">ip</span> <span class="nx">IP</span><span class="p">)</span> <span class="nf">IsPrivate</span><span class="p">()</span> <span class="kt">bool</span>
 </code></pre></div><p>是不是方便很多。看它的实现，自己实现可能不那么容易：</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="p">(</span><span class="nx">ip</span> <span class="nx">IP</span><span class="p">)</span> <span class="nf">IsPrivate</span><span class="p">()</span> <span class="kt">bool</span> <span class="p">{</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="p">(</span><span class="nx">ip</span> <span class="nx">IP</span><span class="p">)</span> <span class="nf">IsPrivate</span><span class="p">()</span> <span class="kt">bool</span> <span class="p">{</span>
 	<span class="k">if</span> <span class="nx">ip4</span> <span class="o">:=</span> <span class="nx">ip</span><span class="p">.</span><span class="nf">To4</span><span class="p">();</span> <span class="nx">ip4</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
 		<span class="c1">// Following RFC 1918, Section 3. Private Address Space which says:
 </span><span class="c1"></span>		<span class="c1">//   The Internet Assigned Numbers Authority (IANA) has reserved the
@@ -134,7 +130,7 @@
 </code></pre></div><h2 id="04-其他包">04 其他包<a href="#04-其他包" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>math 包新提供了 MaxInt、MinInt、MaxUint 三个常量，分别对应 int 的最大、最小值和 uint 的最大值，这样我们不需要自己判断当前 CPU 架构确定最大最小值。</p>
 <p>io/fs 包新增加 FileInfoToDirEntry 函数，它用于获取一个 FileInfo 的 DirEntry 信息，在操作文件系统时可能会用到。</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">FileInfoToDirEntry</span><span class="p">(</span><span class="nx">info</span> <span class="nx">FileInfo</span><span class="p">)</span> <span class="nx">DirEntry</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">FileInfoToDirEntry</span><span class="p">(</span><span class="nx">info</span> <span class="nx">FileInfo</span><span class="p">)</span> <span class="nx">DirEntry</span>
 </code></pre></div><p>database/sql 包新增加了 NullByte 和 NullInt16，用于表示可能为 null 的 int16 和 byte 类型（我个人不建议创建数据表时支持 null，这样处理起来比较麻烦，建议全部 NOT NULL）。</p>
 <h2 id="05-总结">05 总结<a href="#05-总结" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>简单、易用，一直是 Go 的哲学。标准库方面，Go 也会尽可能的做到易用，但不会封装到像 PHP 那样的程度，有些功能，还是需要自己进行二次封装。</p>
@@ -153,11 +149,11 @@
 	
 	<li><a href="/posts/go/dynamic/view-go-history-std-version/">听说你还不知道如何查看 Go 历史文档？</a></li>
 	
+	<li><a href="/posts/go/fiber/go-fiber-basic-tutorial01/">Go Fiber 框架系列教程 01: 和 Express 对比学习</a></li>
+	
 	<li><a href="/posts/go/action/go-illegal-private-import/">Go Module：私有不合规库怎么解决引用问题</a></li>
 	
 	<li><a href="/posts/go/dynamic/1.17-golang-go-get-updated/">Go1.17 新特性：go get 变了</a></li>
-	
-	<li><a href="/posts/go/dynamic/go-1-17-new-features-added-to-testing/">Go1.17 新特性：testing 包的相关变化</a></li>
 	
 	</ul>
 </div>
@@ -213,7 +209,7 @@
 
 
 
-	<script src="https://polarisxu.studygolang.com/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw=" crossorigin="anonymous"></script>
+	<script src="https://polarisxu.studygolang.com/js/main.min.4eaa15feccc672488716f0338ac605e08c7553ce0ce175e13fa00a873636bf98.js" integrity="sha256-TqoV/szGckiHFvAzisYF4Ix1U84M4XXhP6AKhzY2v5g=" crossorigin="anonymous"></script>
 	<script>
 var _hmt = _hmt || [];
 (function() {

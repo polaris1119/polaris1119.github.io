@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Fiber on polarisxu</title>
+    <link>https://polarisxu.studygolang.com/tags/fiber/</link>
+    <description>Recent content in Fiber on polarisxu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
+    <lastBuildDate>Mon, 20 Sep 2021 22:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/fiber/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go Fiber 框架系列教程 01: 和 Express 对比学习</title>
+      <link>https://polarisxu.studygolang.com/posts/go/fiber/go-fiber-basic-tutorial01/</link>
+      <pubDate>Mon, 20 Sep 2021 22:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/fiber/go-fiber-basic-tutorial01/</guid>
+      <description>大家好，我是 polarisxu。 每次发框架相关的文章，总有人提到 Go Fiber 框架。于是乎，学习了下 Fiber，感觉确实挺不错的。因此写下这个 Fiber 系列。 Fiber 项目地址：https://github.com/gofiber/fiber ，目前 Star 数 15.3k+。 01 Fiber 框架 这是一个 Go 语言 Web 框架，启发自 NodeJS 框架：Express 。该框架基于 FastHTTP 构建，旨在简化、零内存分配和提高性能，以便快速开</description>
+    </item>
+    
+  </channel>
+</rss>

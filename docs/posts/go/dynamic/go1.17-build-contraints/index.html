@@ -8,20 +8,16 @@
 	<meta name="theme-color" content="#fcfcfc">
 	<meta name="msapplication-TileColor" content="#fcfcfc">
 <meta itemprop="name" content="Go1.17 新特性：新版构建约束">
-<meta itemprop="description" content="大家好，我是 polarisxu。 Go 1.17 下个月就要正式发布了。很多人要问泛型了吧，泛型已经很明确了，Go1.18 会有。今天给大家介绍 Go1.17 的一个新特性：构建约束 — Build Constraints。 确切来说，这个特性相关的工作在 1.16 时就加入，但处于过度阶段，1.17 在各方面都更完善，更完整的支持，是时候了解它了。 01 什么是构建约束 构建约束（build constraint），也叫做">
-<meta itemprop="datePublished" content="2021-07-15T22:10:00+08:00" />
+<meta itemprop="description" content="大家好，我是 polarisxu。 Go 1.17 下个月就要正式发布了。很多人要问泛型了吧，泛型已经很明确了，Go1.18 会有。今天给大家介绍 Go1.17 的一个新特性：构建约束 — Build Constraints。 确切来说，这个特性相关的工作在 1.16 时就加入，但处于过度阶段，1.17 在各方面都更完善，更完整的支持，是时候了解它了。 01 什么是构建约束 构建约束（build constraint），也叫做"><meta itemprop="datePublished" content="2021-07-15T22:10:00+08:00" />
 <meta itemprop="dateModified" content="2021-07-15T22:10:00+08:00" />
 <meta itemprop="wordCount" content="1630">
-
-
-
-<meta itemprop="keywords" content="Go,新特性," />
-<meta property="og:title" content="Go1.17 新特性：新版构建约束" />
+<meta itemprop="keywords" content="Go,新特性," /><meta property="og:title" content="Go1.17 新特性：新版构建约束" />
 <meta property="og:description" content="大家好，我是 polarisxu。 Go 1.17 下个月就要正式发布了。很多人要问泛型了吧，泛型已经很明确了，Go1.18 会有。今天给大家介绍 Go1.17 的一个新特性：构建约束 — Build Constraints。 确切来说，这个特性相关的工作在 1.16 时就加入，但处于过度阶段，1.17 在各方面都更完善，更完整的支持，是时候了解它了。 01 什么是构建约束 构建约束（build constraint），也叫做" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/dynamic/go1.17-build-contraints/" />
+<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/dynamic/go1.17-build-contraints/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-07-15T22:10:00+08:00" />
 <meta property="article:modified_time" content="2021-07-15T22:10:00+08:00" />
+
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Go1.17 新特性：新版构建约束"/>
 <meta name="twitter:description" content="大家好，我是 polarisxu。 Go 1.17 下个月就要正式发布了。很多人要问泛型了吧，泛型已经很明确了，Go1.18 会有。今天给大家介绍 Go1.17 的一个新特性：构建约束 — Build Constraints。 确切来说，这个特性相关的工作在 1.16 时就加入，但处于过度阶段，1.17 在各方面都更完善，更完整的支持，是时候了解它了。 01 什么是构建约束 构建约束（build constraint），也叫做"/>
@@ -86,7 +82,7 @@
 <p>确切来说，这个特性相关的工作在 1.16 时就加入，但处于过度阶段，1.17 在各方面都更完善，更完整的支持，是时候了解它了。</p>
 <h2 id="01-什么是构建约束">01 什么是构建约束<a href="#01-什么是构建约束" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>构建约束（build constraint），也叫做构建标记（build tag），是在 Go 源文件最开始的注释行，比如：</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// +build linux
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// +build linux
 </span></code></pre></div><p>看到这个，相信很多人都不陌生，因为这是 Go 一开始就有的特性，在 Go 源码中有很多这样的注释行。上面注释行的意思，这个文件只在 Linux 系统会包含在包中，其他系统会忽略这个文件。</p>
 <p>几个注意点：</p>
 <ul>
@@ -108,30 +104,30 @@
 <p>此外，文件名可以通过 GOOS 和 GOARCH 来做构建约束。</p>
 <h2 id="02-旧版构建约束">02 旧版构建约束<a href="#02-旧版构建约束" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>从上面看到，构建约束的语法是 <code>// +build</code> 这种形式，如果多个条件组合，通过空格、逗号或多行构建约束表示。比如：</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// +build linux,386
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// +build linux,386
 </span></code></pre></div><p>你知道什么意思吗？表示在 linux AND 386。逗号表示 AND，空格表示 OR。那看一个复杂的：</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// +build linux,386 darwin,!cgo
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// +build linux,386 darwin,!cgo
 </span></code></pre></div><p>是不是有点懵？我也有点懵！它表示的意思是：(linux AND 386) OR (darwin AND (NOT cgo)) 。</p>
 <p>有些时候，多个约束分成多行书写，会更易读些：</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// +build linux darwin
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// +build linux darwin
 </span><span class="c1">// +build amd64
 </span></code></pre></div><p>这相当于：(linux OR darwin) AND amd64 。</p>
 <p>是不是很复杂，很难记忆？</p>
 <p>正因为太复杂，很容易出错。而且，Go 中有不少注释是有特殊意义的，也为了一致性考虑，因此有了新版的构建约束。</p>
 <h2 id="03-新版构建约束">03 新版构建约束<a href="#03-新版构建约束" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>在 Go 源码中，经常会见到类似下面开头的注释：</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">//go:link
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">//go:link
 </span></code></pre></div><p>新版的构建约束，也使用了 <code>//go:</code> 开头：</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">//go:build
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">//go:build
 </span></code></pre></div><p>注意 <code>//</code> 和 go 之间不能有空格。</p>
 <p>同时新版语法使用布尔表达式，而不是逗号、空格等。布尔表达式，会更清晰易懂，出错可能性大大降低。</p>
 <p>比如旧语法：</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// +build linux,386
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// +build linux,386
 </span></code></pre></div><p>对应的新语法：</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">//go:build linux &amp;&amp; 386
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">//go:build linux &amp;&amp; 386
 </span></code></pre></div><p>构建标记的基础语法与其当前形式没有变化，但是构建标记的组合现在是用 Go 的 || 、 &amp;&amp; 和 ! 运算符和括号。（请注意，构建标记并不总是有效的 Go 表达式，即使它们共享操作符，因为标记并不总是有效的标识符。例如：”go1.1&quot;。)</p>
 <p>新语法可以使用 Go spec 的 EBNF 标记来表示：</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">BuildLine</span>      <span class="p">=</span> <span class="s">&#34;//go:build&#34;</span> <span class="nx">Expr</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="nx">BuildLine</span>      <span class="p">=</span> <span class="s">&#34;//go:build&#34;</span> <span class="nx">Expr</span>
 <span class="nx">Expr</span>           <span class="p">=</span> <span class="nx">OrExpr</span>
 <span class="nx">OrExpr</span>         <span class="p">=</span> <span class="nx">AndExpr</span>   <span class="p">{</span> <span class="s">&#34;||&#34;</span> <span class="nx">AndExpr</span> <span class="p">}</span>
 <span class="nx">AndExpr</span>        <span class="p">=</span> <span class="nx">UnaryExpr</span> <span class="p">{</span> <span class="s">&#34;&amp;&amp;&#34;</span> <span class="nx">UnaryExpr</span> <span class="p">}</span>
@@ -140,15 +136,16 @@
 <span class="nx">tag_letter</span>     <span class="p">=</span> <span class="nx">unicode_letter</span> <span class="p">|</span> <span class="nx">unicode_digit</span> <span class="p">|</span> <span class="s">&#34;_&#34;</span> <span class="p">|</span> <span class="s">&#34;.&#34;</span>
 </code></pre></div><p>采用新语法后，一个文件只能有一行构建语句，而不是像旧版那样有多行。这样可以避免多行的关系到底是什么的问题。</p>
 <p>Go1.17 中，gofmt 工具会自动根据旧版语法生成对应的新版语法，为了兼容性，两者都会保留。比如原来是这样的：</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// +build !windows,!plan9
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// +build !windows,!plan9
 </span></code></pre></div><p>执行 Go1.17 的 gofmt 后，变成了这样：</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">//go:build !windows &amp;&amp; !plan9
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">//go:build !windows &amp;&amp; !plan9
 </span><span class="c1">// +build !windows,!plan9
 </span></code></pre></div><p>如果文件中已经有了这两种约束形式，gofmt 会根据 <code>//go:buid</code> 自动覆盖 <code>// +build</code> 的形式，确保两者表示的意思一致。如果只有新版语法，不会自动生成旧版的，这时，你需要注意，它不兼容旧版本了。</p>
 <p>另外，Vet 工具现在能够检测出两种语法的不一致。所以，建议大家在编辑器中保存文件时自动执行 gofmt。</p>
 <p>早在 Go1.16 时就新增了一个包：<a href="https://docs.studygolang.com/pkg/go/build/constraint/" target="_blank" rel="noopener">go/build/constraint</a>
 ，专门处理新版构建约束。</p>
-<p>关于新版约束的设计文档请移步：<a href="https://go.googlesource.com/proposal/+/master/design/draft-gobuild.md">https://go.googlesource.com/proposal/+/master/design/draft-gobuild.md</a>。</p>
+<p>关于新版约束的设计文档请移步：<a href="https://go.googlesource.com/proposal/&#43;/master/design/draft-gobuild.md" target="_blank" rel="noopener">https://go.googlesource.com/proposal/+/master/design/draft-gobuild.md</a>
+。</p>
 <h2 id="04-总结">04 总结<a href="#04-总结" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>新版本的构建约束可读性更强，更容易书写，不容易出错。有兴趣的可以自己针对构建约束，同时书写两种形式，体会下新版的好处。</p>
 <p>最后提醒一点，新版约束中，一定要注意 <code>//</code> 和 go 之间不能有空格！</p>
@@ -168,9 +165,9 @@
 	
 	<li><a href="/posts/go/dynamic/go1.17-slice-to-array/">Go1.17 新特性之切片变数组</a></li>
 	
-	<li><a href="/posts/go/action/go-illegal-private-import/">Go Module：私有不合规库怎么解决引用问题</a></li>
+	<li><a href="/posts/go/fiber/go-fiber-basic-tutorial01/">Go Fiber 框架系列教程 01: 和 Express 对比学习</a></li>
 	
-	<li><a href="/posts/go/action/chained-channel-operations-in-a-single-select-case/">StackOverflow 上关于 Go select 死锁的问题</a></li>
+	<li><a href="/posts/go/action/go-illegal-private-import/">Go Module：私有不合规库怎么解决引用问题</a></li>
 	
 	</ul>
 </div>
@@ -225,7 +222,7 @@
 
 
 
-	<script src="https://polarisxu.studygolang.com/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw=" crossorigin="anonymous"></script>
+	<script src="https://polarisxu.studygolang.com/js/main.min.4eaa15feccc672488716f0338ac605e08c7553ce0ce175e13fa00a873636bf98.js" integrity="sha256-TqoV/szGckiHFvAzisYF4Ix1U84M4XXhP6AKhzY2v5g=" crossorigin="anonymous"></script>
 	<script>
 var _hmt = _hmt || [];
 (function() {

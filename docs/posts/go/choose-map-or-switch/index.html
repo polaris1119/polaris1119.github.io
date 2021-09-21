@@ -8,20 +8,16 @@
 	<meta name="theme-color" content="#fcfcfc">
 	<meta name="msapplication-TileColor" content="#fcfcfc">
 <meta itemprop="name" content="map 和 switch 如何选？match 又是什么？">
-<meta itemprop="description" content="大家好，我是站长 polarisxu。 看到标题别惊讶，虽然 map 和 switch 似乎没啥关系，但有些场景它们俩都可以用。 场景一：根据不同的错误码显示对应错误消息，比如 200 -&gt; 正常。 场景二：根据不同状态显示对应的文案。这个场景很常见，比如数据库保存状态，用的 tinyint 类型，显示给用户的是文本，所以需要进行转换。 具体怎么选？我们看一下代码，怎么选择应该一目了然。 const ( UnPay = iota HadPay Delivery Finish ) var orderState = map[int]string{ UnPay: &">
-<meta itemprop="datePublished" content="2021-03-17T23:00:00+08:00" />
+<meta itemprop="description" content="大家好，我是站长 polarisxu。 看到标题别惊讶，虽然 map 和 switch 似乎没啥关系，但有些场景它们俩都可以用。 场景一：根据不同的错误码显示对应错误消息，比如 200 -&gt; 正常。 场景二：根据不同状态显示对应的文案。这个场景很常见，比如数据库保存状态，用的 tinyint 类型，显示给用户的是文本，所以需要进行转换。 具体怎么选？我们看一下代码，怎么选择应该一目了然。 const ( UnPay = iota HadPay Delivery Finish ) var orderState = map[int]string{ UnPay: &"><meta itemprop="datePublished" content="2021-03-17T23:00:00+08:00" />
 <meta itemprop="dateModified" content="2021-03-17T23:00:00+08:00" />
 <meta itemprop="wordCount" content="1615">
-
-
-
-<meta itemprop="keywords" content="Go,基准测试," />
-<meta property="og:title" content="map 和 switch 如何选？match 又是什么？" />
+<meta itemprop="keywords" content="Go,基准测试," /><meta property="og:title" content="map 和 switch 如何选？match 又是什么？" />
 <meta property="og:description" content="大家好，我是站长 polarisxu。 看到标题别惊讶，虽然 map 和 switch 似乎没啥关系，但有些场景它们俩都可以用。 场景一：根据不同的错误码显示对应错误消息，比如 200 -&gt; 正常。 场景二：根据不同状态显示对应的文案。这个场景很常见，比如数据库保存状态，用的 tinyint 类型，显示给用户的是文本，所以需要进行转换。 具体怎么选？我们看一下代码，怎么选择应该一目了然。 const ( UnPay = iota HadPay Delivery Finish ) var orderState = map[int]string{ UnPay: &" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/choose-map-or-switch/" />
+<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/choose-map-or-switch/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-03-17T23:00:00+08:00" />
 <meta property="article:modified_time" content="2021-03-17T23:00:00+08:00" />
+
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="map 和 switch 如何选？match 又是什么？"/>
 <meta name="twitter:description" content="大家好，我是站长 polarisxu。 看到标题别惊讶，虽然 map 和 switch 似乎没啥关系，但有些场景它们俩都可以用。 场景一：根据不同的错误码显示对应错误消息，比如 200 -&gt; 正常。 场景二：根据不同状态显示对应的文案。这个场景很常见，比如数据库保存状态，用的 tinyint 类型，显示给用户的是文本，所以需要进行转换。 具体怎么选？我们看一下代码，怎么选择应该一目了然。 const ( UnPay = iota HadPay Delivery Finish ) var orderState = map[int]string{ UnPay: &"/>
@@ -86,7 +82,7 @@
 <p>场景一：根据不同的错误码显示对应错误消息，比如 200 -&gt; 正常。</p>
 <p>场景二：根据不同状态显示对应的文案。这个场景很常见，比如数据库保存状态，用的 tinyint 类型，显示给用户的是文本，所以需要进行转换。</p>
 <p>具体怎么选？我们看一下代码，怎么选择应该一目了然。</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">const</span> <span class="p">(</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">const</span> <span class="p">(</span>
 	<span class="nx">UnPay</span> <span class="p">=</span> <span class="kc">iota</span>
 	<span class="nx">HadPay</span>
 	<span class="nx">Delivery</span>
@@ -126,7 +122,7 @@
 <p>从这个例子看，用 map 代码更少，可读性更好，而且用 map 管理这个映射关系语义上也更符合实际。</p>
 <p>所以，我为什么写文章提这一点呢？</p>
 <p>别急，我们先对以上两种实现做一下基准测试。</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">BenchmarkSwitch</span><span class="p">(</span><span class="nx">b</span> <span class="o">*</span><span class="nx">testing</span><span class="p">.</span><span class="nx">B</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">BenchmarkSwitch</span><span class="p">(</span><span class="nx">b</span> <span class="o">*</span><span class="nx">testing</span><span class="p">.</span><span class="nx">B</span><span class="p">)</span> <span class="p">{</span>
 	<span class="k">for</span> <span class="nx">n</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">n</span> <span class="p">&lt;</span> <span class="nx">b</span><span class="p">.</span><span class="nx">N</span><span class="p">;</span> <span class="nx">n</span><span class="o">++</span> <span class="p">{</span>
 		<span class="nf">OrderStateSwitch</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 		<span class="nf">OrderStateSwitch</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
@@ -144,7 +140,7 @@
 	<span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div><p>结果如下：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ go <span class="nb">test</span> -bench<span class="o">=</span>.
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ go <span class="nb">test</span> -bench<span class="o">=</span>.
 goos: darwin
 goarch: amd64
 pkg: test/map
@@ -155,7 +151,7 @@ PASS
 ok  	test/map	2.153s
 </code></pre></div><p>switch 版本比 map 版本快了近 60 倍。此外，要较真的话，map 版本还用了一个 map 数据结构，占用额外的空间。</p>
 <p>性能差别这么大，其实通过汇编可以看到 map 版本调用了一个 runtime.mapaccess2 _ fast64(SB) 函数：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">0x001d <span class="m">00029</span> <span class="o">(</span>main_test.go:22<span class="o">)</span>	MOVQ	<span class="s2">&#34;&#34;</span>.orderState<span class="o">(</span>SB<span class="o">)</span>, AX
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">0x001d <span class="m">00029</span> <span class="o">(</span>main_test.go:22<span class="o">)</span>	MOVQ	<span class="s2">&#34;&#34;</span>.orderState<span class="o">(</span>SB<span class="o">)</span>, AX
 0x0024 <span class="m">00036</span> <span class="o">(</span>main_test.go:22<span class="o">)</span>	LEAQ	type.map<span class="o">[</span>int<span class="o">]</span>string<span class="o">(</span>SB<span class="o">)</span>, CX
 0x002b <span class="m">00043</span> <span class="o">(</span>main_test.go:22<span class="o">)</span>	MOVQ	CX, <span class="o">(</span>SP<span class="o">)</span>
 0x002f <span class="m">00047</span> <span class="o">(</span>main_test.go:22<span class="o">)</span>	MOVQ	AX, 8<span class="o">(</span>SP<span class="o">)</span>
@@ -173,7 +169,7 @@ ok  	test/map	2.153s
 0x0060 <span class="m">00096</span> <span class="o">(</span>main_test.go:22<span class="o">)</span>	ADDQ	<span class="nv">$40</span>, SP
 0x0064 <span class="m">00100</span> <span class="o">(</span>main_test.go:22<span class="o">)</span>	RE
 </code></pre></div><p>而 switch 版本只是普通的指令：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">0x0000 <span class="m">00000</span> <span class="o">(</span>main_test.go:28<span class="o">)</span>	MOVQ	<span class="s2">&#34;&#34;</span>.state+8<span class="o">(</span>SP<span class="o">)</span>, AX
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">0x0000 <span class="m">00000</span> <span class="o">(</span>main_test.go:28<span class="o">)</span>	MOVQ	<span class="s2">&#34;&#34;</span>.state+8<span class="o">(</span>SP<span class="o">)</span>, AX
 0x0005 <span class="m">00005</span> <span class="o">(</span>main_test.go:28<span class="o">)</span>	CMPQ	AX, <span class="nv">$1</span>
 0x0009 <span class="m">00009</span> <span class="o">(</span>main_test.go:28<span class="o">)</span>	JGT	<span class="m">66</span>
 0x000b <span class="m">00011</span> <span class="o">(</span>main_test.go:29<span class="o">)</span>	TESTQ	AX, AX
@@ -209,7 +205,7 @@ ok  	test/map	2.153s
 <p>其实在 Go 标准库中有类似这样的使用场景，比如 net/http 包中的 <a href="https://docs.studygolang.com/src/net/http/status.go?s=7372:7404#L150" target="_blank" rel="noopener">StatusText</a>
  函数，它根据状态码获得对应的说明；还有连接状态对应 <a href="https://docs.studygolang.com/src/net/http/server.go?s=90775:90809#L2859" target="_blank" rel="noopener">ConnState</a>
  的说明：</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">var</span> <span class="nx">stateName</span> <span class="p">=</span> <span class="kd">map</span><span class="p">[</span><span class="nx">ConnState</span><span class="p">]</span><span class="kt">string</span><span class="p">{</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">var</span> <span class="nx">stateName</span> <span class="p">=</span> <span class="kd">map</span><span class="p">[</span><span class="nx">ConnState</span><span class="p">]</span><span class="kt">string</span><span class="p">{</span>
 	<span class="nx">StateNew</span><span class="p">:</span>      <span class="s">&#34;new&#34;</span><span class="p">,</span>
 	<span class="nx">StateActive</span><span class="p">:</span>   <span class="s">&#34;active&#34;</span><span class="p">,</span>
 	<span class="nx">StateIdle</span><span class="p">:</span>     <span class="s">&#34;idle&#34;</span><span class="p">,</span>
@@ -222,7 +218,7 @@ ok  	test/map	2.153s
 <span class="p">}</span>
 </code></pre></div><p>特别是当需要映射的内容很多时，更应该使用的 map 方式，毕竟看到一大堆 case 会疯掉。</p>
 <p>题外话：可能正是因为类似的需求很常见，而 switch 似乎太繁琐，于是 Rust 中没有 switch，而是提供了 match 表达式，Rust 代码如下：</p>
-<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="k">enum</span> <span class="nc">State</span><span class="w"> </span><span class="p">{</span><span class="w">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="k">enum</span> <span class="nc">State</span><span class="w"> </span><span class="p">{</span><span class="w">
 </span><span class="w">	</span><span class="n">Unpay</span><span class="p">,</span><span class="w">
 </span><span class="w">	</span><span class="n">HadPay</span><span class="p">,</span><span class="w">
 </span><span class="w">	</span><span class="n">Delivery</span><span class="p">,</span><span class="w">
@@ -242,7 +238,7 @@ ok  	test/map	2.153s
 </span><span class="w">    </span><span class="n">println</span><span class="o">!</span><span class="p">(</span><span class="s">&#34;{}&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">OrderState</span><span class="p">(</span><span class="n">State</span>::<span class="n">Unpay</span><span class="p">));</span><span class="w">
 </span><span class="w"></span><span class="p">}</span><span class="w">
 </span></code></pre></div><p>PHP 在 8.0 也提供了 match 表达式，比如：</p>
-<div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php"><span class="nv">$orderState</span> <span class="o">=</span> <span class="nx">match</span><span class="p">(</span><span class="nv">$state</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="nv">$orderState</span> <span class="o">=</span> <span class="nx">match</span><span class="p">(</span><span class="nv">$state</span><span class="p">)</span> <span class="p">{</span>
   <span class="mi">0</span> <span class="o">=&gt;</span> <span class="s1">&#39;未支付&#39;</span><span class="p">,</span>
   <span class="mi">1</span> <span class="o">=&gt;</span> <span class="s1">&#39;已支付&#39;</span><span class="p">,</span>
   <span class="mi">2</span> <span class="o">=&gt;</span> <span class="s1">&#39;配送中&#39;</span><span class="p">,</span>
@@ -262,13 +258,13 @@ ok  	test/map	2.153s
 	
 	<li><a href="/posts/go/translation/benchmarking-grpc-in-rust-go/">对 gRPC 的 Rust 和 Go 版本进行基准测试</a></li>
 	
+	<li><a href="/posts/go/fiber/go-fiber-basic-tutorial01/">Go Fiber 框架系列教程 01: 和 Express 对比学习</a></li>
+	
 	<li><a href="/posts/go/action/go-illegal-private-import/">Go Module：私有不合规库怎么解决引用问题</a></li>
 	
 	<li><a href="/posts/go/dynamic/1.17-golang-go-get-updated/">Go1.17 新特性：go get 变了</a></li>
 	
 	<li><a href="/posts/go/dynamic/go-1-17-new-features-added-to-testing/">Go1.17 新特性：testing 包的相关变化</a></li>
-	
-	<li><a href="/posts/go/action/chained-channel-operations-in-a-single-select-case/">StackOverflow 上关于 Go select 死锁的问题</a></li>
 	
 	</ul>
 </div>
@@ -316,7 +312,7 @@ ok  	test/map	2.153s
 
 
 
-	<script src="https://polarisxu.studygolang.com/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw=" crossorigin="anonymous"></script>
+	<script src="https://polarisxu.studygolang.com/js/main.min.4eaa15feccc672488716f0338ac605e08c7553ce0ce175e13fa00a873636bf98.js" integrity="sha256-TqoV/szGckiHFvAzisYF4Ix1U84M4XXhP6AKhzY2v5g=" crossorigin="anonymous"></script>
 	<script>
 var _hmt = _hmt || [];
 (function() {

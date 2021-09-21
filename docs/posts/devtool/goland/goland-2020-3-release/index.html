@@ -8,20 +8,16 @@
 	<meta name="theme-color" content="#fcfcfc">
 	<meta name="msapplication-TileColor" content="#fcfcfc">
 <meta itemprop="name" content="GoLand 2020.3 正式发布了，有不少新功能，包括支持泛型">
-<meta itemprop="description" content="这是 2020 年第 3 个版本，也是最后一个版本。在 GoLand 2020.3 中，您可以探索 goroutines dumps，运行并导航到单个表测试（table tests），并从对 Testify 测试框架的扩展支持中获得更多信息。你还将发现许多新的代码编辑功能，包括对 time 包的支持，更智能的处理包方法，UI 改进，用于 Web 开发和使用数据库的各种新功能以及用于协作开发和结对编程的新服务。具体看看有哪些新特性。 01 调试器改进 Dump Goroutines 调试器中新">
-<meta itemprop="datePublished" content="2020-12-04T22:30:00+08:00" />
+<meta itemprop="description" content="这是 2020 年第 3 个版本，也是最后一个版本。在 GoLand 2020.3 中，您可以探索 goroutines dumps，运行并导航到单个表测试（table tests），并从对 Testify 测试框架的扩展支持中获得更多信息。你还将发现许多新的代码编辑功能，包括对 time 包的支持，更智能的处理包方法，UI 改进，用于 Web 开发和使用数据库的各种新功能以及用于协作开发和结对编程的新服务。具体看看有哪些新特性。 01 调试器改进 Dump Goroutines 调试器中新"><meta itemprop="datePublished" content="2020-12-04T22:30:00+08:00" />
 <meta itemprop="dateModified" content="2020-12-04T22:30:00+08:00" />
 <meta itemprop="wordCount" content="2085">
-
-
-
-<meta itemprop="keywords" content="GoLand,泛型," />
-<meta property="og:title" content="GoLand 2020.3 正式发布了，有不少新功能，包括支持泛型" />
+<meta itemprop="keywords" content="GoLand,泛型," /><meta property="og:title" content="GoLand 2020.3 正式发布了，有不少新功能，包括支持泛型" />
 <meta property="og:description" content="这是 2020 年第 3 个版本，也是最后一个版本。在 GoLand 2020.3 中，您可以探索 goroutines dumps，运行并导航到单个表测试（table tests），并从对 Testify 测试框架的扩展支持中获得更多信息。你还将发现许多新的代码编辑功能，包括对 time 包的支持，更智能的处理包方法，UI 改进，用于 Web 开发和使用数据库的各种新功能以及用于协作开发和结对编程的新服务。具体看看有哪些新特性。 01 调试器改进 Dump Goroutines 调试器中新" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://polarisxu.studygolang.com/posts/devtool/goland/goland-2020-3-release/" />
+<meta property="og:url" content="https://polarisxu.studygolang.com/posts/devtool/goland/goland-2020-3-release/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2020-12-04T22:30:00+08:00" />
 <meta property="article:modified_time" content="2020-12-04T22:30:00+08:00" />
+
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="GoLand 2020.3 正式发布了，有不少新功能，包括支持泛型"/>
 <meta name="twitter:description" content="这是 2020 年第 3 个版本，也是最后一个版本。在 GoLand 2020.3 中，您可以探索 goroutines dumps，运行并导航到单个表测试（table tests），并从对 Testify 测试框架的扩展支持中获得更多信息。你还将发现许多新的代码编辑功能，包括对 time 包的支持，更智能的处理包方法，UI 改进，用于 Web 开发和使用数据库的各种新功能以及用于协作开发和结对编程的新服务。具体看看有哪些新特性。 01 调试器改进 Dump Goroutines 调试器中新"/>
@@ -141,7 +137,8 @@
 </p>
 </p>
 <p>context.CancelFunc（不称为代码检查）报告了 context 取消的潜在不安全使用。当 context 返回的 “cancel” 函数未在所有执行路径上调用时，此功能特别有用。</p>
-<p>更多细节可以查看标准库文档：<a href="https://docs.studygolang.com/pkg/context">https://docs.studygolang.com/pkg/context</a>。</p>
+<p>更多细节可以查看标准库文档：<a href="https://docs.studygolang.com/pkg/context" target="_blank" rel="noopener">https://docs.studygolang.com/pkg/context</a>
+。</p>
 <h2 id="04-代码编辑">04 代码编辑<a href="#04-代码编辑" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <h3 id="time-包的支持">time 包的支持<a href="#time-包的支持" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <blockquote>
@@ -318,7 +315,7 @@
 
 
 
-	<script src="https://polarisxu.studygolang.com/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw=" crossorigin="anonymous"></script>
+	<script src="https://polarisxu.studygolang.com/js/main.min.4eaa15feccc672488716f0338ac605e08c7553ce0ce175e13fa00a873636bf98.js" integrity="sha256-TqoV/szGckiHFvAzisYF4Ix1U84M4XXhP6AKhzY2v5g=" crossorigin="anonymous"></script>
 	<script>
 var _hmt = _hmt || [];
 (function() {

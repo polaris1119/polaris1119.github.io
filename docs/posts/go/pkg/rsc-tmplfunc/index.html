@@ -8,20 +8,16 @@
 	<meta name="theme-color" content="#fcfcfc">
 	<meta name="msapplication-TileColor" content="#fcfcfc">
 <meta itemprop="name" content="Go Team Leader — rsc 大神新开源了一个库，增强模板功能">
-<meta itemprop="description" content="大家好，我是站长 polarisxu。 今天给大家分享一个 rsc 新开源的一个库：rsc.io/tmplfunc 。 这个库是对 Go 标准库模板的扩展，可以像调用函数一样调用模板。通过一个例子看怎么使用。 01 标准库 因为 text/template 和 html/template 基本是一样的，且 tmplfunc 这个包同时支持两者，本文使用 text/template 来演示。 有如下代码： package main import ( &#34;os&#34; &#34;text/template&#34; ) var stdstr = `{{link&#34;https://golang.org&#34;&#34;The Go language&#34;}}{{link&#34;https:">
-<meta itemprop="datePublished" content="2021-05-12T12:30:00+08:00" />
+<meta itemprop="description" content="大家好，我是站长 polarisxu。 今天给大家分享一个 rsc 新开源的一个库：rsc.io/tmplfunc 。 这个库是对 Go 标准库模板的扩展，可以像调用函数一样调用模板。通过一个例子看怎么使用。 01 标准库 因为 text/template 和 html/template 基本是一样的，且 tmplfunc 这个包同时支持两者，本文使用 text/template 来演示。 有如下代码： package main import ( &#34;os&#34; &#34;text/template&#34; ) var stdstr = `{{link&#34;https://golang.org&#34;&#34;The Go language&#34;}}{{link&#34;https:"><meta itemprop="datePublished" content="2021-05-12T12:30:00+08:00" />
 <meta itemprop="dateModified" content="2021-05-12T12:30:00+08:00" />
 <meta itemprop="wordCount" content="1037">
-
-
-
-<meta itemprop="keywords" content="Go,rsc,tmplfunc," />
-<meta property="og:title" content="Go Team Leader — rsc 大神新开源了一个库，增强模板功能" />
+<meta itemprop="keywords" content="Go,rsc,tmplfunc," /><meta property="og:title" content="Go Team Leader — rsc 大神新开源了一个库，增强模板功能" />
 <meta property="og:description" content="大家好，我是站长 polarisxu。 今天给大家分享一个 rsc 新开源的一个库：rsc.io/tmplfunc 。 这个库是对 Go 标准库模板的扩展，可以像调用函数一样调用模板。通过一个例子看怎么使用。 01 标准库 因为 text/template 和 html/template 基本是一样的，且 tmplfunc 这个包同时支持两者，本文使用 text/template 来演示。 有如下代码： package main import ( &#34;os&#34; &#34;text/template&#34; ) var stdstr = `{{link&#34;https://golang.org&#34;&#34;The Go language&#34;}}{{link&#34;https:" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/pkg/rsc-tmplfunc/" />
+<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/pkg/rsc-tmplfunc/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-05-12T12:30:00+08:00" />
 <meta property="article:modified_time" content="2021-05-12T12:30:00+08:00" />
+
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Go Team Leader — rsc 大神新开源了一个库，增强模板功能"/>
 <meta name="twitter:description" content="大家好，我是站长 polarisxu。 今天给大家分享一个 rsc 新开源的一个库：rsc.io/tmplfunc 。 这个库是对 Go 标准库模板的扩展，可以像调用函数一样调用模板。通过一个例子看怎么使用。 01 标准库 因为 text/template 和 html/template 基本是一样的，且 tmplfunc 这个包同时支持两者，本文使用 text/template 来演示。 有如下代码： package main import ( &#34;os&#34; &#34;text/template&#34; ) var stdstr = `{{link&#34;https://golang.org&#34;&#34;The Go language&#34;}}{{link&#34;https:"/>
@@ -88,7 +84,7 @@
 <h2 id="01-标准库">01 标准库<a href="#01-标准库" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>因为 text/template 和 html/template 基本是一样的，且 tmplfunc 这个包同时支持两者，本文使用 text/template 来演示。</p>
 <p>有如下代码：</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
 	<span class="s">&#34;os&#34;</span>
@@ -123,11 +119,11 @@
 <span class="p">}</span>
 
 </code></pre></div><p>这个例子在 Go 代码中定义了一个模板函数，构造一个 URL 链接。在模板中，通过调用这个函数生成 URL，达到了复用的目的。以上代码输出：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">&lt;a <span class="nv">href</span><span class="o">=</span><span class="s2">&#34;https://golang.org&#34;</span>&gt;The Go language&lt;/a&gt;
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">&lt;a <span class="nv">href</span><span class="o">=</span><span class="s2">&#34;https://golang.org&#34;</span>&gt;The Go language&lt;/a&gt;
 &lt;a <span class="nv">href</span><span class="o">=</span><span class="s2">&#34;https://studygolang.com&#34;</span>&gt;Go语言中文网&lt;/a&gt;
 </code></pre></div><h2 id="02-使用-rsciotmplfunc">02 使用 rsc.io/tmplfunc<a href="#02-使用-rsciotmplfunc" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>现在使用 rsc.io/tmplfunc 这个库改写这个例子，代码如下：</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
 	<span class="s">&#34;os&#34;</span>
@@ -165,9 +161,9 @@
 <h2 id="03-学习更多">03 学习更多<a href="#03-学习更多" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>通过上面的例子，基本上我们已经掌握了该包的用法，同时也可以看出，该包让模板重用在模板页面完成，而不需要在 Go 代码中进行，目前我能想到的使用场景不多，但知晓有这么个库，也许在实际中有这样的需求。</p>
 <p>关于该包，需要额外补充一点。在 define 定义时，除了上面例子的形式，还支持可选参数。可选参数通过 ? 表示，如：</p>
-<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html">{{define &#34;link url text?&#34;}}<span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;{{.url}}&#34;</span><span class="p">&gt;</span>{{or .text .url}}<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>{{end}}
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html">{{define &#34;link url text?&#34;}}<span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;{{.url}}&#34;</span><span class="p">&gt;</span>{{or .text .url}}<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>{{end}}
 </code></pre></div><p>还支持可变参数，这和 Go 的语法一样，通过三个点表示：</p>
-<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html">{{define &#34;myprint names...&#34;}}
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html">{{define &#34;myprint names...&#34;}}
 	{{range .names}}
 		{{.}}
 	{{end}}
@@ -190,11 +186,11 @@
 	
 	<li><a href="/posts/talk/go-celebrity-rsc/">Go 语言名人：除了 Rob Pike，很多人可能不知道他</a></li>
 	
+	<li><a href="/posts/go/fiber/go-fiber-basic-tutorial01/">Go Fiber 框架系列教程 01: 和 Express 对比学习</a></li>
+	
 	<li><a href="/posts/go/action/go-illegal-private-import/">Go Module：私有不合规库怎么解决引用问题</a></li>
 	
 	<li><a href="/posts/go/dynamic/1.17-golang-go-get-updated/">Go1.17 新特性：go get 变了</a></li>
-	
-	<li><a href="/posts/go/dynamic/go-1-17-new-features-added-to-testing/">Go1.17 新特性：testing 包的相关变化</a></li>
 	
 	</ul>
 </div>
@@ -248,7 +244,7 @@
 
 
 
-	<script src="https://polarisxu.studygolang.com/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw=" crossorigin="anonymous"></script>
+	<script src="https://polarisxu.studygolang.com/js/main.min.4eaa15feccc672488716f0338ac605e08c7553ce0ce175e13fa00a873636bf98.js" integrity="sha256-TqoV/szGckiHFvAzisYF4Ix1U84M4XXhP6AKhzY2v5g=" crossorigin="anonymous"></script>
 	<script>
 var _hmt = _hmt || [];
 (function() {

@@ -8,20 +8,16 @@
 	<meta name="theme-color" content="#fcfcfc">
 	<meta name="msapplication-TileColor" content="#fcfcfc">
 <meta itemprop="name" content="怎么知道某个 API 是在哪个 Go 版本添加的？这个功能如何实现的">
-<meta itemprop="description" content="大家好，我是站长 polarisxu。 因为 Go 的兼容性做的很好，很多人不太关心 Go 的具体版本。然而有时候可能会涉及到版本的问题，比如你想使用 strings.Builder，Go 版本就必须 &gt;= 1.10，但以下代码在 Go1.10 却编译不通过。 package main import ( &#34;fmt&#34; &#34;strings&#34; ) func main() { var b strings.Builder b.WriteString(&#34;polarisxu&#34;) fmt.Println(b.Cap()) } 编译会报错： $ go version go version go1.10.8 darwin/amd64 $ go run main.go # command-line-arguments ./main.go:11:15: b.Cap undefined (type strings.Builder has no field or method Cap) 提示 strings.Builder 类型没有 Cap 字段或方法。 所以，你知道标准库中">
-<meta itemprop="datePublished" content="2021-02-04T15:00:00+08:00" />
+<meta itemprop="description" content="大家好，我是站长 polarisxu。 因为 Go 的兼容性做的很好，很多人不太关心 Go 的具体版本。然而有时候可能会涉及到版本的问题，比如你想使用 strings.Builder，Go 版本就必须 &gt;= 1.10，但以下代码在 Go1.10 却编译不通过。 package main import ( &#34;fmt&#34; &#34;strings&#34; ) func main() { var b strings.Builder b.WriteString(&#34;polarisxu&#34;) fmt.Println(b.Cap()) } 编译会报错： $ go version go version go1.10.8 darwin/amd64 $ go run main.go # command-line-arguments ./main.go:11:15: b.Cap undefined (type strings.Builder has no field or method Cap) 提示 strings.Builder 类型没有 Cap 字段或方法。 所以，你知道标准库中"><meta itemprop="datePublished" content="2021-02-04T15:00:00+08:00" />
 <meta itemprop="dateModified" content="2021-02-04T15:00:00+08:00" />
 <meta itemprop="wordCount" content="1362">
-
-
-
-<meta itemprop="keywords" content="标准库,Go," />
-<meta property="og:title" content="怎么知道某个 API 是在哪个 Go 版本添加的？这个功能如何实现的" />
+<meta itemprop="keywords" content="标准库,Go," /><meta property="og:title" content="怎么知道某个 API 是在哪个 Go 版本添加的？这个功能如何实现的" />
 <meta property="og:description" content="大家好，我是站长 polarisxu。 因为 Go 的兼容性做的很好，很多人不太关心 Go 的具体版本。然而有时候可能会涉及到版本的问题，比如你想使用 strings.Builder，Go 版本就必须 &gt;= 1.10，但以下代码在 Go1.10 却编译不通过。 package main import ( &#34;fmt&#34; &#34;strings&#34; ) func main() { var b strings.Builder b.WriteString(&#34;polarisxu&#34;) fmt.Println(b.Cap()) } 编译会报错： $ go version go version go1.10.8 darwin/amd64 $ go run main.go # command-line-arguments ./main.go:11:15: b.Cap undefined (type strings.Builder has no field or method Cap) 提示 strings.Builder 类型没有 Cap 字段或方法。 所以，你知道标准库中" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/how-realize-go-std-version-show/" />
+<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/how-realize-go-std-version-show/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-02-04T15:00:00+08:00" />
 <meta property="article:modified_time" content="2021-02-04T15:00:00+08:00" />
+
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="怎么知道某个 API 是在哪个 Go 版本添加的？这个功能如何实现的"/>
 <meta name="twitter:description" content="大家好，我是站长 polarisxu。 因为 Go 的兼容性做的很好，很多人不太关心 Go 的具体版本。然而有时候可能会涉及到版本的问题，比如你想使用 strings.Builder，Go 版本就必须 &gt;= 1.10，但以下代码在 Go1.10 却编译不通过。 package main import ( &#34;fmt&#34; &#34;strings&#34; ) func main() { var b strings.Builder b.WriteString(&#34;polarisxu&#34;) fmt.Println(b.Cap()) } 编译会报错： $ go version go version go1.10.8 darwin/amd64 $ go run main.go # command-line-arguments ./main.go:11:15: b.Cap undefined (type strings.Builder has no field or method Cap) 提示 strings.Builder 类型没有 Cap 字段或方法。 所以，你知道标准库中"/>
@@ -83,7 +79,7 @@
 			<div class="content">
 				<p>大家好，我是站长 polarisxu。</p>
 <p>因为 Go 的兼容性做的很好，很多人不太关心 Go 的具体版本。然而有时候可能会涉及到版本的问题，比如你想使用 strings.Builder，Go 版本就必须 &gt;= 1.10，但以下代码在 Go1.10 却编译不通过。</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
 	<span class="s">&#34;fmt&#34;</span>
@@ -96,7 +92,7 @@
   <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">b</span><span class="p">.</span><span class="nf">Cap</span><span class="p">())</span>
 <span class="p">}</span>
 </code></pre></div><p>编译会报错：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ go version
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ go version
 go version go1.10.8 darwin/amd64
 $ go run main.go
 <span class="c1"># command-line-arguments</span>
@@ -104,19 +100,22 @@ $ go run main.go
 </code></pre></div><p>提示 strings.Builder 类型没有 Cap 字段或方法。</p>
 <p>所以，你知道标准库中哪个 API 是什么版本引入的吗？或者更实际的是，我当前的版本是否能使用某个 API。</p>
 <h2 id="01-常见的两种方式">01 常见的两种方式<a href="#01-常见的两种方式" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-<p>在 Go 官网有最新稳定版本的标准库文档。从 Go1.11 版本开始，在标准库中，每个类型、函数或方法有加入的版本信息，如果没有，表示 Go1.0 就有了，具体 issue 见：<a href="https://github.com/golang/go/issues/5778">https://github.com/golang/go/issues/5778</a>。但目前常量和变量没有版本信息，具体 issue 见：<a href="https://github.com/golang/go/issues/29204">https://github.com/golang/go/issues/29204</a>。</p>
+<p>在 Go 官网有最新稳定版本的标准库文档。从 Go1.11 版本开始，在标准库中，每个类型、函数或方法有加入的版本信息，如果没有，表示 Go1.0 就有了，具体 issue 见：<a href="https://github.com/golang/go/issues/5778" target="_blank" rel="noopener">https://github.com/golang/go/issues/5778</a>
+。但目前常量和变量没有版本信息，具体 issue 见：<a href="https://github.com/golang/go/issues/29204" target="_blank" rel="noopener">https://github.com/golang/go/issues/29204</a>
+。</p>
 <p><p class="md__image">
   <img src="../imgs/std-show-version01.png"
     alt=""  />
 </p>
 </p>
-<p>第二种方法，不是看具体某个 API 对应的版本，而是至少知晓，你当前使用的 Go 版本有没有某个 API，这就是 pkg.go.dev，具体通过这个网站 <a href="https://pkg.go.dev/std?tab=versions">https://pkg.go.dev/std?tab=versions</a> 选择你对应的版本，然后查找是否有对应的 API。</p>
+<p>第二种方法，不是看具体某个 API 对应的版本，而是至少知晓，你当前使用的 Go 版本有没有某个 API，这就是 pkg.go.dev，具体通过这个网站 <a href="https://pkg.go.dev/std?tab=versions" target="_blank" rel="noopener">https://pkg.go.dev/std?tab=versions</a>
+ 选择你对应的版本，然后查找是否有对应的 API。</p>
 <p>当然了，你使用 GoLand 之类的编辑器，某个 API 是否有，它会自动提示。</p>
 <h2 id="02-标准库显示版本是如何实现的">02 标准库显示版本是如何实现的<a href="#02-标准库显示版本是如何实现的" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>保持好奇心很重要，这是求知的动力之一。看到官网标准库显示了版本信息，我就想看看它是怎么实现的。</p>
 <p>怎么查找实现的代码？</p>
 <p>我的第一反应是看标准库注释里有没有写。</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// A Builder is used to efficiently build a string using Write methods.
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// A Builder is used to efficiently build a string using Write methods.
 </span><span class="c1">// It minimizes memory copying. The zero value is ready to use.
 </span><span class="c1">// Do not copy a non-zero Builder.
 </span><span class="c1"></span><span class="kd">type</span> <span class="nx">Builder</span> <span class="kd">struct</span> <span class="p">{</span>
@@ -131,7 +130,8 @@ $ go run main.go
     alt=""  />
 </p>
 </p>
-<p>2）Go 官网源码在这里：<a href="https://github.com/golang/website">https://github.com/golang/website</a>，在该源码中搜索 <code>Added in</code>，找到了 package.html 模板文件。</p>
+<p>2）Go 官网源码在这里：<a href="https://github.com/golang/website" target="_blank" rel="noopener">https://github.com/golang/website</a>
+，在该源码中搜索 <code>Added in</code>，找到了 package.html 模板文件。</p>
 <p><p class="md__image">
   <img src="../imgs/std-show-version03.png"
     alt=""  />
@@ -145,7 +145,7 @@ $ go run main.go
 </p>
 </p>
 <p>通过这个可以找到 sinceVersionFunc 所在文件：versions.go，然后就能找到如下的代码：</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// InitVersionInfo parses the $GOROOT/api/go*.txt API definition files to discover
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// InitVersionInfo parses the $GOROOT/api/go*.txt API definition files to discover
 </span><span class="c1">// which API features were added in which Go releases.
 </span><span class="c1"></span><span class="kd">func</span> <span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">Corpus</span><span class="p">)</span> <span class="nf">InitVersionInfo</span><span class="p">()</span> <span class="p">{</span>
 	<span class="kd">var</span> <span class="nx">err</span> <span class="kt">error</span>
@@ -185,7 +185,7 @@ $ go run main.go
 </p>
 <p>api 目录下的这些文件维护了每个版本新增的内容。</p>
 <p>最终从这些文件中读取的内容会用以下的类型表示：</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// pkgAPIVersions contains information about which version of Go added
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// pkgAPIVersions contains information about which version of Go added
 </span><span class="c1">// certain package symbols.
 </span><span class="c1">//
 </span><span class="c1">// Only things added after Go1 are tracked. Version strings are of the
@@ -198,7 +198,7 @@ $ go run main.go
 </span><span class="c1"></span><span class="p">}</span>
 </code></pre></div><p>这里有类型、方法、函数和（类型）字段，但没有变量和常量，这也就是说变量和常量的版本号显示还未实现。</p>
 <p>最后，在 website 项目的 main 函数中有这么一句：</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// Initialize the version info before readTemplates, which saves
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// Initialize the version info before readTemplates, which saves
 </span><span class="c1">// the map value in a method value.
 </span><span class="c1"></span><span class="nx">corpus</span><span class="p">.</span><span class="nf">InitVersionInfo</span><span class="p">()</span>
 </code></pre></div><p>用于初始化版本信息。</p>
@@ -218,11 +218,11 @@ $ go run main.go
 	
 	<li><a href="/posts/go/dynamic/view-go-history-std-version/">听说你还不知道如何查看 Go 历史文档？</a></li>
 	
+	<li><a href="/posts/go/fiber/go-fiber-basic-tutorial01/">Go Fiber 框架系列教程 01: 和 Express 对比学习</a></li>
+	
 	<li><a href="/posts/go/action/go-illegal-private-import/">Go Module：私有不合规库怎么解决引用问题</a></li>
 	
 	<li><a href="/posts/go/dynamic/1.17-golang-go-get-updated/">Go1.17 新特性：go get 变了</a></li>
-	
-	<li><a href="/posts/go/dynamic/go-1-17-new-features-added-to-testing/">Go1.17 新特性：testing 包的相关变化</a></li>
 	
 	</ul>
 </div>
@@ -276,7 +276,7 @@ $ go run main.go
 
 
 
-	<script src="https://polarisxu.studygolang.com/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw=" crossorigin="anonymous"></script>
+	<script src="https://polarisxu.studygolang.com/js/main.min.4eaa15feccc672488716f0338ac605e08c7553ce0ce175e13fa00a873636bf98.js" integrity="sha256-TqoV/szGckiHFvAzisYF4Ix1U84M4XXhP6AKhzY2v5g=" crossorigin="anonymous"></script>
 	<script>
 var _hmt = _hmt || [];
 (function() {

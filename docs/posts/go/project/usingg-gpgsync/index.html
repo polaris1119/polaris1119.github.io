@@ -8,20 +8,16 @@
 	<meta name="theme-color" content="#fcfcfc">
 	<meta name="msapplication-TileColor" content="#fcfcfc">
 <meta itemprop="name" content="Go Playground 还能这么玩？">
-<meta itemprop="description" content="大家好，我是 polarisxu。 之前我为大家推荐过 Playground，对比了三款 Go Playground 。今天发现了另外一款 Playground，它最核心的特点是，可以多人协同编辑。 协同编辑，目前是很流行的一种多人协作模式。GitHub 的编辑器 Atom 就有这方面的支持。 简介 先简单看看这款 Playground：gpgsync。这是 syumai 开发的一款多人协同编辑的 Go Playground，他是">
-<meta itemprop="datePublished" content="2020-10-09T18:12:51+08:00" />
+<meta itemprop="description" content="大家好，我是 polarisxu。 之前我为大家推荐过 Playground，对比了三款 Go Playground 。今天发现了另外一款 Playground，它最核心的特点是，可以多人协同编辑。 协同编辑，目前是很流行的一种多人协作模式。GitHub 的编辑器 Atom 就有这方面的支持。 简介 先简单看看这款 Playground：gpgsync。这是 syumai 开发的一款多人协同编辑的 Go Playground，他是"><meta itemprop="datePublished" content="2020-10-09T18:12:51+08:00" />
 <meta itemprop="dateModified" content="2020-10-09T18:12:51+08:00" />
-<meta itemprop="wordCount" content="828">
-
-
-
-<meta itemprop="keywords" content="Go,Golang,Playground," />
-<meta property="og:title" content="Go Playground 还能这么玩？" />
+<meta itemprop="wordCount" content="799">
+<meta itemprop="keywords" content="Go,Golang,Playground," /><meta property="og:title" content="Go Playground 还能这么玩？" />
 <meta property="og:description" content="大家好，我是 polarisxu。 之前我为大家推荐过 Playground，对比了三款 Go Playground 。今天发现了另外一款 Playground，它最核心的特点是，可以多人协同编辑。 协同编辑，目前是很流行的一种多人协作模式。GitHub 的编辑器 Atom 就有这方面的支持。 简介 先简单看看这款 Playground：gpgsync。这是 syumai 开发的一款多人协同编辑的 Go Playground，他是" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/project/usingg-gpgsync/" />
+<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/project/usingg-gpgsync/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2020-10-09T18:12:51+08:00" />
 <meta property="article:modified_time" content="2020-10-09T18:12:51+08:00" />
+
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Go Playground 还能这么玩？"/>
 <meta name="twitter:description" content="大家好，我是 polarisxu。 之前我为大家推荐过 Playground，对比了三款 Go Playground 。今天发现了另外一款 Playground，它最核心的特点是，可以多人协同编辑。 协同编辑，目前是很流行的一种多人协作模式。GitHub 的编辑器 Atom 就有这方面的支持。 简介 先简单看看这款 Playground：gpgsync。这是 syumai 开发的一款多人协同编辑的 Go Playground，他是"/>
@@ -88,9 +84,12 @@
 <h2 id="简介">简介<a href="#简介" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>先简单看看这款 Playground：gpgsync。这是 <a href="https://github.com/syumai" target="_blank" rel="noopener">syumai</a>
  开发的一款多人协同编辑的 Go Playground，他是一个 TypeScript 和 Go 爱好者。</p>
-<p>项目地址：<a href="https://github.com/syumai/gpgsync">https://github.com/syumai/gpgsync</a>，这是一个 Node 项目，你可以本地搭建，也可以直接试用作者提供的 Demo：<a href="https://gpgsync.herokuapp.com/">https://gpgsync.herokuapp.com/</a>。</p>
+<p>项目地址：<a href="https://github.com/syumai/gpgsync" target="_blank" rel="noopener">https://github.com/syumai/gpgsync</a>
+，这是一个 Node 项目，你可以本地搭建，也可以直接试用作者提供的 Demo：<a href="https://gpgsync.herokuapp.com/" target="_blank" rel="noopener">https://gpgsync.herokuapp.com/</a>
+。</p>
 <h2 id="如何使用">如何使用<a href="#如何使用" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-<p>打开 <a href="https://gpgsync.herokuapp.com/">https://gpgsync.herokuapp.com/</a>，会让你提供一个 Room ID，可以使用随机生成的，也可以自定义。</p>
+<p>打开 <a href="https://gpgsync.herokuapp.com/" target="_blank" rel="noopener">https://gpgsync.herokuapp.com/</a>
+，会让你提供一个 Room ID，可以使用随机生成的，也可以自定义。</p>
 <p><p class="md__image">
   <img src="../imgs/gpgsync01.png"
     alt=""  />
@@ -102,7 +101,8 @@
     alt=""  />
 </p>
 </p>
-<p>这个界面和官方的 Playground 基本类似，但多了一个 Options。这个功能来自作者的另一个项目：<a href="https://github.com/syumai/go-playground-custom">https://github.com/syumai/go-playground-custom</a>，好吧，又一个 Playground。这个项目的目标是为 Playground 提供一些额外的特性，包括：</p>
+<p>这个界面和官方的 Playground 基本类似，但多了一个 Options。这个功能来自作者的另一个项目：<a href="https://github.com/syumai/go-playground-custom" target="_blank" rel="noopener">https://github.com/syumai/go-playground-custom</a>
+，好吧，又一个 Playground。这个项目的目标是为 Playground 提供一些额外的特性，包括：</p>
 <ul>
 <li>基于 CodeMirror 的丰富编辑器；
 <ul>
@@ -120,7 +120,8 @@
 </p>
 <p>回到主题。</p>
 <p>当你进入后，你可以将你的 Room ID 告诉你的协作者，或者直接复制链接发给 TA，你们就可以协同了。你或 TA 的改动，另一方能实时看到。</p>
-<p>我的 Room：<a href="https://gpgsync.herokuapp.com/rooms/polarisxu">https://gpgsync.herokuapp.com/rooms/polarisxu</a>，大家可以试试，看看一堆人是啥效果，会不会崩溃~</p>
+<p>我的 Room：<a href="https://gpgsync.herokuapp.com/rooms/polarisxu" target="_blank" rel="noopener">https://gpgsync.herokuapp.com/rooms/polarisxu</a>
+，大家可以试试，看看一堆人是啥效果，会不会崩溃~</p>
 <p>你自己想单独试验，可以开两个浏览器看看效果。</p>
 <p><strong>特别说明</strong>：最终的运行是交给 play.golang.org 的，因此要实际运行，请自备梯子。</p>
 <h2 id="有啥用">有啥用<a href="#有啥用" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
@@ -157,7 +158,7 @@
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://polarisxu.studygolang.com/tags/go">Go</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/golang">Golang</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/playground">Playground</a></span>
 				</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>828 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>799 字</p>
 				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2020-10-09 18:12 &#43;0800</p>
 			</footer>
 		</article>
@@ -201,7 +202,7 @@
 
 
 
-	<script src="https://polarisxu.studygolang.com/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw=" crossorigin="anonymous"></script>
+	<script src="https://polarisxu.studygolang.com/js/main.min.4eaa15feccc672488716f0338ac605e08c7553ce0ce175e13fa00a873636bf98.js" integrity="sha256-TqoV/szGckiHFvAzisYF4Ix1U84M4XXhP6AKhzY2v5g=" crossorigin="anonymous"></script>
 	<script>
 var _hmt = _hmt || [];
 (function() {

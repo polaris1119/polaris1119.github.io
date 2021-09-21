@@ -8,20 +8,16 @@
 	<meta name="theme-color" content="#fcfcfc">
 	<meta name="msapplication-TileColor" content="#fcfcfc">
 <meta itemprop="name" content="构建微服务的 10 大 Go 框架/库">
-<meta itemprop="description" content="现在，很多开源库都支持构建应用程序。我应该向你推荐一些库，它们可以帮助启动具有简单设计、干净代码和良好性能的项目。 01 CLI 命令(spf13/cobra) 你想要构建一些 CLI 命令吗？ Cobra 既是一个用于创建强大的现代 CLI 应用程序的库，也是一个用于生成应用程序和命令文件的程序。 我使用这个库来管理命令应用程序，执行运行程序，初始化配置，并启动 Rest API。 基于 cobra 的应用组织结构： ├──">
-<meta itemprop="datePublished" content="2021-03-02T22:00:00+08:00" />
+<meta itemprop="description" content="现在，很多开源库都支持构建应用程序。我应该向你推荐一些库，它们可以帮助启动具有简单设计、干净代码和良好性能的项目。 01 CLI 命令(spf13/cobra) 你想要构建一些 CLI 命令吗？ Cobra 既是一个用于创建强大的现代 CLI 应用程序的库，也是一个用于生成应用程序和命令文件的程序。 我使用这个库来管理命令应用程序，执行运行程序，初始化配置，并启动 Rest API。 基于 cobra 的应用组织结构： ├──"><meta itemprop="datePublished" content="2021-03-02T22:00:00+08:00" />
 <meta itemprop="dateModified" content="2021-03-02T22:00:00+08:00" />
 <meta itemprop="wordCount" content="2867">
-
-
-
-<meta itemprop="keywords" content="Go,Echo,微服务," />
-<meta property="og:title" content="构建微服务的 10 大 Go 框架/库" />
+<meta itemprop="keywords" content="Go,Echo,微服务," /><meta property="og:title" content="构建微服务的 10 大 Go 框架/库" />
 <meta property="og:description" content="现在，很多开源库都支持构建应用程序。我应该向你推荐一些库，它们可以帮助启动具有简单设计、干净代码和良好性能的项目。 01 CLI 命令(spf13/cobra) 你想要构建一些 CLI 命令吗？ Cobra 既是一个用于创建强大的现代 CLI 应用程序的库，也是一个用于生成应用程序和命令文件的程序。 我使用这个库来管理命令应用程序，执行运行程序，初始化配置，并启动 Rest API。 基于 cobra 的应用组织结构： ├──" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/translation/top-10-framework-golang-library-to-build-microservice/" />
+<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/translation/top-10-framework-golang-library-to-build-microservice/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-03-02T22:00:00+08:00" />
 <meta property="article:modified_time" content="2021-03-02T22:00:00+08:00" />
+
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="构建微服务的 10 大 Go 框架/库"/>
 <meta name="twitter:description" content="现在，很多开源库都支持构建应用程序。我应该向你推荐一些库，它们可以帮助启动具有简单设计、干净代码和良好性能的项目。 01 CLI 命令(spf13/cobra) 你想要构建一些 CLI 命令吗？ Cobra 既是一个用于创建强大的现代 CLI 应用程序的库，也是一个用于生成应用程序和命令文件的程序。 我使用这个库来管理命令应用程序，执行运行程序，初始化配置，并启动 Rest API。 基于 cobra 的应用组织结构： ├──"/>
@@ -99,12 +95,12 @@
 </blockquote>
 <p>我使用这个库来管理命令应用程序，执行运行程序，初始化配置，并启动 Rest API。</p>
 <p>基于 cobra 的应用组织结构：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">├── app
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">├── app
 │ ├── main.go
 │ ├── cmd
 │ └── root.go
 </code></pre></div><p>app/main.go 的代码如下：</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
 <span class="kn">import</span> <span class="p">(</span>
    <span class="s">&#34;app/cmd&#34;</span>
 <span class="p">)</span>
@@ -112,7 +108,7 @@
    <span class="nx">cmd</span><span class="p">.</span><span class="nf">Execute</span><span class="p">()</span>
 <span class="p">}</span>
 </code></pre></div><p>app/cmd/root.go 代码如下：</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">cmd</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">cmd</span>
 <span class="kd">var</span> <span class="nx">rootCmd</span> <span class="p">=</span> <span class="o">&amp;</span><span class="nx">cobra</span><span class="p">.</span><span class="nx">Command</span><span class="p">{</span>
    <span class="nx">Use</span><span class="p">:</span>   <span class="s">&#34;hugo&#34;</span><span class="p">,</span>
    <span class="nx">Short</span><span class="p">:</span> <span class="s">&#34;Hugo is a very fast static site generator&#34;</span><span class="p">,</span>
@@ -127,7 +123,8 @@
       <span class="nx">os</span><span class="p">.</span><span class="nf">Exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
    <span class="p">}</span>
 <span class="p">}</span>
-</code></pre></div><p>项目地址：<a href="https://github.com/spf13/cobra">https://github.com/spf13/cobra</a>。</p>
+</code></pre></div><p>项目地址：<a href="https://github.com/spf13/cobra" target="_blank" rel="noopener">https://github.com/spf13/cobra</a>
+。</p>
 <h2 id="02-配置读取器spf13viper">02 配置读取器(spf13/viper)<a href="#02-配置读取器spf13viper" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p><p class="md__image">
   <img src="../imgs/viper.png"
@@ -148,10 +145,10 @@
 <li>Java properties config files</li>
 </ul>
 <p>例如 config/config.toml：</p>
-<div class="highlight"><pre class="chroma"><code class="language-toml" data-lang="toml"><span class="nx">address</span><span class="p">=</span><span class="s2">&#34;localhost&#34;</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="nx">address</span><span class="p">=</span><span class="s2">&#34;localhost&#34;</span>
 <span class="nx">port</span><span class="p">=</span><span class="s2">&#34;9090&#34;</span>
 </code></pre></div><p>响应操作的文件 config.go：</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">ReadConfig</span><span class="p">()</span> <span class="p">{</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">ReadConfig</span><span class="p">()</span> <span class="p">{</span>
    <span class="nx">viper</span><span class="p">.</span><span class="nf">SetConfigName</span><span class="p">(</span><span class="s">&#34;config/config.toml&#34;</span><span class="p">)</span>
    <span class="nx">viper</span><span class="p">.</span><span class="nf">SetConfigType</span><span class="p">(</span><span class="s">&#34;toml&#34;</span><span class="p">)</span>
    <span class="nx">err</span> <span class="o">:=</span> <span class="nx">viper</span><span class="p">.</span><span class="nf">ReadInConfig</span><span class="p">()</span>
@@ -160,13 +157,14 @@
    <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div><p>然后在 main.go 中使用 config 的值：</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
    <span class="nx">address</span> <span class="o">:=</span> <span class="nx">viper</span><span class="p">.</span><span class="nf">Get</span><span class="p">(</span><span class="s">&#34;address&#34;</span><span class="p">)</span>
    <span class="nx">port</span> <span class="o">:=</span> <span class="nx">viper</span><span class="p">.</span><span class="nf">Get</span><span class="p">(</span><span class="s">&#34;port&#34;</span><span class="p">)</span>
    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;address: %s&#34;</span><span class="p">,</span> <span class="nx">address</span><span class="p">)</span>
    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;port: %s&#34;</span><span class="p">,</span> <span class="nx">port</span><span class="p">)</span>
 <span class="p">}</span>
-</code></pre></div><p>项目地址：<a href="https://github.com/spf13/viper">https://github.com/spf13/viper</a>。</p>
+</code></pre></div><p>项目地址：<a href="https://github.com/spf13/viper" target="_blank" rel="noopener">https://github.com/spf13/viper</a>
+。</p>
 <h2 id="03-web-框架labstackecho">03 Web 框架(labstack/echo)<a href="#03-web-框架labstackecho" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p><p class="md__image">
   <img src="../imgs/echo.png"
@@ -177,10 +175,10 @@
 <p>Echo 是一个高性能、极简主义的 Go Web 框架。</p>
 </blockquote>
 <p><strong>安装</strong></p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">// go get github.com/labstack/echo/<span class="o">{</span>version<span class="o">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">// go get github.com/labstack/echo/<span class="o">{</span>version<span class="o">}</span>
 go get github.com/labstack/echo/v4
 </code></pre></div><p><strong>例子</strong></p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
   <span class="s">&#34;net/http&#34;</span>
@@ -207,7 +205,8 @@ go get github.com/labstack/echo/v4
 </span><span class="c1"></span><span class="kd">func</span> <span class="nf">hello</span><span class="p">(</span><span class="nx">c</span> <span class="nx">echo</span><span class="p">.</span><span class="nx">Context</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
   <span class="k">return</span> <span class="nx">c</span><span class="p">.</span><span class="nf">String</span><span class="p">(</span><span class="nx">http</span><span class="p">.</span><span class="nx">StatusOK</span><span class="p">,</span> <span class="s">&#34;Hello, World!&#34;</span><span class="p">)</span>
 <span class="p">}</span>
-</code></pre></div><p>项目地址：<a href="https://github.com/labstack/echo">https://github.com/labstack/echo</a>。</p>
+</code></pre></div><p>项目地址：<a href="https://github.com/labstack/echo" target="_blank" rel="noopener">https://github.com/labstack/echo</a>
+。</p>
 <h2 id="04-依赖注入uber-gofx">04 依赖注入(uber-go/fx)<a href="#04-依赖注入uber-gofx" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p><p class="md__image">
   <img src="../imgs/uber-fx.png"
@@ -218,7 +217,7 @@ go get github.com/labstack/echo/v4
 <blockquote>
 <p>一个依赖注入的 Go 应用框架。</p>
 </blockquote>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
 	<span class="nx">fx</span><span class="p">.</span><span class="nf">New</span><span class="p">(</span><span class="nf">injectModule</span><span class="p">()).</span><span class="nf">Run</span><span class="p">()</span>
 <span class="p">}</span>
 
@@ -235,7 +234,8 @@ go get github.com/labstack/echo/v4
 		<span class="nx">controller</span><span class="p">.</span><span class="nx">Module</span><span class="p">,</span>
 	<span class="p">)</span>
 <span class="p">}</span>
-</code></pre></div><p>项目地址：<a href="https://github.com/uber-go/fx">https://github.com/uber-go/fx</a>。</p>
+</code></pre></div><p>项目地址：<a href="https://github.com/uber-go/fx" target="_blank" rel="noopener">https://github.com/uber-go/fx</a>
+。</p>
 <h2 id="04-swagger-generator-ui-和-validation">04 Swagger Generator, UI 和 Validation<a href="#04-swagger-generator-ui-和-validation" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p><p class="md__image">
   <img src="../imgs/swagger.png"
@@ -257,7 +257,7 @@ go get github.com/labstack/echo/v4
 <li>net/http</li>
 </ul>
 <p>Swag 已经处理了你那些 swagger 文件。所以你不再需要写 swagger.yml 或 swagger.json。你需要做的只是编写注释。看一个例子：</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// @title Blueprint Swagger API
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// @title Blueprint Swagger API
 </span><span class="c1">// @version 1.0
 </span><span class="c1">// @description Swagger API for Golang Project Blueprint.
 </span><span class="c1">// @termsOfService http://swagger.io/terms/
@@ -271,11 +271,12 @@ go get github.com/labstack/echo/v4
     <span class="nx">r</span><span class="p">.</span><span class="nf">GET</span><span class="p">(</span><span class="s">&#34;/swagger/*any&#34;</span><span class="p">,</span> <span class="nx">ginSwagger</span><span class="p">.</span><span class="nf">WrapHandler</span><span class="p">(</span><span class="nx">swaggerFiles</span><span class="p">.</span><span class="nx">Handler</span><span class="p">))</span>
     <span class="o">...</span>
 <span class="p">}</span>
-</code></pre></div><p>项目地址：<a href="https://github.com/swaggo/swag">https://github.com/swaggo/swag</a>。</p>
+</code></pre></div><p>项目地址：<a href="https://github.com/swaggo/swag" target="_blank" rel="noopener">https://github.com/swaggo/swag</a>
+。</p>
 <h3 id="bswagger-ui-swaggoecho-swagger">b、Swagger UI (swaggo/echo-swagger)<a href="#bswagger-ui-swaggoecho-swagger" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>因为我正在使用 echo，所以我为 swagger 选择了这个 user interface。</p>
 <p>使用示例：</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
 <span class="kn">import</span> <span class="p">(</span>
 	<span class="s">&#34;github.com/labstack/echo/v4&#34;</span>
 	<span class="s">&#34;github.com/swaggo/echo-swagger&#34;</span>
@@ -297,20 +298,22 @@ go get github.com/labstack/echo/v4
 	<span class="nx">e</span><span class="p">.</span><span class="nf">GET</span><span class="p">(</span><span class="s">&#34;/swagger/*&#34;</span><span class="p">,</span> <span class="nx">echoSwagger</span><span class="p">.</span><span class="nx">WrapHandler</span><span class="p">)</span>
 	<span class="nx">e</span><span class="p">.</span><span class="nx">Logger</span><span class="p">.</span><span class="nf">Fatal</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nf">Start</span><span class="p">(</span><span class="s">&#34;:1323&#34;</span><span class="p">))</span>
 <span class="p">}</span>
-</code></pre></div><p>项目地址：<a href="https://github.com/swaggo/echo-swagger">https://github.com/swaggo/echo-swagger</a>。</p>
+</code></pre></div><p>项目地址：<a href="https://github.com/swaggo/echo-swagger" target="_blank" rel="noopener">https://github.com/swaggo/echo-swagger</a>
+。</p>
 <h3 id="cswagger-validation-go-swaggergo-swagger">c、Swagger validation (go-swagger/go-swagger)<a href="#cswagger-validation-go-swaggergo-swagger" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <blockquote>
 <p>这个包包含了 Swagger 2.0（又名 <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md" target="_blank" rel="noopener">OpenAPI 2.0</a>
 ）的 golang 实现: 它知道如何序列化和反序列化 Swagger 规范。</p>
 </blockquote>
 <p>安装：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">go get github.com/go-swagger/go-swagger/cmd/swagger
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">go get github.com/go-swagger/go-swagger/cmd/swagger
 </code></pre></div><p>运行以验证：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">swagger validate api/docs/swagger.yaml
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">swagger validate api/docs/swagger.yaml
 </code></pre></div><p>输出如下：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">2021/01/30 22:47:01 
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">2021/01/30 22:47:01 
 The swagger spec at <span class="s2">&#34;api/docs/swagger.yaml&#34;</span> is valid against swagger specification 2.0
-</code></pre></div><p>项目地址：<a href="https://github.com/go-swagger/go-swagger">https://github.com/go-swagger/go-swagger</a>。</p>
+</code></pre></div><p>项目地址：<a href="https://github.com/go-swagger/go-swagger" target="_blank" rel="noopener">https://github.com/go-swagger/go-swagger</a>
+。</p>
 <h2 id="06自定义-logger-sirupsenlogrus">06、自定义 Logger (sirupsen/logrus)<a href="#06自定义-logger-sirupsenlogrus" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p><p class="md__image">
   <img src="../imgs/logrus.png"
@@ -321,7 +324,7 @@ The swagger spec at <span class="s2">&#34;api/docs/swagger.yaml&#34;</span> is v
 <p>Logrus 是 Go (golang)的结构化 Logger，完全兼容标准库 Log。</p>
 </blockquote>
 <p>例子：</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
   <span class="nx">log</span> <span class="s">&#34;github.com/sirupsen/logrus&#34;</span>
@@ -332,15 +335,16 @@ The swagger spec at <span class="s2">&#34;api/docs/swagger.yaml&#34;</span> is v
     <span class="s">&#34;animal&#34;</span><span class="p">:</span> <span class="s">&#34;walrus&#34;</span><span class="p">,</span>
   <span class="p">}).</span><span class="nf">Info</span><span class="p">(</span><span class="s">&#34;A walrus appears&#34;</span><span class="p">)</span>
 <span class="p">}</span>
-</code></pre></div><p>项目地址：<a href="https://github.com/sirupsen/logrus">https://github.com/sirupsen/logrus</a>。</p>
+</code></pre></div><p>项目地址：<a href="https://github.com/sirupsen/logrus" target="_blank" rel="noopener">https://github.com/sirupsen/logrus</a>
+。</p>
 <h2 id="07mock-生成器-vektramockery">07、Mock 生成器 (vektra/mockery)<a href="#07mock-生成器-vektramockery" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <blockquote>
 <p>一个 Mock 代码自动生成器</p>
 </blockquote>
 <p>安装：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">go get github.com/vektra/mockery/v2/.../
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">go get github.com/vektra/mockery/v2/.../
 </code></pre></div><p>生成 mock：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">./bin/mockery --all
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">./bin/mockery --all
 </code></pre></div><p>输出：</p>
 <p><p class="md__image">
   <img src="../imgs/mock-01.png"
@@ -352,7 +356,8 @@ The swagger spec at <span class="s2">&#34;api/docs/swagger.yaml&#34;</span> is v
     alt=""  />
 </p>
 </p>
-<p>项目地址：<a href="https://github.com/vektra/mockery">https://github.com/vektra/mockery</a>。</p>
+<p>项目地址：<a href="https://github.com/vektra/mockery" target="_blank" rel="noopener">https://github.com/vektra/mockery</a>
+。</p>
 <h2 id="08migrate-golang-migratemigrate">08、Migrate (golang-migrate/migrate)<a href="#08migrate-golang-migratemigrate" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <blockquote>
 <p>用 Go 编写的数据库迁移工具。作为 <a href="https://github.com/golang-migrate/migrate#cli-usage" target="_blank" rel="noopener">CLI</a>
@@ -379,14 +384,15 @@ The swagger spec at <span class="s2">&#34;api/docs/swagger.yaml&#34;</span> is v
 <li>MS SQL Server</li>
 </ul>
 <p>安装：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ go get -u -d github.com/golang-migrate/migrate/cmd/migrate
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ go get -u -d github.com/golang-migrate/migrate/cmd/migrate
 </code></pre></div><p>创建迁移文件：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">migrate create -ext sql -dir database/migrations -seq create_user
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">migrate create -ext sql -dir database/migrations -seq create_user
 </code></pre></div><p>运行升级版本：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">migrate -database <span class="s2">&#34;mysql://user:pass@tcp(localhost:3600)/user&#34;</span> -path<span class="o">=</span>database/migrations up
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">migrate -database <span class="s2">&#34;mysql://user:pass@tcp(localhost:3600)/user&#34;</span> -path<span class="o">=</span>database/migrations up
 </code></pre></div><p>降版本：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">migrate -database <span class="s2">&#34;mysql://user:pass@tcp(localhost:3600)/user&#34;</span> -path<span class="o">=</span>database/migrations down
-</code></pre></div><p>项目地址：<a href="https://github.com/golang-migrate/migrate">https://github.com/golang-migrate/migrate</a>。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">migrate -database <span class="s2">&#34;mysql://user:pass@tcp(localhost:3600)/user&#34;</span> -path<span class="o">=</span>database/migrations down
+</code></pre></div><p>项目地址：<a href="https://github.com/golang-migrate/migrate" target="_blank" rel="noopener">https://github.com/golang-migrate/migrate</a>
+。</p>
 <h2 id="09messaging-nsq">09、Messaging (NSQ)<a href="#09messaging-nsq" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p><p class="md__image">
   <img src="../imgs/nsq.png"
@@ -406,7 +412,7 @@ The swagger spec at <span class="s2">&#34;api/docs/swagger.yaml&#34;</span> is v
 <li>nsqadmin (default Web UI of nsq)</li>
 </ol>
 <p>基于 docker-compose 示例： (nsqlookupd，nsqd，nsqadmin)</p>
-<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;3&#39;</span><span class="w">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;3&#39;</span><span class="w">
 </span><span class="w"></span><span class="nt">services</span><span class="p">:</span><span class="w">
 </span><span class="w"></span><span class="nt">nsqlookupd</span><span class="p">:</span><span class="w">
 </span><span class="w"></span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">nsqio/nsq</span><span class="w">
@@ -430,7 +436,7 @@ The swagger spec at <span class="s2">&#34;api/docs/swagger.yaml&#34;</span> is v
 </span><span class="w"></span><span class="nt">ports</span><span class="p">:</span><span class="w">
 </span><span class="w"></span>- <span class="s2">&#34;4171:4171&#34;</span><span class="w">
 </span></code></pre></div><p>执行：</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">To</span> <span class="nx">run</span> <span class="nx">docker</span><span class="p">:</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="nx">To</span> <span class="nx">run</span> <span class="nx">docker</span><span class="p">:</span>
 <span class="err">$</span> <span class="nx">docker</span><span class="o">-</span><span class="nx">compose</span> <span class="nx">up</span> <span class="o">-</span><span class="nx">d</span>
 <span class="nx">or</span> <span class="k">if</span> <span class="nx">use</span> <span class="nf">name</span> <span class="p">(</span><span class="nx">docker</span><span class="o">-</span><span class="nx">compose</span><span class="o">-</span><span class="nx">nsq</span><span class="p">.</span><span class="nx">yml</span><span class="p">):</span>
 <span class="err">$</span> <span class="nx">docker</span><span class="o">-</span><span class="nx">compose</span> <span class="o">-</span><span class="nx">f</span> <span class="nx">docker</span><span class="o">-</span><span class="nx">compose</span><span class="o">-</span><span class="nx">nsq</span><span class="p">.</span><span class="nx">yml</span> <span class="nx">up</span> <span class="o">-</span><span class="nx">d</span>
@@ -441,13 +447,13 @@ The swagger spec at <span class="s2">&#34;api/docs/swagger.yaml&#34;</span> is v
 <span class="nx">To</span> <span class="nx">check</span> <span class="nx">nsq</span> <span class="nx">web</span> <span class="nx">ui</span><span class="p">:</span> <span class="p">(</span><span class="nx">assuming</span> <span class="nx">port</span> <span class="nx">is</span> <span class="mi">32770</span><span class="p">)</span>
 <span class="err">$</span> <span class="nx">curl</span> <span class="nx">http</span><span class="p">:</span><span class="c1">//127.0.0.1:32770/ping
 </span></code></pre></div><p>Go 代码目录：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">Create Folder:
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">Create Folder:
 ├── consume
 │   └── consume.go
 └── publish
     └── publish.go
 </code></pre></div><p>consume.go 代码：</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
 <span class="kn">import</span> <span class="p">(</span>
     <span class="s">&#34;log&#34;</span>
     <span class="s">&#34;sync&#34;</span>
@@ -474,9 +480,9 @@ The swagger spec at <span class="s2">&#34;api/docs/swagger.yaml&#34;</span> is v
     <span class="nx">wg</span><span class="p">.</span><span class="nf">Wait</span><span class="p">()</span>
 <span class="p">}</span>
 </code></pre></div><p>运行 consume.go：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ go run consume/consume.go
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ go run consume/consume.go
 </code></pre></div><p>publish.go 代码：</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
 <span class="kn">import</span> <span class="p">(</span>
     <span class="s">&#34;log&#34;</span>
     <span class="s">&#34;github.com/nsqio/go-nsq&#34;</span>
@@ -493,15 +499,16 @@ The swagger spec at <span class="s2">&#34;api/docs/swagger.yaml&#34;</span> is v
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div><p>运行 publish：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ go run publish/publish.go
-</code></pre></div><p>项目地址：<a href="https://github.com/nsqio/go-nsq">https://github.com/nsqio/go-nsq</a>。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ go run publish/publish.go
+</code></pre></div><p>项目地址：<a href="https://github.com/nsqio/go-nsq" target="_blank" rel="noopener">https://github.com/nsqio/go-nsq</a>
+。</p>
 <h2 id="10sql-jmoironsqlx">10、SQL (jmoiron/sqlx)<a href="#10sql-jmoironsqlx" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <blockquote>
 <p>sqlx 是一个库，它为 go 的标准 database/sql 库提供了一组扩展。</p>
 </blockquote>
 <p>我喜欢的 sqlx 是因为它们可以 scan 结构！使用简单。</p>
 <p>StrucScan 的例子：</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">place</span> <span class="o">:=</span> <span class="nx">Place</span><span class="p">{}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="nx">place</span> <span class="o">:=</span> <span class="nx">Place</span><span class="p">{}</span>
 <span class="nx">rows</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">db</span><span class="p">.</span><span class="nf">Queryx</span><span class="p">(</span><span class="s">&#34;SELECT * FROM place&#34;</span><span class="p">)</span>
 <span class="k">for</span> <span class="nx">rows</span><span class="p">.</span><span class="nf">Next</span><span class="p">()</span> <span class="p">{</span>
     <span class="nx">err</span> <span class="o">:=</span> <span class="nx">rows</span><span class="p">.</span><span class="nf">StructScan</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">place</span><span class="p">)</span>
@@ -510,13 +517,19 @@ The swagger spec at <span class="s2">&#34;api/docs/swagger.yaml&#34;</span> is v
     <span class="p">}</span> 
     <span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;%#v\n&#34;</span><span class="p">,</span> <span class="nx">place</span><span class="p">)</span>
 <span class="p">}</span>
-</code></pre></div><p>项目地址：<a href="https://github.com/jmoiron/sqlx">https://github.com/jmoiron/sqlx</a>。</p>
+</code></pre></div><p>项目地址：<a href="https://github.com/jmoiron/sqlx" target="_blank" rel="noopener">https://github.com/jmoiron/sqlx</a>
+。</p>
 <h2 id="11附加的一些库">11、附加的一些库<a href="#11附加的一些库" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-<p>1）Go routine grouping (sync/errgroup)：<a href="https://pkg.go.dev/golang.org/x/sync/errgroup">https://pkg.go.dev/golang.org/x/sync/errgroup</a></p>
-<p>2）Fluent SQL generation for golang (Masterminds/squirrel)：<a href="https://github.com/Masterminds/squirrel">https://github.com/Masterminds/squirrel</a></p>
-<p>3）Golang Linter (golangci/golangci-lint)：<a href="https://github.com/golangci/golangci-lint">https://github.com/golangci/golangci-lint</a></p>
-<p>4）Circuit Breaker (gojek/heimdall)：<a href="https://github.com/gojek/heimdall">https://github.com/gojek/heimdall</a></p>
-<p>5）Go tool generate tags (fatih/gomodifytags)：<a href="https://github.com/fatih/gomodifytags">https://github.com/fatih/gomodifytags</a></p>
+<p>1）Go routine grouping (sync/errgroup)：<a href="https://pkg.go.dev/golang.org/x/sync/errgroup" target="_blank" rel="noopener">https://pkg.go.dev/golang.org/x/sync/errgroup</a>
+</p>
+<p>2）Fluent SQL generation for golang (Masterminds/squirrel)：<a href="https://github.com/Masterminds/squirrel" target="_blank" rel="noopener">https://github.com/Masterminds/squirrel</a>
+</p>
+<p>3）Golang Linter (golangci/golangci-lint)：<a href="https://github.com/golangci/golangci-lint" target="_blank" rel="noopener">https://github.com/golangci/golangci-lint</a>
+</p>
+<p>4）Circuit Breaker (gojek/heimdall)：<a href="https://github.com/gojek/heimdall" target="_blank" rel="noopener">https://github.com/gojek/heimdall</a>
+</p>
+<p>5）Go tool generate tags (fatih/gomodifytags)：<a href="https://github.com/fatih/gomodifytags" target="_blank" rel="noopener">https://github.com/fatih/gomodifytags</a>
+</p>
 <h2 id="12总结">12、总结<a href="#12总结" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>要构建应用程序，我们应该知道有什么功能，特别是如果我们是团队协作，建议使用可读性强的代码，这样在成为遗留代码之前（也许 5-10 年之后） ，代码可以更容易维护。</p>
 <p>构建应用程序的三个关键：</p>
@@ -525,11 +538,13 @@ The swagger spec at <span class="s2">&#34;api/docs/swagger.yaml&#34;</span> is v
 <li>Clean Code (可读性和可维护性)</li>
 <li>Modular（模块化） (Solid &amp; flexible skeleton)</li>
 </ol>
-<p>为了封装所有这些库，我有一个模板或框架项目，其设计简单，代码清晰。看看这个：<a href="https://github.com/kecci/goscription">https://github.com/kecci/goscription</a>。</p>
+<p>为了封装所有这些库，我有一个模板或框架项目，其设计简单，代码清晰。看看这个：<a href="https://github.com/kecci/goscription" target="_blank" rel="noopener">https://github.com/kecci/goscription</a>
+。</p>
 <p>以上就是我常用的 10 大 Go 框架/库和一些附加库。</p>
 <p>我希望你喜欢我的推荐，如果你有其他的推荐，请留言！</p>
 <blockquote>
-<p>原文链接：<a href="https://keccikun.medium.com/top-10-framework-golang-library-to-build-microservice-391a2bb4c2cb">https://keccikun.medium.com/top-10-framework-golang-library-to-build-microservice-391a2bb4c2cb</a></p>
+<p>原文链接：<a href="https://keccikun.medium.com/top-10-framework-golang-library-to-build-microservice-391a2bb4c2cb" target="_blank" rel="noopener">https://keccikun.medium.com/top-10-framework-golang-library-to-build-microservice-391a2bb4c2cb</a>
+</p>
 <p>作者：Kecci Kun</p>
 <p>编译：polarisxu</p>
 </blockquote>
@@ -545,13 +560,13 @@ The swagger spec at <span class="s2">&#34;api/docs/swagger.yaml&#34;</span> is v
 	
 	<li><a href="/posts/go/micro/micro-3.0.0-m3o/">关于 Go 语言微服务框架 Micro 的一些情况说明</a></li>
 	
+	<li><a href="/posts/go/fiber/go-fiber-basic-tutorial01/">Go Fiber 框架系列教程 01: 和 Express 对比学习</a></li>
+	
 	<li><a href="/posts/go/action/go-illegal-private-import/">Go Module：私有不合规库怎么解决引用问题</a></li>
 	
 	<li><a href="/posts/go/dynamic/1.17-golang-go-get-updated/">Go1.17 新特性：go get 变了</a></li>
 	
 	<li><a href="/posts/go/dynamic/go-1-17-new-features-added-to-testing/">Go1.17 新特性：testing 包的相关变化</a></li>
-	
-	<li><a href="/posts/go/action/chained-channel-operations-in-a-single-select-case/">StackOverflow 上关于 Go select 死锁的问题</a></li>
 	
 	</ul>
 </div>
@@ -620,7 +635,7 @@ The swagger spec at <span class="s2">&#34;api/docs/swagger.yaml&#34;</span> is v
 
 
 
-	<script src="https://polarisxu.studygolang.com/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw=" crossorigin="anonymous"></script>
+	<script src="https://polarisxu.studygolang.com/js/main.min.4eaa15feccc672488716f0338ac605e08c7553ce0ce175e13fa00a873636bf98.js" integrity="sha256-TqoV/szGckiHFvAzisYF4Ix1U84M4XXhP6AKhzY2v5g=" crossorigin="anonymous"></script>
 	<script>
 var _hmt = _hmt || [];
 (function() {

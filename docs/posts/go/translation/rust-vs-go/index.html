@@ -8,20 +8,16 @@
 	<meta name="theme-color" content="#fcfcfc">
 	<meta name="msapplication-TileColor" content="#fcfcfc">
 <meta itemprop="name" content="客观、全面的比较 Rust 与 Go">
-<meta itemprop="description" content="最近一年，将 Rust 和 Go 进行比较的不少，但不少都不公正，带感情色彩。而这篇文章客观、全面的分析对比了 Rust 和 Go，让你具体项目时选择最合适的。 Rust 还是 Go，哪个更好？你应该为下一个项目选择哪种语言，为什么？两者在性能，简单性，安全性，功能，规模和并发性等方面如何比较？它们有什么共同点，并且在根本上有何不同？来自 For the Go of Love 系列图书的作者，友好而公正的比较 Rust 和 Golang。">
-<meta itemprop="datePublished" content="2020-11-10T00:07:00+08:00" />
+<meta itemprop="description" content="最近一年，将 Rust 和 Go 进行比较的不少，但不少都不公正，带感情色彩。而这篇文章客观、全面的分析对比了 Rust 和 Go，让你具体项目时选择最合适的。 Rust 还是 Go，哪个更好？你应该为下一个项目选择哪种语言，为什么？两者在性能，简单性，安全性，功能，规模和并发性等方面如何比较？它们有什么共同点，并且在根本上有何不同？来自 For the Go of Love 系列图书的作者，友好而公正的比较 Rust 和 Golang。"><meta itemprop="datePublished" content="2020-11-10T00:07:00+08:00" />
 <meta itemprop="dateModified" content="2020-11-10T00:07:00+08:00" />
 <meta itemprop="wordCount" content="7591">
-
-
-
-<meta itemprop="keywords" content="Golang,Go,Rust," />
-<meta property="og:title" content="客观、全面的比较 Rust 与 Go" />
+<meta itemprop="keywords" content="Golang,Go,Rust," /><meta property="og:title" content="客观、全面的比较 Rust 与 Go" />
 <meta property="og:description" content="最近一年，将 Rust 和 Go 进行比较的不少，但不少都不公正，带感情色彩。而这篇文章客观、全面的分析对比了 Rust 和 Go，让你具体项目时选择最合适的。 Rust 还是 Go，哪个更好？你应该为下一个项目选择哪种语言，为什么？两者在性能，简单性，安全性，功能，规模和并发性等方面如何比较？它们有什么共同点，并且在根本上有何不同？来自 For the Go of Love 系列图书的作者，友好而公正的比较 Rust 和 Golang。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/translation/rust-vs-go/" />
+<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/translation/rust-vs-go/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2020-11-10T00:07:00+08:00" />
 <meta property="article:modified_time" content="2020-11-10T00:07:00+08:00" />
+
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="客观、全面的比较 Rust 与 Go"/>
 <meta name="twitter:description" content="最近一年，将 Rust 和 Go 进行比较的不少，但不少都不公正，带感情色彩。而这篇文章客观、全面的分析对比了 Rust 和 Go，让你具体项目时选择最合适的。 Rust 还是 Go，哪个更好？你应该为下一个项目选择哪种语言，为什么？两者在性能，简单性，安全性，功能，规模和并发性等方面如何比较？它们有什么共同点，并且在根本上有何不同？来自 For the Go of Love 系列图书的作者，友好而公正的比较 Rust 和 Golang。"/>
@@ -137,7 +133,7 @@
 </p>
 </blockquote>
 <p>这里的关键词是简单。当然，简单（simple）与容易（easy）并不相同，但是简单的小型语言比复杂的大型语言更容易学习。要做的事情没有太多不同的方式，因此所有编写良好的 Go 代码看起来都一样。深入研究不熟悉的服务并了解其功能很容易。</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Gopher&#39;s Diner Breakfast Menu&#34;</span><span class="p">)</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Gopher&#39;s Diner Breakfast Menu&#34;</span><span class="p">)</span>
 <span class="k">for</span> <span class="nx">dish</span><span class="p">,</span> <span class="nx">price</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">menu</span> <span class="p">{</span>
     <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">dish</span><span class="p">,</span> <span class="nx">price</span><span class="p">)</span>
 <span class="p">}</span>
@@ -153,7 +149,7 @@
 </p>
 </blockquote>
 <p>Rust 专门设计为包含许多强大而有用的功能，以帮助程序员以最少的代码完成最多的工作。例如，Rust 的 match 功能使你可以非常简洁地编写灵活的表达逻辑：</p>
-<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="k">fn</span> <span class="nf">is_prime</span><span class="p">(</span><span class="n">n</span>: <span class="kt">u64</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="kt">bool</span> <span class="p">{</span><span class="w">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="k">fn</span> <span class="nf">is_prime</span><span class="p">(</span><span class="n">n</span>: <span class="kt">u64</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="kt">bool</span> <span class="p">{</span><span class="w">
 </span><span class="w">    </span><span class="k">match</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="p">{</span><span class="w">
 </span><span class="w">        </span><span class="mi">0</span><span class="p">...</span><span class="mi">1</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
 </span><span class="w">        </span><span class="n">_</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="o">!</span><span class="p">(</span><span class="mi">2</span><span class="p">..</span><span class="n">n</span><span class="p">).</span><span class="n">any</span><span class="p">(</span><span class="o">|</span><span class="n">d</span><span class="o">|</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">d</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">),</span><span class="w">
@@ -256,7 +252,8 @@
 <p>我希望本文使你相信，Rust 和 Go 都值得你认真考虑。如果可能的话，你应该力求获得至少两种语言的某种程度的经验，因为它们对你在任何技术职业中都是非常有用的，即使你喜欢将编程作为业余爱好也是如此。如果你只有时间投入精力来学习一种语言，那么请在将 Go 和 Rust 都用于各种大小不同的程序之前，不要做出最终决定。</p>
 <p>而且，对编程语言的了解实际上只是成为一名成功的软件工程师的一小部分。到目前为止，您将需要的最重要的技能是设计，工程，体系结构，沟通和协作。如果您擅长这些，那么无论您选择哪种语言，您都将是一名出色的软件工程师。学习愉快！</p>
 <blockquote>
-<p>原文链接：<a href="https://bitfieldconsulting.com/golang/rust-vs-go">https://bitfieldconsulting.com/golang/rust-vs-go</a></p>
+<p>原文链接：<a href="https://bitfieldconsulting.com/golang/rust-vs-go" target="_blank" rel="noopener">https://bitfieldconsulting.com/golang/rust-vs-go</a>
+</p>
 <p>原文作者：John Arundel</p>
 <p>编译：polarisxu</p>
 </blockquote>
@@ -358,7 +355,7 @@
 
 
 
-	<script src="https://polarisxu.studygolang.com/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw=" crossorigin="anonymous"></script>
+	<script src="https://polarisxu.studygolang.com/js/main.min.4eaa15feccc672488716f0338ac605e08c7553ce0ce175e13fa00a873636bf98.js" integrity="sha256-TqoV/szGckiHFvAzisYF4Ix1U84M4XXhP6AKhzY2v5g=" crossorigin="anonymous"></script>
 	<script>
 var _hmt = _hmt || [];
 (function() {

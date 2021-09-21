@@ -8,20 +8,16 @@
 	<meta name="theme-color" content="#fcfcfc">
 	<meta name="msapplication-TileColor" content="#fcfcfc">
 <meta itemprop="name" content="更懂 module 的包资源中心：关于 pkg.go.dev 的前世今生和未来">
-<meta itemprop="description" content="北京时间 2019 年 11 月 14 日凌晨 1 点 16 分，Go 官方团队在 golang-nuts 邮件组宣布 go.dev 上线，这是一个新的 Go 开发人员中心。具体的介绍可以看我之前发布的文章 大家用Go都做什么？Go官方新发布的 Go.Dev 告诉你 。同时，go.dev 还提供了一个 Go 软件包和模块的新信息资源中心：pkg.go.dev，而在此之前，Go 已经存在了一个包资源网站：godoc.org。2020 年 1 月 31 日，在 Go 官方博客又发布了">
-<meta itemprop="datePublished" content="2019-11-15T08:52:00+08:00" />
+<meta itemprop="description" content="北京时间 2019 年 11 月 14 日凌晨 1 点 16 分，Go 官方团队在 golang-nuts 邮件组宣布 go.dev 上线，这是一个新的 Go 开发人员中心。具体的介绍可以看我之前发布的文章 大家用Go都做什么？Go官方新发布的 Go.Dev 告诉你 。同时，go.dev 还提供了一个 Go 软件包和模块的新信息资源中心：pkg.go.dev，而在此之前，Go 已经存在了一个包资源网站：godoc.org。2020 年 1 月 31 日，在 Go 官方博客又发布了"><meta itemprop="datePublished" content="2019-11-15T08:52:00+08:00" />
 <meta itemprop="dateModified" content="2019-11-15T08:52:00+08:00" />
-<meta itemprop="wordCount" content="4872">
-
-
-
-<meta itemprop="keywords" content="Go,pkg,module," />
-<meta property="og:title" content="更懂 module 的包资源中心：关于 pkg.go.dev 的前世今生和未来" />
+<meta itemprop="wordCount" content="4696">
+<meta itemprop="keywords" content="Go,pkg,module," /><meta property="og:title" content="更懂 module 的包资源中心：关于 pkg.go.dev 的前世今生和未来" />
 <meta property="og:description" content="北京时间 2019 年 11 月 14 日凌晨 1 点 16 分，Go 官方团队在 golang-nuts 邮件组宣布 go.dev 上线，这是一个新的 Go 开发人员中心。具体的介绍可以看我之前发布的文章 大家用Go都做什么？Go官方新发布的 Go.Dev 告诉你 。同时，go.dev 还提供了一个 Go 软件包和模块的新信息资源中心：pkg.go.dev，而在此之前，Go 已经存在了一个包资源网站：godoc.org。2020 年 1 月 31 日，在 Go 官方博客又发布了" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/dynamic/pkg-go-dev-plan/" />
+<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/dynamic/pkg-go-dev-plan/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2019-11-15T08:52:00+08:00" />
 <meta property="article:modified_time" content="2019-11-15T08:52:00+08:00" />
+
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="更懂 module 的包资源中心：关于 pkg.go.dev 的前世今生和未来"/>
 <meta name="twitter:description" content="北京时间 2019 年 11 月 14 日凌晨 1 点 16 分，Go 官方团队在 golang-nuts 邮件组宣布 go.dev 上线，这是一个新的 Go 开发人员中心。具体的介绍可以看我之前发布的文章 大家用Go都做什么？Go官方新发布的 Go.Dev 告诉你 。同时，go.dev 还提供了一个 Go 软件包和模块的新信息资源中心：pkg.go.dev，而在此之前，Go 已经存在了一个包资源网站：godoc.org。2020 年 1 月 31 日，在 Go 官方博客又发布了"/>
@@ -108,30 +104,39 @@
 <p>您的反馈将为我们的过渡计划提供信息，目的是使 pkg.go.dev 成为包和模块的主要信息和文档来源。我们确定您想在pkg.go.dev上看到一些内容，并且希望您收到有关这些功能的信息！</p>
 <p>您可以通过以下渠道与我们分享您的反馈意见：</p>
 <ul>
-<li>在 Go 问题跟踪器上发布 (<a href="https://golang.org/s/discovery-feedback">https://golang.org/s/discovery-feedback</a>)；</li>
+<li>在 Go 问题跟踪器上发布 (<a href="https://golang.org/s/discovery-feedback" target="_blank" rel="noopener">https://golang.org/s/discovery-feedback</a>
+)；</li>
 <li>发邮件：go-discovery-feedback@google.com；</li>
 <li>通过 go.dev 底部的 “Share Feedback” 或 “Report an Issue”；</li>
 </ul>
-<p>作为过渡的一部分，我们还将讨论对 pkg.go.dev 进行 API 访问的计划 。我们将在 Go issue 33654 (<a href="https://golang.org/s/discovery-updates">https://golang.org/s/discovery-updates</a>) 上发布更新 。</p>
+<p>作为过渡的一部分，我们还将讨论对 pkg.go.dev 进行 API 访问的计划 。我们将在 Go issue 33654 (<a href="https://golang.org/s/discovery-updates" target="_blank" rel="noopener">https://golang.org/s/discovery-updates</a>
+) 上发布更新 。</p>
 <h2 id="问答">问答<a href="#问答" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>自 11 月推出以来，我们已经收到 Go 用户关于 pkg.go.dev 的大量反馈 。对于本文的剩下部分，我们将回答一些常见问题，希望对大家有帮助。</p>
 <h3 id="1-我的-package-未显示在-pkggodev-上该怎么做">1. 我的 package 未显示在 pkg.go.dev 上，该怎么做？<a href="#1-我的-package-未显示在-pkggodev-上该怎么做" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>我们会定期监控 <a href="https://index.golang.org/index" target="_blank" rel="noopener">Go Module Index</a>
- 以查找要添加到 pkg.go.dev 的新包。如果在 pkg.go.dev 上没有找到某个包，则可以通过从 proxy.golang.org 获取模块版本来添加它 。有关说明，请参见 <a href="https://go.dev/about">https://go.dev/about</a></p>
+ 以查找要添加到 pkg.go.dev 的新包。如果在 pkg.go.dev 上没有找到某个包，则可以通过从 proxy.golang.org 获取模块版本来添加它 。有关说明，请参见 <a href="https://go.dev/about" target="_blank" rel="noopener">https://go.dev/about</a>
+</p>
 <h3 id="2--我的-package-有许可证限制它会是什么问题">2.  我的 package 有许可证限制。它会是什么问题？<a href="#2--我的-package-有许可证限制它会是什么问题" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>我们知道，无法在 pkg.go.dev 上完整地看到您想要的 package，这是一个令人沮丧的经历。感谢您在我们改进许可证检测算法过程中的耐心配合。</p>
 <p>自 2019 年 11 月推出以来，我们进行了以下改进：</p>
 <ul>
-<li>更新了我们的许可政策(<a href="https://pkg.go.dev/license-policy">https://pkg.go.dev/license-policy</a>)，里面包括了我们检测和识别的许可列表；</li>
-<li>与许可证检查(<a href="https://github.com/google/licensecheck">https://github.com/google/licensecheck</a>)团队合作，改善对版权声明的检测；</li>
+<li>更新了我们的许可政策(<a href="https://pkg.go.dev/license-policy" target="_blank" rel="noopener">https://pkg.go.dev/license-policy</a>
+)，里面包括了我们检测和识别的许可列表；</li>
+<li>与许可证检查(<a href="https://github.com/google/licensecheck" target="_blank" rel="noopener">https://github.com/google/licensecheck</a>
+)团队合作，改善对版权声明的检测；</li>
 <li>建立了特殊情况的手动审核流程；</li>
 </ul>
-<p>与往常一样，我们的许可政策位于 <a href="https://pkg.go.dev/license-policy">https://pkg.go.dev/license-policy</a> 。如果您遇到问题，请随时在 Go 问题跟踪器上提交问题 (<a href="https://golang.org/x/discovery-feedback">https://golang.org/x/discovery-feedback</a>)，或发送电子邮件至 <a href="mailto:go-discovery-feedback@google.com">go-discovery-feedback@google.com</a>， 以便我们直接与您合作！</p>
+<p>与往常一样，我们的许可政策位于 <a href="https://pkg.go.dev/license-policy" target="_blank" rel="noopener">https://pkg.go.dev/license-policy</a>
+ 。如果您遇到问题，请随时在 Go 问题跟踪器上提交问题 (<a href="https://golang.org/x/discovery-feedback" target="_blank" rel="noopener">https://golang.org/x/discovery-feedback</a>
+)，或发送电子邮件至 <a href="mailto:go-discovery-feedback@google.com">go-discovery-feedback@google.com</a>
+， 以便我们直接与您合作！</p>
 <h3 id="3-pkggodev-会开源吗以便可以在我的私人库上运行它">3. pkg.go.dev 会开源吗，以便可以在我的私人库上运行它？<a href="#3-pkggodev-会开源吗以便可以在我的私人库上运行它" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>我们知道，拥有私有代码库的公司希望运行提供模块支持的文档服务器。我们希望帮助满足这一需求，但是我们目前还没有深入的了解这个需求痛点。</p>
 <p>我们从用户那里听说，运行 godoc.org 服务器比实际上要复杂得多，因为它是为在 Internet 范围而不是仅在公司内部提供服务而设计的。我们认为当前的 pkg.go.dev 服务将出现相同的问题。</p>
 <p>我们认为使用新的服务都能够提供私有代码部署，而不是让每家公司都面临运行在公网上面。而且除了提供文档之外，新服务器还可以为 goimports 和 gopls 提供帮助 。</p>
-<p>如果要运行这样的服务，请填一个 3-5 分钟的调查( <a href="https://google.qualtrics.com/jfe/form/SV_6FHmaLveae6d8Bn">https://google.qualtrics.com/jfe/form/SV_6FHmaLveae6d8Bn</a> )，以帮助我们更好地了解您的需求。该调查将持续到 2020 年 3 月1日。（polaris 建议：<strong>国内用户可以反馈反馈关于大陆访问不到或慢的问题</strong>。）</p>
+<p>如果要运行这样的服务，请填一个 3-5 分钟的调查( <a href="https://google.qualtrics.com/jfe/form/SV_6FHmaLveae6d8Bn" target="_blank" rel="noopener">https://google.qualtrics.com/jfe/form/SV_6FHmaLveae6d8Bn</a>
+ )，以帮助我们更好地了解您的需求。该调查将持续到 2020 年 3 月1日。（polaris 建议：<strong>国内用户可以反馈反馈关于大陆访问不到或慢的问题</strong>。）</p>
 <p>最后，我们对 2020 年 pkg.go.dev 的未来感到兴奋，希望广大开发者也一样！我们期待听到您的反馈，并希望与 Go 社区在该迁移中紧密合作。</p>
 <p>原文地址：https://blog.golang.org/pkg.go.dev-2020</p>
 <h2 id="二go-团队核心成员-rscruss在邮件组的回复">二、Go 团队核心成员 RSC（Russ）在邮件组的回复<a href="#二go-团队核心成员-rscruss在邮件组的回复" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
@@ -148,7 +153,8 @@
 <h3 id="godocorg-出现的背景">godoc.org 出现的背景<a href="#godocorg-出现的背景" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>Gary Burd 从 2012 年末开始创建并运行了 <a href="http://godoc.org" target="_blank" rel="noopener">godoc.org</a>
 。它曾经是，现在仍然是一个绝妙的主意，并且显然是对 Go 社区的宝贵服务。大约一年后，Gary 决定不再运行并为服务器付费，因此将其交给 Go 项目采用。我们很乐意这样做，以确保所有 Go 用户仍然可以使用此资源。我们在 2014 年采用 <a href="http://godoc.com" target="_blank" rel="noopener">godoc.org</a>
- 时说过 (<a href="https://groups.google.com/g/golang-nuts/c/_rbVuzl-OqA/m/N_xoNaD4kAoJ">https://groups.google.com/g/golang-nuts/c/_rbVuzl-OqA/m/N_xoNaD4kAoJ</a>)，我再说一遍：我非常感谢 Gary 创作的作品。</p>
+ 时说过 (<a href="https://groups.google.com/g/golang-nuts/c/_rbVuzl-OqA/m/N_xoNaD4kAoJ" target="_blank" rel="noopener">https://groups.google.com/g/golang-nuts/c/_rbVuzl-OqA/m/N_xoNaD4kAoJ</a>
+)，我再说一遍：我非常感谢 Gary 创作的作品。</p>
 <h3 id="为什么根本没有新的软件包文档站点为什么不就地更新-godocorg">为什么根本没有新的软件包文档站点？为什么不就地更新 godoc.org？<a href="#为什么根本没有新的软件包文档站点为什么不就地更新-godocorg" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>通过引入模块和包的多个版本的概念，我们知道必须更新 <a href="https://godoc.org" target="_blank" rel="noopener">godoc.org</a>
 。经过一番努力，似乎值得重新开始，特别是因为具有单 VM 数据库的 <a href="https://godoc.org" target="_blank" rel="noopener">godoc.org</a>
@@ -221,9 +227,9 @@ Russ</p>
 	
 	<li><a href="/posts/go/action/go-chi-use-retract/">从 go-chi 框架撤回所有主版本聊 Go1.16 的新特性</a></li>
 	
-	<li><a href="/posts/go/dynamic/1.17-golang-go-get-updated/">Go1.17 新特性：go get 变了</a></li>
+	<li><a href="/posts/go/fiber/go-fiber-basic-tutorial01/">Go Fiber 框架系列教程 01: 和 Express 对比学习</a></li>
 	
-	<li><a href="/posts/go/dynamic/go-1-17-new-features-added-to-testing/">Go1.17 新特性：testing 包的相关变化</a></li>
+	<li><a href="/posts/go/dynamic/1.17-golang-go-get-updated/">Go1.17 新特性：go get 变了</a></li>
 	
 	</ul>
 </div>
@@ -233,7 +239,7 @@ Russ</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://polarisxu.studygolang.com/tags/go">Go</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/pkg">pkg</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/module">module</a></span>
 				</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>4872 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>4696 字</p>
 				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2019-11-15 08:52 &#43;0800</p>
 			</footer>
 		</article>
@@ -298,7 +304,7 @@ Russ</p>
 
 
 
-	<script src="https://polarisxu.studygolang.com/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw=" crossorigin="anonymous"></script>
+	<script src="https://polarisxu.studygolang.com/js/main.min.4eaa15feccc672488716f0338ac605e08c7553ce0ce175e13fa00a873636bf98.js" integrity="sha256-TqoV/szGckiHFvAzisYF4Ix1U84M4XXhP6AKhzY2v5g=" crossorigin="anonymous"></script>
 	<script>
 var _hmt = _hmt || [];
 (function() {

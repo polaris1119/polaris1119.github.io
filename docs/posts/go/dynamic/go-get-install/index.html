@@ -8,20 +8,16 @@
 	<meta name="theme-color" content="#fcfcfc">
 	<meta name="msapplication-TileColor" content="#fcfcfc">
 <meta itemprop="name" content="Go 1.16 的这个新变化需要适应下：go get 和 go install 的变化">
-<meta itemprop="description" content="大家好，我是站长 polarisxu。 一直以来，我们通常都是通过 go get 来下载并安装包的。但从 Go 1.16 起，不推荐通过 go get 来安装包（主要是说安装可执行文件），也就是说，go get 应该只是用来下载包，而且将来版本可能会给该命令始终加上 -d 标志。 你可能会问，这对我使用有什么影响呢？ 让我们看一个实际的例子。 01 安装 Delve 的例子 我们在本地通过源码安装 Go 的调试器 Delve，可以这么做： $ go get">
-<meta itemprop="datePublished" content="2020-12-27T22:30:00+08:00" />
+<meta itemprop="description" content="大家好，我是站长 polarisxu。 一直以来，我们通常都是通过 go get 来下载并安装包的。但从 Go 1.16 起，不推荐通过 go get 来安装包（主要是说安装可执行文件），也就是说，go get 应该只是用来下载包，而且将来版本可能会给该命令始终加上 -d 标志。 你可能会问，这对我使用有什么影响呢？ 让我们看一个实际的例子。 01 安装 Delve 的例子 我们在本地通过源码安装 Go 的调试器 Delve，可以这么做： $ go get"><meta itemprop="datePublished" content="2020-12-27T22:30:00+08:00" />
 <meta itemprop="dateModified" content="2020-12-27T22:30:00+08:00" />
-<meta itemprop="wordCount" content="1456">
-
-
-
-<meta itemprop="keywords" content="Go,1.16,安装," />
-<meta property="og:title" content="Go 1.16 的这个新变化需要适应下：go get 和 go install 的变化" />
+<meta itemprop="wordCount" content="1435">
+<meta itemprop="keywords" content="Go,1.16,安装," /><meta property="og:title" content="Go 1.16 的这个新变化需要适应下：go get 和 go install 的变化" />
 <meta property="og:description" content="大家好，我是站长 polarisxu。 一直以来，我们通常都是通过 go get 来下载并安装包的。但从 Go 1.16 起，不推荐通过 go get 来安装包（主要是说安装可执行文件），也就是说，go get 应该只是用来下载包，而且将来版本可能会给该命令始终加上 -d 标志。 你可能会问，这对我使用有什么影响呢？ 让我们看一个实际的例子。 01 安装 Delve 的例子 我们在本地通过源码安装 Go 的调试器 Delve，可以这么做： $ go get" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/dynamic/go-get-install/" />
+<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/dynamic/go-get-install/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2020-12-27T22:30:00+08:00" />
 <meta property="article:modified_time" content="2020-12-27T22:30:00+08:00" />
+
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Go 1.16 的这个新变化需要适应下：go get 和 go install 的变化"/>
 <meta name="twitter:description" content="大家好，我是站长 polarisxu。 一直以来，我们通常都是通过 go get 来下载并安装包的。但从 Go 1.16 起，不推荐通过 go get 来安装包（主要是说安装可执行文件），也就是说，go get 应该只是用来下载包，而且将来版本可能会给该命令始终加上 -d 标志。 你可能会问，这对我使用有什么影响呢？ 让我们看一个实际的例子。 01 安装 Delve 的例子 我们在本地通过源码安装 Go 的调试器 Delve，可以这么做： $ go get"/>
@@ -86,15 +82,15 @@
 <p>让我们看一个实际的例子。</p>
 <h2 id="01-安装-delve-的例子">01 安装 Delve 的例子<a href="#01-安装-delve-的例子" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>我们在本地通过源码安装 Go 的调试器 Delve，可以这么做：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ go get github.com/go-delve/delve/cmd/dlv
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ go get github.com/go-delve/delve/cmd/dlv
 </code></pre></div><p>因为 go get 会下载、编译并安装包（如果有 main 包）。</p>
 <p>Go 1.16 建议这么使用 go get：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ go get -d github.com/go-delve/delve/cmd/dlv
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ go get -d github.com/go-delve/delve/cmd/dlv
 </code></pre></div><p>这只会下载 delve，并不会构建和安装，而且将来 go get 只会用来下载。因此，你还需要手动执行安装。</p>
 <h2 id="02-go-install-的变化">02 go install 的变化<a href="#02-go-install-的变化" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <h3 id="gopath-年代">GOPATH 年代<a href="#gopath-年代" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>早在 GOPATH 年代，go install 的作用如下：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">Install compiles and installs the packages named by the import paths.
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">Install compiles and installs the packages named by the import paths.
 
 The -i flag installs the dependencies of the named packages as well.
 </code></pre></div><p>也就是说，go install 会将包编译成 <code>.a</code> 文件并安装到 <code>$GOPATH/pkg/$GOOS_$GOARCH</code> 下；如果是 main 包，会编译并生成可执行文件安装到 <code>$GOPATH/bin</code> 目录下（如果设置了 <code>$GOBIN</code>，则会安装到 <code>$GOBIN</code> 下 ）。这也是和 go build 不同之处。</p>
@@ -102,7 +98,7 @@ The -i flag installs the dependencies of the named packages as well.
 <p>到了 Go Module 年代，情况发生了变化。大家似乎完全忘记了 go install 的存在（也有可能在 GOPATH 年代，大家就从来不用 go install），因为 go get、go build 就解决问题了。</p>
 <p>特别是，从 Go Module 开始，工作目录没有了 src/pkg/bin 这三个目录，使得 go build 比 go install 更受欢迎。（GOPATH 年代，我更喜欢 go install，因为它会在项目生成和 GOROOT 一样的 src/pkg/bin，保持一致）。</p>
 <p>看看 Module 年代，go install 命令的作用：（基于 Go1.15.x）</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">Install compiles and installs the packages named by the import paths.
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">Install compiles and installs the packages named by the import paths.
 
 Executables are installed in the directory named by the GOBIN environment
 variable, which defaults to <span class="nv">$GOPATH</span>/bin or <span class="nv">$HOME</span>/go/bin <span class="k">if</span> the GOPATH
@@ -121,7 +117,8 @@ The -i flag installs the dependencies of the named packages as well.
 <p>$GOBIN 在 PATH 环境变量下，这样，GOBIN 下面的可执行文件可以方便的运行。比如你的工作 module 是：github.com/polaris1119/test ，可以通过 <code>go install github.com/polaris1119/test</code> 将 test 安装到 GOBIN 下，然后直接执行 test 运行。</p>
 </blockquote>
 <h3 id="go-116-及以后">Go 1.16 及以后<a href="#go-116-及以后" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-<p>从 Go 1.16 起，go install 可以接受带有版本后缀的参数（例如 go install <a href="mailto:example.com/cmd@v1.0.0">example.com/cmd@v1.0.0</a>）。这将导致 go install 以模块感知模式构建和安装包，而忽略当前目录或任何父目录（如果有）中的 go.mod 文件。这对于在不影响主模块依赖性的情况下安装可执行文件很有用。</p>
+<p>从 Go 1.16 起，go install 可以接受带有版本后缀的参数（例如 go install <a href="mailto:example.com/cmd@v1.0.0">example.com/cmd@v1.0.0</a>
+）。这将导致 go install 以模块感知模式构建和安装包，而忽略当前目录或任何父目录（如果有）中的 go.mod 文件。这对于在不影响主模块依赖性的情况下安装可执行文件很有用。</p>
 <p>如本文开头提到的，go get 不建议用来构建和安装包了。</p>
 <p>所以，Go 1.16 及以后，go get 和 go install 应该什么时候使用呢？</p>
 <ul>
@@ -164,7 +161,7 @@ The -i flag installs the dependencies of the named packages as well.
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://polarisxu.studygolang.com/tags/go">Go</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/1.16">1.16</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/%E5%AE%89%E8%A3%85">安装</a></span>
 				</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1456 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1435 字</p>
 				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2020-12-27 22:30 &#43;0800</p>
 			</footer>
 		</article>
@@ -214,7 +211,7 @@ The -i flag installs the dependencies of the named packages as well.
 
 
 
-	<script src="https://polarisxu.studygolang.com/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw=" crossorigin="anonymous"></script>
+	<script src="https://polarisxu.studygolang.com/js/main.min.4eaa15feccc672488716f0338ac605e08c7553ce0ce175e13fa00a873636bf98.js" integrity="sha256-TqoV/szGckiHFvAzisYF4Ix1U84M4XXhP6AKhzY2v5g=" crossorigin="anonymous"></script>
 	<script>
 var _hmt = _hmt || [];
 (function() {

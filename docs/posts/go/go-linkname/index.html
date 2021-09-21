@@ -8,20 +8,16 @@
 	<meta name="theme-color" content="#fcfcfc">
 	<meta name="msapplication-TileColor" content="#fcfcfc">
 <meta itemprop="name" content="注释竟然还有特殊用途？一文解惑 //go:linkname 指令">
-<meta itemprop="description" content="大家好，我是站长 polarisxu。 我之前写过一篇文章：为什么 Go 标准库中有些函数只有签名，没有函数体？ ，其中有一点就是 //go:linkname 这个指令。 Go 中类似的指令挺多的，比如 Go1.16 中的 //go:embed。前些天有人问我，为什么它用 //go:embed 不起作用？我一看，它是这么写的：// go:embed，不知道你看到问题了没有？是的，指令是通过注释的方式，但有三点要求，要特别注意： // 后不能有空格。">
-<meta itemprop="datePublished" content="2021-04-15T20:30:00+08:00" />
+<meta itemprop="description" content="大家好，我是站长 polarisxu。 我之前写过一篇文章：为什么 Go 标准库中有些函数只有签名，没有函数体？ ，其中有一点就是 //go:linkname 这个指令。 Go 中类似的指令挺多的，比如 Go1.16 中的 //go:embed。前些天有人问我，为什么它用 //go:embed 不起作用？我一看，它是这么写的：// go:embed，不知道你看到问题了没有？是的，指令是通过注释的方式，但有三点要求，要特别注意： // 后不能有空格。"><meta itemprop="datePublished" content="2021-04-15T20:30:00+08:00" />
 <meta itemprop="dateModified" content="2021-04-15T20:30:00+08:00" />
 <meta itemprop="wordCount" content="2249">
-
-
-
-<meta itemprop="keywords" content="Go,指令,linkname," />
-<meta property="og:title" content="注释竟然还有特殊用途？一文解惑 //go:linkname 指令" />
+<meta itemprop="keywords" content="Go,指令,linkname," /><meta property="og:title" content="注释竟然还有特殊用途？一文解惑 //go:linkname 指令" />
 <meta property="og:description" content="大家好，我是站长 polarisxu。 我之前写过一篇文章：为什么 Go 标准库中有些函数只有签名，没有函数体？ ，其中有一点就是 //go:linkname 这个指令。 Go 中类似的指令挺多的，比如 Go1.16 中的 //go:embed。前些天有人问我，为什么它用 //go:embed 不起作用？我一看，它是这么写的：// go:embed，不知道你看到问题了没有？是的，指令是通过注释的方式，但有三点要求，要特别注意： // 后不能有空格。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/go-linkname/" />
+<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/go-linkname/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-04-15T20:30:00+08:00" />
 <meta property="article:modified_time" content="2021-04-15T20:30:00+08:00" />
+
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="注释竟然还有特殊用途？一文解惑 //go:linkname 指令"/>
 <meta name="twitter:description" content="大家好，我是站长 polarisxu。 我之前写过一篇文章：为什么 Go 标准库中有些函数只有签名，没有函数体？ ，其中有一点就是 //go:linkname 这个指令。 Go 中类似的指令挺多的，比如 Go1.16 中的 //go:embed。前些天有人问我，为什么它用 //go:embed 不起作用？我一看，它是这么写的：// go:embed，不知道你看到问题了没有？是的，指令是通过注释的方式，但有三点要求，要特别注意： // 后不能有空格。"/>
@@ -100,12 +96,12 @@
 <p>经过简单沟通，他写了一篇文章解决自己的困惑。希望对各位有帮助。以下是他写的关于 <code>//go:linkname</code> 的文章（我做了一些调整）。</p>
 <hr>
 <h2 id="01-格式">01 格式<a href="#01-格式" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">//go:linkname local remote
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">//go:linkname local remote
 </span></code></pre></div><p>remote 可以没有，此时 remote 使用 local 的值，效果就是 local 被导出。</p>
 <h2 id="02-local-和-remote-同时为函数">02 local 和 remote 同时为函数<a href="#02-local-和-remote-同时为函数" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <h3 id="local-作为占位符remote-作为实现者">local 作为占位符，remote 作为实现者<a href="#local-作为占位符remote-作为实现者" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>标准库中的例子：</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// 来自 time 包
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// 来自 time 包
 </span><span class="c1">//go:linkname runtimeNano runtime.nanotime
 </span><span class="c1"></span><span class="kd">func</span> <span class="nf">runtimeNano</span><span class="p">()</span> <span class="kt">int64</span>
 
@@ -117,7 +113,7 @@
 </code></pre></div><p>此时二进制文件中并没有<code>runtimeNano</code>，直接转化为对<code>runtime.nanotime</code>的调用。</p>
 <h3 id="local-作为实现者remote-作为占位符">local 作为实现者，remote 作为占位符<a href="#local-作为实现者remote-作为占位符" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>同样来自标准库。这里存在函数没有函数体，但是被反向引用。</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// 在标准库的一个 internal 中
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// 在标准库的一个 internal 中
 </span><span class="c1">//go:linkname runtime_cmpstring runtime.cmpstring
 </span><span class="c1"></span><span class="kd">func</span> <span class="nf">runtime_cmpstring</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
 	<span class="nx">l</span> <span class="o">:=</span> <span class="nb">len</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span>
@@ -146,11 +142,11 @@
 </span><span class="c1"></span><span class="kd">func</span> <span class="nf">cmpstring</span><span class="p">(</span><span class="kt">string</span><span class="p">,</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">int</span>
 </code></pre></div><p>此时二进制文件中并没有<code>runtime_cmpstring</code>，对应的函数已经被命名为<code>runtime.cmpstring</code>。也就是说，实现在 internal 包，但最终通过 runtime.cmpstring 来引用。</p>
 <h3 id="一个占位符一个汇编函数">一个占位符+一个汇编函数<a href="#一个占位符一个汇编函数" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// 在标准库的一个 internal 中
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// 在标准库的一个 internal 中
 </span><span class="c1">//go:linkname abigen_runtime_memequal runtime.memequal
 </span><span class="c1"></span><span class="kd">func</span> <span class="nf">abigen_runtime_memequal</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span> <span class="nx">unsafe</span><span class="p">.</span><span class="nx">Pointer</span><span class="p">,</span> <span class="nx">size</span> <span class="kt">uintptr</span><span class="p">)</span> <span class="kt">bool</span>
 </code></pre></div><p>注意<code>runtime.memequal</code>的实现并不在<code>runtime</code>包中，使用汇编实现的话并不要求必须在相应的包中。</p>
-<div class="highlight"><pre class="chroma"><code class="language-asm" data-lang="asm"><span class="c"># memequal(a, b unsafe.Pointer, size uintptr) bool
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-asm" data-lang="asm"><span class="c"># memequal(a, b unsafe.Pointer, size uintptr) bool
 </span><span class="c"></span><span class="nf">TEXT</span> <span class="no">runtime</span><span class="err">·</span><span class="no">memequal</span><span class="p">(</span><span class="no">SB</span><span class="p">),</span><span class="no">NOSPLIT</span><span class="p">,</span><span class="no">$0-25</span>
 	<span class="nf">MOVQ</span>	<span class="no">a</span><span class="err">+</span><span class="mi">0</span><span class="p">(</span><span class="no">FP</span><span class="p">),</span> <span class="no">SI</span>
 	<span class="nf">MOVQ</span>	<span class="no">b</span><span class="err">+</span><span class="mi">8</span><span class="p">(</span><span class="no">FP</span><span class="p">),</span> <span class="no">DI</span>
@@ -164,7 +160,7 @@
 	<span class="nf">RET</span>
 </code></pre></div><h2 id="03-local-和-remote-同时为变量">03 local 和 remote 同时为变量<a href="#03-local-和-remote-同时为变量" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <h3 id="两个常规变量">两个常规变量<a href="#两个常规变量" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">//go:linkname overflowError runtime.overflowError
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">//go:linkname overflowError runtime.overflowError
 </span><span class="c1"></span><span class="kd">var</span> <span class="nx">overflowError</span> <span class="kt">error</span>
 
 <span class="c1">//go:linkname divideError runtime.divideError
@@ -188,7 +184,7 @@
 </span><span class="c1"></span><span class="kd">var</span> <span class="nx">x_cgo_unsetenv</span> <span class="kt">byte</span>
 <span class="kd">var</span> <span class="nx">_cgo_unsetenv</span> <span class="p">=</span> <span class="o">&amp;</span><span class="nx">x_cgo_unsetenv</span>
 </code></pre></div><h3 id="一个占位符一个伪符号">一个占位符+一个伪符号<a href="#一个占位符一个伪符号" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">//go:linkname runtime_inittask runtime..inittask
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">//go:linkname runtime_inittask runtime..inittask
 </span><span class="c1"></span><span class="kd">var</span> <span class="nx">runtime_inittask</span> <span class="nx">initTask</span>
 
 <span class="c1">//go:linkname main_inittask main..inittask
@@ -206,13 +202,13 @@
 </blockquote>
 <p>下面这个例子是作者真实项目中用的。</p>
 <p>在 runtime 和 runtime/pprof 包中有两个函数：runtime_setProfLabel 和  runtime_getProfLabel。其中，runtime 包中的提供了实现，而 pprof 中的没有提供实现。如果基于它们创建另外的函数，如下：</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">//go:linkname SetPointer runtime/pprof.runtime_setProfLabel
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">//go:linkname SetPointer runtime/pprof.runtime_setProfLabel
 </span><span class="c1"></span><span class="kd">func</span> <span class="nf">SetPointer</span><span class="p">(</span><span class="nx">ptr</span> <span class="nx">unsafe</span><span class="p">.</span><span class="nx">Pointer</span><span class="p">)</span>
 
 <span class="c1">//go:linkname GetPointer runtime/pprof.runtime_getProfLabel
 </span><span class="c1"></span><span class="kd">func</span> <span class="nf">GetPointer</span><span class="p">()</span> <span class="nx">unsafe</span><span class="p">.</span><span class="nx">Pointer</span>
 </code></pre></div><p>根据前面的分析，虽然<code>runtime.runtime_setProfLabel</code>/<code>runtime.runtime_getProfLabel</code>提供了函数实现，但是二进制文件中并不会出现（见下方代码），此时想要调用必须通过<code>runtime/pprof.runtime_setProfLabel</code>/<code>runtime/pprof.runtime_getProfLabel</code>，这也是上面<code>linkname</code>到<code>pprof</code>而不是<code>runtime</code>的根本原因。</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// 来自 runtime 包
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// 来自 runtime 包
 </span><span class="c1">//go:linkname runtime_setProfLabel runtime/pprof.runtime_setProfLabel
 </span><span class="c1"></span><span class="kd">func</span> <span class="nf">runtime_setProfLabel</span><span class="p">(</span><span class="nx">labels</span> <span class="nx">unsafe</span><span class="p">.</span><span class="nx">Pointer</span><span class="p">)</span> <span class="p">{</span>
 	<span class="k">if</span> <span class="nx">raceenabled</span> <span class="p">{</span>
@@ -245,6 +241,8 @@
 	<h2>相关推荐</h2>
 	<ul>
 	
+	<li><a href="/posts/go/fiber/go-fiber-basic-tutorial01/">Go Fiber 框架系列教程 01: 和 Express 对比学习</a></li>
+	
 	<li><a href="/posts/go/action/go-illegal-private-import/">Go Module：私有不合规库怎么解决引用问题</a></li>
 	
 	<li><a href="/posts/go/dynamic/1.17-golang-go-get-updated/">Go1.17 新特性：go get 变了</a></li>
@@ -252,8 +250,6 @@
 	<li><a href="/posts/go/dynamic/go-1-17-new-features-added-to-testing/">Go1.17 新特性：testing 包的相关变化</a></li>
 	
 	<li><a href="/posts/go/action/chained-channel-operations-in-a-single-select-case/">StackOverflow 上关于 Go select 死锁的问题</a></li>
-	
-	<li><a href="/posts/go/book/building-distributed-applications-in-gin/">新书推荐：用 Gin 框架构建分布式应用</a></li>
 	
 	</ul>
 </div>
@@ -320,7 +316,7 @@
 
 
 
-	<script src="https://polarisxu.studygolang.com/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw=" crossorigin="anonymous"></script>
+	<script src="https://polarisxu.studygolang.com/js/main.min.4eaa15feccc672488716f0338ac605e08c7553ce0ce175e13fa00a873636bf98.js" integrity="sha256-TqoV/szGckiHFvAzisYF4Ix1U84M4XXhP6AKhzY2v5g=" crossorigin="anonymous"></script>
 	<script>
 var _hmt = _hmt || [];
 (function() {

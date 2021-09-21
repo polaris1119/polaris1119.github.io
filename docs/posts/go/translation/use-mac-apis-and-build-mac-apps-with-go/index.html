@@ -8,20 +8,16 @@
 	<meta name="theme-color" content="#fcfcfc">
 	<meta name="msapplication-TileColor" content="#fcfcfc">
 <meta itemprop="name" content="Go 终于可以开发原生 Mac APP 了">
-<meta itemprop="description" content="本文是 macdriver 作者写的，这是一个 Go 语言的 Objective-C 桥接器，使得 Go 可以使用 Mac API。如果做过 Apple 相关应用开发，可以试试这个。 如果你使用 Apple 设备并且是 Go 程 序员，或者正在考虑学习 Go，那么我们会获得一些非常酷的新功能。今天，我发布了 macdriver 的 Alpha 版，这是一个 Go 语言的 Objective-C 桥，具有与常见 Mac API 的绑定。 那些关注我的上一篇有关 Large Type in 80 lines of Go 的文章的人可能已经找到了 macdriver。 largetype 程序是 macdriver 的示例项">
-<meta itemprop="datePublished" content="2021-02-10T23:00:00+08:00" />
+<meta itemprop="description" content="本文是 macdriver 作者写的，这是一个 Go 语言的 Objective-C 桥接器，使得 Go 可以使用 Mac API。如果做过 Apple 相关应用开发，可以试试这个。 如果你使用 Apple 设备并且是 Go 程 序员，或者正在考虑学习 Go，那么我们会获得一些非常酷的新功能。今天，我发布了 macdriver 的 Alpha 版，这是一个 Go 语言的 Objective-C 桥，具有与常见 Mac API 的绑定。 那些关注我的上一篇有关 Large Type in 80 lines of Go 的文章的人可能已经找到了 macdriver。 largetype 程序是 macdriver 的示例项"><meta itemprop="datePublished" content="2021-02-10T23:00:00+08:00" />
 <meta itemprop="dateModified" content="2021-02-10T23:00:00+08:00" />
 <meta itemprop="wordCount" content="1519">
-
-
-
-<meta itemprop="keywords" content="Go,Mac,GUI," />
-<meta property="og:title" content="Go 终于可以开发原生 Mac APP 了" />
+<meta itemprop="keywords" content="Go,Mac,GUI," /><meta property="og:title" content="Go 终于可以开发原生 Mac APP 了" />
 <meta property="og:description" content="本文是 macdriver 作者写的，这是一个 Go 语言的 Objective-C 桥接器，使得 Go 可以使用 Mac API。如果做过 Apple 相关应用开发，可以试试这个。 如果你使用 Apple 设备并且是 Go 程 序员，或者正在考虑学习 Go，那么我们会获得一些非常酷的新功能。今天，我发布了 macdriver 的 Alpha 版，这是一个 Go 语言的 Objective-C 桥，具有与常见 Mac API 的绑定。 那些关注我的上一篇有关 Large Type in 80 lines of Go 的文章的人可能已经找到了 macdriver。 largetype 程序是 macdriver 的示例项" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/translation/use-mac-apis-and-build-mac-apps-with-go/" />
+<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/translation/use-mac-apis-and-build-mac-apps-with-go/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-02-10T23:00:00+08:00" />
 <meta property="article:modified_time" content="2021-02-10T23:00:00+08:00" />
+
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Go 终于可以开发原生 Mac APP 了"/>
 <meta name="twitter:description" content="本文是 macdriver 作者写的，这是一个 Go 语言的 Objective-C 桥接器，使得 Go 可以使用 Mac API。如果做过 Apple 相关应用开发，可以试试这个。 如果你使用 Apple 设备并且是 Go 程 序员，或者正在考虑学习 Go，那么我们会获得一些非常酷的新功能。今天，我发布了 macdriver 的 Alpha 版，这是一个 Go 语言的 Objective-C 桥，具有与常见 Mac API 的绑定。 那些关注我的上一篇有关 Large Type in 80 lines of Go 的文章的人可能已经找到了 macdriver。 largetype 程序是 macdriver 的示例项"/>
@@ -128,7 +124,8 @@
 中提问。</p>
 <p>如果您有兴趣与我一起探索新的可能性，我一直想尝试将 macdriver 用于 Apple Watch 应用程序。 Mikkel 的原始桥包中有一个 iOS 概念验证，但我还没有尝试过。假设它可以工作（可能涉及 Xcode 或其他开发人员工具），似乎也可以用于 Apple Watch 甚至 Apple TV。</p>
 <blockquote>
-<p>原文链接：<a href="https://dev.to/progrium/use-mac-apis-and-build-mac-apps-with-go-ap6">https://dev.to/progrium/use-mac-apis-and-build-mac-apps-with-go-ap6</a></p>
+<p>原文链接：<a href="https://dev.to/progrium/use-mac-apis-and-build-mac-apps-with-go-ap6" target="_blank" rel="noopener">https://dev.to/progrium/use-mac-apis-and-build-mac-apps-with-go-ap6</a>
+</p>
 <p>本文作者：Jeff Lindsay</p>
 <p>编译：polarisxu</p>
 </blockquote>
@@ -148,9 +145,9 @@
 	
 	<li><a href="/posts/go/translation/goui-a-very-simple-ui-framework/">GoUI：一个非常简单的 GUI 框架</a></li>
 	
-	<li><a href="/posts/go/action/go-illegal-private-import/">Go Module：私有不合规库怎么解决引用问题</a></li>
+	<li><a href="/posts/go/fiber/go-fiber-basic-tutorial01/">Go Fiber 框架系列教程 01: 和 Express 对比学习</a></li>
 	
-	<li><a href="/posts/go/dynamic/1.17-golang-go-get-updated/">Go1.17 新特性：go get 变了</a></li>
+	<li><a href="/posts/go/action/go-illegal-private-import/">Go Module：私有不合规库怎么解决引用问题</a></li>
 	
 	</ul>
 </div>
@@ -204,7 +201,7 @@
 
 
 
-	<script src="https://polarisxu.studygolang.com/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw=" crossorigin="anonymous"></script>
+	<script src="https://polarisxu.studygolang.com/js/main.min.4eaa15feccc672488716f0338ac605e08c7553ce0ce175e13fa00a873636bf98.js" integrity="sha256-TqoV/szGckiHFvAzisYF4Ix1U84M4XXhP6AKhzY2v5g=" crossorigin="anonymous"></script>
 	<script>
 var _hmt = _hmt || [];
 (function() {
