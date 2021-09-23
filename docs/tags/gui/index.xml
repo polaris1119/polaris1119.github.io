@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Wed, 28 Apr 2021 18:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/gui/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 22 Sep 2021 22:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/gui/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>推荐一个 Go GUI 实战项目</title>
+      <link>https://polarisxu.studygolang.com/posts/go/project/go-wormhole-gui/</link>
+      <pubDate>Wed, 22 Sep 2021 22:00:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/project/go-wormhole-gui/</guid>
+      <description>大家好，我是 polarisxu。 一直以来，挺多人想尝试 Go GUI 项目的，经过这些年的发展，响应的方案也挺多的，有原生的、有基于 Web 的。其中，fyne 这个 Go GUI 框架，发展比较好。之前写过一篇文章：Go 真的也可以进行 GUI 开发：还有这样的图书呢 。 今天推荐一个开源 Go GUI 项目：wormhole-gui，项目地址：https://github.com/Jacalz/wormhole-</description>
+    </item>
+    
     <item>
       <title>Go 真的也可以进行 GUI 开发：还有这样的图书呢</title>
       <link>https://polarisxu.studygolang.com/posts/go/book/go-gui-book/</link>

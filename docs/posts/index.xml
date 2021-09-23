@@ -6,8 +6,330 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en</language>
 		<copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-		<lastBuildDate>Mon, 20 Sep 2021 22:30:00 +0800</lastBuildDate>
+		<lastBuildDate>Wed, 22 Sep 2021 22:00:00 +0800</lastBuildDate>
 		<atom:link href="https://polarisxu.studygolang.com/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>推荐一个 Go GUI 实战项目</title>
+			<link>https://polarisxu.studygolang.com/posts/go/project/go-wormhole-gui/</link>
+			<pubDate>Wed, 22 Sep 2021 22:00:00 +0800</pubDate>
+			
+			<guid>https://polarisxu.studygolang.com/posts/go/project/go-wormhole-gui/</guid>
+			<description>大家好，我是 polarisxu。 一直以来，挺多人想尝试 Go GUI 项目的，经过这些年的发展，响应的方案也挺多的，有原生的、有基于 Web 的。其中，fyne 这个 Go GUI 框架，发展比较好。之前写过一篇文章：Go 真的也可以进行 GUI 开发：还有这样的图书呢 。 今天推荐一个开源 Go GUI 项目：wormhole-gui，项目地址：https://github.com/Jacalz/wormhole-</description>
+			<content type="html"><![CDATA[<p>大家好，我是 polarisxu。</p>
+<p>一直以来，挺多人想尝试 Go GUI 项目的，经过这些年的发展，响应的方案也挺多的，有原生的、有基于 Web 的。其中，fyne 这个 Go GUI 框架，发展比较好。之前写过一篇文章：<a href="https://mp.weixin.qq.com/s/2kms7zoK39CL6aVSWrpAbQ" target="_blank" rel="noopener">Go 真的也可以进行 GUI 开发：还有这样的图书呢</a>
+。</p>
+<p>今天推荐一个开源 Go GUI 项目：wormhole-gui，项目地址：<a href="https://github.com/Jacalz/wormhole-gui" target="_blank" rel="noopener">https://github.com/Jacalz/wormhole-gui</a>
+。这是一个跨平台应用程序，可在设备之间轻松加密共享文件、文件夹和文本。</p>
+<p>如果你使用的是 Go1.17 版本，可以直接终端运行如下命令查看效果：（注意，最新版是 v2）</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ go run github.com/Jacalz/wormhole-gui/v2@latest
+</code></pre></div><p>成功后，会打开一个应用，如下图：</p>
+<p><p class="md__image">
+  <img src="../imgs/wormhole-gui01.png"
+    alt="主界面"  />
+</p>
+</p>
+<p>有 4 个菜单：</p>
+<ul>
+<li>Send</li>
+<li>Receive</li>
+<li>Settings</li>
+<li>About</li>
+</ul>
+<p>支持发送文件、文件夹、文本信息。</p>
+<p>该项目涉及到的知识点：</p>
+<ul>
+<li>fyne 的使用</li>
+<li>网络传输</li>
+</ul>
+<p>看看 main.go 中的代码：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+	<span class="s">&#34;fyne.io/fyne/v2&#34;</span>
+	<span class="s">&#34;fyne.io/fyne/v2/app&#34;</span>
+
+	<span class="s">&#34;github.com/Jacalz/wormhole-gui/v2/internal/assets&#34;</span>
+	<span class="s">&#34;github.com/Jacalz/wormhole-gui/v2/internal/ui&#34;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="nx">a</span> <span class="o">:=</span> <span class="nx">app</span><span class="p">.</span><span class="nf">NewWithID</span><span class="p">(</span><span class="s">&#34;com.github.jacalz.wormhole-gui&#34;</span><span class="p">)</span>
+	<span class="nx">a</span><span class="p">.</span><span class="nf">SetIcon</span><span class="p">(</span><span class="nx">assets</span><span class="p">.</span><span class="nx">AppIcon</span><span class="p">)</span>
+	<span class="nx">w</span> <span class="o">:=</span> <span class="nx">a</span><span class="p">.</span><span class="nf">NewWindow</span><span class="p">(</span><span class="s">&#34;wormhole-gui&#34;</span><span class="p">)</span>
+
+	<span class="nx">w</span><span class="p">.</span><span class="nf">SetContent</span><span class="p">(</span><span class="nx">ui</span><span class="p">.</span><span class="nf">Create</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">w</span><span class="p">))</span>
+	<span class="nx">w</span><span class="p">.</span><span class="nf">Resize</span><span class="p">(</span><span class="nx">fyne</span><span class="p">.</span><span class="nf">NewSize</span><span class="p">(</span><span class="mi">700</span><span class="p">,</span> <span class="mi">400</span><span class="p">))</span>
+	<span class="nx">w</span><span class="p">.</span><span class="nf">SetMaster</span><span class="p">()</span>
+	<span class="nx">w</span><span class="p">.</span><span class="nf">ShowAndRun</span><span class="p">()</span>
+<span class="p">}</span>
+</code></pre></div><p>不过项目存在以下问题：</p>
+<p>1）选择文件对话框太丑</p>
+<p><p class="md__image">
+  <img src="../imgs/wormhole-gui02.png"
+    alt="对话框"  />
+</p>
+</p>
+<p>丑陋程度和 Java swing GUI 有得一拼。</p>
+<p>2）不支持中文。</p>
+<p>发送文本内容的对话框输入中文乱码。选择文件对话框中，文件名是中文也显示乱码。看你有没有办法解决这个问题。</p>
+]]></content>
+		</item>
+		
+		<item>
+			<title>Go Fiber 框架系列教程 02：详情相关 API 的使用</title>
+			<link>https://polarisxu.studygolang.com/posts/go/fiber/go-fiber-basic-tutorial02/</link>
+			<pubDate>Tue, 21 Sep 2021 22:30:00 +0800</pubDate>
+			
+			<guid>https://polarisxu.studygolang.com/posts/go/fiber/go-fiber-basic-tutorial02/</guid>
+			<description>大家好，我是 polarisxu。 该系列第一篇文章发出后，大家褒贬不一，很正常。选什么，不选什么，大家自己评估，没有什么是最好的。我这个系列，更多只是让大家对 Fiber 有些了解，说不定正好合你胃口呢？ 前面对 Fiber 有了大概的印象。今天着重较深入探讨 Fiber 相关功能。 先从 fiber.New 函数配置开始。 01 配置 大部分 Go 框架，获得实例的函数是不支持配置的，比如 Gin、Echo 等。但 Fiber 框架的 New 函数支持传</description>
+			<content type="html"><![CDATA[<p>大家好，我是 polarisxu。</p>
+<p>该系列第一篇文章发出后，大家褒贬不一，很正常。选什么，不选什么，大家自己评估，没有什么是最好的。我这个系列，更多只是让大家对 Fiber 有些了解，说不定正好合你胃口呢？</p>
+<p>前面对 Fiber 有了大概的印象。今天着重较深入探讨 Fiber 相关功能。</p>
+<p>先从 <code>fiber.New</code> 函数配置开始。</p>
+<h2 id="01-配置">01 配置</h2>
+<p>大部分 Go 框架，获得实例的函数是不支持配置的，比如 Gin、Echo 等。但 Fiber 框架的 New 函数支持传递配置：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// New creates a new Fiber named instance.
+</span><span class="c1">//  app := fiber.New()
+</span><span class="c1">// You can pass optional configuration options by passing a Config struct:
+</span><span class="c1">//  app := fiber.New(fiber.Config{
+</span><span class="c1">//      Prefork: true,
+</span><span class="c1">//      ServerHeader: &#34;Fiber&#34;,
+</span><span class="c1">//  })
+</span><span class="c1"></span><span class="kd">func</span> <span class="nf">New</span><span class="p">(</span><span class="nx">config</span> <span class="o">...</span><span class="nx">Config</span><span class="p">)</span> <span class="o">*</span><span class="nx">App</span>
+</code></pre></div><p>一般情况，使用默认配置即可（即不手动传递配置），但有必要了解下，通过配置，我们能干些什么。</p>
+<p>比如，我们希望响应头中，Server 用自定义的。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="nx">config</span> <span class="o">:=</span> <span class="nx">fiber</span><span class="p">.</span><span class="nx">Config</span><span class="p">{</span>
+  <span class="nx">ServerHeader</span><span class="p">:</span> <span class="s">&#34;Go Fiber Framework&#34;</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="nx">app</span> <span class="o">:=</span> <span class="nx">fiber</span><span class="p">.</span><span class="nf">New</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span>
+</code></pre></div><p>响应头类似这样：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">Content-Length: <span class="m">12</span>
+Content-Type: text/plain<span class="p">;</span> <span class="nv">charset</span><span class="o">=</span>utf-8
+Date: Mon, <span class="m">20</span> Sep <span class="m">2021</span> 14:58:45 GMT
+Server: Go Fiber Framework
+</code></pre></div><p>实际上，在前文模板引擎使用的 Views 就是一个配置项。</p>
+<p>目前配置 29 项之多，有不少是关于 HTTP 的配置。所有的配置和说明可以在文档找到：<a href="https://docs.gofiber.io/api/fiber#config" target="_blank" rel="noopener">https://docs.gofiber.io/api/fiber#config</a>
+。建议扫一遍，有一个印象，方便将来有需求时知道在这里找。</p>
+<h2 id="02-路由">02 路由</h2>
+<p>标准库 net/http 的路由比较简单，这大概也是有各种路由库（框架）的原因之一。</p>
+<p>最简单的路由莫过于直接匹配，如：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// 请求匹配到 /about
+</span><span class="c1"></span><span class="nx">app</span><span class="p">.</span><span class="nf">Get</span><span class="p">(</span><span class="s">&#34;/about&#34;</span><span class="p">,</span> <span class="kd">func</span><span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">fiber</span><span class="p">.</span><span class="nx">Ctx</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">c</span><span class="p">.</span><span class="nf">SendString</span><span class="p">(</span><span class="s">&#34;about&#34;</span><span class="p">)</span>
+<span class="p">})</span>
+</code></pre></div><p>而<strong>命名路由</strong>（也叫参数路由）是一个强大框架必须的，即提供占位符。比如：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="nx">app</span><span class="p">.</span><span class="nf">Get</span><span class="p">(</span><span class="s">&#34;/hello/:username&#34;</span><span class="p">,</span> <span class="kd">func</span><span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">fiber</span><span class="p">.</span><span class="nx">Ctx</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
+  <span class="nx">str</span> <span class="o">:=</span> <span class="nx">fmt</span><span class="p">.</span><span class="nf">Sprintf</span><span class="p">(</span><span class="s">&#34;Hello, %s&#34;</span><span class="p">,</span> <span class="nx">c</span><span class="p">.</span><span class="nf">Params</span><span class="p">(</span><span class="s">&#34;username&#34;</span><span class="p">))</span>
+  <span class="k">return</span> <span class="nx">c</span><span class="p">.</span><span class="nf">SendString</span><span class="p">(</span><span class="nx">str</span><span class="p">)</span>
+<span class="p">})</span>
+</code></pre></div><p>这个路由就可以匹配任意的以 <code>/hello/</code> 开头的请求，比如：<code>/hello/polarisxu</code>，最后会输出：<code>Hello, polarixu</code>。</p>
+<p>不过，如果请求的刚好是 <code>/hello/</code> 呢？Fiber 会返回 404，报路由找不到。如果你希望这时候把 username 是空处理，而不是返回 404，可以在 <code>:username</code> 后加一个 <code>?</code>：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="nx">app</span><span class="p">.</span><span class="nf">Get</span><span class="p">(</span><span class="s">&#34;/hello/:username?&#34;</span><span class="p">,</span> <span class="kd">func</span><span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">fiber</span><span class="p">.</span><span class="nx">Ctx</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
+  <span class="nx">str</span> <span class="o">:=</span> <span class="nx">fmt</span><span class="p">.</span><span class="nf">Sprintf</span><span class="p">(</span><span class="s">&#34;Hello, %s&#34;</span><span class="p">,</span> <span class="nx">c</span><span class="p">.</span><span class="nf">Params</span><span class="p">(</span><span class="s">&#34;username&#34;</span><span class="p">))</span>
+  <span class="k">return</span> <span class="nx">c</span><span class="p">.</span><span class="nf">SendString</span><span class="p">(</span><span class="nx">str</span><span class="p">)</span>
+<span class="p">})</span>
+</code></pre></div><p>此外，还有 <code>+</code> 和 <code>*</code> 进行通配，区别在于 <code>+</code> 要求至少要有一个，而 <code>*</code> 可以没有。通过 <code>c.Params(&quot;+&quot;)</code> 和 <code>c.Params(&quot;*&quot;)</code> 获得对于的值。</p>
+<p>此外，Fiber 还支持有 <code>-</code> 和 <code>.</code> 的复杂路由，例如：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// http://localhost:3000/flights/LAX-SFO
+</span><span class="c1"></span><span class="nx">app</span><span class="p">.</span><span class="nf">Get</span><span class="p">(</span><span class="s">&#34;/flights/:from-:to&#34;</span><span class="p">,</span> <span class="kd">func</span><span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">fiber</span><span class="p">.</span><span class="nx">Ctx</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Fprintf</span><span class="p">(</span><span class="nx">c</span><span class="p">,</span> <span class="s">&#34;%s-%s\n&#34;</span><span class="p">,</span> <span class="nx">c</span><span class="p">.</span><span class="nf">Params</span><span class="p">(</span><span class="s">&#34;from&#34;</span><span class="p">),</span> <span class="nx">c</span><span class="p">.</span><span class="nf">Params</span><span class="p">(</span><span class="s">&#34;to&#34;</span><span class="p">))</span>
+    <span class="k">return</span> <span class="kc">nil</span> <span class="c1">// LAX-SFO
+</span><span class="c1"></span><span class="p">})</span>
+</code></pre></div><blockquote>
+<p>注意，如果路由中需要包含特殊字符，比如 <code>:</code>，需要进行转义。</p>
+</blockquote>
+<p>因为 Fiber 的目标之一是成为 Go 最快、最清晰的 Web 框架，因此对于更复杂的路由，比如正则表达式，Fiber 不会支持。</p>
+<p>Fiber 还提供了方法，返回所有注册的路由信息：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">var</span> <span class="nx">handler</span> <span class="p">=</span> <span class="kd">func</span><span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">fiber</span><span class="p">.</span><span class="nx">Ctx</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span> <span class="k">return</span> <span class="kc">nil</span> <span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">app</span> <span class="o">:=</span> <span class="nx">fiber</span><span class="p">.</span><span class="nf">New</span><span class="p">()</span>
+
+    <span class="nx">app</span><span class="p">.</span><span class="nf">Get</span><span class="p">(</span><span class="s">&#34;/john/:age&#34;</span><span class="p">,</span> <span class="nx">handler</span><span class="p">)</span>
+    <span class="nx">app</span><span class="p">.</span><span class="nf">Post</span><span class="p">(</span><span class="s">&#34;/register&#34;</span><span class="p">,</span> <span class="nx">handler</span><span class="p">)</span>
+
+    <span class="nx">data</span><span class="p">,</span> <span class="nx">_</span> <span class="o">:=</span> <span class="nx">json</span><span class="p">.</span><span class="nf">MarshalIndent</span><span class="p">(</span><span class="nx">app</span><span class="p">.</span><span class="nf">Stack</span><span class="p">(),</span> <span class="s">&#34;&#34;</span><span class="p">,</span> <span class="s">&#34;  &#34;</span><span class="p">)</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nb">string</span><span class="p">(</span><span class="nx">data</span><span class="p">))</span>
+
+    <span class="nx">app</span><span class="p">.</span><span class="nf">Listen</span><span class="p">(</span><span class="s">&#34;:3000&#34;</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div><p>返回结果如下：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">[</span>
+  <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="nt">&#34;method&#34;</span><span class="p">:</span> <span class="s2">&#34;GET&#34;</span><span class="p">,</span>
+      <span class="nt">&#34;path&#34;</span><span class="p">:</span> <span class="s2">&#34;/john/:age&#34;</span><span class="p">,</span>
+      <span class="nt">&#34;params&#34;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&#34;age&#34;</span>
+      <span class="p">]</span>
+    <span class="p">}</span>
+  <span class="p">],</span>
+  <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="nt">&#34;method&#34;</span><span class="p">:</span> <span class="s2">&#34;HEAD&#34;</span><span class="p">,</span>
+      <span class="nt">&#34;path&#34;</span><span class="p">:</span> <span class="s2">&#34;/john/:age&#34;</span><span class="p">,</span>
+      <span class="nt">&#34;params&#34;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&#34;age&#34;</span>
+      <span class="p">]</span>
+    <span class="p">}</span>
+  <span class="p">],</span>
+  <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="nt">&#34;method&#34;</span><span class="p">:</span> <span class="s2">&#34;POST&#34;</span><span class="p">,</span>
+      <span class="nt">&#34;path&#34;</span><span class="p">:</span> <span class="s2">&#34;/register&#34;</span><span class="p">,</span>
+      <span class="nt">&#34;params&#34;</span><span class="p">:</span> <span class="kc">null</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">]</span>
+</code></pre></div><p>可以辅助排查路由问题。</p>
+<h2 id="03-static">03 Static</h2>
+<p>上文介绍了服务静态资源的 Static 方法，这里详细解释下。</p>
+<p>Static 方法可以多个。默认情况下，如果目录下有 <code>index.html</code> 文件，对目录的访问会以该文件作为响应。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="nx">app</span><span class="p">.</span><span class="nf">Static</span><span class="p">(</span><span class="s">&#34;/static/&#34;</span><span class="p">,</span> <span class="s">&#34;./public&#34;</span><span class="p">)</span>
+</code></pre></div><p>以上代码用于项目根目录下 public 目录的文件和文件夹。</p>
+<p>此外，Static 方法有第三个可选参数，以便对 Static 行为进行微调，这可以通过 fiber.Static 结构体控制。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// Static defines configuration options when defining static assets.
+</span><span class="c1"></span><span class="kd">type</span> <span class="nx">Static</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="c1">// When set to true, the server tries minimizing CPU usage by caching compressed files.
+</span><span class="c1"></span>    <span class="c1">// This works differently than the github.com/gofiber/compression middleware.
+</span><span class="c1"></span>    <span class="c1">// Optional. Default value false
+</span><span class="c1"></span>    <span class="nx">Compress</span> <span class="kt">bool</span> <span class="s">`json:&#34;compress&#34;`</span>
+
+    <span class="c1">// When set to true, enables byte range requests.
+</span><span class="c1"></span>    <span class="c1">// Optional. Default value false
+</span><span class="c1"></span>    <span class="nx">ByteRange</span> <span class="kt">bool</span> <span class="s">`json:&#34;byte_range&#34;`</span>
+
+    <span class="c1">// When set to true, enables directory browsing.
+</span><span class="c1"></span>    <span class="c1">// Optional. Default value false.
+</span><span class="c1"></span>    <span class="nx">Browse</span> <span class="kt">bool</span> <span class="s">`json:&#34;browse&#34;`</span>
+
+    <span class="c1">// The name of the index file for serving a directory.
+</span><span class="c1"></span>    <span class="c1">// Optional. Default value &#34;index.html&#34;.
+</span><span class="c1"></span>    <span class="nx">Index</span> <span class="kt">string</span> <span class="s">`json:&#34;index&#34;`</span>
+
+    <span class="c1">// Expiration duration for inactive file handlers.
+</span><span class="c1"></span>    <span class="c1">// Use a negative time.Duration to disable it.
+</span><span class="c1"></span>    <span class="c1">//
+</span><span class="c1"></span>    <span class="c1">// Optional. Default value 10 * time.Second.
+</span><span class="c1"></span>    <span class="nx">CacheDuration</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Duration</span> <span class="s">`json:&#34;cache_duration&#34;`</span>
+
+    <span class="c1">// The value for the Cache-Control HTTP-header
+</span><span class="c1"></span>    <span class="c1">// that is set on the file response. MaxAge is defined in seconds.
+</span><span class="c1"></span>    <span class="c1">//
+</span><span class="c1"></span>    <span class="c1">// Optional. Default value 0.
+</span><span class="c1"></span>    <span class="nx">MaxAge</span> <span class="kt">int</span> <span class="s">`json:&#34;max_age&#34;`</span>
+
+    <span class="c1">// Next defines a function to skip this middleware when returned true.
+</span><span class="c1"></span>    <span class="c1">//
+</span><span class="c1"></span>    <span class="c1">// Optional. Default: nil
+</span><span class="c1"></span>    <span class="nx">Next</span> <span class="kd">func</span><span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">Ctx</span><span class="p">)</span> <span class="kt">bool</span>
+<span class="p">}</span>
+</code></pre></div><p>上文说，默认情况下，对目录访问的索引文件是 index.html，通过 Index 可以改变该行为。如果想要启用目录浏览功能，可以设置 Browse 为 true。</p>
+<h2 id="04-路由处理器">04 路由处理器</h2>
+<p>在前面提到，Fiber 有对应的方法支持所有 HTTP Method。除此之外，还有两个特殊的方法：Add 和 All。</p>
+<p>Add 方法是所有 HTTP Method 对应方法的底层实现，比如 Get 方法：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="p">(</span><span class="nx">app</span> <span class="o">*</span><span class="nx">App</span><span class="p">)</span> <span class="nf">Get</span><span class="p">(</span><span class="nx">path</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">handlers</span> <span class="o">...</span><span class="nx">Handler</span><span class="p">)</span> <span class="nx">Router</span> <span class="p">{</span>
+	<span class="k">return</span> <span class="nx">app</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="nx">MethodHead</span><span class="p">,</span> <span class="nx">path</span><span class="p">,</span> <span class="nx">handlers</span><span class="o">...</span><span class="p">).</span><span class="nf">Add</span><span class="p">(</span><span class="nx">MethodGet</span><span class="p">,</span> <span class="nx">path</span><span class="p">,</span> <span class="nx">handlers</span><span class="o">...</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div><p>它底层调用了 Add 方法，做了两次绑定，分别是 HEAD 和 GET，也就是说，对于 Get 方法，支持 HTTP GET 和 HEAD。</p>
+<blockquote>
+<p>我之前写过一篇文章：<a href="https://mp.weixin.qq.com/s/g_v9ZOotpMfvgQtM5GqB-g" target="_blank" rel="noopener">网友很强大，发现了Go并发下载的Bug</a>
+。Echo 框架，对于 Get 方法，只是 HTTP GET，不支持 HEAD 请求。目前看，Fiber 的做法更合理。如果你真的只需要 GET，可以通过 Add 方法实现。</p>
+</blockquote>
+<p>而 All 方法表示支持任意 HTTP Method。</p>
+<h2 id="05-mount-和-group">05 Mount 和 Group</h2>
+<p>Mount 方法可以将一个 Fiber 实例挂载到另一个实例。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">micro</span> <span class="o">:=</span> <span class="nx">fiber</span><span class="p">.</span><span class="nf">New</span><span class="p">()</span>
+    <span class="nx">micro</span><span class="p">.</span><span class="nf">Get</span><span class="p">(</span><span class="s">&#34;/doe&#34;</span><span class="p">,</span> <span class="kd">func</span><span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">fiber</span><span class="p">.</span><span class="nx">Ctx</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">c</span><span class="p">.</span><span class="nf">SendStatus</span><span class="p">(</span><span class="nx">fiber</span><span class="p">.</span><span class="nx">StatusOK</span><span class="p">)</span>
+    <span class="p">})</span>
+
+    <span class="nx">app</span> <span class="o">:=</span> <span class="nx">fiber</span><span class="p">.</span><span class="nf">New</span><span class="p">()</span>
+    <span class="nx">app</span><span class="p">.</span><span class="nf">Mount</span><span class="p">(</span><span class="s">&#34;/john&#34;</span><span class="p">,</span> <span class="nx">micro</span><span class="p">)</span> <span class="c1">// GET /john/doe -&gt; 200 OK
+</span><span class="c1"></span>
+    <span class="nx">log</span><span class="p">.</span><span class="nf">Fatal</span><span class="p">(</span><span class="nx">app</span><span class="p">.</span><span class="nf">Listen</span><span class="p">(</span><span class="s">&#34;:3000&#34;</span><span class="p">))</span>
+<span class="p">}</span>
+</code></pre></div><p>Group 是路由分组功能，框架基本会支持该特性，对于 API 版本控制很有用。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">app</span> <span class="o">:=</span> <span class="nx">fiber</span><span class="p">.</span><span class="nf">New</span><span class="p">()</span>
+
+  <span class="nx">api</span> <span class="o">:=</span> <span class="nx">app</span><span class="p">.</span><span class="nf">Group</span><span class="p">(</span><span class="s">&#34;/api&#34;</span><span class="p">,</span> <span class="nx">handler</span><span class="p">)</span>  <span class="c1">// /api
+</span><span class="c1"></span>
+  <span class="nx">v1</span> <span class="o">:=</span> <span class="nx">api</span><span class="p">.</span><span class="nf">Group</span><span class="p">(</span><span class="s">&#34;/v1&#34;</span><span class="p">,</span> <span class="nx">handler</span><span class="p">)</span>   <span class="c1">// /api/v1
+</span><span class="c1"></span>  <span class="nx">v1</span><span class="p">.</span><span class="nf">Get</span><span class="p">(</span><span class="s">&#34;/list&#34;</span><span class="p">,</span> <span class="nx">handler</span><span class="p">)</span>          <span class="c1">// /api/v1/list
+</span><span class="c1"></span>  <span class="nx">v1</span><span class="p">.</span><span class="nf">Get</span><span class="p">(</span><span class="s">&#34;/user&#34;</span><span class="p">,</span> <span class="nx">handler</span><span class="p">)</span>          <span class="c1">// /api/v1/user
+</span><span class="c1"></span>
+  <span class="nx">v2</span> <span class="o">:=</span> <span class="nx">api</span><span class="p">.</span><span class="nf">Group</span><span class="p">(</span><span class="s">&#34;/v2&#34;</span><span class="p">,</span> <span class="nx">handler</span><span class="p">)</span>   <span class="c1">// /api/v2
+</span><span class="c1"></span>  <span class="nx">v2</span><span class="p">.</span><span class="nf">Get</span><span class="p">(</span><span class="s">&#34;/list&#34;</span><span class="p">,</span> <span class="nx">handler</span><span class="p">)</span>          <span class="c1">// /api/v2/list
+</span><span class="c1"></span>  <span class="nx">v2</span><span class="p">.</span><span class="nf">Get</span><span class="p">(</span><span class="s">&#34;/user&#34;</span><span class="p">,</span> <span class="nx">handler</span><span class="p">)</span>          <span class="c1">// /api/v2/user
+</span><span class="c1"></span>
+  <span class="nx">log</span><span class="p">.</span><span class="nf">Fatal</span><span class="p">(</span><span class="nx">app</span><span class="p">.</span><span class="nf">Listen</span><span class="p">(</span><span class="s">&#34;:3000&#34;</span><span class="p">))</span>
+<span class="p">}</span>
+</code></pre></div><h2 id="06-fiberctx-的方法">06 fiber.Ctx 的方法</h2>
+<p>此外，就是 handler 中的参数 fiber.Ctx，这是一个结构体，包含了众多的方法（不少都是方便开发的方法），在使用时查阅 API 文档，或访问 <a href="https://docs.gofiber.io/api/ctx" target="_blank" rel="noopener">https://docs.gofiber.io/api/ctx</a>
+ 浏览。</p>
+<p>这里介绍几个其他框架可能没有的方法。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// BodyParser binds the request body to a struct.
+</span><span class="c1">// It supports decoding the following content types based on the Content-Type header:
+</span><span class="c1">// application/json, application/xml, application/x-www-form-urlencoded, multipart/form-data
+</span><span class="c1">// If none of the content types above are matched, it will return a ErrUnprocessableEntity error
+</span><span class="c1"></span><span class="kd">func</span> <span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">Ctx</span><span class="p">)</span> <span class="nf">BodyParser</span><span class="p">(</span><span class="nx">out</span> <span class="kd">interface</span><span class="p">{})</span> <span class="kt">error</span>
+</code></pre></div><p>该方法将请求绑定到结构体。（响应的也有 QueryParser 方法，主要处理查询字符串到结构体的绑定）</p>
+<p>看一个例子：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">Person</span> <span class="kd">struct</span> <span class="p">{</span>
+		<span class="nx">Name</span> <span class="kt">string</span> <span class="s">`json:&#34;name&#34; xml:&#34;name&#34; form:&#34;name&#34;`</span>
+		<span class="nx">Pass</span> <span class="kt">string</span> <span class="s">`json:&#34;pass&#34; xml:&#34;pass&#34; form:&#34;pass&#34;`</span>
+<span class="p">}</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nf">Post</span><span class="p">(</span><span class="s">&#34;/login&#34;</span><span class="p">,</span> <span class="kd">func</span><span class="p">(</span><span class="nx">ctx</span> <span class="o">*</span><span class="nx">fiber</span><span class="p">.</span><span class="nx">Ctx</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
+		<span class="nx">p</span> <span class="o">:=</span> <span class="nb">new</span><span class="p">(</span><span class="nx">Person</span><span class="p">)</span>
+
+		<span class="k">if</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">ctx</span><span class="p">.</span><span class="nf">BodyParser</span><span class="p">(</span><span class="nx">p</span><span class="p">);</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+			<span class="k">return</span> <span class="nx">err</span>
+		<span class="p">}</span>
+
+		<span class="nx">log</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">Name</span><span class="p">)</span> <span class="c1">// john
+</span><span class="c1"></span>		<span class="nx">log</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">Pass</span><span class="p">)</span> <span class="c1">// doe
+</span><span class="c1"></span>
+		<span class="k">return</span> <span class="nx">ctx</span><span class="p">.</span><span class="nf">SendString</span><span class="p">(</span><span class="s">&#34;Success&#34;</span><span class="p">)</span>
+<span class="p">})</span>
+
+<span class="c1">// 运行下面的命令进行测试
+</span><span class="c1"></span>
+<span class="c1">// curl -X POST -H &#34;Content-Type: application/json&#34; --data &#34;{\&#34;name\&#34;:\&#34;john\&#34;,\&#34;pass\&#34;:\&#34;doe\&#34;}&#34; localhost:3000/login
+</span><span class="c1"></span>
+<span class="c1">// curl -X POST -H &#34;Content-Type: application/xml&#34; --data &#34;&lt;login&gt;&lt;name&gt;john&lt;/name&gt;&lt;pass&gt;doe&lt;/pass&gt;&lt;/login&gt;&#34; localhost:3000/login
+</span><span class="c1"></span>
+<span class="c1">// curl -X POST -H &#34;Content-Type: application/x-www-form-urlencoded&#34; --data &#34;name=john&amp;pass=doe&#34; localhost:3000/login
+</span><span class="c1"></span>
+<span class="c1">// curl -X POST -F name=john -F pass=doe http://localhost:3000/login
+</span><span class="c1"></span>
+<span class="c1">// curl -X POST &#34;http://localhost:3000/login?name=john&amp;pass=doe&#34;
+</span></code></pre></div><p>关于获取参数，包括路由参数、查询参数、表单参数，Fiber 都非常友好的提供了可选的默认值形式，也就是说，当没有传递对应值时，我们可以给一个默认值，比如：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// 10 是可选的。以下代码表示，当 page 参数没有传递，page=10
+</span><span class="c1"></span><span class="nx">page</span> <span class="o">:=</span> <span class="nx">ctx</span><span class="p">.</span><span class="nf">Query</span><span class="p">(</span><span class="s">&#34;page&#34;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+</code></pre></div><blockquote>
+<p>默认值模式（可选参数）在 Fiber 中有大量使用，这能极大为使用者带来方便。</p>
+</blockquote>
+<p>此外，路由参数还有 <code>ParamsInt</code> 方法，用来获取 int 类型的路由参数。</p>
+<h2 id="07-小结">07 小结</h2>
+<p>通过本文对 Fiber 内置功能的介绍，我的感受是，Fiber 为开发者提供了很多便利。如果你没有用过其他框架，可能没有那么大的感受。后续文章考虑出一个不同框架相关写法的对比。</p>
+<p>下篇文章介绍 Fiber 的中间件~</p>
+]]></content>
+		</item>
+		
+		<item>
+			<title>Go Fiber 框架系列教程 03：中间件</title>
+			<link>https://polarisxu.studygolang.com/posts/go/fiber/go-fiber-basic-tutorial03/</link>
+			<pubDate>Tue, 21 Sep 2021 22:30:00 +0800</pubDate>
+			
+			<guid>https://polarisxu.studygolang.com/posts/go/fiber/go-fiber-basic-tutorial03/</guid>
+			<description>大家好，我是 polarisxu。</description>
+			<content type="html"><![CDATA[<p>大家好，我是 polarisxu。</p>
+]]></content>
+		</item>
 		
 		<item>
 			<title>Go Fiber 框架系列教程 01: 和 Express 对比学习</title>
@@ -222,6 +544,13 @@
 </code></pre></div><h2 id="03-小结">03 小结</h2>
 <p>本文简单介绍了 Fiber 的一些特性。因为 Fiber 是受 Express 启发实现的，因此和 Express 进行了对比。不知道你对 Fiber 有什么感觉？</p>
 <p>下篇文章会较详细的介绍 Fiber 的一些特性。</p>
+<h2 id="参考">参考</h2>
+<ul>
+<li><a href="https://dev.to/koddr/go-fiber-by-examples-how-can-the-fiber-web-framework-be-useful-487a" target="_blank" rel="noopener">https://dev.to/koddr/go-fiber-by-examples-how-can-the-fiber-web-framework-be-useful-487a</a>
+</li>
+<li><a href="https://docs.gofiber.io/api/fiber" target="_blank" rel="noopener">https://docs.gofiber.io/api/fiber</a>
+</li>
+</ul>
 ]]></content>
 		</item>
 		

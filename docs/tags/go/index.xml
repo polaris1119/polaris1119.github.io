@@ -7,7 +7,34 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Mon, 20 Sep 2021 22:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 22 Sep 2021 22:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>推荐一个 Go GUI 实战项目</title>
+      <link>https://polarisxu.studygolang.com/posts/go/project/go-wormhole-gui/</link>
+      <pubDate>Wed, 22 Sep 2021 22:00:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/project/go-wormhole-gui/</guid>
+      <description>大家好，我是 polarisxu。 一直以来，挺多人想尝试 Go GUI 项目的，经过这些年的发展，响应的方案也挺多的，有原生的、有基于 Web 的。其中，fyne 这个 Go GUI 框架，发展比较好。之前写过一篇文章：Go 真的也可以进行 GUI 开发：还有这样的图书呢 。 今天推荐一个开源 Go GUI 项目：wormhole-gui，项目地址：https://github.com/Jacalz/wormhole-</description>
+    </item>
+    
+    <item>
+      <title>Go Fiber 框架系列教程 02：详情相关 API 的使用</title>
+      <link>https://polarisxu.studygolang.com/posts/go/fiber/go-fiber-basic-tutorial02/</link>
+      <pubDate>Tue, 21 Sep 2021 22:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/fiber/go-fiber-basic-tutorial02/</guid>
+      <description>大家好，我是 polarisxu。 该系列第一篇文章发出后，大家褒贬不一，很正常。选什么，不选什么，大家自己评估，没有什么是最好的。我这个系列，更多只是让大家对 Fiber 有些了解，说不定正好合你胃口呢？ 前面对 Fiber 有了大概的印象。今天着重较深入探讨 Fiber 相关功能。 先从 fiber.New 函数配置开始。 01 配置 大部分 Go 框架，获得实例的函数是不支持配置的，比如 Gin、Echo 等。但 Fiber 框架的 New 函数支持传</description>
+    </item>
+    
+    <item>
+      <title>Go Fiber 框架系列教程 03：中间件</title>
+      <link>https://polarisxu.studygolang.com/posts/go/fiber/go-fiber-basic-tutorial03/</link>
+      <pubDate>Tue, 21 Sep 2021 22:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/fiber/go-fiber-basic-tutorial03/</guid>
+      <description>大家好，我是 polarisxu。</description>
+    </item>
+    
     <item>
       <title>Go Fiber 框架系列教程 01: 和 Express 对比学习</title>
       <link>https://polarisxu.studygolang.com/posts/go/fiber/go-fiber-basic-tutorial01/</link>
@@ -69,33 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/dynamic/golang.org-change/</guid>
       <description>大家好，我是 polarisxu。 Golang 官网，有些人可能从来没有访问过，因为国内一般访问不了。但我经常和「它」打交道，因为 Go 语言中文网很早就对 Go 官网做了一个镜像。最近 Go1.17 发布了，利用周末，我把 Go 官网镜像升级了下，但折腾了很久。。。发现 Go 官网要「变天」了！ 之前写过一篇文章：《回顾 Go 官网的演变史》 ，没看的可以看看。 01 这次又变了 如果你访问了 Go 官网（golang.org），</description>
-    </item>
-    
-    <item>
-      <title>Gin 这是要成为 Go 官方框架？</title>
-      <link>https://polarisxu.studygolang.com/posts/go/web-service-gin/</link>
-      <pubDate>Mon, 23 Aug 2021 22:00:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/web-service-gin/</guid>
-      <description>大家好，我是 polarisxu。 常浏览 Go 官方网站的朋友可能留意到，Go 网站近一段时间增加了不少文档、教程。可能官方意识到，Go 被越来越多的用于 API 开发，于是近期又出了一个这方面的教程：《Tutorial: Developing a RESTful API with Go and Gin》 。 是的，基于 Gin 框架。在众多框架中，Go 官方选择了 Gin 框架，可见这个框架的受欢迎程度。 这份官方的教程包含以下几个方面： 设计 API 接口：以一个虚拟</description>
-    </item>
-    
-    <item>
-      <title>扬眉吐气：刚刚，Go 已经默认支持泛型了</title>
-      <link>https://polarisxu.studygolang.com/posts/go/dynamic/go-generic/</link>
-      <pubDate>Sun, 22 Aug 2021 22:10:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/dynamic/go-generic/</guid>
-      <description>大家好，我是 polarisxu。 上周 Go 1.17 发布，在发布文档中，没有提到泛型的事情。但在发布之前，大家就发现，泛型的相关代码在 1.17 中埋下了，只是默认不启用。 就在最近，gotip 已经默认启用泛型。Go 泛型官方叫做：type parameters。 -G 的默认值由 0 改为了 3，那 Go 1.17 有没有这个 flag？ 01 Go1.17 启用泛型支持 安装 Go1.17，推荐使用类似 goup 这样的工具，方便切换版本，</description>
-    </item>
-    
-    <item>
-      <title>Go 1.17 新特性：Module 有哪些变化？</title>
-      <link>https://polarisxu.studygolang.com/posts/go/dynamic/go1.17-module/</link>
-      <pubDate>Sat, 21 Aug 2021 22:10:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/dynamic/go1.17-module/</guid>
-      <description>大家好，我是 polarisxu。 自从 Go1.11 增加 Go Module 以来，每个版本都在不断改进 Module。Go1.17 也不例外。这次最主要的变化有两点： Module graph pruning：Module 依赖图修剪 Lazy Loading：Module 延迟加载 此外还有 Deprecated 注释等。本文就一起探究下这些新变化，因为有人没看懂，不知道这些变化是什么意思。 01 Module 依赖图修剪 要搞懂这个知识点，需要对比 1.17 之前的情况。 注意，</description>
     </item>
     
   </channel>
