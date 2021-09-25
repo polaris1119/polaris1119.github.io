@@ -18,21 +18,12 @@
     </item>
     
     <item>
-      <title>Go Fiber 框架系列教程 02：详情相关 API 的使用</title>
+      <title>Go Fiber 框架系列教程 02：详解相关 API 的使用</title>
       <link>https://polarisxu.studygolang.com/posts/go/fiber/go-fiber-basic-tutorial02/</link>
       <pubDate>Tue, 21 Sep 2021 22:30:00 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/posts/go/fiber/go-fiber-basic-tutorial02/</guid>
       <description>大家好，我是 polarisxu。 该系列第一篇文章发出后，大家褒贬不一，很正常。选什么，不选什么，大家自己评估，没有什么是最好的。我这个系列，更多只是让大家对 Fiber 有些了解，说不定正好合你胃口呢？ 前面对 Fiber 有了大概的印象。今天着重较深入探讨 Fiber 相关功能。 先从 fiber.New 函数配置开始。 01 配置 大部分 Go 框架，获得实例的函数是不支持配置的，比如 Gin、Echo 等。但 Fiber 框架的 New 函数支持传</description>
-    </item>
-    
-    <item>
-      <title>Go Fiber 框架系列教程 03：中间件</title>
-      <link>https://polarisxu.studygolang.com/posts/go/fiber/go-fiber-basic-tutorial03/</link>
-      <pubDate>Tue, 21 Sep 2021 22:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/fiber/go-fiber-basic-tutorial03/</guid>
-      <description>大家好，我是 polarisxu。</description>
     </item>
     
     <item>
@@ -96,6 +87,15 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/dynamic/golang.org-change/</guid>
       <description>大家好，我是 polarisxu。 Golang 官网，有些人可能从来没有访问过，因为国内一般访问不了。但我经常和「它」打交道，因为 Go 语言中文网很早就对 Go 官网做了一个镜像。最近 Go1.17 发布了，利用周末，我把 Go 官网镜像升级了下，但折腾了很久。。。发现 Go 官网要「变天」了！ 之前写过一篇文章：《回顾 Go 官网的演变史》 ，没看的可以看看。 01 这次又变了 如果你访问了 Go 官网（golang.org），</description>
+    </item>
+    
+    <item>
+      <title>Gin 这是要成为 Go 官方框架？</title>
+      <link>https://polarisxu.studygolang.com/posts/go/web-service-gin/</link>
+      <pubDate>Mon, 23 Aug 2021 22:00:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/web-service-gin/</guid>
+      <description>大家好，我是 polarisxu。 常浏览 Go 官方网站的朋友可能留意到，Go 网站近一段时间增加了不少文档、教程。可能官方意识到，Go 被越来越多的用于 API 开发，于是近期又出了一个这方面的教程：《Tutorial: Developing a RESTful API with Go and Gin》 。 是的，基于 Gin 框架。在众多框架中，Go 官方选择了 Gin 框架，可见这个框架的受欢迎程度。 这份官方的教程包含以下几个方面： 设计 API 接口：以一个虚拟</description>
     </item>
     
   </channel>

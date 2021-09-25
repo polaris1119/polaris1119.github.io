@@ -29,7 +29,7 @@
     alt="主界面"  />
 </p>
 </p>
-<p>有 4 个菜单：</p>
+<p>还支持暗黑模式。它有 4 个菜单：</p>
 <ul>
 <li>Send</li>
 <li>Receive</li>
@@ -77,7 +77,7 @@
 		</item>
 		
 		<item>
-			<title>Go Fiber 框架系列教程 02：详情相关 API 的使用</title>
+			<title>Go Fiber 框架系列教程 02：详解相关 API 的使用</title>
 			<link>https://polarisxu.studygolang.com/posts/go/fiber/go-fiber-basic-tutorial02/</link>
 			<pubDate>Tue, 21 Sep 2021 22:30:00 +0800</pubDate>
 			
@@ -124,7 +124,7 @@ Server: Go Fiber Framework
   <span class="k">return</span> <span class="nx">c</span><span class="p">.</span><span class="nf">SendString</span><span class="p">(</span><span class="nx">str</span><span class="p">)</span>
 <span class="p">})</span>
 </code></pre></div><p>这个路由就可以匹配任意的以 <code>/hello/</code> 开头的请求，比如：<code>/hello/polarisxu</code>，最后会输出：<code>Hello, polarixu</code>。</p>
-<p>不过，如果请求的刚好是 <code>/hello/</code> 呢？Fiber 会返回 404，报路由找不到。如果你希望这时候把 username 是空处理，而不是返回 404，可以在 <code>:username</code> 后加一个 <code>?</code>：</p>
+<p>不过，如果请求的刚好是 <code>/hello/</code> 呢？Fiber 会返回 404，报路由找不到。如果你希望这时候把 username 当空处理，而不是返回 404，可以在 <code>:username</code> 后加一个 <code>?</code>：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="nx">app</span><span class="p">.</span><span class="nf">Get</span><span class="p">(</span><span class="s">&#34;/hello/:username?&#34;</span><span class="p">,</span> <span class="kd">func</span><span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">fiber</span><span class="p">.</span><span class="nx">Ctx</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
   <span class="nx">str</span> <span class="o">:=</span> <span class="nx">fmt</span><span class="p">.</span><span class="nf">Sprintf</span><span class="p">(</span><span class="s">&#34;Hello, %s&#34;</span><span class="p">,</span> <span class="nx">c</span><span class="p">.</span><span class="nf">Params</span><span class="p">(</span><span class="s">&#34;username&#34;</span><span class="p">))</span>
   <span class="k">return</span> <span class="nx">c</span><span class="p">.</span><span class="nf">SendString</span><span class="p">(</span><span class="nx">str</span><span class="p">)</span>
@@ -317,17 +317,6 @@ Server: Go Fiber Framework
 <h2 id="07-小结">07 小结</h2>
 <p>通过本文对 Fiber 内置功能的介绍，我的感受是，Fiber 为开发者提供了很多便利。如果你没有用过其他框架，可能没有那么大的感受。后续文章考虑出一个不同框架相关写法的对比。</p>
 <p>下篇文章介绍 Fiber 的中间件~</p>
-]]></content>
-		</item>
-		
-		<item>
-			<title>Go Fiber 框架系列教程 03：中间件</title>
-			<link>https://polarisxu.studygolang.com/posts/go/fiber/go-fiber-basic-tutorial03/</link>
-			<pubDate>Tue, 21 Sep 2021 22:30:00 +0800</pubDate>
-			
-			<guid>https://polarisxu.studygolang.com/posts/go/fiber/go-fiber-basic-tutorial03/</guid>
-			<description>大家好，我是 polarisxu。</description>
-			<content type="html"><![CDATA[<p>大家好，我是 polarisxu。</p>
 ]]></content>
 		</item>
 		
