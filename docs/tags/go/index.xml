@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Wed, 22 Sep 2021 22:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 28 Sep 2021 23:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go泛型系列：提前掌握Go泛型的基本使用</title>
+      <link>https://polarisxu.studygolang.com/posts/go/generics/generics-basic/</link>
+      <pubDate>Tue, 28 Sep 2021 23:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/generics/generics-basic/</guid>
+      <description>泛型，是 Go 语言多年来最令人兴奋和根本性的变化之一。没有泛型，很多人以此「鄙视」Go 语言。当然，也有人觉得根本不需要泛型。有泛型，不代表你一定要用。平心而论，有些场景下，泛型还是很有必要和帮助的。 现在已经确认，Go1.18 正式包含泛型（Go1.17 已经可以试用，只是默认不支持，见之前的文章：扬眉吐气：刚刚，Go 已经默认支持泛型了 ）。 不过，不少人对泛型还是迷迷糊</description>
+    </item>
+    
     <item>
       <title>推荐一个 Go GUI 实战项目</title>
       <link>https://polarisxu.studygolang.com/posts/go/project/go-wormhole-gui/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/dynamic/golang.org-change/</guid>
       <description>大家好，我是 polarisxu。 Golang 官网，有些人可能从来没有访问过，因为国内一般访问不了。但我经常和「它」打交道，因为 Go 语言中文网很早就对 Go 官网做了一个镜像。最近 Go1.17 发布了，利用周末，我把 Go 官网镜像升级了下，但折腾了很久。。。发现 Go 官网要「变天」了！ 之前写过一篇文章：《回顾 Go 官网的演变史》 ，没看的可以看看。 01 这次又变了 如果你访问了 Go 官网（golang.org），</description>
-    </item>
-    
-    <item>
-      <title>Gin 这是要成为 Go 官方框架？</title>
-      <link>https://polarisxu.studygolang.com/posts/go/web-service-gin/</link>
-      <pubDate>Mon, 23 Aug 2021 22:00:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/web-service-gin/</guid>
-      <description>大家好，我是 polarisxu。 常浏览 Go 官方网站的朋友可能留意到，Go 网站近一段时间增加了不少文档、教程。可能官方意识到，Go 被越来越多的用于 API 开发，于是近期又出了一个这方面的教程：《Tutorial: Developing a RESTful API with Go and Gin》 。 是的，基于 Gin 框架。在众多框架中，Go 官方选择了 Gin 框架，可见这个框架的受欢迎程度。 这份官方的教程包含以下几个方面： 设计 API 接口：以一个虚拟</description>
     </item>
     
   </channel>

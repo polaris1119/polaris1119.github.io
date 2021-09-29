@@ -7,22 +7,31 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Wed, 22 Sep 2021 22:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 28 Sep 2021 23:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go</title>
+      <link>https://polarisxu.studygolang.com/tags/go/</link>
+      <pubDate>Tue, 28 Sep 2021 23:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/tags/go/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>泛型</title>
+      <link>https://polarisxu.studygolang.com/tags/%E6%B3%9B%E5%9E%8B/</link>
+      <pubDate>Tue, 28 Sep 2021 23:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/tags/%E6%B3%9B%E5%9E%8B/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>fyne</title>
       <link>https://polarisxu.studygolang.com/tags/fyne/</link>
       <pubDate>Wed, 22 Sep 2021 22:00:00 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/tags/fyne/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Go</title>
-      <link>https://polarisxu.studygolang.com/tags/go/</link>
-      <pubDate>Wed, 22 Sep 2021 22:00:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/tags/go/</guid>
       <description></description>
     </item>
     
@@ -86,15 +95,6 @@
       <pubDate>Wed, 25 Aug 2021 22:00:00 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/tags/gin/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>官网</title>
-      <link>https://polarisxu.studygolang.com/tags/%E5%AE%98%E7%BD%91/</link>
-      <pubDate>Tue, 24 Aug 2021 22:00:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/tags/%E5%AE%98%E7%BD%91/</guid>
       <description></description>
     </item>
     
