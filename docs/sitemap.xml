@@ -2,19 +2,25 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://polarisxu.studygolang.com/tags/go/</loc>
-    <lastmod>2021-09-28T23:30:00+08:00</lastmod>
+    <loc>https://polarisxu.studygolang.com/tags/fiber/</loc>
+    <lastmod>2021-10-05T22:30:00+08:00</lastmod>
   </url><url>
-    <loc>https://polarisxu.studygolang.com/posts/go/generics/generics-basic/</loc>
-    <lastmod>2021-09-28T23:30:00+08:00</lastmod>
+    <loc>https://polarisxu.studygolang.com/tags/go/</loc>
+    <lastmod>2021-10-05T22:30:00+08:00</lastmod>
+  </url><url>
+    <loc>https://polarisxu.studygolang.com/posts/go/fiber/go-fiber-basic-tutorial03/</loc>
+    <lastmod>2021-10-05T22:30:00+08:00</lastmod>
   </url><url>
     <loc>https://polarisxu.studygolang.com/</loc>
-    <lastmod>2021-09-28T23:30:00+08:00</lastmod>
+    <lastmod>2021-10-05T22:30:00+08:00</lastmod>
   </url><url>
     <loc>https://polarisxu.studygolang.com/tags/</loc>
-    <lastmod>2021-09-28T23:30:00+08:00</lastmod>
+    <lastmod>2021-10-05T22:30:00+08:00</lastmod>
   </url><url>
     <loc>https://polarisxu.studygolang.com/posts/</loc>
+    <lastmod>2021-10-05T22:30:00+08:00</lastmod>
+  </url><url>
+    <loc>https://polarisxu.studygolang.com/posts/go/generics/generics-basic/</loc>
     <lastmod>2021-09-28T23:30:00+08:00</lastmod>
   </url><url>
     <loc>https://polarisxu.studygolang.com/tags/%E6%B3%9B%E5%9E%8B/</loc>
@@ -28,9 +34,6 @@
   </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/project/go-wormhole-gui/</loc>
     <lastmod>2021-09-22T22:00:00+08:00</lastmod>
-  </url><url>
-    <loc>https://polarisxu.studygolang.com/tags/fiber/</loc>
-    <lastmod>2021-09-21T22:30:00+08:00</lastmod>
   </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/fiber/go-fiber-basic-tutorial02/</loc>
     <lastmod>2021-09-21T22:30:00+08:00</lastmod>

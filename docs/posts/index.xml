@@ -6,8 +6,158 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en</language>
 		<copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-		<lastBuildDate>Tue, 28 Sep 2021 23:30:00 +0800</lastBuildDate>
+		<lastBuildDate>Tue, 05 Oct 2021 22:30:00 +0800</lastBuildDate>
 		<atom:link href="https://polarisxu.studygolang.com/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>Go Fiber 框架系列教程 03：中间件</title>
+			<link>https://polarisxu.studygolang.com/posts/go/fiber/go-fiber-basic-tutorial03/</link>
+			<pubDate>Tue, 05 Oct 2021 22:30:00 +0800</pubDate>
+			
+			<guid>https://polarisxu.studygolang.com/posts/go/fiber/go-fiber-basic-tutorial03/</guid>
+			<description>大家好，我是 polarisxu。 Middleware（中间件） 是一个 Web 框架重要的组成部分，通过这种模式，可以方便的扩展框架的功能。目前 Go Web 框架都提供了 Middleware 的功能，也有众多可用的 Middleware。 Fiber 也是如此，官方提供了众多的 Middleware，方便用户直接使用。本文先看看 Fiber 中 Middleware 的定义，然后介绍 Fiber 中的几个 Middleware，最后自己实现一个 Middlewa</description>
+			<content type="html"><![CDATA[<p>大家好，我是 polarisxu。</p>
+<p>Middleware（中间件） 是一个 Web 框架重要的组成部分，通过这种模式，可以方便的扩展框架的功能。目前 Go Web 框架都提供了 Middleware 的功能，也有众多可用的 Middleware。</p>
+<p>Fiber 也是如此，官方提供了众多的 Middleware，方便用户直接使用。本文先看看 Fiber 中 Middleware 的定义，然后介绍 Fiber 中的几个 Middleware，最后自己实现一个 Middleware。</p>
+<blockquote>
+<p>Fiber 文档中关于 Middleware 的说明：中间件是在 HTTP 请求周期中链接的函数，它可以访问用于执行特定操作（例如，记录每个请求或启用 CORS）的上下文。</p>
+</blockquote>
+<h2 id="01-middleware-长什么样">01 Middleware 长什么样</h2>
+<p>设计用于更改请求或响应的函数称为中间件函数。Next 是 Fiber 路由器函数，当它被调用时，执行与当前路由匹配的下一个函数。</p>
+<p>可见，中间件其实和 Handler 是一样的，只是用途有区别。或者说至少签名是一样的，这样才能更好的形成一个链。</p>
+<p>因此，Fiber 中的中间件签名如下：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span><span class="p">(</span><span class="nx">ctx</span> <span class="o">*</span><span class="nx">fiber</span><span class="p">.</span><span class="nx">Ctx</span><span class="p">)</span> <span class="kt">error</span>
+</code></pre></div><p>Fiber 没有专门定义中间件类型。</p>
+<p>此外，从 fiber.App.Use 方法也可以看到，中间件和普通的 Handler 并无本质不同。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// Use registers a middleware route that will match requests
+</span><span class="c1">// with the provided prefix (which is optional and defaults to &#34;/&#34;).
+</span><span class="c1">//
+</span><span class="c1">//  app.Use(func(c *fiber.Ctx) error {
+</span><span class="c1">//       return c.Next()
+</span><span class="c1">//  })
+</span><span class="c1">//  app.Use(&#34;/api&#34;, func(c *fiber.Ctx) error {
+</span><span class="c1">//       return c.Next()
+</span><span class="c1">//  })
+</span><span class="c1">//  app.Use(&#34;/api&#34;, handler, func(c *fiber.Ctx) error {
+</span><span class="c1">//       return c.Next()
+</span><span class="c1">//  })
+</span><span class="c1">//
+</span><span class="c1">// This method will match all HTTP verbs: GET, POST, PUT, HEAD etc...
+</span><span class="c1"></span><span class="kd">func</span> <span class="p">(</span><span class="nx">app</span> <span class="o">*</span><span class="nx">App</span><span class="p">)</span> <span class="nf">Use</span><span class="p">(</span><span class="nx">args</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span> <span class="nx">Router</span> <span class="p">{</span>
+	<span class="kd">var</span> <span class="nx">prefix</span> <span class="kt">string</span>
+	<span class="kd">var</span> <span class="nx">handlers</span> <span class="p">[]</span><span class="nx">Handler</span>
+
+	<span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="nx">args</span><span class="p">);</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+		<span class="k">switch</span> <span class="nx">arg</span> <span class="o">:=</span> <span class="nx">args</span><span class="p">[</span><span class="nx">i</span><span class="p">].(</span><span class="kd">type</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">case</span> <span class="kt">string</span><span class="p">:</span>
+			<span class="nx">prefix</span> <span class="p">=</span> <span class="nx">arg</span>
+		<span class="k">case</span> <span class="nx">Handler</span><span class="p">:</span>
+			<span class="nx">handlers</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">handlers</span><span class="p">,</span> <span class="nx">arg</span><span class="p">)</span>
+		<span class="k">default</span><span class="p">:</span>
+			<span class="nb">panic</span><span class="p">(</span><span class="nx">fmt</span><span class="p">.</span><span class="nf">Sprintf</span><span class="p">(</span><span class="s">&#34;use: invalid handler %v\n&#34;</span><span class="p">,</span> <span class="nx">reflect</span><span class="p">.</span><span class="nf">TypeOf</span><span class="p">(</span><span class="nx">arg</span><span class="p">)))</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="nx">app</span><span class="p">.</span><span class="nf">register</span><span class="p">(</span><span class="nx">methodUse</span><span class="p">,</span> <span class="nx">prefix</span><span class="p">,</span> <span class="nx">handlers</span><span class="o">...</span><span class="p">)</span>
+	<span class="k">return</span> <span class="nx">app</span>
+<span class="p">}</span>
+</code></pre></div><p>而 fiber.Handler 类型只是 <code>func(*fiber.Ctx) error</code> 的别名：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// Handler defines a function to serve HTTP requests.
+</span><span class="c1"></span><span class="kd">type</span> <span class="nx">Handler</span> <span class="p">=</span> <span class="kd">func</span><span class="p">(</span><span class="o">*</span><span class="nx">Ctx</span><span class="p">)</span> <span class="kt">error</span>
+</code></pre></div><p>这点上，Gin 框架和 Fiber 是类似的。不过，有一些框架，比如 Echo，专门定义了中间件类型。但不管怎么样，中间件的本质和普通路由 Handler 是类似的。</p>
+<h2 id="02-fiber-内置的中间件">02 Fiber 内置的中间件</h2>
+<p>所有内置的中间件可以在 fiber 项目的 middleware 子包找到，这些中间件对应的文档在这里：<a href="https://docs.gofiber.io/api/middleware" target="_blank" rel="noopener">https://docs.gofiber.io/api/middleware</a>
+。</p>
+<p>以 Recover 中间件为例，看看官方中间件的实现方法，我们自己的中间件可以参照实现。</p>
+<p>1）签名</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">New</span><span class="p">(</span><span class="nx">config</span> <span class="o">...</span><span class="nx">Config</span><span class="p">)</span> <span class="nx">fiber</span><span class="p">.</span><span class="nx">Handler</span>
+</code></pre></div><p>上文说了，中间件就是一个 Handler，因此这里 New 函数返回 <code>fiber.Handler</code>，这就中间件。</p>
+<p>至于 New 函数的参数不做任何要求，只需要最终返回 <code>fiber.Handler</code> 即可。</p>
+<p>2）配置</p>
+<p>一个好的中间件，或通用的中间件，一般都会有配置，让中间件更灵活、更强大。看看 Recover 的配置定义：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// Config defines the config for middleware.
+</span><span class="c1"></span><span class="kd">type</span> <span class="nx">Config</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="c1">// Next defines a function to skip this middleware when returned true.
+</span><span class="c1"></span>    <span class="c1">//
+</span><span class="c1"></span>    <span class="c1">// Optional. Default: nil
+</span><span class="c1"></span>    <span class="nx">Next</span> <span class="kd">func</span><span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">fiber</span><span class="p">.</span><span class="nx">Ctx</span><span class="p">)</span> <span class="kt">bool</span>
+
+    <span class="c1">// EnableStackTrace enables handling stack trace
+</span><span class="c1"></span>    <span class="c1">//
+</span><span class="c1"></span>    <span class="c1">// Optional. Default: false
+</span><span class="c1"></span>    <span class="nx">EnableStackTrace</span> <span class="kt">bool</span>
+
+    <span class="c1">// StackTraceHandler defines a function to handle stack trace
+</span><span class="c1"></span>    <span class="c1">//
+</span><span class="c1"></span>    <span class="c1">// Optional. Default: defaultStackTraceHandler
+</span><span class="c1"></span>    <span class="nx">StackTraceHandler</span> <span class="kd">func</span><span class="p">(</span><span class="nx">e</span> <span class="kd">interface</span><span class="p">{})</span>
+<span class="p">}</span>
+</code></pre></div><p>具体配置是什么样的，需要根据中间件的功能来定义。</p>
+<p>不过，配置中 Next 这个行为，很多中间件都可以有。</p>
+<p>3）默认配置</p>
+<p>一般的，会提供一个默认配置，方便使用。而且，大部分时候，使用默认配置即可。Recover 的默认配置如下：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">var</span> <span class="nx">ConfigDefault</span> <span class="p">=</span> <span class="nx">Config</span><span class="p">{</span>
+    <span class="nx">Next</span><span class="p">:</span>              <span class="kc">nil</span><span class="p">,</span>
+    <span class="nx">EnableStackTrace</span><span class="p">:</span>  <span class="kc">false</span><span class="p">,</span>
+    <span class="nx">StackTraceHandler</span><span class="p">:</span> <span class="nx">defaultStackTraceHandler</span><span class="p">,</span>
+<span class="p">}</span>
+</code></pre></div><p>如果这样调用 <code>recover.New()</code> ，会默认使用上面的默认配置。</p>
+<p>最后看看 New 函数的代码：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// New creates a new middleware handler
+</span><span class="c1"></span><span class="kd">func</span> <span class="nf">New</span><span class="p">(</span><span class="nx">config</span> <span class="o">...</span><span class="nx">Config</span><span class="p">)</span> <span class="nx">fiber</span><span class="p">.</span><span class="nx">Handler</span> <span class="p">{</span>
+	<span class="c1">// Set default config
+</span><span class="c1"></span>	<span class="nx">cfg</span> <span class="o">:=</span> <span class="nf">configDefault</span><span class="p">(</span><span class="nx">config</span><span class="o">...</span><span class="p">)</span>
+
+	<span class="c1">// Return new handler
+</span><span class="c1"></span>	<span class="k">return</span> <span class="kd">func</span><span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">fiber</span><span class="p">.</span><span class="nx">Ctx</span><span class="p">)</span> <span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
+		<span class="c1">// Don&#39;t execute middleware if Next returns true
+</span><span class="c1"></span>		<span class="k">if</span> <span class="nx">cfg</span><span class="p">.</span><span class="nx">Next</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="o">&amp;&amp;</span> <span class="nx">cfg</span><span class="p">.</span><span class="nf">Next</span><span class="p">(</span><span class="nx">c</span><span class="p">)</span> <span class="p">{</span>
+			<span class="k">return</span> <span class="nx">c</span><span class="p">.</span><span class="nf">Next</span><span class="p">()</span>
+		<span class="p">}</span>
+
+		<span class="c1">// Catch panics
+</span><span class="c1"></span>		<span class="k">defer</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+			<span class="k">if</span> <span class="nx">r</span> <span class="o">:=</span> <span class="nb">recover</span><span class="p">();</span> <span class="nx">r</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+				<span class="k">if</span> <span class="nx">cfg</span><span class="p">.</span><span class="nx">EnableStackTrace</span> <span class="p">{</span>
+					<span class="nx">cfg</span><span class="p">.</span><span class="nf">StackTraceHandler</span><span class="p">(</span><span class="nx">r</span><span class="p">)</span>
+				<span class="p">}</span>
+
+				<span class="kd">var</span> <span class="nx">ok</span> <span class="kt">bool</span>
+				<span class="k">if</span> <span class="nx">err</span><span class="p">,</span> <span class="nx">ok</span> <span class="p">=</span> <span class="nx">r</span><span class="p">.(</span><span class="kt">error</span><span class="p">);</span> <span class="p">!</span><span class="nx">ok</span> <span class="p">{</span>
+					<span class="c1">// Set error that will call the global error handler
+</span><span class="c1"></span>					<span class="nx">err</span> <span class="p">=</span> <span class="nx">fmt</span><span class="p">.</span><span class="nf">Errorf</span><span class="p">(</span><span class="s">&#34;%v&#34;</span><span class="p">,</span> <span class="nx">r</span><span class="p">)</span>
+				<span class="p">}</span>
+			<span class="p">}</span>
+		<span class="p">}()</span>
+
+		<span class="c1">// Return err if exist, else move to next handler
+</span><span class="c1"></span>		<span class="k">return</span> <span class="nx">c</span><span class="p">.</span><span class="nf">Next</span><span class="p">()</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><p>以上就是一个 Fiber 标准中间件的写法。</p>
+<p>具体使用时就是：<code>app.Use(recover.New())</code>。</p>
+<p>当然，如果只是自己项目使用，可以不用写配置。</p>
+<h2 id="03-实现一个简单的中间件">03 实现一个简单的中间件</h2>
+<p>通过 Recover 学习到了中间件的标准写法，如果中间件只在自己项目使用，不需要灵活性，完全可以采用简单的写法。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">Security</span><span class="p">(</span><span class="nx">ctx</span> <span class="o">*</span><span class="nx">fiber</span><span class="p">.</span><span class="nx">Ctx</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
+  <span class="nx">ctx</span><span class="p">.</span><span class="nf">Set</span><span class="p">(</span><span class="s">&#34;X-XSS-Protection&#34;</span><span class="p">,</span> <span class="s">&#34;1; mode=block&#34;</span><span class="p">)</span>
+  <span class="nx">ctx</span><span class="p">.</span><span class="nf">Set</span><span class="p">(</span><span class="s">&#34;X-Content-Type-Options&#34;</span><span class="p">,</span> <span class="s">&#34;nosniff&#34;</span><span class="p">)</span>
+  <span class="nx">ctx</span><span class="p">.</span><span class="nf">Set</span><span class="p">(</span><span class="s">&#34;X-Download-Options&#34;</span><span class="p">,</span> <span class="s">&#34;noopen&#34;</span><span class="p">)</span>
+  <span class="nx">ctx</span><span class="p">.</span><span class="nf">Set</span><span class="p">(</span><span class="s">&#34;Strict-Transport-Security&#34;</span><span class="p">,</span> <span class="s">&#34;max-age=5184000&#34;</span><span class="p">)</span>
+  <span class="nx">ctx</span><span class="p">.</span><span class="nf">Set</span><span class="p">(</span><span class="s">&#34;X-Frame-Options&#34;</span><span class="p">,</span> <span class="s">&#34;SAMEORIGIN&#34;</span><span class="p">)</span>
+  <span class="nx">ctx</span><span class="p">.</span><span class="nf">Set</span><span class="p">(</span><span class="s">&#34;X-DNS-Prefetch-Control&#34;</span><span class="p">,</span> <span class="s">&#34;off&#34;</span><span class="p">)</span>
+
+  <span class="c1">// 执行下一个 Handler
+</span><span class="c1"></span>  <span class="k">return</span> <span class="nx">ctx</span><span class="p">.</span><span class="nf">Next</span><span class="p">()</span>
+<span class="p">}</span>
+</code></pre></div><p>这其实也是一个 Handler，对吧。无非最后调用的是 ctx.Next，而不是 ctx.JSON 之类的。</p>
+<p>使用时这样：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="nx">app</span> <span class="o">:=</span> <span class="nx">fiber</span><span class="p">.</span><span class="nf">New</span><span class="p">()</span>
+<span class="nx">app</span><span class="p">.</span><span class="nf">Use</span><span class="p">(</span><span class="nx">Security</span><span class="p">)</span>
+</code></pre></div><p>只要理解中间件的机制，不需要拘泥于具体形式，可以灵活变换中间件的写法。</p>
+<h2 id="04-总结">04 总结</h2>
+<p>本文讲解了什么是中间件，Fiber 中间件长什么样以及对内置中间件 Recover 的学习，最后自己实现一个简单的中间件。掌握了 Fiber 的中间件，相信对其他 Go Web 框架的中间件的学习也就不难了，因为都差不多。</p>
+]]></content>
+		</item>
 		
 		<item>
 			<title>Go泛型系列：提前掌握Go泛型的基本使用</title>
@@ -141,6 +291,13 @@ prog.go2:8:9: invalid operation: operator + not defined <span class="k">for</spa
 <p>通过本文的讲解，相信你对 Go 泛型有了一个基本的掌握。</p>
 <p>Go1.18 会包含不少泛型相关的标准库，包括对现有标准库的泛型支持，这是目前 Go 官方的重要工作。</p>
 <p>今天开一个头，后续会不断分享 Go 泛型更多的内容，大家一起提前掌握 Go 泛型。</p>
+<h2 id="参考资料">参考资料</h2>
+<ul>
+<li><a href="https://bitfieldconsulting.com/golang/generics" target="_blank" rel="noopener">https://bitfieldconsulting.com/golang/generics</a>
+</li>
+<li><a href="https://github.com/mattn/go-generics-example" target="_blank" rel="noopener">https://github.com/mattn/go-generics-example</a>
+</li>
+</ul>
 ]]></content>
 		</item>
 		

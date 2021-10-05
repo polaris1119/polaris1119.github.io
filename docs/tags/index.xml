@@ -7,11 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Tue, 28 Sep 2021 23:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 05 Oct 2021 22:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Fiber</title>
+      <link>https://polarisxu.studygolang.com/tags/fiber/</link>
+      <pubDate>Tue, 05 Oct 2021 22:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/tags/fiber/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>Go</title>
       <link>https://polarisxu.studygolang.com/tags/go/</link>
-      <pubDate>Tue, 28 Sep 2021 23:30:00 +0800</pubDate>
+      <pubDate>Tue, 05 Oct 2021 22:30:00 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/tags/go/</guid>
       <description></description>
@@ -41,15 +50,6 @@
       <pubDate>Wed, 22 Sep 2021 22:00:00 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/tags/gui/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Fiber</title>
-      <link>https://polarisxu.studygolang.com/tags/fiber/</link>
-      <pubDate>Tue, 21 Sep 2021 22:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/tags/fiber/</guid>
       <description></description>
     </item>
     

@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Tue, 21 Sep 2021 22:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/fiber/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 05 Oct 2021 22:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/fiber/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go Fiber 框架系列教程 03：中间件</title>
+      <link>https://polarisxu.studygolang.com/posts/go/fiber/go-fiber-basic-tutorial03/</link>
+      <pubDate>Tue, 05 Oct 2021 22:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/fiber/go-fiber-basic-tutorial03/</guid>
+      <description>大家好，我是 polarisxu。 Middleware（中间件） 是一个 Web 框架重要的组成部分，通过这种模式，可以方便的扩展框架的功能。目前 Go Web 框架都提供了 Middleware 的功能，也有众多可用的 Middleware。 Fiber 也是如此，官方提供了众多的 Middleware，方便用户直接使用。本文先看看 Fiber 中 Middleware 的定义，然后介绍 Fiber 中的几个 Middleware，最后自己实现一个 Middlewa</description>
+    </item>
+    
     <item>
       <title>Go Fiber 框架系列教程 02：详解相关 API 的使用</title>
       <link>https://polarisxu.studygolang.com/posts/go/fiber/go-fiber-basic-tutorial02/</link>

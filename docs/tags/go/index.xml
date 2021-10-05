@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Tue, 28 Sep 2021 23:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 05 Oct 2021 22:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go Fiber 框架系列教程 03：中间件</title>
+      <link>https://polarisxu.studygolang.com/posts/go/fiber/go-fiber-basic-tutorial03/</link>
+      <pubDate>Tue, 05 Oct 2021 22:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/fiber/go-fiber-basic-tutorial03/</guid>
+      <description>大家好，我是 polarisxu。 Middleware（中间件） 是一个 Web 框架重要的组成部分，通过这种模式，可以方便的扩展框架的功能。目前 Go Web 框架都提供了 Middleware 的功能，也有众多可用的 Middleware。 Fiber 也是如此，官方提供了众多的 Middleware，方便用户直接使用。本文先看看 Fiber 中 Middleware 的定义，然后介绍 Fiber 中的几个 Middleware，最后自己实现一个 Middlewa</description>
+    </item>
+    
     <item>
       <title>Go泛型系列：提前掌握Go泛型的基本使用</title>
       <link>https://polarisxu.studygolang.com/posts/go/generics/generics-basic/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/book/building-distributed-applications-in-gin/</guid>
       <description>大家好，我是 polarisxu。 有段时间没推荐新书了。最近看到一本书《Building Distributed Applications in Gin》，本书是学习如何使用 Gin 中的各种功能构建大规模分布式应用程序的有效指南。出版日期：2021 年 7 月 23 日，英文版（目前肯定没有中文版）。购买地址：https://www.packtpub.com/web-development/building-distribute</description>
-    </item>
-    
-    <item>
-      <title>Go 官网要变天。。。</title>
-      <link>https://polarisxu.studygolang.com/posts/go/dynamic/golang.org-change/</link>
-      <pubDate>Tue, 24 Aug 2021 22:00:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/dynamic/golang.org-change/</guid>
-      <description>大家好，我是 polarisxu。 Golang 官网，有些人可能从来没有访问过，因为国内一般访问不了。但我经常和「它」打交道，因为 Go 语言中文网很早就对 Go 官网做了一个镜像。最近 Go1.17 发布了，利用周末，我把 Go 官网镜像升级了下，但折腾了很久。。。发现 Go 官网要「变天」了！ 之前写过一篇文章：《回顾 Go 官网的演变史》 ，没看的可以看看。 01 这次又变了 如果你访问了 Go 官网（golang.org），</description>
     </item>
     
   </channel>
