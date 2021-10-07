@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Tue, 05 Oct 2021 22:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/fiber/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 06 Oct 2021 22:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/fiber/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go Fiber 框架系列教程 04：测试应用</title>
+      <link>https://polarisxu.studygolang.com/posts/go/fiber/go-fiber-basic-tutorial04/</link>
+      <pubDate>Wed, 06 Oct 2021 22:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/fiber/go-fiber-basic-tutorial04/</guid>
+      <description>大家好，我是 polarisxu。 实际项目中，大家经常不会对 Web API 写单元测试。Go 标准库不仅有 testing 包支持普通单元测试，还有 net/http/httptest 包支持 HTTP 的测试。 本文虽然是测试 Fiber 应用程序，但对其他的框架也适用。 01 如何测试 Web API 的单元测试如何进行？ 本节介绍的测试方法主要是验证请求返回的 HTTP 状态码是否符合预期。 如果返回的状态码是 200 OK，那么表示这个测试用例成功（Pass），如果返回的状态码是 404</description>
+    </item>
+    
     <item>
       <title>Go Fiber 框架系列教程 03：中间件</title>
       <link>https://polarisxu.studygolang.com/posts/go/fiber/go-fiber-basic-tutorial03/</link>

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#fcfcfc">
+	<meta name="msapplication-TileColor" content="#fcfcfc">
+<meta itemprop="name" content="假期结束，推荐 2 本 manning 出的 Go 图书">
+<meta itemprop="description" content="大家好，我是 polarisxu。 国庆假期结束了，大家玩的开心吗？！ 该收收心，认真学习工作了~ manning 最近有 2 本 Go 相关图书，推荐给大家。 01 Build an Orchestrator in Go 本书希望带领大家通过使用 Go 和 Docker API 构建自己的编排系统，深入了解 Kubernetes 和其他编排系统。具体来说包括： 了解构成任何编排系统的组件 将容器安排到工作节点 使用 Docker API 启动和停止容器 使用简单的 API 管理工作节点集群 使用从 cutting-edge Google Borg 研究论文中获取的算法"><meta itemprop="datePublished" content="2021-10-07T19:30:00+08:00" />
+<meta itemprop="dateModified" content="2021-10-07T19:30:00+08:00" />
+<meta itemprop="wordCount" content="1062">
+<meta itemprop="keywords" content="Go,图书," /><meta property="og:title" content="假期结束，推荐 2 本 manning 出的 Go 图书" />
+<meta property="og:description" content="大家好，我是 polarisxu。 国庆假期结束了，大家玩的开心吗？！ 该收收心，认真学习工作了~ manning 最近有 2 本 Go 相关图书，推荐给大家。 01 Build an Orchestrator in Go 本书希望带领大家通过使用 Go 和 Docker API 构建自己的编排系统，深入了解 Kubernetes 和其他编排系统。具体来说包括： 了解构成任何编排系统的组件 将容器安排到工作节点 使用 Docker API 启动和停止容器 使用简单的 API 管理工作节点集群 使用从 cutting-edge Google Borg 研究论文中获取的算法" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/book/20211007-manning-books/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-10-07T19:30:00+08:00" />
+<meta property="article:modified_time" content="2021-10-07T19:30:00+08:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="假期结束，推荐 2 本 manning 出的 Go 图书"/>
+<meta name="twitter:description" content="大家好，我是 polarisxu。 国庆假期结束了，大家玩的开心吗？！ 该收收心，认真学习工作了~ manning 最近有 2 本 Go 相关图书，推荐给大家。 01 Build an Orchestrator in Go 本书希望带领大家通过使用 Go 和 Docker API 构建自己的编排系统，深入了解 Kubernetes 和其他编排系统。具体来说包括： 了解构成任何编排系统的组件 将容器安排到工作节点 使用 Docker API 启动和停止容器 使用简单的 API 管理工作节点集群 使用从 cutting-edge Google Borg 研究论文中获取的算法"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>假期结束，推荐 2 本 manning 出的 Go 图书</title>
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
+	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/styles.css">
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://polarisxu.studygolang.com">polarisxu</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+  <a href="https://polarisxu.studygolang.com/">首页</a>
+  <a href="https://polarisxu.studygolang.com/categories/echo%E7%B3%BB%E5%88%97/">Echo系列</a>
+  <a href="https://polarisxu.studygolang.com/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a>
+  <a href="https://polarisxu.studygolang.com/posts/">归档</a>
+  <a href="https://polarisxu.studygolang.com/about/">关于</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<button id="toc-btn" class="hdr-btn desktop-only-ib" title="目录"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3" y2="6"></line><line x1="3" y1="12" x2="3" y2="12"></line><line x1="3" y1="18" x2="3" y2="18"></line></svg></button><span class="hdr-social hide-in-mobile"><a href="https://github.com/polaris1119" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a><a href="https://twitter.com/polaris1119" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="菜单"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://polarisxu.studygolang.com/">首页</a></li>
+			<li><a href="https://polarisxu.studygolang.com/categories/echo%E7%B3%BB%E5%88%97/">Echo系列</a></li>
+			<li><a href="https://polarisxu.studygolang.com/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a></li>
+			<li><a href="https://polarisxu.studygolang.com/posts/">归档</a></li>
+			<li><a href="https://polarisxu.studygolang.com/about/">关于</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Oct 7, 2021</span></div>
+				<h1>假期结束，推荐 2 本 manning 出的 Go 图书</h1>
+			</header>
+			<div class="content">
+				<p>大家好，我是 polarisxu。</p>
+<p>国庆假期结束了，大家玩的开心吗？！</p>
+<p>该收收心，认真学习工作了~</p>
+<p>manning 最近有 2 本 Go 相关图书，推荐给大家。</p>
+<h2 id="01-build-an-orchestrator-in-go">01 Build an Orchestrator in Go<a href="#01-build-an-orchestrator-in-go" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>本书希望带领大家通过使用 Go 和 Docker API 构建自己的编排系统，深入了解 Kubernetes 和其他编排系统。具体来说包括：</p>
+<ul>
+<li>了解构成任何编排系统的组件</li>
+<li>将容器安排到工作节点</li>
+<li>使用 Docker API 启动和停止容器</li>
+<li>使用简单的 API 管理工作节点集群</li>
+<li>使用从 cutting-edge Google Borg 研究论文中获取的算法</li>
+<li>揭开像 Kubernetes 和 Nomad 这样的编排系统的神秘面纱</li>
+</ul>
+<p>像 Kubernetes 这样的编排系统协调其他软件子系统和服务，以创建一个完整的组织系统。虽然编排工具以复杂性著称，但它们的设计有些适用于软件开发的许多方面的重要模式。本书通过指导你使用 Go SDK 设计和实现自己的编排框架，揭示编排框架的内部运作原理。在创建自己的编排框架时，将提高你对 Kubernetes 及其在分布式系统设计中的作用的理解。</p>
+<p>该书前三章可以免费阅读：<a href="https://livebook.manning.com/book/build-an-orchestration-system-from-scratch/chapter-1/v-1/" target="_blank" rel="noopener">https://livebook.manning.com/book/build-an-orchestration-system-from-scratch/chapter-1/v-1/</a>
+。当然也可以购买电子版：<a href="https://www.manning.com/books/build-an-orchestrator-in-go?query=go" target="_blank" rel="noopener">https://www.manning.com/books/build-an-orchestrator-in-go?query=go</a>
+。</p>
+<p><p class="md__image">
+  <img src="../imgs/Build-an-Orchestrator-in-Go.png"
+    alt=""  />
+</p>
+</p>
+<h2 id="02-continuous-delivery-in-go">02 Continuous Delivery in Go<a href="#02-continuous-delivery-in-go" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>如何有效地将 Go 程序交付给客户？本书这个持续交付的实用指南向你展示了如何快速建立一个自动化管道，以提高你的测试、代码质量和最终产品。具体包括的内容有：</p>
+<ul>
+<li>根据客户的反馈开发更好的软件</li>
+<li>创建将反馈转化为功能的开发管道</li>
+<li>通过管道自动化减少在部署代码之前验证代码的错误</li>
+<li>建立卓越代码质量的连续测试</li>
+<li>无服务器、基于容器和基于服务器的部署</li>
+<li>以具有成本效益的方式扩展部署</li>
+<li>提供持续改进的文化</li>
+</ul>
+<p>本书是一本基于 Go 的软件交互的实践指南。以强大的 Go 编程语言为例，你将学习如何建立管道，通过生产和部署无缝地运送（ferry）你的项目。将连续交付和持续集成的理论付诸实践，并发现关于团队构建自动化和灵活响应客户需求的即时实用指导。</p>
+<p>该书前四章可以免费阅读：<a href="https://livebook.manning.com/book/continuous-delivery-in-go/chapter-1" target="_blank" rel="noopener">https://livebook.manning.com/book/continuous-delivery-in-go/chapter-1</a>
+。当然也可以购买电子版：<a href="https://www.manning.com/books/continuous-delivery-in-go?query=go" target="_blank" rel="noopener">https://www.manning.com/books/continuous-delivery-in-go?query=go</a>
+。</p>
+<p><p class="md__image">
+  <img src="../imgs/Continuous-Delivery-in-Go.png"
+    alt=""  />
+</p>
+</p>
+<h2 id="03-总结">03 总结<a href="#03-总结" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>这两本书可能不适合所有人，更偏向运维方向，或者是 Devops。当然，如果你对这方面感兴趣，可以关注下。这两本书目前都只是 MEAP 版本，正式版本需要等到 2022 年。</p>
+
+			</div><div class="content">
+	<br>
+	<img src="https://static.studygolang.com/static/img/polarisxu-qrcode-soso-s.png">
+</div>
+
+<div class="related-posts thin">
+	<h2>相关推荐</h2>
+	<ul>
+	
+	<li><a href="/posts/go/book/100-go-mistakes/">这本 Go 新书挺期待的：100 个常见错误</a></li>
+	
+	<li><a href="/posts/go/book/practical-go-lessons-decline/">Go图书翻译：一个好消息，一个坏消息</a></li>
+	
+	<li><a href="/posts/go/book/practical-go-lessons-translate/">不怕烂尾！决定组织翻译这本 Go 图书</a></li>
+	
+	<li><a href="/posts/go/book/practical-go-lessons/">一本花了2.5年写成的Go免费在线图书</a></li>
+	
+	<li><a href="/posts/go/book/go-with-the-domain/">我又来推荐免费 Go 新书了：一本用 Go 讲架构的书</a></li>
+	
+	</ul>
+</div>
+
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://polarisxu.studygolang.com/tags/go">Go</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/%E5%9B%BE%E4%B9%A6">图书</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1062 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2021-10-07 19:30 &#43;0800</p>
+			</footer>
+		</article>
+		<aside id="toc">
+			<div class="toc-title">目录</div>
+			<nav id="TableOfContents">
+  <ul>
+    <li><a href="#01-build-an-orchestrator-in-go">01 Build an Orchestrator in Go</a></li>
+    <li><a href="#02-continuous-delivery-in-go">02 Continuous Delivery in Go</a></li>
+    <li><a href="#03-总结">03 总结</a></li>
+  </ul>
+</nav>
+		</aside>
+		<div class="post-nav thin">
+			<a class="prev-post" href="https://polarisxu.studygolang.com/posts/go/fiber/go-fiber-basic-tutorial04/">
+				<span class="post-nav-label">旧&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>Go Fiber 框架系列教程 04：测试应用</span>
+			</a>
+		</div>
+		<div id="comments" class="thin"><script src="https://utteranc.es/client.js"
+	repo="polaris1119/polarisxu"
+	issue-term="pathname"
+	theme="github-light"
+	crossorigin="anonymous"
+	async>
+</script>
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2019 - 2021 <a href="https://polarisxu.studygolang.com">polarisxu</a> &#183; <a href="https://beian.miit.gov.cn/">京ICP备14030343号-1</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://polarisxu.studygolang.com/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+		<span id="busuanzi_container" style="color: #666;">
+			本站总访客数/访问量：<span id="busuanzi_value_site_uv"></span>/<span id="busuanzi_value_site_pv"></span>
+		</span>
+	</footer>
+
+
+
+	<script src="https://polarisxu.studygolang.com/js/main.min.4eaa15feccc672488716f0338ac605e08c7553ce0ce175e13fa00a873636bf98.js" integrity="sha256-TqoV/szGckiHFvAzisYF4Ix1U84M4XXhP6AKhzY2v5g=" crossorigin="anonymous"></script>
+	<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?224c227cd9239761ec770bc8c1fb134c";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+</body>
+
+</html>

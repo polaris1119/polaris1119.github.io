@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Tue, 29 Jun 2021 22:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/%E5%9B%BE%E4%B9%A6/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 07 Oct 2021 19:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/%E5%9B%BE%E4%B9%A6/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>假期结束，推荐 2 本 manning 出的 Go 图书</title>
+      <link>https://polarisxu.studygolang.com/posts/go/book/20211007-manning-books/</link>
+      <pubDate>Thu, 07 Oct 2021 19:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/book/20211007-manning-books/</guid>
+      <description>大家好，我是 polarisxu。 国庆假期结束了，大家玩的开心吗？！ 该收收心，认真学习工作了~ manning 最近有 2 本 Go 相关图书，推荐给大家。 01 Build an Orchestrator in Go 本书希望带领大家通过使用 Go 和 Docker API 构建自己的编排系统，深入了解 Kubernetes 和其他编排系统。具体来说包括： 了解构成任何编排系统的组件 将容器安排到工作节点 使用 Docker API 启动和停止容器 使用简单的 API 管理工作节点集群 使用从 cutting-edge Google Borg 研究论文中获取的算法</description>
+    </item>
+    
     <item>
       <title>这本 Go 新书挺期待的：100 个常见错误</title>
       <link>https://polarisxu.studygolang.com/posts/go/book/100-go-mistakes/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/book/2021-go-book/</guid>
       <description>大家好，我是站长 polarisxu。 大家觉得 Go 的图书多吗？其实是很少的。今天聊下近期将要出版的基本 Go 图书。 01 《Go语言设计与实现》 这是一本 Go 语言进阶图书。作者历时两年，在他的网站可以免费阅读：https://draveness.me/golang/ 。他朋友圈透露，该书已经交稿，应该很快会出版。这本书绝对是 2021 年度最值得期待的 Go 图书。 作为支持，书出版时，我会送出</description>
-    </item>
-    
-    <item>
-      <title>祝贺 Go 开源 11 周年</title>
-      <link>https://polarisxu.studygolang.com/posts/go/dynamic/go-opensource-11-years/</link>
-      <pubDate>Tue, 10 Nov 2020 09:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/dynamic/go-opensource-11-years/</guid>
-      <description>题图来自《了不起的程序员》 今天是 Go 语言开源 11 周年。有些人可能不太知道，简单回顾下 Go 的历史。 2007 年 Rob Pike, Robert Griesemer 和 Ken Thompson 一起创建了 Go 语言。从代码提交记录看，2008 年 3 月 3 日有了 Go 最初的规范 。 2009 年 11 月 10 日，Go 语言以开放源代码的方式向全球发布，当年获得了 TIOBE 年度编程语言称号； 2011 年 3 月 16 日，Go 语言的第一个稳定版本 r56 发布； 2012 年 3 月 28 日，Go 语言的第一个正式版本 Go1 发布，并承诺</description>
     </item>
     
   </channel>

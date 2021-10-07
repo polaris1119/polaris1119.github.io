@@ -7,7 +7,25 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Tue, 05 Oct 2021 22:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 07 Oct 2021 19:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>假期结束，推荐 2 本 manning 出的 Go 图书</title>
+      <link>https://polarisxu.studygolang.com/posts/go/book/20211007-manning-books/</link>
+      <pubDate>Thu, 07 Oct 2021 19:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/book/20211007-manning-books/</guid>
+      <description>大家好，我是 polarisxu。 国庆假期结束了，大家玩的开心吗？！ 该收收心，认真学习工作了~ manning 最近有 2 本 Go 相关图书，推荐给大家。 01 Build an Orchestrator in Go 本书希望带领大家通过使用 Go 和 Docker API 构建自己的编排系统，深入了解 Kubernetes 和其他编排系统。具体来说包括： 了解构成任何编排系统的组件 将容器安排到工作节点 使用 Docker API 启动和停止容器 使用简单的 API 管理工作节点集群 使用从 cutting-edge Google Borg 研究论文中获取的算法</description>
+    </item>
+    
+    <item>
+      <title>Go Fiber 框架系列教程 04：测试应用</title>
+      <link>https://polarisxu.studygolang.com/posts/go/fiber/go-fiber-basic-tutorial04/</link>
+      <pubDate>Wed, 06 Oct 2021 22:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/fiber/go-fiber-basic-tutorial04/</guid>
+      <description>大家好，我是 polarisxu。 实际项目中，大家经常不会对 Web API 写单元测试。Go 标准库不仅有 testing 包支持普通单元测试，还有 net/http/httptest 包支持 HTTP 的测试。 本文虽然是测试 Fiber 应用程序，但对其他的框架也适用。 01 如何测试 Web API 的单元测试如何进行？ 本节介绍的测试方法主要是验证请求返回的 HTTP 状态码是否符合预期。 如果返回的状态码是 200 OK，那么表示这个测试用例成功（Pass），如果返回的状态码是 404</description>
+    </item>
+    
     <item>
       <title>Go Fiber 框架系列教程 03：中间件</title>
       <link>https://polarisxu.studygolang.com/posts/go/fiber/go-fiber-basic-tutorial03/</link>
@@ -78,24 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/dynamic/go-1-17-new-features-added-to-testing/</guid>
       <description>大家好，我是 polarisxu。 今天介绍下 Go1.17 中的特性：testing 包的一些变化。先看 Release Notes 关于 testing 变化的描述： Added a new testing flag -shuffle which controls the execution order of tests and benchmarks. The new T.Setenv and B.Setenv methods support setting an environment variable for the duration of the test or benchmark. 关于 shuffle 这个 flag，1.17 还未发布时，我就写过文章介绍：Go1.17这个新特性竟然是6年前提出来的 。关于它的作用，记住关键一点：我们写测试时，测试之间别相互依赖，应该是独立的。 本文着</description>
-    </item>
-    
-    <item>
-      <title>StackOverflow 上关于 Go select 死锁的问题</title>
-      <link>https://polarisxu.studygolang.com/posts/go/action/chained-channel-operations-in-a-single-select-case/</link>
-      <pubDate>Mon, 30 Aug 2021 22:10:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/action/chained-channel-operations-in-a-single-select-case/</guid>
-      <description>大家好，我是 polarisxu。 前两天，火丁笔记发了一篇文章：《一个 select 死锁问题》 ，又是一个小细节。我将其中的问题改一下，更好理解： package main import &amp;#34;sync&amp;#34; func main() { var wg sync.WaitGroup foo := make(chan int) bar := make(chan int) wg.Add(1) go func() { defer wg.Done() select { case foo &amp;lt;- &amp;lt;-bar: default: println(&amp;#34;default&amp;#34;) } }() wg.Wait() } 按常规理解，go func 中的 select 应该执行 default 分支，程序正常运行。但结果却不是，而是死锁。可以通过该链接测试：https://play.studygolang.com/p</description>
-    </item>
-    
-    <item>
-      <title>新书推荐：用 Gin 框架构建分布式应用</title>
-      <link>https://polarisxu.studygolang.com/posts/go/book/building-distributed-applications-in-gin/</link>
-      <pubDate>Wed, 25 Aug 2021 22:00:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/book/building-distributed-applications-in-gin/</guid>
-      <description>大家好，我是 polarisxu。 有段时间没推荐新书了。最近看到一本书《Building Distributed Applications in Gin》，本书是学习如何使用 Gin 中的各种功能构建大规模分布式应用程序的有效指南。出版日期：2021 年 7 月 23 日，英文版（目前肯定没有中文版）。购买地址：https://www.packtpub.com/web-development/building-distribute</description>
     </item>
     
   </channel>

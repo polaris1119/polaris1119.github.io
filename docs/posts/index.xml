@@ -6,8 +6,179 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en</language>
 		<copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-		<lastBuildDate>Tue, 05 Oct 2021 22:30:00 +0800</lastBuildDate>
+		<lastBuildDate>Thu, 07 Oct 2021 19:30:00 +0800</lastBuildDate>
 		<atom:link href="https://polarisxu.studygolang.com/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>假期结束，推荐 2 本 manning 出的 Go 图书</title>
+			<link>https://polarisxu.studygolang.com/posts/go/book/20211007-manning-books/</link>
+			<pubDate>Thu, 07 Oct 2021 19:30:00 +0800</pubDate>
+			
+			<guid>https://polarisxu.studygolang.com/posts/go/book/20211007-manning-books/</guid>
+			<description>大家好，我是 polarisxu。 国庆假期结束了，大家玩的开心吗？！ 该收收心，认真学习工作了~ manning 最近有 2 本 Go 相关图书，推荐给大家。 01 Build an Orchestrator in Go 本书希望带领大家通过使用 Go 和 Docker API 构建自己的编排系统，深入了解 Kubernetes 和其他编排系统。具体来说包括： 了解构成任何编排系统的组件 将容器安排到工作节点 使用 Docker API 启动和停止容器 使用简单的 API 管理工作节点集群 使用从 cutting-edge Google Borg 研究论文中获取的算法</description>
+			<content type="html"><![CDATA[<p>大家好，我是 polarisxu。</p>
+<p>国庆假期结束了，大家玩的开心吗？！</p>
+<p>该收收心，认真学习工作了~</p>
+<p>manning 最近有 2 本 Go 相关图书，推荐给大家。</p>
+<h2 id="01-build-an-orchestrator-in-go">01 Build an Orchestrator in Go</h2>
+<p>本书希望带领大家通过使用 Go 和 Docker API 构建自己的编排系统，深入了解 Kubernetes 和其他编排系统。具体来说包括：</p>
+<ul>
+<li>了解构成任何编排系统的组件</li>
+<li>将容器安排到工作节点</li>
+<li>使用 Docker API 启动和停止容器</li>
+<li>使用简单的 API 管理工作节点集群</li>
+<li>使用从 cutting-edge Google Borg 研究论文中获取的算法</li>
+<li>揭开像 Kubernetes 和 Nomad 这样的编排系统的神秘面纱</li>
+</ul>
+<p>像 Kubernetes 这样的编排系统协调其他软件子系统和服务，以创建一个完整的组织系统。虽然编排工具以复杂性著称，但它们的设计有些适用于软件开发的许多方面的重要模式。本书通过指导你使用 Go SDK 设计和实现自己的编排框架，揭示编排框架的内部运作原理。在创建自己的编排框架时，将提高你对 Kubernetes 及其在分布式系统设计中的作用的理解。</p>
+<p>该书前三章可以免费阅读：<a href="https://livebook.manning.com/book/build-an-orchestration-system-from-scratch/chapter-1/v-1/" target="_blank" rel="noopener">https://livebook.manning.com/book/build-an-orchestration-system-from-scratch/chapter-1/v-1/</a>
+。当然也可以购买电子版：<a href="https://www.manning.com/books/build-an-orchestrator-in-go?query=go" target="_blank" rel="noopener">https://www.manning.com/books/build-an-orchestrator-in-go?query=go</a>
+。</p>
+<p><p class="md__image">
+  <img src="../imgs/Build-an-Orchestrator-in-Go.png"
+    alt=""  />
+</p>
+</p>
+<h2 id="02-continuous-delivery-in-go">02 Continuous Delivery in Go</h2>
+<p>如何有效地将 Go 程序交付给客户？本书这个持续交付的实用指南向你展示了如何快速建立一个自动化管道，以提高你的测试、代码质量和最终产品。具体包括的内容有：</p>
+<ul>
+<li>根据客户的反馈开发更好的软件</li>
+<li>创建将反馈转化为功能的开发管道</li>
+<li>通过管道自动化减少在部署代码之前验证代码的错误</li>
+<li>建立卓越代码质量的连续测试</li>
+<li>无服务器、基于容器和基于服务器的部署</li>
+<li>以具有成本效益的方式扩展部署</li>
+<li>提供持续改进的文化</li>
+</ul>
+<p>本书是一本基于 Go 的软件交互的实践指南。以强大的 Go 编程语言为例，你将学习如何建立管道，通过生产和部署无缝地运送（ferry）你的项目。将连续交付和持续集成的理论付诸实践，并发现关于团队构建自动化和灵活响应客户需求的即时实用指导。</p>
+<p>该书前四章可以免费阅读：<a href="https://livebook.manning.com/book/continuous-delivery-in-go/chapter-1" target="_blank" rel="noopener">https://livebook.manning.com/book/continuous-delivery-in-go/chapter-1</a>
+。当然也可以购买电子版：<a href="https://www.manning.com/books/continuous-delivery-in-go?query=go" target="_blank" rel="noopener">https://www.manning.com/books/continuous-delivery-in-go?query=go</a>
+。</p>
+<p><p class="md__image">
+  <img src="../imgs/Continuous-Delivery-in-Go.png"
+    alt=""  />
+</p>
+</p>
+<h2 id="03-总结">03 总结</h2>
+<p>这两本书可能不适合所有人，更偏向运维方向，或者是 Devops。当然，如果你对这方面感兴趣，可以关注下。这两本书目前都只是 MEAP 版本，正式版本需要等到 2022 年。</p>
+]]></content>
+		</item>
+		
+		<item>
+			<title>Go Fiber 框架系列教程 04：测试应用</title>
+			<link>https://polarisxu.studygolang.com/posts/go/fiber/go-fiber-basic-tutorial04/</link>
+			<pubDate>Wed, 06 Oct 2021 22:30:00 +0800</pubDate>
+			
+			<guid>https://polarisxu.studygolang.com/posts/go/fiber/go-fiber-basic-tutorial04/</guid>
+			<description>大家好，我是 polarisxu。 实际项目中，大家经常不会对 Web API 写单元测试。Go 标准库不仅有 testing 包支持普通单元测试，还有 net/http/httptest 包支持 HTTP 的测试。 本文虽然是测试 Fiber 应用程序，但对其他的框架也适用。 01 如何测试 Web API 的单元测试如何进行？ 本节介绍的测试方法主要是验证请求返回的 HTTP 状态码是否符合预期。 如果返回的状态码是 200 OK，那么表示这个测试用例成功（Pass），如果返回的状态码是 404</description>
+			<content type="html"><![CDATA[<p>大家好，我是 polarisxu。</p>
+<p>实际项目中，大家经常不会对 Web API 写单元测试。Go 标准库不仅有 testing 包支持普通单元测试，还有 net/http/httptest 包支持 HTTP 的测试。</p>
+<p>本文虽然是测试 Fiber 应用程序，但对其他的框架也适用。</p>
+<h2 id="01-如何测试">01 如何测试</h2>
+<p>Web API 的单元测试如何进行？</p>
+<p>本节介绍的测试方法主要是验证请求返回的 HTTP 状态码是否符合预期。</p>
+<p>如果返回的状态码是 200 OK，那么表示这个测试用例成功（Pass），如果返回的状态码是 404 Not Found，那么表示这个测试用例失败（Fail）。所以，要求请求返回正确的状态码。</p>
+<h2 id="02-vscode-生成测试">02 VSCode 生成测试</h2>
+<p>VSCode 安装了 Go Team 的 Go 插件后，可以一键生成单元测试。</p>
+<p>在某个函数上右键，出现的菜单中会有 <code>Generate Unit Tests For Function</code>：</p>
+<p><p class="md__image">
+  <img src="../imgs/fiber04-01.png"
+    alt=""  />
+</p>
+</p>
+<p>点击它会自动创建 main_test.go 文件，并生成类似下面的代码：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="s">&#34;testing&#34;</span>
+
+<span class="kd">func</span> <span class="nf">Test_main</span><span class="p">(</span><span class="nx">t</span> <span class="o">*</span><span class="nx">testing</span><span class="p">.</span><span class="nx">T</span><span class="p">)</span> <span class="p">{</span>
+	<span class="nx">tests</span> <span class="o">:=</span> <span class="p">[]</span><span class="kd">struct</span> <span class="p">{</span>
+		<span class="nx">name</span> <span class="kt">string</span>
+	<span class="p">}{</span>
+		<span class="c1">// TODO: Add test cases.
+</span><span class="c1"></span>	<span class="p">}</span>
+	<span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">tt</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">tests</span> <span class="p">{</span>
+		<span class="nx">t</span><span class="p">.</span><span class="nf">Run</span><span class="p">(</span><span class="nx">tt</span><span class="p">.</span><span class="nx">name</span><span class="p">,</span> <span class="kd">func</span><span class="p">(</span><span class="nx">t</span> <span class="o">*</span><span class="nx">testing</span><span class="p">.</span><span class="nx">T</span><span class="p">)</span> <span class="p">{</span>
+			<span class="nf">main</span><span class="p">()</span>
+		<span class="p">})</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><h2 id="03-动手写单元测试">03 动手写单元测试</h2>
+<p>动手之前，需要先介绍下 Fiber 中专门针对测试提供的方法：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// Test is used for internal debugging by passing a *http.Request.
+</span><span class="c1">// Timeout is optional and defaults to 1s, -1 will disable it completely.
+</span><span class="c1"></span><span class="kd">func</span> <span class="p">(</span><span class="nx">app</span> <span class="o">*</span><span class="nx">App</span><span class="p">)</span> <span class="nf">Test</span><span class="p">(</span><span class="nx">req</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">,</span> <span class="nx">msTimeout</span> <span class="o">...</span><span class="kt">int</span><span class="p">)</span> <span class="p">(</span><span class="nx">resp</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Response</span><span class="p">,</span> <span class="nx">err</span> <span class="kt">error</span><span class="p">)</span>
+</code></pre></div><p>该方法接收一个 <code>*http.Request</code>，返回 <code>*http.Response</code>，通过这个 Response 可以获得 HTTP StatusCode。</p>
+<p>待测试的程序如下：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// main.go
+</span><span class="c1"></span><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+	<span class="s">&#34;github.com/gofiber/fiber/v2&#34;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nf">setupRoutes</span><span class="p">(</span><span class="nx">app</span> <span class="o">*</span><span class="nx">fiber</span><span class="p">.</span><span class="nx">App</span><span class="p">)</span> <span class="p">{</span>
+	<span class="nx">app</span><span class="p">.</span><span class="nf">Get</span><span class="p">(</span><span class="s">&#34;/hello&#34;</span><span class="p">,</span> <span class="kd">func</span><span class="p">(</span><span class="nx">ctx</span> <span class="o">*</span><span class="nx">fiber</span><span class="p">.</span><span class="nx">Ctx</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="nx">ctx</span><span class="p">.</span><span class="nf">SendString</span><span class="p">(</span><span class="s">&#34;Hello World!&#34;</span><span class="p">)</span>
+	<span class="p">})</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="nx">app</span> <span class="o">:=</span> <span class="nx">fiber</span><span class="p">.</span><span class="nf">New</span><span class="p">()</span>
+	<span class="nf">setupRoutes</span><span class="p">(</span><span class="nx">app</span><span class="p">)</span>
+	<span class="nx">app</span><span class="p">.</span><span class="nf">Listen</span><span class="p">(</span><span class="s">&#34;:3000&#34;</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div><p>测试程序如下：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+	<span class="s">&#34;net/http/httptest&#34;</span>
+	<span class="s">&#34;testing&#34;</span>
+
+	<span class="s">&#34;github.com/gofiber/fiber/v2&#34;</span>
+	<span class="s">&#34;github.com/stretchr/testify/assert&#34;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nf">TestHelloRoute</span><span class="p">(</span><span class="nx">t</span> <span class="o">*</span><span class="nx">testing</span><span class="p">.</span><span class="nx">T</span><span class="p">)</span> <span class="p">{</span>
+	<span class="nx">tests</span> <span class="o">:=</span> <span class="p">[]</span><span class="kd">struct</span> <span class="p">{</span>
+		<span class="nx">description</span>  <span class="kt">string</span>
+		<span class="nx">route</span>        <span class="kt">string</span> <span class="c1">// route path to test
+</span><span class="c1"></span>		<span class="nx">expectedCode</span> <span class="kt">int</span>    <span class="c1">// expected HTTP status code
+</span><span class="c1"></span>	<span class="p">}{</span>
+		<span class="p">{</span>
+			<span class="nx">description</span><span class="p">:</span>  <span class="s">&#34;get HTTP status 200&#34;</span><span class="p">,</span>
+			<span class="nx">route</span><span class="p">:</span>        <span class="s">&#34;/hello&#34;</span><span class="p">,</span>
+			<span class="nx">expectedCode</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span>
+		<span class="p">},</span>
+		<span class="p">{</span>
+			<span class="nx">description</span><span class="p">:</span>  <span class="s">&#34;get HTTP status 404, when route is not exists&#34;</span><span class="p">,</span>
+			<span class="nx">route</span><span class="p">:</span>        <span class="s">&#34;/notfound&#34;</span><span class="p">,</span>
+			<span class="nx">expectedCode</span><span class="p">:</span> <span class="mi">404</span><span class="p">,</span>
+		<span class="p">},</span>
+	<span class="p">}</span>
+
+	<span class="nx">app</span> <span class="o">:=</span> <span class="nx">fiber</span><span class="p">.</span><span class="nf">New</span><span class="p">()</span>
+
+	<span class="nf">setupRoutes</span><span class="p">(</span><span class="nx">app</span><span class="p">)</span>
+
+	<span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">test</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">tests</span> <span class="p">{</span>
+		<span class="c1">// 利用 httptest 包生成 request
+</span><span class="c1"></span>		<span class="nx">req</span> <span class="o">:=</span> <span class="nx">httptest</span><span class="p">.</span><span class="nf">NewRequest</span><span class="p">(</span><span class="s">&#34;GET&#34;</span><span class="p">,</span> <span class="nx">test</span><span class="p">.</span><span class="nx">route</span><span class="p">,</span> <span class="kc">nil</span><span class="p">)</span>
+		<span class="nx">resp</span><span class="p">,</span> <span class="nx">_</span> <span class="o">:=</span> <span class="nx">app</span><span class="p">.</span><span class="nf">Test</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+		<span class="nx">assert</span><span class="p">.</span><span class="nf">Equalf</span><span class="p">(</span><span class="nx">t</span><span class="p">,</span> <span class="nx">test</span><span class="p">.</span><span class="nx">expectedCode</span><span class="p">,</span> <span class="nx">resp</span><span class="p">.</span><span class="nx">StatusCode</span><span class="p">,</span> <span class="nx">test</span><span class="p">.</span><span class="nx">description</span><span class="p">)</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><p>我们还用了 <code>github.com/stretchr/testify</code> 库，这是一个辅助测试的库，assert 是它的子包，用于进行断言。</p>
+<p>然后运行如下命令测试：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ go <span class="nb">test</span> -v .
+<span class="o">===</span> RUN   TestHelloRoute
+--- PASS: TestHelloRoute <span class="o">(</span>0.00s<span class="o">)</span>
+PASS
+ok  	github.com/polaris1119/fiber-example
+</code></pre></div><h2 id="04-总结">04 总结</h2>
+<p>本文从 HTTP 状态码的维度测试 Web API，保证 API 大的逻辑正确，但不包括业务逻辑相关的测试。</p>
+]]></content>
+		</item>
 		
 		<item>
 			<title>Go Fiber 框架系列教程 03：中间件</title>
