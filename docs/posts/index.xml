@@ -32,7 +32,7 @@
 </ul>
 <p>像 Kubernetes 这样的编排系统协调其他软件子系统和服务，以创建一个完整的组织系统。虽然编排工具以复杂性著称，但它们的设计有些适用于软件开发的许多方面的重要模式。本书通过指导你使用 Go SDK 设计和实现自己的编排框架，揭示编排框架的内部运作原理。在创建自己的编排框架时，将提高你对 Kubernetes 及其在分布式系统设计中的作用的理解。</p>
 <p>该书前三章可以免费阅读：<a href="https://livebook.manning.com/book/build-an-orchestration-system-from-scratch/chapter-1/v-1/" target="_blank" rel="noopener">https://livebook.manning.com/book/build-an-orchestration-system-from-scratch/chapter-1/v-1/</a>
-。当然也可以购买电子版：<a href="https://www.manning.com/books/build-an-orchestrator-in-go?query=go" target="_blank" rel="noopener">https://www.manning.com/books/build-an-orchestrator-in-go?query=go</a>
+。当然也可以购买电子版：<a href="https://www.manning.com/books/build-an-orchestrator-in-go" target="_blank" rel="noopener">https://www.manning.com/books/build-an-orchestrator-in-go</a>
 。</p>
 <p><p class="md__image">
   <img src="../imgs/Build-an-Orchestrator-in-Go.png"
@@ -52,7 +52,7 @@
 </ul>
 <p>本书是一本基于 Go 的软件交互的实践指南。以强大的 Go 编程语言为例，你将学习如何建立管道，通过生产和部署无缝地运送（ferry）你的项目。将连续交付和持续集成的理论付诸实践，并发现关于团队构建自动化和灵活响应客户需求的即时实用指导。</p>
 <p>该书前四章可以免费阅读：<a href="https://livebook.manning.com/book/continuous-delivery-in-go/chapter-1" target="_blank" rel="noopener">https://livebook.manning.com/book/continuous-delivery-in-go/chapter-1</a>
-。当然也可以购买电子版：<a href="https://www.manning.com/books/continuous-delivery-in-go?query=go" target="_blank" rel="noopener">https://www.manning.com/books/continuous-delivery-in-go?query=go</a>
+。当然也可以购买电子版：<a href="https://www.manning.com/books/continuous-delivery-in-go" target="_blank" rel="noopener">https://www.manning.com/books/continuous-delivery-in-go</a>
 。</p>
 <p><p class="md__image">
   <img src="../imgs/Continuous-Delivery-in-Go.png"
