@@ -6,8 +6,209 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en</language>
 		<copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-		<lastBuildDate>Thu, 07 Oct 2021 19:30:00 +0800</lastBuildDate>
+		<lastBuildDate>Sat, 16 Oct 2021 22:30:00 +0800</lastBuildDate>
 		<atom:link href="https://polarisxu.studygolang.com/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>Go 这样设置版本号：我们的项目也可以</title>
+			<link>https://polarisxu.studygolang.com/posts/go/pkg/go-version/</link>
+			<pubDate>Sat, 16 Oct 2021 22:30:00 +0800</pubDate>
+			
+			<guid>https://polarisxu.studygolang.com/posts/go/pkg/go-version/</guid>
+			<description>大家好，我是 polarisxu。 项目中，特别是开源项目，会特别重视项目的版本号。有些项目，会把版本号写入源码中，每次升级都修改源码号。不过这不是特别好的方式。本文通过学习 Go 语言源码的处理方式来掌握它，并应用于自己的项目中。 本文基于 Go1.17，不同版本的实现细节可能有所不同 01 如何获取版本号 在 Go 语言项目中，如果要获取当前 Go 语言版本，只需要调用 runtime.V</description>
+			<content type="html"><![CDATA[<p>大家好，我是 polarisxu。</p>
+<p>项目中，特别是开源项目，会特别重视项目的版本号。有些项目，会把版本号写入源码中，每次升级都修改源码号。不过这不是特别好的方式。本文通过学习 Go 语言源码的处理方式来掌握它，并应用于自己的项目中。</p>
+<blockquote>
+<p>本文基于 Go1.17，不同版本的实现细节可能有所不同</p>
+</blockquote>
+<h2 id="01-如何获取版本号">01 如何获取版本号</h2>
+<p>在 Go 语言项目中，如果要获取当前 Go 语言版本，只需要调用 <code>runtime.Version</code>：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+	<span class="s">&#34;fmt&#34;</span>
+	<span class="s">&#34;runtime&#34;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Go Version:&#34;</span><span class="p">,</span> <span class="nx">runtime</span><span class="p">.</span><span class="nf">Version</span><span class="p">())</span>
+<span class="p">}</span>
+</code></pre></div><h2 id="02-如何实现的">02 如何实现的</h2>
+<p>查看 <code>runtime.Version</code> 的源码：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// buildVersion is the Go tree&#39;s version string at build time.
+</span><span class="c1">//
+</span><span class="c1">// If any GOEXPERIMENTs are set to non-default values, it will include
+</span><span class="c1">// &#34;X:&lt;GOEXPERIMENT&gt;&#34;.
+</span><span class="c1">//
+</span><span class="c1">// This is set by the linker.
+</span><span class="c1">//
+</span><span class="c1">// This is accessed by &#34;go version &lt;binary&gt;&#34;.
+</span><span class="c1"></span><span class="kd">var</span> <span class="nx">buildVersion</span> <span class="kt">string</span>
+
+<span class="c1">// Version returns the Go tree&#39;s version string.
+</span><span class="c1">// It is either the commit hash and date at the time of the build or,
+</span><span class="c1">// when possible, a release tag like &#34;go1.3&#34;.
+</span><span class="c1"></span><span class="kd">func</span> <span class="nf">Version</span><span class="p">()</span> <span class="kt">string</span> <span class="p">{</span>
+	<span class="k">return</span> <span class="nx">buildVersion</span>
+<span class="p">}</span>\
+</code></pre></div><p>根据注释提示，在 Go 仓库源码中，找到 src/cmd/link，这是 Go 链接器的实现。在其中的 internal/ld/main.go 文件找到了如下代码：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="nx">buildVersion</span> <span class="o">:=</span> <span class="nx">buildcfg</span><span class="p">.</span><span class="nx">Version</span>
+<span class="k">if</span> <span class="nx">goexperiment</span> <span class="o">:=</span> <span class="nx">buildcfg</span><span class="p">.</span><span class="nf">GOEXPERIMENT</span><span class="p">();</span> <span class="nx">goexperiment</span> <span class="o">!=</span> <span class="s">&#34;&#34;</span> <span class="p">{</span>
+  <span class="nx">buildVersion</span> <span class="o">+=</span> <span class="s">&#34; X:&#34;</span> <span class="o">+</span> <span class="nx">goexperiment</span>
+<span class="p">}</span>
+<span class="nf">addstrdata1</span><span class="p">(</span><span class="nx">ctxt</span><span class="p">,</span> <span class="s">&#34;runtime.buildVersion=&#34;</span><span class="o">+</span><span class="nx">buildVersion</span><span class="p">)</span>
+</code></pre></div><p>buildVersion 值从 buildcfg.Version 获取，如果设置了 GOEXPERIMENT（环境变量值），则用该值。</p>
+<p>着重看 buildcfg.Version 如何得到的：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">var</span> <span class="p">(</span>
+	<span class="nx">defaultGOROOT</span> <span class="kt">string</span> <span class="c1">// set by linker
+</span><span class="c1"></span>
+	<span class="nx">GOROOT</span>   <span class="p">=</span> <span class="nf">envOr</span><span class="p">(</span><span class="s">&#34;GOROOT&#34;</span><span class="p">,</span> <span class="nx">defaultGOROOT</span><span class="p">)</span>
+	<span class="nx">GOARCH</span>   <span class="p">=</span> <span class="nf">envOr</span><span class="p">(</span><span class="s">&#34;GOARCH&#34;</span><span class="p">,</span> <span class="nx">defaultGOARCH</span><span class="p">)</span>
+	<span class="nx">GOOS</span>     <span class="p">=</span> <span class="nf">envOr</span><span class="p">(</span><span class="s">&#34;GOOS&#34;</span><span class="p">,</span> <span class="nx">defaultGOOS</span><span class="p">)</span>
+	<span class="nx">GO386</span>    <span class="p">=</span> <span class="nf">envOr</span><span class="p">(</span><span class="s">&#34;GO386&#34;</span><span class="p">,</span> <span class="nx">defaultGO386</span><span class="p">)</span>
+	<span class="nx">GOARM</span>    <span class="p">=</span> <span class="nf">goarm</span><span class="p">()</span>
+	<span class="nx">GOMIPS</span>   <span class="p">=</span> <span class="nf">gomips</span><span class="p">()</span>
+	<span class="nx">GOMIPS64</span> <span class="p">=</span> <span class="nf">gomips64</span><span class="p">()</span>
+	<span class="nx">GOPPC64</span>  <span class="p">=</span> <span class="nf">goppc64</span><span class="p">()</span>
+	<span class="nx">GOWASM</span>   <span class="p">=</span> <span class="nf">gowasm</span><span class="p">()</span>
+	<span class="nx">GO_LDSO</span>  <span class="p">=</span> <span class="nx">defaultGO_LDSO</span>
+	<span class="nx">Version</span>  <span class="p">=</span> <span class="nx">version</span>
+<span class="p">)</span>
+</code></pre></div><p>很奇怪，Version 的值，直接用 version 赋值的。但 version 的值是什么？在 src/cmd/dist/buildruntime.go 文件中，有一个函数 mkbuildcfg，用于生成 buildcfg：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// mkbuildcfg writes internal/buildcfg/zbootstrap.go:
+</span><span class="c1">//
+</span><span class="c1">//	package buildcfg
+</span><span class="c1">//
+</span><span class="c1">//	const defaultGOROOT = &lt;goroot&gt;
+</span><span class="c1">//	const defaultGO386 = &lt;go386&gt;
+</span><span class="c1">//	...
+</span><span class="c1">//	const defaultGOOS = runtime.GOOS
+</span><span class="c1">//	const defaultGOARCH = runtime.GOARCH
+</span><span class="c1">//
+</span><span class="c1">// The use of runtime.GOOS and runtime.GOARCH makes sure that
+</span><span class="c1">// a cross-compiled compiler expects to compile for its own target
+</span><span class="c1">// system. That is, if on a Mac you do:
+</span><span class="c1">//
+</span><span class="c1">//	GOOS=linux GOARCH=ppc64 go build cmd/compile
+</span><span class="c1">//
+</span><span class="c1">// the resulting compiler will default to generating linux/ppc64 object files.
+</span><span class="c1">// This is more useful than having it default to generating objects for the
+</span><span class="c1">// original target (in this example, a Mac).
+</span><span class="c1"></span><span class="kd">func</span> <span class="nf">mkbuildcfg</span><span class="p">(</span><span class="nx">file</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+	<span class="kd">var</span> <span class="nx">buf</span> <span class="nx">bytes</span><span class="p">.</span><span class="nx">Buffer</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Fprintf</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">buf</span><span class="p">,</span> <span class="s">&#34;// Code generated by go tool dist; DO NOT EDIT.\n&#34;</span><span class="p">)</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Fprintln</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">buf</span><span class="p">)</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Fprintf</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">buf</span><span class="p">,</span> <span class="s">&#34;package buildcfg\n&#34;</span><span class="p">)</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Fprintln</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">buf</span><span class="p">)</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Fprintf</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">buf</span><span class="p">,</span> <span class="s">&#34;import \&#34;runtime\&#34;\n&#34;</span><span class="p">)</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Fprintln</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">buf</span><span class="p">)</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Fprintf</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">buf</span><span class="p">,</span> <span class="s">&#34;const defaultGO386 = `%s`\n&#34;</span><span class="p">,</span> <span class="nx">go386</span><span class="p">)</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Fprintf</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">buf</span><span class="p">,</span> <span class="s">&#34;const defaultGOARM = `%s`\n&#34;</span><span class="p">,</span> <span class="nx">goarm</span><span class="p">)</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Fprintf</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">buf</span><span class="p">,</span> <span class="s">&#34;const defaultGOMIPS = `%s`\n&#34;</span><span class="p">,</span> <span class="nx">gomips</span><span class="p">)</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Fprintf</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">buf</span><span class="p">,</span> <span class="s">&#34;const defaultGOMIPS64 = `%s`\n&#34;</span><span class="p">,</span> <span class="nx">gomips64</span><span class="p">)</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Fprintf</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">buf</span><span class="p">,</span> <span class="s">&#34;const defaultGOPPC64 = `%s`\n&#34;</span><span class="p">,</span> <span class="nx">goppc64</span><span class="p">)</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Fprintf</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">buf</span><span class="p">,</span> <span class="s">&#34;const defaultGOEXPERIMENT = `%s`\n&#34;</span><span class="p">,</span> <span class="nx">goexperiment</span><span class="p">)</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Fprintf</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">buf</span><span class="p">,</span> <span class="s">&#34;const defaultGO_EXTLINK_ENABLED = `%s`\n&#34;</span><span class="p">,</span> <span class="nx">goextlinkenabled</span><span class="p">)</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Fprintf</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">buf</span><span class="p">,</span> <span class="s">&#34;const defaultGO_LDSO = `%s`\n&#34;</span><span class="p">,</span> <span class="nx">defaultldso</span><span class="p">)</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Fprintf</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">buf</span><span class="p">,</span> <span class="s">&#34;const version = `%s`\n&#34;</span><span class="p">,</span> <span class="nf">findgoversion</span><span class="p">())</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Fprintf</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">buf</span><span class="p">,</span> <span class="s">&#34;const defaultGOOS = runtime.GOOS\n&#34;</span><span class="p">)</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Fprintf</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">buf</span><span class="p">,</span> <span class="s">&#34;const defaultGOARCH = runtime.GOARCH\n&#34;</span><span class="p">)</span>
+
+	<span class="nf">writefile</span><span class="p">(</span><span class="nx">buf</span><span class="p">.</span><span class="nf">String</span><span class="p">(),</span> <span class="nx">file</span><span class="p">,</span> <span class="nx">writeSkipSame</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div><p>其中 version 的值是通过 findgoversion() 得到，该函数定义在 src/cmd/dist/build.go 中：（省略了部分细节）</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// findgoversion determines the Go version to use in the version string.
+</span><span class="c1"></span><span class="kd">func</span> <span class="nf">findgoversion</span><span class="p">()</span> <span class="kt">string</span> <span class="p">{</span>
+	<span class="c1">// The $GOROOT/VERSION file takes priority, for distributions
+</span><span class="c1"></span>	<span class="c1">// without the source repo.
+</span><span class="c1"></span>	<span class="nx">path</span> <span class="o">:=</span> <span class="nf">pathf</span><span class="p">(</span><span class="s">&#34;%s/VERSION&#34;</span><span class="p">,</span> <span class="nx">goroot</span><span class="p">)</span>
+	<span class="k">if</span> <span class="nf">isfile</span><span class="p">(</span><span class="nx">path</span><span class="p">)</span> <span class="p">{</span>
+		<span class="o">...</span>
+	<span class="p">}</span>
+
+	<span class="c1">// The $GOROOT/VERSION.cache file is a cache to avoid invoking
+</span><span class="c1"></span>	<span class="c1">// git every time we run this command. Unlike VERSION, it gets
+</span><span class="c1"></span>	<span class="c1">// deleted by the clean command.
+</span><span class="c1"></span>	<span class="nx">path</span> <span class="p">=</span> <span class="nf">pathf</span><span class="p">(</span><span class="s">&#34;%s/VERSION.cache&#34;</span><span class="p">,</span> <span class="nx">goroot</span><span class="p">)</span>
+	<span class="k">if</span> <span class="nf">isfile</span><span class="p">(</span><span class="nx">path</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="nf">chomp</span><span class="p">(</span><span class="nf">readfile</span><span class="p">(</span><span class="nx">path</span><span class="p">))</span>
+	<span class="p">}</span>
+
+	<span class="c1">// Show a nicer error message if this isn&#39;t a Git repo.
+</span><span class="c1"></span>	<span class="k">if</span> <span class="p">!</span><span class="nf">isGitRepo</span><span class="p">()</span> <span class="p">{</span>
+		<span class="nf">fatalf</span><span class="p">(</span><span class="s">&#34;FAILED: not a Git repo; must put a VERSION file in $GOROOT&#34;</span><span class="p">)</span>
+	<span class="p">}</span>
+
+	<span class="c1">// Otherwise, use Git.
+</span><span class="c1"></span>	<span class="c1">// What is the current branch?
+</span><span class="c1"></span>	<span class="nx">branch</span> <span class="o">:=</span> <span class="nf">chomp</span><span class="p">(</span><span class="nf">run</span><span class="p">(</span><span class="nx">goroot</span><span class="p">,</span> <span class="nx">CheckExit</span><span class="p">,</span> <span class="s">&#34;git&#34;</span><span class="p">,</span> <span class="s">&#34;rev-parse&#34;</span><span class="p">,</span> <span class="s">&#34;--abbrev-ref&#34;</span><span class="p">,</span> <span class="s">&#34;HEAD&#34;</span><span class="p">))</span>
+	<span class="o">...</span>
+
+	<span class="c1">// Cache version.
+</span><span class="c1"></span>	<span class="nf">writefile</span><span class="p">(</span><span class="nx">tag</span><span class="p">,</span> <span class="nx">path</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+	<span class="k">return</span> <span class="nx">tag</span>
+<span class="p">}</span>
+</code></pre></div><p>按一下顺序获得 Version（如果前面的获取不到，则依次执行后续获取步骤）</p>
+<ul>
+<li>从 <code>$GOROOT/VERSION</code> 获取，在这个文件中放了版本信息，你可以看看你的 Go 安装目录下这个文件的信息</li>
+<li>从 <code>$GOROOT/VERSION.cache</code> 获取</li>
+<li>根据 Git 仓库生成版本信息，并且生成缓存，这样后续直接读取 <code>$GOROOT/VERSION.cache</code> 获取</li>
+</ul>
+<h2 id="03-自己项目">03 自己项目</h2>
+<p>通过前文分析，总结下 Go 版本是如何写入 Go 源码的：</p>
+<ul>
+<li>正式版本，通过项目根目录的一个文件得到，比如 <code>$GOROOT/VERSION</code>；</li>
+<li>非正式版本，通过 Git 获得版本信息；为了避免编译时重复执行 Git 相关操作，可以生成缓存；</li>
+<li>通过环境变量控制版本信息；</li>
+</ul>
+<p>最后，可以通过一个 API 把版本信息公开给用户。</p>
+<p>对于我们自己的 Go 项目，通过 Git 获得版本信息，可以通过 shell 脚本实现，最后编译 Go 项目时，将版本信息通过 <code>-X</code> 传递进去。</p>
+<p>现在我们通过脚本来实现这个功能。</p>
+<p>项目代码如下：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// main.go
+</span><span class="c1"></span><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+	<span class="s">&#34;fmt&#34;</span>
+<span class="p">)</span>
+
+<span class="kd">var</span> <span class="nx">Version</span> <span class="kt">string</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Version:&#34;</span><span class="p">,</span> <span class="nx">Version</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div><p>现在写一个 shell 脚本，通过该脚本对以上代码进行编译：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="err">#</span><span class="p">!</span><span class="o">/</span><span class="nx">bin</span><span class="o">/</span><span class="nx">sh</span>
+
+<span class="nx">version</span><span class="p">=</span><span class="s">&#34;&#34;</span>
+
+<span class="k">if</span> <span class="p">[</span> <span class="o">-</span><span class="nx">f</span> <span class="s">&#34;VERSION&#34;</span> <span class="p">];</span> <span class="nx">then</span>
+    <span class="nx">version</span><span class="p">=</span><span class="s">`cat VERSION`</span>
+<span class="nx">fi</span>
+
+<span class="k">if</span> <span class="p">[[</span> <span class="o">-</span><span class="nx">z</span> <span class="err">$</span><span class="nx">version</span> <span class="p">]];</span> <span class="nx">then</span>
+    <span class="k">if</span> <span class="p">[</span> <span class="o">-</span><span class="nx">d</span> <span class="s">&#34;.git&#34;</span> <span class="p">];</span> <span class="nx">then</span>
+        <span class="nx">version</span><span class="p">=</span><span class="s">`git symbolic-ref HEAD | cut -b 12-`</span><span class="o">-</span><span class="s">`git rev-parse HEAD`</span>
+    <span class="k">else</span>
+        <span class="nx">version</span><span class="p">=</span><span class="s">&#34;unknown&#34;</span>
+    <span class="nx">fi</span>
+<span class="nx">fi</span>
+
+<span class="k">go</span> <span class="nx">build</span> <span class="o">-</span><span class="nx">ldflags</span> <span class="s">&#34;-X main.Version=$version&#34;</span> <span class="nx">main</span><span class="p">.</span><span class="k">go</span>
+</code></pre></div><ul>
+<li>如果有 VERSION 文件，读取该文件的值作为版本信息；</li>
+<li>如果 version 的值是空，判断当前项目是否是 Git 项目。是，则获取版本信息，格式：master-commithash；否则，版本信息设置为 unknown；</li>
+<li>通过 go build 的 ldflags 传递版本信息给 main.Version；</li>
+</ul>
+<p>这样项目中的 Version 就设置上正确的值了。</p>
+<h2 id="04-总结">04 总结</h2>
+<p>本文通过对 Go 源码中版本信息的学习研究，掌握了优秀开源项目设置版本信息的做法。最后，演示了如何在自己的项目中用上该技能。</p>
+<blockquote>
+<p>本文没有演示环境变量，一般用的比较少。</p>
+</blockquote>
+]]></content>
+		</item>
 		
 		<item>
 			<title>假期结束，推荐 2 本 manning 出的 Go 图书</title>
