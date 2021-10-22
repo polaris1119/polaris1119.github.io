@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Wed, 14 Apr 2021 18:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/wechat/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 21 Oct 2021 22:50:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/wechat/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>如何更快的找到微信公众号里的 Go 文章？</title>
+      <link>https://polarisxu.studygolang.com/posts/wechat/find-go-articles-in-wechat/</link>
+      <pubDate>Thu, 21 Oct 2021 22:50:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/wechat/find-go-articles-in-wechat/</guid>
+      <description>大家好，我是 polarisxu。 搜索引擎一直是查找资料主要的方式，Go语言中文网站点的流量，近 80% 来自搜索引擎。 01 然而，微信公众号一直是一个私域，它禁止搜索引擎抓取。最近，各种 zc，大厂做了一些调整。有人发现，微信公众号删除了 robots.txt： https://mp.weixin.qq.com/robots.txt 内容是空的； robots.txt 最近一次内容 https://web.archive.org/web/20210929115539/mp.weixin.qq.com/robots.txt 所以，现在微信公众号内容可以被搜索引擎抓取了。 实际验证一下： 1）Google 2）Bi</description>
+    </item>
+    
     <item>
       <title>这个功能，公众号、微信群会不会被玩坏？</title>
       <link>https://polarisxu.studygolang.com/posts/wechat/2021-04-wechat-changes/</link>
