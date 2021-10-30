@@ -7,9 +7,18 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Thu, 21 Oct 2021 22:50:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 29 Oct 2021 22:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>如何更快的找到微信公众号里的 Go 文章？</title>
+      <title>Go 如何获取和设置环境变量</title>
+      <link>https://polarisxu.studygolang.com/posts/go/pkg/go-std-env/</link>
+      <pubDate>Fri, 29 Oct 2021 22:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/pkg/go-std-env/</guid>
+      <description>大家好，我是 polarisxu。 今天的文章比较基础，但却是必须掌握的，而且本文有些内容，也许你之前没想过。希望这篇文章能够让你理解环境变量并掌握 Go 环境变量相关操作。 01 从安装 Go 说起 其实不止是安装 Go，其他语言一本也会有类似的问题。一般来说，安装完 Go 后，会建议将 go 可执行程序配置到 PATH 环境变量中。 比如我本地的 PATH 环境变量的值： $ echo $PATH /Users/xuxinhua/.go/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Applications/Wireshark.app/Contents/MacOS:/Users/xuxinhua/.cargo/bin:/Users/xuxinhua/bin:/usr/local/git/bin:/Users/xuxinhua/.composer/vendor/bin:/Users/xuxinhua/go/bin 那么 PATH 环境变量的作用是什么呢？ 简单</description>
+    </item>
+    
+    <item>
+      <title>重磅变动：更快找到微信公众号里的Go文章</title>
       <link>https://polarisxu.studygolang.com/posts/wechat/find-go-articles-in-wechat/</link>
       <pubDate>Thu, 21 Oct 2021 22:50:00 +0800</pubDate>
       
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/fiber/go-fiber-basic-tutorial01/</guid>
       <description>大家好，我是 polarisxu。 每次发框架相关的文章，总有人提到 Go Fiber 框架。于是乎，学习了下 Fiber，感觉确实挺不错的。因此写下这个 Fiber 系列。 Fiber 项目地址：https://github.com/gofiber/fiber ，目前 Star 数 15.3k+。 01 Fiber 框架 这是一个 Go 语言 Web 框架，启发自 NodeJS 框架：Express 。该框架基于 FastHTTP 构建，旨在简化、零内存分配和提高性能，以便快速开</description>
-    </item>
-    
-    <item>
-      <title>Go Module：私有不合规库怎么解决引用问题</title>
-      <link>https://polarisxu.studygolang.com/posts/go/action/go-illegal-private-import/</link>
-      <pubDate>Sun, 12 Sep 2021 17:00:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/action/go-illegal-private-import/</guid>
-      <description>大家好，我是 polarisxu。 有一个朋友咨询一个问题： 实际项目中，使用 Go Module 难免会有一些自己的库要引用，这些库使用自建的 Git 服务管理，比如 GitLab 等。针对这样的情况，不少教程都是让设置 GOPRIVATE，即不走 GOPROXY。 然而，有些时候，不仅库是私有的，而且地址很可能不是「合规」的。什么是「不合规」的？ 不是 HTTPS 非 443 或 80 端口 直接使用 IP 地址 不是 HTTPS 问题不大，主要是非 443 或</description>
     </item>
     
   </channel>
