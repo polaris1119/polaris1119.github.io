@@ -10,7 +10,7 @@
 <meta itemprop="name" content="Go 如何获取和设置环境变量">
 <meta itemprop="description" content="大家好，我是 polarisxu。 今天的文章比较基础，但却是必须掌握的，而且本文有些内容，也许你之前没想过。希望这篇文章能够让你理解环境变量并掌握 Go 环境变量相关操作。 01 从安装 Go 说起 其实不止是安装 Go，其他语言一本也会有类似的问题。一般来说，安装完 Go 后，会建议将 go 可执行程序配置到 PATH 环境变量中。 比如我本地的 PATH 环境变量的值： $ echo $PATH /Users/xuxinhua/.go/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Applications/Wireshark.app/Contents/MacOS:/Users/xuxinhua/.cargo/bin:/Users/xuxinhua/bin:/usr/local/git/bin:/Users/xuxinhua/.composer/vendor/bin:/Users/xuxinhua/go/bin 那么 PATH 环境变量的作用是什么呢？ 简单"><meta itemprop="datePublished" content="2021-10-29T22:30:00+08:00" />
 <meta itemprop="dateModified" content="2021-10-29T22:30:00+08:00" />
-<meta itemprop="wordCount" content="1722">
+<meta itemprop="wordCount" content="1721">
 <meta itemprop="keywords" content="Go,环境变量," /><meta property="og:title" content="Go 如何获取和设置环境变量" />
 <meta property="og:description" content="大家好，我是 polarisxu。 今天的文章比较基础，但却是必须掌握的，而且本文有些内容，也许你之前没想过。希望这篇文章能够让你理解环境变量并掌握 Go 环境变量相关操作。 01 从安装 Go 说起 其实不止是安装 Go，其他语言一本也会有类似的问题。一般来说，安装完 Go 后，会建议将 go 可执行程序配置到 PATH 环境变量中。 比如我本地的 PATH 环境变量的值： $ echo $PATH /Users/xuxinhua/.go/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Applications/Wireshark.app/Contents/MacOS:/Users/xuxinhua/.cargo/bin:/Users/xuxinhua/bin:/usr/local/git/bin:/Users/xuxinhua/.composer/vendor/bin:/Users/xuxinhua/go/bin 那么 PATH 环境变量的作用是什么呢？ 简单" />
 <meta property="og:type" content="article" />
@@ -115,7 +115,7 @@
 </span><span class="c1">// 要区分空值和未设置值，请使用 LookupEnv。
 </span><span class="c1"></span><span class="kd">func</span> <span class="nf">Getenv</span><span class="p">(</span><span class="nx">key</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">string</span>
 <span class="c1">// LookupEnv 检索 key 这个键对应的环境变量的值。
-</span><span class="c1">// 如果该环境变量不存在，则返回对应的值(可能为空)，并且布尔值为 true。
+</span><span class="c1">// 如果该环境变量存在，则返回对应的值(可能为空)，并且布尔值为 true。
 </span><span class="c1">// 否则，返回值将为空，布尔值将为 false。
 </span><span class="c1"></span><span class="kd">func</span> <span class="nf">LookupEnv</span><span class="p">(</span><span class="nx">key</span> <span class="kt">string</span><span class="p">)</span> <span class="p">(</span><span class="kt">string</span><span class="p">,</span> <span class="kt">bool</span><span class="p">)</span>
 <span class="c1">// Setenv 设置 key 这个键对应的环境变量的值。
@@ -210,7 +210,7 @@ name is: polarisxu
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://polarisxu.studygolang.com/tags/go">Go</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F">环境变量</a></span>
 				</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1722 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1721 字</p>
 				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2021-10-29 22:30 &#43;0800</p>
 			</footer>
 		</article>

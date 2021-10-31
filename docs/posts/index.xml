@@ -54,7 +54,7 @@
 </span><span class="c1">// 要区分空值和未设置值，请使用 LookupEnv。
 </span><span class="c1"></span><span class="kd">func</span> <span class="nf">Getenv</span><span class="p">(</span><span class="nx">key</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">string</span>
 <span class="c1">// LookupEnv 检索 key 这个键对应的环境变量的值。
-</span><span class="c1">// 如果该环境变量不存在，则返回对应的值(可能为空)，并且布尔值为 true。
+</span><span class="c1">// 如果该环境变量存在，则返回对应的值(可能为空)，并且布尔值为 true。
 </span><span class="c1">// 否则，返回值将为空，布尔值将为 false。
 </span><span class="c1"></span><span class="kd">func</span> <span class="nf">LookupEnv</span><span class="p">(</span><span class="nx">key</span> <span class="kt">string</span><span class="p">)</span> <span class="p">(</span><span class="kt">string</span><span class="p">,</span> <span class="kt">bool</span><span class="p">)</span>
 <span class="c1">// Setenv 设置 key 这个键对应的环境变量的值。
