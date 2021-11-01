@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Tue, 22 Jun 2021 12:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/%E6%A0%87%E5%87%86%E5%BA%93/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 31 Oct 2021 22:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/%E6%A0%87%E5%87%86%E5%BA%93/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go：如何获得项目根目录？</title>
+      <link>https://polarisxu.studygolang.com/posts/go/pkg/go-std-cwd/</link>
+      <pubDate>Sun, 31 Oct 2021 22:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/pkg/go-std-cwd/</guid>
+      <description>大家好，我是 polarisxu。 项目中，特别是 Web 项目，经常需要获得项目的根目录，进而可以访问到项目相关的其他资源，比如配置文件、静态资源文件、模板文件、数据文件、日志文件等（Go1.16 后，有些可以方便的通过 embed 内嵌进来）。比如下面的目录结构：（路径是 /Users/xuxinhua/stdcwd） ├── bin ├── cwd ├── main.go └── log ├── error.log 为了正确读取 error.</description>
+    </item>
+    
     <item>
       <title>Go1.17 快报之标准库越来越注重易用性</title>
       <link>https://polarisxu.studygolang.com/posts/go/pkg/go1.17-std/</link>

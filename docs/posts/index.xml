@@ -6,8 +6,87 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en</language>
 		<copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-		<lastBuildDate>Fri, 29 Oct 2021 22:30:00 +0800</lastBuildDate>
+		<lastBuildDate>Sun, 31 Oct 2021 22:30:00 +0800</lastBuildDate>
 		<atom:link href="https://polarisxu.studygolang.com/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>Go：如何获得项目根目录？</title>
+			<link>https://polarisxu.studygolang.com/posts/go/pkg/go-std-cwd/</link>
+			<pubDate>Sun, 31 Oct 2021 22:30:00 +0800</pubDate>
+			
+			<guid>https://polarisxu.studygolang.com/posts/go/pkg/go-std-cwd/</guid>
+			<description>大家好，我是 polarisxu。 项目中，特别是 Web 项目，经常需要获得项目的根目录，进而可以访问到项目相关的其他资源，比如配置文件、静态资源文件、模板文件、数据文件、日志文件等（Go1.16 后，有些可以方便的通过 embed 内嵌进来）。比如下面的目录结构：（路径是 /Users/xuxinhua/stdcwd） ├── bin ├── cwd ├── main.go └── log ├── error.log 为了正确读取 error.</description>
+			<content type="html"><![CDATA[<p>大家好，我是 polarisxu。</p>
+<p>项目中，特别是 Web 项目，经常需要获得项目的根目录，进而可以访问到项目相关的其他资源，比如配置文件、静态资源文件、模板文件、数据文件、日志文件等（Go1.16 后，有些可以方便的通过 embed 内嵌进来）。比如下面的目录结构：（路径是 <code>/Users/xuxinhua/stdcwd</code>）</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">├── bin
+    ├── cwd
+├── main.go
+└── log
+    ├── error.log
+</code></pre></div><p>为了正确读取 error.log，我们需要获得项目根目录。学完本文知识可以解决该问题。</p>
+<p>解决方案有多种，各有优缺点和使用注意事项，选择你喜欢的即可。</p>
+<h2 id="01-使用-osgetwd">01 使用 os.Getwd</h2>
+<p>Go 语言标准库 os 中有一个函数 <code>Getwd</code>：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">Getwd</span><span class="p">()</span> <span class="p">(</span><span class="nx">dir</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">err</span> <span class="kt">error</span><span class="p">)</span>
+</code></pre></div><p>它返回当前工作目录。</p>
+<p>基于此，我们可以得到项目根目录。还是上面的目录结构，切换到 /Users/xuxinhua/stdcwd，然后执行程序：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nb">cd</span> /Users/xuxinhua/stdcwd
+$ bin/cwd
+</code></pre></div><p>这时，当前目录（os.Getwd 的返回值）就是 <code>/Users/xuxinhua/stdcwd</code>。</p>
+<p>但是，如果我们不在这个目录执行的 bin/cwd，当前目录就变了。因此，这不是一种好的方式。</p>
+<p>不过，我们可以要求必须在 <code>/Users/xuxinhua/stdcwd</code> 目录运行程序，否则报错，具体怎么做到限制，留给你思考。</p>
+<h2 id="02-使用-execlookpath">02 使用 exec.LookPath</h2>
+<p>在上面的目录结构中，如果我们能够获得程序 cwd 所在目录，也就相当于获得了项目根目录。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="nx">binary</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">exec</span><span class="p">.</span><span class="nf">LookPath</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</code></pre></div><p>os.Args[0] 是当前程序名。如果我们在项目根目录执行程序 <code>bin/cwd</code>，以上程序返回的 binary 结果是 <code>bin/cwd</code>，即程序 cwd 的相对路径，可以通过 filepath.Abs() 函数得到绝对路径，最后通过调用两次 filepath.Dir 得到项目根目录。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="nx">binary</span><span class="p">,</span> <span class="nx">_</span> <span class="o">:=</span> <span class="nx">exec</span><span class="p">.</span><span class="nf">LookPath</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="nx">root</span> <span class="o">:=</span> <span class="nx">filepath</span><span class="p">.</span><span class="nf">Dir</span><span class="p">(</span><span class="nx">filepath</span><span class="p">.</span><span class="nf">Dir</span><span class="p">(</span><span class="nx">filepath</span><span class="p">.</span><span class="nf">Abs</span><span class="p">(</span><span class="nx">binary</span><span class="p">)))</span>
+</code></pre></div><h2 id="03-使用-osexecutable">03 使用 os.Executable</h2>
+<p>可能是类似的需求很常见，Go 在 1.8 专门为这样的需求增加了一个函数：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// Executable returns the path name for the executable that started the current process.
+</span><span class="c1">// There is no guarantee that the path is still pointing to the correct executable.
+</span><span class="c1">// If a symlink was used to start the process, depending on the operating system, the result might be the symlink or the path it pointed to.
+</span><span class="c1">// If a stable result is needed, path/filepath.EvalSymlinks might help.
+</span><span class="c1">// Executable returns an absolute path unless an error occurred.
+</span><span class="c1">// The main use case is finding resources located relative to an executable.
+</span><span class="c1"></span><span class="kd">func</span> <span class="nf">Executable</span><span class="p">()</span> <span class="p">(</span><span class="kt">string</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+</code></pre></div><p>和 exec.LookPath 类似，不过该函数返回的结果是绝对路径。因此，不需要经过 filepath.Abs 处理。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="nx">binary</span><span class="p">,</span> <span class="nx">_</span> <span class="o">:=</span> <span class="nx">os</span><span class="p">.</span><span class="nf">Executable</span><span class="p">()</span>
+<span class="nx">root</span> <span class="o">:=</span> <span class="nx">filepath</span><span class="p">.</span><span class="nf">Dir</span><span class="p">(</span><span class="nx">filepath</span><span class="p">.</span><span class="nf">Dir</span><span class="p">(</span><span class="nx">binary</span><span class="p">))</span>
+</code></pre></div><blockquote>
+<p>注意，exec.LookPath 和 os.Executable 的结果都是可执行程序的路径，包括可执行程序本身，比如 /Users/xuxinhua/stdcwd/bin/cwd</p>
+</blockquote>
+<p>细心的读者可能会注意到该函数注释中提到符号链接问题，为了获得稳定的结果，我们应该借助 filepath.EvalSymlinks 进行处理。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&#34;fmt&#34;</span>
+    <span class="s">&#34;os&#34;</span>
+    <span class="s">&#34;path/filepath&#34;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">ex</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">os</span><span class="p">.</span><span class="nf">Executable</span><span class="p">()</span>
+    <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+        <span class="nb">panic</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="nx">exPath</span> <span class="o">:=</span> <span class="nx">filepath</span><span class="p">.</span><span class="nf">Dir</span><span class="p">(</span><span class="nx">ex</span><span class="p">)</span>
+    <span class="nx">realPath</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">filepath</span><span class="p">.</span><span class="nf">EvalSymlinks</span><span class="p">(</span><span class="nx">exPath</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+        <span class="nb">panic</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">filepath</span><span class="p">.</span><span class="nf">Dir</span><span class="p">(</span><span class="nx">realPath</span><span class="p">))</span>
+<span class="p">}</span>
+</code></pre></div><p>最后输出的就是项目根目录。（如果你的可执行文件放在根目录下，最后的 filepath.Dir 就不需要了）</p>
+<blockquote>
+<p>注意：exec.LookPath 也有软链接的问题。</p>
+</blockquote>
+<p>exec.LookPath 和 os.Executable 函数，再提醒一点，如果使用 go run 方式运行，结果会是临时文件。因此，记得先编译（这也是比 go run 更好的方式，go run 应该只是用来本地测试）。</p>
+<h2 id="04-小结">04 小结</h2>
+<p>既然 Go1.8 为我们专门提供了这样一个函数，针对本文提到的场景，我们应该总是使用它。</p>
+<p>你用的什么方式呢？欢迎留言交流。</p>
+]]></content>
+		</item>
 		
 		<item>
 			<title>Go 如何获取和设置环境变量</title>
