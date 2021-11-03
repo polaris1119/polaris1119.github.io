@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Clone on polarisxu</title>
+    <link>https://polarisxu.studygolang.com/tags/clone/</link>
+    <description>Recent content in Clone on polarisxu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
+    <lastBuildDate>Tue, 02 Nov 2021 23:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/clone/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go1.18 快讯：新增字符串 Clone API</title>
+      <link>https://polarisxu.studygolang.com/posts/go/dynamic/go1.18-clone/</link>
+      <pubDate>Tue, 02 Nov 2021 23:00:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/dynamic/go1.18-clone/</guid>
+      <description>大家好，我是 polarisxu。 Go 1.18 虽然还有 4 个月发布，但大部分的功能基本确定。我们可以提前知晓、熟悉。 今天介绍的是标准库中新增的一个 API：strings.Clone()。 从名称可以知道，这是克隆。很多其他语言一开始就有这样的功能。比如 PHP 有 clone 关键字、__clone 魔术方法；Java 的根类 Object 有 clone 方法等。 01 函数签名 该函数的定义如下（见：https://pkg.</description>
+    </item>
+    
+  </channel>
+</rss>

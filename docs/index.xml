@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Sun, 31 Oct 2021 22:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 02 Nov 2021 23:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go1.18 快讯：新增字符串 Clone API</title>
+      <link>https://polarisxu.studygolang.com/posts/go/dynamic/go1.18-clone/</link>
+      <pubDate>Tue, 02 Nov 2021 23:00:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/dynamic/go1.18-clone/</guid>
+      <description>大家好，我是 polarisxu。 Go 1.18 虽然还有 4 个月发布，但大部分的功能基本确定。我们可以提前知晓、熟悉。 今天介绍的是标准库中新增的一个 API：strings.Clone()。 从名称可以知道，这是克隆。很多其他语言一开始就有这样的功能。比如 PHP 有 clone 关键字、__clone 魔术方法；Java 的根类 Object 有 clone 方法等。 01 函数签名 该函数的定义如下（见：https://pkg.</description>
+    </item>
+    
     <item>
       <title>Go：如何获得项目根目录？</title>
       <link>https://polarisxu.studygolang.com/posts/go/pkg/go-std-cwd/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/project/go-wormhole-gui/</guid>
       <description>大家好，我是 polarisxu。 一直以来，挺多人想尝试 Go GUI 项目的，经过这些年的发展，响应的方案也挺多的，有原生的、有基于 Web 的。其中，fyne 这个 Go GUI 框架，发展比较好。之前写过一篇文章：Go 真的也可以进行 GUI 开发：还有这样的图书呢 。 今天推荐一个开源 Go GUI 项目：wormhole-gui，项目地址：https://github.com/Jacalz/wormhole-</description>
-    </item>
-    
-    <item>
-      <title>Go Fiber 框架系列教程 02：详解相关 API 的使用</title>
-      <link>https://polarisxu.studygolang.com/posts/go/fiber/go-fiber-basic-tutorial02/</link>
-      <pubDate>Tue, 21 Sep 2021 22:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/fiber/go-fiber-basic-tutorial02/</guid>
-      <description>大家好，我是 polarisxu。 该系列第一篇文章发出后，大家褒贬不一，很正常。选什么，不选什么，大家自己评估，没有什么是最好的。我这个系列，更多只是让大家对 Fiber 有些了解，说不定正好合你胃口呢？ 前面对 Fiber 有了大概的印象。今天着重较深入探讨 Fiber 相关功能。 先从 fiber.New 函数配置开始。 01 配置 大部分 Go 框架，获得实例的函数是不支持配置的，比如 Gin、Echo 等。但 Fiber 框架的 New 函数支持传</description>
     </item>
     
   </channel>
