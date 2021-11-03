@@ -34,7 +34,7 @@
 </span><span class="c1">// For strings of length zero the string &#34;&#34; will be returned
 </span><span class="c1">// and no allocation is made.
 </span><span class="c1"></span><span class="kd">func</span> <span class="nf">Clone</span><span class="p">(</span><span class="nx">s</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">string</span>
-</code></pre></div><p>Clone 返回 s 的新副本。它保证将 s 复制到一个新分配的副本中，当只保留一个大得多的字符串中的一小子字符串时，这一点很重要。使用克隆可以帮助这些程序使用更少的内存。当然，由于使用克隆制作拷贝，过度使用克隆会使程序使用更多内存。通常，只有在分析表明需要克隆时，才谨慎使用克隆。对于长度为零的字符串，将返回字符串 <code>&quot;&quot;</code>，不进行内存分配。</p>
+</code></pre></div><p>Clone 返回 s 的新副本。它保证将 s 复制到一个新分配的副本中，当只保留一个很大的字符串中的一个小子字符串时，这一点很重要。使用克隆可以帮助这些程序使用更少的内存。当然，由于使用克隆制作拷贝，过度使用克隆会使程序使用更多内存。通常，只有在分析表明需要克隆时，才谨慎使用克隆。对于长度为零的字符串，将返回字符串 <code>&quot;&quot;</code>，不进行内存分配。</p>
 <h2 id="02-举例说明">02 举例说明</h2>
 <p>大家可能还是迷惑，不知道有啥用。举一个代码例子说明：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
