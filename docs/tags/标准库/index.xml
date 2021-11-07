@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Tue, 02 Nov 2021 23:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/%E6%A0%87%E5%87%86%E5%BA%93/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 07 Nov 2021 09:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/%E6%A0%87%E5%87%86%E5%BA%93/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go1.18 快讯：废弃了这个 API</title>
+      <link>https://polarisxu.studygolang.com/posts/go/dynamic/go1.18-title/</link>
+      <pubDate>Sun, 07 Nov 2021 09:00:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/dynamic/go1.18-title/</guid>
+      <description>大家好，我是 polarisxu。 从 11 月 01 日起，Go1.18 就冻结了，也就是 1.18 的功能已经确定。 今天介绍一个 Go1.18 废弃的 API，同时介绍响应的替代 API。 01 strings.Title 被废弃 查看 go tip 标准库文档，发现 strings.Title 被标识为 deprecated：https://pkg.go.dev/strings@master ，而且该 API 的文档默认被折叠了。 pkg.go.dev 针对废弃的 API 使用了不一样的样式。 该 API 是干什么的？为</description>
+    </item>
+    
     <item>
       <title>Go1.18 快讯：新增字符串 Clone API</title>
       <link>https://polarisxu.studygolang.com/posts/go/dynamic/go1.18-clone/</link>
