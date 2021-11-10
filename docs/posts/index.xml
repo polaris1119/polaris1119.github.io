@@ -6,8 +6,95 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en</language>
 		<copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-		<lastBuildDate>Sun, 07 Nov 2021 09:00:00 +0800</lastBuildDate>
+		<lastBuildDate>Mon, 08 Nov 2021 09:00:00 +0800</lastBuildDate>
 		<atom:link href="https://polarisxu.studygolang.com/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>Go1.18 快讯：新增的 Cut 函数太方便了</title>
+			<link>https://polarisxu.studygolang.com/posts/go/dynamic/go1.18-cut/</link>
+			<pubDate>Mon, 08 Nov 2021 09:00:00 +0800</pubDate>
+			
+			<guid>https://polarisxu.studygolang.com/posts/go/dynamic/go1.18-cut/</guid>
+			<description>大家好，我是 polarisxu。 在编程中，字符串使用是最频繁的。Go 语言对字符串相关的操作也提供了大量的 API，一方面，字符串可以向普通 slice 一样进行相关操作；另一方面，标准库专门提供了一个包 strings 进行字符串的操作。 01 strings.Index 系列函数 假如有一个这样的需求：从 192.168.1.1:8080 中获取 ip 和 port。 我们一般会这么实现： addr := &amp;#34;192.168.1.1:8080&amp;#34; pos := strings.Index(addr, &amp;#34;:&amp;#34;) if pos == -1 { panic(&amp;#34;非法地址&amp;#34;) } ip, port :=</description>
+			<content type="html"><![CDATA[<p>大家好，我是 polarisxu。</p>
+<p>在编程中，字符串使用是最频繁的。Go 语言对字符串相关的操作也提供了大量的 API，一方面，字符串可以向普通 slice 一样进行相关操作；另一方面，标准库专门提供了一个包 strings 进行字符串的操作。</p>
+<h2 id="01-stringsindex-系列函数">01 strings.Index 系列函数</h2>
+<p>假如有一个这样的需求：从 <code>192.168.1.1:8080</code> 中获取 ip 和 port。</p>
+<p>我们一般会这么实现：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="nx">addr</span> <span class="o">:=</span> <span class="s">&#34;192.168.1.1:8080&#34;</span>
+<span class="nx">pos</span> <span class="o">:=</span> <span class="nx">strings</span><span class="p">.</span><span class="nf">Index</span><span class="p">(</span><span class="nx">addr</span><span class="p">,</span> <span class="s">&#34;:&#34;</span><span class="p">)</span>
+<span class="k">if</span> <span class="nx">pos</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span> <span class="p">{</span>
+  <span class="nb">panic</span><span class="p">(</span><span class="s">&#34;非法地址&#34;</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="nx">ip</span><span class="p">,</span> <span class="nx">port</span> <span class="o">:=</span> <span class="nx">addr</span><span class="p">[:</span><span class="nx">pos</span><span class="p">],</span> <span class="nx">addr</span><span class="p">[</span><span class="nx">pos</span><span class="o">+</span><span class="mi">1</span><span class="p">:]</span>
+</code></pre></div><blockquote>
+<p>实际项目中，pos == -1 时应该返回 error</p>
+<p>此处忽略通过 net.TCPAddr 方式得到，主要在于讲解字符串处理。</p>
+</blockquote>
+<p>strings 包中，Index 相关函数有好几个：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">Index</span><span class="p">(</span><span class="nx">s</span><span class="p">,</span> <span class="nx">substr</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">int</span>
+<span class="kd">func</span> <span class="nf">IndexAny</span><span class="p">(</span><span class="nx">s</span><span class="p">,</span> <span class="nx">chars</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">int</span>
+<span class="kd">func</span> <span class="nf">IndexByte</span><span class="p">(</span><span class="nx">s</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">c</span> <span class="kt">byte</span><span class="p">)</span> <span class="kt">int</span>
+<span class="kd">func</span> <span class="nf">IndexFunc</span><span class="p">(</span><span class="nx">s</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">f</span> <span class="kd">func</span><span class="p">(</span><span class="kt">rune</span><span class="p">)</span> <span class="kt">bool</span><span class="p">)</span> <span class="kt">int</span>
+<span class="kd">func</span> <span class="nf">IndexRune</span><span class="p">(</span><span class="nx">s</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">r</span> <span class="kt">rune</span><span class="p">)</span> <span class="kt">int</span>
+<span class="kd">func</span> <span class="nf">LastIndex</span><span class="p">(</span><span class="nx">s</span><span class="p">,</span> <span class="nx">substr</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">int</span>
+<span class="kd">func</span> <span class="nf">LastIndexAny</span><span class="p">(</span><span class="nx">s</span><span class="p">,</span> <span class="nx">chars</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">int</span>
+<span class="kd">func</span> <span class="nf">LastIndexByte</span><span class="p">(</span><span class="nx">s</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">c</span> <span class="kt">byte</span><span class="p">)</span> <span class="kt">int</span>
+<span class="kd">func</span> <span class="nf">LastIndexFunc</span><span class="p">(</span><span class="nx">s</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">f</span> <span class="kd">func</span><span class="p">(</span><span class="kt">rune</span><span class="p">)</span> <span class="kt">bool</span><span class="p">)</span> <span class="kt">int</span>
+</code></pre></div><p>Go 官方统计了 Go 源码中使用相关函数的代码：</p>
+<ul>
+<li>311 Index calls outside examples and testdata.</li>
+<li>20 should have been Contains</li>
+<li>2 should have been 1 call to IndexAny</li>
+<li>2 should have been 1 call to ContainsAny</li>
+<li>1 should have been TrimPrefix</li>
+<li>1 should have been HasSuffix</li>
+</ul>
+<p>相关需求是这么多，而 Index 显然不是处理类似需求最好的方式。于是 Russ Cox 提议，在 strings 包中新增一个函数 Cut，专门处理类似的常见。</p>
+<h2 id="02-新增的-cut-函数">02 新增的 Cut 函数</h2>
+<p>Cut 函数的签名如下：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">Cut</span><span class="p">(</span><span class="nx">s</span><span class="p">,</span> <span class="nx">sep</span> <span class="kt">string</span><span class="p">)</span> <span class="p">(</span><span class="nx">before</span><span class="p">,</span> <span class="nx">after</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">found</span> <span class="kt">bool</span><span class="p">)</span>
+</code></pre></div><p>将字符串 s 在第一个 sep 处切割为两部分，分别存在 before 和 after 中。如果 s 中没有 sep，返回 <code>s,&quot;&quot;,false</code>。</p>
+<p>根据 Russ Cox 的统计，Go 源码中 221 处使用 Cut 会更好。</p>
+<p>针对上文提到的需求，改用 Cut 函数：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="nx">addr</span> <span class="o">:=</span> <span class="s">&#34;192.168.1.1:8080&#34;</span>
+<span class="nx">ip</span><span class="p">,</span> <span class="nx">port</span><span class="p">,</span> <span class="nx">ok</span> <span class="o">:=</span> <span class="nx">strings</span><span class="p">.</span><span class="nf">Cut</span><span class="p">(</span><span class="nx">addr</span><span class="p">,</span> <span class="s">&#34;:&#34;</span><span class="p">)</span>
+</code></pre></div><p>是不是很清晰？！</p>
+<p>这是又一个改善生活质量的优化。</p>
+<p>针对该函数，官方提供了如下示例：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+	<span class="s">&#34;fmt&#34;</span>
+	<span class="s">&#34;strings&#34;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="nx">show</span> <span class="o">:=</span> <span class="kd">func</span><span class="p">(</span><span class="nx">s</span><span class="p">,</span> <span class="nx">sep</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+		<span class="nx">before</span><span class="p">,</span> <span class="nx">after</span><span class="p">,</span> <span class="nx">found</span> <span class="o">:=</span> <span class="nx">strings</span><span class="p">.</span><span class="nf">Cut</span><span class="p">(</span><span class="nx">s</span><span class="p">,</span> <span class="nx">sep</span><span class="p">)</span>
+		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;Cut(%q, %q) = %q, %q, %v\n&#34;</span><span class="p">,</span> <span class="nx">s</span><span class="p">,</span> <span class="nx">sep</span><span class="p">,</span> <span class="nx">before</span><span class="p">,</span> <span class="nx">after</span><span class="p">,</span> <span class="nx">found</span><span class="p">)</span>
+	<span class="p">}</span>
+	<span class="nf">show</span><span class="p">(</span><span class="s">&#34;Gopher&#34;</span><span class="p">,</span> <span class="s">&#34;Go&#34;</span><span class="p">)</span>
+	<span class="nf">show</span><span class="p">(</span><span class="s">&#34;Gopher&#34;</span><span class="p">,</span> <span class="s">&#34;ph&#34;</span><span class="p">)</span>
+	<span class="nf">show</span><span class="p">(</span><span class="s">&#34;Gopher&#34;</span><span class="p">,</span> <span class="s">&#34;er&#34;</span><span class="p">)</span>
+	<span class="nf">show</span><span class="p">(</span><span class="s">&#34;Gopher&#34;</span><span class="p">,</span> <span class="s">&#34;Badger&#34;</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c1">// Output:
+</span><span class="c1"></span><span class="cm">/*
+</span><span class="cm">Cut(&#34;Gopher&#34;, &#34;Go&#34;) = &#34;&#34;, &#34;pher&#34;, true
+</span><span class="cm">Cut(&#34;Gopher&#34;, &#34;ph&#34;) = &#34;Go&#34;, &#34;er&#34;, true
+</span><span class="cm">Cut(&#34;Gopher&#34;, &#34;er&#34;) = &#34;Goph&#34;, &#34;&#34;, true
+</span><span class="cm">Cut(&#34;Gopher&#34;, &#34;Badger&#34;) = &#34;Gopher&#34;, &#34;&#34;, false
+</span><span class="cm">*/</span>
+</code></pre></div><h2 id="03-总结">03 总结</h2>
+<p>从 PHP 转到 Go 的朋友，肯定觉得 Go 标准库应该提供更多便利函数，让生活质量更好。在 Go 社区这么多年，也确实听到了不少这方面的声音。</p>
+<p>但 Go 官方不会轻易增加一个功能。就 Cut 函数来说，官方做了详细调研、说明，具体可以参考这个 issue：<a href="https://github.com/golang/go/issues/46336" target="_blank" rel="noopener">bytes, strings: add Cut</a>
+，可见 bytes 同样的增加了 Cut 函数。</p>
+<p>有人提到，为什么不增加 LastCut？Russ Cox 的解释是，LastIndex 的调用次数明显少于 Index，因此暂不提供 LastCut。</p>
+<p>做一个决定，不是瞎拍脑袋的~</p>
+]]></content>
+		</item>
 		
 		<item>
 			<title>Go1.18 快讯：废弃了这个 API</title>
@@ -52,7 +139,7 @@
 Loud Noises
 Хлеб
 </code></pre></div><p>可见，strings.Title 会将每个单词的首字母变成大写字母。</p>
-<p>strings 中还有一个函数：ToTitle，它的作用和 ToUpper 类似，所有字符全部变成大写，而不只是首字母。不过 ToTile 和 ToUpper 的区别特别微小，<a href="https://stackoverflow.com/questions/18559587/confusing-toupper-and-totitle" target="_blank" rel="noopener">Stackoverflow 上有相关讨论</a>
+<p>strings 中还有一个函数：ToTitle，它的作用和 ToUpper 类似，所有字符全部变成大写，而不只是首字母。不过 ToTitle 和 ToUpper 的区别特别微小，<a href="https://stackoverflow.com/questions/18559587/confusing-toupper-and-totitle" target="_blank" rel="noopener">Stackoverflow 上有相关讨论</a>
 ，它们的区别是 Unicode 规定的区别。</p>
 <p>那 strings.Title 为什么废弃呢？strings.Title 的规则是使用单词边界，不能正确处理 Unicode 标点。</p>
 <p>比如下面的代码：</p>

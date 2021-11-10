@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Sun, 07 Nov 2021 09:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 08 Nov 2021 09:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go1.18 快讯：新增的 Cut 函数太方便了</title>
+      <link>https://polarisxu.studygolang.com/posts/go/dynamic/go1.18-cut/</link>
+      <pubDate>Mon, 08 Nov 2021 09:00:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/dynamic/go1.18-cut/</guid>
+      <description>大家好，我是 polarisxu。 在编程中，字符串使用是最频繁的。Go 语言对字符串相关的操作也提供了大量的 API，一方面，字符串可以向普通 slice 一样进行相关操作；另一方面，标准库专门提供了一个包 strings 进行字符串的操作。 01 strings.Index 系列函数 假如有一个这样的需求：从 192.168.1.1:8080 中获取 ip 和 port。 我们一般会这么实现： addr := &amp;#34;192.168.1.1:8080&amp;#34; pos := strings.Index(addr, &amp;#34;:&amp;#34;) if pos == -1 { panic(&amp;#34;非法地址&amp;#34;) } ip, port :=</description>
+    </item>
+    
     <item>
       <title>Go1.18 快讯：废弃了这个 API</title>
       <link>https://polarisxu.studygolang.com/posts/go/dynamic/go1.18-title/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/fiber/go-fiber-basic-tutorial03/</guid>
       <description>大家好，我是 polarisxu。 Middleware（中间件） 是一个 Web 框架重要的组成部分，通过这种模式，可以方便的扩展框架的功能。目前 Go Web 框架都提供了 Middleware 的功能，也有众多可用的 Middleware。 Fiber 也是如此，官方提供了众多的 Middleware，方便用户直接使用。本文先看看 Fiber 中 Middleware 的定义，然后介绍 Fiber 中的几个 Middleware，最后自己实现一个 Middlewa</description>
-    </item>
-    
-    <item>
-      <title>Go泛型系列：提前掌握Go泛型的基本使用</title>
-      <link>https://polarisxu.studygolang.com/posts/go/generics/generics-basic/</link>
-      <pubDate>Tue, 28 Sep 2021 23:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/generics/generics-basic/</guid>
-      <description>泛型，是 Go 语言多年来最令人兴奋和根本性的变化之一。没有泛型，很多人以此「鄙视」Go 语言。当然，也有人觉得根本不需要泛型。有泛型，不代表你一定要用。平心而论，有些场景下，泛型还是很有必要和帮助的。 现在已经确认，Go1.18 正式包含泛型（Go1.17 已经可以试用，只是默认不支持，见之前的文章：扬眉吐气：刚刚，Go 已经默认支持泛型了 ）。 不过，不少人对泛型还是迷迷糊</description>
     </item>
     
   </channel>
