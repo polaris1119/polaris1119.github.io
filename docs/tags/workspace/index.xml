@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Workspace on polarisxu</title>
+    <link>https://polarisxu.studygolang.com/tags/workspace/</link>
+    <description>Recent content in Workspace on polarisxu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
+    <lastBuildDate>Wed, 10 Nov 2021 22:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/workspace/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go1.18 快讯：Module 工作区模式</title>
+      <link>https://polarisxu.studygolang.com/posts/go/dynamic/go1.18-workspace/</link>
+      <pubDate>Wed, 10 Nov 2021 22:00:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/dynamic/go1.18-workspace/</guid>
+      <description>大家好，我是 polarisxu。 工作区模式（Workspace mode），可不是之前 GOPATH 时代的 Workspace，而是希望在本地开发时支持多 Module。 01 缘起 为了大家全面理解工作区模式，通过一个具体例子讲解。 本地有两个项目，分别是两个 module：mypkg 和 example。（Windows 系统请按自己方式创建目录） $ cd ~/ $ mkdir polarisxu $ cd polarisxu $ mkdir mypkg example $ cd mypkg $ go mod init github.com/polaris1119/mypkg</description>
+    </item>
+    
+  </channel>
+</rss>

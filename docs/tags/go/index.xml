@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Mon, 08 Nov 2021 09:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 10 Nov 2021 22:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go1.18 快讯：Module 工作区模式</title>
+      <link>https://polarisxu.studygolang.com/posts/go/dynamic/go1.18-workspace/</link>
+      <pubDate>Wed, 10 Nov 2021 22:00:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/dynamic/go1.18-workspace/</guid>
+      <description>大家好，我是 polarisxu。 工作区模式（Workspace mode），可不是之前 GOPATH 时代的 Workspace，而是希望在本地开发时支持多 Module。 01 缘起 为了大家全面理解工作区模式，通过一个具体例子讲解。 本地有两个项目，分别是两个 module：mypkg 和 example。（Windows 系统请按自己方式创建目录） $ cd ~/ $ mkdir polarisxu $ cd polarisxu $ mkdir mypkg example $ cd mypkg $ go mod init github.com/polaris1119/mypkg</description>
+    </item>
+    
     <item>
       <title>Go1.18 快讯：新增的 Cut 函数太方便了</title>
       <link>https://polarisxu.studygolang.com/posts/go/dynamic/go1.18-cut/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/fiber/go-fiber-basic-tutorial04/</guid>
       <description>大家好，我是 polarisxu。 实际项目中，大家经常不会对 Web API 写单元测试。Go 标准库不仅有 testing 包支持普通单元测试，还有 net/http/httptest 包支持 HTTP 的测试。 本文虽然是测试 Fiber 应用程序，但对其他的框架也适用。 01 如何测试 Web API 的单元测试如何进行？ 本节介绍的测试方法主要是验证请求返回的 HTTP 状态码是否符合预期。 如果返回的状态码是 200 OK，那么表示这个测试用例成功（Pass），如果返回的状态码是 404</description>
-    </item>
-    
-    <item>
-      <title>Go Fiber 框架系列教程 03：中间件</title>
-      <link>https://polarisxu.studygolang.com/posts/go/fiber/go-fiber-basic-tutorial03/</link>
-      <pubDate>Tue, 05 Oct 2021 22:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/fiber/go-fiber-basic-tutorial03/</guid>
-      <description>大家好，我是 polarisxu。 Middleware（中间件） 是一个 Web 框架重要的组成部分，通过这种模式，可以方便的扩展框架的功能。目前 Go Web 框架都提供了 Middleware 的功能，也有众多可用的 Middleware。 Fiber 也是如此，官方提供了众多的 Middleware，方便用户直接使用。本文先看看 Fiber 中 Middleware 的定义，然后介绍 Fiber 中的几个 Middleware，最后自己实现一个 Middlewa</description>
     </item>
     
   </channel>

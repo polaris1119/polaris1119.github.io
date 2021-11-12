@@ -6,8 +6,142 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en</language>
 		<copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-		<lastBuildDate>Mon, 08 Nov 2021 09:00:00 +0800</lastBuildDate>
+		<lastBuildDate>Wed, 10 Nov 2021 22:00:00 +0800</lastBuildDate>
 		<atom:link href="https://polarisxu.studygolang.com/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>Go1.18 快讯：Module 工作区模式</title>
+			<link>https://polarisxu.studygolang.com/posts/go/dynamic/go1.18-workspace/</link>
+			<pubDate>Wed, 10 Nov 2021 22:00:00 +0800</pubDate>
+			
+			<guid>https://polarisxu.studygolang.com/posts/go/dynamic/go1.18-workspace/</guid>
+			<description>大家好，我是 polarisxu。 工作区模式（Workspace mode），可不是之前 GOPATH 时代的 Workspace，而是希望在本地开发时支持多 Module。 01 缘起 为了大家全面理解工作区模式，通过一个具体例子讲解。 本地有两个项目，分别是两个 module：mypkg 和 example。（Windows 系统请按自己方式创建目录） $ cd ~/ $ mkdir polarisxu $ cd polarisxu $ mkdir mypkg example $ cd mypkg $ go mod init github.com/polaris1119/mypkg</description>
+			<content type="html"><![CDATA[<p>大家好，我是 polarisxu。</p>
+<p>工作区模式（Workspace mode），可不是之前 GOPATH 时代的 Workspace，而是希望在本地开发时支持多 Module。</p>
+<h2 id="01-缘起">01 缘起</h2>
+<p>为了大家全面理解工作区模式，通过一个具体例子讲解。</p>
+<p>本地有两个项目，分别是两个 module：mypkg 和 example。（Windows 系统请按自己方式创建目录）</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nb">cd</span> ~/
+$ mkdir polarisxu
+$ <span class="nb">cd</span> polarisxu
+$ mkdir mypkg example
+$ <span class="nb">cd</span> mypkg
+$ go mod init github.com/polaris1119/mypkg
+$ touch bar.go
+</code></pre></div><p>在 bar.go 中增加如下示例代码：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">mypkg</span>
+
+<span class="kd">func</span> <span class="nf">Bar</span><span class="p">()</span> <span class="p">{</span>
+	<span class="nb">println</span><span class="p">(</span><span class="s">&#34;This is package mypkg&#34;</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div><p>接着，在 example 模块中处理：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nb">cd</span> ~/polarisxu/example
+$ go mod init github.com/polaris1119/example
+$ touch main.go
+</code></pre></div><p>在 main.go 中增加如下内容：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&#34;github.com/polaris1119/mypkg&#34;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">mypkg</span><span class="p">.</span><span class="nf">Bar</span><span class="p">()</span>
+<span class="p">}</span>
+</code></pre></div><p>这时候，如果我们运行 go mod tidy，肯定会报错，因为我们的 mypkg 包根本没有提交到 github 上，肯定找不到。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">fatal: repository <span class="s1">&#39;https://github.com/polaris1119/mypkg/&#39;</span> not found
+</code></pre></div><p>go run main.go 也就不成功。</p>
+<p>我们当然可以提交 mypkg 到 github，但我们没修改一次 mypkg，就需要提交，否则 example 中就没法使用上最新的。</p>
+<p>针对这种情况，目前是建议通过 replace 来解决，即在 example 中的 go.mod 增加如下 replace：（v1.0.0 根据具体情况修改，还未提交，可以使用 v1.0.0）</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">module github.com/polaris1119/example
+
+go 1.17
+
+require github.com/polaris1119/mypkg v1.0.0
+
+replace github.com/polaris1119/mypkg <span class="o">=</span>&gt; ../mypkg
+</code></pre></div><p>再次运行 go run main.go，输出如下：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ go run main.go
+This is package mypkg
+</code></pre></div><p>当都开发完成时，我们需要手动删除 replace，并执行 go mod tidy 后提交，否则别人使用就报错了。</p>
+<p>这还是挺不方便的，如果本地有多个 module，每一个都得这么处理。</p>
+<h2 id="02-工作区模式">02 工作区模式</h2>
+<p>针对上面的这个问题，Michael Matloob 提出了 Workspace Mode（工作区模式）。相关 issue 讨论：[cmd/go: add a workspace mode](cmd/go: add a workspace mode)，<a href="https://go.googlesource.com/proposal/&#43;/master/design/45713-workspace.md" target="_blank" rel="noopener">这里是 Proposal</a>
+。</p>
+<p>为了能够试验工作区，请在本地使用 gotip，建议<a href="https://mp.weixin.qq.com/s/yTblk9Js1Zcq5aWVcYGjOA" target="_blank" rel="noopener">通过 goup 切换 Go 版本</a>
+：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ goup install tip
+$ goup show
+<span class="p">|</span>  VERSION  <span class="p">|</span> ACTIVE <span class="p">|</span>
+<span class="p">|</span>-----------<span class="p">|</span>--------<span class="p">|</span>
+<span class="p">|</span>   1.0.1   <span class="p">|</span>        <span class="p">|</span>
+<span class="p">|</span>    1.1    <span class="p">|</span>        <span class="p">|</span>
+<span class="p">|</span>  1.10.8   <span class="p">|</span>        <span class="p">|</span>
+<span class="p">|</span>  1.14.9   <span class="p">|</span>        <span class="p">|</span>
+<span class="p">|</span>  1.15.2   <span class="p">|</span>        <span class="p">|</span>
+<span class="p">|</span>  1.15.3   <span class="p">|</span>        <span class="p">|</span>
+<span class="p">|</span>  1.15.4   <span class="p">|</span>        <span class="p">|</span>
+<span class="p">|</span>   1.16    <span class="p">|</span>        <span class="p">|</span>
+<span class="p">|</span>  1.16.2   <span class="p">|</span>        <span class="p">|</span>
+<span class="p">|</span> 1.16beta1 <span class="p">|</span>        <span class="p">|</span>
+<span class="p">|</span>   1.17    <span class="p">|</span>        <span class="p">|</span>
+<span class="p">|</span> 1.17beta1 <span class="p">|</span>        <span class="p">|</span>
+<span class="p">|</span>    1.4    <span class="p">|</span>        <span class="p">|</span>
+<span class="p">|</span>   1.4.3   <span class="p">|</span>        <span class="p">|</span>
+<span class="p">|</span>    tip    <span class="p">|</span>   *    <span class="p">|</span>
+</code></pre></div><p>我本地当前 tip 版本：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ go version
+go version devel go1.18-a4b2c579e9 Wed Nov <span class="m">3</span> 00:49:50 <span class="m">2021</span> +0000 darwin/amd64
+</code></pre></div><p>通过 go help mod 可以看到，新增了 work 相关的两个子命令：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">The commands are:
+  ...
+	editwork    edit go.work from tools or scripts
+	...
+	initwork    initialize workspace file
+	...
+</code></pre></div><p>根据这个提示，我们初始化 workspace：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nb">cd</span> ~/polarisxu
+$ go mod initwork mypkg example
+$ tree
+.
+├── example
+│   ├── go.mod
+│   └── main.go
+├── go.work
+└── mypkg
+    ├── bar.go
+    └── go.mod
+</code></pre></div><p>注意几点：</p>
+<ul>
+<li>多个子模块应该在一个目录下。比如这里的 polarisxu 目录；（这不是必须的，但更好管理，否则 go mod initwork 需要提供正确的子模块路径）</li>
+<li>go mod initwork 需要在 polarisxu 目录执行；</li>
+<li>go mod initwork 之后跟上需要本地开发的子模块目录名；</li>
+</ul>
+<p>打开 go.work 看看长什么样：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">go 1.18
+
+directory <span class="o">(</span>
+    ./example
+    ./mypkg
+<span class="o">)</span>
+</code></pre></div><p>go.work 文件的语法和 go.mod 类似，因此也支持 replace。</p>
+<p>现在，我们将 example/go.mod 中的 replace 语句删除，再次执行 go run main.go（在 example 目录下），得到了正常的输出。也可以在 polarisxu 目录下，这么运行：go run example/main.go，也能正常。</p>
+<p>注意，go.work 不需要提交到 Git 中，因为它只是你本地开发使用的。</p>
+<p>如果想要禁用 workspace，可以通过 <code>-workfile=off</code> 实现。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">-workfile file
+		in module aware mode, use the given go.work file as a workspace file.
+		By default or when -workfile is <span class="s2">&#34;auto&#34;</span>, the go <span class="nb">command</span> searches <span class="k">for</span> a
+		file named go.work in the current directory and <span class="k">then</span> containing directories
+		<span class="k">until</span> one is found. If a valid go.work file is found, the modules
+		specified will collectively be used as the main modules. If -workfile
+		is <span class="s2">&#34;off&#34;</span>, or a go.work file is not found in <span class="s2">&#34;auto&#34;</span> mode, workspace
+		mode is disabled.
+</code></pre></div><p>比如：go run -workfile=off main.go 或 go build -workfile=off，这样运行你会发现又报错了。但通过这种方式，你可以验证依赖包提交到 github 上之后的情况。</p>
+<h2 id="03-总结">03 总结</h2>
+<p>在 GOPATH 年代，多 GOPATH 是一个头疼的问题。当时没有很好的解决，Module 就出现了，多 GOPATH 问题因此消失。但多 Module 问题随之出现。Workspace 方案较好的解决了这个问题。</p>
+<p>下篇文章，我会进一步讲解，如何在 VSCode 中试验 Workspace。</p>
+]]></content>
+		</item>
 		
 		<item>
 			<title>Go1.18 快讯：新增的 Cut 函数太方便了</title>
