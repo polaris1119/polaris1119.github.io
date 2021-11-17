@@ -101,7 +101,7 @@
 <p>这样就表示，a、b 和返回值可以是任意类型，但它们的类型是同一个。那具体是什么类型如何确定呢？根据调用时的实际参数决定。因此，我们现在可以这么使用：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="nf">Add</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 <span class="nf">Add</span><span class="p">(</span><span class="mf">2.1</span><span class="p">,</span> <span class="mf">3.2</span><span class="p">)</span>
-</code></pre></div><p>不过，这时候代码会报错。你可以本地用 Go1.17 启用泛型的方式试验，也可以使用 gotip 版本，亦或直接访问这里试验：<a href="https://go2goplay.golang.org/p/vTHnUA_8vOI" target="_blank" rel="noopener">https://go2goplay.golang.org/p/vTHnUA_8vOI</a>
+</code></pre></div><p>不过，这时候代码会报错。你可以本地用 Go1.17 启用泛型的方式试验，也可以使用 gotip 版本，亦或直接访问这里试验：<a href="https://gotipplay.golang.org/p/vTHnUA_8vOI" target="_blank" rel="noopener">https://gotipplay.golang.org/p/vTHnUA_8vOI</a>
 </p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
 
@@ -133,19 +133,19 @@ prog.go2:8:9: invalid operation: operator + not defined <span class="k">for</spa
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nx">Add</span><span class="p">[</span><span class="nx">T</span> <span class="nx">Addable</span><span class="p">](</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span> <span class="nx">T</span><span class="p">)</span> <span class="nx">T</span> <span class="p">{</span>
 	<span class="k">return</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span>
 <span class="p">}</span>
-</code></pre></div><p>现在再次运行：<a href="https://go2goplay.golang.org/p/4J52QmGrc-M" target="_blank" rel="noopener">https://go2goplay.golang.org/p/4J52QmGrc-M</a>
+</code></pre></div><p>现在再次运行：<a href="https://gotipplay.golang.org/p/kR_B6OUyDXA" target="_blank" rel="noopener">https://gotipplay.golang.org/p/kR_B6OUyDXA</a>
 ，发现正常了。而且还支持字符串、复数等：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="nf">Add</span><span class="p">(</span><span class="s">&#34;polaris&#34;</span><span class="p">,</span> <span class="s">&#34;xu&#34;</span><span class="p">)</span>
 </code></pre></div><p>可见，约束可以是任意接口类型。（any 相当于空接口）</p>
 <p>还有另外一种场景：可比较。比如 map 中的 key 要求是可比较的。比如下面的代码：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nx">findFunc</span><span class="p">[</span><span class="nx">T</span> <span class="nx">any</span><span class="p">](</span><span class="nx">a</span> <span class="p">[]</span><span class="nx">T</span><span class="p">,</span> <span class="nx">v</span> <span class="nx">T</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
 	<span class="k">for</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">e</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">a</span> <span class="p">{</span>
-		<span class="k">if</span>  <span class="nx">e</span> <span class="o">==</span> <span class="nx">v</span> <span class="p">{</span>
-      <span class="k">return</span> <span class="nx">i</span>
-    <span class="p">}</span>
+		<span class="k">if</span> <span class="nx">e</span> <span class="o">==</span> <span class="nx">v</span> <span class="p">{</span>
+			<span class="k">return</span> <span class="nx">i</span>
+		<span class="p">}</span>
 	<span class="p">}</span>
 	<span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
- <span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div><p>T 的约束是任意类型，而实际上并非所有类型都是可比较的。怎么办？我们当然可以向上面 Addable 一样定义一个约束，但为了方便，Go 内置提供了一个 <code>comparable</code> 约束，表示可比较的。参考下面代码：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
 
@@ -219,6 +219,8 @@ prog.go2:8:9: invalid operation: operator + not defined <span class="k">for</spa
 	<h2>相关推荐</h2>
 	<ul>
 	
+	<li><a href="/posts/go/generics/generics-constraints/">Go泛型系列：Go1.18 类型约束那些事</a></li>
+	
 	<li><a href="/posts/go/dynamic/go-generic/">扬眉吐气：刚刚，Go 已经默认支持泛型了</a></li>
 	
 	<li><a href="/posts/go/dynamic/about-go-generic-progress/">关于 Go 语言泛型设计的最新进展和一些问题的说明</a></li>
@@ -226,8 +228,6 @@ prog.go2:8:9: invalid operation: operator + not defined <span class="k">for</spa
 	<li><a href="/posts/go/dynamic/go1.18-workspace/">Go1.18 快讯：Module 工作区模式</a></li>
 	
 	<li><a href="/posts/go/dynamic/go1.18-cut/">Go1.18 快讯：新增的 Cut 函数太方便了</a></li>
-	
-	<li><a href="/posts/go/dynamic/go1.18-title/">Go1.18 快讯：废弃了这个 API</a></li>
 	
 	</ul>
 </div>

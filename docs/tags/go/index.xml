@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Wed, 10 Nov 2021 22:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 14 Nov 2021 20:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go泛型系列：Go1.18 类型约束那些事</title>
+      <link>https://polarisxu.studygolang.com/posts/go/generics/generics-constraints/</link>
+      <pubDate>Sun, 14 Nov 2021 20:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/generics/generics-constraints/</guid>
+      <description>大家好，我是 polarisxu。 上篇《Go泛型系列：提前掌握Go泛型的基本使用》 简单讲解了泛型中的约束，但约束相关内容远不止那些，本文介绍更多约束相关内容。 请安装最新的 tip 版本，方便验证本文的内容。当然，也可以通过 https://gotipplay.golang.org/ 在线验证。 01 语法变更 上次提到，定义约束的语法类似这样： type Addable interface { type int, int8, int16, int32, int64, uint, uint8, uint16, uint32, uint64, uintptr, float32, float64, complex64, complex128, string } 不过目前已经确认，语法改成如下形式： type Addable interface { int |</description>
+    </item>
+    
     <item>
       <title>Go1.18 快讯：Module 工作区模式</title>
       <link>https://polarisxu.studygolang.com/posts/go/dynamic/go1.18-workspace/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/book/20211007-manning-books/</guid>
       <description>大家好，我是 polarisxu。 国庆假期结束了，大家玩的开心吗？！ 该收收心，认真学习工作了~ manning 最近有 2 本 Go 相关图书，推荐给大家。 01 Build an Orchestrator in Go 本书希望带领大家通过使用 Go 和 Docker API 构建自己的编排系统，深入了解 Kubernetes 和其他编排系统。具体来说包括： 了解构成任何编排系统的组件 将容器安排到工作节点 使用 Docker API 启动和停止容器 使用简单的 API 管理工作节点集群 使用从 cutting-edge Google Borg 研究论文中获取的算法</description>
-    </item>
-    
-    <item>
-      <title>Go Fiber 框架系列教程 04：测试应用</title>
-      <link>https://polarisxu.studygolang.com/posts/go/fiber/go-fiber-basic-tutorial04/</link>
-      <pubDate>Wed, 06 Oct 2021 22:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/fiber/go-fiber-basic-tutorial04/</guid>
-      <description>大家好，我是 polarisxu。 实际项目中，大家经常不会对 Web API 写单元测试。Go 标准库不仅有 testing 包支持普通单元测试，还有 net/http/httptest 包支持 HTTP 的测试。 本文虽然是测试 Fiber 应用程序，但对其他的框架也适用。 01 如何测试 Web API 的单元测试如何进行？ 本节介绍的测试方法主要是验证请求返回的 HTTP 状态码是否符合预期。 如果返回的状态码是 200 OK，那么表示这个测试用例成功（Pass），如果返回的状态码是 404</description>
     </item>
     
   </channel>

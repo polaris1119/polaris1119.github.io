@@ -6,8 +6,113 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en</language>
 		<copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-		<lastBuildDate>Wed, 10 Nov 2021 22:00:00 +0800</lastBuildDate>
+		<lastBuildDate>Sun, 14 Nov 2021 20:30:00 +0800</lastBuildDate>
 		<atom:link href="https://polarisxu.studygolang.com/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>Go泛型系列：Go1.18 类型约束那些事</title>
+			<link>https://polarisxu.studygolang.com/posts/go/generics/generics-constraints/</link>
+			<pubDate>Sun, 14 Nov 2021 20:30:00 +0800</pubDate>
+			
+			<guid>https://polarisxu.studygolang.com/posts/go/generics/generics-constraints/</guid>
+			<description>大家好，我是 polarisxu。 上篇《Go泛型系列：提前掌握Go泛型的基本使用》 简单讲解了泛型中的约束，但约束相关内容远不止那些，本文介绍更多约束相关内容。 请安装最新的 tip 版本，方便验证本文的内容。当然，也可以通过 https://gotipplay.golang.org/ 在线验证。 01 语法变更 上次提到，定义约束的语法类似这样： type Addable interface { type int, int8, int16, int32, int64, uint, uint8, uint16, uint32, uint64, uintptr, float32, float64, complex64, complex128, string } 不过目前已经确认，语法改成如下形式： type Addable interface { int |</description>
+			<content type="html"><![CDATA[<p>大家好，我是 polarisxu。</p>
+<p>上篇<a href="https://mp.weixin.qq.com/s/0sdNN7Tlx09Hwtqb-2jlRA" target="_blank" rel="noopener">《Go泛型系列：提前掌握Go泛型的基本使用》</a>
+简单讲解了泛型中的约束，但约束相关内容远不止那些，本文介绍更多约束相关内容。</p>
+<blockquote>
+<p>请安装最新的 tip 版本，方便验证本文的内容。当然，也可以通过 <a href="https://gotipplay.golang.org/" target="_blank" rel="noopener">https://gotipplay.golang.org/</a>
+ 在线验证。</p>
+</blockquote>
+<h2 id="01-语法变更">01 语法变更</h2>
+<p>上次提到，定义约束的语法类似这样：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">Addable</span> <span class="kd">interface</span> <span class="p">{</span>
+	<span class="kd">type</span> <span class="kt">int</span><span class="p">,</span> <span class="kt">int8</span><span class="p">,</span> <span class="kt">int16</span><span class="p">,</span> <span class="kt">int32</span><span class="p">,</span> <span class="kt">int64</span><span class="p">,</span> <span class="kt">uint</span><span class="p">,</span> <span class="kt">uint8</span><span class="p">,</span> <span class="kt">uint16</span><span class="p">,</span> <span class="kt">uint32</span><span class="p">,</span> <span class="kt">uint64</span><span class="p">,</span> <span class="kt">uintptr</span><span class="p">,</span> <span class="kt">float32</span><span class="p">,</span> <span class="kt">float64</span><span class="p">,</span> <span class="kt">complex64</span><span class="p">,</span> <span class="kt">complex128</span><span class="p">,</span> <span class="kt">string</span>
+<span class="p">}</span>
+</code></pre></div><p>不过目前已经确认，语法改成如下形式：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">Addable</span> <span class="kd">interface</span> <span class="p">{</span>
+  <span class="kt">int</span> <span class="p">|</span> <span class="kt">int8</span> <span class="p">|</span> <span class="kt">int16</span> <span class="p">|</span> <span class="kt">int32</span> <span class="p">|</span> <span class="kt">int64</span> <span class="p">|</span> <span class="kt">uint</span> <span class="p">|</span> <span class="kt">uint8</span> <span class="p">|</span> <span class="kt">uint16</span> <span class="p">|</span> <span class="kt">uint32</span> <span class="p">|</span> <span class="kt">uint64</span> <span class="p">|</span> <span class="kt">uintptr</span> <span class="p">|</span> <span class="kt">float32</span> <span class="p">|</span> <span class="kt">float64</span> <span class="p">|</span> <span class="kt">complex64</span> <span class="p">|</span> <span class="kt">complex128</span> <span class="p">|</span> <span class="kt">string</span>
+<span class="p">}</span>
+</code></pre></div><p>对于这样的修改，大家褒贬不一。就语义来说，新的方式 <code>|</code> 有或之意，更贴切，而且少了一个 <code>type</code>，更简洁。</p>
+<h2 id="02-额外用法">02 额外用法</h2>
+<p>除了以上提到的优点，新的方式还还有额外的用途，也就是不用每次都定义一个接口约束。</p>
+<p>看一个具体示例：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+	<span class="s">&#34;fmt&#34;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nx">add</span><span class="p">[</span><span class="nx">T</span> <span class="kt">int</span><span class="p">|</span><span class="kt">float64</span><span class="p">](</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span> <span class="nx">T</span><span class="p">)</span> <span class="nx">T</span> <span class="p">{</span>
+	<span class="k">return</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nf">add</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nf">add</span><span class="p">(</span><span class="mf">1.2</span><span class="p">,</span> <span class="mf">2.3</span><span class="p">))</span>
+  <span class="c1">// fmt.Println(add(&#34;a&#34;, &#34;b&#34;))
+</span><span class="c1"></span><span class="p">}</span>
+<span class="c1">// Output:
+</span><span class="c1">// 3
+</span><span class="c1">// 3.5
+</span></code></pre></div><p>最后注释的一行代码，会编译报错：<code>string does not satisfy int|float64</code>。</p>
+<p>注意 add 函数的泛型约束：<code>T int|float64</code>。如果约束是逗号分隔，无法采用这种语法：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nx">add</span><span class="p">[</span><span class="nx">T</span> <span class="kt">int</span><span class="p">,</span><span class="kt">float64</span><span class="p">](</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span> <span class="nx">T</span><span class="p">)</span> <span class="nx">T</span>
+</code></pre></div><p>以上代码显然很不友好，编译器也不好解析。</p>
+<p>采用了 <code>|</code> 后，不需要每次都定义接口约束，可以让代码更少。不过，这种方式建议只在少数类型约束时才适合，否则可读性太差。</p>
+<p>除了以上用法，约束还有一种用法。</p>
+<p>在 Go 语言中，基于某类型定义新类型，有时可能希望泛型约束是某类型的所有衍生类型。看一个具体例子：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+	<span class="s">&#34;fmt&#34;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nx">add</span><span class="p">[</span><span class="nx">T</span> <span class="err">~</span><span class="kt">string</span><span class="p">](</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span> <span class="nx">T</span><span class="p">)</span> <span class="nx">T</span> <span class="p">{</span>
+	<span class="k">return</span> <span class="nx">x</span> <span class="o">+</span> <span class="nx">y</span>
+<span class="p">}</span>
+
+<span class="kd">type</span> <span class="nx">MyString</span> <span class="kt">string</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="kd">var</span> <span class="nx">x</span> <span class="kt">string</span> <span class="p">=</span> <span class="s">&#34;ab&#34;</span>
+	<span class="kd">var</span> <span class="nx">y</span> <span class="nx">MyString</span> <span class="p">=</span> <span class="s">&#34;cd&#34;</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nf">add</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">x</span><span class="p">))</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nf">add</span><span class="p">(</span><span class="nx">y</span><span class="p">,</span> <span class="nx">y</span><span class="p">))</span>
+<span class="p">}</span>
+
+<span class="c1">// Output:
+</span><span class="c1">// abab
+</span><span class="c1">// cdcd
+</span></code></pre></div><p>注意 add 函数的签名：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nx">add</span><span class="p">[</span><span class="nx">T</span> <span class="err">~</span><span class="kt">string</span><span class="p">](</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span> <span class="nx">T</span><span class="p">)</span> <span class="nx">T</span>
+</code></pre></div><p>约束 <code>~string</code>  表示支持 string 类型以及底层是 string 类型的类型，因此 MyString 类型值也可以传递给 add。</p>
+<h2 id="03-注意事项">03 注意事项</h2>
+<p>约束形式的多样性，导致 Go 泛型语法一下子复杂起来：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// 没有任何约束
+</span><span class="c1"></span><span class="kd">func</span> <span class="nx">add</span><span class="p">[</span><span class="nx">T</span> <span class="nx">any</span><span class="p">](</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span> <span class="nx">T</span><span class="p">)</span> <span class="nx">T</span>
+<span class="c1">// 约束 Addble (需要单独定义)
+</span><span class="c1"></span><span class="kd">func</span> <span class="nx">add</span><span class="p">[</span><span class="nx">T</span> <span class="nx">Addble</span><span class="p">](</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span> <span class="nx">T</span><span class="p">)</span> <span class="nx">T</span>
+<span class="c1">// 约束允许 int 或 float64 类型
+</span><span class="c1"></span><span class="kd">func</span> <span class="nx">add</span><span class="p">[</span><span class="nx">T</span> <span class="kt">int</span><span class="p">|</span><span class="kt">float64</span><span class="p">](</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span> <span class="nx">T</span><span class="p">)</span> <span class="nx">T</span>
+<span class="c1">// 约束允许底层类型是 string 的类型（包括 string 类型）
+</span><span class="c1"></span><span class="kd">func</span> <span class="nx">add</span><span class="p">[</span><span class="nx">T</span> <span class="err">~</span><span class="kt">string</span><span class="p">](</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span> <span class="nx">T</span><span class="p">)</span> <span class="nx">T</span>
+</code></pre></div><p>在泛型中，有些场景可能想当然可以成立，但结果可能不成立，在使用时需要注意（当然，不排除将来支持）。比如：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nx">MakeChan</span><span class="p">[</span><span class="nx">T</span> <span class="kd">chan</span> <span class="kt">bool</span> <span class="p">|</span> <span class="kd">chan</span> <span class="kt">int</span><span class="p">](</span><span class="nx">c</span> <span class="nx">T</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">_</span> <span class="p">=</span> <span class="nb">make</span><span class="p">(</span><span class="nx">T</span><span class="p">)</span> <span class="c1">// 错误
+</span><span class="c1"></span>   <span class="nx">_</span> <span class="p">=</span> <span class="nb">new</span><span class="p">(</span><span class="nx">T</span><span class="p">)</span> <span class="c1">// 正确
+</span><span class="c1"></span>  <span class="nx">_</span> <span class="p">=</span> <span class="nb">len</span><span class="p">(</span><span class="nx">c</span><span class="p">)</span>  <span class="c1">// 正确
+</span><span class="c1"></span><span class="p">}</span>
+
+<span class="c1">// 以下代码无法编译：
+</span><span class="c1">// cannot range over c (variable of type T constrained by []string|map[int]string) (T has no structural type)
+</span><span class="c1"></span><span class="kd">func</span> <span class="nx">ForEach</span><span class="p">[</span><span class="nx">T</span> <span class="p">[]</span><span class="kt">string</span> <span class="p">|</span> <span class="kd">map</span><span class="p">[</span><span class="kt">int</span><span class="p">]</span><span class="kt">string</span><span class="p">](</span><span class="nx">c</span> <span class="nx">T</span><span class="p">,</span> <span class="nx">f</span> <span class="kd">func</span><span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">string</span><span class="p">))</span> <span class="p">{</span>
+	<span class="k">for</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">v</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">c</span> <span class="p">{</span>
+		<span class="nf">f</span><span class="p">(</span><span class="nx">i</span><span class="p">,</span> <span class="nx">v</span><span class="p">)</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><p>ForEach 函数的签名，你能看懂吗？泛型确实让 Go 复杂起来了，虽然语法允许，但建议大家以后写泛型代码时一定要尽量保证可读性。</p>
+]]></content>
+		</item>
 		
 		<item>
 			<title>Go1.18 快讯：Module 工作区模式</title>
@@ -1214,7 +1319,7 @@ ok  	github.com/polaris1119/fiber-example
 <p>这样就表示，a、b 和返回值可以是任意类型，但它们的类型是同一个。那具体是什么类型如何确定呢？根据调用时的实际参数决定。因此，我们现在可以这么使用：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="nf">Add</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 <span class="nf">Add</span><span class="p">(</span><span class="mf">2.1</span><span class="p">,</span> <span class="mf">3.2</span><span class="p">)</span>
-</code></pre></div><p>不过，这时候代码会报错。你可以本地用 Go1.17 启用泛型的方式试验，也可以使用 gotip 版本，亦或直接访问这里试验：<a href="https://go2goplay.golang.org/p/vTHnUA_8vOI" target="_blank" rel="noopener">https://go2goplay.golang.org/p/vTHnUA_8vOI</a>
+</code></pre></div><p>不过，这时候代码会报错。你可以本地用 Go1.17 启用泛型的方式试验，也可以使用 gotip 版本，亦或直接访问这里试验：<a href="https://gotipplay.golang.org/p/vTHnUA_8vOI" target="_blank" rel="noopener">https://gotipplay.golang.org/p/vTHnUA_8vOI</a>
 </p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
 
@@ -1246,19 +1351,19 @@ prog.go2:8:9: invalid operation: operator + not defined <span class="k">for</spa
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nx">Add</span><span class="p">[</span><span class="nx">T</span> <span class="nx">Addable</span><span class="p">](</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span> <span class="nx">T</span><span class="p">)</span> <span class="nx">T</span> <span class="p">{</span>
 	<span class="k">return</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span>
 <span class="p">}</span>
-</code></pre></div><p>现在再次运行：<a href="https://go2goplay.golang.org/p/4J52QmGrc-M" target="_blank" rel="noopener">https://go2goplay.golang.org/p/4J52QmGrc-M</a>
+</code></pre></div><p>现在再次运行：<a href="https://gotipplay.golang.org/p/kR_B6OUyDXA" target="_blank" rel="noopener">https://gotipplay.golang.org/p/kR_B6OUyDXA</a>
 ，发现正常了。而且还支持字符串、复数等：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="nf">Add</span><span class="p">(</span><span class="s">&#34;polaris&#34;</span><span class="p">,</span> <span class="s">&#34;xu&#34;</span><span class="p">)</span>
 </code></pre></div><p>可见，约束可以是任意接口类型。（any 相当于空接口）</p>
 <p>还有另外一种场景：可比较。比如 map 中的 key 要求是可比较的。比如下面的代码：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nx">findFunc</span><span class="p">[</span><span class="nx">T</span> <span class="nx">any</span><span class="p">](</span><span class="nx">a</span> <span class="p">[]</span><span class="nx">T</span><span class="p">,</span> <span class="nx">v</span> <span class="nx">T</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
 	<span class="k">for</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">e</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">a</span> <span class="p">{</span>
-		<span class="k">if</span>  <span class="nx">e</span> <span class="o">==</span> <span class="nx">v</span> <span class="p">{</span>
-      <span class="k">return</span> <span class="nx">i</span>
-    <span class="p">}</span>
+		<span class="k">if</span> <span class="nx">e</span> <span class="o">==</span> <span class="nx">v</span> <span class="p">{</span>
+			<span class="k">return</span> <span class="nx">i</span>
+		<span class="p">}</span>
 	<span class="p">}</span>
 	<span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
- <span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div><p>T 的约束是任意类型，而实际上并非所有类型都是可比较的。怎么办？我们当然可以向上面 Addable 一样定义一个约束，但为了方便，Go 内置提供了一个 <code>comparable</code> 约束，表示可比较的。参考下面代码：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
 
