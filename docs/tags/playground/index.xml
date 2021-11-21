@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Fri, 09 Oct 2020 18:12:51 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/playground/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 21 Nov 2021 20:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/playground/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Nginx 竟然也有 playground — Go 语言构建的</title>
+      <link>https://polarisxu.studygolang.com/posts/devtool/an-nginx-playground/</link>
+      <pubDate>Sun, 21 Nov 2021 20:00:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/devtool/an-nginx-playground/</guid>
+      <description>大家好，我是 polarisxu。 曾几何时，playground 似乎成了新语言的标配：Go 发布就带有 https://play.golang.org/ ，Rust 发布也有 https://play.rust-lang.org/ 。你想过 Nginx 也有一个 playground 吗？你可以通过它方便的测试 Nginx 配置。 今天发现，还真有一个，地址：https://nginx-playground.wizardzines.com 。关键是，后端使用 Go 构建的。 以下是该网址的截图： 本文简单介绍下这个 playgr</description>
+    </item>
+    
     <item>
       <title>Go Playground 还能这么玩？</title>
       <link>https://polarisxu.studygolang.com/posts/go/project/usingg-gpgsync/</link>

@@ -6,8 +6,207 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en</language>
 		<copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-		<lastBuildDate>Sun, 14 Nov 2021 20:30:00 +0800</lastBuildDate>
+		<lastBuildDate>Sun, 21 Nov 2021 20:00:00 +0800</lastBuildDate>
 		<atom:link href="https://polarisxu.studygolang.com/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>Nginx 竟然也有 playground — Go 语言构建的</title>
+			<link>https://polarisxu.studygolang.com/posts/devtool/an-nginx-playground/</link>
+			<pubDate>Sun, 21 Nov 2021 20:00:00 +0800</pubDate>
+			
+			<guid>https://polarisxu.studygolang.com/posts/devtool/an-nginx-playground/</guid>
+			<description>大家好，我是 polarisxu。 曾几何时，playground 似乎成了新语言的标配：Go 发布就带有 https://play.golang.org/ ，Rust 发布也有 https://play.rust-lang.org/ 。你想过 Nginx 也有一个 playground 吗？你可以通过它方便的测试 Nginx 配置。 今天发现，还真有一个，地址：https://nginx-playground.wizardzines.com 。关键是，后端使用 Go 构建的。 以下是该网址的截图： 本文简单介绍下这个 playgr</description>
+			<content type="html"><![CDATA[<p>大家好，我是 polarisxu。</p>
+<p>曾几何时，playground 似乎成了新语言的标配：Go 发布就带有 <a href="https://play.golang.org/" target="_blank" rel="noopener">https://play.golang.org/</a>
+，Rust 发布也有 <a href="https://play.rust-lang.org/" target="_blank" rel="noopener">https://play.rust-lang.org/</a>
+。你想过 Nginx 也有一个 playground 吗？你可以通过它方便的测试 Nginx 配置。</p>
+<p>今天发现，还真有一个，地址：<a href="https://nginx-playground.wizardzines.com" target="_blank" rel="noopener">https://nginx-playground.wizardzines.com</a>
+。关键是，后端使用 Go 构建的。</p>
+<p>以下是该网址的截图：</p>
+<p><p class="md__image">
+  <img src="../imgs/nginx-playground-screenshot.jpg"
+    alt="Nginx Playground"  />
+</p>
+</p>
+<p>本文简单介绍下这个 playground。</p>
+<h2 id="01-如何使用">01 如何使用</h2>
+<p>打开这个网站后，在左侧，你可以写 Nginx 配置，在右上角可以通过 curl 命令或 http 命令（这是 httpie）来向该 Nginx 实例发送 HTTP 请求。</p>
+<p>然后点击右上角的“Run”，成功后，在右下角会输出：</p>
+<p>1）如果 Nginx 启动成功，输出执行命令的结果；</p>
+<p>2）如果 Nginx 无法启动（配置出错了），则会输出 Nginx 错误日志。</p>
+<h2 id="02-原理">02 原理</h2>
+<p>这个网站使用的技术如下：</p>
+<p>1）前端使用 vue.js 和 tailwind；</p>
+<p>2）有端就一个 API endpoint，使用 Go 语言构建。它只做 1 件事，即运行 Nginx 配置。</p>
+<p>后端的完整代码见这里：<a href="https://gist.github.com/jvns/edf78e7775fea8888685a9a2956bc477" target="_blank" rel="noopener">https://gist.github.com/jvns/edf78e7775fea8888685a9a2956bc477</a>
+。</p>
+<p>当你单击“Run”时，Go 后端会执行以下操作：</p>
+<ol>
+<li>将配置写入临时文件</li>
+<li>创建一个新的网络命名空间 ( <code>ip netns add $RANDOM_NAMESPACE_NAME</code>)</li>
+<li>在端口 777 上启动 <a href="https://github.com/mccutchen/go-httpbin" target="_blank" rel="noopener">go-httpbin</a>
+，以便可以在 nginx 配置中使用它作为 backend（如上面截图中的 proxy_pass 地址）</li>
+<li>启动 Nginx</li>
+<li>等待 100 毫秒以确保 nginx 启动完成，如果失败则将 nginx 的错误日志返回给客户端</li>
+<li>运行用户请求的命令（并确保命令以<code>curl</code>或开头<code>http</code>）</li>
+<li>返回命令的输出</li>
+<li>完毕</li>
+</ol>
+<p>Go 后端一共 100 多行代码，逻辑处理代码 70 行左右，对实现感兴趣的可以读一下。</p>
+<h2 id="03-小结">03 小结</h2>
+<p>这个网站的作者写了一篇文章介绍它，包括安全问题、性能问题等，有兴趣的可以查看：<a href="https://jvns.ca/blog/2021/09/24/new-tool--an-nginx-playground/" target="_blank" rel="noopener">https://jvns.ca/blog/2021/09/24/new-tool--an-nginx-playground/</a>
+。另外，还有一个 Nginx location match 测试的网址：<a href="https://nginx.viraptor.info/" target="_blank" rel="noopener">https://nginx.viraptor.info/</a>
+。</p>
+<p>为了方便无法访问上面 Go 代码的同学，我将完整 Go 代码贴在下面：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+	<span class="s">&#34;encoding/json&#34;</span>
+	<span class="s">&#34;fmt&#34;</span>
+	<span class="s">&#34;io/ioutil&#34;</span>
+	<span class="s">&#34;log&#34;</span>
+	<span class="s">&#34;math/rand&#34;</span>
+	<span class="s">&#34;net/http&#34;</span>
+	<span class="s">&#34;os&#34;</span>
+	<span class="s">&#34;os/exec&#34;</span>
+	<span class="s">&#34;strings&#34;</span>
+	<span class="s">&#34;syscall&#34;</span>
+	<span class="s">&#34;time&#34;</span>
+<span class="p">)</span>
+
+<span class="kd">type</span> <span class="nx">RunRequest</span> <span class="kd">struct</span> <span class="p">{</span>
+	<span class="nx">NginxConfig</span> <span class="kt">string</span> <span class="s">`json:&#34;nginx_config&#34;`</span>
+	<span class="nx">Command</span>     <span class="kt">string</span> <span class="s">`json:&#34;command&#34;`</span>
+<span class="p">}</span>
+
+<span class="kd">type</span> <span class="nx">RunResponse</span> <span class="kd">struct</span> <span class="p">{</span>
+	<span class="nx">Result</span> <span class="kt">string</span> <span class="s">`json:&#34;result&#34;`</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="nx">rand</span><span class="p">.</span><span class="nf">Seed</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nf">Now</span><span class="p">().</span><span class="nf">UnixNano</span><span class="p">())</span>
+	<span class="nx">http</span><span class="p">.</span><span class="nf">Handle</span><span class="p">(</span><span class="s">&#34;/&#34;</span><span class="p">,</span> <span class="nf">wrapLogger</span><span class="p">(</span><span class="nx">Handler</span><span class="p">{</span><span class="nx">runHandler</span><span class="p">}))</span>
+	<span class="nx">log</span><span class="p">.</span><span class="nf">Fatal</span><span class="p">(</span><span class="nx">http</span><span class="p">.</span><span class="nf">ListenAndServe</span><span class="p">(</span><span class="s">&#34;:8080&#34;</span><span class="p">,</span> <span class="kc">nil</span><span class="p">))</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">runHandler</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
+	<span class="nx">w</span><span class="p">.</span><span class="nf">Header</span><span class="p">().</span><span class="nf">Add</span><span class="p">(</span><span class="s">&#34;Access-Control-Allow-Origin&#34;</span><span class="p">,</span> <span class="s">&#34;*&#34;</span><span class="p">)</span>
+	<span class="nx">w</span><span class="p">.</span><span class="nf">Header</span><span class="p">().</span><span class="nf">Add</span><span class="p">(</span><span class="s">&#34;Access-Control-Allow-Headers&#34;</span><span class="p">,</span> <span class="s">&#34;*&#34;</span><span class="p">)</span>
+	<span class="k">if</span> <span class="nx">r</span><span class="p">.</span><span class="nx">Method</span> <span class="o">!=</span> <span class="s">&#34;POST&#34;</span> <span class="p">{</span>
+		<span class="c1">// OPTIONS request
+</span><span class="c1"></span>		<span class="k">return</span> <span class="kc">nil</span>
+	<span class="p">}</span>
+	<span class="nx">body</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">ioutil</span><span class="p">.</span><span class="nf">ReadAll</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">Body</span><span class="p">)</span>
+	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="nx">fmt</span><span class="p">.</span><span class="nf">Errorf</span><span class="p">(</span><span class="s">&#34;failed to read body: %s&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+	<span class="p">}</span>
+	<span class="kd">var</span> <span class="nx">req</span> <span class="nx">RunRequest</span>
+	<span class="nx">json</span><span class="p">.</span><span class="nf">Unmarshal</span><span class="p">([]</span><span class="nb">byte</span><span class="p">(</span><span class="nx">body</span><span class="p">),</span> <span class="o">&amp;</span><span class="nx">req</span><span class="p">)</span>
+
+	<span class="c1">// write config
+</span><span class="c1"></span>	<span class="nx">file</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">os</span><span class="p">.</span><span class="nf">CreateTemp</span><span class="p">(</span><span class="s">&#34;/tmp&#34;</span><span class="p">,</span> <span class="s">&#34;nginx_config&#34;</span><span class="p">)</span>
+	<span class="nx">errorFile</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">os</span><span class="p">.</span><span class="nf">CreateTemp</span><span class="p">(</span><span class="s">&#34;/tmp&#34;</span><span class="p">,</span> <span class="s">&#34;nginx_errors&#34;</span><span class="p">)</span>
+	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="nx">fmt</span><span class="p">.</span><span class="nf">Errorf</span><span class="p">(</span><span class="s">&#34;failed to create temp file, %s&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+	<span class="p">}</span>
+	<span class="nx">file</span><span class="p">.</span><span class="nf">WriteString</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">NginxConfig</span><span class="p">)</span>
+	<span class="nx">file</span><span class="p">.</span><span class="nf">Close</span><span class="p">()</span>
+	<span class="k">defer</span> <span class="nx">os</span><span class="p">.</span><span class="nf">Remove</span><span class="p">(</span><span class="nx">file</span><span class="p">.</span><span class="nf">Name</span><span class="p">())</span>
+	<span class="k">defer</span> <span class="nx">os</span><span class="p">.</span><span class="nf">Remove</span><span class="p">(</span><span class="nx">errorFile</span><span class="p">.</span><span class="nf">Name</span><span class="p">())</span>
+
+	<span class="c1">// set up network namespace
+</span><span class="c1"></span>	<span class="nx">namespace</span> <span class="o">:=</span> <span class="s">&#34;ns_&#34;</span> <span class="o">+</span> <span class="nf">randSeq</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span>
+	<span class="k">if</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">exec</span><span class="p">.</span><span class="nf">Command</span><span class="p">(</span><span class="s">&#34;ip&#34;</span><span class="p">,</span> <span class="s">&#34;netns&#34;</span><span class="p">,</span> <span class="s">&#34;add&#34;</span><span class="p">,</span> <span class="nx">namespace</span><span class="p">).</span><span class="nf">Run</span><span class="p">();</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="nx">fmt</span><span class="p">.</span><span class="nf">Errorf</span><span class="p">(</span><span class="s">&#34;failed to create network namespace: %s&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+	<span class="p">}</span>
+	<span class="k">defer</span> <span class="nx">exec</span><span class="p">.</span><span class="nf">Command</span><span class="p">(</span><span class="s">&#34;ip&#34;</span><span class="p">,</span> <span class="s">&#34;netns&#34;</span><span class="p">,</span> <span class="s">&#34;delete&#34;</span><span class="p">,</span> <span class="nx">namespace</span><span class="p">).</span><span class="nf">Run</span><span class="p">()</span>
+
+	<span class="k">if</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">exec</span><span class="p">.</span><span class="nf">Command</span><span class="p">(</span><span class="s">&#34;ip&#34;</span><span class="p">,</span> <span class="s">&#34;netns&#34;</span><span class="p">,</span> <span class="s">&#34;exec&#34;</span><span class="p">,</span> <span class="nx">namespace</span><span class="p">,</span> <span class="s">&#34;ip&#34;</span><span class="p">,</span> <span class="s">&#34;link&#34;</span><span class="p">,</span> <span class="s">&#34;set&#34;</span><span class="p">,</span> <span class="s">&#34;dev&#34;</span><span class="p">,</span> <span class="s">&#34;lo&#34;</span><span class="p">,</span> <span class="s">&#34;up&#34;</span><span class="p">).</span><span class="nf">Run</span><span class="p">();</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="nx">fmt</span><span class="p">.</span><span class="nf">Errorf</span><span class="p">(</span><span class="s">&#34;failed to create network namespace: %s&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+	<span class="p">}</span>
+
+	<span class="c1">// start httpbin
+</span><span class="c1"></span>	<span class="nx">httpbin_cmd</span> <span class="o">:=</span> <span class="nx">exec</span><span class="p">.</span><span class="nf">Command</span><span class="p">(</span><span class="s">&#34;ip&#34;</span><span class="p">,</span> <span class="s">&#34;netns&#34;</span><span class="p">,</span> <span class="s">&#34;exec&#34;</span><span class="p">,</span> <span class="nx">namespace</span><span class="p">,</span> <span class="s">&#34;go-httpbin&#34;</span><span class="p">,</span> <span class="s">&#34;-port&#34;</span><span class="p">,</span> <span class="s">&#34;7777&#34;</span><span class="p">)</span>
+	<span class="k">if</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">httpbin_cmd</span><span class="p">.</span><span class="nf">Start</span><span class="p">();</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="nx">fmt</span><span class="p">.</span><span class="nf">Errorf</span><span class="p">(</span><span class="s">&#34;failed to start go-httpbin: %s&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+	<span class="p">}</span>
+	<span class="k">defer</span> <span class="nf">kill</span><span class="p">(</span><span class="nx">httpbin_cmd</span><span class="p">)</span>
+
+	<span class="c1">// start nginx
+</span><span class="c1"></span>	<span class="nx">nginx_cmd</span> <span class="o">:=</span> <span class="nx">exec</span><span class="p">.</span><span class="nf">Command</span><span class="p">(</span><span class="s">&#34;ip&#34;</span><span class="p">,</span> <span class="s">&#34;netns&#34;</span><span class="p">,</span> <span class="s">&#34;exec&#34;</span><span class="p">,</span> <span class="nx">namespace</span><span class="p">,</span> <span class="s">&#34;nginx&#34;</span><span class="p">,</span> <span class="s">&#34;-c&#34;</span><span class="p">,</span> <span class="nx">file</span><span class="p">.</span><span class="nf">Name</span><span class="p">(),</span> <span class="s">&#34;-e&#34;</span><span class="p">,</span> <span class="nx">errorFile</span><span class="p">.</span><span class="nf">Name</span><span class="p">(),</span> <span class="s">&#34;-g&#34;</span><span class="p">,</span> <span class="s">&#34;daemon off;&#34;</span><span class="p">)</span>
+	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="nx">fmt</span><span class="p">.</span><span class="nf">Errorf</span><span class="p">(</span><span class="s">&#34;failed to get pipe: %s&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+	<span class="p">}</span>
+	<span class="nx">ch</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">error</span><span class="p">)</span>
+	<span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+		<span class="nx">ch</span> <span class="o">&lt;-</span> <span class="nx">nginx_cmd</span><span class="p">.</span><span class="nf">Run</span><span class="p">()</span>
+	<span class="p">}()</span>
+
+	<span class="c1">// Check for errors
+</span><span class="c1"></span>	<span class="k">select</span> <span class="p">{</span>
+	<span class="k">case</span> <span class="o">&lt;-</span><span class="nx">ch</span><span class="p">:</span>
+		<span class="nx">logs</span><span class="p">,</span> <span class="nx">_</span> <span class="o">:=</span> <span class="nx">os</span><span class="p">.</span><span class="nf">ReadFile</span><span class="p">(</span><span class="nx">errorFile</span><span class="p">.</span><span class="nf">Name</span><span class="p">())</span>
+		<span class="k">return</span> <span class="nx">fmt</span><span class="p">.</span><span class="nf">Errorf</span><span class="p">(</span><span class="s">&#34;nginx failed to start. Error logs:\n\n %s&#34;</span><span class="p">,</span> <span class="nb">string</span><span class="p">(</span><span class="nx">logs</span><span class="p">))</span>
+	<span class="k">case</span> <span class="o">&lt;-</span><span class="nx">time</span><span class="p">.</span><span class="nf">After</span><span class="p">(</span><span class="mi">100</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Millisecond</span><span class="p">):</span>
+		<span class="k">defer</span> <span class="nf">term</span><span class="p">(</span><span class="nx">nginx_cmd</span><span class="p">)</span>
+		<span class="k">break</span>
+	<span class="p">}</span>
+
+	<span class="c1">// run curl
+</span><span class="c1"></span>	<span class="nx">curlArgs</span> <span class="o">:=</span> <span class="nx">strings</span><span class="p">.</span><span class="nf">Split</span><span class="p">(</span><span class="nx">strings</span><span class="p">.</span><span class="nf">TrimSpace</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">Command</span><span class="p">),</span> <span class="s">&#34; &#34;</span><span class="p">)</span>
+	<span class="k">if</span> <span class="nx">curlArgs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="s">&#34;curl&#34;</span> <span class="o">&amp;&amp;</span> <span class="nx">curlArgs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="s">&#34;http&#34;</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="nx">fmt</span><span class="p">.</span><span class="nf">Errorf</span><span class="p">(</span><span class="s">&#34;command must start with &#39;curl&#39; or &#39;http&#39;&#34;</span><span class="p">)</span>
+	<span class="p">}</span>
+	<span class="nx">curlCommand</span> <span class="o">:=</span> <span class="nb">append</span><span class="p">([]</span><span class="kt">string</span><span class="p">{</span><span class="s">&#34;netns&#34;</span><span class="p">,</span> <span class="s">&#34;exec&#34;</span><span class="p">,</span> <span class="nx">namespace</span><span class="p">},</span> <span class="nx">curlArgs</span><span class="o">...</span><span class="p">)</span>
+	<span class="nx">output</span><span class="p">,</span> <span class="nx">_</span> <span class="o">:=</span> <span class="nx">exec</span><span class="p">.</span><span class="nf">Command</span><span class="p">(</span><span class="s">&#34;ip&#34;</span><span class="p">,</span> <span class="nx">curlCommand</span><span class="o">...</span><span class="p">).</span><span class="nf">CombinedOutput</span><span class="p">()</span>
+
+	<span class="c1">// return response
+</span><span class="c1"></span>	<span class="nx">resp</span> <span class="o">:=</span> <span class="nx">RunResponse</span><span class="p">{</span>
+		<span class="nx">Result</span><span class="p">:</span> <span class="nb">string</span><span class="p">(</span><span class="nx">output</span><span class="p">),</span>
+	<span class="p">}</span>
+	<span class="nx">response</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">json</span><span class="p">.</span><span class="nf">Marshal</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">resp</span><span class="p">)</span>
+	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="nx">fmt</span><span class="p">.</span><span class="nf">Errorf</span><span class="p">(</span><span class="s">&#34;failed to marshal json, %s&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+	<span class="p">}</span>
+
+	<span class="nx">w</span><span class="p">.</span><span class="nf">Header</span><span class="p">().</span><span class="nf">Add</span><span class="p">(</span><span class="s">&#34;Content-Type&#34;</span><span class="p">,</span> <span class="s">&#34;application/json&#34;</span><span class="p">)</span>
+	<span class="nx">w</span><span class="p">.</span><span class="nf">Write</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span>
+
+	<span class="k">return</span> <span class="kc">nil</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">wrapLogger</span><span class="p">(</span><span class="nx">handler</span> <span class="nx">http</span><span class="p">.</span><span class="nx">Handler</span><span class="p">)</span> <span class="nx">http</span><span class="p">.</span><span class="nx">Handler</span> <span class="p">{</span>
+	<span class="k">return</span> <span class="nx">http</span><span class="p">.</span><span class="nf">HandlerFunc</span><span class="p">(</span><span class="kd">func</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="p">{</span>
+		<span class="nx">rw</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">responseWrapper</span><span class="p">{</span><span class="nx">w</span><span class="p">,</span> <span class="mi">200</span><span class="p">}</span>
+		<span class="nx">start</span> <span class="o">:=</span> <span class="nx">time</span><span class="p">.</span><span class="nf">Now</span><span class="p">()</span>
+		<span class="nx">handler</span><span class="p">.</span><span class="nf">ServeHTTP</span><span class="p">(</span><span class="nx">rw</span><span class="p">,</span> <span class="nx">r</span><span class="p">)</span>
+		<span class="nx">elapsed</span> <span class="o">:=</span> <span class="nx">time</span><span class="p">.</span><span class="nf">Since</span><span class="p">(</span><span class="nx">start</span><span class="p">)</span>
+		<span class="nx">log</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;%s %d %s %s %s&#34;</span><span class="p">,</span> <span class="nx">r</span><span class="p">.</span><span class="nx">RemoteAddr</span><span class="p">,</span> <span class="nx">rw</span><span class="p">.</span><span class="nx">status</span><span class="p">,</span> <span class="nx">r</span><span class="p">.</span><span class="nx">Method</span><span class="p">,</span> <span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span><span class="p">,</span> <span class="nx">elapsed</span><span class="p">)</span>
+	<span class="p">})</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">term</span><span class="p">(</span><span class="nx">cmd</span> <span class="o">*</span><span class="nx">exec</span><span class="p">.</span><span class="nx">Cmd</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">if</span> <span class="nx">cmd</span><span class="p">.</span><span class="nx">Process</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+		<span class="nx">cmd</span><span class="p">.</span><span class="nx">Process</span><span class="p">.</span><span class="nf">Signal</span><span class="p">(</span><span class="nx">syscall</span><span class="p">.</span><span class="nx">SIGTERM</span><span class="p">)</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+<span class="kd">func</span> <span class="nf">kill</span><span class="p">(</span><span class="nx">cmd</span> <span class="o">*</span><span class="nx">exec</span><span class="p">.</span><span class="nx">Cmd</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">if</span> <span class="nx">cmd</span><span class="p">.</span><span class="nx">Process</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+		<span class="nx">cmd</span><span class="p">.</span><span class="nx">Process</span><span class="p">.</span><span class="nf">Kill</span><span class="p">()</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">var</span> <span class="nx">letters</span> <span class="p">=</span> <span class="p">[]</span><span class="nb">rune</span><span class="p">(</span><span class="s">&#34;abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ&#34;</span><span class="p">)</span>
+
+<span class="kd">func</span> <span class="nf">randSeq</span><span class="p">(</span><span class="nx">n</span> <span class="kt">int</span><span class="p">)</span> <span class="kt">string</span> <span class="p">{</span>
+	<span class="nx">b</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">rune</span><span class="p">,</span> <span class="nx">n</span><span class="p">)</span>
+	<span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">b</span> <span class="p">{</span>
+		<span class="nx">b</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="p">=</span> <span class="nx">letters</span><span class="p">[</span><span class="nx">rand</span><span class="p">.</span><span class="nf">Intn</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="nx">letters</span><span class="p">))]</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="nb">string</span><span class="p">(</span><span class="nx">b</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>]]></content>
+		</item>
 		
 		<item>
 			<title>Go泛型系列：Go1.18 类型约束那些事</title>
@@ -156,7 +355,7 @@ $ touch main.go
 </code></pre></div><p>这时候，如果我们运行 go mod tidy，肯定会报错，因为我们的 mypkg 包根本没有提交到 github 上，肯定找不到。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">fatal: repository <span class="s1">&#39;https://github.com/polaris1119/mypkg/&#39;</span> not found
 </code></pre></div><p>go run main.go 也就不成功。</p>
-<p>我们当然可以提交 mypkg 到 github，但我们没修改一次 mypkg，就需要提交，否则 example 中就没法使用上最新的。</p>
+<p>我们当然可以提交 mypkg 到 github，但我们每修改一次 mypkg，就需要提交，否则 example 中就没法使用上最新的。</p>
 <p>针对这种情况，目前是建议通过 replace 来解决，即在 example 中的 go.mod 增加如下 replace：（v1.0.0 根据具体情况修改，还未提交，可以使用 v1.0.0）</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">module github.com/polaris1119/example
 
@@ -171,7 +370,8 @@ This is package mypkg
 </code></pre></div><p>当都开发完成时，我们需要手动删除 replace，并执行 go mod tidy 后提交，否则别人使用就报错了。</p>
 <p>这还是挺不方便的，如果本地有多个 module，每一个都得这么处理。</p>
 <h2 id="02-工作区模式">02 工作区模式</h2>
-<p>针对上面的这个问题，Michael Matloob 提出了 Workspace Mode（工作区模式）。相关 issue 讨论：[cmd/go: add a workspace mode](cmd/go: add a workspace mode)，<a href="https://go.googlesource.com/proposal/&#43;/master/design/45713-workspace.md" target="_blank" rel="noopener">这里是 Proposal</a>
+<p>针对上面的这个问题，Michael Matloob 提出了 Workspace Mode（工作区模式）。相关 issue 讨论：<a href="https://github.com/golang/go/issues/45713" target="_blank" rel="noopener">cmd/go: add a workspace mode</a>
+，<a href="https://go.googlesource.com/proposal/&#43;/master/design/45713-workspace.md" target="_blank" rel="noopener">这里是 Proposal</a>
 。</p>
 <p>为了能够试验工作区，请在本地使用 gotip，建议<a href="https://mp.weixin.qq.com/s/yTblk9Js1Zcq5aWVcYGjOA" target="_blank" rel="noopener">通过 goup 切换 Go 版本</a>
 ：</p>
@@ -196,17 +396,31 @@ $ goup show
 <span class="p">|</span>    tip    <span class="p">|</span>   *    <span class="p">|</span>
 </code></pre></div><p>我本地当前 tip 版本：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ go version
-go version devel go1.18-a4b2c579e9 Wed Nov <span class="m">3</span> 00:49:50 <span class="m">2021</span> +0000 darwin/amd64
-</code></pre></div><p>通过 go help mod 可以看到，新增了 work 相关的两个子命令：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">The commands are:
-  ...
-	editwork    edit go.work from tools or scripts
-	...
-	initwork    initialize workspace file
-	...
+go version devel go1.18-c78a267bd4 Sat Nov <span class="m">13</span> 01:39:23 <span class="m">2021</span> +0000 darwin/amd64
+</code></pre></div><p>通过 go help work 可以看到 work 相关命令：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">Go workspace provides access to operations on worskpaces.
+
+Note that support <span class="k">for</span> workspaces is built into many other commands,
+not just <span class="s1">&#39;go work&#39;</span>.
+
+See <span class="s1">&#39;go help modules&#39;</span> <span class="k">for</span> information about Go<span class="err">&#39;</span>s module system of
+which workspaces are a part.
+
+Usage:
+
+	go work &lt;command&gt; <span class="o">[</span>arguments<span class="o">]</span>
+
+The commands are:
+
+	edit        edit go.work from tools or scripts
+	init        initialize workspace file
+	sync        sync workspace build list to modules
+	use         add modules to workspace file
+
+Use <span class="s2">&#34;go help work &lt;command&gt;&#34;</span> <span class="k">for</span> more information about a command.
 </code></pre></div><p>根据这个提示，我们初始化 workspace：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nb">cd</span> ~/polarisxu
-$ go mod initwork mypkg example
+$ go work init mypkg example
 $ tree
 .
 ├── example
@@ -218,16 +432,16 @@ $ tree
     └── go.mod
 </code></pre></div><p>注意几点：</p>
 <ul>
-<li>多个子模块应该在一个目录下。比如这里的 polarisxu 目录；（这不是必须的，但更好管理，否则 go mod initwork 需要提供正确的子模块路径）</li>
-<li>go mod initwork 需要在 polarisxu 目录执行；</li>
-<li>go mod initwork 之后跟上需要本地开发的子模块目录名；</li>
+<li>多个子模块应该在一个目录下。比如这里的 polarisxu 目录；（这不是必须的，但更好管理，否则 go work init 需要提供正确的子模块路径）</li>
+<li>go work init 需要在 polarisxu 目录执行；</li>
+<li>go work init 之后跟上需要本地开发的子模块目录名；</li>
 </ul>
 <p>打开 go.work 看看长什么样：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">go 1.18
 
-directory <span class="o">(</span>
-    ./example
-    ./mypkg
+use <span class="o">(</span>
+	./example
+ 	./mypkg
 <span class="o">)</span>
 </code></pre></div><p>go.work 文件的语法和 go.mod 类似，因此也支持 replace。</p>
 <p>现在，我们将 example/go.mod 中的 replace 语句删除，再次执行 go run main.go（在 example 目录下），得到了正常的输出。也可以在 polarisxu 目录下，这么运行：go run example/main.go，也能正常。</p>

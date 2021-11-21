@@ -10,7 +10,7 @@
 <meta itemprop="name" content="Go1.18 快讯：Module 工作区模式">
 <meta itemprop="description" content="大家好，我是 polarisxu。 工作区模式（Workspace mode），可不是之前 GOPATH 时代的 Workspace，而是希望在本地开发时支持多 Module。 01 缘起 为了大家全面理解工作区模式，通过一个具体例子讲解。 本地有两个项目，分别是两个 module：mypkg 和 example。（Windows 系统请按自己方式创建目录） $ cd ~/ $ mkdir polarisxu $ cd polarisxu $ mkdir mypkg example $ cd mypkg $ go mod init github.com/polaris1119/mypkg"><meta itemprop="datePublished" content="2021-11-10T22:00:00+08:00" />
 <meta itemprop="dateModified" content="2021-11-10T22:00:00+08:00" />
-<meta itemprop="wordCount" content="1379">
+<meta itemprop="wordCount" content="1427">
 <meta itemprop="keywords" content="Go,Workspace," /><meta property="og:title" content="Go1.18 快讯：Module 工作区模式" />
 <meta property="og:description" content="大家好，我是 polarisxu。 工作区模式（Workspace mode），可不是之前 GOPATH 时代的 Workspace，而是希望在本地开发时支持多 Module。 01 缘起 为了大家全面理解工作区模式，通过一个具体例子讲解。 本地有两个项目，分别是两个 module：mypkg 和 example。（Windows 系统请按自己方式创建目录） $ cd ~/ $ mkdir polarisxu $ cd polarisxu $ mkdir mypkg example $ cd mypkg $ go mod init github.com/polaris1119/mypkg" />
 <meta property="og:type" content="article" />
@@ -112,7 +112,7 @@ $ touch main.go
 </code></pre></div><p>这时候，如果我们运行 go mod tidy，肯定会报错，因为我们的 mypkg 包根本没有提交到 github 上，肯定找不到。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">fatal: repository <span class="s1">&#39;https://github.com/polaris1119/mypkg/&#39;</span> not found
 </code></pre></div><p>go run main.go 也就不成功。</p>
-<p>我们当然可以提交 mypkg 到 github，但我们没修改一次 mypkg，就需要提交，否则 example 中就没法使用上最新的。</p>
+<p>我们当然可以提交 mypkg 到 github，但我们每修改一次 mypkg，就需要提交，否则 example 中就没法使用上最新的。</p>
 <p>针对这种情况，目前是建议通过 replace 来解决，即在 example 中的 go.mod 增加如下 replace：（v1.0.0 根据具体情况修改，还未提交，可以使用 v1.0.0）</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">module github.com/polaris1119/example
 
@@ -127,7 +127,8 @@ This is package mypkg
 </code></pre></div><p>当都开发完成时，我们需要手动删除 replace，并执行 go mod tidy 后提交，否则别人使用就报错了。</p>
 <p>这还是挺不方便的，如果本地有多个 module，每一个都得这么处理。</p>
 <h2 id="02-工作区模式">02 工作区模式<a href="#02-工作区模式" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-<p>针对上面的这个问题，Michael Matloob 提出了 Workspace Mode（工作区模式）。相关 issue 讨论：[cmd/go: add a workspace mode](cmd/go: add a workspace mode)，<a href="https://go.googlesource.com/proposal/&#43;/master/design/45713-workspace.md" target="_blank" rel="noopener">这里是 Proposal</a>
+<p>针对上面的这个问题，Michael Matloob 提出了 Workspace Mode（工作区模式）。相关 issue 讨论：<a href="https://github.com/golang/go/issues/45713" target="_blank" rel="noopener">cmd/go: add a workspace mode</a>
+，<a href="https://go.googlesource.com/proposal/&#43;/master/design/45713-workspace.md" target="_blank" rel="noopener">这里是 Proposal</a>
 。</p>
 <p>为了能够试验工作区，请在本地使用 gotip，建议<a href="https://mp.weixin.qq.com/s/yTblk9Js1Zcq5aWVcYGjOA" target="_blank" rel="noopener">通过 goup 切换 Go 版本</a>
 ：</p>
@@ -152,17 +153,31 @@ $ goup show
 <span class="p">|</span>    tip    <span class="p">|</span>   *    <span class="p">|</span>
 </code></pre></div><p>我本地当前 tip 版本：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ go version
-go version devel go1.18-a4b2c579e9 Wed Nov <span class="m">3</span> 00:49:50 <span class="m">2021</span> +0000 darwin/amd64
-</code></pre></div><p>通过 go help mod 可以看到，新增了 work 相关的两个子命令：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">The commands are:
-  ...
-	editwork    edit go.work from tools or scripts
-	...
-	initwork    initialize workspace file
-	...
+go version devel go1.18-c78a267bd4 Sat Nov <span class="m">13</span> 01:39:23 <span class="m">2021</span> +0000 darwin/amd64
+</code></pre></div><p>通过 go help work 可以看到 work 相关命令：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">Go workspace provides access to operations on worskpaces.
+
+Note that support <span class="k">for</span> workspaces is built into many other commands,
+not just <span class="s1">&#39;go work&#39;</span>.
+
+See <span class="s1">&#39;go help modules&#39;</span> <span class="k">for</span> information about Go<span class="err">&#39;</span>s module system of
+which workspaces are a part.
+
+Usage:
+
+	go work &lt;command&gt; <span class="o">[</span>arguments<span class="o">]</span>
+
+The commands are:
+
+	edit        edit go.work from tools or scripts
+	init        initialize workspace file
+	sync        sync workspace build list to modules
+	use         add modules to workspace file
+
+Use <span class="s2">&#34;go help work &lt;command&gt;&#34;</span> <span class="k">for</span> more information about a command.
 </code></pre></div><p>根据这个提示，我们初始化 workspace：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nb">cd</span> ~/polarisxu
-$ go mod initwork mypkg example
+$ go work init mypkg example
 $ tree
 .
 ├── example
@@ -174,16 +189,16 @@ $ tree
     └── go.mod
 </code></pre></div><p>注意几点：</p>
 <ul>
-<li>多个子模块应该在一个目录下。比如这里的 polarisxu 目录；（这不是必须的，但更好管理，否则 go mod initwork 需要提供正确的子模块路径）</li>
-<li>go mod initwork 需要在 polarisxu 目录执行；</li>
-<li>go mod initwork 之后跟上需要本地开发的子模块目录名；</li>
+<li>多个子模块应该在一个目录下。比如这里的 polarisxu 目录；（这不是必须的，但更好管理，否则 go work init 需要提供正确的子模块路径）</li>
+<li>go work init 需要在 polarisxu 目录执行；</li>
+<li>go work init 之后跟上需要本地开发的子模块目录名；</li>
 </ul>
 <p>打开 go.work 看看长什么样：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">go 1.18
 
-directory <span class="o">(</span>
-    ./example
-    ./mypkg
+use <span class="o">(</span>
+	./example
+ 	./mypkg
 <span class="o">)</span>
 </code></pre></div><p>go.work 文件的语法和 go.mod 类似，因此也支持 replace。</p>
 <p>现在，我们将 example/go.mod 中的 replace 语句删除，再次执行 go run main.go（在 example 目录下），得到了正常的输出。也可以在 polarisxu 目录下，这么运行：go run example/main.go，也能正常。</p>
@@ -229,7 +244,7 @@ directory <span class="o">(</span>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://polarisxu.studygolang.com/tags/go">Go</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/workspace">Workspace</a></span>
 				</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1379 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1427 字</p>
 				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2021-11-10 22:00 &#43;0800</p>
 			</footer>
 		</article>
