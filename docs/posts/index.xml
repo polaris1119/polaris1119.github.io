@@ -6,8 +6,156 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en</language>
 		<copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-		<lastBuildDate>Sun, 21 Nov 2021 20:00:00 +0800</lastBuildDate>
+		<lastBuildDate>Sat, 27 Nov 2021 20:30:00 +0800</lastBuildDate>
 		<atom:link href="https://polarisxu.studygolang.com/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>Go泛型系列：slices 包使用讲解</title>
+			<link>https://polarisxu.studygolang.com/posts/go/generics/generics-slices/</link>
+			<pubDate>Sat, 27 Nov 2021 20:30:00 +0800</pubDate>
+			
+			<guid>https://polarisxu.studygolang.com/posts/go/generics/generics-slices/</guid>
+			<description>大家好，我是 polarisxu。 前段时间，Russ Cox 明确了泛型相关的事情 ，原计划在标准库中加入泛型相关的包，改放到 golang.org/x/exp 下。 目前，Go 泛型的主要设计者 ianlancetaylor 完成了 slices 和 maps 包的开发，代码提交到了 golang.org/x/exp 中，如果经过使用、讨论等，社区认可后，预计在 1.19 中会合入标准库中。 今天，通过学习 slices 包，掌握 Go 泛型的使用方法。 01 为什么增加 slices 包 标准库有 bytes 和 strings 包，分别用来处理 []byte 和 string 类型，提供了众多方</description>
+			<content type="html"><![CDATA[<p>大家好，我是 polarisxu。</p>
+<p>前段时间，<a href="https://mp.weixin.qq.com/s/pCGpgVVH11wDrFknU9A76Q" target="_blank" rel="noopener">Russ Cox 明确了泛型相关的事情</a>
+，原计划在标准库中加入泛型相关的包，改放到 golang.org/x/exp 下。</p>
+<p>目前，Go 泛型的主要设计者 <a href="https://github.com/ianlancetaylor" target="_blank" rel="noopener">ianlancetaylor</a>
+ 完成了 slices 和 maps 包的开发，代码提交到了 golang.org/x/exp 中，如果经过使用、讨论等，社区认可后，预计在 1.19 中会合入标准库中。</p>
+<p>今天，通过学习 slices 包，掌握 Go 泛型的使用方法。</p>
+<h2 id="01-为什么增加-slices-包">01 为什么增加 slices 包</h2>
+<p>标准库有 bytes 和 strings 包，分别用来处理 []byte 和 string 类型，提供了众多方便的函数，但对普通的 slice，却没有相关的包可以使用。</p>
+<p>比如 bytes 和 strings 都有 Index 函数，用来在 []byte 或 string 查找某个 byte 或字符串的索引。对于普通的 slice，没法写一大堆包来处理，只能用户自己实现，这也是没有泛型的弊端。</p>
+<blockquote>
+<p>提供 bytes 和 strings，主要是因为它们使用频率高</p>
+</blockquote>
+<p>现在有了泛型，可以实现一些便利的 slice 操作方法，必须要针对某一个具体类型的 slice 都实现一遍相同的功能。</p>
+<h2 id="02-constraints-包">02 constraints 包</h2>
+<p>继续讲解 slices 包之前，先看看 contraints 包。</p>
+<p>该包定义了一组用于类型参数（泛型）的有用约束，这个包已经确定在 Go 1.18 标准库中包含，截止目前（2021.11.27），该包定义了 6 个约束类型：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// Signed is a constraint that permits any signed integer type.
+</span><span class="c1">// If future releases of Go add new predeclared signed integer types,
+</span><span class="c1">// this constraint will be modified to include them.
+</span><span class="c1"></span><span class="kd">type</span> <span class="nx">Signed</span> <span class="kd">interface</span> <span class="p">{</span>
+	<span class="err">~</span><span class="kt">int</span> <span class="p">|</span> <span class="err">~</span><span class="kt">int8</span> <span class="p">|</span> <span class="err">~</span><span class="kt">int16</span> <span class="p">|</span> <span class="err">~</span><span class="kt">int32</span> <span class="p">|</span> <span class="err">~</span><span class="kt">int64</span>
+<span class="p">}</span>
+
+<span class="c1">// Unsigned is a constraint that permits any unsigned integer type.
+</span><span class="c1">// If future releases of Go add new predeclared unsigned integer types,
+</span><span class="c1">// this constraint will be modified to include them.
+</span><span class="c1"></span><span class="kd">type</span> <span class="nx">Unsigned</span> <span class="kd">interface</span> <span class="p">{</span>
+	<span class="err">~</span><span class="kt">uint</span> <span class="p">|</span> <span class="err">~</span><span class="kt">uint8</span> <span class="p">|</span> <span class="err">~</span><span class="kt">uint16</span> <span class="p">|</span> <span class="err">~</span><span class="kt">uint32</span> <span class="p">|</span> <span class="err">~</span><span class="kt">uint64</span> <span class="p">|</span> <span class="err">~</span><span class="kt">uintptr</span>
+<span class="p">}</span>
+
+<span class="c1">// Integer is a constraint that permits any integer type.
+</span><span class="c1">// If future releases of Go add new predeclared integer types,
+</span><span class="c1">// this constraint will be modified to include them.
+</span><span class="c1"></span><span class="kd">type</span> <span class="nx">Integer</span> <span class="kd">interface</span> <span class="p">{</span>
+	<span class="nx">Signed</span> <span class="p">|</span> <span class="nx">Unsigned</span>
+<span class="p">}</span>
+
+<span class="c1">// Float is a constraint that permits any floating-point type.
+</span><span class="c1">// If future releases of Go add new predeclared floating-point types,
+</span><span class="c1">// this constraint will be modified to include them.
+</span><span class="c1"></span><span class="kd">type</span> <span class="nx">Float</span> <span class="kd">interface</span> <span class="p">{</span>
+	<span class="err">~</span><span class="kt">float32</span> <span class="p">|</span> <span class="err">~</span><span class="kt">float64</span>
+<span class="p">}</span>
+
+<span class="c1">// Complex is a constraint that permits any complex numeric type.
+</span><span class="c1">// If future releases of Go add new predeclared complex numeric types,
+</span><span class="c1">// this constraint will be modified to include them.
+</span><span class="c1"></span><span class="kd">type</span> <span class="nx">Complex</span> <span class="kd">interface</span> <span class="p">{</span>
+	<span class="err">~</span><span class="kt">complex64</span> <span class="p">|</span> <span class="err">~</span><span class="kt">complex128</span>
+<span class="p">}</span>
+
+<span class="c1">// Ordered is a constraint that permits any ordered type: any type
+</span><span class="c1">// that supports the operators &lt; &lt;= &gt;= &gt;.
+</span><span class="c1">// If future releases of Go add new ordered types,
+</span><span class="c1">// this constraint will be modified to include them.
+</span><span class="c1"></span><span class="kd">type</span> <span class="nx">Ordered</span> <span class="kd">interface</span> <span class="p">{</span>
+	<span class="nx">Integer</span> <span class="p">|</span> <span class="nx">Float</span> <span class="p">|</span> <span class="err">~</span><span class="kt">string</span>
+<span class="p">}</span>
+</code></pre></div><p>前面 3 个是整型相关类型约束，Float 是浮点型约束，Complex 是负数类型约束，而 Ordered 表示支持排序的类型约束，表示支持大小比较的类型。</p>
+<p>之前文章：<a href="https://mp.weixin.qq.com/s/FFxNpRVgs-v9cIKWCLeN4Q" target="_blank" rel="noopener">《Go泛型系列：Go1.18 类型约束那些事》</a>
+提到，约束语法变更了，一个是 <code>|</code> 符号，一个是 <code>~</code>，上面定义中，很多地方都用到了 <code>~</code> 符号，它表示出了类型自身，底层类型是它的类型也适用该约束。</p>
+<h2 id="03-slices-包详解">03 slices 包详解</h2>
+<p>目前，slices 包有 14 个函数，可以分成几组：</p>
+<ul>
+<li>slice 比较</li>
+<li>元素查找</li>
+<li>修改 slice</li>
+<li>克隆 slice</li>
+</ul>
+<p>其中，修改 slice 分为插入元素、删除元素、连续元素去重、slice 扩容和缩容。</p>
+<h3 id="slice-比较">slice 比较</h3>
+<p>比较两个 slice 中的元素，细分为是否相等和普通比较：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nx">Equal</span><span class="p">[</span><span class="nx">E</span> <span class="nx">comparable</span><span class="p">](</span><span class="nx">s1</span><span class="p">,</span> <span class="nx">s2</span> <span class="p">[]</span><span class="nx">E</span><span class="p">)</span> <span class="kt">bool</span>
+<span class="kd">func</span> <span class="nx">EqualFunc</span><span class="p">[</span><span class="nx">E1</span><span class="p">,</span> <span class="nx">E2</span> <span class="nx">any</span><span class="p">](</span><span class="nx">s1</span> <span class="p">[]</span><span class="nx">E1</span><span class="p">,</span> <span class="nx">s2</span> <span class="p">[]</span><span class="nx">E2</span><span class="p">,</span> <span class="nx">eq</span> <span class="kd">func</span><span class="p">(</span><span class="nx">E1</span><span class="p">,</span> <span class="nx">E2</span><span class="p">)</span> <span class="kt">bool</span><span class="p">)</span> <span class="kt">bool</span>
+<span class="kd">func</span> <span class="nx">Compare</span><span class="p">[</span><span class="nx">E</span> <span class="nx">constraints</span><span class="p">.</span><span class="nx">Ordered</span><span class="p">](</span><span class="nx">s1</span><span class="p">,</span> <span class="nx">s2</span> <span class="p">[]</span><span class="nx">E</span><span class="p">)</span> <span class="kt">int</span>
+<span class="kd">func</span> <span class="nx">CompareFunc</span><span class="p">[</span><span class="nx">E1</span><span class="p">,</span> <span class="nx">E2</span> <span class="nx">any</span><span class="p">](</span><span class="nx">s1</span> <span class="p">[]</span><span class="nx">E1</span><span class="p">,</span> <span class="nx">s2</span> <span class="p">[]</span><span class="nx">E2</span><span class="p">,</span> <span class="nx">cmp</span> <span class="kd">func</span><span class="p">(</span><span class="nx">E1</span><span class="p">,</span> <span class="nx">E2</span><span class="p">)</span> <span class="kt">int</span><span class="p">)</span> <span class="kt">int</span>
+</code></pre></div><p>其中 comparable 约束是语言实现的（因为很常用），表示可比较约束（相等与否的比较）。主要，其中的 E、E1、E2 等，只是泛型类型表示，你定义时，可以用你喜欢的，比如 T、T1、T2 等。</p>
+<p>看一个具体的实现：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nx">Equal</span><span class="p">[</span><span class="nx">E</span> <span class="nx">comparable</span><span class="p">](</span><span class="nx">s1</span><span class="p">,</span> <span class="nx">s2</span> <span class="p">[]</span><span class="nx">E</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
+	<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nx">s1</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="nx">s2</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="kc">false</span>
+	<span class="p">}</span>
+	<span class="k">for</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">v1</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">s1</span> <span class="p">{</span>
+		<span class="nx">v2</span> <span class="o">:=</span> <span class="nx">s2</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span>
+		<span class="k">if</span> <span class="nx">v1</span> <span class="o">!=</span> <span class="nx">v2</span> <span class="p">{</span>
+			<span class="k">return</span> <span class="kc">false</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="kc">true</span>
+<span class="p">}</span>
+</code></pre></div><p>没有什么特别的，只不过把 s1、s2 当成同类型的 slice 进行操作而已。</p>
+<h3 id="元素查找">元素查找</h3>
+<p>在 slice 中查找某个元素，分为普通的所有查找和包含判断：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nx">Index</span><span class="p">[</span><span class="nx">E</span> <span class="nx">comparable</span><span class="p">](</span><span class="nx">s</span> <span class="p">[]</span><span class="nx">E</span><span class="p">,</span> <span class="nx">v</span> <span class="nx">E</span><span class="p">)</span> <span class="kt">int</span>
+<span class="kd">func</span> <span class="nx">IndexFunc</span><span class="p">[</span><span class="nx">E</span> <span class="nx">any</span><span class="p">](</span><span class="nx">s</span> <span class="p">[]</span><span class="nx">E</span><span class="p">,</span> <span class="nx">f</span> <span class="kd">func</span><span class="p">(</span><span class="nx">E</span><span class="p">)</span> <span class="kt">bool</span><span class="p">)</span> <span class="kt">int</span>
+<span class="kd">func</span> <span class="nx">Contains</span><span class="p">[</span><span class="nx">E</span> <span class="nx">comparable</span><span class="p">](</span><span class="nx">s</span> <span class="p">[]</span><span class="nx">E</span><span class="p">,</span> <span class="nx">v</span> <span class="nx">E</span><span class="p">)</span> <span class="kt">bool</span>
+</code></pre></div><p>其中，IndexFunc 的类型参数没有使用任何约束（即用的 any），说明查找是通过 f 参数进行的，它的实现如下：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nx">IndexFunc</span><span class="p">[</span><span class="nx">E</span> <span class="nx">any</span><span class="p">](</span><span class="nx">s</span> <span class="p">[]</span><span class="nx">E</span><span class="p">,</span> <span class="nx">f</span> <span class="kd">func</span><span class="p">(</span><span class="nx">E</span><span class="p">)</span> <span class="kt">bool</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
+	<span class="k">for</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">v</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">s</span> <span class="p">{</span>
+		<span class="k">if</span> <span class="nf">f</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="p">{</span>
+			<span class="k">return</span> <span class="nx">i</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+<span class="p">}</span>
+</code></pre></div><p>参数 f 是一个函数，它接收一个参数，类型是 E，是一个泛型，和 IndexFunc 的第一个参数类型 <code>[]E</code> 的元素类型保持一致即可，因此可以直接将遍历 s 的元素传递给 f。</p>
+<h3 id="修改-slice">修改 slice</h3>
+<p>一般不建议做相关操作，因为性能较差。如果有较多这样的需求，可能需要考虑更换数据结构。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// 往 slice 的位置 i 处插入元素（可以多个）
+</span><span class="c1"></span><span class="kd">func</span> <span class="nx">Insert</span><span class="p">[</span><span class="nx">S</span> <span class="err">~</span><span class="p">[]</span><span class="nx">E</span><span class="p">,</span> <span class="nx">E</span> <span class="nx">any</span><span class="p">](</span><span class="nx">s</span> <span class="nx">S</span><span class="p">,</span> <span class="nx">i</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">v</span> <span class="o">...</span><span class="nx">E</span><span class="p">)</span> <span class="nx">S</span>
+<span class="c1">// 删除 slice 中 i 到 j 的元素，即删除 s[i:j] 元素
+</span><span class="c1"></span><span class="kd">func</span> <span class="nx">Delete</span><span class="p">[</span><span class="nx">S</span> <span class="err">~</span><span class="p">[]</span><span class="nx">E</span><span class="p">,</span> <span class="nx">E</span> <span class="nx">any</span><span class="p">](</span><span class="nx">s</span> <span class="nx">S</span><span class="p">,</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">j</span> <span class="kt">int</span><span class="p">)</span> <span class="nx">S</span>
+<span class="c1">// 将连续相等的元素替换为一个，类似于 Unix 的 uniq 命令。Compact 修改切片的内容，它不会创建新切片
+</span><span class="c1"></span><span class="kd">func</span> <span class="nx">Compact</span><span class="p">[</span><span class="nx">S</span> <span class="err">~</span><span class="p">[]</span><span class="nx">E</span><span class="p">,</span> <span class="nx">E</span> <span class="nx">comparable</span><span class="p">](</span><span class="nx">s</span> <span class="nx">S</span><span class="p">)</span> 
+<span class="kd">func</span> <span class="nx">CompactFunc</span><span class="p">[</span><span class="nx">S</span> <span class="err">~</span><span class="p">[]</span><span class="nx">E</span><span class="p">,</span> <span class="nx">E</span> <span class="nx">any</span><span class="p">](</span><span class="nx">s</span> <span class="nx">S</span><span class="p">,</span> <span class="nx">eq</span> <span class="kd">func</span><span class="p">(</span><span class="nx">E</span><span class="p">,</span> <span class="nx">E</span><span class="p">)</span> <span class="kt">bool</span><span class="p">)</span> <span class="nx">S</span>
+<span class="c1">// 增加 slice 的容量，至少增加 n 个
+</span><span class="c1"></span><span class="kd">func</span> <span class="nx">Grow</span><span class="p">[</span><span class="nx">S</span> <span class="err">~</span><span class="p">[]</span><span class="nx">E</span><span class="p">,</span> <span class="nx">E</span> <span class="nx">any</span><span class="p">](</span><span class="nx">s</span> <span class="nx">S</span><span class="p">,</span> <span class="nx">n</span> <span class="kt">int</span><span class="p">)</span> <span class="nx">S</span>
+<span class="c1">// 移除没有使用的容量，相当于缩容
+</span><span class="c1"></span><span class="kd">func</span> <span class="nx">Clip</span><span class="p">[</span><span class="nx">S</span> <span class="err">~</span><span class="p">[]</span><span class="nx">E</span><span class="p">,</span> <span class="nx">E</span> <span class="nx">any</span><span class="p">](</span><span class="nx">s</span> <span class="nx">S</span><span class="p">)</span> <span class="nx">S</span>
+</code></pre></div><p>以上类型约束都包含了两个：</p>
+<ul>
+<li>S ~[]E：表明这是一个泛型版 slice，这是对 slice 的约束。注意 [] 前面的 <code>~</code>，表明支持自定义 slice 类型，如 type myslice []int</li>
+<li>E any 或 E comparable：对上面 slice 元素类型的约束。</li>
+</ul>
+<h3 id="克隆-slice">克隆 slice</h3>
+<p>即获得 slice 的副本，会进行元素拷贝，注意，slice 中元素的拷贝是浅拷贝，非值类型不会深拷贝。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nx">Clone</span><span class="p">[</span><span class="nx">S</span> <span class="err">~</span><span class="p">[]</span><span class="nx">E</span><span class="p">,</span> <span class="nx">E</span> <span class="nx">any</span><span class="p">](</span><span class="nx">s</span> <span class="nx">S</span><span class="p">)</span> <span class="nx">S</span> <span class="p">{</span>
+	<span class="c1">// Preserve nil in case it matters.
+</span><span class="c1"></span>	<span class="k">if</span> <span class="nx">s</span> <span class="o">==</span> <span class="kc">nil</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="kc">nil</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="nb">append</span><span class="p">(</span><span class="nf">S</span><span class="p">([]</span><span class="nx">E</span><span class="p">{}),</span> <span class="nx">s</span><span class="o">...</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div><h2 id="04-总结">04 总结</h2>
+<p>因为泛型的存在，同样的功能，对不同类型的 slice 再也不用写多份代码。因为一些功能很常见，因此 Go 官方将其封装，将来会在标准库中提供。</p>
+<p>出于谨慎考虑，slices 包不会在 1.18 中包含，如果你需要用到 slices 中的功能，可以采用从 slices 代码中复制的方式，个人觉得依赖 golang.org/x/exp 还是不太好。</p>
+<p>slices 源码地址：<a href="https://github.com/golang/exp/blob/master/slices/slices.go" target="_blank" rel="noopener">https://github.com/golang/exp/blob/master/slices/slices.go</a>
+。</p>
+]]></content>
+		</item>
 		
 		<item>
 			<title>Nginx 竟然也有 playground — Go 语言构建的</title>
@@ -37,7 +185,7 @@
 <h2 id="02-原理">02 原理</h2>
 <p>这个网站使用的技术如下：</p>
 <p>1）前端使用 vue.js 和 tailwind；</p>
-<p>2）有端就一个 API endpoint，使用 Go 语言构建。它只做 1 件事，即运行 Nginx 配置。</p>
+<p>2）后端就一个 API endpoint，使用 Go 语言构建。它只做 1 件事，即运行 Nginx 配置。</p>
 <p>后端的完整代码见这里：<a href="https://gist.github.com/jvns/edf78e7775fea8888685a9a2956bc477" target="_blank" rel="noopener">https://gist.github.com/jvns/edf78e7775fea8888685a9a2956bc477</a>
 。</p>
 <p>当你单击“Run”时，Go 后端会执行以下操作：</p>

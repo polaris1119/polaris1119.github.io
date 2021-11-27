@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Sun, 21 Nov 2021 20:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 27 Nov 2021 20:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go泛型系列：slices 包使用讲解</title>
+      <link>https://polarisxu.studygolang.com/posts/go/generics/generics-slices/</link>
+      <pubDate>Sat, 27 Nov 2021 20:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/generics/generics-slices/</guid>
+      <description>大家好，我是 polarisxu。 前段时间，Russ Cox 明确了泛型相关的事情 ，原计划在标准库中加入泛型相关的包，改放到 golang.org/x/exp 下。 目前，Go 泛型的主要设计者 ianlancetaylor 完成了 slices 和 maps 包的开发，代码提交到了 golang.org/x/exp 中，如果经过使用、讨论等，社区认可后，预计在 1.19 中会合入标准库中。 今天，通过学习 slices 包，掌握 Go 泛型的使用方法。 01 为什么增加 slices 包 标准库有 bytes 和 strings 包，分别用来处理 []byte 和 string 类型，提供了众多方</description>
+    </item>
+    
     <item>
       <title>Nginx 竟然也有 playground — Go 语言构建的</title>
       <link>https://polarisxu.studygolang.com/posts/devtool/an-nginx-playground/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/wechat/find-go-articles-in-wechat/</guid>
       <description>大家好，我是 polarisxu。 搜索引擎一直是查找资料主要的方式，Go语言中文网站点的流量，近 80% 来自搜索引擎。 01 然而，微信公众号一直是一个私域，它禁止搜索引擎抓取。最近，各种 zc，大厂做了一些调整。有人发现，微信公众号删除了 robots.txt： https://mp.weixin.qq.com/robots.txt 内容是空的； robots.txt 最近一次内容 https://web.archive.org/web/20210929115539/mp.weixin.qq.com/robots.txt 所以，现在微信公众号内容可以被搜索引擎抓取了。 实际验证一下： 1）Google 2）Bi</description>
-    </item>
-    
-    <item>
-      <title>Go 这样设置版本号：我们的项目也可以</title>
-      <link>https://polarisxu.studygolang.com/posts/go/pkg/go-version/</link>
-      <pubDate>Sat, 16 Oct 2021 22:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/pkg/go-version/</guid>
-      <description>大家好，我是 polarisxu。 项目中，特别是开源项目，会特别重视项目的版本号。有些项目，会把版本号写入源码中，每次升级都修改源码号。不过这不是特别好的方式。本文通过学习 Go 语言源码的处理方式来掌握它，并应用于自己的项目中。 本文基于 Go1.17，不同版本的实现细节可能有所不同 01 如何获取版本号 在 Go 语言项目中，如果要获取当前 Go 语言版本，只需要调用 runtime.V</description>
     </item>
     
   </channel>

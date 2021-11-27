@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#fcfcfc">
+	<meta name="msapplication-TileColor" content="#fcfcfc">
+<meta itemprop="name" content="Go泛型系列：slices 包使用讲解">
+<meta itemprop="description" content="大家好，我是 polarisxu。 前段时间，Russ Cox 明确了泛型相关的事情 ，原计划在标准库中加入泛型相关的包，改放到 golang.org/x/exp 下。 目前，Go 泛型的主要设计者 ianlancetaylor 完成了 slices 和 maps 包的开发，代码提交到了 golang.org/x/exp 中，如果经过使用、讨论等，社区认可后，预计在 1.19 中会合入标准库中。 今天，通过学习 slices 包，掌握 Go 泛型的使用方法。 01 为什么增加 slices 包 标准库有 bytes 和 strings 包，分别用来处理 []byte 和 string 类型，提供了众多方"><meta itemprop="datePublished" content="2021-11-27T20:30:00+08:00" />
+<meta itemprop="dateModified" content="2021-11-27T20:30:00+08:00" />
+<meta itemprop="wordCount" content="1932">
+<meta itemprop="keywords" content="Go,泛型," /><meta property="og:title" content="Go泛型系列：slices 包使用讲解" />
+<meta property="og:description" content="大家好，我是 polarisxu。 前段时间，Russ Cox 明确了泛型相关的事情 ，原计划在标准库中加入泛型相关的包，改放到 golang.org/x/exp 下。 目前，Go 泛型的主要设计者 ianlancetaylor 完成了 slices 和 maps 包的开发，代码提交到了 golang.org/x/exp 中，如果经过使用、讨论等，社区认可后，预计在 1.19 中会合入标准库中。 今天，通过学习 slices 包，掌握 Go 泛型的使用方法。 01 为什么增加 slices 包 标准库有 bytes 和 strings 包，分别用来处理 []byte 和 string 类型，提供了众多方" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/generics/generics-slices/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-11-27T20:30:00+08:00" />
+<meta property="article:modified_time" content="2021-11-27T20:30:00+08:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Go泛型系列：slices 包使用讲解"/>
+<meta name="twitter:description" content="大家好，我是 polarisxu。 前段时间，Russ Cox 明确了泛型相关的事情 ，原计划在标准库中加入泛型相关的包，改放到 golang.org/x/exp 下。 目前，Go 泛型的主要设计者 ianlancetaylor 完成了 slices 和 maps 包的开发，代码提交到了 golang.org/x/exp 中，如果经过使用、讨论等，社区认可后，预计在 1.19 中会合入标准库中。 今天，通过学习 slices 包，掌握 Go 泛型的使用方法。 01 为什么增加 slices 包 标准库有 bytes 和 strings 包，分别用来处理 []byte 和 string 类型，提供了众多方"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>Go泛型系列：slices 包使用讲解</title>
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
+	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/styles.css">
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://polarisxu.studygolang.com">polarisxu</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+  <a href="https://polarisxu.studygolang.com/">首页</a>
+  <a href="https://polarisxu.studygolang.com/categories/echo%E7%B3%BB%E5%88%97/">Echo系列</a>
+  <a href="https://polarisxu.studygolang.com/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a>
+  <a href="https://polarisxu.studygolang.com/posts/">归档</a>
+  <a href="https://polarisxu.studygolang.com/about/">关于</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<button id="toc-btn" class="hdr-btn desktop-only-ib" title="目录"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3" y2="6"></line><line x1="3" y1="12" x2="3" y2="12"></line><line x1="3" y1="18" x2="3" y2="18"></line></svg></button><span class="hdr-social hide-in-mobile"><a href="https://github.com/polaris1119" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a><a href="https://twitter.com/polaris1119" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="菜单"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://polarisxu.studygolang.com/">首页</a></li>
+			<li><a href="https://polarisxu.studygolang.com/categories/echo%E7%B3%BB%E5%88%97/">Echo系列</a></li>
+			<li><a href="https://polarisxu.studygolang.com/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a></li>
+			<li><a href="https://polarisxu.studygolang.com/posts/">归档</a></li>
+			<li><a href="https://polarisxu.studygolang.com/about/">关于</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Nov 27, 2021</span></div>
+				<h1>Go泛型系列：slices 包使用讲解</h1>
+			</header>
+			<div class="content">
+				<p>大家好，我是 polarisxu。</p>
+<p>前段时间，<a href="https://mp.weixin.qq.com/s/pCGpgVVH11wDrFknU9A76Q" target="_blank" rel="noopener">Russ Cox 明确了泛型相关的事情</a>
+，原计划在标准库中加入泛型相关的包，改放到 golang.org/x/exp 下。</p>
+<p>目前，Go 泛型的主要设计者 <a href="https://github.com/ianlancetaylor" target="_blank" rel="noopener">ianlancetaylor</a>
+ 完成了 slices 和 maps 包的开发，代码提交到了 golang.org/x/exp 中，如果经过使用、讨论等，社区认可后，预计在 1.19 中会合入标准库中。</p>
+<p>今天，通过学习 slices 包，掌握 Go 泛型的使用方法。</p>
+<h2 id="01-为什么增加-slices-包">01 为什么增加 slices 包<a href="#01-为什么增加-slices-包" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>标准库有 bytes 和 strings 包，分别用来处理 []byte 和 string 类型，提供了众多方便的函数，但对普通的 slice，却没有相关的包可以使用。</p>
+<p>比如 bytes 和 strings 都有 Index 函数，用来在 []byte 或 string 查找某个 byte 或字符串的索引。对于普通的 slice，没法写一大堆包来处理，只能用户自己实现，这也是没有泛型的弊端。</p>
+<blockquote>
+<p>提供 bytes 和 strings，主要是因为它们使用频率高</p>
+</blockquote>
+<p>现在有了泛型，可以实现一些便利的 slice 操作方法，必须要针对某一个具体类型的 slice 都实现一遍相同的功能。</p>
+<h2 id="02-constraints-包">02 constraints 包<a href="#02-constraints-包" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>继续讲解 slices 包之前，先看看 contraints 包。</p>
+<p>该包定义了一组用于类型参数（泛型）的有用约束，这个包已经确定在 Go 1.18 标准库中包含，截止目前（2021.11.27），该包定义了 6 个约束类型：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// Signed is a constraint that permits any signed integer type.
+</span><span class="c1">// If future releases of Go add new predeclared signed integer types,
+</span><span class="c1">// this constraint will be modified to include them.
+</span><span class="c1"></span><span class="kd">type</span> <span class="nx">Signed</span> <span class="kd">interface</span> <span class="p">{</span>
+	<span class="err">~</span><span class="kt">int</span> <span class="p">|</span> <span class="err">~</span><span class="kt">int8</span> <span class="p">|</span> <span class="err">~</span><span class="kt">int16</span> <span class="p">|</span> <span class="err">~</span><span class="kt">int32</span> <span class="p">|</span> <span class="err">~</span><span class="kt">int64</span>
+<span class="p">}</span>
+
+<span class="c1">// Unsigned is a constraint that permits any unsigned integer type.
+</span><span class="c1">// If future releases of Go add new predeclared unsigned integer types,
+</span><span class="c1">// this constraint will be modified to include them.
+</span><span class="c1"></span><span class="kd">type</span> <span class="nx">Unsigned</span> <span class="kd">interface</span> <span class="p">{</span>
+	<span class="err">~</span><span class="kt">uint</span> <span class="p">|</span> <span class="err">~</span><span class="kt">uint8</span> <span class="p">|</span> <span class="err">~</span><span class="kt">uint16</span> <span class="p">|</span> <span class="err">~</span><span class="kt">uint32</span> <span class="p">|</span> <span class="err">~</span><span class="kt">uint64</span> <span class="p">|</span> <span class="err">~</span><span class="kt">uintptr</span>
+<span class="p">}</span>
+
+<span class="c1">// Integer is a constraint that permits any integer type.
+</span><span class="c1">// If future releases of Go add new predeclared integer types,
+</span><span class="c1">// this constraint will be modified to include them.
+</span><span class="c1"></span><span class="kd">type</span> <span class="nx">Integer</span> <span class="kd">interface</span> <span class="p">{</span>
+	<span class="nx">Signed</span> <span class="p">|</span> <span class="nx">Unsigned</span>
+<span class="p">}</span>
+
+<span class="c1">// Float is a constraint that permits any floating-point type.
+</span><span class="c1">// If future releases of Go add new predeclared floating-point types,
+</span><span class="c1">// this constraint will be modified to include them.
+</span><span class="c1"></span><span class="kd">type</span> <span class="nx">Float</span> <span class="kd">interface</span> <span class="p">{</span>
+	<span class="err">~</span><span class="kt">float32</span> <span class="p">|</span> <span class="err">~</span><span class="kt">float64</span>
+<span class="p">}</span>
+
+<span class="c1">// Complex is a constraint that permits any complex numeric type.
+</span><span class="c1">// If future releases of Go add new predeclared complex numeric types,
+</span><span class="c1">// this constraint will be modified to include them.
+</span><span class="c1"></span><span class="kd">type</span> <span class="nx">Complex</span> <span class="kd">interface</span> <span class="p">{</span>
+	<span class="err">~</span><span class="kt">complex64</span> <span class="p">|</span> <span class="err">~</span><span class="kt">complex128</span>
+<span class="p">}</span>
+
+<span class="c1">// Ordered is a constraint that permits any ordered type: any type
+</span><span class="c1">// that supports the operators &lt; &lt;= &gt;= &gt;.
+</span><span class="c1">// If future releases of Go add new ordered types,
+</span><span class="c1">// this constraint will be modified to include them.
+</span><span class="c1"></span><span class="kd">type</span> <span class="nx">Ordered</span> <span class="kd">interface</span> <span class="p">{</span>
+	<span class="nx">Integer</span> <span class="p">|</span> <span class="nx">Float</span> <span class="p">|</span> <span class="err">~</span><span class="kt">string</span>
+<span class="p">}</span>
+</code></pre></div><p>前面 3 个是整型相关类型约束，Float 是浮点型约束，Complex 是负数类型约束，而 Ordered 表示支持排序的类型约束，表示支持大小比较的类型。</p>
+<p>之前文章：<a href="https://mp.weixin.qq.com/s/FFxNpRVgs-v9cIKWCLeN4Q" target="_blank" rel="noopener">《Go泛型系列：Go1.18 类型约束那些事》</a>
+提到，约束语法变更了，一个是 <code>|</code> 符号，一个是 <code>~</code>，上面定义中，很多地方都用到了 <code>~</code> 符号，它表示出了类型自身，底层类型是它的类型也适用该约束。</p>
+<h2 id="03-slices-包详解">03 slices 包详解<a href="#03-slices-包详解" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>目前，slices 包有 14 个函数，可以分成几组：</p>
+<ul>
+<li>slice 比较</li>
+<li>元素查找</li>
+<li>修改 slice</li>
+<li>克隆 slice</li>
+</ul>
+<p>其中，修改 slice 分为插入元素、删除元素、连续元素去重、slice 扩容和缩容。</p>
+<h3 id="slice-比较">slice 比较<a href="#slice-比较" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>比较两个 slice 中的元素，细分为是否相等和普通比较：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nx">Equal</span><span class="p">[</span><span class="nx">E</span> <span class="nx">comparable</span><span class="p">](</span><span class="nx">s1</span><span class="p">,</span> <span class="nx">s2</span> <span class="p">[]</span><span class="nx">E</span><span class="p">)</span> <span class="kt">bool</span>
+<span class="kd">func</span> <span class="nx">EqualFunc</span><span class="p">[</span><span class="nx">E1</span><span class="p">,</span> <span class="nx">E2</span> <span class="nx">any</span><span class="p">](</span><span class="nx">s1</span> <span class="p">[]</span><span class="nx">E1</span><span class="p">,</span> <span class="nx">s2</span> <span class="p">[]</span><span class="nx">E2</span><span class="p">,</span> <span class="nx">eq</span> <span class="kd">func</span><span class="p">(</span><span class="nx">E1</span><span class="p">,</span> <span class="nx">E2</span><span class="p">)</span> <span class="kt">bool</span><span class="p">)</span> <span class="kt">bool</span>
+<span class="kd">func</span> <span class="nx">Compare</span><span class="p">[</span><span class="nx">E</span> <span class="nx">constraints</span><span class="p">.</span><span class="nx">Ordered</span><span class="p">](</span><span class="nx">s1</span><span class="p">,</span> <span class="nx">s2</span> <span class="p">[]</span><span class="nx">E</span><span class="p">)</span> <span class="kt">int</span>
+<span class="kd">func</span> <span class="nx">CompareFunc</span><span class="p">[</span><span class="nx">E1</span><span class="p">,</span> <span class="nx">E2</span> <span class="nx">any</span><span class="p">](</span><span class="nx">s1</span> <span class="p">[]</span><span class="nx">E1</span><span class="p">,</span> <span class="nx">s2</span> <span class="p">[]</span><span class="nx">E2</span><span class="p">,</span> <span class="nx">cmp</span> <span class="kd">func</span><span class="p">(</span><span class="nx">E1</span><span class="p">,</span> <span class="nx">E2</span><span class="p">)</span> <span class="kt">int</span><span class="p">)</span> <span class="kt">int</span>
+</code></pre></div><p>其中 comparable 约束是语言实现的（因为很常用），表示可比较约束（相等与否的比较）。主要，其中的 E、E1、E2 等，只是泛型类型表示，你定义时，可以用你喜欢的，比如 T、T1、T2 等。</p>
+<p>看一个具体的实现：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nx">Equal</span><span class="p">[</span><span class="nx">E</span> <span class="nx">comparable</span><span class="p">](</span><span class="nx">s1</span><span class="p">,</span> <span class="nx">s2</span> <span class="p">[]</span><span class="nx">E</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
+	<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nx">s1</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="nx">s2</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="kc">false</span>
+	<span class="p">}</span>
+	<span class="k">for</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">v1</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">s1</span> <span class="p">{</span>
+		<span class="nx">v2</span> <span class="o">:=</span> <span class="nx">s2</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span>
+		<span class="k">if</span> <span class="nx">v1</span> <span class="o">!=</span> <span class="nx">v2</span> <span class="p">{</span>
+			<span class="k">return</span> <span class="kc">false</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="kc">true</span>
+<span class="p">}</span>
+</code></pre></div><p>没有什么特别的，只不过把 s1、s2 当成同类型的 slice 进行操作而已。</p>
+<h3 id="元素查找">元素查找<a href="#元素查找" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>在 slice 中查找某个元素，分为普通的所有查找和包含判断：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nx">Index</span><span class="p">[</span><span class="nx">E</span> <span class="nx">comparable</span><span class="p">](</span><span class="nx">s</span> <span class="p">[]</span><span class="nx">E</span><span class="p">,</span> <span class="nx">v</span> <span class="nx">E</span><span class="p">)</span> <span class="kt">int</span>
+<span class="kd">func</span> <span class="nx">IndexFunc</span><span class="p">[</span><span class="nx">E</span> <span class="nx">any</span><span class="p">](</span><span class="nx">s</span> <span class="p">[]</span><span class="nx">E</span><span class="p">,</span> <span class="nx">f</span> <span class="kd">func</span><span class="p">(</span><span class="nx">E</span><span class="p">)</span> <span class="kt">bool</span><span class="p">)</span> <span class="kt">int</span>
+<span class="kd">func</span> <span class="nx">Contains</span><span class="p">[</span><span class="nx">E</span> <span class="nx">comparable</span><span class="p">](</span><span class="nx">s</span> <span class="p">[]</span><span class="nx">E</span><span class="p">,</span> <span class="nx">v</span> <span class="nx">E</span><span class="p">)</span> <span class="kt">bool</span>
+</code></pre></div><p>其中，IndexFunc 的类型参数没有使用任何约束（即用的 any），说明查找是通过 f 参数进行的，它的实现如下：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nx">IndexFunc</span><span class="p">[</span><span class="nx">E</span> <span class="nx">any</span><span class="p">](</span><span class="nx">s</span> <span class="p">[]</span><span class="nx">E</span><span class="p">,</span> <span class="nx">f</span> <span class="kd">func</span><span class="p">(</span><span class="nx">E</span><span class="p">)</span> <span class="kt">bool</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
+	<span class="k">for</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">v</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">s</span> <span class="p">{</span>
+		<span class="k">if</span> <span class="nf">f</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="p">{</span>
+			<span class="k">return</span> <span class="nx">i</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+<span class="p">}</span>
+</code></pre></div><p>参数 f 是一个函数，它接收一个参数，类型是 E，是一个泛型，和 IndexFunc 的第一个参数类型 <code>[]E</code> 的元素类型保持一致即可，因此可以直接将遍历 s 的元素传递给 f。</p>
+<h3 id="修改-slice">修改 slice<a href="#修改-slice" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>一般不建议做相关操作，因为性能较差。如果有较多这样的需求，可能需要考虑更换数据结构。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// 往 slice 的位置 i 处插入元素（可以多个）
+</span><span class="c1"></span><span class="kd">func</span> <span class="nx">Insert</span><span class="p">[</span><span class="nx">S</span> <span class="err">~</span><span class="p">[]</span><span class="nx">E</span><span class="p">,</span> <span class="nx">E</span> <span class="nx">any</span><span class="p">](</span><span class="nx">s</span> <span class="nx">S</span><span class="p">,</span> <span class="nx">i</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">v</span> <span class="o">...</span><span class="nx">E</span><span class="p">)</span> <span class="nx">S</span>
+<span class="c1">// 删除 slice 中 i 到 j 的元素，即删除 s[i:j] 元素
+</span><span class="c1"></span><span class="kd">func</span> <span class="nx">Delete</span><span class="p">[</span><span class="nx">S</span> <span class="err">~</span><span class="p">[]</span><span class="nx">E</span><span class="p">,</span> <span class="nx">E</span> <span class="nx">any</span><span class="p">](</span><span class="nx">s</span> <span class="nx">S</span><span class="p">,</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">j</span> <span class="kt">int</span><span class="p">)</span> <span class="nx">S</span>
+<span class="c1">// 将连续相等的元素替换为一个，类似于 Unix 的 uniq 命令。Compact 修改切片的内容，它不会创建新切片
+</span><span class="c1"></span><span class="kd">func</span> <span class="nx">Compact</span><span class="p">[</span><span class="nx">S</span> <span class="err">~</span><span class="p">[]</span><span class="nx">E</span><span class="p">,</span> <span class="nx">E</span> <span class="nx">comparable</span><span class="p">](</span><span class="nx">s</span> <span class="nx">S</span><span class="p">)</span> 
+<span class="kd">func</span> <span class="nx">CompactFunc</span><span class="p">[</span><span class="nx">S</span> <span class="err">~</span><span class="p">[]</span><span class="nx">E</span><span class="p">,</span> <span class="nx">E</span> <span class="nx">any</span><span class="p">](</span><span class="nx">s</span> <span class="nx">S</span><span class="p">,</span> <span class="nx">eq</span> <span class="kd">func</span><span class="p">(</span><span class="nx">E</span><span class="p">,</span> <span class="nx">E</span><span class="p">)</span> <span class="kt">bool</span><span class="p">)</span> <span class="nx">S</span>
+<span class="c1">// 增加 slice 的容量，至少增加 n 个
+</span><span class="c1"></span><span class="kd">func</span> <span class="nx">Grow</span><span class="p">[</span><span class="nx">S</span> <span class="err">~</span><span class="p">[]</span><span class="nx">E</span><span class="p">,</span> <span class="nx">E</span> <span class="nx">any</span><span class="p">](</span><span class="nx">s</span> <span class="nx">S</span><span class="p">,</span> <span class="nx">n</span> <span class="kt">int</span><span class="p">)</span> <span class="nx">S</span>
+<span class="c1">// 移除没有使用的容量，相当于缩容
+</span><span class="c1"></span><span class="kd">func</span> <span class="nx">Clip</span><span class="p">[</span><span class="nx">S</span> <span class="err">~</span><span class="p">[]</span><span class="nx">E</span><span class="p">,</span> <span class="nx">E</span> <span class="nx">any</span><span class="p">](</span><span class="nx">s</span> <span class="nx">S</span><span class="p">)</span> <span class="nx">S</span>
+</code></pre></div><p>以上类型约束都包含了两个：</p>
+<ul>
+<li>S ~[]E：表明这是一个泛型版 slice，这是对 slice 的约束。注意 [] 前面的 <code>~</code>，表明支持自定义 slice 类型，如 type myslice []int</li>
+<li>E any 或 E comparable：对上面 slice 元素类型的约束。</li>
+</ul>
+<h3 id="克隆-slice">克隆 slice<a href="#克隆-slice" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>即获得 slice 的副本，会进行元素拷贝，注意，slice 中元素的拷贝是浅拷贝，非值类型不会深拷贝。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nx">Clone</span><span class="p">[</span><span class="nx">S</span> <span class="err">~</span><span class="p">[]</span><span class="nx">E</span><span class="p">,</span> <span class="nx">E</span> <span class="nx">any</span><span class="p">](</span><span class="nx">s</span> <span class="nx">S</span><span class="p">)</span> <span class="nx">S</span> <span class="p">{</span>
+	<span class="c1">// Preserve nil in case it matters.
+</span><span class="c1"></span>	<span class="k">if</span> <span class="nx">s</span> <span class="o">==</span> <span class="kc">nil</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="kc">nil</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="nb">append</span><span class="p">(</span><span class="nf">S</span><span class="p">([]</span><span class="nx">E</span><span class="p">{}),</span> <span class="nx">s</span><span class="o">...</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div><h2 id="04-总结">04 总结<a href="#04-总结" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>因为泛型的存在，同样的功能，对不同类型的 slice 再也不用写多份代码。因为一些功能很常见，因此 Go 官方将其封装，将来会在标准库中提供。</p>
+<p>出于谨慎考虑，slices 包不会在 1.18 中包含，如果你需要用到 slices 中的功能，可以采用从 slices 代码中复制的方式，个人觉得依赖 golang.org/x/exp 还是不太好。</p>
+<p>slices 源码地址：<a href="https://github.com/golang/exp/blob/master/slices/slices.go" target="_blank" rel="noopener">https://github.com/golang/exp/blob/master/slices/slices.go</a>
+。</p>
+
+			</div><div class="content">
+	<br>
+	<img src="https://static.studygolang.com/static/img/polarisxu-qrcode-soso-s.png">
+</div>
+
+<div class="related-posts thin">
+	<h2>相关推荐</h2>
+	<ul>
+	
+	<li><a href="/posts/go/generics/generics-constraints/">Go泛型系列：Go1.18 类型约束那些事</a></li>
+	
+	<li><a href="/posts/go/generics/generics-basic/">Go泛型系列：提前掌握Go泛型的基本使用</a></li>
+	
+	<li><a href="/posts/go/dynamic/go-generic/">扬眉吐气：刚刚，Go 已经默认支持泛型了</a></li>
+	
+	<li><a href="/posts/go/dynamic/about-go-generic-progress/">关于 Go 语言泛型设计的最新进展和一些问题的说明</a></li>
+	
+	<li><a href="/posts/go/dynamic/go1.18-workspace/">Go1.18 快讯：Module 工作区模式</a></li>
+	
+	</ul>
+</div>
+
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://polarisxu.studygolang.com/tags/go">Go</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/%E6%B3%9B%E5%9E%8B">泛型</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1932 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2021-11-27 20:30 &#43;0800</p>
+			</footer>
+		</article>
+		<aside id="toc">
+			<div class="toc-title">目录</div>
+			<nav id="TableOfContents">
+  <ul>
+    <li><a href="#01-为什么增加-slices-包">01 为什么增加 slices 包</a></li>
+    <li><a href="#02-constraints-包">02 constraints 包</a></li>
+    <li><a href="#03-slices-包详解">03 slices 包详解</a>
+      <ul>
+        <li><a href="#slice-比较">slice 比较</a></li>
+        <li><a href="#元素查找">元素查找</a></li>
+        <li><a href="#修改-slice">修改 slice</a></li>
+        <li><a href="#克隆-slice">克隆 slice</a></li>
+      </ul>
+    </li>
+    <li><a href="#04-总结">04 总结</a></li>
+  </ul>
+</nav>
+		</aside>
+		<div class="post-nav thin">
+			<a class="prev-post" href="https://polarisxu.studygolang.com/posts/devtool/an-nginx-playground/">
+				<span class="post-nav-label">旧&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>Nginx 竟然也有 playground — Go 语言构建的</span>
+			</a>
+		</div>
+		<div id="comments" class="thin"><script src="https://utteranc.es/client.js"
+	repo="polaris1119/polarisxu"
+	issue-term="pathname"
+	theme="github-light"
+	crossorigin="anonymous"
+	async>
+</script>
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2019 - 2021 <a href="https://polarisxu.studygolang.com">polarisxu</a> &#183; <a href="https://beian.miit.gov.cn/">京ICP备14030343号-1</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://polarisxu.studygolang.com/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+		<span id="busuanzi_container" style="color: #666;">
+			本站总访客数/访问量：<span id="busuanzi_value_site_uv"></span>/<span id="busuanzi_value_site_pv"></span>
+		</span>
+	</footer>
+
+
+
+	<script src="https://polarisxu.studygolang.com/js/main.min.4eaa15feccc672488716f0338ac605e08c7553ce0ce175e13fa00a873636bf98.js" integrity="sha256-TqoV/szGckiHFvAzisYF4Ix1U84M4XXhP6AKhzY2v5g=" crossorigin="anonymous"></script>
+	<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?224c227cd9239761ec770bc8c1fb134c";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+</body>
+
+</html>

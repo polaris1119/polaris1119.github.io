@@ -71,6 +71,25 @@
 		
         <div class="post animated fadeInDown">
             <div class="post-title">
+                <h2><a href="/posts/go/pkg/go-version/">Go 这样设置版本号：我们的项目也可以</a>
+                </h2>
+            </div>
+            <div class="post-content">
+                <div class="p_part"><p>大家好，我是 polarisxu。 项目中，特别是开源项目，会特别重视项目的版本号。有些项目，会把版本号写入源码中，每次升级都修改源码号。不过这不是特别好的方式。本文通过学习 Go 语言源码的处理方式来掌握它，并应用于自己的项目中。 本文基于 Go1.17，不同版本的实现细节可能有所不同 01 如何获取版本号 在 Go 语言项目中，如果要获取当前 Go 语言版本，只需要调用 runtime.V</p></div>
+            </div>
+            <div class="post-footer">
+                <div class="meta">
+                    <div class="info"><em class="fas fa-calendar-day"></em><span
+                                class="date">2021-10-16</span>
+                        <a class="tag"
+                                   href="/tags/go/">Go</a>
+                    </div>
+                </div>
+            </div>
+				</div>
+    
+        <div class="post animated fadeInDown">
+            <div class="post-title">
                 <h2><a href="/posts/go/book/20211007-manning-books/">假期结束，推荐 2 本 manning 出的 Go 图书</a>
                 </h2>
             </div>
@@ -244,27 +263,6 @@
                                 class="date">2021-09-04</span>
                         <a class="tag"
                                    href="/tags/go/">Go</a><a class="tag"
-                                   href="/tags/%E6%96%B0%E7%89%B9%E6%80%A7/">新特性</a>
-                    </div>
-                </div>
-            </div>
-				</div>
-    
-        <div class="post animated fadeInDown">
-            <div class="post-title">
-                <h2><a href="/posts/go/dynamic/go-1-17-new-features-added-to-testing/">Go1.17 新特性：testing 包的相关变化</a>
-                </h2>
-            </div>
-            <div class="post-content">
-                <div class="p_part"><p>大家好，我是 polarisxu。 今天介绍下 Go1.17 中的特性：testing 包的一些变化。先看 Release Notes 关于 testing 变化的描述： Added a new testing flag -shuffle which controls the execution order of tests and benchmarks. The new T.Setenv and B.Setenv methods support setting an environment variable for the duration of the test or benchmark. 关于 shuffle 这个 flag，1.17 还未发布时，我就写过文章介绍：Go1.17这个新特性竟然是6年前提出来的 。关于它的作用，记住关键一点：我们写测试时，测试之间别相互依赖，应该是独立的。 本文着</p></div>
-            </div>
-            <div class="post-footer">
-                <div class="meta">
-                    <div class="info"><em class="fas fa-calendar-day"></em><span
-                                class="date">2021-09-04</span>
-                        <a class="tag"
-                                   href="/tags/go/">Go</a><a class="tag"
-                                   href="/tags/testing/">testing</a><a class="tag"
                                    href="/tags/%E6%96%B0%E7%89%B9%E6%80%A7/">新特性</a>
                     </div>
                 </div>
