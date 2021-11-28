@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>选项模式 on polarisxu</title>
+    <link>https://polarisxu.studygolang.com/tags/%E9%80%89%E9%A1%B9%E6%A8%A1%E5%BC%8F/</link>
+    <description>Recent content in 选项模式 on polarisxu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
+    <lastBuildDate>Sun, 28 Nov 2021 20:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/%E9%80%89%E9%A1%B9%E6%A8%A1%E5%BC%8F/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go：详解函数式选项模式</title>
+      <link>https://polarisxu.studygolang.com/posts/go/action/functional-options-pattern/</link>
+      <pubDate>Sun, 28 Nov 2021 20:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/action/functional-options-pattern/</guid>
+      <description>大家好，我是 polarisxu。 Go 不是完全面向对象语言，有一些面向对象模式不太适合它。但经过这些年的发展，Go 有自己的一些模式。今天介绍一个常见的模式：函数式选项模式（Functional Options Pattern）。 01 什么是函数式选项模式 Go 语言没有构造函数，一般通过定义 New 函数来充当构造函数。然而，如果结构有较多字段，要初始化这些字段，有很多种方式，但有一种方式认为是</description>
+    </item>
+    
+  </channel>
+</rss>

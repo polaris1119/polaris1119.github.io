@@ -7,7 +7,25 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Sat, 27 Nov 2021 20:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 28 Nov 2021 20:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go泛型系列：maps 包讲解</title>
+      <link>https://polarisxu.studygolang.com/posts/go/generics/generics-maps/</link>
+      <pubDate>Sun, 28 Nov 2021 20:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/generics/generics-maps/</guid>
+      <description>大家好，我是 polarisxu。 上篇文章介绍了 slices 包，本文介绍另一个包，用于 map 相关操作，目前同样放在 golang.org/x/exp 包下。 https://github.com/golang/exp/blob/master/maps/maps.go 01</description>
+    </item>
+    
+    <item>
+      <title>Go：详解函数式选项模式</title>
+      <link>https://polarisxu.studygolang.com/posts/go/action/functional-options-pattern/</link>
+      <pubDate>Sun, 28 Nov 2021 20:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/action/functional-options-pattern/</guid>
+      <description>大家好，我是 polarisxu。 Go 不是完全面向对象语言，有一些面向对象模式不太适合它。但经过这些年的发展，Go 有自己的一些模式。今天介绍一个常见的模式：函数式选项模式（Functional Options Pattern）。 01 什么是函数式选项模式 Go 语言没有构造函数，一般通过定义 New 函数来充当构造函数。然而，如果结构有较多字段，要初始化这些字段，有很多种方式，但有一种方式认为是</description>
+    </item>
+    
     <item>
       <title>Go泛型系列：slices 包讲解</title>
       <link>https://polarisxu.studygolang.com/posts/go/generics/generics-slices/</link>
@@ -78,24 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/pkg/go-std-env/</guid>
       <description>大家好，我是 polarisxu。 今天的文章比较基础，但却是必须掌握的，而且本文有些内容，也许你之前没想过。希望这篇文章能够让你理解环境变量并掌握 Go 环境变量相关操作。 01 从安装 Go 说起 其实不止是安装 Go，其他语言一本也会有类似的问题。一般来说，安装完 Go 后，会建议将 go 可执行程序配置到 PATH 环境变量中。 比如我本地的 PATH 环境变量的值： $ echo $PATH /Users/xuxinhua/.go/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Applications/Wireshark.app/Contents/MacOS:/Users/xuxinhua/.cargo/bin:/Users/xuxinhua/bin:/usr/local/git/bin:/Users/xuxinhua/.composer/vendor/bin:/Users/xuxinhua/go/bin 那么 PATH 环境变量的作用是什么呢？ 简单</description>
-    </item>
-    
-    <item>
-      <title>重磅变动：更快找到微信公众号里的Go文章</title>
-      <link>https://polarisxu.studygolang.com/posts/wechat/find-go-articles-in-wechat/</link>
-      <pubDate>Thu, 21 Oct 2021 22:50:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/wechat/find-go-articles-in-wechat/</guid>
-      <description>大家好，我是 polarisxu。 搜索引擎一直是查找资料主要的方式，Go语言中文网站点的流量，近 80% 来自搜索引擎。 01 然而，微信公众号一直是一个私域，它禁止搜索引擎抓取。最近，各种 zc，大厂做了一些调整。有人发现，微信公众号删除了 robots.txt： https://mp.weixin.qq.com/robots.txt 内容是空的； robots.txt 最近一次内容 https://web.archive.org/web/20210929115539/mp.weixin.qq.com/robots.txt 所以，现在微信公众号内容可以被搜索引擎抓取了。 实际验证一下： 1）Google 2）Bi</description>
-    </item>
-    
-    <item>
-      <title>Go 这样设置版本号：我们的项目也可以</title>
-      <link>https://polarisxu.studygolang.com/posts/go/pkg/go-version/</link>
-      <pubDate>Sat, 16 Oct 2021 22:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/pkg/go-version/</guid>
-      <description>大家好，我是 polarisxu。 项目中，特别是开源项目，会特别重视项目的版本号。有些项目，会把版本号写入源码中，每次升级都修改源码号。不过这不是特别好的方式。本文通过学习 Go 语言源码的处理方式来掌握它，并应用于自己的项目中。 本文基于 Go1.17，不同版本的实现细节可能有所不同 01 如何获取版本号 在 Go 语言项目中，如果要获取当前 Go 语言版本，只需要调用 runtime.V</description>
     </item>
     
   </channel>

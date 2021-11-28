@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Sat, 27 Nov 2021 20:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/%E6%B3%9B%E5%9E%8B/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 28 Nov 2021 20:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/%E6%B3%9B%E5%9E%8B/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go泛型系列：maps 包讲解</title>
+      <link>https://polarisxu.studygolang.com/posts/go/generics/generics-maps/</link>
+      <pubDate>Sun, 28 Nov 2021 20:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/generics/generics-maps/</guid>
+      <description>大家好，我是 polarisxu。 上篇文章介绍了 slices 包，本文介绍另一个包，用于 map 相关操作，目前同样放在 golang.org/x/exp 包下。 https://github.com/golang/exp/blob/master/maps/maps.go 01</description>
+    </item>
+    
     <item>
       <title>Go泛型系列：slices 包讲解</title>
       <link>https://polarisxu.studygolang.com/posts/go/generics/generics-slices/</link>

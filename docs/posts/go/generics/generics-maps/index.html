@@ -7,20 +7,20 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<meta name="theme-color" content="#fcfcfc">
 	<meta name="msapplication-TileColor" content="#fcfcfc">
-<meta itemprop="name" content="站长8年前的Go代码竟然进入大厂的项目里了">
-<meta itemprop="description" content="大家好，我是 polarisxu。 在群里有一位大厂大佬发了这么一条信息： 有点惊住了！ 这是我在 2013 年 1 月写的一篇关于 RSA 的文章：《GO加密解密之RSA》 ，没想到进入了大厂的项目里。只不过，这 CTRL &#43; C、CTRL &#43;V 有点小猛，邮箱地址直接进入了仓库。。。不愧是： 群友们很有才，说可以写一篇文章：当初写下的示例程序，已然在巨头大厂安稳运行 6 年，创造的价值数以亿记。 这件事还是有些"><meta itemprop="datePublished" content="2021-06-13T20:30:00+08:00" />
-<meta itemprop="dateModified" content="2021-06-13T20:30:00+08:00" />
-<meta itemprop="wordCount" content="450">
-<meta itemprop="keywords" content="Go,RSA," /><meta property="og:title" content="站长8年前的Go代码竟然进入大厂的项目里了" />
-<meta property="og:description" content="大家好，我是 polarisxu。 在群里有一位大厂大佬发了这么一条信息： 有点惊住了！ 这是我在 2013 年 1 月写的一篇关于 RSA 的文章：《GO加密解密之RSA》 ，没想到进入了大厂的项目里。只不过，这 CTRL &#43; C、CTRL &#43;V 有点小猛，邮箱地址直接进入了仓库。。。不愧是： 群友们很有才，说可以写一篇文章：当初写下的示例程序，已然在巨头大厂安稳运行 6 年，创造的价值数以亿记。 这件事还是有些" />
+<meta itemprop="name" content="Go泛型系列：maps 包讲解">
+<meta itemprop="description" content="大家好，我是 polarisxu。 上篇文章介绍了 slices 包，本文介绍另一个包，用于 map 相关操作，目前同样放在 golang.org/x/exp 包下。 https://github.com/golang/exp/blob/master/maps/maps.go 01"><meta itemprop="datePublished" content="2021-11-28T20:30:00+08:00" />
+<meta itemprop="dateModified" content="2021-11-28T20:30:00+08:00" />
+<meta itemprop="wordCount" content="55">
+<meta itemprop="keywords" content="Go,泛型," /><meta property="og:title" content="Go泛型系列：maps 包讲解" />
+<meta property="og:description" content="大家好，我是 polarisxu。 上篇文章介绍了 slices 包，本文介绍另一个包，用于 map 相关操作，目前同样放在 golang.org/x/exp 包下。 https://github.com/golang/exp/blob/master/maps/maps.go 01" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://polarisxu.studygolang.com/posts/talk/about-writing/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2021-06-13T20:30:00+08:00" />
-<meta property="article:modified_time" content="2021-06-13T20:30:00+08:00" />
+<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/generics/generics-maps/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-11-28T20:30:00+08:00" />
+<meta property="article:modified_time" content="2021-11-28T20:30:00+08:00" />
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="站长8年前的Go代码竟然进入大厂的项目里了"/>
-<meta name="twitter:description" content="大家好，我是 polarisxu。 在群里有一位大厂大佬发了这么一条信息： 有点惊住了！ 这是我在 2013 年 1 月写的一篇关于 RSA 的文章：《GO加密解密之RSA》 ，没想到进入了大厂的项目里。只不过，这 CTRL &#43; C、CTRL &#43;V 有点小猛，邮箱地址直接进入了仓库。。。不愧是： 群友们很有才，说可以写一篇文章：当初写下的示例程序，已然在巨头大厂安稳运行 6 年，创造的价值数以亿记。 这件事还是有些"/>
+<meta name="twitter:title" content="Go泛型系列：maps 包讲解"/>
+<meta name="twitter:description" content="大家好，我是 polarisxu。 上篇文章介绍了 slices 包，本文介绍另一个包，用于 map 相关操作，目前同样放在 golang.org/x/exp 包下。 https://github.com/golang/exp/blob/master/maps/maps.go 01"/>
 
 	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -29,7 +29,7 @@
 	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
 	<link rel="shortcut icon" href="/favicon.ico">
 
-	<title>站长8年前的Go代码竟然进入大厂的项目里了</title>
+	<title>Go泛型系列：maps 包讲解</title>
 	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
 	
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
@@ -73,32 +73,17 @@
 	<main class="site-main section-inner animated fadeIn faster">
 		<article class="thin">
 			<header class="post-header">
-				<div class="post-meta"><span>Jun 13, 2021</span></div>
-				<h1>站长8年前的Go代码竟然进入大厂的项目里了</h1>
+				<div class="post-meta"><span>Nov 28, 2021</span></div>
+				<h1>Go泛型系列：maps 包讲解</h1>
 			</header>
 			<div class="content">
 				<p>大家好，我是 polarisxu。</p>
-<p>在群里有一位大厂大佬发了这么一条信息：</p>
-<p><p class="md__image">
-  <img src="../imgs/rsa-polarisxu.png"
-    alt=""  />
+<p>上篇文章介绍了 slices 包，本文介绍另一个包，用于 map 相关操作，目前同样放在 golang.org/x/exp 包下。</p>
+<blockquote>
+<p><a href="https://github.com/golang/exp/blob/master/maps/maps.go" target="_blank" rel="noopener">https://github.com/golang/exp/blob/master/maps/maps.go</a>
 </p>
-</p>
-<p>有点惊住了！</p>
-<p>这是我在 2013 年 1 月写的一篇关于 RSA 的文章：<a href="http://blog.studygolang.com/2013/01/go%e5%8a%a0%e5%af%86%e8%a7%a3%e5%af%86%e4%b9%8brsa/" target="_blank" rel="noopener">《GO加密解密之RSA》</a>
-，没想到进入了大厂的项目里。只不过，这 CTRL + C、CTRL +V 有点小猛，邮箱地址直接进入了仓库。。。不愧是：</p>
-<p><p class="md__image">
-  <img src="../imgs/ctrl-c-v.jpeg"
-    alt=""  />
-</p>
-</p>
-<p>群友们很有才，说可以写一篇文章：当初写下的示例程序，已然在巨头大厂安稳运行 6 年，创造的价值数以亿记。</p>
-<p>这件事还是有些启发：</p>
-<ul>
-<li>对外输出，一定要认真负责。输出，是提升能力很好的方式，通过输出也能倒逼输入。但输出一定要对读者负责，因为你的输出会成为别人的输入。我又重新验证了 2013 年文章的例子，虽然 Go 升级了这么多版本，但得益于 Go1 的兼容性，代码运行正常；</li>
-<li>做一个「高端程序员，采用最朴素的编程方式」没错，但不能只是这种方式，复制、粘贴完后，一定要自己读一遍，看看有没有需要修改的地方，不能犯低级错误。我见过最多的就是，把注释也一起复制过去，然后从来不改注释，弄得注释和代码完全不是一回事。。。</li>
-</ul>
-<p>如果你是一个「高端程序员」，建议你试试输出，让别人也享受下「最朴素的编程方式」。</p>
+</blockquote>
+<h2 id="01">01<a href="#01" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 
 			</div><div class="content">
 	<br>
@@ -109,15 +94,15 @@
 	<h2>相关推荐</h2>
 	<ul>
 	
-	<li><a href="/posts/go/generics/generics-maps/">Go泛型系列：maps 包讲解</a></li>
-	
-	<li><a href="/posts/go/action/functional-options-pattern/">Go：详解函数式选项模式</a></li>
-	
 	<li><a href="/posts/go/generics/generics-slices/">Go泛型系列：slices 包讲解</a></li>
 	
 	<li><a href="/posts/go/generics/generics-constraints/">Go泛型系列：Go1.18 类型约束那些事</a></li>
 	
-	<li><a href="/posts/go/dynamic/go1.18-workspace/">Go1.18 快讯：Module 工作区模式</a></li>
+	<li><a href="/posts/go/generics/generics-basic/">Go泛型系列：提前掌握Go泛型的基本使用</a></li>
+	
+	<li><a href="/posts/go/dynamic/go-generic/">扬眉吐气：刚刚，Go 已经默认支持泛型了</a></li>
+	
+	<li><a href="/posts/go/dynamic/about-go-generic-progress/">关于 Go 语言泛型设计的最新进展和一些问题的说明</a></li>
 	
 	</ul>
 </div>
@@ -125,22 +110,23 @@
 			<hr class="post-end">
 			<footer class="post-info">
 				<p>
-					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://polarisxu.studygolang.com/tags/go">Go</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/rsa">RSA</a></span>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://polarisxu.studygolang.com/tags/go">Go</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/%E6%B3%9B%E5%9E%8B">泛型</a></span>
 				</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>450 字</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2021-06-13 20:30 &#43;0800</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>55 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2021-11-28 20:30 &#43;0800</p>
 			</footer>
 		</article>
 		<aside id="toc">
 			<div class="toc-title">目录</div>
-			<nav id="TableOfContents"></nav>
+			<nav id="TableOfContents">
+  <ul>
+    <li><a href="#01">01</a></li>
+  </ul>
+</nav>
 		</aside>
 		<div class="post-nav thin">
-			<a class="next-post" href="https://polarisxu.studygolang.com/posts/go/golangorg-website/">
-				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;新</span><br><span>回顾 Go 官网的演变史</span>
-			</a>
-			<a class="prev-post" href="https://polarisxu.studygolang.com/posts/go/book/practical-go-lessons-decline/">
-				<span class="post-nav-label">旧&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>Go图书翻译：一个好消息，一个坏消息</span>
+			<a class="prev-post" href="https://polarisxu.studygolang.com/posts/go/action/functional-options-pattern/">
+				<span class="post-nav-label">旧&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>Go：详解函数式选项模式</span>
 			</a>
 		</div>
 		<div id="comments" class="thin"><script src="https://utteranc.es/client.js"
