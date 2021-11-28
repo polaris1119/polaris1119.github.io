@@ -7,11 +7,11 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<meta name="theme-color" content="#fcfcfc">
 	<meta name="msapplication-TileColor" content="#fcfcfc">
-<meta itemprop="name" content="Go泛型系列：slices 包使用讲解">
+<meta itemprop="name" content="Go泛型系列：slices 包讲解">
 <meta itemprop="description" content="大家好，我是 polarisxu。 前段时间，Russ Cox 明确了泛型相关的事情 ，原计划在标准库中加入泛型相关的包，改放到 golang.org/x/exp 下。 目前，Go 泛型的主要设计者 ianlancetaylor 完成了 slices 和 maps 包的开发，代码提交到了 golang.org/x/exp 中，如果经过使用、讨论等，社区认可后，预计在 1.19 中会合入标准库中。 今天，通过学习 slices 包，掌握 Go 泛型的使用方法。 01 为什么增加 slices 包 标准库有 bytes 和 strings 包，分别用来处理 []byte 和 string 类型，提供了众多方"><meta itemprop="datePublished" content="2021-11-27T20:30:00+08:00" />
 <meta itemprop="dateModified" content="2021-11-27T20:30:00+08:00" />
 <meta itemprop="wordCount" content="1932">
-<meta itemprop="keywords" content="Go,泛型," /><meta property="og:title" content="Go泛型系列：slices 包使用讲解" />
+<meta itemprop="keywords" content="Go,泛型," /><meta property="og:title" content="Go泛型系列：slices 包讲解" />
 <meta property="og:description" content="大家好，我是 polarisxu。 前段时间，Russ Cox 明确了泛型相关的事情 ，原计划在标准库中加入泛型相关的包，改放到 golang.org/x/exp 下。 目前，Go 泛型的主要设计者 ianlancetaylor 完成了 slices 和 maps 包的开发，代码提交到了 golang.org/x/exp 中，如果经过使用、讨论等，社区认可后，预计在 1.19 中会合入标准库中。 今天，通过学习 slices 包，掌握 Go 泛型的使用方法。 01 为什么增加 slices 包 标准库有 bytes 和 strings 包，分别用来处理 []byte 和 string 类型，提供了众多方" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/generics/generics-slices/" /><meta property="article:section" content="posts" />
@@ -19,7 +19,7 @@
 <meta property="article:modified_time" content="2021-11-27T20:30:00+08:00" />
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Go泛型系列：slices 包使用讲解"/>
+<meta name="twitter:title" content="Go泛型系列：slices 包讲解"/>
 <meta name="twitter:description" content="大家好，我是 polarisxu。 前段时间，Russ Cox 明确了泛型相关的事情 ，原计划在标准库中加入泛型相关的包，改放到 golang.org/x/exp 下。 目前，Go 泛型的主要设计者 ianlancetaylor 完成了 slices 和 maps 包的开发，代码提交到了 golang.org/x/exp 中，如果经过使用、讨论等，社区认可后，预计在 1.19 中会合入标准库中。 今天，通过学习 slices 包，掌握 Go 泛型的使用方法。 01 为什么增加 slices 包 标准库有 bytes 和 strings 包，分别用来处理 []byte 和 string 类型，提供了众多方"/>
 
 	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -29,7 +29,7 @@
 	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
 	<link rel="shortcut icon" href="/favicon.ico">
 
-	<title>Go泛型系列：slices 包使用讲解</title>
+	<title>Go泛型系列：slices 包讲解</title>
 	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
 	
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
@@ -74,7 +74,7 @@
 		<article class="thin">
 			<header class="post-header">
 				<div class="post-meta"><span>Nov 27, 2021</span></div>
-				<h1>Go泛型系列：slices 包使用讲解</h1>
+				<h1>Go泛型系列：slices 包讲解</h1>
 			</header>
 			<div class="content">
 				<p>大家好，我是 polarisxu。</p>

@@ -10,7 +10,7 @@
 		<atom:link href="https://polarisxu.studygolang.com/posts/index.xml" rel="self" type="application/rss+xml" />
 		
 		<item>
-			<title>Go泛型系列：slices 包使用讲解</title>
+			<title>Go泛型系列：slices 包讲解</title>
 			<link>https://polarisxu.studygolang.com/posts/go/generics/generics-slices/</link>
 			<pubDate>Sat, 27 Nov 2021 20:30:00 +0800</pubDate>
 			
