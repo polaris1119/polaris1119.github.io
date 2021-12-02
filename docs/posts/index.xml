@@ -6,8 +6,59 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en</language>
 		<copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-		<lastBuildDate>Wed, 01 Dec 2021 22:00:00 +0800</lastBuildDate>
+		<lastBuildDate>Thu, 02 Dec 2021 20:30:00 +0800</lastBuildDate>
 		<atom:link href="https://polarisxu.studygolang.com/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>Go 1.18 中的 any 是什么？</title>
+			<link>https://polarisxu.studygolang.com/posts/go/dynamic/go1.18-any/</link>
+			<pubDate>Thu, 02 Dec 2021 20:30:00 +0800</pubDate>
+			
+			<guid>https://polarisxu.studygolang.com/posts/go/dynamic/go1.18-any/</guid>
+			<description>大家好，我是 polarisxu。 Go 1.18 因为泛型引入 any，这实际上是 interface{} 的别名： type any = interface{} 以下代码虽然不是泛型，但用 Go 1.18 可以正常运行，证明 any 和 interface{} 是一样的：（这里可以在线运行：https://gotipplay.golang.org/p/dPeNhe-7nkA ） package main import ( &amp;#34;fmt&amp;#34; ) // 这里的 any 并非泛型的约束，而是类型 func test(x any) any { return x } func main() { fmt.Println(test(&amp;#34;a&amp;#34;)) } 泛型中，any 换为 interface{} 也可以：（这里</description>
+			<content type="html"><![CDATA[<p>大家好，我是 polarisxu。</p>
+<p>Go 1.18 因为泛型引入 any，这实际上是 interface{} 的别名：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">any</span> <span class="p">=</span> <span class="kd">interface</span><span class="p">{}</span>
+</code></pre></div><p>以下代码虽然不是泛型，但用 Go 1.18 可以正常运行，证明 any 和 interface{} 是一样的：（这里可以在线运行：<a href="https://gotipplay.golang.org/p/dPeNhe-7nkA" target="_blank" rel="noopener">https://gotipplay.golang.org/p/dPeNhe-7nkA</a>
+）</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+	<span class="s">&#34;fmt&#34;</span>
+<span class="p">)</span>
+
+<span class="c1">// 这里的 any 并非泛型的约束，而是类型
+</span><span class="c1"></span><span class="kd">func</span> <span class="nf">test</span><span class="p">(</span><span class="nx">x</span> <span class="nx">any</span><span class="p">)</span> <span class="nx">any</span> <span class="p">{</span>
+	<span class="k">return</span> <span class="nx">x</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nf">test</span><span class="p">(</span><span class="s">&#34;a&#34;</span><span class="p">))</span>
+<span class="p">}</span>
+</code></pre></div><p>泛型中，any 换为 interface{} 也可以：（这里可以在线运行：<a href="https://gotipplay.golang.org/p/wKL3rKuldQX" target="_blank" rel="noopener">https://gotipplay.golang.org/p/wKL3rKuldQX</a>
+）</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+	<span class="s">&#34;fmt&#34;</span>
+<span class="p">)</span>
+
+<span class="c1">// 注意其中的 T interface{}，正常应该使用 T any
+</span><span class="c1"></span><span class="kd">func</span> <span class="nx">Print</span><span class="p">[</span><span class="nx">T</span> <span class="kd">interface</span><span class="p">{}](</span><span class="nx">s</span> <span class="o">...</span><span class="nx">T</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">v</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">s</span> <span class="p">{</span>
+		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Print</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="nf">Print</span><span class="p">(</span><span class="s">&#34;Hello, &#34;</span><span class="p">,</span> <span class="s">&#34;playground\n&#34;</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div><p>你也可以本地使用 tip 运行验证下。</p>
+<p>可见，之所以引入 any 关键字，主要是让泛型修饰时短一点，少一些括号。any 比 interface{} 会更清爽~</p>
+<p>此外，项目中如果想要做替换，可以通过 gofmt 将 interface{} 改为 any：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">gofmt -w -r <span class="s1">&#39;interface{} -&gt; any&#39;</span> ./...
+</code></pre></div>]]></content>
+		</item>
 		
 		<item>
 			<title>Go1.18 快讯：新的 IP 包</title>

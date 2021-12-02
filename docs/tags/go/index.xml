@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Wed, 01 Dec 2021 22:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 02 Dec 2021 20:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go 1.18 中的 any 是什么？</title>
+      <link>https://polarisxu.studygolang.com/posts/go/dynamic/go1.18-any/</link>
+      <pubDate>Thu, 02 Dec 2021 20:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/dynamic/go1.18-any/</guid>
+      <description>大家好，我是 polarisxu。 Go 1.18 因为泛型引入 any，这实际上是 interface{} 的别名： type any = interface{} 以下代码虽然不是泛型，但用 Go 1.18 可以正常运行，证明 any 和 interface{} 是一样的：（这里可以在线运行：https://gotipplay.golang.org/p/dPeNhe-7nkA ） package main import ( &amp;#34;fmt&amp;#34; ) // 这里的 any 并非泛型的约束，而是类型 func test(x any) any { return x } func main() { fmt.Println(test(&amp;#34;a&amp;#34;)) } 泛型中，any 换为 interface{} 也可以：（这里</description>
+    </item>
+    
     <item>
       <title>Go1.18 快讯：新的 IP 包</title>
       <link>https://polarisxu.studygolang.com/posts/go/dynamic/go1.18-ip/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/dynamic/go1.18-clone/</guid>
       <description>大家好，我是 polarisxu。 Go 1.18 虽然还有 4 个月发布，但大部分的功能基本确定。我们可以提前知晓、熟悉。 今天介绍的是标准库中新增的一个 API：strings.Clone()。 从名称可以知道，这是克隆。很多其他语言一开始就有这样的功能。比如 PHP 有 clone 关键字、__clone 魔术方法；Java 的根类 Object 有 clone 方法等。 01 函数签名 该函数的定义如下（见：https://pkg.</description>
-    </item>
-    
-    <item>
-      <title>Go：如何获得项目根目录？</title>
-      <link>https://polarisxu.studygolang.com/posts/go/pkg/go-std-cwd/</link>
-      <pubDate>Sun, 31 Oct 2021 22:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/pkg/go-std-cwd/</guid>
-      <description>大家好，我是 polarisxu。 项目中，特别是 Web 项目，经常需要获得项目的根目录，进而可以访问到项目相关的其他资源，比如配置文件、静态资源文件、模板文件、数据文件、日志文件等（Go1.16 后，有些可以方便的通过 embed 内嵌进来）。比如下面的目录结构：（路径是 /Users/xuxinhua/stdcwd） ├── bin ├── cwd ├── main.go └── log ├── error.log 为了正确读取 error.</description>
     </item>
     
   </channel>
