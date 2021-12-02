@@ -71,6 +71,26 @@
 		
         <div class="post animated fadeInDown">
             <div class="post-title">
+                <h2><a href="/posts/go/dynamic/go1.18-ip/">Go1.18 快讯：新的 IP 包</a>
+                </h2>
+            </div>
+            <div class="post-content">
+                <div class="p_part"><p>大家好，我是 polarisxu。 Go 1.18 标准库新增了一个包：net/netip，大部分人可能用不上这个包，但这个包的设计思路以及和现有标准库 IP 的比较值得学习。 01 标准库 net.IP 的问题 前 Go Team 成员之一 Brad Fitzpatrick 加入 Tailscale 后，经常需要操作 IP 地址。因为使用 Go 语言实现的，自然会使用过标准库的 net.IP 和 net.IPNet 等类型。但他们认为标准库的相关类型有很多问题，所以他们自己写了一个包：https://gith</p></div>
+            </div>
+            <div class="post-footer">
+                <div class="meta">
+                    <div class="info"><em class="fas fa-calendar-day"></em><span
+                                class="date">2021-12-01</span>
+                        <a class="tag"
+                                   href="/tags/go/">Go</a><a class="tag"
+                                   href="/tags/%E6%A0%87%E5%87%86%E5%BA%93/">标准库</a>
+                    </div>
+                </div>
+            </div>
+				</div>
+    
+        <div class="post animated fadeInDown">
+            <div class="post-title">
                 <h2><a href="/posts/go/generics/generics-maps/">Go泛型系列：maps 包讲解</a>
                 </h2>
             </div>
@@ -91,7 +111,7 @@
     
         <div class="post animated fadeInDown">
             <div class="post-title">
-                <h2><a href="/posts/go/action/functional-options-pattern/">Go：详解函数式选项模式</a>
+                <h2><a href="/posts/go/action/functional-options-pattern/">Go编程模式：详解函数式选项模式</a>
                 </h2>
             </div>
             <div class="post-content">
@@ -244,26 +264,6 @@
                         <a class="tag"
                                    href="/tags/go/">Go</a><a class="tag"
                                    href="/tags/clone/">Clone</a><a class="tag"
-                                   href="/tags/%E6%A0%87%E5%87%86%E5%BA%93/">标准库</a>
-                    </div>
-                </div>
-            </div>
-				</div>
-    
-        <div class="post animated fadeInDown">
-            <div class="post-title">
-                <h2><a href="/posts/go/pkg/go-std-cwd/">Go：如何获得项目根目录？</a>
-                </h2>
-            </div>
-            <div class="post-content">
-                <div class="p_part"><p>大家好，我是 polarisxu。 项目中，特别是 Web 项目，经常需要获得项目的根目录，进而可以访问到项目相关的其他资源，比如配置文件、静态资源文件、模板文件、数据文件、日志文件等（Go1.16 后，有些可以方便的通过 embed 内嵌进来）。比如下面的目录结构：（路径是 /Users/xuxinhua/stdcwd） ├── bin ├── cwd ├── main.go └── log ├── error.log 为了正确读取 error.</p></div>
-            </div>
-            <div class="post-footer">
-                <div class="meta">
-                    <div class="info"><em class="fas fa-calendar-day"></em><span
-                                class="date">2021-10-31</span>
-                        <a class="tag"
-                                   href="/tags/go/">Go</a><a class="tag"
                                    href="/tags/%E6%A0%87%E5%87%86%E5%BA%93/">标准库</a>
                     </div>
                 </div>

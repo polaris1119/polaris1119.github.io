@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Sun, 28 Nov 2021 20:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 01 Dec 2021 22:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go1.18 快讯：新的 IP 包</title>
+      <link>https://polarisxu.studygolang.com/posts/go/dynamic/go1.18-ip/</link>
+      <pubDate>Wed, 01 Dec 2021 22:00:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/dynamic/go1.18-ip/</guid>
+      <description>大家好，我是 polarisxu。 Go 1.18 标准库新增了一个包：net/netip，大部分人可能用不上这个包，但这个包的设计思路以及和现有标准库 IP 的比较值得学习。 01 标准库 net.IP 的问题 前 Go Team 成员之一 Brad Fitzpatrick 加入 Tailscale 后，经常需要操作 IP 地址。因为使用 Go 语言实现的，自然会使用过标准库的 net.IP 和 net.IPNet 等类型。但他们认为标准库的相关类型有很多问题，所以他们自己写了一个包：https://gith</description>
+    </item>
+    
     <item>
       <title>Go泛型系列：maps 包讲解</title>
       <link>https://polarisxu.studygolang.com/posts/go/generics/generics-maps/</link>
@@ -18,7 +27,7 @@
     </item>
     
     <item>
-      <title>Go：详解函数式选项模式</title>
+      <title>Go编程模式：详解函数式选项模式</title>
       <link>https://polarisxu.studygolang.com/posts/go/action/functional-options-pattern/</link>
       <pubDate>Sun, 28 Nov 2021 20:30:00 +0800</pubDate>
       
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/pkg/go-std-cwd/</guid>
       <description>大家好，我是 polarisxu。 项目中，特别是 Web 项目，经常需要获得项目的根目录，进而可以访问到项目相关的其他资源，比如配置文件、静态资源文件、模板文件、数据文件、日志文件等（Go1.16 后，有些可以方便的通过 embed 内嵌进来）。比如下面的目录结构：（路径是 /Users/xuxinhua/stdcwd） ├── bin ├── cwd ├── main.go └── log ├── error.log 为了正确读取 error.</description>
-    </item>
-    
-    <item>
-      <title>Go 如何获取和设置环境变量</title>
-      <link>https://polarisxu.studygolang.com/posts/go/pkg/go-std-env/</link>
-      <pubDate>Fri, 29 Oct 2021 22:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/pkg/go-std-env/</guid>
-      <description>大家好，我是 polarisxu。 今天的文章比较基础，但却是必须掌握的，而且本文有些内容，也许你之前没想过。希望这篇文章能够让你理解环境变量并掌握 Go 环境变量相关操作。 01 从安装 Go 说起 其实不止是安装 Go，其他语言一本也会有类似的问题。一般来说，安装完 Go 后，会建议将 go 可执行程序配置到 PATH 环境变量中。 比如我本地的 PATH 环境变量的值： $ echo $PATH /Users/xuxinhua/.go/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Applications/Wireshark.app/Contents/MacOS:/Users/xuxinhua/.cargo/bin:/Users/xuxinhua/bin:/usr/local/git/bin:/Users/xuxinhua/.composer/vendor/bin:/Users/xuxinhua/go/bin 那么 PATH 环境变量的作用是什么呢？ 简单</description>
     </item>
     
   </channel>

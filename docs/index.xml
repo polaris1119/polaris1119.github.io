@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Sun, 28 Nov 2021 20:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 01 Dec 2021 22:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go1.18 快讯：新的 IP 包</title>
+      <link>https://polarisxu.studygolang.com/posts/go/dynamic/go1.18-ip/</link>
+      <pubDate>Wed, 01 Dec 2021 22:00:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/dynamic/go1.18-ip/</guid>
+      <description>大家好，我是 polarisxu。 Go 1.18 标准库新增了一个包：net/netip，大部分人可能用不上这个包，但这个包的设计思路以及和现有标准库 IP 的比较值得学习。 01 标准库 net.IP 的问题 前 Go Team 成员之一 Brad Fitzpatrick 加入 Tailscale 后，经常需要操作 IP 地址。因为使用 Go 语言实现的，自然会使用过标准库的 net.IP 和 net.IPNet 等类型。但他们认为标准库的相关类型有很多问题，所以他们自己写了一个包：https://gith</description>
+    </item>
+    
     <item>
       <title>Go泛型系列：maps 包讲解</title>
       <link>https://polarisxu.studygolang.com/posts/go/generics/generics-maps/</link>
@@ -18,7 +27,7 @@
     </item>
     
     <item>
-      <title>Go：详解函数式选项模式</title>
+      <title>Go编程模式：详解函数式选项模式</title>
       <link>https://polarisxu.studygolang.com/posts/go/action/functional-options-pattern/</link>
       <pubDate>Sun, 28 Nov 2021 20:30:00 +0800</pubDate>
       
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/dynamic/go1.18-clone/</guid>
       <description>大家好，我是 polarisxu。 Go 1.18 虽然还有 4 个月发布，但大部分的功能基本确定。我们可以提前知晓、熟悉。 今天介绍的是标准库中新增的一个 API：strings.Clone()。 从名称可以知道，这是克隆。很多其他语言一开始就有这样的功能。比如 PHP 有 clone 关键字、__clone 魔术方法；Java 的根类 Object 有 clone 方法等。 01 函数签名 该函数的定义如下（见：https://pkg.</description>
-    </item>
-    
-    <item>
-      <title>Go：如何获得项目根目录？</title>
-      <link>https://polarisxu.studygolang.com/posts/go/pkg/go-std-cwd/</link>
-      <pubDate>Sun, 31 Oct 2021 22:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/pkg/go-std-cwd/</guid>
-      <description>大家好，我是 polarisxu。 项目中，特别是 Web 项目，经常需要获得项目的根目录，进而可以访问到项目相关的其他资源，比如配置文件、静态资源文件、模板文件、数据文件、日志文件等（Go1.16 后，有些可以方便的通过 embed 内嵌进来）。比如下面的目录结构：（路径是 /Users/xuxinhua/stdcwd） ├── bin ├── cwd ├── main.go └── log ├── error.log 为了正确读取 error.</description>
     </item>
     
   </channel>
