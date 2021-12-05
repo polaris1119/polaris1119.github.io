@@ -8,19 +8,19 @@
 	<meta name="theme-color" content="#fcfcfc">
 	<meta name="msapplication-TileColor" content="#fcfcfc">
 <meta itemprop="name" content="Go泛型系列：maps 包讲解">
-<meta itemprop="description" content="大家好，我是 polarisxu。 上篇文章介绍了 slices 包，本文介绍另一个包，用于 map 相关操作，目前同样放在 golang.org/x/exp 包下。 https://github.com/golang/exp/blob/master/maps/maps.go 01"><meta itemprop="datePublished" content="2021-11-28T20:30:00+08:00" />
-<meta itemprop="dateModified" content="2021-11-28T20:30:00+08:00" />
-<meta itemprop="wordCount" content="55">
+<meta itemprop="description" content="大家好，我是 polarisxu。 之前文章介绍了 slices 包 ，本文介绍另一个包，用于 map 相关操作，目前同样放在 golang.org/x/exp 包下。 https://github.com/golang/exp/blob/master/maps/maps.go 01 真实的场景 不少新手，对 map 的输出是随机的有迷惑，曾经，map 的输出顺序是固定的，但官方怕大家依赖这个顺序，之后故意让输出顺序不固定。 但实际场景中，会有按某种顺序输出 map 的需求，怎么办呢？这需要对 map 的 key 进行排序，伪代码如下： for k := m { keys = append(keys, k) } sort(keys) 类似的代码"><meta itemprop="datePublished" content="2021-12-05T20:30:00+08:00" />
+<meta itemprop="dateModified" content="2021-12-05T20:30:00+08:00" />
+<meta itemprop="wordCount" content="844">
 <meta itemprop="keywords" content="Go,泛型," /><meta property="og:title" content="Go泛型系列：maps 包讲解" />
-<meta property="og:description" content="大家好，我是 polarisxu。 上篇文章介绍了 slices 包，本文介绍另一个包，用于 map 相关操作，目前同样放在 golang.org/x/exp 包下。 https://github.com/golang/exp/blob/master/maps/maps.go 01" />
+<meta property="og:description" content="大家好，我是 polarisxu。 之前文章介绍了 slices 包 ，本文介绍另一个包，用于 map 相关操作，目前同样放在 golang.org/x/exp 包下。 https://github.com/golang/exp/blob/master/maps/maps.go 01 真实的场景 不少新手，对 map 的输出是随机的有迷惑，曾经，map 的输出顺序是固定的，但官方怕大家依赖这个顺序，之后故意让输出顺序不固定。 但实际场景中，会有按某种顺序输出 map 的需求，怎么办呢？这需要对 map 的 key 进行排序，伪代码如下： for k := m { keys = append(keys, k) } sort(keys) 类似的代码" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/generics/generics-maps/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2021-11-28T20:30:00+08:00" />
-<meta property="article:modified_time" content="2021-11-28T20:30:00+08:00" />
+<meta property="article:published_time" content="2021-12-05T20:30:00+08:00" />
+<meta property="article:modified_time" content="2021-12-05T20:30:00+08:00" />
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Go泛型系列：maps 包讲解"/>
-<meta name="twitter:description" content="大家好，我是 polarisxu。 上篇文章介绍了 slices 包，本文介绍另一个包，用于 map 相关操作，目前同样放在 golang.org/x/exp 包下。 https://github.com/golang/exp/blob/master/maps/maps.go 01"/>
+<meta name="twitter:description" content="大家好，我是 polarisxu。 之前文章介绍了 slices 包 ，本文介绍另一个包，用于 map 相关操作，目前同样放在 golang.org/x/exp 包下。 https://github.com/golang/exp/blob/master/maps/maps.go 01 真实的场景 不少新手，对 map 的输出是随机的有迷惑，曾经，map 的输出顺序是固定的，但官方怕大家依赖这个顺序，之后故意让输出顺序不固定。 但实际场景中，会有按某种顺序输出 map 的需求，怎么办呢？这需要对 map 的 key 进行排序，伪代码如下： for k := m { keys = append(keys, k) } sort(keys) 类似的代码"/>
 
 	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -73,17 +73,53 @@
 	<main class="site-main section-inner animated fadeIn faster">
 		<article class="thin">
 			<header class="post-header">
-				<div class="post-meta"><span>Nov 28, 2021</span></div>
+				<div class="post-meta"><span>Dec 5, 2021</span></div>
 				<h1>Go泛型系列：maps 包讲解</h1>
 			</header>
 			<div class="content">
 				<p>大家好，我是 polarisxu。</p>
-<p>上篇文章介绍了 slices 包，本文介绍另一个包，用于 map 相关操作，目前同样放在 golang.org/x/exp 包下。</p>
+<p><a href="https://mp.weixin.qq.com/s/z30xJqiweIROlSp1YgcIsQ" target="_blank" rel="noopener">之前文章介绍了 slices 包</a>
+，本文介绍另一个包，用于 map 相关操作，目前同样放在 golang.org/x/exp 包下。</p>
 <blockquote>
 <p><a href="https://github.com/golang/exp/blob/master/maps/maps.go" target="_blank" rel="noopener">https://github.com/golang/exp/blob/master/maps/maps.go</a>
 </p>
 </blockquote>
-<h2 id="01">01<a href="#01" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<h2 id="01-真实的场景">01 真实的场景<a href="#01-真实的场景" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>不少新手，对 map 的输出是随机的有迷惑，曾经，map 的输出顺序是固定的，但官方怕大家依赖这个顺序，之后故意让输出顺序不固定。</p>
+<p>但实际场景中，会有按某种顺序输出 map 的需求，怎么办呢？这需要对 map 的 key 进行排序，伪代码如下：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="k">for</span> <span class="nx">k</span> <span class="o">:=</span> <span class="nx">m</span> <span class="p">{</span>
+  <span class="nx">keys</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">keys</span><span class="p">,</span> <span class="nx">k</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="nf">sort</span><span class="p">(</span><span class="nx">keys</span><span class="p">)</span>
+</code></pre></div><p>类似的代码会经常需要写，关键是，因为没有泛型，我们还没法写一个通用函数，复用代码。</p>
+<h2 id="02-maps-包详解">02 maps 包详解<a href="#02-maps-包详解" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>目前 maps 包有 8 个函数：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nx">Keys</span><span class="p">[</span><span class="nx">M</span> <span class="err">~</span><span class="kd">map</span><span class="p">[</span><span class="nx">K</span><span class="p">]</span><span class="nx">V</span><span class="p">,</span> <span class="nx">K</span> <span class="nx">comparable</span><span class="p">,</span> <span class="nx">V</span> <span class="nx">any</span><span class="p">](</span><span class="nx">m</span> <span class="nx">M</span><span class="p">)</span> <span class="p">[]</span><span class="nx">K</span>
+<span class="kd">func</span> <span class="nx">Values</span><span class="p">[</span><span class="nx">M</span> <span class="err">~</span><span class="kd">map</span><span class="p">[</span><span class="nx">K</span><span class="p">]</span><span class="nx">V</span><span class="p">,</span> <span class="nx">K</span> <span class="nx">comparable</span><span class="p">,</span> <span class="nx">V</span> <span class="nx">any</span><span class="p">](</span><span class="nx">m</span> <span class="nx">M</span><span class="p">)</span> <span class="p">[]</span><span class="nx">V</span>
+<span class="kd">func</span> <span class="nx">Equal</span><span class="p">[</span><span class="nx">M1</span><span class="p">,</span> <span class="nx">M2</span> <span class="err">~</span><span class="kd">map</span><span class="p">[</span><span class="nx">K</span><span class="p">]</span><span class="nx">V</span><span class="p">,</span> <span class="nx">K</span><span class="p">,</span> <span class="nx">V</span> <span class="nx">comparable</span><span class="p">](</span><span class="nx">m1</span> <span class="nx">M1</span><span class="p">,</span> <span class="nx">m2</span> <span class="nx">M2</span><span class="p">)</span> <span class="kt">bool</span>
+<span class="kd">func</span> <span class="nx">EqualFunc</span><span class="p">[</span><span class="nx">M1</span> <span class="err">~</span><span class="kd">map</span><span class="p">[</span><span class="nx">K</span><span class="p">]</span><span class="nx">V1</span><span class="p">,</span> <span class="nx">M2</span> <span class="err">~</span><span class="kd">map</span><span class="p">[</span><span class="nx">K</span><span class="p">]</span><span class="nx">V2</span><span class="p">,</span> <span class="nx">K</span> <span class="nx">comparable</span><span class="p">,</span> <span class="nx">V1</span><span class="p">,</span> <span class="nx">V2</span> <span class="nx">any</span><span class="p">](</span><span class="nx">m1</span> <span class="nx">M1</span><span class="p">,</span> <span class="nx">m2</span> <span class="nx">M2</span><span class="p">,</span> <span class="nx">eq</span> <span class="kd">func</span><span class="p">(</span><span class="nx">V1</span><span class="p">,</span> <span class="nx">V2</span><span class="p">)</span> <span class="kt">bool</span><span class="p">)</span> <span class="kt">bool</span>
+<span class="kd">func</span> <span class="nx">Clear</span><span class="p">[</span><span class="nx">M</span> <span class="err">~</span><span class="kd">map</span><span class="p">[</span><span class="nx">K</span><span class="p">]</span><span class="nx">V</span><span class="p">,</span> <span class="nx">K</span> <span class="nx">comparable</span><span class="p">,</span> <span class="nx">V</span> <span class="nx">any</span><span class="p">](</span><span class="nx">m</span> <span class="nx">M</span><span class="p">)</span>
+<span class="kd">func</span> <span class="nx">Clone</span><span class="p">[</span><span class="nx">M</span> <span class="err">~</span><span class="kd">map</span><span class="p">[</span><span class="nx">K</span><span class="p">]</span><span class="nx">V</span><span class="p">,</span> <span class="nx">K</span> <span class="nx">comparable</span><span class="p">,</span> <span class="nx">V</span> <span class="nx">any</span><span class="p">](</span><span class="nx">m</span> <span class="nx">M</span><span class="p">)</span> <span class="nx">M</span>
+<span class="kd">func</span> <span class="nx">Copy</span><span class="p">[</span><span class="nx">M</span> <span class="err">~</span><span class="kd">map</span><span class="p">[</span><span class="nx">K</span><span class="p">]</span><span class="nx">V</span><span class="p">,</span> <span class="nx">K</span> <span class="nx">comparable</span><span class="p">,</span> <span class="nx">V</span> <span class="nx">any</span><span class="p">](</span><span class="nx">dst</span><span class="p">,</span> <span class="nx">src</span> <span class="nx">M</span><span class="p">)</span>
+<span class="kd">func</span> <span class="nx">DeleteFunc</span><span class="p">[</span><span class="nx">M</span> <span class="err">~</span><span class="kd">map</span><span class="p">[</span><span class="nx">K</span><span class="p">]</span><span class="nx">V</span><span class="p">,</span> <span class="nx">K</span> <span class="nx">comparable</span><span class="p">,</span> <span class="nx">V</span> <span class="nx">any</span><span class="p">](</span><span class="nx">m</span> <span class="nx">M</span><span class="p">,</span> <span class="nx">del</span> <span class="kd">func</span><span class="p">(</span><span class="nx">K</span><span class="p">,</span> <span class="nx">V</span><span class="p">)</span> <span class="kt">bool</span><span class="p">)</span>
+</code></pre></div><p>其中 Keys 就是上面说的场景，提取出 map 中所有的 key，组成一个 slice，方便做排序。相应的，Values 函数就是获取所有的 value，组成一个 slice。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nx">Keys</span><span class="p">[</span><span class="nx">M</span> <span class="err">~</span><span class="kd">map</span><span class="p">[</span><span class="nx">K</span><span class="p">]</span><span class="nx">V</span><span class="p">,</span> <span class="nx">K</span> <span class="nx">comparable</span><span class="p">,</span> <span class="nx">V</span> <span class="nx">any</span><span class="p">](</span><span class="nx">m</span> <span class="nx">M</span><span class="p">)</span> <span class="p">[]</span><span class="nx">K</span> <span class="p">{</span>
+	<span class="nx">r</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="nx">K</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="nx">m</span><span class="p">))</span>
+	<span class="k">for</span> <span class="nx">k</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">m</span> <span class="p">{</span>
+		<span class="nx">r</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">r</span><span class="p">,</span> <span class="nx">k</span><span class="p">)</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="nx">r</span>
+<span class="p">}</span>
+</code></pre></div><p>留意类型约束：<code>~map[K]V</code>，表明只要底层类型是 map 就适用，即适用自定义的 map 类型。上面函数的类型约束还说明，map 中，key 必须是可比较的，即 comparable 的，而 value 可以是任意类型，即 any。</p>
+<p>Equal 和 EqualFunc 用于比较两个 map 是否有相同的键值对，用的应该不多。</p>
+<p>至于 Clone 和 Copy，Clone 用于克隆出一个新的 map，key 和 value 和原来的一致，不过不是深度克隆，也就是说 value 可能指向同一个。</p>
+<p>而 Copy 可以将 src 中的 key/value 全部复制到 dst 中，如果 dst 中存在同样的 key，会覆盖。</p>
+<p>Clear 和 DeleteFunc 用于删除 map 的键值对。</p>
+<p>maps 包代码不到 100 行，实现很简单，很容易看懂。不过大家需要认真看懂函数的签名，因为泛型的引入，导致函数签名比之前的函数签名复杂很多。</p>
+<h2 id="03-总结">03 总结<a href="#03-总结" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>PHPer 可能不以为然：这些东西，PHP 一直就有，Go 越来越 PHP 了。。。</p>
+<p>之前 Go 没有提供相关函数，主要是因为没有泛型，没法提供通用的函数。有了泛型，就可以写通用代码了，因此提供相关的便利函数。</p>
+<p>关于 maps 包有什么建议，大家以后试用可以提建议，毕竟现在只是在 exp 包中，没有正式合入标准库。</p>
 
 			</div><div class="content">
 	<br>
@@ -112,24 +148,23 @@
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://polarisxu.studygolang.com/tags/go">Go</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/%E6%B3%9B%E5%9E%8B">泛型</a></span>
 				</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>55 字</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2021-11-28 20:30 &#43;0800</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>844 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2021-12-05 20:30 &#43;0800</p>
 			</footer>
 		</article>
 		<aside id="toc">
 			<div class="toc-title">目录</div>
 			<nav id="TableOfContents">
   <ul>
-    <li><a href="#01">01</a></li>
+    <li><a href="#01-真实的场景">01 真实的场景</a></li>
+    <li><a href="#02-maps-包详解">02 maps 包详解</a></li>
+    <li><a href="#03-总结">03 总结</a></li>
   </ul>
 </nav>
 		</aside>
 		<div class="post-nav thin">
-			<a class="next-post" href="https://polarisxu.studygolang.com/posts/go/dynamic/go1.18-ip/">
-				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;新</span><br><span>Go1.18 快讯：新的 IP 包</span>
-			</a>
-			<a class="prev-post" href="https://polarisxu.studygolang.com/posts/go/action/functional-options-pattern/">
-				<span class="post-nav-label">旧&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>Go编程模式：详解函数式选项模式</span>
+			<a class="prev-post" href="https://polarisxu.studygolang.com/posts/go/dynamic/go1.18-any/">
+				<span class="post-nav-label">旧&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>Go 1.18 中的 any 是什么？</span>
 			</a>
 		</div>
 		<div id="comments" class="thin"><script src="https://utteranc.es/client.js"
