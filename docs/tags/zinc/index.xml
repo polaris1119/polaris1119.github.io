@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Zinc on polarisxu</title>
+    <link>https://polarisxu.studygolang.com/tags/zinc/</link>
+    <description>Recent content in Zinc on polarisxu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
+    <lastBuildDate>Sun, 12 Dec 2021 22:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/zinc/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>终于有 Go 版的 Elasticsearch 了</title>
+      <link>https://polarisxu.studygolang.com/posts/go/project/%E7%BB%88%E4%BA%8E%E6%9C%89-go-%E7%89%88%E7%9A%84-elasticsearch-%E4%BA%86/</link>
+      <pubDate>Sun, 12 Dec 2021 22:00:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/project/%E7%BB%88%E4%BA%8E%E6%9C%89-go-%E7%89%88%E7%9A%84-elasticsearch-%E4%BA%86/</guid>
+      <description>大家好，我是 polarisxu。 企业内部搭建搜索引擎常用 Solr、Elasticsearch，它们都是使用 Java 实现的，底层依赖 Lucene，Java 相对来说占用较多内存。而今天要介绍的这个项目，目标就是作为 ES 的替代者，一个轻量级搜索引擎：Zinc。 项目地址：https://github.com/prabhatsharma/zinc ，该项目开源十来天，目前 Star 数 3</description>
+    </item>
+    
+  </channel>
+</rss>

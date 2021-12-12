@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Sun, 05 Dec 2021 20:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 12 Dec 2021 22:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>终于有 Go 版的 Elasticsearch 了</title>
+      <link>https://polarisxu.studygolang.com/posts/go/project/%E7%BB%88%E4%BA%8E%E6%9C%89-go-%E7%89%88%E7%9A%84-elasticsearch-%E4%BA%86/</link>
+      <pubDate>Sun, 12 Dec 2021 22:00:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/project/%E7%BB%88%E4%BA%8E%E6%9C%89-go-%E7%89%88%E7%9A%84-elasticsearch-%E4%BA%86/</guid>
+      <description>大家好，我是 polarisxu。 企业内部搭建搜索引擎常用 Solr、Elasticsearch，它们都是使用 Java 实现的，底层依赖 Lucene，Java 相对来说占用较多内存。而今天要介绍的这个项目，目标就是作为 ES 的替代者，一个轻量级搜索引擎：Zinc。 项目地址：https://github.com/prabhatsharma/zinc ，该项目开源十来天，目前 Star 数 3</description>
+    </item>
+    
     <item>
       <title>Go泛型系列：maps 包讲解</title>
       <link>https://polarisxu.studygolang.com/posts/go/generics/generics-maps/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/dynamic/go1.18-title/</guid>
       <description>大家好，我是 polarisxu。 从 11 月 01 日起，Go1.18 就冻结了，也就是 1.18 的功能已经确定。 今天介绍一个 Go1.18 废弃的 API，同时介绍响应的替代 API。 01 strings.Title 被废弃 查看 go tip 标准库文档，发现 strings.Title 被标识为 deprecated：https://pkg.go.dev/strings@master ，而且该 API 的文档默认被折叠了。 pkg.go.dev 针对废弃的 API 使用了不一样的样式。 该 API 是干什么的？为</description>
-    </item>
-    
-    <item>
-      <title>Go1.18 快讯：新增字符串 Clone API</title>
-      <link>https://polarisxu.studygolang.com/posts/go/dynamic/go1.18-clone/</link>
-      <pubDate>Tue, 02 Nov 2021 23:00:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/dynamic/go1.18-clone/</guid>
-      <description>大家好，我是 polarisxu。 Go 1.18 虽然还有 4 个月发布，但大部分的功能基本确定。我们可以提前知晓、熟悉。 今天介绍的是标准库中新增的一个 API：strings.Clone()。 从名称可以知道，这是克隆。很多其他语言一开始就有这样的功能。比如 PHP 有 clone 关键字、__clone 魔术方法；Java 的根类 Object 有 clone 方法等。 01 函数签名 该函数的定义如下（见：https://pkg.</description>
     </item>
     
   </channel>

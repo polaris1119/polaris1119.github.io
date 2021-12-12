@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Sun, 05 Dec 2021 20:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 12 Dec 2021 22:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>终于有 Go 版的 Elasticsearch 了</title>
+      <link>https://polarisxu.studygolang.com/posts/go/project/%E7%BB%88%E4%BA%8E%E6%9C%89-go-%E7%89%88%E7%9A%84-elasticsearch-%E4%BA%86/</link>
+      <pubDate>Sun, 12 Dec 2021 22:00:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/project/%E7%BB%88%E4%BA%8E%E6%9C%89-go-%E7%89%88%E7%9A%84-elasticsearch-%E4%BA%86/</guid>
+      <description>大家好，我是 polarisxu。 企业内部搭建搜索引擎常用 Solr、Elasticsearch，它们都是使用 Java 实现的，底层依赖 Lucene，Java 相对来说占用较多内存。而今天要介绍的这个项目，目标就是作为 ES 的替代者，一个轻量级搜索引擎：Zinc。 项目地址：https://github.com/prabhatsharma/zinc ，该项目开源十来天，目前 Star 数 3</description>
+    </item>
+    
     <item>
       <title>Go泛型系列：maps 包讲解</title>
       <link>https://polarisxu.studygolang.com/posts/go/generics/generics-maps/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/dynamic/go1.18-cut/</guid>
       <description>大家好，我是 polarisxu。 在编程中，字符串使用是最频繁的。Go 语言对字符串相关的操作也提供了大量的 API，一方面，字符串可以向普通 slice 一样进行相关操作；另一方面，标准库专门提供了一个包 strings 进行字符串的操作。 01 strings.Index 系列函数 假如有一个这样的需求：从 192.168.1.1:8080 中获取 ip 和 port。 我们一般会这么实现： addr := &amp;#34;192.168.1.1:8080&amp;#34; pos := strings.Index(addr, &amp;#34;:&amp;#34;) if pos == -1 { panic(&amp;#34;非法地址&amp;#34;) } ip, port :=</description>
-    </item>
-    
-    <item>
-      <title>Go1.18 快讯：废弃了这个 API</title>
-      <link>https://polarisxu.studygolang.com/posts/go/dynamic/go1.18-title/</link>
-      <pubDate>Sun, 07 Nov 2021 09:00:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/dynamic/go1.18-title/</guid>
-      <description>大家好，我是 polarisxu。 从 11 月 01 日起，Go1.18 就冻结了，也就是 1.18 的功能已经确定。 今天介绍一个 Go1.18 废弃的 API，同时介绍响应的替代 API。 01 strings.Title 被废弃 查看 go tip 标准库文档，发现 strings.Title 被标识为 deprecated：https://pkg.go.dev/strings@master ，而且该 API 的文档默认被折叠了。 pkg.go.dev 针对废弃的 API 使用了不一样的样式。 该 API 是干什么的？为</description>
     </item>
     
   </channel>

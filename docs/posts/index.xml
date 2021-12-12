@@ -6,8 +6,78 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en</language>
 		<copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-		<lastBuildDate>Sun, 05 Dec 2021 20:30:00 +0800</lastBuildDate>
+		<lastBuildDate>Sun, 12 Dec 2021 22:00:00 +0800</lastBuildDate>
 		<atom:link href="https://polarisxu.studygolang.com/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>终于有 Go 版的 Elasticsearch 了</title>
+			<link>https://polarisxu.studygolang.com/posts/go/project/%E7%BB%88%E4%BA%8E%E6%9C%89-go-%E7%89%88%E7%9A%84-elasticsearch-%E4%BA%86/</link>
+			<pubDate>Sun, 12 Dec 2021 22:00:00 +0800</pubDate>
+			
+			<guid>https://polarisxu.studygolang.com/posts/go/project/%E7%BB%88%E4%BA%8E%E6%9C%89-go-%E7%89%88%E7%9A%84-elasticsearch-%E4%BA%86/</guid>
+			<description>大家好，我是 polarisxu。 企业内部搭建搜索引擎常用 Solr、Elasticsearch，它们都是使用 Java 实现的，底层依赖 Lucene，Java 相对来说占用较多内存。而今天要介绍的这个项目，目标就是作为 ES 的替代者，一个轻量级搜索引擎：Zinc。 项目地址：https://github.com/prabhatsharma/zinc ，该项目开源十来天，目前 Star 数 3</description>
+			<content type="html"><![CDATA[<p>大家好，我是 polarisxu。</p>
+<p>企业内部搭建搜索引擎常用 Solr、Elasticsearch，它们都是使用 Java 实现的，底层依赖 Lucene，Java 相对来说占用较多内存。而今天要介绍的这个项目，目标就是作为 ES 的替代者，一个轻量级搜索引擎：Zinc。</p>
+<p>项目地址：<a href="https://github.com/prabhatsharma/zinc" target="_blank" rel="noopener">https://github.com/prabhatsharma/zinc</a>
+，该项目开源十来天，目前 Star 数 3.4k+。</p>
+<hr>
+<p>Zinc 是一个全文索引的搜索引擎。它是 Elasticsearch 的轻量级替代品，可以在不到 100 MB 的 RAM 中运行。它使用 <a href="https://github.com/blugelabs/bluge" target="_blank" rel="noopener">bluge</a>
+ 作为底层索引库。</p>
+<p>而且，Zinc 使用 Vue 打造了一个比 Elasticsearch 更简单、更易于操作的界面。</p>
+<p><p class="md__image">
+  <img src="../imgs/zinc01.png"
+    alt="zinc"  />
+</p>
+</p>
+<p>如果你只是使用 API 获取数据并使用 kibana 进行搜索（Kibana 不支持 Zinc。Zinc 提供了自己的 UI），那么它是 Elasticsearch 的直接替代品。</p>
+<p>Zinc 主要有如下特性：</p>
+<ol>
+<li>提供全文索引功能</li>
+<li>单个二进制文件即可安装、运行，支持多平台。这得益于 Go 语言</li>
+<li>用 Vue 编写的用于查询数据的 Web UI</li>
+<li>与 Elasticsearch 兼容的数据获取 API（单记录和批量 API）</li>
+<li>开箱即用的身份验证</li>
+<li>Schema less - 无需预先定义 schema，同一索引中的不同文档可以有不同的字段</li>
+</ol>
+<p>不过，目前 Zinc 还处于 alpha 阶段，而且缺少集群，可用性也没得到很好的验证。</p>
+<p>关于如何安装使用，项目首页有说明，支持普通安装（可以直接下载编译好的二进制文件），也支持 Docker 和 K8S 安装使用。</p>
+<p>我根据说明，在本地搭建后，根据提供的示例数据构建索引：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nv">FIRST_ADMIN_USER</span><span class="o">=</span>admin <span class="nv">FIRST_ADMIN_PASSWORD</span><span class="o">=</span>Complexpass#123 ./zinc
+<span class="o">{</span><span class="s2">&#34;level&#34;</span>:<span class="s2">&#34;debug&#34;</span>,<span class="s2">&#34;time&#34;</span>:<span class="s2">&#34;2021-12-12T22:53:51+08:00&#34;</span>,<span class="s2">&#34;message&#34;</span>:<span class="s2">&#34;Loading indexes...&#34;</span><span class="o">}</span>
+<span class="o">{</span><span class="s2">&#34;level&#34;</span>:<span class="s2">&#34;debug&#34;</span>,<span class="s2">&#34;time&#34;</span>:<span class="s2">&#34;2021-12-12T22:53:51+08:00&#34;</span>,<span class="s2">&#34;message&#34;</span>:<span class="s2">&#34;Loading system indexes...&#34;</span><span class="o">}</span>
+<span class="o">{</span><span class="s2">&#34;level&#34;</span>:<span class="s2">&#34;debug&#34;</span>,<span class="s2">&#34;time&#34;</span>:<span class="s2">&#34;2021-12-12T22:53:51+08:00&#34;</span>,<span class="s2">&#34;message&#34;</span>:<span class="s2">&#34;Index loaded: _users&#34;</span><span class="o">}</span>
+<span class="o">{</span><span class="s2">&#34;level&#34;</span>:<span class="s2">&#34;debug&#34;</span>,<span class="s2">&#34;time&#34;</span>:<span class="s2">&#34;2021-12-12T22:53:51+08:00&#34;</span>,<span class="s2">&#34;message&#34;</span>:<span class="s2">&#34;Index loaded: _index_mapping&#34;</span><span class="o">}</span>
+<span class="o">{</span><span class="s2">&#34;level&#34;</span>:<span class="s2">&#34;debug&#34;</span>,<span class="s2">&#34;time&#34;</span>:<span class="s2">&#34;2021-12-12T22:53:51+08:00&#34;</span>,<span class="s2">&#34;message&#34;</span>:<span class="s2">&#34;Error loading .env file&#34;</span><span class="o">}</span>
+<span class="o">[</span>GIN-debug<span class="o">]</span> <span class="o">[</span>WARNING<span class="o">]</span> Running in <span class="s2">&#34;debug&#34;</span> mode. Switch to <span class="s2">&#34;release&#34;</span> mode in production.
+ - using env:	<span class="nb">export</span> <span class="nv">GIN_MODE</span><span class="o">=</span>release
+ - using code:	gin.SetMode<span class="o">(</span>gin.ReleaseMode<span class="o">)</span>
+
+<span class="o">[</span>GIN-debug<span class="o">]</span> GET    /healthz                  --&gt; github.com/prabhatsharma/zinc/pkg/meta/v1.GetHealthz <span class="o">(</span><span class="m">3</span> handlers<span class="o">)</span>
+<span class="o">[</span>GIN-debug<span class="o">]</span> GET    /                         --&gt; github.com/prabhatsharma/zinc/pkg/meta/v1.GUI <span class="o">(</span><span class="m">3</span> handlers<span class="o">)</span>
+<span class="o">[</span>GIN-debug<span class="o">]</span> GET    /ui/*filepath             --&gt; github.com/gin-gonic/gin.<span class="o">(</span>*RouterGroup<span class="o">)</span>.createStaticHandler.func1 <span class="o">(</span><span class="m">3</span> handlers<span class="o">)</span>
+<span class="o">[</span>GIN-debug<span class="o">]</span> HEAD   /ui/*filepath             --&gt; github.com/gin-gonic/gin.<span class="o">(</span>*RouterGroup<span class="o">)</span>.createStaticHandler.func1 <span class="o">(</span><span class="m">3</span> handlers<span class="o">)</span>
+<span class="o">[</span>GIN-debug<span class="o">]</span> POST   /api/login                --&gt; github.com/prabhatsharma/zinc/pkg/handlers.ValidateCredentials <span class="o">(</span><span class="m">3</span> handlers<span class="o">)</span>
+<span class="o">[</span>GIN-debug<span class="o">]</span> PUT    /api/user                 --&gt; github.com/prabhatsharma/zinc/pkg/handlers.CreateUpdateUser <span class="o">(</span><span class="m">4</span> handlers<span class="o">)</span>
+<span class="o">[</span>GIN-debug<span class="o">]</span> DELETE /api/user/:userID         --&gt; github.com/prabhatsharma/zinc/pkg/handlers.DeleteUser <span class="o">(</span><span class="m">4</span> handlers<span class="o">)</span>
+<span class="o">[</span>GIN-debug<span class="o">]</span> GET    /api/users                --&gt; github.com/prabhatsharma/zinc/pkg/handlers.GetUsers <span class="o">(</span><span class="m">4</span> handlers<span class="o">)</span>
+<span class="o">[</span>GIN-debug<span class="o">]</span> PUT    /api/index                --&gt; github.com/prabhatsharma/zinc/pkg/handlers.CreateIndex <span class="o">(</span><span class="m">4</span> handlers<span class="o">)</span>
+<span class="o">[</span>GIN-debug<span class="o">]</span> GET    /api/index                --&gt; github.com/prabhatsharma/zinc/pkg/handlers.ListIndexes <span class="o">(</span><span class="m">4</span> handlers<span class="o">)</span>
+<span class="o">[</span>GIN-debug<span class="o">]</span> PUT    /api/:target/document     --&gt; github.com/prabhatsharma/zinc/pkg/handlers.UpdateDocument <span class="o">(</span><span class="m">4</span> handlers<span class="o">)</span>
+<span class="o">[</span>GIN-debug<span class="o">]</span> POST   /api/:target/_search      --&gt; github.com/prabhatsharma/zinc/pkg/handlers.SearchIndex <span class="o">(</span><span class="m">4</span> handlers<span class="o">)</span>
+<span class="o">[</span>GIN-debug<span class="o">]</span> PUT    /es/:target/_doc/:id      --&gt; github.com/prabhatsharma/zinc/pkg/handlers.UpdateDocument <span class="o">(</span><span class="m">4</span> handlers<span class="o">)</span>
+<span class="o">[</span>GIN-debug<span class="o">]</span> DELETE /es/:target/_doc/:id      --&gt; github.com/prabhatsharma/zinc/pkg/handlers.DeleteDocument <span class="o">(</span><span class="m">4</span> handlers<span class="o">)</span>
+<span class="o">[</span>GIN-debug<span class="o">]</span> POST   /es/:target/_doc          --&gt; github.com/prabhatsharma/zinc/pkg/handlers.UpdateDocument <span class="o">(</span><span class="m">4</span> handlers<span class="o">)</span>
+<span class="o">[</span>GIN-debug<span class="o">]</span> PUT    /es/:target/_create/:id   --&gt; github.com/prabhatsharma/zinc/pkg/handlers.UpdateDocument <span class="o">(</span><span class="m">4</span> handlers<span class="o">)</span>
+<span class="o">[</span>GIN-debug<span class="o">]</span> POST   /es/:target/_create/:id   --&gt; github.com/prabhatsharma/zinc/pkg/handlers.UpdateDocument <span class="o">(</span><span class="m">4</span> handlers<span class="o">)</span>
+<span class="o">[</span>GIN-debug<span class="o">]</span> POST   /es/:target/_update/:id   --&gt; github.com/prabhatsharma/zinc/pkg/handlers.UpdateDocument <span class="o">(</span><span class="m">4</span> handlers<span class="o">)</span>
+<span class="o">[</span>GIN-debug<span class="o">]</span> POST   /es/_bulk                 --&gt; github.com/prabhatsharma/zinc/pkg/handlers.BulkHandler <span class="o">(</span><span class="m">4</span> handlers<span class="o">)</span>
+<span class="o">[</span>GIN-debug<span class="o">]</span> POST   /es/:target/_bulk         --&gt; github.com/prabhatsharma/zinc/pkg/handlers.BulkHandler <span class="o">(</span><span class="m">4</span> handlers<span class="o">)</span>
+<span class="o">[</span>GIN-debug<span class="o">]</span> Listening and serving HTTP on :4080
+</code></pre></div><p>访问 <a href="https://localhost:4080" target="_blank" rel="noopener">https://localhost:4080</a>
+ 即可看到上面的界面。</p>
+<p>目前 Go 语言中文网的搜索使用的是 Solr，抽空尝试验证 Zinc，如果稳定、成熟，考虑迁移到 Zinc。</p>
+]]></content>
+		</item>
 		
 		<item>
 			<title>Go泛型系列：maps 包讲解</title>
