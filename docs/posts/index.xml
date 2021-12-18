@@ -6,8 +6,78 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en</language>
 		<copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-		<lastBuildDate>Sun, 12 Dec 2021 22:00:00 +0800</lastBuildDate>
+		<lastBuildDate>Sat, 18 Dec 2021 13:00:00 +0800</lastBuildDate>
 		<atom:link href="https://polarisxu.studygolang.com/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>程序员瑞士军刀：各种结构的转换工具</title>
+			<link>https://polarisxu.studygolang.com/posts/devtool/dev-transform/</link>
+			<pubDate>Sat, 18 Dec 2021 13:00:00 +0800</pubDate>
+			
+			<guid>https://polarisxu.studygolang.com/posts/devtool/dev-transform/</guid>
+			<description>大家好，我是 polarisxu。 上次推荐的 「Go网址导航」，其中收录了一项：转换器。 网址是：https://transform.tools/ 。 这是一个开源项目，项目地址：https://github.com/ritz078/transform ，目前 Star 数 2.8k+。 这个网站将转换工具分成了几类： SVG HTML JSON JSON Schema CSS JavaScript GraphQL JSON-LD TypeScript Flow Others 其中有一些对 Gopher 比较有用，这里简单列举介绍下</description>
+			<content type="html"><![CDATA[<p>大家好，我是 polarisxu。</p>
+<p>上次推荐的 「Go网址导航」，其中收录了一项：转换器。</p>
+<p><p class="md__image">
+  <img src="../imgs/transform.png"
+    alt=""  />
+</p>
+</p>
+<p>网址是：<a href="https://transform.tools/" target="_blank" rel="noopener">https://transform.tools/</a>
+。</p>
+<p>这是一个开源项目，项目地址：<a href="https://github.com/ritz078/transform" target="_blank" rel="noopener">https://github.com/ritz078/transform</a>
+，目前 Star 数 2.8k+。</p>
+<p>这个网站将转换工具分成了几类：</p>
+<ul>
+<li>SVG</li>
+<li>HTML</li>
+<li>JSON</li>
+<li>JSON Schema</li>
+<li>CSS</li>
+<li>JavaScript</li>
+<li>GraphQL</li>
+<li>JSON-LD</li>
+<li>TypeScript</li>
+<li>Flow</li>
+<li>Others</li>
+</ul>
+<p>其中有一些对 Gopher 比较有用，这里简单列举介绍下。</p>
+<h2 id="01-go-相关">01 Go 相关</h2>
+<p>JSON 几乎每个程序员都会用到。在 Go 语言中，会有哪些场景会用到这里 JSON 相关工具呢？</p>
+<p><strong>1）转为 struct</strong></p>
+<p>这是一个很常见的场景，目前也存在很多在线工具，支持 JSON 转为 struct，而且我没记错的话，GoLand 自带将 JSON 转为 struct。</p>
+<p>transform 里也有这样的工具：<a href="https://transform.tools/json-to-go" target="_blank" rel="noopener">https://transform.tools/json-to-go</a>
+</p>
+<p><p class="md__image">
+  <img src="../imgs/transform-json-struct.png"
+    alt=""  />
+</p>
+</p>
+<p>在左边改动 JSON，右边会实时显示出对应的 struct。</p>
+<p>此外，顶部的向上箭头，是导入文件，支持从本地导入和远程 URL 导入。</p>
+<p><strong>2）转为 BSON</strong></p>
+<p>如果你存储使用的是 MongoDB，会使用到 BSON。不过 JSON 到 BSON 转换几乎不太需要借助工具。</p>
+<blockquote>
+<p>BSON 是一种类 JSON 的一种二进制形式的存储格式，简称 Binary JSON，它和 JSON 一样，支持内嵌的文档对象和数组对象，但是 BSON 有 JSON 没有的一些数据类型，如 Date 和 BinData 类型。BSON 可以做为网络数据交换的一种存储形式，这个有点类似于 Google 的 Protocol Buffer，但是 BSON 是一种 schema-less 的存储形式，它的优点是灵活性高，但它的缺点是空间利用率不是很理想，BSON有 三个特点：轻量性、可遍历性、高效性。</p>
+</blockquote>
+<p>所以，BSON 看起来和 JSON 是一样的。</p>
+<p><p class="md__image">
+  <img src="../imgs/transform-json-bsont.png"
+    alt=""  />
+</p>
+</p>
+<h2 id="02-其他配置文件相关">02 其他配置文件相关</h2>
+<p>目前常用的配置文件有：yaml、toml、json、xml 等，它们直接是可以直接转换的。这个网站就提供了相关工具，将一种格式转为另一种格式。</p>
+<p>比如讲 yaml 转为 toml（我喜欢的文件类型）：</p>
+<p><p class="md__image">
+  <img src="../imgs/transform-yaml-toml.png"
+    alt=""  />
+</p>
+</p>
+<h2 id="03-总结">03 总结</h2>
+<p>好的工具可以提升开发速度，我们要善于使用工具。当然，有能力，你也可以自己生产工具。有好工具记得分享，让更多人知晓、使用。</p>
+]]></content>
+		</item>
 		
 		<item>
 			<title>终于有 Go 版的 Elasticsearch 了</title>

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#fcfcfc">
+	<meta name="msapplication-TileColor" content="#fcfcfc">
+<meta itemprop="name" content="程序员瑞士军刀：各种结构的转换工具">
+<meta itemprop="description" content="大家好，我是 polarisxu。 上次推荐的 「Go网址导航」，其中收录了一项：转换器。 网址是：https://transform.tools/ 。 这是一个开源项目，项目地址：https://github.com/ritz078/transform ，目前 Star 数 2.8k&#43;。 这个网站将转换工具分成了几类： SVG HTML JSON JSON Schema CSS JavaScript GraphQL JSON-LD TypeScript Flow Others 其中有一些对 Gopher 比较有用，这里简单列举介绍下"><meta itemprop="datePublished" content="2021-12-18T13:00:00+08:00" />
+<meta itemprop="dateModified" content="2021-12-18T13:00:00+08:00" />
+<meta itemprop="wordCount" content="795">
+<meta itemprop="keywords" content="工具,瑞士军刀," /><meta property="og:title" content="程序员瑞士军刀：各种结构的转换工具" />
+<meta property="og:description" content="大家好，我是 polarisxu。 上次推荐的 「Go网址导航」，其中收录了一项：转换器。 网址是：https://transform.tools/ 。 这是一个开源项目，项目地址：https://github.com/ritz078/transform ，目前 Star 数 2.8k&#43;。 这个网站将转换工具分成了几类： SVG HTML JSON JSON Schema CSS JavaScript GraphQL JSON-LD TypeScript Flow Others 其中有一些对 Gopher 比较有用，这里简单列举介绍下" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://polarisxu.studygolang.com/posts/devtool/dev-transform/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-12-18T13:00:00+08:00" />
+<meta property="article:modified_time" content="2021-12-18T13:00:00+08:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="程序员瑞士军刀：各种结构的转换工具"/>
+<meta name="twitter:description" content="大家好，我是 polarisxu。 上次推荐的 「Go网址导航」，其中收录了一项：转换器。 网址是：https://transform.tools/ 。 这是一个开源项目，项目地址：https://github.com/ritz078/transform ，目前 Star 数 2.8k&#43;。 这个网站将转换工具分成了几类： SVG HTML JSON JSON Schema CSS JavaScript GraphQL JSON-LD TypeScript Flow Others 其中有一些对 Gopher 比较有用，这里简单列举介绍下"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>程序员瑞士军刀：各种结构的转换工具</title>
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
+	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/styles.css">
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://polarisxu.studygolang.com">polarisxu</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+  <a href="https://polarisxu.studygolang.com/">首页</a>
+  <a href="https://polarisxu.studygolang.com/categories/echo%E7%B3%BB%E5%88%97/">Echo系列</a>
+  <a href="https://polarisxu.studygolang.com/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a>
+  <a href="https://polarisxu.studygolang.com/posts/">归档</a>
+  <a href="https://polarisxu.studygolang.com/about/">关于</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<button id="toc-btn" class="hdr-btn desktop-only-ib" title="目录"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3" y2="6"></line><line x1="3" y1="12" x2="3" y2="12"></line><line x1="3" y1="18" x2="3" y2="18"></line></svg></button><span class="hdr-social hide-in-mobile"><a href="https://github.com/polaris1119" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a><a href="https://twitter.com/polaris1119" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="菜单"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://polarisxu.studygolang.com/">首页</a></li>
+			<li><a href="https://polarisxu.studygolang.com/categories/echo%E7%B3%BB%E5%88%97/">Echo系列</a></li>
+			<li><a href="https://polarisxu.studygolang.com/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a></li>
+			<li><a href="https://polarisxu.studygolang.com/posts/">归档</a></li>
+			<li><a href="https://polarisxu.studygolang.com/about/">关于</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Dec 18, 2021</span></div>
+				<h1>程序员瑞士军刀：各种结构的转换工具</h1>
+			</header>
+			<div class="content">
+				<p>大家好，我是 polarisxu。</p>
+<p>上次推荐的 「Go网址导航」，其中收录了一项：转换器。</p>
+<p><p class="md__image">
+  <img src="../imgs/transform.png"
+    alt=""  />
+</p>
+</p>
+<p>网址是：<a href="https://transform.tools/" target="_blank" rel="noopener">https://transform.tools/</a>
+。</p>
+<p>这是一个开源项目，项目地址：<a href="https://github.com/ritz078/transform" target="_blank" rel="noopener">https://github.com/ritz078/transform</a>
+，目前 Star 数 2.8k+。</p>
+<p>这个网站将转换工具分成了几类：</p>
+<ul>
+<li>SVG</li>
+<li>HTML</li>
+<li>JSON</li>
+<li>JSON Schema</li>
+<li>CSS</li>
+<li>JavaScript</li>
+<li>GraphQL</li>
+<li>JSON-LD</li>
+<li>TypeScript</li>
+<li>Flow</li>
+<li>Others</li>
+</ul>
+<p>其中有一些对 Gopher 比较有用，这里简单列举介绍下。</p>
+<h2 id="01-go-相关">01 Go 相关<a href="#01-go-相关" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>JSON 几乎每个程序员都会用到。在 Go 语言中，会有哪些场景会用到这里 JSON 相关工具呢？</p>
+<p><strong>1）转为 struct</strong></p>
+<p>这是一个很常见的场景，目前也存在很多在线工具，支持 JSON 转为 struct，而且我没记错的话，GoLand 自带将 JSON 转为 struct。</p>
+<p>transform 里也有这样的工具：<a href="https://transform.tools/json-to-go" target="_blank" rel="noopener">https://transform.tools/json-to-go</a>
+</p>
+<p><p class="md__image">
+  <img src="../imgs/transform-json-struct.png"
+    alt=""  />
+</p>
+</p>
+<p>在左边改动 JSON，右边会实时显示出对应的 struct。</p>
+<p>此外，顶部的向上箭头，是导入文件，支持从本地导入和远程 URL 导入。</p>
+<p><strong>2）转为 BSON</strong></p>
+<p>如果你存储使用的是 MongoDB，会使用到 BSON。不过 JSON 到 BSON 转换几乎不太需要借助工具。</p>
+<blockquote>
+<p>BSON 是一种类 JSON 的一种二进制形式的存储格式，简称 Binary JSON，它和 JSON 一样，支持内嵌的文档对象和数组对象，但是 BSON 有 JSON 没有的一些数据类型，如 Date 和 BinData 类型。BSON 可以做为网络数据交换的一种存储形式，这个有点类似于 Google 的 Protocol Buffer，但是 BSON 是一种 schema-less 的存储形式，它的优点是灵活性高，但它的缺点是空间利用率不是很理想，BSON有 三个特点：轻量性、可遍历性、高效性。</p>
+</blockquote>
+<p>所以，BSON 看起来和 JSON 是一样的。</p>
+<p><p class="md__image">
+  <img src="../imgs/transform-json-bsont.png"
+    alt=""  />
+</p>
+</p>
+<h2 id="02-其他配置文件相关">02 其他配置文件相关<a href="#02-其他配置文件相关" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>目前常用的配置文件有：yaml、toml、json、xml 等，它们直接是可以直接转换的。这个网站就提供了相关工具，将一种格式转为另一种格式。</p>
+<p>比如讲 yaml 转为 toml（我喜欢的文件类型）：</p>
+<p><p class="md__image">
+  <img src="../imgs/transform-yaml-toml.png"
+    alt=""  />
+</p>
+</p>
+<h2 id="03-总结">03 总结<a href="#03-总结" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>好的工具可以提升开发速度，我们要善于使用工具。当然，有能力，你也可以自己生产工具。有好工具记得分享，让更多人知晓、使用。</p>
+
+			</div><div class="content">
+	<br>
+	<img src="https://static.studygolang.com/static/img/polarisxu-qrcode-soso-s.png">
+</div>
+
+<div class="related-posts thin">
+	<h2>相关推荐</h2>
+	<ul>
+	
+	<li><a href="/posts/go/project/gosec-tool-intro/">担心密码提交到 GitHub？建议使用这个 Go 开源工具</a></li>
+	
+	<li><a href="/posts/go/project/google-deps/">这个工具真好：看看你的Go项目依赖有无漏洞</a></li>
+	
+	<li><a href="/posts/go/project/go-version-manager/">终于找到了一款我喜欢的安装和管理 Go 版本的工具</a></li>
+	
+	</ul>
+</div>
+
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://polarisxu.studygolang.com/tags/%E5%B7%A5%E5%85%B7">工具</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/%E7%91%9E%E5%A3%AB%E5%86%9B%E5%88%80">瑞士军刀</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>795 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2021-12-18 13:00 &#43;0800</p>
+			</footer>
+		</article>
+		<aside id="toc">
+			<div class="toc-title">目录</div>
+			<nav id="TableOfContents">
+  <ul>
+    <li><a href="#01-go-相关">01 Go 相关</a></li>
+    <li><a href="#02-其他配置文件相关">02 其他配置文件相关</a></li>
+    <li><a href="#03-总结">03 总结</a></li>
+  </ul>
+</nav>
+		</aside>
+		<div class="post-nav thin">
+			<a class="prev-post" href="https://polarisxu.studygolang.com/posts/go/project/zinc-like-es/">
+				<span class="post-nav-label">旧&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>终于有 Go 版的 Elasticsearch 了</span>
+			</a>
+		</div>
+		<div id="comments" class="thin"><script src="https://utteranc.es/client.js"
+	repo="polaris1119/polarisxu"
+	issue-term="pathname"
+	theme="github-light"
+	crossorigin="anonymous"
+	async>
+</script>
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2019 - 2021 <a href="https://polarisxu.studygolang.com">polarisxu</a> &#183; <a href="https://beian.miit.gov.cn/">京ICP备14030343号-1</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://polarisxu.studygolang.com/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+		<span id="busuanzi_container" style="color: #666;">
+			本站总访客数/访问量：<span id="busuanzi_value_site_uv"></span>/<span id="busuanzi_value_site_pv"></span>
+		</span>
+	</footer>
+
+
+
+	<script src="https://polarisxu.studygolang.com/js/main.min.4eaa15feccc672488716f0338ac605e08c7553ce0ce175e13fa00a873636bf98.js" integrity="sha256-TqoV/szGckiHFvAzisYF4Ix1U84M4XXhP6AKhzY2v5g=" crossorigin="anonymous"></script>
+	<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?224c227cd9239761ec770bc8c1fb134c";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+</body>
+
+</html>
