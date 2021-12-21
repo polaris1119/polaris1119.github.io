@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Sun, 12 Dec 2021 22:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 19 Dec 2021 16:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go 泛型入门教程</title>
+      <link>https://polarisxu.studygolang.com/posts/go/generics/generics-tutorial/</link>
+      <pubDate>Sun, 19 Dec 2021 16:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/generics/generics-tutorial/</guid>
+      <description>大家好，我是 polarisxu。 有泛型的 Go 版本 1.18 已经发布了 Beta1 版本，之前陆陆续续介绍了泛型，但可能有些人还是对 Go 泛型没有完整的了解，因此有这份入门教程。 01 准备工作 开始学习泛型之前，你应该安装 Go1.18 Beta1 或之后发布的版本，建议使用 goup 等版本管理工具 ，当然也可以直接通过 playground 来验证：https://go.dev/play/?v=gotip 。 不过，本教程基于本地安装 Go1.18 Beta1 为例进行。</description>
+    </item>
+    
     <item>
       <title>终于有 Go 版的 Elasticsearch 了</title>
       <link>https://polarisxu.studygolang.com/posts/go/project/zinc-like-es/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/dynamic/go1.18-cut/</guid>
       <description>大家好，我是 polarisxu。 在编程中，字符串使用是最频繁的。Go 语言对字符串相关的操作也提供了大量的 API，一方面，字符串可以向普通 slice 一样进行相关操作；另一方面，标准库专门提供了一个包 strings 进行字符串的操作。 01 strings.Index 系列函数 假如有一个这样的需求：从 192.168.1.1:8080 中获取 ip 和 port。 我们一般会这么实现： addr := &amp;#34;192.168.1.1:8080&amp;#34; pos := strings.Index(addr, &amp;#34;:&amp;#34;) if pos == -1 { panic(&amp;#34;非法地址&amp;#34;) } ip, port :=</description>
-    </item>
-    
-    <item>
-      <title>Go1.18 快讯：废弃了这个 API</title>
-      <link>https://polarisxu.studygolang.com/posts/go/dynamic/go1.18-title/</link>
-      <pubDate>Sun, 07 Nov 2021 09:00:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/dynamic/go1.18-title/</guid>
-      <description>大家好，我是 polarisxu。 从 11 月 01 日起，Go1.18 就冻结了，也就是 1.18 的功能已经确定。 今天介绍一个 Go1.18 废弃的 API，同时介绍响应的替代 API。 01 strings.Title 被废弃 查看 go tip 标准库文档，发现 strings.Title 被标识为 deprecated：https://pkg.go.dev/strings@master ，而且该 API 的文档默认被折叠了。 pkg.go.dev 针对废弃的 API 使用了不一样的样式。 该 API 是干什么的？为</description>
     </item>
     
   </channel>

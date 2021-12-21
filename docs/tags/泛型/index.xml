@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Sun, 05 Dec 2021 20:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/%E6%B3%9B%E5%9E%8B/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 19 Dec 2021 16:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/%E6%B3%9B%E5%9E%8B/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go 泛型入门教程</title>
+      <link>https://polarisxu.studygolang.com/posts/go/generics/generics-tutorial/</link>
+      <pubDate>Sun, 19 Dec 2021 16:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/generics/generics-tutorial/</guid>
+      <description>大家好，我是 polarisxu。 有泛型的 Go 版本 1.18 已经发布了 Beta1 版本，之前陆陆续续介绍了泛型，但可能有些人还是对 Go 泛型没有完整的了解，因此有这份入门教程。 01 准备工作 开始学习泛型之前，你应该安装 Go1.18 Beta1 或之后发布的版本，建议使用 goup 等版本管理工具 ，当然也可以直接通过 playground 来验证：https://go.dev/play/?v=gotip 。 不过，本教程基于本地安装 Go1.18 Beta1 为例进行。</description>
+    </item>
+    
     <item>
       <title>Go泛型系列：maps 包讲解</title>
       <link>https://polarisxu.studygolang.com/posts/go/generics/generics-maps/</link>

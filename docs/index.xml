@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Sat, 18 Dec 2021 13:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 19 Dec 2021 16:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go 泛型入门教程</title>
+      <link>https://polarisxu.studygolang.com/posts/go/generics/generics-tutorial/</link>
+      <pubDate>Sun, 19 Dec 2021 16:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/generics/generics-tutorial/</guid>
+      <description>大家好，我是 polarisxu。 有泛型的 Go 版本 1.18 已经发布了 Beta1 版本，之前陆陆续续介绍了泛型，但可能有些人还是对 Go 泛型没有完整的了解，因此有这份入门教程。 01 准备工作 开始学习泛型之前，你应该安装 Go1.18 Beta1 或之后发布的版本，建议使用 goup 等版本管理工具 ，当然也可以直接通过 playground 来验证：https://go.dev/play/?v=gotip 。 不过，本教程基于本地安装 Go1.18 Beta1 为例进行。</description>
+    </item>
+    
     <item>
       <title>程序员瑞士军刀：各种结构的转换工具</title>
       <link>https://polarisxu.studygolang.com/posts/devtool/dev-transform/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/generics/generics-constraints/</guid>
       <description>大家好，我是 polarisxu。 上篇《Go泛型系列：提前掌握Go泛型的基本使用》 简单讲解了泛型中的约束，但约束相关内容远不止那些，本文介绍更多约束相关内容。 请安装最新的 tip 版本，方便验证本文的内容。当然，也可以通过 https://gotipplay.golang.org/ 在线验证。 01 语法变更 上次提到，定义约束的语法类似这样： type Addable interface { type int, int8, int16, int32, int64, uint, uint8, uint16, uint32, uint64, uintptr, float32, float64, complex64, complex128, string } 不过目前已经确认，语法改成如下形式： type Addable interface { int |</description>
-    </item>
-    
-    <item>
-      <title>Go1.18 快讯：Module 工作区模式</title>
-      <link>https://polarisxu.studygolang.com/posts/go/dynamic/go1.18-workspace/</link>
-      <pubDate>Wed, 10 Nov 2021 22:00:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/dynamic/go1.18-workspace/</guid>
-      <description>大家好，我是 polarisxu。 工作区模式（Workspace mode），可不是之前 GOPATH 时代的 Workspace，而是希望在本地开发时支持多 Module。 01 缘起 为了大家全面理解工作区模式，通过一个具体例子讲解。 本地有两个项目，分别是两个 module：mypkg 和 example。（Windows 系统请按自己方式创建目录） $ cd ~/ $ mkdir polarisxu $ cd polarisxu $ mkdir mypkg example $ cd mypkg $ go mod init github.com/polaris1119/mypkg</description>
     </item>
     
   </channel>
