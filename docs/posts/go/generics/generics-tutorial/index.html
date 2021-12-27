@@ -154,7 +154,7 @@ go: creating new go.mod: module github.com/polaris1119/generics
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ go run main.go
 非泛型计算结果，SumInts: 46, SumFloats: 62.97
 </code></pre></div><p>虽然得到了想要的结果，但 SumInts 和 SumFloats 的逻辑差不多。如果将来有其他类型，我们必须增加额外的函数，代码逻辑也类似。</p>
-<p>有了泛型，只需要一个函数就可以实现以上两个函数的功能，而且可以方便扩展为支持其他相关类型，比如 map[iint]float64 等。</p>
+<p>有了泛型，只需要一个函数就可以实现以上两个函数的功能，而且可以方便扩展为支持其他相关类型，比如 map[int]float64 等。</p>
 <h2 id="03-泛型处理多类型">03 泛型处理多类型<a href="#03-泛型处理多类型" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>要支持任一类型的值，该函数将需要一种方法来声明它支持的类型。同时，调用者需要一种方法来指定它是使用整数 map 还是浮点数 map 进行调用，即调用时指定实际参数的类型。</p>
 <p>为了支持这一点，需要编写一个函数，除了它的普通函数参数外，还需要声明类型参数。这些类型参数使函数具有通用性，使其能够处理不同类型的参数。这样，你可以使用类型参数和普通函数参数调用该通用函数，即泛型函数。</p>
@@ -265,6 +265,9 @@ go: creating new go.mod: module github.com/polaris1119/generics
 </nav>
 		</aside>
 		<div class="post-nav thin">
+			<a class="next-post" href="https://polarisxu.studygolang.com/posts/go/dynamic/go1.18-trylock/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;新</span><br><span>Go1.18 新特性：TryLock</span>
+			</a>
 			<a class="prev-post" href="https://polarisxu.studygolang.com/posts/devtool/dev-transform/">
 				<span class="post-nav-label">旧&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>程序员瑞士军刀：各种结构的转换工具</span>
 			</a>

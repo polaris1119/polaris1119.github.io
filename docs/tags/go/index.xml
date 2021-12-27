@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Sun, 19 Dec 2021 16:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 26 Dec 2021 22:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go1.18 新特性：TryLock</title>
+      <link>https://polarisxu.studygolang.com/posts/go/dynamic/go1.18-trylock/</link>
+      <pubDate>Sun, 26 Dec 2021 22:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/dynamic/go1.18-trylock/</guid>
+      <description>大家好，我是 polarisxu。 我们知晓，Go 标准库的 sync/Mutex、RWMutex 实现了 sync/Locker 接口， 提供了 Lock() 和 UnLock() 方法，可以获取锁和释放锁，我们可以方便的使用它来控制对共享资源的并发控制。（其他语言，比如 Java 是有类似 TryLock 的功能的） type Locker interface { Lock() Unlock() } 但是锁被获取后，在未释放之前其他 goroutine 再调用 Lock 则会被阻塞住，这种设计在有些情况下可能不能满足需求。有时我们希望尝试获取锁，</description>
+    </item>
+    
     <item>
       <title>Go 泛型入门教程</title>
       <link>https://polarisxu.studygolang.com/posts/go/generics/generics-tutorial/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/dynamic/go1.18-workspace/</guid>
       <description>大家好，我是 polarisxu。 工作区模式（Workspace mode），可不是之前 GOPATH 时代的 Workspace，而是希望在本地开发时支持多 Module。 01 缘起 为了大家全面理解工作区模式，通过一个具体例子讲解。 本地有两个项目，分别是两个 module：mypkg 和 example。（Windows 系统请按自己方式创建目录） $ cd ~/ $ mkdir polarisxu $ cd polarisxu $ mkdir mypkg example $ cd mypkg $ go mod init github.com/polaris1119/mypkg</description>
-    </item>
-    
-    <item>
-      <title>Go1.18 快讯：新增的 Cut 函数太方便了</title>
-      <link>https://polarisxu.studygolang.com/posts/go/dynamic/go1.18-cut/</link>
-      <pubDate>Mon, 08 Nov 2021 09:00:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/dynamic/go1.18-cut/</guid>
-      <description>大家好，我是 polarisxu。 在编程中，字符串使用是最频繁的。Go 语言对字符串相关的操作也提供了大量的 API，一方面，字符串可以向普通 slice 一样进行相关操作；另一方面，标准库专门提供了一个包 strings 进行字符串的操作。 01 strings.Index 系列函数 假如有一个这样的需求：从 192.168.1.1:8080 中获取 ip 和 port。 我们一般会这么实现： addr := &amp;#34;192.168.1.1:8080&amp;#34; pos := strings.Index(addr, &amp;#34;:&amp;#34;) if pos == -1 { panic(&amp;#34;非法地址&amp;#34;) } ip, port :=</description>
     </item>
     
   </channel>

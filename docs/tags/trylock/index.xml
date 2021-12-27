@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>TryLock on polarisxu</title>
+    <link>https://polarisxu.studygolang.com/tags/trylock/</link>
+    <description>Recent content in TryLock on polarisxu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
+    <lastBuildDate>Sun, 26 Dec 2021 22:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/trylock/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go1.18 新特性：TryLock</title>
+      <link>https://polarisxu.studygolang.com/posts/go/dynamic/go1.18-trylock/</link>
+      <pubDate>Sun, 26 Dec 2021 22:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/dynamic/go1.18-trylock/</guid>
+      <description>大家好，我是 polarisxu。 我们知晓，Go 标准库的 sync/Mutex、RWMutex 实现了 sync/Locker 接口， 提供了 Lock() 和 UnLock() 方法，可以获取锁和释放锁，我们可以方便的使用它来控制对共享资源的并发控制。（其他语言，比如 Java 是有类似 TryLock 的功能的） type Locker interface { Lock() Unlock() } 但是锁被获取后，在未释放之前其他 goroutine 再调用 Lock 则会被阻塞住，这种设计在有些情况下可能不能满足需求。有时我们希望尝试获取锁，</description>
+    </item>
+    
+  </channel>
+</rss>
