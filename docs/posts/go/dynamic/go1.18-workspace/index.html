@@ -10,7 +10,7 @@
 <meta itemprop="name" content="Go1.18 快讯：Module 工作区模式">
 <meta itemprop="description" content="大家好，我是 polarisxu。 工作区模式（Workspace mode），可不是之前 GOPATH 时代的 Workspace，而是希望在本地开发时支持多 Module。 01 缘起 为了大家全面理解工作区模式，通过一个具体例子讲解。 本地有两个项目，分别是两个 module：mypkg 和 example。（Windows 系统请按自己方式创建目录） $ cd ~/ $ mkdir polarisxu $ cd polarisxu $ mkdir mypkg example $ cd mypkg $ go mod init github.com/polaris1119/mypkg"><meta itemprop="datePublished" content="2021-11-10T22:00:00+08:00" />
 <meta itemprop="dateModified" content="2021-11-10T22:00:00+08:00" />
-<meta itemprop="wordCount" content="1427">
+<meta itemprop="wordCount" content="1504">
 <meta itemprop="keywords" content="Go,Workspace," /><meta property="og:title" content="Go1.18 快讯：Module 工作区模式" />
 <meta property="og:description" content="大家好，我是 polarisxu。 工作区模式（Workspace mode），可不是之前 GOPATH 时代的 Workspace，而是希望在本地开发时支持多 Module。 01 缘起 为了大家全面理解工作区模式，通过一个具体例子讲解。 本地有两个项目，分别是两个 module：mypkg 和 example。（Windows 系统请按自己方式创建目录） $ cd ~/ $ mkdir polarisxu $ cd polarisxu $ mkdir mypkg example $ cd mypkg $ go mod init github.com/polaris1119/mypkg" />
 <meta property="og:type" content="article" />
@@ -130,9 +130,9 @@ This is package mypkg
 <p>针对上面的这个问题，Michael Matloob 提出了 Workspace Mode（工作区模式）。相关 issue 讨论：<a href="https://github.com/golang/go/issues/45713" target="_blank" rel="noopener">cmd/go: add a workspace mode</a>
 ，<a href="https://go.googlesource.com/proposal/&#43;/master/design/45713-workspace.md" target="_blank" rel="noopener">这里是 Proposal</a>
 。</p>
-<p>为了能够试验工作区，请在本地使用 gotip，建议<a href="https://mp.weixin.qq.com/s/yTblk9Js1Zcq5aWVcYGjOA" target="_blank" rel="noopener">通过 goup 切换 Go 版本</a>
+<p>为了能够试验工作区，请在本地使用 Go1.18beta1，建议<a href="https://mp.weixin.qq.com/s/yTblk9Js1Zcq5aWVcYGjOA" target="_blank" rel="noopener">通过 goup 切换 Go 版本</a>
 ：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ goup install tip
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ goup install 1.18beta1
 $ goup show
 <span class="p">|</span>  VERSION  <span class="p">|</span> ACTIVE <span class="p">|</span>
 <span class="p">|</span>-----------<span class="p">|</span>--------<span class="p">|</span>
@@ -145,23 +145,33 @@ $ goup show
 <span class="p">|</span>  1.15.4   <span class="p">|</span>        <span class="p">|</span>
 <span class="p">|</span>   1.16    <span class="p">|</span>        <span class="p">|</span>
 <span class="p">|</span>  1.16.2   <span class="p">|</span>        <span class="p">|</span>
-<span class="p">|</span> 1.16beta1 <span class="p">|</span>        <span class="p">|</span>
 <span class="p">|</span>   1.17    <span class="p">|</span>        <span class="p">|</span>
-<span class="p">|</span> 1.17beta1 <span class="p">|</span>        <span class="p">|</span>
+<span class="p">|</span> 1.18beta1 <span class="p">|</span>   *    <span class="p">|</span>
 <span class="p">|</span>    1.4    <span class="p">|</span>        <span class="p">|</span>
 <span class="p">|</span>   1.4.3   <span class="p">|</span>        <span class="p">|</span>
-<span class="p">|</span>    tip    <span class="p">|</span>   *    <span class="p">|</span>
-</code></pre></div><p>我本地当前 tip 版本：</p>
+<span class="p">|</span>    tip    <span class="p">|</span>        <span class="p">|</span>
+</code></pre></div><p>我本地当前版本：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ go version
-go version devel go1.18-c78a267bd4 Sat Nov <span class="m">13</span> 01:39:23 <span class="m">2021</span> +0000 darwin/amd64
+go version go1.18beta1 darwin/amd64
 </code></pre></div><p>通过 go help work 可以看到 work 相关命令：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">Go workspace provides access to operations on worskpaces.
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ go <span class="nb">help</span> work
+Go workspace provides access to operations on workspaces.
 
 Note that support <span class="k">for</span> workspaces is built into many other commands,
 not just <span class="s1">&#39;go work&#39;</span>.
 
 See <span class="s1">&#39;go help modules&#39;</span> <span class="k">for</span> information about Go<span class="err">&#39;</span>s module system of
 which workspaces are a part.
+
+A workspace is specified by a go.work file that specifies a <span class="nb">set</span> of
+module directories with the <span class="s2">&#34;use&#34;</span> directive. These modules are used
+as root modules by the go <span class="nb">command</span> <span class="k">for</span> builds and related operations.
+A workspace that does not specify modules to be used cannot be used
+to <span class="k">do</span> builds from <span class="nb">local</span> modules.
+
+To determine whether the go <span class="nb">command</span> is operating in workspace mode,
+use the <span class="s2">&#34;go env GOWORK&#34;</span> command. This will specify the workspace
+file being used.
 
 Usage:
 
@@ -244,7 +254,7 @@ use <span class="o">(</span>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://polarisxu.studygolang.com/tags/go">Go</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/workspace">Workspace</a></span>
 				</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1427 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1504 字</p>
 				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2021-11-10 22:00 &#43;0800</p>
 			</footer>
 		</article>

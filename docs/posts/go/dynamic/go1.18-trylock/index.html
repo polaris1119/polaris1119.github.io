@@ -10,7 +10,7 @@
 <meta itemprop="name" content="Go1.18 新特性：TryLock">
 <meta itemprop="description" content="大家好，我是 polarisxu。 我们知晓，Go 标准库的 sync/Mutex、RWMutex 实现了 sync/Locker 接口， 提供了 Lock() 和 UnLock() 方法，可以获取锁和释放锁，我们可以方便的使用它来控制对共享资源的并发控制。（其他语言，比如 Java 是有类似 TryLock 的功能的） type Locker interface { Lock() Unlock() } 但是锁被获取后，在未释放之前其他 goroutine 再调用 Lock 则会被阻塞住，这种设计在有些情况下可能不能满足需求。有时我们希望尝试获取锁，"><meta itemprop="datePublished" content="2021-12-26T22:30:00+08:00" />
 <meta itemprop="dateModified" content="2021-12-26T22:30:00+08:00" />
-<meta itemprop="wordCount" content="1007">
+<meta itemprop="wordCount" content="1006">
 <meta itemprop="keywords" content="Go,TryLock," /><meta property="og:title" content="Go1.18 新特性：TryLock" />
 <meta property="og:description" content="大家好，我是 polarisxu。 我们知晓，Go 标准库的 sync/Mutex、RWMutex 实现了 sync/Locker 接口， 提供了 Lock() 和 UnLock() 方法，可以获取锁和释放锁，我们可以方便的使用它来控制对共享资源的并发控制。（其他语言，比如 Java 是有类似 TryLock 的功能的） type Locker interface { Lock() Unlock() } 但是锁被获取后，在未释放之前其他 goroutine 再调用 Lock 则会被阻塞住，这种设计在有些情况下可能不能满足需求。有时我们希望尝试获取锁，" />
 <meta property="og:type" content="article" />
@@ -84,8 +84,8 @@
     <span class="nf">Unlock</span><span class="p">()</span>
 <span class="p">}</span>
 </code></pre></div><p>但是锁被获取后，在未释放之前其他 goroutine 再调用 Lock 则会被阻塞住，这种设计在有些情况下可能不能满足需求。有时我们希望尝试获取锁，如果获取到了则继续执行，如果获取不到，我们也不想阻塞住，而是去调用其它的逻辑，这个时候我们就想要 TryLock 方法：即尝试获取锁，获取不到也不堵塞。</p>
-<p>这个需求，2013 年就有人你提出，但官方没有采纳。2018 年又有人提出：<a href="https://github.com/golang/go/issues/27544" target="_blank" rel="noopener">https://github.com/golang/go/issues/27544</a>
-，建议增加 TryLock，但没有下文。知道 2021 年 4 月，有人再次提出，同时也给出了标准库中需要的场景：<a href="https://github.com/golang/go/issues/45435" target="_blank" rel="noopener">https://github.com/golang/go/issues/45435</a>
+<p>这个需求，2013 年就有人提出，但官方没有采纳。2018 年又有人提出：<a href="https://github.com/golang/go/issues/27544" target="_blank" rel="noopener">https://github.com/golang/go/issues/27544</a>
+，建议增加 TryLock，但没有下文。直到 2021 年 4 月，有人再次提出，同时也给出了标准库中需要的场景：<a href="https://github.com/golang/go/issues/45435" target="_blank" rel="noopener">https://github.com/golang/go/issues/45435</a>
 。</p>
 <p>不过，Go Team 的负责人 rsc 提出了反对的意见：</p>
 <blockquote>
@@ -135,7 +135,7 @@
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://polarisxu.studygolang.com/tags/go">Go</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/trylock">TryLock</a></span>
 				</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1007 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1006 字</p>
 				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2021-12-26 22:30 &#43;0800</p>
 			</footer>
 		</article>

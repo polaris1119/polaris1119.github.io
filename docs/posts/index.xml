@@ -23,8 +23,8 @@
     <span class="nf">Unlock</span><span class="p">()</span>
 <span class="p">}</span>
 </code></pre></div><p>但是锁被获取后，在未释放之前其他 goroutine 再调用 Lock 则会被阻塞住，这种设计在有些情况下可能不能满足需求。有时我们希望尝试获取锁，如果获取到了则继续执行，如果获取不到，我们也不想阻塞住，而是去调用其它的逻辑，这个时候我们就想要 TryLock 方法：即尝试获取锁，获取不到也不堵塞。</p>
-<p>这个需求，2013 年就有人你提出，但官方没有采纳。2018 年又有人提出：<a href="https://github.com/golang/go/issues/27544" target="_blank" rel="noopener">https://github.com/golang/go/issues/27544</a>
-，建议增加 TryLock，但没有下文。知道 2021 年 4 月，有人再次提出，同时也给出了标准库中需要的场景：<a href="https://github.com/golang/go/issues/45435" target="_blank" rel="noopener">https://github.com/golang/go/issues/45435</a>
+<p>这个需求，2013 年就有人提出，但官方没有采纳。2018 年又有人提出：<a href="https://github.com/golang/go/issues/27544" target="_blank" rel="noopener">https://github.com/golang/go/issues/27544</a>
+，建议增加 TryLock，但没有下文。直到 2021 年 4 月，有人再次提出，同时也给出了标准库中需要的场景：<a href="https://github.com/golang/go/issues/45435" target="_blank" rel="noopener">https://github.com/golang/go/issues/45435</a>
 。</p>
 <p>不过，Go Team 的负责人 rsc 提出了反对的意见：</p>
 <blockquote>
@@ -1305,9 +1305,9 @@ This is package mypkg
 <p>针对上面的这个问题，Michael Matloob 提出了 Workspace Mode（工作区模式）。相关 issue 讨论：<a href="https://github.com/golang/go/issues/45713" target="_blank" rel="noopener">cmd/go: add a workspace mode</a>
 ，<a href="https://go.googlesource.com/proposal/&#43;/master/design/45713-workspace.md" target="_blank" rel="noopener">这里是 Proposal</a>
 。</p>
-<p>为了能够试验工作区，请在本地使用 gotip，建议<a href="https://mp.weixin.qq.com/s/yTblk9Js1Zcq5aWVcYGjOA" target="_blank" rel="noopener">通过 goup 切换 Go 版本</a>
+<p>为了能够试验工作区，请在本地使用 Go1.18beta1，建议<a href="https://mp.weixin.qq.com/s/yTblk9Js1Zcq5aWVcYGjOA" target="_blank" rel="noopener">通过 goup 切换 Go 版本</a>
 ：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ goup install tip
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ goup install 1.18beta1
 $ goup show
 <span class="p">|</span>  VERSION  <span class="p">|</span> ACTIVE <span class="p">|</span>
 <span class="p">|</span>-----------<span class="p">|</span>--------<span class="p">|</span>
@@ -1320,23 +1320,33 @@ $ goup show
 <span class="p">|</span>  1.15.4   <span class="p">|</span>        <span class="p">|</span>
 <span class="p">|</span>   1.16    <span class="p">|</span>        <span class="p">|</span>
 <span class="p">|</span>  1.16.2   <span class="p">|</span>        <span class="p">|</span>
-<span class="p">|</span> 1.16beta1 <span class="p">|</span>        <span class="p">|</span>
 <span class="p">|</span>   1.17    <span class="p">|</span>        <span class="p">|</span>
-<span class="p">|</span> 1.17beta1 <span class="p">|</span>        <span class="p">|</span>
+<span class="p">|</span> 1.18beta1 <span class="p">|</span>   *    <span class="p">|</span>
 <span class="p">|</span>    1.4    <span class="p">|</span>        <span class="p">|</span>
 <span class="p">|</span>   1.4.3   <span class="p">|</span>        <span class="p">|</span>
-<span class="p">|</span>    tip    <span class="p">|</span>   *    <span class="p">|</span>
-</code></pre></div><p>我本地当前 tip 版本：</p>
+<span class="p">|</span>    tip    <span class="p">|</span>        <span class="p">|</span>
+</code></pre></div><p>我本地当前版本：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ go version
-go version devel go1.18-c78a267bd4 Sat Nov <span class="m">13</span> 01:39:23 <span class="m">2021</span> +0000 darwin/amd64
+go version go1.18beta1 darwin/amd64
 </code></pre></div><p>通过 go help work 可以看到 work 相关命令：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">Go workspace provides access to operations on worskpaces.
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ go <span class="nb">help</span> work
+Go workspace provides access to operations on workspaces.
 
 Note that support <span class="k">for</span> workspaces is built into many other commands,
 not just <span class="s1">&#39;go work&#39;</span>.
 
 See <span class="s1">&#39;go help modules&#39;</span> <span class="k">for</span> information about Go<span class="err">&#39;</span>s module system of
 which workspaces are a part.
+
+A workspace is specified by a go.work file that specifies a <span class="nb">set</span> of
+module directories with the <span class="s2">&#34;use&#34;</span> directive. These modules are used
+as root modules by the go <span class="nb">command</span> <span class="k">for</span> builds and related operations.
+A workspace that does not specify modules to be used cannot be used
+to <span class="k">do</span> builds from <span class="nb">local</span> modules.
+
+To determine whether the go <span class="nb">command</span> is operating in workspace mode,
+use the <span class="s2">&#34;go env GOWORK&#34;</span> command. This will specify the workspace
+file being used.
 
 Usage:
 
