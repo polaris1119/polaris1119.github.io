@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#fcfcfc">
+	<meta name="msapplication-TileColor" content="#fcfcfc">
+<meta itemprop="name" content="2021 年你写了多少代码？这个 Go 工具帮你统计">
+<meta itemprop="description" content="大家好，我是 polarisxu。 2021 年马上要过完了，一年下来，你写了多少代码？其中 Go 代码又有多少呢？虽然大家一般讨厌将代码行数作为考核业绩指标，但我们自己对一年的代码量有一个基本掌握还是挺有必要的。 如果你搜索，会发现代码统计工具有很多。比如 sloccount 、github.com/AlDanial/cloc 等，似乎大家很喜欢统计代码行数。当然，也有人直接使用 grep、awk 之"><meta itemprop="datePublished" content="2021-12-28T22:30:00+08:00" />
+<meta itemprop="dateModified" content="2021-12-28T22:30:00+08:00" />
+<meta itemprop="wordCount" content="1533">
+<meta itemprop="keywords" content="Go,scc," /><meta property="og:title" content="2021 年你写了多少代码？这个 Go 工具帮你统计" />
+<meta property="og:description" content="大家好，我是 polarisxu。 2021 年马上要过完了，一年下来，你写了多少代码？其中 Go 代码又有多少呢？虽然大家一般讨厌将代码行数作为考核业绩指标，但我们自己对一年的代码量有一个基本掌握还是挺有必要的。 如果你搜索，会发现代码统计工具有很多。比如 sloccount 、github.com/AlDanial/cloc 等，似乎大家很喜欢统计代码行数。当然，也有人直接使用 grep、awk 之" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://polarisxu.studygolang.com/posts/devtool/scc/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-12-28T22:30:00+08:00" />
+<meta property="article:modified_time" content="2021-12-28T22:30:00+08:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="2021 年你写了多少代码？这个 Go 工具帮你统计"/>
+<meta name="twitter:description" content="大家好，我是 polarisxu。 2021 年马上要过完了，一年下来，你写了多少代码？其中 Go 代码又有多少呢？虽然大家一般讨厌将代码行数作为考核业绩指标，但我们自己对一年的代码量有一个基本掌握还是挺有必要的。 如果你搜索，会发现代码统计工具有很多。比如 sloccount 、github.com/AlDanial/cloc 等，似乎大家很喜欢统计代码行数。当然，也有人直接使用 grep、awk 之"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>2021 年你写了多少代码？这个 Go 工具帮你统计</title>
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
+	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/styles.css">
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://polarisxu.studygolang.com">polarisxu</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+  <a href="https://polarisxu.studygolang.com/">首页</a>
+  <a href="https://polarisxu.studygolang.com/categories/echo%E7%B3%BB%E5%88%97/">Echo系列</a>
+  <a href="https://polarisxu.studygolang.com/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a>
+  <a href="https://polarisxu.studygolang.com/posts/">归档</a>
+  <a href="https://polarisxu.studygolang.com/about/">关于</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<button id="toc-btn" class="hdr-btn desktop-only-ib" title="目录"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3" y2="6"></line><line x1="3" y1="12" x2="3" y2="12"></line><line x1="3" y1="18" x2="3" y2="18"></line></svg></button><span class="hdr-social hide-in-mobile"><a href="https://github.com/polaris1119" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a><a href="https://twitter.com/polaris1119" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="菜单"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://polarisxu.studygolang.com/">首页</a></li>
+			<li><a href="https://polarisxu.studygolang.com/categories/echo%E7%B3%BB%E5%88%97/">Echo系列</a></li>
+			<li><a href="https://polarisxu.studygolang.com/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a></li>
+			<li><a href="https://polarisxu.studygolang.com/posts/">归档</a></li>
+			<li><a href="https://polarisxu.studygolang.com/about/">关于</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Dec 28, 2021</span></div>
+				<h1>2021 年你写了多少代码？这个 Go 工具帮你统计</h1>
+			</header>
+			<div class="content">
+				<p>大家好，我是 polarisxu。</p>
+<p>2021 年马上要过完了，一年下来，你写了多少代码？其中 Go 代码又有多少呢？虽然大家一般讨厌将代码行数作为考核业绩指标，但我们自己对一年的代码量有一个基本掌握还是挺有必要的。</p>
+<p>如果你搜索，会发现代码统计工具有很多。比如 <a href="https://dwheeler.com/sloccount/" target="_blank" rel="noopener">sloccount</a>
+、github.com/AlDanial/cloc 等，似乎大家很喜欢统计代码行数。当然，也有人直接使用 grep、awk 之类的工具。</p>
+<p>本文简单对比两个工具：cloc 和 scc。</p>
+<p>这两个工具的原理类似。在 Mac 下，通过 brew 安装：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ brew install cloc scc
+</code></pre></div><p>其中 cloc 使用 Perl 实现，有 13.1k+ Star；而 scc 是 Go 实现的，项目地址：<a href="https://github.com/boyter/scc" target="_blank" rel="noopener">https://github.com/boyter/scc</a>
+，有 3k+ Star。</p>
+<p>使用这两个工具统计 github.com/studygolang/studygolang 项目。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ cloc .
+    <span class="m">4287</span> text files.
+    <span class="m">4028</span> unique files.
+Complex regular subexpression recursion limit <span class="o">(</span>32766<span class="o">)</span> exceeded at /usr/local/Cellar/cloc/1.82/libexec/bin/cloc line 9334.
+     <span class="m">580</span> files ignored.
+
+github.com/AlDanial/cloc v 1.82  <span class="nv">T</span><span class="o">=</span>5.68 s <span class="o">(</span>658.0 files/s, 85679.8 lines/s<span class="o">)</span>
+--------------------------------------------------------------------------------
+Language                      files          blank        comment           code
+--------------------------------------------------------------------------------
+JavaScript                     <span class="m">2458</span>          <span class="m">32504</span>          <span class="m">90981</span>         <span class="m">174284</span>
+JSON                            <span class="m">415</span>            <span class="m">127</span>              <span class="m">0</span>          <span class="m">86826</span>
+Markdown                        <span class="m">359</span>          <span class="m">13566</span>              <span class="m">0</span>          <span class="m">31219</span>
+Go                              <span class="m">200</span>           <span class="m">4962</span>           <span class="m">2238</span>          <span class="m">20772</span>
+HTML                            <span class="m">153</span>           <span class="m">1019</span>             <span class="m">79</span>          <span class="m">14358</span>
+CSS                              <span class="m">42</span>           <span class="m">1219</span>            <span class="m">292</span>           <span class="m">6952</span>
+YAML                             <span class="m">45</span>             <span class="m">56</span>             <span class="m">12</span>           <span class="m">1209</span>
+SQL                               <span class="m">2</span>             <span class="m">74</span>              <span class="m">0</span>            <span class="m">847</span>
+XML                              <span class="m">10</span>            <span class="m">137</span>            <span class="m">489</span>            <span class="m">790</span>
+TypeScript                       <span class="m">15</span>             <span class="m">33</span>            <span class="m">228</span>            <span class="m">293</span>
+SVG                              <span class="m">15</span>              <span class="m">0</span>              <span class="m">0</span>            <span class="m">279</span>
+INI                               <span class="m">2</span>             <span class="m">41</span>             <span class="m">46</span>            <span class="m">144</span>
+XSLT                              <span class="m">1</span>              <span class="m">8</span>              <span class="m">1</span>            <span class="m">101</span>
+make                              <span class="m">6</span>             <span class="m">44</span>              <span class="m">4</span>             <span class="m">95</span>
+Bourne Shell                      <span class="m">3</span>              <span class="m">9</span>             <span class="m">11</span>             <span class="m">50</span>
+DOS Batch                         <span class="m">4</span>             <span class="m">26</span>              <span class="m">0</span>             <span class="m">44</span>
+diff                              <span class="m">1</span>              <span class="m">6</span>             <span class="m">20</span>             <span class="m">25</span>
+Nix                               <span class="m">1</span>              <span class="m">1</span>              <span class="m">0</span>             <span class="m">19</span>
+zsh                               <span class="m">1</span>              <span class="m">4</span>             <span class="m">14</span>              <span class="m">7</span>
+Bourne Again Shell                <span class="m">1</span>              <span class="m">4</span>             <span class="m">16</span>              <span class="m">7</span>
+Dockerfile                        <span class="m">1</span>              <span class="m">4</span>              <span class="m">1</span>              <span class="m">5</span>
+CoffeeScript                      <span class="m">2</span>              <span class="m">1</span>              <span class="m">0</span>              <span class="m">1</span>
+--------------------------------------------------------------------------------
+SUM:                           <span class="m">3737</span>          <span class="m">53845</span>          <span class="m">94432</span>         <span class="m">338327</span>
+--------------------------------------------------------------------------------
+</code></pre></div><p>统计花了近 6 秒。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ scc
+───────────────────────────────────────────────────────────────────────────────
+Language                 Files     Lines     Code  Comments   Blanks Complexity
+───────────────────────────────────────────────────────────────────────────────
+JavaScript                <span class="m">2523</span>    <span class="m">298987</span>   <span class="m">207834</span>     <span class="m">63356</span>    <span class="m">27797</span>      <span class="m">33769</span>
+JSON                       <span class="m">419</span>     <span class="m">31849</span>    <span class="m">31660</span>         <span class="m">0</span>      <span class="m">189</span>          <span class="m">0</span>
+Markdown                   <span class="m">375</span>     <span class="m">46820</span>    <span class="m">32663</span>         <span class="m">0</span>    <span class="m">14157</span>          <span class="m">0</span>
+License                    <span class="m">275</span>      <span class="m">6279</span>     <span class="m">5081</span>         <span class="m">0</span>     <span class="m">1198</span>          <span class="m">0</span>
+Go                         <span class="m">200</span>     <span class="m">27972</span>    <span class="m">20776</span>      <span class="m">2243</span>     <span class="m">4953</span>       <span class="m">4447</span>
+HTML                       <span class="m">154</span>     <span class="m">15617</span>    <span class="m">14525</span>        <span class="m">79</span>     <span class="m">1013</span>          <span class="m">0</span>
+YAML                        <span class="m">51</span>      <span class="m">1303</span>     <span class="m">1247</span>         <span class="m">0</span>       <span class="m">56</span>          <span class="m">0</span>
+CSS                         <span class="m">44</span>      <span class="m">8463</span>     <span class="m">6952</span>       <span class="m">297</span>     <span class="m">1214</span>          <span class="m">0</span>
+Plain Text                  <span class="m">34</span>    <span class="m">594575</span>   <span class="m">594394</span>         <span class="m">0</span>      <span class="m">181</span>          <span class="m">0</span>
+TypeScript Typings          <span class="m">17</span>       <span class="m">741</span>      <span class="m">367</span>       <span class="m">340</span>       <span class="m">34</span>         <span class="m">27</span>
+SVG                         <span class="m">15</span>       <span class="m">279</span>      <span class="m">279</span>         <span class="m">0</span>        <span class="m">0</span>          <span class="m">0</span>
+XML                         <span class="m">10</span>      <span class="m">1416</span>      <span class="m">790</span>       <span class="m">516</span>      <span class="m">110</span>          <span class="m">0</span>
+Makefile                     <span class="m">6</span>       <span class="m">143</span>       <span class="m">95</span>         <span class="m">4</span>       <span class="m">44</span>          <span class="m">6</span>
+gitignore                    <span class="m">5</span>        <span class="m">64</span>       <span class="m">45</span>         <span class="m">3</span>       <span class="m">16</span>          <span class="m">0</span>
+Batch                        <span class="m">4</span>        <span class="m">70</span>       <span class="m">42</span>         <span class="m">2</span>       <span class="m">26</span>          <span class="m">5</span>
+Shell                        <span class="m">3</span>        <span class="m">70</span>       <span class="m">47</span>        <span class="m">14</span>        <span class="m">9</span>         <span class="m">13</span>
+CoffeeScript                 <span class="m">3</span>         <span class="m">2</span>        <span class="m">1</span>         <span class="m">0</span>        <span class="m">1</span>          <span class="m">0</span>
+Patch                        <span class="m">2</span>      <span class="m">1527</span>     <span class="m">1430</span>         <span class="m">0</span>       <span class="m">97</span>          <span class="m">0</span>
+SQL                          <span class="m">2</span>       <span class="m">921</span>      <span class="m">847</span>         <span class="m">0</span>       <span class="m">74</span>          <span class="m">0</span>
+Nix                          <span class="m">1</span>        <span class="m">20</span>       <span class="m">19</span>         <span class="m">0</span>        <span class="m">1</span>          <span class="m">0</span>
+Zsh                          <span class="m">1</span>        <span class="m">25</span>        <span class="m">6</span>        <span class="m">15</span>        <span class="m">4</span>          <span class="m">0</span>
+Fish                         <span class="m">1</span>        <span class="m">10</span>        <span class="m">1</span>         <span class="m">7</span>        <span class="m">2</span>          <span class="m">0</span>
+Dockerfile                   <span class="m">1</span>        <span class="m">10</span>        <span class="m">5</span>         <span class="m">1</span>        <span class="m">4</span>          <span class="m">0</span>
+BASH                         <span class="m">1</span>        <span class="m">27</span>        <span class="m">6</span>        <span class="m">17</span>        <span class="m">4</span>          <span class="m">0</span>
+───────────────────────────────────────────────────────────────────────────────
+Total                     <span class="m">4147</span>   <span class="m">1037190</span>   <span class="m">919112</span>     <span class="m">66894</span>    <span class="m">51184</span>      <span class="m">38267</span>
+───────────────────────────────────────────────────────────────────────────────
+Estimated Cost to Develop <span class="nv">$34</span>,924,659
+Estimated Schedule Effort 59.194452 months
+Estimated People Required 69.888518
+───────────────────────────────────────────────────────────────────────────────
+</code></pre></div><p>scc 速度很快，几乎瞬间完成。</p>
+<p>这两个工具的功能类似，但也会有差别。不过 scc 速度快很多，无疑，大家应该会更喜欢 Go 语言实现的 scc。</p>
+<p>scc，又叫做  Sloc、Cloc 和 Code，即取这三个单词的首字母：SCC。scc 是一个非常快速准确的代码计数器，具有复杂度计算和 COCOMO 估计，用纯 Go 编写。</p>
+<p>scc 允许查看代码使用的每种编程语言、行数、注释、文件等。这是一个非常快速且有用的工具。大部分语言 scc 都支持，通过 <code>scc --languages</code> 查看支持的语言，目前有 201 种。</p>
+<p>在第一届 GopherCon AU 上 scc 作者 boyter 作了关于 scc 设计和实现的演讲，这里有 PPT：<a href="https://boyter.org/static/gophercon-syd-presentation/" target="_blank" rel="noopener">https://boyter.org/static/gophercon-syd-presentation/</a>
+，也有视频：<a href="https://www.youtube.com/watch?v=jd-sjoy3GZo" target="_blank" rel="noopener">https://www.youtube.com/watch?v=jd-sjoy3GZo</a>
+。</p>
+<p>关于 scc 的更多信息，可以访问项目首页查看：<a href="https://github.com/boyter/scc" target="_blank" rel="noopener">https://github.com/boyter/scc</a>
+。</p>
+<hr>
+<p>如果要统计 2021 年你写了多少代码，可能不是简单地运行 scc 就能搞定，因为多半代码不是你一个人写的，可能需要借助 git 辅助。有兴趣的小伙伴可以研究研究。</p>
+
+			</div><div class="content">
+	<br>
+	<img src="https://static.studygolang.com/static/img/polarisxu-qrcode-soso-s.png">
+</div>
+
+<div class="related-posts thin">
+	<h2>相关推荐</h2>
+	<ul>
+	
+	<li><a href="/posts/go/generics/gophercon2021-generics/">掌握泛型：GopherCon2021 上的泛型演讲主题</a></li>
+	
+	<li><a href="/posts/go/dynamic/go1.18-trylock/">Go1.18 新特性：TryLock</a></li>
+	
+	<li><a href="/posts/go/generics/generics-tutorial/">Go 泛型入门教程</a></li>
+	
+	<li><a href="/posts/go/project/zinc-like-es/">终于有 Go 版的 Elasticsearch 了</a></li>
+	
+	<li><a href="/posts/go/generics/generics-maps/">Go泛型系列：maps 包讲解</a></li>
+	
+	</ul>
+</div>
+
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://polarisxu.studygolang.com/tags/go">Go</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/scc">scc</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1533 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2021-12-28 22:30 &#43;0800</p>
+			</footer>
+		</article>
+		<aside id="toc">
+			<div class="toc-title">目录</div>
+			<nav id="TableOfContents"></nav>
+		</aside>
+		<div class="post-nav thin">
+			<a class="prev-post" href="https://polarisxu.studygolang.com/posts/go/generics/gophercon2021-generics/">
+				<span class="post-nav-label">旧&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>掌握泛型：GopherCon2021 上的泛型演讲主题</span>
+			</a>
+		</div>
+		<div id="comments" class="thin"><script src="https://utteranc.es/client.js"
+	repo="polaris1119/polarisxu"
+	issue-term="pathname"
+	theme="github-light"
+	crossorigin="anonymous"
+	async>
+</script>
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2019 - 2021 <a href="https://polarisxu.studygolang.com">polarisxu</a> &#183; <a href="https://beian.miit.gov.cn/">京ICP备14030343号-1</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://polarisxu.studygolang.com/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+		<span id="busuanzi_container" style="color: #666;">
+			本站总访客数/访问量：<span id="busuanzi_value_site_uv"></span>/<span id="busuanzi_value_site_pv"></span>
+		</span>
+	</footer>
+
+
+
+	<script src="https://polarisxu.studygolang.com/js/main.min.4eaa15feccc672488716f0338ac605e08c7553ce0ce175e13fa00a873636bf98.js" integrity="sha256-TqoV/szGckiHFvAzisYF4Ix1U84M4XXhP6AKhzY2v5g=" crossorigin="anonymous"></script>
+	<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?224c227cd9239761ec770bc8c1fb134c";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+</body>
+
+</html>

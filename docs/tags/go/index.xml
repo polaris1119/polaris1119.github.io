@@ -7,7 +7,25 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Sun, 26 Dec 2021 22:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 28 Dec 2021 22:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2021 年你写了多少代码？这个 Go 工具帮你统计</title>
+      <link>https://polarisxu.studygolang.com/posts/devtool/scc/</link>
+      <pubDate>Tue, 28 Dec 2021 22:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/devtool/scc/</guid>
+      <description>大家好，我是 polarisxu。 2021 年马上要过完了，一年下来，你写了多少代码？其中 Go 代码又有多少呢？虽然大家一般讨厌将代码行数作为考核业绩指标，但我们自己对一年的代码量有一个基本掌握还是挺有必要的。 如果你搜索，会发现代码统计工具有很多。比如 sloccount 、github.com/AlDanial/cloc 等，似乎大家很喜欢统计代码行数。当然，也有人直接使用 grep、awk 之</description>
+    </item>
+    
+    <item>
+      <title>掌握泛型：GopherCon2021 上的泛型演讲主题</title>
+      <link>https://polarisxu.studygolang.com/posts/go/generics/gophercon2021-generics/</link>
+      <pubDate>Tue, 28 Dec 2021 20:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/generics/gophercon2021-generics/</guid>
+      <description>大家好，我是 polarisxu。 2021 年 12 月初，GopherCon2021 举办，Robert Griesemer 和 Ian Lance Taylor 做了关于泛型的主题演讲。 https://www.youtube.com/watch?v=Pa_e9EeCdy8&amp;list=RDCMUCx9QVEApa5BKLw9r8cnOFEA&amp;index=1</description>
+    </item>
+    
     <item>
       <title>Go1.18 新特性：TryLock</title>
       <link>https://polarisxu.studygolang.com/posts/go/dynamic/go1.18-trylock/</link>
@@ -78,24 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/generics/generics-slices/</guid>
       <description>大家好，我是 polarisxu。 前段时间，Russ Cox 明确了泛型相关的事情 ，原计划在标准库中加入泛型相关的包，改放到 golang.org/x/exp 下。 目前，Go 泛型的主要设计者 ianlancetaylor 完成了 slices 和 maps 包的开发，代码提交到了 golang.org/x/exp 中，如果经过使用、讨论等，社区认可后，预计在 1.19 中会合入标准库中。 今天，通过学习 slices 包，掌握 Go 泛型的使用方法。 01 为什么增加 slices 包 标准库有 bytes 和 strings 包，分别用来处理 []byte 和 string 类型，提供了众多方</description>
-    </item>
-    
-    <item>
-      <title>Go泛型系列：Go1.18 类型约束那些事</title>
-      <link>https://polarisxu.studygolang.com/posts/go/generics/generics-constraints/</link>
-      <pubDate>Sun, 14 Nov 2021 20:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/generics/generics-constraints/</guid>
-      <description>大家好，我是 polarisxu。 上篇《Go泛型系列：提前掌握Go泛型的基本使用》 简单讲解了泛型中的约束，但约束相关内容远不止那些，本文介绍更多约束相关内容。 请安装最新的 tip 版本，方便验证本文的内容。当然，也可以通过 https://gotipplay.golang.org/ 在线验证。 01 语法变更 上次提到，定义约束的语法类似这样： type Addable interface { type int, int8, int16, int32, int64, uint, uint8, uint16, uint32, uint64, uintptr, float32, float64, complex64, complex128, string } 不过目前已经确认，语法改成如下形式： type Addable interface { int |</description>
-    </item>
-    
-    <item>
-      <title>Go1.18 快讯：Module 工作区模式</title>
-      <link>https://polarisxu.studygolang.com/posts/go/dynamic/go1.18-workspace/</link>
-      <pubDate>Wed, 10 Nov 2021 22:00:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/dynamic/go1.18-workspace/</guid>
-      <description>大家好，我是 polarisxu。 工作区模式（Workspace mode），可不是之前 GOPATH 时代的 Workspace，而是希望在本地开发时支持多 Module。 01 缘起 为了大家全面理解工作区模式，通过一个具体例子讲解。 本地有两个项目，分别是两个 module：mypkg 和 example。（Windows 系统请按自己方式创建目录） $ cd ~/ $ mkdir polarisxu $ cd polarisxu $ mkdir mypkg example $ cd mypkg $ go mod init github.com/polaris1119/mypkg</description>
     </item>
     
   </channel>

@@ -71,6 +71,48 @@
 		
         <div class="post animated fadeInDown">
             <div class="post-title">
+                <h2><a href="/posts/go/dynamic/go-opensource-11-years/">祝贺 Go 开源 11 周年</a>
+                </h2>
+            </div>
+            <div class="post-content">
+                <div class="p_part"><p>题图来自《了不起的程序员》 今天是 Go 语言开源 11 周年。有些人可能不太知道，简单回顾下 Go 的历史。 2007 年 Rob Pike, Robert Griesemer 和 Ken Thompson 一起创建了 Go 语言。从代码提交记录看，2008 年 3 月 3 日有了 Go 最初的规范 。 2009 年 11 月 10 日，Go 语言以开放源代码的方式向全球发布，当年获得了 TIOBE 年度编程语言称号； 2011 年 3 月 16 日，Go 语言的第一个稳定版本 r56 发布； 2012 年 3 月 28 日，Go 语言的第一个正式版本 Go1 发布，并承诺</p></div>
+            </div>
+            <div class="post-footer">
+                <div class="meta">
+                    <div class="info"><em class="fas fa-calendar-day"></em><span
+                                class="date">2020-11-10</span>
+                        <a class="tag"
+                                   href="/tags/golang/">Golang</a><a class="tag"
+                                   href="/tags/go/">Go</a><a class="tag"
+                                   href="/tags/%E5%9B%BE%E4%B9%A6/">图书</a>
+                    </div>
+                </div>
+            </div>
+				</div>
+    
+        <div class="post animated fadeInDown">
+            <div class="post-title">
+                <h2><a href="/posts/go/translation/rust-vs-go/">客观、全面的比较 Rust 与 Go</a>
+                </h2>
+            </div>
+            <div class="post-content">
+                <div class="p_part"><p>最近一年，将 Rust 和 Go 进行比较的不少，但不少都不公正，带感情色彩。而这篇文章客观、全面的分析对比了 Rust 和 Go，让你具体项目时选择最合适的。 Rust 还是 Go，哪个更好？你应该为下一个项目选择哪种语言，为什么？两者在性能，简单性，安全性，功能，规模和并发性等方面如何比较？它们有什么共同点，并且在根本上有何不同？来自 For the Go of Love 系列图书的作者，友好而公正的比较 Rust 和 Golang。</p></div>
+            </div>
+            <div class="post-footer">
+                <div class="meta">
+                    <div class="info"><em class="fas fa-calendar-day"></em><span
+                                class="date">2020-11-10</span>
+                        <a class="tag"
+                                   href="/tags/golang/">Golang</a><a class="tag"
+                                   href="/tags/go/">Go</a><a class="tag"
+                                   href="/tags/rust/">Rust</a>
+                    </div>
+                </div>
+            </div>
+				</div>
+    
+        <div class="post animated fadeInDown">
+            <div class="post-title">
                 <h2><a href="/posts/go/micro/micro-3.0.0-m3o/">关于 Go 语言微服务框架 Micro 的一些情况说明</a>
                 </h2>
             </div>
@@ -227,48 +269,6 @@
                 <div class="meta">
                     <div class="info"><em class="fas fa-calendar-day"></em><span
                                 class="date">2020-10-26</span>
-                        <a class="tag"
-                                   href="/tags/go/">Go</a><a class="tag"
-                                   href="/tags/cockroachdb/">CockroachDB</a><a class="tag"
-                                   href="/tags/error/">error</a>
-                    </div>
-                </div>
-            </div>
-				</div>
-    
-        <div class="post animated fadeInDown">
-            <div class="post-title">
-                <h2><a href="/posts/go/translation/go-formatting-apis/">Go 格式化 API —  CockroachDB errors 库（第2篇）</a>
-                </h2>
-            </div>
-            <div class="post-content">
-                <div class="p_part"><p>这篇文章是关于 “CockroachDB errors 库” 的系列文章的第 2 篇，“CockroachDB errors 库”实际上是 Go 的标准 errors 包的通用、开放源码的替代品。 以下面的代码为例： import &#34;fmt&#34; type T struct { x int } func main() { v := T{123} fmt.Println(v) } 这个程序打印 {123}，尽管我们没有教 Go 如何打印我们的 T 类型。它是如何做到这一点的？ printer 的等效性 fmt 包中的逻辑在所有 printer 之间共享，因此以下调用都保证等效： fmt.Print(x) fmt.Printf(&quot;%v&quot;, x) os.Stdout.Write([]byte(fmt.Sprint(x))) os.Stdout.Write([]byte(fmt.Sprintf(&quot;%v&quot;, x))) 换句话说</p></div>
-            </div>
-            <div class="post-footer">
-                <div class="meta">
-                    <div class="info"><em class="fas fa-calendar-day"></em><span
-                                class="date">2020-10-24</span>
-                        <a class="tag"
-                                   href="/tags/go/">Go</a><a class="tag"
-                                   href="/tags/cockroachdb/">CockroachDB</a><a class="tag"
-                                   href="/tags/error/">error</a>
-                    </div>
-                </div>
-            </div>
-				</div>
-    
-        <div class="post animated fadeInDown">
-            <div class="post-title">
-                <h2><a href="/posts/go/translation/cockroachdb-errors-std-api/">Go 标准错误 API — CockroachDB errors 库（第1篇）</a>
-                </h2>
-            </div>
-            <div class="post-content">
-                <div class="p_part"><p>这篇文章是关于 “CockroachDB errors 库” 的系列文章的第 1 篇，“CockroachDB errors 库”实际上是 Go 的标准 errors 包的通用、开放源码的替代品。 那本篇文章主要谈论什么呢？ 基本的 Go 错误：error 是值 Go 生态有一些非常流行、也非常基本的学习资源（文档）： A Tour of Go: Errors 。这是 Go 的官方教程。 Go By Example: errors 。Go By Example 是一些系列文章，推荐给那些希望通过示例学习 Go 的朋友们。 Goland Docs: Errors and Exception handling</p></div>
-            </div>
-            <div class="post-footer">
-                <div class="meta">
-                    <div class="info"><em class="fas fa-calendar-day"></em><span
-                                class="date">2020-10-23</span>
                         <a class="tag"
                                    href="/tags/go/">Go</a><a class="tag"
                                    href="/tags/cockroachdb/">CockroachDB</a><a class="tag"

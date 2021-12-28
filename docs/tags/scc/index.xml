@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>scc on polarisxu</title>
+    <link>https://polarisxu.studygolang.com/tags/scc/</link>
+    <description>Recent content in scc on polarisxu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
+    <lastBuildDate>Tue, 28 Dec 2021 22:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/scc/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2021 年你写了多少代码？这个 Go 工具帮你统计</title>
+      <link>https://polarisxu.studygolang.com/posts/devtool/scc/</link>
+      <pubDate>Tue, 28 Dec 2021 22:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/devtool/scc/</guid>
+      <description>大家好，我是 polarisxu。 2021 年马上要过完了，一年下来，你写了多少代码？其中 Go 代码又有多少呢？虽然大家一般讨厌将代码行数作为考核业绩指标，但我们自己对一年的代码量有一个基本掌握还是挺有必要的。 如果你搜索，会发现代码统计工具有很多。比如 sloccount 、github.com/AlDanial/cloc 等，似乎大家很喜欢统计代码行数。当然，也有人直接使用 grep、awk 之</description>
+    </item>
+    
+  </channel>
+</rss>

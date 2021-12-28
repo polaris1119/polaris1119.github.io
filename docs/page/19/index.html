@@ -71,6 +71,46 @@
 		
         <div class="post animated fadeInDown">
             <div class="post-title">
+                <h2><a href="/posts/talk/sell-my-book/">从签名售书说起</a>
+                </h2>
+            </div>
+            <div class="post-content">
+                <div class="p_part"><p>上周通过公众号对外公布新手开卖后，有人想要签名版。由于双作者，涉及到双签，知道可能会很麻烦，但第一次，也有可能是最后一次，和煎鱼沟通后决定搞搞。 大概谈谈我们的操作过程。 1、编辑帮我们买书，104 本；也是想办法弄到了当时最便宜的价格； 2、寄到我家里。周六、日分批到的，去封皮签名，大部分还写了一些 Go 箴言，但还有 26 本周末没到； 3、弄好后寄到深圳。用什么快递也是有讲</p></div>
+            </div>
+            <div class="post-footer">
+                <div class="meta">
+                    <div class="info"><em class="fas fa-calendar-day"></em><span
+                                class="date">2020-07-09</span>
+                        <a class="tag"
+                                   href="/tags/go/">Go</a><a class="tag"
+                                   href="/tags/%E5%9B%BE%E4%B9%A6/">图书</a>
+                    </div>
+                </div>
+            </div>
+				</div>
+    
+        <div class="post animated fadeInDown">
+            <div class="post-title">
+                <h2><a href="/posts/talk/my-first-action-book/">重磅！史上第一本带你做项目的 Go 图书开卖</a>
+                </h2>
+            </div>
+            <div class="post-content">
+                <div class="p_part"><p>2020 年过去了一半，这半年对所有人来说都不寻常。但也是这场疫情，让我完成了一件大事：出了一本 Go 语言图书，书名是：《Go 语言编程之旅：一起用 Go 做项目》。 海报 先上海报： 全书共分为 6 章，分别是命令行应用、HTTP 应用、RPC 应用、WebSocket 应用、进程内缓存和 Go 语言中的大杀器，其中前 5 章是 Go 语言开发中最常见的项目类型。本书对项目开发、细节分析、运行时分析等核心内</p></div>
+            </div>
+            <div class="post-footer">
+                <div class="meta">
+                    <div class="info"><em class="fas fa-calendar-day"></em><span
+                                class="date">2020-07-02</span>
+                        <a class="tag"
+                                   href="/tags/go/">Go</a><a class="tag"
+                                   href="/tags/%E5%9B%BE%E4%B9%A6/">图书</a>
+                    </div>
+                </div>
+            </div>
+				</div>
+    
+        <div class="post animated fadeInDown">
+            <div class="post-title">
                 <h2><a href="/posts/go/translation/go-is-awesome/">从这些角度看 Go 是一门很棒的语言</a>
                 </h2>
             </div>
@@ -323,49 +363,6 @@ Go 1.14 添加了对嵌入重叠接口的支持，我们也添加了此功能！
                                    href="/tags/echo/">echo</a><a class="tag"
                                    href="/tags/web%E6%A1%86%E6%9E%B6/">web框架</a><a class="tag"
                                    href="/tags/%E6%A8%A1%E6%9D%BF%E5%BC%95%E6%93%8E/">模板引擎</a>
-                    </div>
-                </div>
-            </div>
-				</div>
-    
-        <div class="post animated fadeInDown">
-            <div class="post-title">
-                <h2><a href="/posts/go/echo/custom05-error-handler/">Echo 系列教程——定制篇5：自定义 HTTP Error Handler，让 HTTP 错误处理更友好</a>
-                </h2>
-            </div>
-            <div class="post-content">
-                <div class="p_part"><p>Echo 倡导通过从中间件和 Handler 返回错误来进行集中式 HTTP 错误处理。集中式错误处理程序使我们能够从统一位置将错误记录到外部服务，并向客户端发送自定义的 HTTP 响应。本节一起学习如何定制化，进行集中式错误处理。 默认的错误处理 在定制篇 4 中，我们讲到了 Render。如果在 Handler 中调用了 Render，但是并没有给 Echo.Renderer 赋值或其他原因，导致出错，页面看到的信息如下： { &#34;message&#34;: &#34;Internal Server Error&#34; } 这是 Echo 默认的 HTTP Error H</p></div>
-            </div>
-            <div class="post-footer">
-                <div class="meta">
-                    <div class="info"><em class="fas fa-calendar-day"></em><span
-                                class="date">2020-03-16</span>
-                        <a class="tag"
-                                   href="/tags/echo/">echo</a><a class="tag"
-                                   href="/tags/web%E6%A1%86%E6%9E%B6/">web框架</a><a class="tag"
-                                   href="/tags/%E6%A8%A1%E6%9D%BF%E5%BC%95%E6%93%8E/">模板引擎</a>
-                    </div>
-                </div>
-            </div>
-				</div>
-    
-        <div class="post animated fadeInDown">
-            <div class="post-title">
-                <h2><a href="/posts/go/echo/custom06-ext-server/">Echo 系列教程——定制篇6：自定义 Server 相关，替换或扩展默认的 Server</a>
-                </h2>
-            </div>
-            <div class="post-content">
-                <div class="p_part"><p>这是定制篇的最后一节，讲解 Server 的自定义。 默认 Server 通常情况下，Echo 通过如下方式启动一个 HTTP Server： e := echo.New() e.GET(&#34;/&#34;, func(c echo.Context) error { return c.String(http.StatusOK, &#34;Hello, World!&#34;) }) e.Logger.Fatal(e.Start(&#34;:2020&#34;)) 我们打开源码一探究竟： // Start starts an HTTP server. func (e *Echo) Start(address string) error { e.Server.Addr = address return e.StartServer(e.Server) } 原来调用的是 StartServer，参数是默认的 Server 实例，它是一个 http.Server 的指针类型。 自定义 Server 知道了 Echo#Start 最终调用的是 Echo#StartServer，而且它的参数是一个 *http.Server 类型，所以自</p></div>
-            </div>
-            <div class="post-footer">
-                <div class="meta">
-                    <div class="info"><em class="fas fa-calendar-day"></em><span
-                                class="date">2020-03-16</span>
-                        <a class="tag"
-                                   href="/tags/echo/">echo</a><a class="tag"
-                                   href="/tags/web%E6%A1%86%E6%9E%B6/">web框架</a><a class="tag"
-                                   href="/tags/%E6%89%A9%E5%B1%95/">扩展</a><a class="tag"
-                                   href="/tags/server/">server</a>
                     </div>
                 </div>
             </div>

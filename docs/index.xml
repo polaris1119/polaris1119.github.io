@@ -7,7 +7,25 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Sun, 26 Dec 2021 22:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 28 Dec 2021 22:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2021 年你写了多少代码？这个 Go 工具帮你统计</title>
+      <link>https://polarisxu.studygolang.com/posts/devtool/scc/</link>
+      <pubDate>Tue, 28 Dec 2021 22:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/devtool/scc/</guid>
+      <description>大家好，我是 polarisxu。 2021 年马上要过完了，一年下来，你写了多少代码？其中 Go 代码又有多少呢？虽然大家一般讨厌将代码行数作为考核业绩指标，但我们自己对一年的代码量有一个基本掌握还是挺有必要的。 如果你搜索，会发现代码统计工具有很多。比如 sloccount 、github.com/AlDanial/cloc 等，似乎大家很喜欢统计代码行数。当然，也有人直接使用 grep、awk 之</description>
+    </item>
+    
+    <item>
+      <title>掌握泛型：GopherCon2021 上的泛型演讲主题</title>
+      <link>https://polarisxu.studygolang.com/posts/go/generics/gophercon2021-generics/</link>
+      <pubDate>Tue, 28 Dec 2021 20:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/generics/gophercon2021-generics/</guid>
+      <description>大家好，我是 polarisxu。 2021 年 12 月初，GopherCon2021 举办，Robert Griesemer 和 Ian Lance Taylor 做了关于泛型的主题演讲。 https://www.youtube.com/watch?v=Pa_e9EeCdy8&amp;list=RDCMUCx9QVEApa5BKLw9r8cnOFEA&amp;index=1</description>
+    </item>
+    
     <item>
       <title>Go1.18 新特性：TryLock</title>
       <link>https://polarisxu.studygolang.com/posts/go/dynamic/go1.18-trylock/</link>
@@ -78,24 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/action/functional-options-pattern/</guid>
       <description>大家好，我是 polarisxu。 Go 不是完全面向对象语言，有一些面向对象模式不太适合它。但经过这些年的发展，Go 有自己的一些模式。今天介绍一个常见的模式：函数式选项模式（Functional Options Pattern）。 01 什么是函数式选项模式 Go 语言没有构造函数，一般通过定义 New 函数来充当构造函数。然而，如果结构有较多字段，要初始化这些字段，有很多种方式，但有一种方式认为是</description>
-    </item>
-    
-    <item>
-      <title>Go泛型系列：slices 包讲解</title>
-      <link>https://polarisxu.studygolang.com/posts/go/generics/generics-slices/</link>
-      <pubDate>Sat, 27 Nov 2021 20:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/generics/generics-slices/</guid>
-      <description>大家好，我是 polarisxu。 前段时间，Russ Cox 明确了泛型相关的事情 ，原计划在标准库中加入泛型相关的包，改放到 golang.org/x/exp 下。 目前，Go 泛型的主要设计者 ianlancetaylor 完成了 slices 和 maps 包的开发，代码提交到了 golang.org/x/exp 中，如果经过使用、讨论等，社区认可后，预计在 1.19 中会合入标准库中。 今天，通过学习 slices 包，掌握 Go 泛型的使用方法。 01 为什么增加 slices 包 标准库有 bytes 和 strings 包，分别用来处理 []byte 和 string 类型，提供了众多方</description>
-    </item>
-    
-    <item>
-      <title>Nginx 竟然也有 playground — Go 语言构建的</title>
-      <link>https://polarisxu.studygolang.com/posts/devtool/an-nginx-playground/</link>
-      <pubDate>Sun, 21 Nov 2021 20:00:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/devtool/an-nginx-playground/</guid>
-      <description>大家好，我是 polarisxu。 曾几何时，playground 似乎成了新语言的标配：Go 发布就带有 https://play.golang.org/ ，Rust 发布也有 https://play.rust-lang.org/ 。你想过 Nginx 也有一个 playground 吗？你可以通过它方便的测试 Nginx 配置。 今天发现，还真有一个，地址：https://nginx-playground.wizardzines.com 。关键是，后端使用 Go 构建的。 以下是该网址的截图： 本文简单介绍下这个 playgr</description>
     </item>
     
   </channel>

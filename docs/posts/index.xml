@@ -6,8 +6,124 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en</language>
 		<copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-		<lastBuildDate>Sun, 26 Dec 2021 22:30:00 +0800</lastBuildDate>
+		<lastBuildDate>Tue, 28 Dec 2021 22:30:00 +0800</lastBuildDate>
 		<atom:link href="https://polarisxu.studygolang.com/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>2021 年你写了多少代码？这个 Go 工具帮你统计</title>
+			<link>https://polarisxu.studygolang.com/posts/devtool/scc/</link>
+			<pubDate>Tue, 28 Dec 2021 22:30:00 +0800</pubDate>
+			
+			<guid>https://polarisxu.studygolang.com/posts/devtool/scc/</guid>
+			<description>大家好，我是 polarisxu。 2021 年马上要过完了，一年下来，你写了多少代码？其中 Go 代码又有多少呢？虽然大家一般讨厌将代码行数作为考核业绩指标，但我们自己对一年的代码量有一个基本掌握还是挺有必要的。 如果你搜索，会发现代码统计工具有很多。比如 sloccount 、github.com/AlDanial/cloc 等，似乎大家很喜欢统计代码行数。当然，也有人直接使用 grep、awk 之</description>
+			<content type="html"><![CDATA[<p>大家好，我是 polarisxu。</p>
+<p>2021 年马上要过完了，一年下来，你写了多少代码？其中 Go 代码又有多少呢？虽然大家一般讨厌将代码行数作为考核业绩指标，但我们自己对一年的代码量有一个基本掌握还是挺有必要的。</p>
+<p>如果你搜索，会发现代码统计工具有很多。比如 <a href="https://dwheeler.com/sloccount/" target="_blank" rel="noopener">sloccount</a>
+、github.com/AlDanial/cloc 等，似乎大家很喜欢统计代码行数。当然，也有人直接使用 grep、awk 之类的工具。</p>
+<p>本文简单对比两个工具：cloc 和 scc。</p>
+<p>这两个工具的原理类似。在 Mac 下，通过 brew 安装：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ brew install cloc scc
+</code></pre></div><p>其中 cloc 使用 Perl 实现，有 13.1k+ Star；而 scc 是 Go 实现的，项目地址：<a href="https://github.com/boyter/scc" target="_blank" rel="noopener">https://github.com/boyter/scc</a>
+，有 3k+ Star。</p>
+<p>使用这两个工具统计 github.com/studygolang/studygolang 项目。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ cloc .
+    <span class="m">4287</span> text files.
+    <span class="m">4028</span> unique files.
+Complex regular subexpression recursion limit <span class="o">(</span>32766<span class="o">)</span> exceeded at /usr/local/Cellar/cloc/1.82/libexec/bin/cloc line 9334.
+     <span class="m">580</span> files ignored.
+
+github.com/AlDanial/cloc v 1.82  <span class="nv">T</span><span class="o">=</span>5.68 s <span class="o">(</span>658.0 files/s, 85679.8 lines/s<span class="o">)</span>
+--------------------------------------------------------------------------------
+Language                      files          blank        comment           code
+--------------------------------------------------------------------------------
+JavaScript                     <span class="m">2458</span>          <span class="m">32504</span>          <span class="m">90981</span>         <span class="m">174284</span>
+JSON                            <span class="m">415</span>            <span class="m">127</span>              <span class="m">0</span>          <span class="m">86826</span>
+Markdown                        <span class="m">359</span>          <span class="m">13566</span>              <span class="m">0</span>          <span class="m">31219</span>
+Go                              <span class="m">200</span>           <span class="m">4962</span>           <span class="m">2238</span>          <span class="m">20772</span>
+HTML                            <span class="m">153</span>           <span class="m">1019</span>             <span class="m">79</span>          <span class="m">14358</span>
+CSS                              <span class="m">42</span>           <span class="m">1219</span>            <span class="m">292</span>           <span class="m">6952</span>
+YAML                             <span class="m">45</span>             <span class="m">56</span>             <span class="m">12</span>           <span class="m">1209</span>
+SQL                               <span class="m">2</span>             <span class="m">74</span>              <span class="m">0</span>            <span class="m">847</span>
+XML                              <span class="m">10</span>            <span class="m">137</span>            <span class="m">489</span>            <span class="m">790</span>
+TypeScript                       <span class="m">15</span>             <span class="m">33</span>            <span class="m">228</span>            <span class="m">293</span>
+SVG                              <span class="m">15</span>              <span class="m">0</span>              <span class="m">0</span>            <span class="m">279</span>
+INI                               <span class="m">2</span>             <span class="m">41</span>             <span class="m">46</span>            <span class="m">144</span>
+XSLT                              <span class="m">1</span>              <span class="m">8</span>              <span class="m">1</span>            <span class="m">101</span>
+make                              <span class="m">6</span>             <span class="m">44</span>              <span class="m">4</span>             <span class="m">95</span>
+Bourne Shell                      <span class="m">3</span>              <span class="m">9</span>             <span class="m">11</span>             <span class="m">50</span>
+DOS Batch                         <span class="m">4</span>             <span class="m">26</span>              <span class="m">0</span>             <span class="m">44</span>
+diff                              <span class="m">1</span>              <span class="m">6</span>             <span class="m">20</span>             <span class="m">25</span>
+Nix                               <span class="m">1</span>              <span class="m">1</span>              <span class="m">0</span>             <span class="m">19</span>
+zsh                               <span class="m">1</span>              <span class="m">4</span>             <span class="m">14</span>              <span class="m">7</span>
+Bourne Again Shell                <span class="m">1</span>              <span class="m">4</span>             <span class="m">16</span>              <span class="m">7</span>
+Dockerfile                        <span class="m">1</span>              <span class="m">4</span>              <span class="m">1</span>              <span class="m">5</span>
+CoffeeScript                      <span class="m">2</span>              <span class="m">1</span>              <span class="m">0</span>              <span class="m">1</span>
+--------------------------------------------------------------------------------
+SUM:                           <span class="m">3737</span>          <span class="m">53845</span>          <span class="m">94432</span>         <span class="m">338327</span>
+--------------------------------------------------------------------------------
+</code></pre></div><p>统计花了近 6 秒。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ scc
+───────────────────────────────────────────────────────────────────────────────
+Language                 Files     Lines     Code  Comments   Blanks Complexity
+───────────────────────────────────────────────────────────────────────────────
+JavaScript                <span class="m">2523</span>    <span class="m">298987</span>   <span class="m">207834</span>     <span class="m">63356</span>    <span class="m">27797</span>      <span class="m">33769</span>
+JSON                       <span class="m">419</span>     <span class="m">31849</span>    <span class="m">31660</span>         <span class="m">0</span>      <span class="m">189</span>          <span class="m">0</span>
+Markdown                   <span class="m">375</span>     <span class="m">46820</span>    <span class="m">32663</span>         <span class="m">0</span>    <span class="m">14157</span>          <span class="m">0</span>
+License                    <span class="m">275</span>      <span class="m">6279</span>     <span class="m">5081</span>         <span class="m">0</span>     <span class="m">1198</span>          <span class="m">0</span>
+Go                         <span class="m">200</span>     <span class="m">27972</span>    <span class="m">20776</span>      <span class="m">2243</span>     <span class="m">4953</span>       <span class="m">4447</span>
+HTML                       <span class="m">154</span>     <span class="m">15617</span>    <span class="m">14525</span>        <span class="m">79</span>     <span class="m">1013</span>          <span class="m">0</span>
+YAML                        <span class="m">51</span>      <span class="m">1303</span>     <span class="m">1247</span>         <span class="m">0</span>       <span class="m">56</span>          <span class="m">0</span>
+CSS                         <span class="m">44</span>      <span class="m">8463</span>     <span class="m">6952</span>       <span class="m">297</span>     <span class="m">1214</span>          <span class="m">0</span>
+Plain Text                  <span class="m">34</span>    <span class="m">594575</span>   <span class="m">594394</span>         <span class="m">0</span>      <span class="m">181</span>          <span class="m">0</span>
+TypeScript Typings          <span class="m">17</span>       <span class="m">741</span>      <span class="m">367</span>       <span class="m">340</span>       <span class="m">34</span>         <span class="m">27</span>
+SVG                         <span class="m">15</span>       <span class="m">279</span>      <span class="m">279</span>         <span class="m">0</span>        <span class="m">0</span>          <span class="m">0</span>
+XML                         <span class="m">10</span>      <span class="m">1416</span>      <span class="m">790</span>       <span class="m">516</span>      <span class="m">110</span>          <span class="m">0</span>
+Makefile                     <span class="m">6</span>       <span class="m">143</span>       <span class="m">95</span>         <span class="m">4</span>       <span class="m">44</span>          <span class="m">6</span>
+gitignore                    <span class="m">5</span>        <span class="m">64</span>       <span class="m">45</span>         <span class="m">3</span>       <span class="m">16</span>          <span class="m">0</span>
+Batch                        <span class="m">4</span>        <span class="m">70</span>       <span class="m">42</span>         <span class="m">2</span>       <span class="m">26</span>          <span class="m">5</span>
+Shell                        <span class="m">3</span>        <span class="m">70</span>       <span class="m">47</span>        <span class="m">14</span>        <span class="m">9</span>         <span class="m">13</span>
+CoffeeScript                 <span class="m">3</span>         <span class="m">2</span>        <span class="m">1</span>         <span class="m">0</span>        <span class="m">1</span>          <span class="m">0</span>
+Patch                        <span class="m">2</span>      <span class="m">1527</span>     <span class="m">1430</span>         <span class="m">0</span>       <span class="m">97</span>          <span class="m">0</span>
+SQL                          <span class="m">2</span>       <span class="m">921</span>      <span class="m">847</span>         <span class="m">0</span>       <span class="m">74</span>          <span class="m">0</span>
+Nix                          <span class="m">1</span>        <span class="m">20</span>       <span class="m">19</span>         <span class="m">0</span>        <span class="m">1</span>          <span class="m">0</span>
+Zsh                          <span class="m">1</span>        <span class="m">25</span>        <span class="m">6</span>        <span class="m">15</span>        <span class="m">4</span>          <span class="m">0</span>
+Fish                         <span class="m">1</span>        <span class="m">10</span>        <span class="m">1</span>         <span class="m">7</span>        <span class="m">2</span>          <span class="m">0</span>
+Dockerfile                   <span class="m">1</span>        <span class="m">10</span>        <span class="m">5</span>         <span class="m">1</span>        <span class="m">4</span>          <span class="m">0</span>
+BASH                         <span class="m">1</span>        <span class="m">27</span>        <span class="m">6</span>        <span class="m">17</span>        <span class="m">4</span>          <span class="m">0</span>
+───────────────────────────────────────────────────────────────────────────────
+Total                     <span class="m">4147</span>   <span class="m">1037190</span>   <span class="m">919112</span>     <span class="m">66894</span>    <span class="m">51184</span>      <span class="m">38267</span>
+───────────────────────────────────────────────────────────────────────────────
+Estimated Cost to Develop <span class="nv">$34</span>,924,659
+Estimated Schedule Effort 59.194452 months
+Estimated People Required 69.888518
+───────────────────────────────────────────────────────────────────────────────
+</code></pre></div><p>scc 速度很快，几乎瞬间完成。</p>
+<p>这两个工具的功能类似，但也会有差别。不过 scc 速度快很多，无疑，大家应该会更喜欢 Go 语言实现的 scc。</p>
+<p>scc，又叫做  Sloc、Cloc 和 Code，即取这三个单词的首字母：SCC。scc 是一个非常快速准确的代码计数器，具有复杂度计算和 COCOMO 估计，用纯 Go 编写。</p>
+<p>scc 允许查看代码使用的每种编程语言、行数、注释、文件等。这是一个非常快速且有用的工具。大部分语言 scc 都支持，通过 <code>scc --languages</code> 查看支持的语言，目前有 201 种。</p>
+<p>在第一届 GopherCon AU 上 scc 作者 boyter 作了关于 scc 设计和实现的演讲，这里有 PPT：<a href="https://boyter.org/static/gophercon-syd-presentation/" target="_blank" rel="noopener">https://boyter.org/static/gophercon-syd-presentation/</a>
+，也有视频：<a href="https://www.youtube.com/watch?v=jd-sjoy3GZo" target="_blank" rel="noopener">https://www.youtube.com/watch?v=jd-sjoy3GZo</a>
+。</p>
+<p>关于 scc 的更多信息，可以访问项目首页查看：<a href="https://github.com/boyter/scc" target="_blank" rel="noopener">https://github.com/boyter/scc</a>
+。</p>
+<hr>
+<p>如果要统计 2021 年你写了多少代码，可能不是简单地运行 scc 就能搞定，因为多半代码不是你一个人写的，可能需要借助 git 辅助。有兴趣的小伙伴可以研究研究。</p>
+]]></content>
+		</item>
+		
+		<item>
+			<title>掌握泛型：GopherCon2021 上的泛型演讲主题</title>
+			<link>https://polarisxu.studygolang.com/posts/go/generics/gophercon2021-generics/</link>
+			<pubDate>Tue, 28 Dec 2021 20:30:00 +0800</pubDate>
+			
+			<guid>https://polarisxu.studygolang.com/posts/go/generics/gophercon2021-generics/</guid>
+			<description>大家好，我是 polarisxu。 2021 年 12 月初，GopherCon2021 举办，Robert Griesemer 和 Ian Lance Taylor 做了关于泛型的主题演讲。 https://www.youtube.com/watch?v=Pa_e9EeCdy8&amp;list=RDCMUCx9QVEApa5BKLw9r8cnOFEA&amp;index=1</description>
+			<content type="html"><![CDATA[<p>大家好，我是 polarisxu。</p>
+<p>2021 年 12 月初，GopherCon2021 举办，Robert Griesemer 和 Ian Lance Taylor 做了关于泛型的主题演讲。</p>
+<p><a href="https://www.youtube.com/watch?v=Pa_e9EeCdy8&amp;list=RDCMUCx9QVEApa5BKLw9r8cnOFEA&amp;index=1" target="_blank" rel="noopener">https://www.youtube.com/watch?v=Pa_e9EeCdy8&list=RDCMUCx9QVEApa5BKLw9r8cnOFEA&index=1</a>
+</p>
+]]></content>
+		</item>
 		
 		<item>
 			<title>Go1.18 新特性：TryLock</title>
