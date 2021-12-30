@@ -2,22 +2,28 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://polarisxu.studygolang.com/tags/go/</loc>
+    <lastmod>2021-12-30T13:00:00+08:00</lastmod>
+  </url><url>
+    <loc>https://polarisxu.studygolang.com/</loc>
+    <lastmod>2021-12-30T13:00:00+08:00</lastmod>
+  </url><url>
+    <loc>https://polarisxu.studygolang.com/tags/singleflight/</loc>
+    <lastmod>2021-12-30T13:00:00+08:00</lastmod>
+  </url><url>
+    <loc>https://polarisxu.studygolang.com/tags/</loc>
+    <lastmod>2021-12-30T13:00:00+08:00</lastmod>
+  </url><url>
+    <loc>https://polarisxu.studygolang.com/posts/</loc>
+    <lastmod>2021-12-30T13:00:00+08:00</lastmod>
+  </url><url>
+    <loc>https://polarisxu.studygolang.com/posts/go/pkg/singleflight-generic/</loc>
+    <lastmod>2021-12-30T13:00:00+08:00</lastmod>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/devtool/scc/</loc>
     <lastmod>2021-12-28T22:30:00+08:00</lastmod>
   </url><url>
-    <loc>https://polarisxu.studygolang.com/tags/go/</loc>
-    <lastmod>2021-12-28T22:30:00+08:00</lastmod>
-  </url><url>
-    <loc>https://polarisxu.studygolang.com/</loc>
-    <lastmod>2021-12-28T22:30:00+08:00</lastmod>
-  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/scc/</loc>
-    <lastmod>2021-12-28T22:30:00+08:00</lastmod>
-  </url><url>
-    <loc>https://polarisxu.studygolang.com/tags/</loc>
-    <lastmod>2021-12-28T22:30:00+08:00</lastmod>
-  </url><url>
-    <loc>https://polarisxu.studygolang.com/posts/</loc>
     <lastmod>2021-12-28T22:30:00+08:00</lastmod>
   </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/generics/gophercon2021-generics/</loc>
@@ -1135,8 +1141,6 @@
   </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/echo/echo/</loc>
     <lastmod>2019-10-21T13:42:51+08:00</lastmod>
-  </url><url>
-    <loc>https://polarisxu.studygolang.com/posts/go/pkg/singleflight-generic/</loc>
   </url><url>
     <loc>https://polarisxu.studygolang.com/posts/systemprogramming/go/01/</loc>
   </url>

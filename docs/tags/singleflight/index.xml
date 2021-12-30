@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>singleflight on polarisxu</title>
+    <link>https://polarisxu.studygolang.com/tags/singleflight/</link>
+    <description>Recent content in singleflight on polarisxu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
+    <lastBuildDate>Thu, 30 Dec 2021 13:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/singleflight/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>泛型版 singleflight：Go 中如何防止缓存击穿？</title>
+      <link>https://polarisxu.studygolang.com/posts/go/pkg/singleflight-generic/</link>
+      <pubDate>Thu, 30 Dec 2021 13:00:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/pkg/singleflight-generic/</guid>
+      <description>大家好，我是 polarisxu。 并发是 Go 的优势，但并发也需要很好的进行控制。标准库中有 sync 包，经常使用的功能有 sync.Mutex、sync.WaitGroup 等。其实，除了标准库，还有一个官方的扩展库，也叫 sync，其中有一个子包：sync/singleflight，专门做并发控制，比如防止缓存击穿。 01 从例子说起 看一个模拟缓存的例子，有如下代码： package main import ( &amp;#34;errors&amp;#34; &amp;#34;flag&amp;#34;</description>
+    </item>
+    
+  </channel>
+</rss>
