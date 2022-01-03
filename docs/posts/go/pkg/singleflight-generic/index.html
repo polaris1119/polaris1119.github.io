@@ -10,7 +10,7 @@
 <meta itemprop="name" content="泛型版 singleflight：Go 中如何防止缓存击穿？">
 <meta itemprop="description" content="大家好，我是 polarisxu。 并发是 Go 的优势，但并发也需要很好的进行控制。标准库中有 sync 包，经常使用的功能有 sync.Mutex、sync.WaitGroup 等。其实，除了标准库，还有一个官方的扩展库，也叫 sync，其中有一个子包：sync/singleflight，专门做并发控制，比如防止缓存击穿。 01 从例子说起 看一个模拟缓存的例子，有如下代码： package main import ( &#34;errors&#34; &#34;flag&#34;"><meta itemprop="datePublished" content="2021-12-30T13:00:00+08:00" />
 <meta itemprop="dateModified" content="2021-12-30T13:00:00+08:00" />
-<meta itemprop="wordCount" content="1904">
+<meta itemprop="wordCount" content="1908">
 <meta itemprop="keywords" content="Go,singleflight," /><meta property="og:title" content="泛型版 singleflight：Go 中如何防止缓存击穿？" />
 <meta property="og:description" content="大家好，我是 polarisxu。 并发是 Go 的优势，但并发也需要很好的进行控制。标准库中有 sync 包，经常使用的功能有 sync.Mutex、sync.WaitGroup 等。其实，除了标准库，还有一个官方的扩展库，也叫 sync，其中有一个子包：sync/singleflight，专门做并发控制，比如防止缓存击穿。 01 从例子说起 看一个模拟缓存的例子，有如下代码： package main import ( &#34;errors&#34; &#34;flag&#34;" />
 <meta property="og:type" content="article" />
@@ -220,7 +220,7 @@
 <span class="nv">shared</span><span class="o">===</span> <span class="nb">true</span>
 2021/12/30 11:55:44 <span class="p">&amp;</span><span class="o">{</span><span class="m">1</span> polarisxu<span class="o">}</span>
 </code></pre></div><p>和预期一样，findArticleFromDB 只执行了一次，shared 的值也表示结果被多个调用者共享。</p>
-<p>所以，使用 Go 后，再也不需要通过类似 Redis 中的 SETNX 这样的命令来实现类似的功能了。</p>
+<p>所以，使用 Go 后，本地缓存再也不需要通过类似 Redis 中的 SETNX 这样的命令来实现类似的功能了。</p>
 <h2 id="03-forget-的用途">03 Forget 的用途<a href="#03-forget-的用途" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>上面 Group 的方法中，有一个没有给任何注释，即 Forget。从名字猜到，用来忘掉什么，那具体什么意思呢？</p>
 <p>通过上面的例子，我们知晓，通过 Do，可以实现多个并发调用只执行回调函数一次，并共享相同的结果。而 Forget 的作用是：</p>
@@ -283,7 +283,7 @@
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://polarisxu.studygolang.com/tags/go">Go</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/singleflight">singleflight</a></span>
 				</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1904 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1908 字</p>
 				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2021-12-30 13:00 &#43;0800</p>
 			</footer>
 		</article>
@@ -300,6 +300,9 @@
 </nav>
 		</aside>
 		<div class="post-nav thin">
+			<a class="next-post" href="https://polarisxu.studygolang.com/posts/talk/2021-summary/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;新</span><br><span>我的 2021 年终总结</span>
+			</a>
 			<a class="prev-post" href="https://polarisxu.studygolang.com/posts/devtool/scc/">
 				<span class="post-nav-label">旧&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>2021 年你写了多少代码？这个 Go 工具帮你统计</span>
 			</a>
@@ -315,7 +318,7 @@
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2019 - 2021 <a href="https://polarisxu.studygolang.com">polarisxu</a> &#183; <a href="https://beian.miit.gov.cn/">京ICP备14030343号-1</a></p>
+		<p>&copy; 2019 - 2022 <a href="https://polarisxu.studygolang.com">polarisxu</a> &#183; <a href="https://beian.miit.gov.cn/">京ICP备14030343号-1</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://polarisxu.studygolang.com/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>

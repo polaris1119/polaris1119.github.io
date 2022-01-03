@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Thu, 30 Dec 2021 13:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 03 Jan 2022 20:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>我的 2021 年终总结</title>
+      <link>https://polarisxu.studygolang.com/posts/talk/2021-summary/</link>
+      <pubDate>Mon, 03 Jan 2022 20:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/talk/2021-summary/</guid>
+      <description>大家好，我是 polarisxu。 元旦假期结束，2022 年工作开启，2021 年总结做了吗？今天我简单回顾下我的 2021。 年终总结，是对我自己的一个回顾，但发出来，我希望能够对大家有点帮助或启发。 这份总结主要会聊五个方面的内容： 写作 读书 理财 家庭 收获 01 写作 这里主要谈我的个人品牌公众号 「polarisxu」，而不是 「Go语言中文网」，Go语言中文网的年终总结见：Go</description>
+    </item>
+    
     <item>
       <title>泛型版 singleflight：Go 中如何防止缓存击穿？</title>
       <link>https://polarisxu.studygolang.com/posts/go/pkg/singleflight-generic/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/dynamic/go1.18-any/</guid>
       <description>大家好，我是 polarisxu。 Go 1.18 因为泛型引入 any，这实际上是 interface{} 的别名： type any = interface{} 以下代码虽然不是泛型，但用 Go 1.18 可以正常运行，证明 any 和 interface{} 是一样的：（这里可以在线运行：https://gotipplay.golang.org/p/dPeNhe-7nkA ） package main import ( &amp;#34;fmt&amp;#34; ) // 这里的 any 并非泛型的约束，而是类型 func test(x any) any { return x } func main() { fmt.Println(test(&amp;#34;a&amp;#34;)) } 泛型中，any 换为 interface{} 也可以：（这里</description>
-    </item>
-    
-    <item>
-      <title>Go1.18 快讯：新的 IP 包</title>
-      <link>https://polarisxu.studygolang.com/posts/go/dynamic/go1.18-ip/</link>
-      <pubDate>Wed, 01 Dec 2021 22:00:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/dynamic/go1.18-ip/</guid>
-      <description>大家好，我是 polarisxu。 Go 1.18 标准库新增了一个包：net/netip，大部分人可能用不上这个包，但这个包的设计思路以及和现有标准库 IP 的比较值得学习。 01 标准库 net.IP 的问题 前 Go Team 成员之一 Brad Fitzpatrick 加入 Tailscale 后，经常需要操作 IP 地址。因为使用 Go 语言实现的，自然会使用过标准库的 net.IP 和 net.IPNet 等类型。但他们认为标准库的相关类型有很多问题，所以他们自己写了一个包：https://gith</description>
     </item>
     
   </channel>

@@ -71,6 +71,26 @@
 		
         <div class="post animated fadeInDown">
             <div class="post-title">
+                <h2><a href="/posts/go/action/operator/">我无语了，Go 中 &#43;-*/ 四个运算符竟然可以连着用</a>
+                </h2>
+            </div>
+            <div class="post-content">
+                <div class="p_part"><p>大家好，我是站长 polarisxu。 我计划把类似这样的文章归为：奇淫技巧，你认同吗？ 看到 Go101（玩 twtter 的可以关注他） 发了一条消息，+-*/ 这四个竟然可以连着写： package main func main() { v := new(int) *v = 2 println(5/+-*v) } 我看到后，试着运行了一下，竟然输出了 -2 。。。我忍不住“卧槽”。。。 我不得不说，Go101 扣的真细节。 于是我尝试着找一些线索，看看为什么可以这样写。 01 直接看汇编 遇到一些不解的</p></div>
+            </div>
+            <div class="post-footer">
+                <div class="meta">
+                    <div class="info"><em class="fas fa-calendar-day"></em><span
+                                class="date">2021-03-31</span>
+                        <a class="tag"
+                                   href="/tags/go/">Go</a><a class="tag"
+                                   href="/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/">面试题</a>
+                    </div>
+                </div>
+            </div>
+				</div>
+    
+        <div class="post animated fadeInDown">
+            <div class="post-title">
                 <h2><a href="/posts/go/action/weekly-question-88/">Go周刊题解：切片的另类初始化 — 该题正确率出奇的低</a>
                 </h2>
             </div>
@@ -249,26 +269,6 @@
             </div>
 				</div>
     
-        <div class="post animated fadeInDown">
-            <div class="post-title">
-                <h2><a href="/posts/go/dynamic/go1.16.1-release/">快一个月，Go1.16 才发现了比较严重的 Bug，但这个 Bug 有点 Low。。。</a>
-                </h2>
-            </div>
-            <div class="post-content">
-                <div class="p_part"><p>大家好，我是站长 polarisxu。 Go 1.16 是 2021 年 2 月 16 日发布的。新版本发布，大家一般会等等，坐等 1.16.1 发布。没想到快一个月了才等到。 和之前一样，小版本是修复 Bug，会同时发布两个版本，这次是 Go1.16.1 和 Go1.15.9。那具体什么 Bug 呢？ Bug 1：encoding/xml 包相关 这个 Bug 不是 1.16 引入的，而是之前版本就存在。所以，Go 1.15.9 也修复了该 Bug。 具体是：在通过 xml.NewTokenDecoder 获得一个 Decoder 指针时</p></div>
-            </div>
-            <div class="post-footer">
-                <div class="meta">
-                    <div class="info"><em class="fas fa-calendar-day"></em><span
-                                class="date">2021-03-11</span>
-                        <a class="tag"
-                                   href="/tags/go/">Go</a><a class="tag"
-                                   href="/tags/bug/">Bug</a>
-                    </div>
-                </div>
-            </div>
-				</div>
-    
     <div class="pagination">
         
     <ul class="pagination pagination-default">
@@ -304,7 +304,7 @@
 		</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2019 - 2021 <a href="https://polarisxu.studygolang.com">polarisxu</a> &#183; <a href="https://beian.miit.gov.cn/">京ICP备14030343号-1</a></p>
+		<p>&copy; 2019 - 2022 <a href="https://polarisxu.studygolang.com">polarisxu</a> &#183; <a href="https://beian.miit.gov.cn/">京ICP备14030343号-1</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://polarisxu.studygolang.com/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>

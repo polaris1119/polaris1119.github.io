@@ -71,6 +71,26 @@
 		
         <div class="post animated fadeInDown">
             <div class="post-title">
+                <h2><a href="/posts/go/action/go-illegal-private-import/">Go Module：私有不合规库怎么解决引用问题</a>
+                </h2>
+            </div>
+            <div class="post-content">
+                <div class="p_part"><p>大家好，我是 polarisxu。 有一个朋友咨询一个问题： 实际项目中，使用 Go Module 难免会有一些自己的库要引用，这些库使用自建的 Git 服务管理，比如 GitLab 等。针对这样的情况，不少教程都是让设置 GOPRIVATE，即不走 GOPROXY。 然而，有些时候，不仅库是私有的，而且地址很可能不是「合规」的。什么是「不合规」的？ 不是 HTTPS 非 443 或 80 端口 直接使用 IP 地址 不是 HTTPS 问题不大，主要是非 443 或</p></div>
+            </div>
+            <div class="post-footer">
+                <div class="meta">
+                    <div class="info"><em class="fas fa-calendar-day"></em><span
+                                class="date">2021-09-12</span>
+                        <a class="tag"
+                                   href="/tags/go/">Go</a><a class="tag"
+                                   href="/tags/module/">Module</a>
+                    </div>
+                </div>
+            </div>
+				</div>
+    
+        <div class="post animated fadeInDown">
+            <div class="post-title">
                 <h2><a href="/posts/go/dynamic/1.17-golang-go-get-updated/">Go1.17 新特性：go get 变了</a>
                 </h2>
             </div>
@@ -250,26 +270,6 @@
             </div>
 				</div>
     
-        <div class="post animated fadeInDown">
-            <div class="post-title">
-                <h2><a href="/posts/go/project/gosec-tool-intro/">担心密码提交到 GitHub？建议使用这个 Go 开源工具</a>
-                </h2>
-            </div>
-            <div class="post-content">
-                <div class="p_part"><p>大家好，我是 polarisxu。 最近跟安全扛上了！这是我分享的 Go 安全相关的第 5 篇文章，前 4 篇文章如下： 《Go 团队开始重视安全问题了》 《Go Module 有漏洞？免费的 Go 漏洞扫描 VSCode 插件》 《这个工具真好：看看你的Go项目依赖有无漏洞》 重磅！GitHub 为 Go 社区带来安全支持 今天要分享的这个开源工具，我个人认为更实用，可以当作一个 vet 工具使用，切切实实检查日常开发经常会忽略的安全</p></div>
-            </div>
-            <div class="post-footer">
-                <div class="meta">
-                    <div class="info"><em class="fas fa-calendar-day"></em><span
-                                class="date">2021-08-10</span>
-                        <a class="tag"
-                                   href="/tags/go/">Go</a><a class="tag"
-                                   href="/tags/%E5%B7%A5%E5%85%B7/">工具</a>
-                    </div>
-                </div>
-            </div>
-				</div>
-    
     <div class="pagination">
         
     <ul class="pagination pagination-default">
@@ -305,7 +305,7 @@
 		</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2019 - 2021 <a href="https://polarisxu.studygolang.com">polarisxu</a> &#183; <a href="https://beian.miit.gov.cn/">京ICP备14030343号-1</a></p>
+		<p>&copy; 2019 - 2022 <a href="https://polarisxu.studygolang.com">polarisxu</a> &#183; <a href="https://beian.miit.gov.cn/">京ICP备14030343号-1</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://polarisxu.studygolang.com/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>
