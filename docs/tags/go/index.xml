@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Thu, 30 Dec 2021 13:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 05 Jan 2022 22:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>为 Java 开发者准备的 Go 教程 01：漫游了</title>
+      <link>https://polarisxu.studygolang.com/posts/go/java/go-for-java01/</link>
+      <pubDate>Wed, 05 Jan 2022 22:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/java/go-for-java01/</guid>
+      <description>大家好，我是 polarisxu。 在正式工作之前，一直使用 Java，虽然这些年对 Java 的关注变少了，但很显然，Java 用户群体特别大。不过，我也知晓，有不少 Java 用户在学 Go。我尝试写一系列文章，为 Java 开发者讲解 Go 语言。 这是第一篇，从大的层面简单对比下 Go 和 Java，算作是一次漫游。 整体上，Java 和 Go 之间有许多明显而微妙的区别，包括语言层面和运行时层面。我们这里主要在语</description>
+    </item>
+    
     <item>
       <title>泛型版 singleflight：Go 中如何防止缓存击穿？</title>
       <link>https://polarisxu.studygolang.com/posts/go/pkg/singleflight-generic/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/dynamic/go1.18-ip/</guid>
       <description>大家好，我是 polarisxu。 Go 1.18 标准库新增了一个包：net/netip，大部分人可能用不上这个包，但这个包的设计思路以及和现有标准库 IP 的比较值得学习。 01 标准库 net.IP 的问题 前 Go Team 成员之一 Brad Fitzpatrick 加入 Tailscale 后，经常需要操作 IP 地址。因为使用 Go 语言实现的，自然会使用过标准库的 net.IP 和 net.IPNet 等类型。但他们认为标准库的相关类型有很多问题，所以他们自己写了一个包：https://gith</description>
-    </item>
-    
-    <item>
-      <title>Go编程模式：详解函数式选项模式</title>
-      <link>https://polarisxu.studygolang.com/posts/go/action/functional-options-pattern/</link>
-      <pubDate>Sun, 28 Nov 2021 20:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/action/functional-options-pattern/</guid>
-      <description>大家好，我是 polarisxu。 Go 不是完全面向对象语言，有一些面向对象模式不太适合它。但经过这些年的发展，Go 有自己的一些模式。今天介绍一个常见的模式：函数式选项模式（Functional Options Pattern）。 01 什么是函数式选项模式 Go 语言没有构造函数，一般通过定义 New 函数来充当构造函数。然而，如果结构有较多字段，要初始化这些字段，有很多种方式，但有一种方式认为是</description>
     </item>
     
   </channel>
