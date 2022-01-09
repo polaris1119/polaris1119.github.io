@@ -71,6 +71,90 @@
 		
         <div class="post animated fadeInDown">
             <div class="post-title">
+                <h2><a href="/posts/devtool/goland/using-kubernetes-from-goland/">当 GoLand 遇到 Kubernetes：如何调试和运行 Go 程序</a>
+                </h2>
+            </div>
+            <div class="post-content">
+                <div class="p_part"><p>这是我们使用 Docker，Docker Compose 或 Kubernetes 运行 Go 服务的系列文章的最后一部分。在这一部分中，我们将专注于使用 Kubernetes 集群时的运行和调试。
+虽然我们不会介绍如何安装和配置 Kubernetes 集群，但是可以使用各种工具（例如 kubeadm ，minikube 和 microk8s ）来实现这一目标。如果您使用的是 Windows，则 Docker Desktop for Windows 附带内置的 Kubernetes 支持 。如果您打算使用基于 ARM 芯片的平台（例如 Raspberry Pi 4 ），则可以使用 k3s 之类的东西来入门。
+在开始之前，还应该安装 Kubernetes 插件，因为它没有与 IDE 捆绑在一起。您可以通过打开 Settings/Preferences | Plugins | Marketplace并搜索 Kubernetes 找到并安装插件。
+在 IDE 中使用 Kubernetes 运行服务 如果您到目前为止一直在关注本系列，那么您会知道所有代码都可以在此 下载和使用，使用 Kubernetes 也是这种情况。我们可以从 kubernetes 分支 开始。
+在这里我们可以找到两个不同的文件：db.yaml 和 web.yaml。这些文件包含了我们开始使用 Kubernetes 集群中的应用程序所需的所有定义。为了方便起见，他们还假定 Kubernetes 与 IDE 在同一台计算机上运行。
+打开 db.yaml：
+apiVersion:v1kind:ConfigMapmetadata:name:db-configlabels:dockerdev:dbdata:POSTGRES_DB:golandPOSTGRES_USER:golandPOSTGRES_PASSWORD:goland---apiVersion:apps/v1kind:StatefulSetmetadata:labels:dockerdev:dbname:dbspec:serviceName:dockerdev-dbselector:matchLabels:dockerdev:dbtemplate:metadata:labels:dockerdev:dbspec:containers:- name:dbimage:postgres:12.2-alpineimagePullPolicy:IfNotPresentenvFrom:- configMapRef:name:db-configports:- containerPort:5432volumeMounts:- name:db-initmountPath:/docker-entrypoint-initdb.d/init.sqlsubPath:init.sqlvolumes:- name:db-inithostPath:path:/d/GoLandProjects/dockerdev---apiVersion:v1kind:Servicemetadata:labels:dockerdev:dbname:dockerdev-db-exportedspec:type:NodePortports:- name:5432-tcpport:5432targetPort:5432nodePort:30432selector:dockerdev:db注意：在启动此示例之前，我们需要确保更改了 init.sql 文件在主机上的位置。您可以通过将路径：/d/ GoLandProjects / dockerdev 替换为先前克隆该项目的位置的路径来实现。
+完成此操作后，我们可以使用文件顶部编辑器装订线上的绿色箭头在 Kubernetes 中部署数据库。
+部署数据库将创建一个 StatefulSet 并在 pod 中运行数据库。将出现 “Services Tool” 窗口，并显示用于创建资源的命令以及该命令的输出。
+Kubernetes 集群概述 在 Kubernetes 集群中，我们将看到工作负载信息，例如正在运行的 Pods, Deployments, Stateful Sets, Daemon Sets, Jobs, Cron Jobs, Replica Sets, 和 Replication Controllers。
+我们还可以查看有关集群中服务和入口点的网络信息。
+“Configuration” 部分包含当前名称空间或群集的所有配置信息，例如有关运行名称空间，节点，群集角色，角色，配置 map 和秘钥的信息。
+最后，“Storage” 部分将向我们显示当前配置中的“持久卷”，“持久卷声明”和“存储类”。
+在 IDE 中使用 Kubernetes 集群运行 Go 应用程序 让我们在同一个 Kubernetes 集群中运行 Go 应用程序，看看它是如何工作的。
+不过，在运行该应用程序之前，我们首先需要构建该应用程序所在的 Docker 容器。示例代码库中包含一个名为 build Dockerfile 的运行配置，需要运行该配置才能在集群中使用我们的容器。
+正如您可能已经猜到的那样，此后，我们终于可以使用先前与 db.yaml 文件一起使用的绿色箭头在 Kubernetes 中运行 Go 应用程序，只有这次我们才在 web.yaml 文件中使用它。
+apiVersion:apps/v1kind:Deploymentmetadata:labels:dockerdev:webname:webspec:selector:matchLabels:dockerdev:webtemplate:metadata:labels:dockerdev:webspec:containers:- name:dockerdev-webimage:dockerdev-web:latestimagePullPolicy:Neverenv:- name:DD_DB_HOSTvalue:&#34;dockerdev-db-exported&#34;ports:- containerPort:8000---apiVersion:v1kind:Servicemetadata:labels:dockerdev:webname:dockerdev-web-exportedspec:type:NodePortports:- name:8000-tcpport:8000targetPort:8000nodePort:30800selector:dockerdev:webPro tip：我们可以使用 HTTP 请求文件的方式从 IDE 运行请求，以检查服务是否已启动并正在运行。
+从 Kubernetes 调试服务 在使用 GoLand 调试 Kubernetes 服务之前，我们需要对 web.yaml 文件进行一些更改。这些变化可以在我们代码库的 kubernetes-debug 分支中看到。
+我们需要进行一些与调试常规 Docker 容器非常相似的更改。
+首先，我们需要调整 Dockerfile，然后我们必须使用 Run | Run … | ‘build Dockerfile’ 来配置。</p></div>
+            </div>
+            <div class="post-footer">
+                <div class="meta">
+                    <div class="info"><em class="fas fa-calendar-day"></em><span
+                                class="date">2020-05-11</span>
+                        <a class="tag"
+                                   href="/tags/goland/">GoLand</a><a class="tag"
+                                   href="/tags/kubernetes/">Kubernetes</a><a class="tag"
+                                   href="/tags/debug/">Debug</a>
+                    </div>
+                </div>
+            </div>
+				</div>
+    
+        <div class="post animated fadeInDown">
+            <div class="post-title">
+                <h2><a href="/posts/devtool/goland/running-go-applications-using-docker-compose-in-goland/">在 GoLang 中使用 Docker Compose 运行 Go 应用程序</a>
+                </h2>
+            </div>
+            <div class="post-content">
+                <div class="p_part"><p>今天，我们将继续有关如何使用 Docker 运行 和调试 Go 应用程序 的系列文章。
+在本文中，我们将使用 Docker Compose 运行和调试我们的应用程序。对于本文，我们将使用此处的源代码 ，在开始之前切换到 compose 分支 。
+使用 Docker Compose 运行 Go 应用程序 让我们从使用 Docker Compose 运行应用程序开始。
+查看我们已经创建的项目，可以在代码仓库中找到 docker-compose.yaml 文件：
+version:&#34;3.5&#34;services:web:container_name:dockerdevbuild:./ports:- &#34;8000:8000&#34;environment:DD_DB_HOST:dbcommand:/serverdepends_on:- dbdb:container_name:dockerdev-dbimage:postgres:12.2-alpineports:- &#34;5432:5432&#34;environment:POSTGRES_USER:golandPOSTGRES_PASSWORD:golandPOSTGRES_DB:golandvolumes:- ./init.sql:/docker-entrypoint-initdb.d/init.sql在数据库部分，我们需要创建一个名为 init.sql 的新文件。该文件的内容用于设置服务运行所需的数据库。
+最后，让我们在 main.go 文件中运行 Sync packages of &lt;project&gt; 来 quick-fix，以下载 pgx 库并运行该应用程序。注意：如果你的模块缓存中还没有 pgx 的 4.5.0 版本，则需要执行此步骤。
+运行基于 Docker Compose 的应用程序类似于其他 Run Configurations。单击 docker-compose.yaml 中 services 指令旁边的双绿色箭头按钮。要仅运行一项服务，请点击要运行的服务类型旁边的绿色箭头，例如上面的示例配置中的 web 或 db。
+配置运行后，在 Docker 节点下的 Services Tool 窗口中会有一个名为 Compose 的新节点。这里会显示正在运行的每个 Docker Compose 服务套件。
+可以浏览每个服务定义，并为每个服务显示所有正在运行的实例。Docker Compose 服务中可用于容器的信息与常规 Docker 容器可使用的信息相同。
+注意：如果你要启动较重的服务（例如数据库服务器），或者这些服务需要一些初始化时间，则我们的 Go 程序服务需要考虑这些服务的启动时间。
+在我们的示例代码中，这是使用 getDBConnection 函数处理的，该函数尝试在放弃之前尝试几次以指数退避的方式连接到数据库。
+重启动 Docker Compose 服务 更改我们的代码后，我们需要重新启动服务以重新加载这些更改。目前，使用 IDE 重新启动它有点复杂，因为这样做需要你执行以下步骤：
+ 执行 Run | Edit Configurations 并复制一份现有的 Docker Compose 配置； 编辑新创建的配置以添加重新启动的服务的名称，并启用 –build 选项以强制在运行镜像之前对其进行重建；  完成这些步骤之后，你可以停止现有服务，删除现有容器，然后启动新创建的配置。
+Pro tip：你可以使用 “Delete” 功能同时停止和删除服务。
+使用 Docker Compose 调试 Go 应用程序 要使用 Docker Compose 调试应用程序，我们需要同时更改 Dockerfile 和 docker-compose.yaml 文件。我们可以切换到代码库的 compose-debug 分支 ，这样更容易理解。
+现在，docker-compose.yaml 文件如下所示：
+version:&#34;3.5&#34;services:web:container_name:dockerdevbuild:./ports:- &#34;8000:8000&#34;- &#34;40000:40000&#34;environment:DD_DB_HOST:dbsecurity_opt:- &#34;seccomp:unconfined&#34;cap_add:- SYS_PTRACEcommand:/dlv --headless --listen=:40000 --api-version=2 exec /serverdepends_on:- dbdb:container_name:dockerdev-dbimage:postgres:12.2-alpineports:- &#34;5432:5432&#34;environment:POSTGRES_USER:golandPOSTGRES_PASSWORD:golandPOSTGRES_DB:golandvolumes:- ./init.sql:/docker-entrypoint-initdb.d/init.sql注意：这里的重要部分是 security_opt 和 cap_add 属性，因为它们允许调试器在 Docker 环境中运行。
+运行此操作类似于运行常规 Docker Compose 配置。我们可以使用 Go Remote 配置连接到容器，调试器会话将像调试常规配置一样开始。
+今天我们的文章到此结束。我们已经讨论了如何使用 Docker Compose，以及如何从 GoLand 运行和调试我们的应用程序。
+在下一篇文章中，我们将介绍如何在 IDE 中使用 Kubernetes，以及如何使用它运行和调试我们的应用程序。
+ 原文链接：https://blog.jetbrains.com/go/2020/05/08/running-go-applications-using-docker-compose-in-goland/
+作者：Florin Pățan
+翻译：Go语言中文网 polaris
+ </p></div>
+            </div>
+            <div class="post-footer">
+                <div class="meta">
+                    <div class="info"><em class="fas fa-calendar-day"></em><span
+                                class="date">2020-05-08</span>
+                        <a class="tag"
+                                   href="/tags/goland/">GoLand</a><a class="tag"
+                                   href="/tags/docker/">Docker</a><a class="tag"
+                                   href="/tags/compose/">Compose</a>
+                    </div>
+                </div>
+            </div>
+				</div>
+    
+        <div class="post animated fadeInDown">
+            <div class="post-title">
                 <h2><a href="/posts/devtool/goland/debugging-a-go-application-inside-a-docker-container/">基于 GoLand 使用 Docker 容器进行 Go 开发</a>
                 </h2>
             </div>
@@ -283,68 +367,6 @@ Go 1.14 添加了对嵌入重叠接口的支持，我们也添加了此功能！
                                    href="/tags/echo/">echo</a><a class="tag"
                                    href="/tags/web%E6%A1%86%E6%9E%B6/">web框架</a><a class="tag"
                                    href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A/">数据绑定</a>
-                    </div>
-                </div>
-            </div>
-				</div>
-    
-        <div class="post animated fadeInDown">
-            <div class="post-title">
-                <h2><a href="/posts/go/echo/custom00-intro/">Echo 系列教程——定制篇0：让 Echo 更强大、更好用</a>
-                </h2>
-            </div>
-            <div class="post-content">
-                <div class="p_part"><p>一个强大的框架，一定是可以定制的，或者说可以扩展，能够根据用户自己的需求进行改变、增强，甚至某些功能的替换。作为一个强大的框架，Echo 必然也是可以定制、可以扩展的。本篇起，我们一起探讨如何对 Echo 框架进行定制或扩展，打造成符合你个性需求的框架。 定制化主要包含如下一些方面： 自定义 Binder，用来处理 Request 数据绑定 自定义 Validator，用来处理输入验证 自定义 Lo</p></div>
-            </div>
-            <div class="post-footer">
-                <div class="meta">
-                    <div class="info"><em class="fas fa-calendar-day"></em><span
-                                class="date">2020-02-21</span>
-                        <a class="tag"
-                                   href="/tags/echo/">echo</a><a class="tag"
-                                   href="/tags/web%E6%A1%86%E6%9E%B6/">web框架</a><a class="tag"
-                                   href="/tags/%E5%AE%9A%E5%88%B6/">定制</a>
-                    </div>
-                </div>
-            </div>
-				</div>
-    
-        <div class="post animated fadeInDown">
-            <div class="post-title">
-                <h2><a href="/posts/devtool/goland/welcome-to-the-goland-2020-1-eap/">欢迎加入 GoLand 2020.1 抢先体验计划</a>
-                </h2>
-            </div>
-            <div class="post-content">
-                <div class="p_part"><p>GoLand 2020.1 抢先体验计划已经启动。对于此发行版，我们着重于易用性，性能以及减少浪费在样板代码和 IDE 中的冗余操作上的时间。我们还包括对 Go Modules 支持的升级，和其他更多功能。您可以在 2020.1 的路线图博客 文章中找到简短说明。
-你可以通过 Toolbox App 获得它，也可以从网站上下载 ，也可以使用快照包（对于 Ubuntu）；或者直接在 GoLand 中通过自动更新的方式获取。Preferences / Settings | Appearance &amp; Behavior | System Settings | Updates。
-如果您想知道什么是抢先体验计划，这里有一个简短的解释：
- EAP 版本使您可以试用 Goland 仍在开发中的最新功能和增强功能。这些版本尚未经过全面测试，可能会不稳定，但是您可以在这里为我们提供帮助。通过将这些内部版本和功能用于实际项目和场景中来测试，您可以帮助我们完善它们。这样，当最终版本准备就绪时，它将为您更好地工作。
-  EAP 使您可以首先试用所有最新功能; 自构建日期起 30 天内免费使用 EAP 版本。您可以将这段时间用作 GoLand 的扩展试用版； 我们会提供 EAP 版本，直到几乎可以发布稳定版本为止。对于即将推出的 2020.1 版本，EAP 期将大致持续到 3 月底； 在每个发布周期中，我们都会为他们提供免费的 1 年 GoLand 订阅和一件独家的 GoLand T 恤 ，以表彰他们中最活跃的评估人员。 此外，我们几乎每天都提供最新版本。因此，如果您不想等待正式的 EAP 版本公告，则只需下载这些夜间版本之一，即可通过 Toolbox App 获得。请注意，每晚构建的质量通常低于我们的标准，并且没有随附发行说明。与 EAP 版本一样，它们也将在发布后 30 天内过期；  因此，让我们看一下第一个 EAP 版本中包含的内容。
-Go Modules 现在，您可以通过 go.mod 文件中的 Alt-Enter 来获取缺失的依赖项并删除未使用的依赖项。
-Go 1.14 支持 Go 1.14 增加了对嵌入重叠接口的支持，我们也是如此！当您使用重叠的接口时，GoLand 不会将重复的方法报告为错误。
-为什么将此功能添加到语言中？
-主要好处是我们可以使用嵌入定义接口，而不需要手动定义。这是一个例子：
-type Person interface { Name() string String() string } type Employee interface { Person Department() string String() string } 在 Go 1.14 之前，我们无法在 Employee 接口上添加 String() 方法，因为该方法已在 Person 接口上定义了。现在，我们可以使用接口嵌入定义它，如果 Person 接口有更新，我们自己更可控。
-代码补全/完成增强 我们对样板代码说不！GoLand 为常见的错误处理模式添加了代码完成功能。现在，当您在函数中键入if 时，您可以选择 err！= nil {…} 以自动完成它。
-为了更快地定义接口和结构，现在，当您键入type 关键字时，IDE 会为它们建议模板。当您输入 interface 或 struct 时，将显示相同的补全内容。
-现在，根据格式设置规则的要求，Fill Fields 操作会在冒号后添加空格，并在复合文字中的语句末尾添加逗号。
-现在，当您使用 map 时，完成键类型后，代码补全将光标移到右括号后面。
-智能代码补全建议使用指向结构的指针。
-最终，代码补全变得更加智能，现在在断言和 type-switch-case 中会首先建议兼容类型。
-代码编辑增强 当编写多值返回函数的签名时，GoLang 2020.1 将在逗号后面的返回类型周围自动添加括号。
-此外，当您在字符串中粘贴一些文本时，GoLand 会自动转义双引号。
-Postfix 完成模板 .else Postfix 完成模板可以快速添加 if 语句，以检查表达式是否为假。
-实时模板 我们添加了新的 consts, vars, types, 和 import 模板 。对于这些模板，默认情况下，GoLand 将在表达式周围添加括号。
-fori 模板插入经典 for 循环的样板代码。
-重构 现在，即使接口定义中省略了参数名称，Implement Methods（在 macOS 和 Windows/Linux 上为 Ctrl + I）也允许您指定参数名称。</p></div>
-            </div>
-            <div class="post-footer">
-                <div class="meta">
-                    <div class="info"><em class="fas fa-calendar-day"></em><span
-                                class="date">2019-12-24</span>
-                        <a class="tag"
-                                   href="/tags/goland/">GoLand</a><a class="tag"
-                                   href="/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a>
                     </div>
                 </div>
             </div>

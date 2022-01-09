@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Wed, 05 Jan 2022 22:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 08 Jan 2022 15:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>GitHub 发现了 studygolang 项目依赖的漏洞</title>
+      <link>https://polarisxu.studygolang.com/posts/go/studygolang-github-security/</link>
+      <pubDate>Sat, 08 Jan 2022 15:00:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/studygolang-github-security/</guid>
+      <description>大家好，我是 polarisxu。 今天打开 studygolang 项目的 GitHub 仓库主页，发现了一个醒目的提示： 即发现了潜在的安全漏洞。 之所以 GitHub 能够发现这个安全漏洞，前提是我之前进行了授权。之前我写过一篇文章：《重磅！GitHub 为 Go 社区带来安全支持》 ，没看过的可以看看。 查看 「Dependabot alerts」，发现是 tidwall/gjson 有漏洞： 点击可以查看该漏洞的详细信息： 所以，修复该问题很简单，在 studygolang 项</description>
+    </item>
+    
     <item>
       <title>为 Java 开发者准备的 Go 教程 01：漫游了</title>
       <link>https://polarisxu.studygolang.com/posts/go/java/go-for-java01/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/dynamic/go1.18-any/</guid>
       <description>大家好，我是 polarisxu。 Go 1.18 因为泛型引入 any，这实际上是 interface{} 的别名： type any = interface{} 以下代码虽然不是泛型，但用 Go 1.18 可以正常运行，证明 any 和 interface{} 是一样的：（这里可以在线运行：https://gotipplay.golang.org/p/dPeNhe-7nkA ） package main import ( &amp;#34;fmt&amp;#34; ) // 这里的 any 并非泛型的约束，而是类型 func test(x any) any { return x } func main() { fmt.Println(test(&amp;#34;a&amp;#34;)) } 泛型中，any 换为 interface{} 也可以：（这里</description>
-    </item>
-    
-    <item>
-      <title>Go1.18 快讯：新的 IP 包</title>
-      <link>https://polarisxu.studygolang.com/posts/go/dynamic/go1.18-ip/</link>
-      <pubDate>Wed, 01 Dec 2021 22:00:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/dynamic/go1.18-ip/</guid>
-      <description>大家好，我是 polarisxu。 Go 1.18 标准库新增了一个包：net/netip，大部分人可能用不上这个包，但这个包的设计思路以及和现有标准库 IP 的比较值得学习。 01 标准库 net.IP 的问题 前 Go Team 成员之一 Brad Fitzpatrick 加入 Tailscale 后，经常需要操作 IP 地址。因为使用 Go 语言实现的，自然会使用过标准库的 net.IP 和 net.IPNet 等类型。但他们认为标准库的相关类型有很多问题，所以他们自己写了一个包：https://gith</description>
     </item>
     
   </channel>

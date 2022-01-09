@@ -2,22 +2,40 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://polarisxu.studygolang.com/tags/github/</loc>
+    <lastmod>2022-01-08T15:00:00+08:00</lastmod>
+  </url><url>
+    <loc>https://polarisxu.studygolang.com/posts/go/studygolang-github-security/</loc>
+    <lastmod>2022-01-08T15:00:00+08:00</lastmod>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/go/</loc>
-    <lastmod>2022-01-05T22:30:00+08:00</lastmod>
+    <lastmod>2022-01-08T15:00:00+08:00</lastmod>
+  </url><url>
+    <loc>https://polarisxu.studygolang.com/</loc>
+    <lastmod>2022-01-08T15:00:00+08:00</lastmod>
+  </url><url>
+    <loc>https://polarisxu.studygolang.com/tags/</loc>
+    <lastmod>2022-01-08T15:00:00+08:00</lastmod>
+  </url><url>
+    <loc>https://polarisxu.studygolang.com/posts/</loc>
+    <lastmod>2022-01-08T15:00:00+08:00</lastmod>
+  </url><url>
+    <loc>https://polarisxu.studygolang.com/tags/markdown/</loc>
+    <lastmod>2022-01-07T22:30:00+08:00</lastmod>
+  </url><url>
+    <loc>https://polarisxu.studygolang.com/tags/marktext/</loc>
+    <lastmod>2022-01-07T22:30:00+08:00</lastmod>
+  </url><url>
+    <loc>https://polarisxu.studygolang.com/tags/typora/</loc>
+    <lastmod>2022-01-07T22:30:00+08:00</lastmod>
+  </url><url>
+    <loc>https://polarisxu.studygolang.com/posts/devtool/markdown-editor/</loc>
+    <lastmod>2022-01-07T22:30:00+08:00</lastmod>
   </url><url>
     <loc>https://polarisxu.studygolang.com/tags/java/</loc>
     <lastmod>2022-01-05T22:30:00+08:00</lastmod>
   </url><url>
-    <loc>https://polarisxu.studygolang.com/</loc>
-    <lastmod>2022-01-05T22:30:00+08:00</lastmod>
-  </url><url>
-    <loc>https://polarisxu.studygolang.com/tags/</loc>
-    <lastmod>2022-01-05T22:30:00+08:00</lastmod>
-  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/java/go-for-java01/</loc>
-    <lastmod>2022-01-05T22:30:00+08:00</lastmod>
-  </url><url>
-    <loc>https://polarisxu.studygolang.com/posts/</loc>
     <lastmod>2022-01-05T22:30:00+08:00</lastmod>
   </url><url>
     <loc>https://polarisxu.studygolang.com/tags/2021/</loc>
@@ -235,9 +253,6 @@
   </url><url>
     <loc>https://polarisxu.studygolang.com/tags/time/</loc>
     <lastmod>2021-08-03T22:10:00+08:00</lastmod>
-  </url><url>
-    <loc>https://polarisxu.studygolang.com/tags/github/</loc>
-    <lastmod>2021-07-29T22:10:00+08:00</lastmod>
   </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/dynamic/github-supply-chain-security-features-go-community/</loc>
     <lastmod>2021-07-29T22:10:00+08:00</lastmod>
@@ -649,9 +664,6 @@
   </url><url>
     <loc>https://polarisxu.studygolang.com/tags/ide/</loc>
     <lastmod>2021-02-03T20:00:00+08:00</lastmod>
-  </url><url>
-    <loc>https://polarisxu.studygolang.com/tags/markdown/</loc>
-    <lastmod>2021-02-02T11:00:00+08:00</lastmod>
   </url><url>
     <loc>https://polarisxu.studygolang.com/posts/wechat/article-pretty/</loc>
     <lastmod>2021-02-02T11:00:00+08:00</lastmod>

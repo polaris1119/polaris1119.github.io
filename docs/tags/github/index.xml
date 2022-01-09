@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Thu, 29 Jul 2021 22:10:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/github/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 08 Jan 2022 15:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/github/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>GitHub 发现了 studygolang 项目依赖的漏洞</title>
+      <link>https://polarisxu.studygolang.com/posts/go/studygolang-github-security/</link>
+      <pubDate>Sat, 08 Jan 2022 15:00:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/studygolang-github-security/</guid>
+      <description>大家好，我是 polarisxu。 今天打开 studygolang 项目的 GitHub 仓库主页，发现了一个醒目的提示： 即发现了潜在的安全漏洞。 之所以 GitHub 能够发现这个安全漏洞，前提是我之前进行了授权。之前我写过一篇文章：《重磅！GitHub 为 Go 社区带来安全支持》 ，没看过的可以看看。 查看 「Dependabot alerts」，发现是 tidwall/gjson 有漏洞： 点击可以查看该漏洞的详细信息： 所以，修复该问题很简单，在 studygolang 项</description>
+    </item>
+    
     <item>
       <title>GitHub 为 Go 社区带来安全支持</title>
       <link>https://polarisxu.studygolang.com/posts/go/dynamic/github-supply-chain-security-features-go-community/</link>

@@ -71,6 +71,46 @@
 		
         <div class="post animated fadeInDown">
             <div class="post-title">
+                <h2><a href="/posts/go/project/zinc-like-es/">终于有 Go 版的 Elasticsearch 了</a>
+                </h2>
+            </div>
+            <div class="post-content">
+                <div class="p_part"><p>大家好，我是 polarisxu。 企业内部搭建搜索引擎常用 Solr、Elasticsearch，它们都是使用 Java 实现的，底层依赖 Lucene，Java 相对来说占用较多内存。而今天要介绍的这个项目，目标就是作为 ES 的替代者，一个轻量级搜索引擎：Zinc。 项目地址：https://github.com/prabhatsharma/zinc ，该项目开源十来天，目前 Star 数 3</p></div>
+            </div>
+            <div class="post-footer">
+                <div class="meta">
+                    <div class="info"><em class="fas fa-calendar-day"></em><span
+                                class="date">2021-12-12</span>
+                        <a class="tag"
+                                   href="/tags/go/">Go</a><a class="tag"
+                                   href="/tags/zinc/">Zinc</a>
+                    </div>
+                </div>
+            </div>
+				</div>
+    
+        <div class="post animated fadeInDown">
+            <div class="post-title">
+                <h2><a href="/posts/go/generics/generics-maps/">Go泛型系列：maps 包讲解</a>
+                </h2>
+            </div>
+            <div class="post-content">
+                <div class="p_part"><p>大家好，我是 polarisxu。 之前文章介绍了 slices 包 ，本文介绍另一个包，用于 map 相关操作，目前同样放在 golang.org/x/exp 包下。 https://github.com/golang/exp/blob/master/maps/maps.go 01 真实的场景 不少新手，对 map 的输出是随机的有迷惑，曾经，map 的输出顺序是固定的，但官方怕大家依赖这个顺序，之后故意让输出顺序不固定。 但实际场景中，会有按某种顺序输出 map 的需求，怎么办呢？这需要对 map 的 key 进行排序，伪代码如下： for k := m { keys = append(keys, k) } sort(keys) 类似的代码</p></div>
+            </div>
+            <div class="post-footer">
+                <div class="meta">
+                    <div class="info"><em class="fas fa-calendar-day"></em><span
+                                class="date">2021-12-05</span>
+                        <a class="tag"
+                                   href="/tags/go/">Go</a><a class="tag"
+                                   href="/tags/%E6%B3%9B%E5%9E%8B/">泛型</a>
+                    </div>
+                </div>
+            </div>
+				</div>
+    
+        <div class="post animated fadeInDown">
+            <div class="post-title">
                 <h2><a href="/posts/go/dynamic/go1.18-any/">Go 1.18 中的 any 是什么？</a>
                 </h2>
             </div>
@@ -224,47 +264,6 @@
                                 class="date">2021-11-08</span>
                         <a class="tag"
                                    href="/tags/go/">Go</a><a class="tag"
-                                   href="/tags/%E6%A0%87%E5%87%86%E5%BA%93/">标准库</a>
-                    </div>
-                </div>
-            </div>
-				</div>
-    
-        <div class="post animated fadeInDown">
-            <div class="post-title">
-                <h2><a href="/posts/go/dynamic/go1.18-title/">Go1.18 快讯：废弃了这个 API</a>
-                </h2>
-            </div>
-            <div class="post-content">
-                <div class="p_part"><p>大家好，我是 polarisxu。 从 11 月 01 日起，Go1.18 就冻结了，也就是 1.18 的功能已经确定。 今天介绍一个 Go1.18 废弃的 API，同时介绍响应的替代 API。 01 strings.Title 被废弃 查看 go tip 标准库文档，发现 strings.Title 被标识为 deprecated：https://pkg.go.dev/strings@master ，而且该 API 的文档默认被折叠了。 pkg.go.dev 针对废弃的 API 使用了不一样的样式。 该 API 是干什么的？为</p></div>
-            </div>
-            <div class="post-footer">
-                <div class="meta">
-                    <div class="info"><em class="fas fa-calendar-day"></em><span
-                                class="date">2021-11-07</span>
-                        <a class="tag"
-                                   href="/tags/go/">Go</a><a class="tag"
-                                   href="/tags/%E6%A0%87%E5%87%86%E5%BA%93/">标准库</a>
-                    </div>
-                </div>
-            </div>
-				</div>
-    
-        <div class="post animated fadeInDown">
-            <div class="post-title">
-                <h2><a href="/posts/go/dynamic/go1.18-clone/">Go1.18 快讯：新增字符串 Clone API</a>
-                </h2>
-            </div>
-            <div class="post-content">
-                <div class="p_part"><p>大家好，我是 polarisxu。 Go 1.18 虽然还有 4 个月发布，但大部分的功能基本确定。我们可以提前知晓、熟悉。 今天介绍的是标准库中新增的一个 API：strings.Clone()。 从名称可以知道，这是克隆。很多其他语言一开始就有这样的功能。比如 PHP 有 clone 关键字、__clone 魔术方法；Java 的根类 Object 有 clone 方法等。 01 函数签名 该函数的定义如下（见：https://pkg.</p></div>
-            </div>
-            <div class="post-footer">
-                <div class="meta">
-                    <div class="info"><em class="fas fa-calendar-day"></em><span
-                                class="date">2021-11-02</span>
-                        <a class="tag"
-                                   href="/tags/go/">Go</a><a class="tag"
-                                   href="/tags/clone/">Clone</a><a class="tag"
                                    href="/tags/%E6%A0%87%E5%87%86%E5%BA%93/">标准库</a>
                     </div>
                 </div>

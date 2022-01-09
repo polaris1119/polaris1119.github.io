@@ -7,7 +7,25 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Wed, 05 Jan 2022 22:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 08 Jan 2022 15:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>GitHub 发现了 studygolang 项目依赖的漏洞</title>
+      <link>https://polarisxu.studygolang.com/posts/go/studygolang-github-security/</link>
+      <pubDate>Sat, 08 Jan 2022 15:00:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/studygolang-github-security/</guid>
+      <description>大家好，我是 polarisxu。 今天打开 studygolang 项目的 GitHub 仓库主页，发现了一个醒目的提示： 即发现了潜在的安全漏洞。 之所以 GitHub 能够发现这个安全漏洞，前提是我之前进行了授权。之前我写过一篇文章：《重磅！GitHub 为 Go 社区带来安全支持》 ，没看过的可以看看。 查看 「Dependabot alerts」，发现是 tidwall/gjson 有漏洞： 点击可以查看该漏洞的详细信息： 所以，修复该问题很简单，在 studygolang 项</description>
+    </item>
+    
+    <item>
+      <title>Typora 宣布收费后，这款开源 Markdown 编辑器火了</title>
+      <link>https://polarisxu.studygolang.com/posts/devtool/markdown-editor/</link>
+      <pubDate>Fri, 07 Jan 2022 22:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/devtool/markdown-editor/</guid>
+      <description>大家好，我是 polarisxu。 这几年，Markdown 写作不要太流行，包括一些社区也基本支持 Markdown 格式，包括 Go 语言中文网。GitHub 的评论也是支持 Markdown 格式，因此 Markdown 是每个程序员都应该掌握的。如果你从来没有使用过 Markdown，现在是时候尝试使用了。 Markdown 是一种纯文本格式，用来撰写结构化文档。由 John Gruber 在 2004 年创造。他用 perl 实现了第一个 Markdown 到 HTML 的转换器，迅速地在网络上普及开来</description>
+    </item>
+    
     <item>
       <title>为 Java 开发者准备的 Go 教程 01：漫游了</title>
       <link>https://polarisxu.studygolang.com/posts/go/java/go-for-java01/</link>
@@ -78,24 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/devtool/dev-transform/</guid>
       <description>大家好，我是 polarisxu。 上次推荐的 「Go网址导航」，其中收录了一项：转换器。 网址是：https://transform.tools/ 。 这是一个开源项目，项目地址：https://github.com/ritz078/transform ，目前 Star 数 2.8k+。 这个网站将转换工具分成了几类： SVG HTML JSON JSON Schema CSS JavaScript GraphQL JSON-LD TypeScript Flow Others 其中有一些对 Gopher 比较有用，这里简单列举介绍下</description>
-    </item>
-    
-    <item>
-      <title>终于有 Go 版的 Elasticsearch 了</title>
-      <link>https://polarisxu.studygolang.com/posts/go/project/zinc-like-es/</link>
-      <pubDate>Sun, 12 Dec 2021 22:00:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/project/zinc-like-es/</guid>
-      <description>大家好，我是 polarisxu。 企业内部搭建搜索引擎常用 Solr、Elasticsearch，它们都是使用 Java 实现的，底层依赖 Lucene，Java 相对来说占用较多内存。而今天要介绍的这个项目，目标就是作为 ES 的替代者，一个轻量级搜索引擎：Zinc。 项目地址：https://github.com/prabhatsharma/zinc ，该项目开源十来天，目前 Star 数 3</description>
-    </item>
-    
-    <item>
-      <title>Go泛型系列：maps 包讲解</title>
-      <link>https://polarisxu.studygolang.com/posts/go/generics/generics-maps/</link>
-      <pubDate>Sun, 05 Dec 2021 20:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/generics/generics-maps/</guid>
-      <description>大家好，我是 polarisxu。 之前文章介绍了 slices 包 ，本文介绍另一个包，用于 map 相关操作，目前同样放在 golang.org/x/exp 包下。 https://github.com/golang/exp/blob/master/maps/maps.go 01 真实的场景 不少新手，对 map 的输出是随机的有迷惑，曾经，map 的输出顺序是固定的，但官方怕大家依赖这个顺序，之后故意让输出顺序不固定。 但实际场景中，会有按某种顺序输出 map 的需求，怎么办呢？这需要对 map 的 key 进行排序，伪代码如下： for k := m { keys = append(keys, k) } sort(keys) 类似的代码</description>
     </item>
     
   </channel>

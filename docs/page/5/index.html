@@ -71,6 +71,46 @@
 		
         <div class="post animated fadeInDown">
             <div class="post-title">
+                <h2><a href="/posts/go/dynamic/go-generic/">扬眉吐气：刚刚，Go 已经默认支持泛型了</a>
+                </h2>
+            </div>
+            <div class="post-content">
+                <div class="p_part"><p>大家好，我是 polarisxu。 上周 Go 1.17 发布，在发布文档中，没有提到泛型的事情。但在发布之前，大家就发现，泛型的相关代码在 1.17 中埋下了，只是默认不启用。 就在最近，gotip 已经默认启用泛型。Go 泛型官方叫做：type parameters。 -G 的默认值由 0 改为了 3，那 Go 1.17 有没有这个 flag？ 01 Go1.17 启用泛型支持 安装 Go1.17，推荐使用类似 goup 这样的工具，方便切换版本，</p></div>
+            </div>
+            <div class="post-footer">
+                <div class="meta">
+                    <div class="info"><em class="fas fa-calendar-day"></em><span
+                                class="date">2021-08-22</span>
+                        <a class="tag"
+                                   href="/tags/go/">Go</a><a class="tag"
+                                   href="/tags/%E6%B3%9B%E5%9E%8B/">泛型</a>
+                    </div>
+                </div>
+            </div>
+				</div>
+    
+        <div class="post animated fadeInDown">
+            <div class="post-title">
+                <h2><a href="/posts/go/dynamic/go1.17-module/">Go 1.17 新特性：Module 有哪些变化？</a>
+                </h2>
+            </div>
+            <div class="post-content">
+                <div class="p_part"><p>大家好，我是 polarisxu。 自从 Go1.11 增加 Go Module 以来，每个版本都在不断改进 Module。Go1.17 也不例外。这次最主要的变化有两点： Module graph pruning：Module 依赖图修剪 Lazy Loading：Module 延迟加载 此外还有 Deprecated 注释等。本文就一起探究下这些新变化，因为有人没看懂，不知道这些变化是什么意思。 01 Module 依赖图修剪 要搞懂这个知识点，需要对比 1.17 之前的情况。 注意，</p></div>
+            </div>
+            <div class="post-footer">
+                <div class="meta">
+                    <div class="info"><em class="fas fa-calendar-day"></em><span
+                                class="date">2021-08-21</span>
+                        <a class="tag"
+                                   href="/tags/go/">Go</a><a class="tag"
+                                   href="/tags/module/">Module</a>
+                    </div>
+                </div>
+            </div>
+				</div>
+    
+        <div class="post animated fadeInDown">
+            <div class="post-title">
                 <h2><a href="/posts/go/pkg/cast/">Go 第三方库推荐：类型转换如此简单</a>
                 </h2>
             </div>
@@ -224,46 +264,6 @@
                         <a class="tag"
                                    href="/tags/go/">Go</a><a class="tag"
                                    href="/tags/%E6%96%B0%E7%89%B9%E6%80%A7/">新特性</a>
-                    </div>
-                </div>
-            </div>
-				</div>
-    
-        <div class="post animated fadeInDown">
-            <div class="post-title">
-                <h2><a href="/posts/go/project/google-deps/">这个工具真好：看看你的Go项目依赖有无漏洞</a>
-                </h2>
-            </div>
-            <div class="post-content">
-                <div class="p_part"><p>大家好，我是 polarisxu。 发现了一个好工具，推荐给大家！ https://deps.dev/ ，这是 Google 新出的一个实验性工具，命名为：Open Source Insights，它能让你更了解你的项目依赖。 通过这个网站，你可以查询任意开源项目的依赖情况，还包括依赖的依赖，可以看到完整的依赖关系图，而且可以看到它们的许可证。 目前该工具支持 Go Modules、NPM packages、Java 的Mavan 和 Rust 的 C</p></div>
-            </div>
-            <div class="post-footer">
-                <div class="meta">
-                    <div class="info"><em class="fas fa-calendar-day"></em><span
-                                class="date">2021-07-11</span>
-                        <a class="tag"
-                                   href="/tags/go/">Go</a><a class="tag"
-                                   href="/tags/%E5%B7%A5%E5%85%B7/">工具</a>
-                    </div>
-                </div>
-            </div>
-				</div>
-    
-        <div class="post animated fadeInDown">
-            <div class="post-title">
-                <h2><a href="/posts/go/action/studygolang-downloader-bug/">网友很强大，发现了Go并发下载的Bug</a>
-                </h2>
-            </div>
-            <div class="post-content">
-                <div class="p_part"><p>大家好，我是 polarisxu。 前几天我写了一篇文章：Go项目实战：一步步构建一个并发文件下载器 ，有小伙伴评论问，请求 https://studygolang.com/dl/golang/go1.16.5.src.tar.gz 为什么没有返回 Accept-Ranges。在写那篇文章时，我也试了，确实没有返回，因此我以为它不支持。 但有一个小伙伴很认真，他改用 GET 方法请求这个地址，结果却有 Accept-Ranges，于是就很困惑，问我什么原因。经过一顿操作猛如虎，终于知</p></div>
-            </div>
-            <div class="post-footer">
-                <div class="meta">
-                    <div class="info"><em class="fas fa-calendar-day"></em><span
-                                class="date">2021-07-07</span>
-                        <a class="tag"
-                                   href="/tags/go/">Go</a><a class="tag"
-                                   href="/tags/%E5%B9%B6%E5%8F%91/">并发</a>
                     </div>
                 </div>
             </div>

@@ -71,6 +71,47 @@
 		
         <div class="post animated fadeInDown">
             <div class="post-title">
+                <h2><a href="/posts/go/studygolang-github-security/">GitHub 发现了 studygolang 项目依赖的漏洞</a>
+                </h2>
+            </div>
+            <div class="post-content">
+                <div class="p_part"><p>大家好，我是 polarisxu。 今天打开 studygolang 项目的 GitHub 仓库主页，发现了一个醒目的提示： 即发现了潜在的安全漏洞。 之所以 GitHub 能够发现这个安全漏洞，前提是我之前进行了授权。之前我写过一篇文章：《重磅！GitHub 为 Go 社区带来安全支持》 ，没看过的可以看看。 查看 「Dependabot alerts」，发现是 tidwall/gjson 有漏洞： 点击可以查看该漏洞的详细信息： 所以，修复该问题很简单，在 studygolang 项</p></div>
+            </div>
+            <div class="post-footer">
+                <div class="meta">
+                    <div class="info"><em class="fas fa-calendar-day"></em><span
+                                class="date">2022-01-08</span>
+                        <a class="tag"
+                                   href="/tags/go/">Go</a><a class="tag"
+                                   href="/tags/github/">GitHub</a>
+                    </div>
+                </div>
+            </div>
+				</div>
+    
+        <div class="post animated fadeInDown">
+            <div class="post-title">
+                <h2><a href="/posts/devtool/markdown-editor/">Typora 宣布收费后，这款开源 Markdown 编辑器火了</a>
+                </h2>
+            </div>
+            <div class="post-content">
+                <div class="p_part"><p>大家好，我是 polarisxu。 这几年，Markdown 写作不要太流行，包括一些社区也基本支持 Markdown 格式，包括 Go 语言中文网。GitHub 的评论也是支持 Markdown 格式，因此 Markdown 是每个程序员都应该掌握的。如果你从来没有使用过 Markdown，现在是时候尝试使用了。 Markdown 是一种纯文本格式，用来撰写结构化文档。由 John Gruber 在 2004 年创造。他用 perl 实现了第一个 Markdown 到 HTML 的转换器，迅速地在网络上普及开来</p></div>
+            </div>
+            <div class="post-footer">
+                <div class="meta">
+                    <div class="info"><em class="fas fa-calendar-day"></em><span
+                                class="date">2022-01-07</span>
+                        <a class="tag"
+                                   href="/tags/markdown/">Markdown</a><a class="tag"
+                                   href="/tags/typora/">Typora</a><a class="tag"
+                                   href="/tags/marktext/">MarkText</a>
+                    </div>
+                </div>
+            </div>
+				</div>
+    
+        <div class="post animated fadeInDown">
+            <div class="post-title">
                 <h2><a href="/posts/go/java/go-for-java01/">为 Java 开发者准备的 Go 教程 01：漫游了</a>
                 </h2>
             </div>
@@ -224,46 +265,6 @@
                         <a class="tag"
                                    href="/tags/%E5%B7%A5%E5%85%B7/">工具</a><a class="tag"
                                    href="/tags/%E7%91%9E%E5%A3%AB%E5%86%9B%E5%88%80/">瑞士军刀</a>
-                    </div>
-                </div>
-            </div>
-				</div>
-    
-        <div class="post animated fadeInDown">
-            <div class="post-title">
-                <h2><a href="/posts/go/project/zinc-like-es/">终于有 Go 版的 Elasticsearch 了</a>
-                </h2>
-            </div>
-            <div class="post-content">
-                <div class="p_part"><p>大家好，我是 polarisxu。 企业内部搭建搜索引擎常用 Solr、Elasticsearch，它们都是使用 Java 实现的，底层依赖 Lucene，Java 相对来说占用较多内存。而今天要介绍的这个项目，目标就是作为 ES 的替代者，一个轻量级搜索引擎：Zinc。 项目地址：https://github.com/prabhatsharma/zinc ，该项目开源十来天，目前 Star 数 3</p></div>
-            </div>
-            <div class="post-footer">
-                <div class="meta">
-                    <div class="info"><em class="fas fa-calendar-day"></em><span
-                                class="date">2021-12-12</span>
-                        <a class="tag"
-                                   href="/tags/go/">Go</a><a class="tag"
-                                   href="/tags/zinc/">Zinc</a>
-                    </div>
-                </div>
-            </div>
-				</div>
-    
-        <div class="post animated fadeInDown">
-            <div class="post-title">
-                <h2><a href="/posts/go/generics/generics-maps/">Go泛型系列：maps 包讲解</a>
-                </h2>
-            </div>
-            <div class="post-content">
-                <div class="p_part"><p>大家好，我是 polarisxu。 之前文章介绍了 slices 包 ，本文介绍另一个包，用于 map 相关操作，目前同样放在 golang.org/x/exp 包下。 https://github.com/golang/exp/blob/master/maps/maps.go 01 真实的场景 不少新手，对 map 的输出是随机的有迷惑，曾经，map 的输出顺序是固定的，但官方怕大家依赖这个顺序，之后故意让输出顺序不固定。 但实际场景中，会有按某种顺序输出 map 的需求，怎么办呢？这需要对 map 的 key 进行排序，伪代码如下： for k := m { keys = append(keys, k) } sort(keys) 类似的代码</p></div>
-            </div>
-            <div class="post-footer">
-                <div class="meta">
-                    <div class="info"><em class="fas fa-calendar-day"></em><span
-                                class="date">2021-12-05</span>
-                        <a class="tag"
-                                   href="/tags/go/">Go</a><a class="tag"
-                                   href="/tags/%E6%B3%9B%E5%9E%8B/">泛型</a>
                     </div>
                 </div>
             </div>

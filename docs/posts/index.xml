@@ -6,8 +6,107 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en</language>
 		<copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-		<lastBuildDate>Wed, 05 Jan 2022 22:30:00 +0800</lastBuildDate>
+		<lastBuildDate>Sat, 08 Jan 2022 15:00:00 +0800</lastBuildDate>
 		<atom:link href="https://polarisxu.studygolang.com/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>GitHub 发现了 studygolang 项目依赖的漏洞</title>
+			<link>https://polarisxu.studygolang.com/posts/go/studygolang-github-security/</link>
+			<pubDate>Sat, 08 Jan 2022 15:00:00 +0800</pubDate>
+			
+			<guid>https://polarisxu.studygolang.com/posts/go/studygolang-github-security/</guid>
+			<description>大家好，我是 polarisxu。 今天打开 studygolang 项目的 GitHub 仓库主页，发现了一个醒目的提示： 即发现了潜在的安全漏洞。 之所以 GitHub 能够发现这个安全漏洞，前提是我之前进行了授权。之前我写过一篇文章：《重磅！GitHub 为 Go 社区带来安全支持》 ，没看过的可以看看。 查看 「Dependabot alerts」，发现是 tidwall/gjson 有漏洞： 点击可以查看该漏洞的详细信息： 所以，修复该问题很简单，在 studygolang 项</description>
+			<content type="html"><![CDATA[<p>大家好，我是 polarisxu。</p>
+<p>今天打开 studygolang 项目的 GitHub 仓库主页，发现了一个醒目的提示：</p>
+<p><p class="md__image">
+  <img src="../imgs/studygolang-github-security01.png"
+    alt=""  />
+</p>
+</p>
+<p>即发现了潜在的安全漏洞。</p>
+<p>之所以 GitHub 能够发现这个安全漏洞，前提是我之前进行了授权。之前我写过一篇文章：<a href="https://mp.weixin.qq.com/s/m3VkJU-m_TXnY59ELW12fQ" target="_blank" rel="noopener">《重磅！GitHub 为 Go 社区带来安全支持》</a>
+，没看过的可以看看。</p>
+<p>查看 「Dependabot alerts」，发现是 tidwall/gjson 有漏洞：</p>
+<p><p class="md__image">
+  <img src="../imgs/studygolang-github-security02.png"
+    alt=""  />
+</p>
+</p>
+<p>点击可以查看该漏洞的详细信息：</p>
+<p><p class="md__image">
+  <img src="../imgs/studygolang-github-security03.png"
+    alt=""  />
+</p>
+</p>
+<p>所以，修复该问题很简单，在 studygolang 项目执行以下命令：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ go get -u github.com/tidwall/gjson
+go: downloading github.com/tidwall/gjson v1.12.1
+go: downloading github.com/tidwall/match v1.1.1
+go get: upgraded github.com/tidwall/gjson v1.8.1 <span class="o">=</span>&gt; v1.12.1
+</code></pre></div><p>然后提交代码。注意，要确保这个有漏洞的依赖是你的项目直接依赖的。可以通过相关工具找到依赖关系。</p>
+<p>如果你在维护开源项目，建议开启这个检测功能。</p>
+]]></content>
+		</item>
+		
+		<item>
+			<title>Typora 宣布收费后，这款开源 Markdown 编辑器火了</title>
+			<link>https://polarisxu.studygolang.com/posts/devtool/markdown-editor/</link>
+			<pubDate>Fri, 07 Jan 2022 22:30:00 +0800</pubDate>
+			
+			<guid>https://polarisxu.studygolang.com/posts/devtool/markdown-editor/</guid>
+			<description>大家好，我是 polarisxu。 这几年，Markdown 写作不要太流行，包括一些社区也基本支持 Markdown 格式，包括 Go 语言中文网。GitHub 的评论也是支持 Markdown 格式，因此 Markdown 是每个程序员都应该掌握的。如果你从来没有使用过 Markdown，现在是时候尝试使用了。 Markdown 是一种纯文本格式，用来撰写结构化文档。由 John Gruber 在 2004 年创造。他用 perl 实现了第一个 Markdown 到 HTML 的转换器，迅速地在网络上普及开来</description>
+			<content type="html"><![CDATA[<p>大家好，我是 polarisxu。</p>
+<p>这几年，Markdown 写作不要太流行，包括一些社区也基本支持 Markdown 格式，包括 Go 语言中文网。GitHub 的评论也是支持 Markdown 格式，因此 Markdown 是每个程序员都应该掌握的。如果你从来没有使用过 Markdown，现在是时候尝试使用了。</p>
+<blockquote>
+<p>Markdown 是一种纯文本格式，用来撰写结构化文档。由 John Gruber 在 2004 年创造。他用 perl 实现了第一个 Markdown 到 HTML 的转换器，迅速地在网络上普及开来。到 2014 年已有几十种不同语言的实现。一些扩展了 Markdown 语法，比如脚注、定义列表、表格等， 一些可以将 Markdown 转换到 LaTeX 等多种格式。</p>
+</blockquote>
+<p>你用 Markdown 写作，用的是什么工具呢？有些人可能说 VSCode。的确，通过扩展，VSCode 可以支持 Markdown，有些人可能用的也挺好。不过我要说，没用过好的，确实不会觉得自己用的有多大问题、有多烂！（当然，也许我一直用的也不是最好的。）</p>
+<h2 id="1typora">1、Typora</h2>
+<p>这些年写作，一直使用的 Markdown 编辑器是 <a href="https://www.typora.io/" target="_blank" rel="noopener">Typora</a>
+。之前也有使用过其他编辑器，但用了 Typora 之后，发现真的很优秀、很好用。</p>
+<p>Typora 有几个特性是我特别喜欢的，这里简单说明：</p>
+<p><strong>1）实时预览（所见即所得）</strong>。而不是常见的左右分栏预览，当然可以自由切换到源码模式。</p>
+<p><strong>2）粘贴，默认带格式粘贴</strong>。这样在复制网页内容时，能够将格式一起复制过来。当然，也支持不带格式粘贴。</p>
+<p><strong>3）图片处理</strong>。支持复制图片粘贴，被粘贴的图片会保存在一个临时文件夹中。特别好用的是在图片上右键会出现类似下面菜单，能够复制图片到你希望放置的目录。这是我最常使用的功能。</p>
+<p><p class="md__image">
+  <img src="../imgs/markdown-editor01.png"
+    alt=""  />
+</p>
+</p>
+<p><strong>4）退出编辑器，下次打开能自动恢复上次打开的文件</strong>。当然可以修改为其他启动选项。</p>
+<p><strong>5）链接处理</strong>。在整理周刊是，经常需要处理链接。复制链接后，选中文本，然后按下 Commad + K 就生成了 Markdown 格式的链接。</p>
+<p>一直以来，Typora 一直是免费软件。不过近期，Typora 发布了 1.0.0 正式版，变成付费软件：89元 / 3台设备 / 免费升级。</p>
+<p>面对收费，有些人可能会放弃 Typora，如果是重度用户，完全可以购买支持，Typora 可是国人开发的哦，界面的中文支持特别好，发现了吧。</p>
+<p>如果不愿付费，还有两种选择：1）选择最新的免费版本，即：0.11.18，可以在这里下载：<a href="https://www.typora.io/releases/all" target="_blank" rel="noopener">https://www.typora.io/releases/all</a>
+；2）尝试其他 Markdown 编辑器。</p>
+<h2 id="2marktext">2、MarkText</h2>
+<p>这就是这次要介绍的。在 GitHub 上，有这样一个完全免费和永久开源的 Markdown 编辑器，它简洁优雅，专注于速度和可用性，号称「下一代 Markdown 编辑器」，该项目已经收获了 26K+ star。</p>
+<p>项目地址：<a href="https://github.com/marktext/marktext" target="_blank" rel="noopener">https://github.com/marktext/marktext</a>
+。</p>
+<p>也许因为 Typora 收费的原因，这段时间 MarkText 受关注度飙升，一周之内新增了 2k+ star。和 Typora 一样，支持三大平台：Mac、Windows、Linux。</p>
+<p>如果使用过 Typora，会发现 MarkText 很熟悉，它也支持多种模式，支持实时预览。</p>
+<p><p class="md__image">
+  <img src="../imgs/markdown-editor02.png"
+    alt=""  />
+</p>
+</p>
+<p>MarkText 具有以下特性：</p>
+<ul>
+<li>对数学表达（KaTeX）、front matter 等进行了扩展；</li>
+<li>支持段落和行内样式快捷方式，以提高用户写作效率；</li>
+<li>可以输出 HTML 、PDF 文件；</li>
+<li>支持 Cadmium Light、Material Dark 等 6 种主题；</li>
+<li>支持 3 种编辑模式：源码模式、打字机模式和专注模式；</li>
+<li>可以直接从剪贴板粘贴图像。</li>
+</ul>
+<p>下载安装试用可以访问官网：<a href="https://marktext.app/" target="_blank" rel="noopener">https://marktext.app/</a>
+。</p>
+<p>值得骄傲的是，MarkText 也是国人主导开发的。</p>
+<h2 id="3总结">3、总结</h2>
+<p>Markdown 语法不少，但写作时，常用的就那些，多用几次就记住了。</p>
+<p>我试用了一段时间 MarkText，有一些它的优势，不过也有用起来不太爽的地方，目前感觉比 Typora 还是差一些。下篇文章会写一篇 MarkText 的使用报告。</p>
+]]></content>
+		</item>
 		
 		<item>
 			<title>为 Java 开发者准备的 Go 教程 01：漫游了</title>

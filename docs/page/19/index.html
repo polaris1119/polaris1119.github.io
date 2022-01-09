@@ -71,6 +71,49 @@
 		
         <div class="post animated fadeInDown">
             <div class="post-title">
+                <h2><a href="/posts/devtool/compare-three-playground/">对比三款 Go Playground：你喜欢哪款？</a>
+                </h2>
+            </div>
+            <div class="post-content">
+                <div class="p_part"><p>曾几何时，语言的在线运行（Playground）似乎成了标配。确实，Playground 能够让我们可以快速试验一些想法。Go 语言在发布之初就提供了一个，这就是 https://play.golang.org 。然而，由于众所周知的原因，我们访问不了。为了方便国内广大 gopher，我搞了一个国内镜像：https://play.studygolang.com ，尽情使用、分享吧。 官方的 Playground 不得不说，Go 官方的 Playground 真</p></div>
+            </div>
+            <div class="post-footer">
+                <div class="meta">
+                    <div class="info"><em class="fas fa-calendar-day"></em><span
+                                class="date">2020-08-19</span>
+                        <a class="tag"
+                                   href="/tags/go/">Go</a><a class="tag"
+                                   href="/tags/golang/">Golang</a><a class="tag"
+                                   href="/tags/playground/">Playground</a>
+                    </div>
+                </div>
+            </div>
+				</div>
+    
+        <div class="post animated fadeInDown">
+            <div class="post-title">
+                <h2><a href="/posts/go/translation/goui-a-very-simple-ui-framework/">GoUI：一个非常简单的 GUI 框架</a>
+                </h2>
+            </div>
+            <div class="post-content">
+                <div class="p_part"><p>最近，我一直想开发一些桌面（主要是 Windows，但也可以考虑 MacOS 或 Linux）应用程序。虽然 Go 不是开发 UI 应用程序时首选语言，但是该语言的简单性和健壮性仍然使它成为我的首选语言。是的，这是我的锤子（hammer）&hellip; 但这是一个该死的漂亮锤子。 以前，我曾将 Ebiten 图形库用于 Go，以便与孩子们一起编写一些游戏。但是，对于一般的“应用程序”开发（即需要“小部件</p></div>
+            </div>
+            <div class="post-footer">
+                <div class="meta">
+                    <div class="info"><em class="fas fa-calendar-day"></em><span
+                                class="date">2020-08-17</span>
+                        <a class="tag"
+                                   href="/tags/go/">Go</a><a class="tag"
+                                   href="/tags/golang/">Golang</a><a class="tag"
+                                   href="/tags/goui/">GoUI</a><a class="tag"
+                                   href="/tags/gui/">GUI</a>
+                    </div>
+                </div>
+            </div>
+				</div>
+    
+        <div class="post animated fadeInDown">
+            <div class="post-title">
                 <h2><a href="/posts/go/translation/easter-eggs-in-go-source-code-2l02/">Go 源代码中的复活节彩蛋</a>
                 </h2>
             </div>
@@ -247,90 +290,6 @@ IDE 将识别自定义位置，并将其用于具有依赖关系的所有后续�
                         <a class="tag"
                                    href="/tags/echo/">echo</a><a class="tag"
                                    href="/tags/%E5%8D%9A%E5%AE%A2%E7%B3%BB%E7%BB%9F/">博客系统</a>
-                    </div>
-                </div>
-            </div>
-				</div>
-    
-        <div class="post animated fadeInDown">
-            <div class="post-title">
-                <h2><a href="/posts/devtool/goland/using-kubernetes-from-goland/">当 GoLand 遇到 Kubernetes：如何调试和运行 Go 程序</a>
-                </h2>
-            </div>
-            <div class="post-content">
-                <div class="p_part"><p>这是我们使用 Docker，Docker Compose 或 Kubernetes 运行 Go 服务的系列文章的最后一部分。在这一部分中，我们将专注于使用 Kubernetes 集群时的运行和调试。
-虽然我们不会介绍如何安装和配置 Kubernetes 集群，但是可以使用各种工具（例如 kubeadm ，minikube 和 microk8s ）来实现这一目标。如果您使用的是 Windows，则 Docker Desktop for Windows 附带内置的 Kubernetes 支持 。如果您打算使用基于 ARM 芯片的平台（例如 Raspberry Pi 4 ），则可以使用 k3s 之类的东西来入门。
-在开始之前，还应该安装 Kubernetes 插件，因为它没有与 IDE 捆绑在一起。您可以通过打开 Settings/Preferences | Plugins | Marketplace并搜索 Kubernetes 找到并安装插件。
-在 IDE 中使用 Kubernetes 运行服务 如果您到目前为止一直在关注本系列，那么您会知道所有代码都可以在此 下载和使用，使用 Kubernetes 也是这种情况。我们可以从 kubernetes 分支 开始。
-在这里我们可以找到两个不同的文件：db.yaml 和 web.yaml。这些文件包含了我们开始使用 Kubernetes 集群中的应用程序所需的所有定义。为了方便起见，他们还假定 Kubernetes 与 IDE 在同一台计算机上运行。
-打开 db.yaml：
-apiVersion:v1kind:ConfigMapmetadata:name:db-configlabels:dockerdev:dbdata:POSTGRES_DB:golandPOSTGRES_USER:golandPOSTGRES_PASSWORD:goland---apiVersion:apps/v1kind:StatefulSetmetadata:labels:dockerdev:dbname:dbspec:serviceName:dockerdev-dbselector:matchLabels:dockerdev:dbtemplate:metadata:labels:dockerdev:dbspec:containers:- name:dbimage:postgres:12.2-alpineimagePullPolicy:IfNotPresentenvFrom:- configMapRef:name:db-configports:- containerPort:5432volumeMounts:- name:db-initmountPath:/docker-entrypoint-initdb.d/init.sqlsubPath:init.sqlvolumes:- name:db-inithostPath:path:/d/GoLandProjects/dockerdev---apiVersion:v1kind:Servicemetadata:labels:dockerdev:dbname:dockerdev-db-exportedspec:type:NodePortports:- name:5432-tcpport:5432targetPort:5432nodePort:30432selector:dockerdev:db注意：在启动此示例之前，我们需要确保更改了 init.sql 文件在主机上的位置。您可以通过将路径：/d/ GoLandProjects / dockerdev 替换为先前克隆该项目的位置的路径来实现。
-完成此操作后，我们可以使用文件顶部编辑器装订线上的绿色箭头在 Kubernetes 中部署数据库。
-部署数据库将创建一个 StatefulSet 并在 pod 中运行数据库。将出现 “Services Tool” 窗口，并显示用于创建资源的命令以及该命令的输出。
-Kubernetes 集群概述 在 Kubernetes 集群中，我们将看到工作负载信息，例如正在运行的 Pods, Deployments, Stateful Sets, Daemon Sets, Jobs, Cron Jobs, Replica Sets, 和 Replication Controllers。
-我们还可以查看有关集群中服务和入口点的网络信息。
-“Configuration” 部分包含当前名称空间或群集的所有配置信息，例如有关运行名称空间，节点，群集角色，角色，配置 map 和秘钥的信息。
-最后，“Storage” 部分将向我们显示当前配置中的“持久卷”，“持久卷声明”和“存储类”。
-在 IDE 中使用 Kubernetes 集群运行 Go 应用程序 让我们在同一个 Kubernetes 集群中运行 Go 应用程序，看看它是如何工作的。
-不过，在运行该应用程序之前，我们首先需要构建该应用程序所在的 Docker 容器。示例代码库中包含一个名为 build Dockerfile 的运行配置，需要运行该配置才能在集群中使用我们的容器。
-正如您可能已经猜到的那样，此后，我们终于可以使用先前与 db.yaml 文件一起使用的绿色箭头在 Kubernetes 中运行 Go 应用程序，只有这次我们才在 web.yaml 文件中使用它。
-apiVersion:apps/v1kind:Deploymentmetadata:labels:dockerdev:webname:webspec:selector:matchLabels:dockerdev:webtemplate:metadata:labels:dockerdev:webspec:containers:- name:dockerdev-webimage:dockerdev-web:latestimagePullPolicy:Neverenv:- name:DD_DB_HOSTvalue:&#34;dockerdev-db-exported&#34;ports:- containerPort:8000---apiVersion:v1kind:Servicemetadata:labels:dockerdev:webname:dockerdev-web-exportedspec:type:NodePortports:- name:8000-tcpport:8000targetPort:8000nodePort:30800selector:dockerdev:webPro tip：我们可以使用 HTTP 请求文件的方式从 IDE 运行请求，以检查服务是否已启动并正在运行。
-从 Kubernetes 调试服务 在使用 GoLand 调试 Kubernetes 服务之前，我们需要对 web.yaml 文件进行一些更改。这些变化可以在我们代码库的 kubernetes-debug 分支中看到。
-我们需要进行一些与调试常规 Docker 容器非常相似的更改。
-首先，我们需要调整 Dockerfile，然后我们必须使用 Run | Run … | ‘build Dockerfile’ 来配置。</p></div>
-            </div>
-            <div class="post-footer">
-                <div class="meta">
-                    <div class="info"><em class="fas fa-calendar-day"></em><span
-                                class="date">2020-05-11</span>
-                        <a class="tag"
-                                   href="/tags/goland/">GoLand</a><a class="tag"
-                                   href="/tags/kubernetes/">Kubernetes</a><a class="tag"
-                                   href="/tags/debug/">Debug</a>
-                    </div>
-                </div>
-            </div>
-				</div>
-    
-        <div class="post animated fadeInDown">
-            <div class="post-title">
-                <h2><a href="/posts/devtool/goland/running-go-applications-using-docker-compose-in-goland/">在 GoLang 中使用 Docker Compose 运行 Go 应用程序</a>
-                </h2>
-            </div>
-            <div class="post-content">
-                <div class="p_part"><p>今天，我们将继续有关如何使用 Docker 运行 和调试 Go 应用程序 的系列文章。
-在本文中，我们将使用 Docker Compose 运行和调试我们的应用程序。对于本文，我们将使用此处的源代码 ，在开始之前切换到 compose 分支 。
-使用 Docker Compose 运行 Go 应用程序 让我们从使用 Docker Compose 运行应用程序开始。
-查看我们已经创建的项目，可以在代码仓库中找到 docker-compose.yaml 文件：
-version:&#34;3.5&#34;services:web:container_name:dockerdevbuild:./ports:- &#34;8000:8000&#34;environment:DD_DB_HOST:dbcommand:/serverdepends_on:- dbdb:container_name:dockerdev-dbimage:postgres:12.2-alpineports:- &#34;5432:5432&#34;environment:POSTGRES_USER:golandPOSTGRES_PASSWORD:golandPOSTGRES_DB:golandvolumes:- ./init.sql:/docker-entrypoint-initdb.d/init.sql在数据库部分，我们需要创建一个名为 init.sql 的新文件。该文件的内容用于设置服务运行所需的数据库。
-最后，让我们在 main.go 文件中运行 Sync packages of &lt;project&gt; 来 quick-fix，以下载 pgx 库并运行该应用程序。注意：如果你的模块缓存中还没有 pgx 的 4.5.0 版本，则需要执行此步骤。
-运行基于 Docker Compose 的应用程序类似于其他 Run Configurations。单击 docker-compose.yaml 中 services 指令旁边的双绿色箭头按钮。要仅运行一项服务，请点击要运行的服务类型旁边的绿色箭头，例如上面的示例配置中的 web 或 db。
-配置运行后，在 Docker 节点下的 Services Tool 窗口中会有一个名为 Compose 的新节点。这里会显示正在运行的每个 Docker Compose 服务套件。
-可以浏览每个服务定义，并为每个服务显示所有正在运行的实例。Docker Compose 服务中可用于容器的信息与常规 Docker 容器可使用的信息相同。
-注意：如果你要启动较重的服务（例如数据库服务器），或者这些服务需要一些初始化时间，则我们的 Go 程序服务需要考虑这些服务的启动时间。
-在我们的示例代码中，这是使用 getDBConnection 函数处理的，该函数尝试在放弃之前尝试几次以指数退避的方式连接到数据库。
-重启动 Docker Compose 服务 更改我们的代码后，我们需要重新启动服务以重新加载这些更改。目前，使用 IDE 重新启动它有点复杂，因为这样做需要你执行以下步骤：
- 执行 Run | Edit Configurations 并复制一份现有的 Docker Compose 配置； 编辑新创建的配置以添加重新启动的服务的名称，并启用 –build 选项以强制在运行镜像之前对其进行重建；  完成这些步骤之后，你可以停止现有服务，删除现有容器，然后启动新创建的配置。
-Pro tip：你可以使用 “Delete” 功能同时停止和删除服务。
-使用 Docker Compose 调试 Go 应用程序 要使用 Docker Compose 调试应用程序，我们需要同时更改 Dockerfile 和 docker-compose.yaml 文件。我们可以切换到代码库的 compose-debug 分支 ，这样更容易理解。
-现在，docker-compose.yaml 文件如下所示：
-version:&#34;3.5&#34;services:web:container_name:dockerdevbuild:./ports:- &#34;8000:8000&#34;- &#34;40000:40000&#34;environment:DD_DB_HOST:dbsecurity_opt:- &#34;seccomp:unconfined&#34;cap_add:- SYS_PTRACEcommand:/dlv --headless --listen=:40000 --api-version=2 exec /serverdepends_on:- dbdb:container_name:dockerdev-dbimage:postgres:12.2-alpineports:- &#34;5432:5432&#34;environment:POSTGRES_USER:golandPOSTGRES_PASSWORD:golandPOSTGRES_DB:golandvolumes:- ./init.sql:/docker-entrypoint-initdb.d/init.sql注意：这里的重要部分是 security_opt 和 cap_add 属性，因为它们允许调试器在 Docker 环境中运行。
-运行此操作类似于运行常规 Docker Compose 配置。我们可以使用 Go Remote 配置连接到容器，调试器会话将像调试常规配置一样开始。
-今天我们的文章到此结束。我们已经讨论了如何使用 Docker Compose，以及如何从 GoLand 运行和调试我们的应用程序。
-在下一篇文章中，我们将介绍如何在 IDE 中使用 Kubernetes，以及如何使用它运行和调试我们的应用程序。
- 原文链接：https://blog.jetbrains.com/go/2020/05/08/running-go-applications-using-docker-compose-in-goland/
-作者：Florin Pățan
-翻译：Go语言中文网 polaris
- </p></div>
-            </div>
-            <div class="post-footer">
-                <div class="meta">
-                    <div class="info"><em class="fas fa-calendar-day"></em><span
-                                class="date">2020-05-08</span>
-                        <a class="tag"
-                                   href="/tags/goland/">GoLand</a><a class="tag"
-                                   href="/tags/docker/">Docker</a><a class="tag"
-                                   href="/tags/compose/">Compose</a>
                     </div>
                 </div>
             </div>

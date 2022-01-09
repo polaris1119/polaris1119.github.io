@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Markdown on polarisxu</title>
-    <link>https://polarisxu.studygolang.com/tags/markdown/</link>
-    <description>Recent content in Markdown on polarisxu</description>
+    <title>MarkText on polarisxu</title>
+    <link>https://polarisxu.studygolang.com/tags/marktext/</link>
+    <description>Recent content in MarkText on polarisxu</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Fri, 07 Jan 2022 22:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/markdown/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 07 Jan 2022 22:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/marktext/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Typora 宣布收费后，这款开源 Markdown 编辑器火了</title>
       <link>https://polarisxu.studygolang.com/posts/devtool/markdown-editor/</link>
@@ -15,15 +15,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/devtool/markdown-editor/</guid>
       <description>大家好，我是 polarisxu。 这几年，Markdown 写作不要太流行，包括一些社区也基本支持 Markdown 格式，包括 Go 语言中文网。GitHub 的评论也是支持 Markdown 格式，因此 Markdown 是每个程序员都应该掌握的。如果你从来没有使用过 Markdown，现在是时候尝试使用了。 Markdown 是一种纯文本格式，用来撰写结构化文档。由 John Gruber 在 2004 年创造。他用 perl 实现了第一个 Markdown 到 HTML 的转换器，迅速地在网络上普及开来</description>
-    </item>
-    
-    <item>
-      <title>除了心灵美，颜值也很重要</title>
-      <link>https://polarisxu.studygolang.com/posts/wechat/article-pretty/</link>
-      <pubDate>Tue, 02 Feb 2021 11:00:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/wechat/article-pretty/</guid>
-      <description>大家好，我是站长 polarisxu。 好吧，这篇文章不是聊美女的，而是聊排版的。让你失望了！ 记得高中语文作文，老师总是一再强调，字要工整。如果字迹不清楚，看起来很费劲，即使内容很好，阅卷老师可能也没耐心读，给人的印象就很不好。 现在我们在网络上写文章，同样存在“字要工整”的问题，这就是排版。现在受欢迎的软件，一个个颜值都很高。我们的文章，也必须是高颜值。本文就介</description>
     </item>
     
   </channel>
