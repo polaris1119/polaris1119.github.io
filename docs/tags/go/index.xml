@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Sat, 08 Jan 2022 15:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 11 Jan 2022 22:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>为 Java 开发者准备的 Go 教程 02：Java 有而 Go 无</title>
+      <link>https://polarisxu.studygolang.com/posts/go/java/go-for-java02/</link>
+      <pubDate>Tue, 11 Jan 2022 22:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/java/go-for-java02/</guid>
+      <description>大家好，我是 polarisxu。 Go 语言的设计是站在巨人的肩膀上的，它吸取了其他语言的优秀设计，同时摒弃了一些「不认可」的设计。同时，为了保持简单性，Go 的特性也比很多其他语言少。因此，Java 有一些特性，Go 没有。但没有，不代表不好。本文就看看具体有哪些。（当然，也存在 Go 有的特性，而 Java 没有） 1、多重赋值 Java 可以在一条语句中将同一个值分配给多个变量（很多 C 族语言</description>
+    </item>
+    
     <item>
       <title>GitHub 发现了 studygolang 项目依赖的漏洞</title>
       <link>https://polarisxu.studygolang.com/posts/go/studygolang-github-security/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/generics/generics-maps/</guid>
       <description>大家好，我是 polarisxu。 之前文章介绍了 slices 包 ，本文介绍另一个包，用于 map 相关操作，目前同样放在 golang.org/x/exp 包下。 https://github.com/golang/exp/blob/master/maps/maps.go 01 真实的场景 不少新手，对 map 的输出是随机的有迷惑，曾经，map 的输出顺序是固定的，但官方怕大家依赖这个顺序，之后故意让输出顺序不固定。 但实际场景中，会有按某种顺序输出 map 的需求，怎么办呢？这需要对 map 的 key 进行排序，伪代码如下： for k := m { keys = append(keys, k) } sort(keys) 类似的代码</description>
-    </item>
-    
-    <item>
-      <title>Go 1.18 中的 any 是什么？</title>
-      <link>https://polarisxu.studygolang.com/posts/go/dynamic/go1.18-any/</link>
-      <pubDate>Thu, 02 Dec 2021 20:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/dynamic/go1.18-any/</guid>
-      <description>大家好，我是 polarisxu。 Go 1.18 因为泛型引入 any，这实际上是 interface{} 的别名： type any = interface{} 以下代码虽然不是泛型，但用 Go 1.18 可以正常运行，证明 any 和 interface{} 是一样的：（这里可以在线运行：https://gotipplay.golang.org/p/dPeNhe-7nkA ） package main import ( &amp;#34;fmt&amp;#34; ) // 这里的 any 并非泛型的约束，而是类型 func test(x any) any { return x } func main() { fmt.Println(test(&amp;#34;a&amp;#34;)) } 泛型中，any 换为 interface{} 也可以：（这里</description>
     </item>
     
   </channel>

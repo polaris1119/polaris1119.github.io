@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Wed, 05 Jan 2022 22:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/java/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 11 Jan 2022 22:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/java/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>为 Java 开发者准备的 Go 教程 02：Java 有而 Go 无</title>
+      <link>https://polarisxu.studygolang.com/posts/go/java/go-for-java02/</link>
+      <pubDate>Tue, 11 Jan 2022 22:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/java/go-for-java02/</guid>
+      <description>大家好，我是 polarisxu。 Go 语言的设计是站在巨人的肩膀上的，它吸取了其他语言的优秀设计，同时摒弃了一些「不认可」的设计。同时，为了保持简单性，Go 的特性也比很多其他语言少。因此，Java 有一些特性，Go 没有。但没有，不代表不好。本文就看看具体有哪些。（当然，也存在 Go 有的特性，而 Java 没有） 1、多重赋值 Java 可以在一条语句中将同一个值分配给多个变量（很多 C 族语言</description>
+    </item>
+    
     <item>
       <title>为 Java 开发者准备的 Go 教程 01：漫游了</title>
       <link>https://polarisxu.studygolang.com/posts/go/java/go-for-java01/</link>

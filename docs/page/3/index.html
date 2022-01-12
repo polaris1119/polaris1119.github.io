@@ -71,6 +71,26 @@
 		
         <div class="post animated fadeInDown">
             <div class="post-title">
+                <h2><a href="/posts/go/dynamic/go1.18-cut/">Go1.18 快讯：新增的 Cut 函数太方便了</a>
+                </h2>
+            </div>
+            <div class="post-content">
+                <div class="p_part"><p>大家好，我是 polarisxu。 在编程中，字符串使用是最频繁的。Go 语言对字符串相关的操作也提供了大量的 API，一方面，字符串可以向普通 slice 一样进行相关操作；另一方面，标准库专门提供了一个包 strings 进行字符串的操作。 01 strings.Index 系列函数 假如有一个这样的需求：从 192.168.1.1:8080 中获取 ip 和 port。 我们一般会这么实现： addr := &#34;192.168.1.1:8080&#34; pos := strings.Index(addr, &#34;:&#34;) if pos == -1 { panic(&#34;非法地址&#34;) } ip, port :=</p></div>
+            </div>
+            <div class="post-footer">
+                <div class="meta">
+                    <div class="info"><em class="fas fa-calendar-day"></em><span
+                                class="date">2021-11-08</span>
+                        <a class="tag"
+                                   href="/tags/go/">Go</a><a class="tag"
+                                   href="/tags/%E6%A0%87%E5%87%86%E5%BA%93/">标准库</a>
+                    </div>
+                </div>
+            </div>
+				</div>
+    
+        <div class="post animated fadeInDown">
+            <div class="post-title">
                 <h2><a href="/posts/go/dynamic/go1.18-title/">Go1.18 快讯：废弃了这个 API</a>
                 </h2>
             </div>
@@ -244,26 +264,6 @@
                         <a class="tag"
                                    href="/tags/go/">Go</a><a class="tag"
                                    href="/tags/fiber/">Fiber</a>
-                    </div>
-                </div>
-            </div>
-				</div>
-    
-        <div class="post animated fadeInDown">
-            <div class="post-title">
-                <h2><a href="/posts/go/generics/generics-basic/">Go泛型系列：提前掌握Go泛型的基本使用</a>
-                </h2>
-            </div>
-            <div class="post-content">
-                <div class="p_part"><p>泛型，是 Go 语言多年来最令人兴奋和根本性的变化之一。没有泛型，很多人以此「鄙视」Go 语言。当然，也有人觉得根本不需要泛型。有泛型，不代表你一定要用。平心而论，有些场景下，泛型还是很有必要和帮助的。 现在已经确认，Go1.18 正式包含泛型（Go1.17 已经可以试用，只是默认不支持，见之前的文章：扬眉吐气：刚刚，Go 已经默认支持泛型了 ）。 不过，不少人对泛型还是迷迷糊</p></div>
-            </div>
-            <div class="post-footer">
-                <div class="meta">
-                    <div class="info"><em class="fas fa-calendar-day"></em><span
-                                class="date">2021-09-28</span>
-                        <a class="tag"
-                                   href="/tags/go/">Go</a><a class="tag"
-                                   href="/tags/%E6%B3%9B%E5%9E%8B/">泛型</a>
                     </div>
                 </div>
             </div>
