@@ -2,26 +2,32 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://polarisxu.studygolang.com/tags/git/</loc>
+    <lastmod>2022-01-16T22:30:00+08:00</lastmod>
+  </url><url>
+    <loc>https://polarisxu.studygolang.com/tags/github/</loc>
+    <lastmod>2022-01-16T22:30:00+08:00</lastmod>
+  </url><url>
+    <loc>https://polarisxu.studygolang.com/</loc>
+    <lastmod>2022-01-16T22:30:00+08:00</lastmod>
+  </url><url>
+    <loc>https://polarisxu.studygolang.com/tags/</loc>
+    <lastmod>2022-01-16T22:30:00+08:00</lastmod>
+  </url><url>
+    <loc>https://polarisxu.studygolang.com/posts/</loc>
+    <lastmod>2022-01-16T22:30:00+08:00</lastmod>
+  </url><url>
+    <loc>https://polarisxu.studygolang.com/posts/devtool/multi-github/</loc>
+    <lastmod>2022-01-16T22:30:00+08:00</lastmod>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/go/</loc>
     <lastmod>2022-01-11T22:30:00+08:00</lastmod>
   </url><url>
     <loc>https://polarisxu.studygolang.com/tags/java/</loc>
     <lastmod>2022-01-11T22:30:00+08:00</lastmod>
   </url><url>
-    <loc>https://polarisxu.studygolang.com/</loc>
-    <lastmod>2022-01-11T22:30:00+08:00</lastmod>
-  </url><url>
-    <loc>https://polarisxu.studygolang.com/tags/</loc>
-    <lastmod>2022-01-11T22:30:00+08:00</lastmod>
-  </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/java/go-for-java02/</loc>
     <lastmod>2022-01-11T22:30:00+08:00</lastmod>
-  </url><url>
-    <loc>https://polarisxu.studygolang.com/posts/</loc>
-    <lastmod>2022-01-11T22:30:00+08:00</lastmod>
-  </url><url>
-    <loc>https://polarisxu.studygolang.com/tags/github/</loc>
-    <lastmod>2022-01-08T15:00:00+08:00</lastmod>
   </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/studygolang-github-security/</loc>
     <lastmod>2022-01-08T15:00:00+08:00</lastmod>

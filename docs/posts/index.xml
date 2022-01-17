@@ -6,8 +6,72 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en</language>
 		<copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-		<lastBuildDate>Tue, 11 Jan 2022 22:30:00 +0800</lastBuildDate>
+		<lastBuildDate>Sun, 16 Jan 2022 22:30:00 +0800</lastBuildDate>
 		<atom:link href="https://polarisxu.studygolang.com/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>本地如何配置多个 GitHub/Gitee 账号？</title>
+			<link>https://polarisxu.studygolang.com/posts/devtool/multi-github/</link>
+			<pubDate>Sun, 16 Jan 2022 22:30:00 +0800</pubDate>
+			
+			<guid>https://polarisxu.studygolang.com/posts/devtool/multi-github/</guid>
+			<description>大家好，我是 polarisxu。 现在的开发，无论是日常工作还是参与开源，都离不开 Git。开源项目，大家通常使用 GitHub 或 Gitee，而工作中通常会自建 Git 服务，比如通过 GitLab、Gogs 等搭建。 为了方便使用，一般大家会配置 SSH keys，通过 ssh 协议 pull/push 仓库。 1、生成 ssh 密钥 首先，我们需要生成 ssh 密钥：（基于 mac，linux 类似，Windows 下找对应工具） ssh-keygen -C &amp;#34;polaris@studygolang.com&amp;#34; Generating public/private rsa key</description>
+			<content type="html"><![CDATA[<p>大家好，我是 polarisxu。</p>
+<p>现在的开发，无论是日常工作还是参与开源，都离不开 Git。开源项目，大家通常使用 GitHub 或 Gitee，而工作中通常会自建 Git 服务，比如通过 GitLab、Gogs 等搭建。</p>
+<p>为了方便使用，一般大家会配置 SSH keys，通过 ssh 协议 pull/push 仓库。</p>
+<h2 id="1生成-ssh-密钥">1、生成 ssh 密钥</h2>
+<p>首先，我们需要生成 ssh 密钥：（基于 mac，linux 类似，Windows 下找对应工具）</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">ssh-keygen -C <span class="s2">&#34;polaris@studygolang.com&#34;</span>
+Generating public/private rsa key pair.
+Enter file in which to save the key <span class="o">(</span>/Users/xuxinhua/.ssh/id_rsa<span class="o">)</span>:
+</code></pre></div><p>出现的提示，使用默认值即可。命令执行完后，会生成 id_rsa 和 id_rsa.pub 文件，其中 id_rsa.pub 是公钥，拷贝其中的内容配置到 GitHub 或 GitLab 之类的网站。比如 GitHub 是这里：<a href="https://github.com/settings/ssh/new" target="_blank" rel="noopener">https://github.com/settings/ssh/new</a>
+。</p>
+<h2 id="2一个电脑两个不同网站账号">2、一个电脑两个不同网站账号</h2>
+<p>这是最常见的场景：一个业余号（github），一个工作号（比如自建 gitlab）。因为是不同网站，因此可以使用同一个邮箱。当然也可以是一个 github 账号，一个 gitee 账号，为了方便，以下使用 github 和 gitee。</p>
+<p>在 <code>~/.ssh</code> 目录下创建一个 config 文件，在其中添加如下内容：</p>
+<pre tabindex="0"><code class="language-config" data-lang="config">host github
+  hostname github.com
+  Port 22
+host gitee
+  hostname gitee.com
+  Port 22
+</code></pre><p>这里没有指定 id_rsa，因为默认读取的就是它。</p>
+<p>这样，本地使用 GitHub 还是 Gitee 完全没区别。</p>
+<blockquote>
+<p>注意，需要使用 id_rsa.pub 分别在 GitHub 和 Gitee 添加 SSH Keys</p>
+</blockquote>
+<p>当然，你也完全可以使用两个不同的账号，具体见下文。</p>
+<h2 id="3一个电脑两个-github-账号">3、一个电脑两个 GitHub 账号</h2>
+<p>因为两个 GitHub 账号，自然不能使用同一个 ssh 密钥，因此生成另外一个：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ ssh-keygen -t rsa -f ~/.ssh/id_rsa_gmail -C <span class="s2">&#34;polaris@gmail.com&#34;</span>
+</code></pre></div><p>这会在 <code>~/.ssh</code> 目录生成 id_rsa_gmail 和 id_rsa_gmail.pub 两个文件。</p>
+<p>将 id_rsa.pub 和 id_rsa_gmail.pub 配置到对应的 GitHub 账号。然后跟上文一样，编辑 config 文件：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># github 账号：polaris@studygolang.com</span>
+host github
+    hostname github.com
+    Port <span class="m">22</span>
+    User git
+    IdentityFile ~/.ssh/id_rsa
+<span class="c1"># github 账号：polaris@gmail.com</span>
+host gmail-github
+    hostname github.com
+    Port <span class="m">22</span>
+    User git
+    IdentityFile ~/.ssh/id_rsa_gmail
+</code></pre></div><p>config 是 ssh 的配置，详细信息可以参考：<a href="https://daemon369.github.io/ssh/2015/03/21/using-ssh-config-file" target="_blank" rel="noopener">https://daemon369.github.io/ssh/2015/03/21/using-ssh-config-file</a>
+。</p>
+<p>针对以上场景，在具体使用时，我们需要注意以下几点：</p>
+<ul>
+<li>默认会使用第一个账号，要使用第二个账号，需要设置该项目自己的 user.email 和 user.name</li>
+<li>git clone 时，第二个账号，地址得是类似这样的：<code>git@gmail-github.com:studygolang/studygolang.git </code></li>
+</ul>
+<p>如果有问题，可以执行以下两个命令验证：（记得替换为你自己的配置）</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ ssh-add ~/.ssh/id_rsa_gmail
+ssh -T git@gmail-github.com
+</code></pre></div><h2 id="4总结">4、总结</h2>
+<p>生活一个号，工作一个号。如果你没有很好的区分，可以试试本文的方法，更愉快的 Coding！</p>
+]]></content>
+		</item>
 		
 		<item>
 			<title>为 Java 开发者准备的 Go 教程 02：Java 有而 Go 无</title>
@@ -98,7 +162,9 @@
 </li>
 <li><a href="https://yourbasic.org/golang/go-java-tutorial/" target="_blank" rel="noopener">Java to Go in-depth tutorial</a>
 </li>
-<li><a href="https://www.oreilly.com/library/view/go-for-java/9781484271995/" target="_blank" rel="noopener">Go for Java Programmers: ebook</a>
+<li>
+<h3 id="go-for-java-programmers-ebookhttpswwworeillycomlibraryviewgo-for-java9781484271995"><a href="https://www.oreilly.com/library/view/go-for-java/9781484271995/" target="_blank" rel="noopener">Go for Java Programmers: ebook</a>
+</h3>
 </li>
 </ul>
 ]]></content>

@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Tue, 11 Jan 2022 22:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 16 Jan 2022 22:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>本地如何配置多个 GitHub/Gitee 账号？</title>
+      <link>https://polarisxu.studygolang.com/posts/devtool/multi-github/</link>
+      <pubDate>Sun, 16 Jan 2022 22:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/devtool/multi-github/</guid>
+      <description>大家好，我是 polarisxu。 现在的开发，无论是日常工作还是参与开源，都离不开 Git。开源项目，大家通常使用 GitHub 或 Gitee，而工作中通常会自建 Git 服务，比如通过 GitLab、Gogs 等搭建。 为了方便使用，一般大家会配置 SSH keys，通过 ssh 协议 pull/push 仓库。 1、生成 ssh 密钥 首先，我们需要生成 ssh 密钥：（基于 mac，linux 类似，Windows 下找对应工具） ssh-keygen -C &amp;#34;polaris@studygolang.com&amp;#34; Generating public/private rsa key</description>
+    </item>
+    
     <item>
       <title>为 Java 开发者准备的 Go 教程 02：Java 有而 Go 无</title>
       <link>https://polarisxu.studygolang.com/posts/go/java/go-for-java02/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/dynamic/go1.18-trylock/</guid>
       <description>大家好，我是 polarisxu。 我们知晓，Go 标准库的 sync/Mutex、RWMutex 实现了 sync/Locker 接口， 提供了 Lock() 和 UnLock() 方法，可以获取锁和释放锁，我们可以方便的使用它来控制对共享资源的并发控制。（其他语言，比如 Java 是有类似 TryLock 的功能的） type Locker interface { Lock() Unlock() } 但是锁被获取后，在未释放之前其他 goroutine 再调用 Lock 则会被阻塞住，这种设计在有些情况下可能不能满足需求。有时我们希望尝试获取锁，</description>
-    </item>
-    
-    <item>
-      <title>Go 泛型入门教程</title>
-      <link>https://polarisxu.studygolang.com/posts/go/generics/generics-tutorial/</link>
-      <pubDate>Sun, 19 Dec 2021 16:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/generics/generics-tutorial/</guid>
-      <description>大家好，我是 polarisxu。 有泛型的 Go 版本 1.18 已经发布了 Beta1 版本，之前陆陆续续介绍了泛型，但可能有些人还是对 Go 泛型没有完整的了解，因此有这份入门教程。 01 准备工作 开始学习泛型之前，你应该安装 Go1.18 Beta1 或之后发布的版本，建议使用 goup 等版本管理工具 ，当然也可以直接通过 playground 来验证：https://go.dev/play/?v=gotip 。 不过，本教程基于本地安装 Go1.18 Beta1 为例进行。</description>
     </item>
     
   </channel>

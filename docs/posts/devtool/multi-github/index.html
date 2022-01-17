@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#fcfcfc">
+	<meta name="msapplication-TileColor" content="#fcfcfc">
+<meta itemprop="name" content="本地如何配置多个 GitHub/Gitee 账号？">
+<meta itemprop="description" content="大家好，我是 polarisxu。 现在的开发，无论是日常工作还是参与开源，都离不开 Git。开源项目，大家通常使用 GitHub 或 Gitee，而工作中通常会自建 Git 服务，比如通过 GitLab、Gogs 等搭建。 为了方便使用，一般大家会配置 SSH keys，通过 ssh 协议 pull/push 仓库。 1、生成 ssh 密钥 首先，我们需要生成 ssh 密钥：（基于 mac，linux 类似，Windows 下找对应工具） ssh-keygen -C &#34;polaris@studygolang.com&#34; Generating public/private rsa key"><meta itemprop="datePublished" content="2022-01-16T22:30:00+08:00" />
+<meta itemprop="dateModified" content="2022-01-16T22:30:00+08:00" />
+<meta itemprop="wordCount" content="974">
+<meta itemprop="keywords" content="GitHub,Git," /><meta property="og:title" content="本地如何配置多个 GitHub/Gitee 账号？" />
+<meta property="og:description" content="大家好，我是 polarisxu。 现在的开发，无论是日常工作还是参与开源，都离不开 Git。开源项目，大家通常使用 GitHub 或 Gitee，而工作中通常会自建 Git 服务，比如通过 GitLab、Gogs 等搭建。 为了方便使用，一般大家会配置 SSH keys，通过 ssh 协议 pull/push 仓库。 1、生成 ssh 密钥 首先，我们需要生成 ssh 密钥：（基于 mac，linux 类似，Windows 下找对应工具） ssh-keygen -C &#34;polaris@studygolang.com&#34; Generating public/private rsa key" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://polarisxu.studygolang.com/posts/devtool/multi-github/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-01-16T22:30:00+08:00" />
+<meta property="article:modified_time" content="2022-01-16T22:30:00+08:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="本地如何配置多个 GitHub/Gitee 账号？"/>
+<meta name="twitter:description" content="大家好，我是 polarisxu。 现在的开发，无论是日常工作还是参与开源，都离不开 Git。开源项目，大家通常使用 GitHub 或 Gitee，而工作中通常会自建 Git 服务，比如通过 GitLab、Gogs 等搭建。 为了方便使用，一般大家会配置 SSH keys，通过 ssh 协议 pull/push 仓库。 1、生成 ssh 密钥 首先，我们需要生成 ssh 密钥：（基于 mac，linux 类似，Windows 下找对应工具） ssh-keygen -C &#34;polaris@studygolang.com&#34; Generating public/private rsa key"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>本地如何配置多个 GitHub/Gitee 账号？</title>
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
+	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/styles.css">
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://polarisxu.studygolang.com">polarisxu</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+  <a href="https://polarisxu.studygolang.com/">首页</a>
+  <a href="https://polarisxu.studygolang.com/categories/echo%E7%B3%BB%E5%88%97/">Echo系列</a>
+  <a href="https://polarisxu.studygolang.com/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a>
+  <a href="https://polarisxu.studygolang.com/posts/">归档</a>
+  <a href="https://polarisxu.studygolang.com/about/">关于</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<button id="toc-btn" class="hdr-btn desktop-only-ib" title="目录"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3" y2="6"></line><line x1="3" y1="12" x2="3" y2="12"></line><line x1="3" y1="18" x2="3" y2="18"></line></svg></button><span class="hdr-social hide-in-mobile"><a href="https://github.com/polaris1119" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a><a href="https://twitter.com/polaris1119" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="菜单"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://polarisxu.studygolang.com/">首页</a></li>
+			<li><a href="https://polarisxu.studygolang.com/categories/echo%E7%B3%BB%E5%88%97/">Echo系列</a></li>
+			<li><a href="https://polarisxu.studygolang.com/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a></li>
+			<li><a href="https://polarisxu.studygolang.com/posts/">归档</a></li>
+			<li><a href="https://polarisxu.studygolang.com/about/">关于</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Jan 16, 2022</span></div>
+				<h1>本地如何配置多个 GitHub/Gitee 账号？</h1>
+			</header>
+			<div class="content">
+				<p>大家好，我是 polarisxu。</p>
+<p>现在的开发，无论是日常工作还是参与开源，都离不开 Git。开源项目，大家通常使用 GitHub 或 Gitee，而工作中通常会自建 Git 服务，比如通过 GitLab、Gogs 等搭建。</p>
+<p>为了方便使用，一般大家会配置 SSH keys，通过 ssh 协议 pull/push 仓库。</p>
+<h2 id="1生成-ssh-密钥">1、生成 ssh 密钥<a href="#1生成-ssh-密钥" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>首先，我们需要生成 ssh 密钥：（基于 mac，linux 类似，Windows 下找对应工具）</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">ssh-keygen -C <span class="s2">&#34;polaris@studygolang.com&#34;</span>
+Generating public/private rsa key pair.
+Enter file in which to save the key <span class="o">(</span>/Users/xuxinhua/.ssh/id_rsa<span class="o">)</span>:
+</code></pre></div><p>出现的提示，使用默认值即可。命令执行完后，会生成 id_rsa 和 id_rsa.pub 文件，其中 id_rsa.pub 是公钥，拷贝其中的内容配置到 GitHub 或 GitLab 之类的网站。比如 GitHub 是这里：<a href="https://github.com/settings/ssh/new" target="_blank" rel="noopener">https://github.com/settings/ssh/new</a>
+。</p>
+<h2 id="2一个电脑两个不同网站账号">2、一个电脑两个不同网站账号<a href="#2一个电脑两个不同网站账号" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>这是最常见的场景：一个业余号（github），一个工作号（比如自建 gitlab）。因为是不同网站，因此可以使用同一个邮箱。当然也可以是一个 github 账号，一个 gitee 账号，为了方便，以下使用 github 和 gitee。</p>
+<p>在 <code>~/.ssh</code> 目录下创建一个 config 文件，在其中添加如下内容：</p>
+<pre tabindex="0"><code class="language-config" data-lang="config">host github
+  hostname github.com
+  Port 22
+host gitee
+  hostname gitee.com
+  Port 22
+</code></pre><p>这里没有指定 id_rsa，因为默认读取的就是它。</p>
+<p>这样，本地使用 GitHub 还是 Gitee 完全没区别。</p>
+<blockquote>
+<p>注意，需要使用 id_rsa.pub 分别在 GitHub 和 Gitee 添加 SSH Keys</p>
+</blockquote>
+<p>当然，你也完全可以使用两个不同的账号，具体见下文。</p>
+<h2 id="3一个电脑两个-github-账号">3、一个电脑两个 GitHub 账号<a href="#3一个电脑两个-github-账号" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>因为两个 GitHub 账号，自然不能使用同一个 ssh 密钥，因此生成另外一个：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ ssh-keygen -t rsa -f ~/.ssh/id_rsa_gmail -C <span class="s2">&#34;polaris@gmail.com&#34;</span>
+</code></pre></div><p>这会在 <code>~/.ssh</code> 目录生成 id_rsa_gmail 和 id_rsa_gmail.pub 两个文件。</p>
+<p>将 id_rsa.pub 和 id_rsa_gmail.pub 配置到对应的 GitHub 账号。然后跟上文一样，编辑 config 文件：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># github 账号：polaris@studygolang.com</span>
+host github
+    hostname github.com
+    Port <span class="m">22</span>
+    User git
+    IdentityFile ~/.ssh/id_rsa
+<span class="c1"># github 账号：polaris@gmail.com</span>
+host gmail-github
+    hostname github.com
+    Port <span class="m">22</span>
+    User git
+    IdentityFile ~/.ssh/id_rsa_gmail
+</code></pre></div><p>config 是 ssh 的配置，详细信息可以参考：<a href="https://daemon369.github.io/ssh/2015/03/21/using-ssh-config-file" target="_blank" rel="noopener">https://daemon369.github.io/ssh/2015/03/21/using-ssh-config-file</a>
+。</p>
+<p>针对以上场景，在具体使用时，我们需要注意以下几点：</p>
+<ul>
+<li>默认会使用第一个账号，要使用第二个账号，需要设置该项目自己的 user.email 和 user.name</li>
+<li>git clone 时，第二个账号，地址得是类似这样的：<code>git@gmail-github.com:studygolang/studygolang.git </code></li>
+</ul>
+<p>如果有问题，可以执行以下两个命令验证：（记得替换为你自己的配置）</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ ssh-add ~/.ssh/id_rsa_gmail
+ssh -T git@gmail-github.com
+</code></pre></div><h2 id="4总结">4、总结<a href="#4总结" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>生活一个号，工作一个号。如果你没有很好的区分，可以试试本文的方法，更愉快的 Coding！</p>
+
+			</div><div class="content">
+	<br>
+	<img src="https://static.studygolang.com/static/img/polarisxu-qrcode-soso-s.png">
+</div>
+
+<div class="related-posts thin">
+	<h2>相关推荐</h2>
+	<ul>
+	
+	<li><a href="/posts/go/studygolang-github-security/">GitHub 发现了 studygolang 项目依赖的漏洞</a></li>
+	
+	<li><a href="/posts/go/dynamic/github-supply-chain-security-features-go-community/">GitHub 为 Go 社区带来安全支持</a></li>
+	
+	<li><a href="/posts/talk/sh-is-shanghai/">妹子你是认真的吗？.sh 文件只能在 Shanghai 机器跑</a></li>
+	
+	<li><a href="/posts/talk/myblog-with-hugo-github-pages/">Hugo &#43; GitHub Pages 搭建自己的网站</a></li>
+	
+	<li><a href="/posts/talk/view-github-discussions/">GitHub 出的这个功能，让开源项目有了自己的社区</a></li>
+	
+	</ul>
+</div>
+
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://polarisxu.studygolang.com/tags/github">GitHub</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/git">Git</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>974 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2022-01-16 22:30 &#43;0800</p>
+			</footer>
+		</article>
+		<aside id="toc">
+			<div class="toc-title">目录</div>
+			<nav id="TableOfContents">
+  <ul>
+    <li><a href="#1生成-ssh-密钥">1、生成 ssh 密钥</a></li>
+    <li><a href="#2一个电脑两个不同网站账号">2、一个电脑两个不同网站账号</a></li>
+    <li><a href="#3一个电脑两个-github-账号">3、一个电脑两个 GitHub 账号</a></li>
+    <li><a href="#4总结">4、总结</a></li>
+  </ul>
+</nav>
+		</aside>
+		<div class="post-nav thin">
+			<a class="prev-post" href="https://polarisxu.studygolang.com/posts/go/java/go-for-java02/">
+				<span class="post-nav-label">旧&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>为 Java 开发者准备的 Go 教程 02：Java 有而 Go 无</span>
+			</a>
+		</div>
+		<div id="comments" class="thin"><script src="https://utteranc.es/client.js"
+	repo="polaris1119/polarisxu"
+	issue-term="pathname"
+	theme="github-light"
+	crossorigin="anonymous"
+	async>
+</script>
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2019 - 2022 <a href="https://polarisxu.studygolang.com">polarisxu</a> &#183; <a href="https://beian.miit.gov.cn/">京ICP备14030343号-1</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://polarisxu.studygolang.com/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+		<span id="busuanzi_container" style="color: #666;">
+			本站总访客数/访问量：<span id="busuanzi_value_site_uv"></span>/<span id="busuanzi_value_site_pv"></span>
+		</span>
+	</footer>
+
+
+
+	<script src="https://polarisxu.studygolang.com/js/main.min.4eaa15feccc672488716f0338ac605e08c7553ce0ce175e13fa00a873636bf98.js" integrity="sha256-TqoV/szGckiHFvAzisYF4Ix1U84M4XXhP6AKhzY2v5g=" crossorigin="anonymous"></script>
+	<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?224c227cd9239761ec770bc8c1fb134c";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+</body>
+
+</html>

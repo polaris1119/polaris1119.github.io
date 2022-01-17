@@ -7,7 +7,25 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Tue, 11 Jan 2022 22:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 16 Jan 2022 22:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Git</title>
+      <link>https://polarisxu.studygolang.com/tags/git/</link>
+      <pubDate>Sun, 16 Jan 2022 22:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/tags/git/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>GitHub</title>
+      <link>https://polarisxu.studygolang.com/tags/github/</link>
+      <pubDate>Sun, 16 Jan 2022 22:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/tags/github/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>Go</title>
       <link>https://polarisxu.studygolang.com/tags/go/</link>
@@ -23,15 +41,6 @@
       <pubDate>Tue, 11 Jan 2022 22:30:00 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/tags/java/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>GitHub</title>
-      <link>https://polarisxu.studygolang.com/tags/github/</link>
-      <pubDate>Sat, 08 Jan 2022 15:00:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/tags/github/</guid>
       <description></description>
     </item>
     
@@ -86,15 +95,6 @@
       <pubDate>Thu, 30 Dec 2021 13:00:00 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/tags/singleflight/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>scc</title>
-      <link>https://polarisxu.studygolang.com/tags/scc/</link>
-      <pubDate>Tue, 28 Dec 2021 22:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/tags/scc/</guid>
       <description></description>
     </item>
     
