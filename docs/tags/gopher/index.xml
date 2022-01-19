@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Gopher on polarisxu</title>
+    <link>https://polarisxu.studygolang.com/tags/gopher/</link>
+    <description>Recent content in Gopher on polarisxu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
+    <lastBuildDate>Tue, 18 Jan 2022 22:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/gopher/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go 为什么选择 Gopher 作为吉祥物？</title>
+      <link>https://polarisxu.studygolang.com/posts/go/why/why-use-gopher/</link>
+      <pubDate>Tue, 18 Jan 2022 22:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/why/why-use-gopher/</guid>
+      <description>大家好，我是 polarisxu。 Go 语言的诞生，伴随着出现了 Gopher。现在 Go 爱好者通常自称为 Gopher。实际上，Gopher 最开始只是表示 Go 的吉祥物： 那 Gopher 这个吉祥物前世今生为何？据说，有些人学 Go 是因为 Gopher 这个吉祥物~ 大约在 1999 年（远早于 Go 的诞生日）—— gopher 第一次出现在新泽西州的 WFMU radio station ，作为广播电台的宣传物。当时，Renée French 被委托为年度筹款活动设计一件 T 恤，结</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Tue, 11 Jan 2022 22:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 18 Jan 2022 22:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go 为什么选择 Gopher 作为吉祥物？</title>
+      <link>https://polarisxu.studygolang.com/posts/go/why/why-use-gopher/</link>
+      <pubDate>Tue, 18 Jan 2022 22:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/why/why-use-gopher/</guid>
+      <description>大家好，我是 polarisxu。 Go 语言的诞生，伴随着出现了 Gopher。现在 Go 爱好者通常自称为 Gopher。实际上，Gopher 最开始只是表示 Go 的吉祥物： 那 Gopher 这个吉祥物前世今生为何？据说，有些人学 Go 是因为 Gopher 这个吉祥物~ 大约在 1999 年（远早于 Go 的诞生日）—— gopher 第一次出现在新泽西州的 WFMU radio station ，作为广播电台的宣传物。当时，Renée French 被委托为年度筹款活动设计一件 T 恤，结</description>
+    </item>
+    
     <item>
       <title>为 Java 开发者准备的 Go 教程 02：Java 有而 Go 无</title>
       <link>https://polarisxu.studygolang.com/posts/go/java/go-for-java02/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/project/zinc-like-es/</guid>
       <description>大家好，我是 polarisxu。 企业内部搭建搜索引擎常用 Solr、Elasticsearch，它们都是使用 Java 实现的，底层依赖 Lucene，Java 相对来说占用较多内存。而今天要介绍的这个项目，目标就是作为 ES 的替代者，一个轻量级搜索引擎：Zinc。 项目地址：https://github.com/prabhatsharma/zinc ，该项目开源十来天，目前 Star 数 3</description>
-    </item>
-    
-    <item>
-      <title>Go泛型系列：maps 包讲解</title>
-      <link>https://polarisxu.studygolang.com/posts/go/generics/generics-maps/</link>
-      <pubDate>Sun, 05 Dec 2021 20:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/generics/generics-maps/</guid>
-      <description>大家好，我是 polarisxu。 之前文章介绍了 slices 包 ，本文介绍另一个包，用于 map 相关操作，目前同样放在 golang.org/x/exp 包下。 https://github.com/golang/exp/blob/master/maps/maps.go 01 真实的场景 不少新手，对 map 的输出是随机的有迷惑，曾经，map 的输出顺序是固定的，但官方怕大家依赖这个顺序，之后故意让输出顺序不固定。 但实际场景中，会有按某种顺序输出 map 的需求，怎么办呢？这需要对 map 的 key 进行排序，伪代码如下： for k := m { keys = append(keys, k) } sort(keys) 类似的代码</description>
     </item>
     
   </channel>

@@ -71,6 +71,26 @@
 		
         <div class="post animated fadeInDown">
             <div class="post-title">
+                <h2><a href="/posts/go/generics/generics-constraints/">Go泛型系列：Go1.18 类型约束那些事</a>
+                </h2>
+            </div>
+            <div class="post-content">
+                <div class="p_part"><p>大家好，我是 polarisxu。 上篇《Go泛型系列：提前掌握Go泛型的基本使用》 简单讲解了泛型中的约束，但约束相关内容远不止那些，本文介绍更多约束相关内容。 请安装最新的 tip 版本，方便验证本文的内容。当然，也可以通过 https://gotipplay.golang.org/ 在线验证。 01 语法变更 上次提到，定义约束的语法类似这样： type Addable interface { type int, int8, int16, int32, int64, uint, uint8, uint16, uint32, uint64, uintptr, float32, float64, complex64, complex128, string } 不过目前已经确认，语法改成如下形式： type Addable interface { int |</p></div>
+            </div>
+            <div class="post-footer">
+                <div class="meta">
+                    <div class="info"><em class="fas fa-calendar-day"></em><span
+                                class="date">2021-11-14</span>
+                        <a class="tag"
+                                   href="/tags/go/">Go</a><a class="tag"
+                                   href="/tags/%E6%B3%9B%E5%9E%8B/">泛型</a>
+                    </div>
+                </div>
+            </div>
+				</div>
+    
+        <div class="post animated fadeInDown">
+            <div class="post-title">
                 <h2><a href="/posts/go/dynamic/go1.18-workspace/">Go1.18 快讯：Module 工作区模式</a>
                 </h2>
             </div>
@@ -249,26 +269,6 @@
             </div>
 				</div>
     
-        <div class="post animated fadeInDown">
-            <div class="post-title">
-                <h2><a href="/posts/go/fiber/go-fiber-basic-tutorial04/">Go Fiber 框架系列教程 04：测试应用</a>
-                </h2>
-            </div>
-            <div class="post-content">
-                <div class="p_part"><p>大家好，我是 polarisxu。 实际项目中，大家经常不会对 Web API 写单元测试。Go 标准库不仅有 testing 包支持普通单元测试，还有 net/http/httptest 包支持 HTTP 的测试。 本文虽然是测试 Fiber 应用程序，但对其他的框架也适用。 01 如何测试 Web API 的单元测试如何进行？ 本节介绍的测试方法主要是验证请求返回的 HTTP 状态码是否符合预期。 如果返回的状态码是 200 OK，那么表示这个测试用例成功（Pass），如果返回的状态码是 404</p></div>
-            </div>
-            <div class="post-footer">
-                <div class="meta">
-                    <div class="info"><em class="fas fa-calendar-day"></em><span
-                                class="date">2021-10-06</span>
-                        <a class="tag"
-                                   href="/tags/go/">Go</a><a class="tag"
-                                   href="/tags/fiber/">Fiber</a>
-                    </div>
-                </div>
-            </div>
-				</div>
-    
     <div class="pagination">
         
     <ul class="pagination pagination-default">
@@ -297,7 +297,7 @@
         <a href="/page/4/" aria-label="Next" class="page-link" role="button"><span aria-hidden="true">&raquo;</span></a>
       </li>
       <li class="page-item">
-        <a href="/page/21/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
+        <a href="/page/22/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
       </li>
     </ul>
     </div>

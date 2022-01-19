@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#fcfcfc">
+	<meta name="msapplication-TileColor" content="#fcfcfc">
+<meta itemprop="name" content="Go 为什么选择 Gopher 作为吉祥物？">
+<meta itemprop="description" content="大家好，我是 polarisxu。 Go 语言的诞生，伴随着出现了 Gopher。现在 Go 爱好者通常自称为 Gopher。实际上，Gopher 最开始只是表示 Go 的吉祥物： 那 Gopher 这个吉祥物前世今生为何？据说，有些人学 Go 是因为 Gopher 这个吉祥物~ 大约在 1999 年（远早于 Go 的诞生日）—— gopher 第一次出现在新泽西州的 WFMU radio station ，作为广播电台的宣传物。当时，Renée French 被委托为年度筹款活动设计一件 T 恤，结"><meta itemprop="datePublished" content="2022-01-18T22:30:00+08:00" />
+<meta itemprop="dateModified" content="2022-01-18T22:30:00+08:00" />
+<meta itemprop="wordCount" content="636">
+<meta itemprop="keywords" content="Go,Gopher," /><meta property="og:title" content="Go 为什么选择 Gopher 作为吉祥物？" />
+<meta property="og:description" content="大家好，我是 polarisxu。 Go 语言的诞生，伴随着出现了 Gopher。现在 Go 爱好者通常自称为 Gopher。实际上，Gopher 最开始只是表示 Go 的吉祥物： 那 Gopher 这个吉祥物前世今生为何？据说，有些人学 Go 是因为 Gopher 这个吉祥物~ 大约在 1999 年（远早于 Go 的诞生日）—— gopher 第一次出现在新泽西州的 WFMU radio station ，作为广播电台的宣传物。当时，Renée French 被委托为年度筹款活动设计一件 T 恤，结" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/why/why-use-gopher/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-01-18T22:30:00+08:00" />
+<meta property="article:modified_time" content="2022-01-18T22:30:00+08:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Go 为什么选择 Gopher 作为吉祥物？"/>
+<meta name="twitter:description" content="大家好，我是 polarisxu。 Go 语言的诞生，伴随着出现了 Gopher。现在 Go 爱好者通常自称为 Gopher。实际上，Gopher 最开始只是表示 Go 的吉祥物： 那 Gopher 这个吉祥物前世今生为何？据说，有些人学 Go 是因为 Gopher 这个吉祥物~ 大约在 1999 年（远早于 Go 的诞生日）—— gopher 第一次出现在新泽西州的 WFMU radio station ，作为广播电台的宣传物。当时，Renée French 被委托为年度筹款活动设计一件 T 恤，结"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>Go 为什么选择 Gopher 作为吉祥物？</title>
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
+	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/styles.css">
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://polarisxu.studygolang.com">polarisxu</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+  <a href="https://polarisxu.studygolang.com/">首页</a>
+  <a href="https://polarisxu.studygolang.com/categories/echo%E7%B3%BB%E5%88%97/">Echo系列</a>
+  <a href="https://polarisxu.studygolang.com/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a>
+  <a href="https://polarisxu.studygolang.com/posts/">归档</a>
+  <a href="https://polarisxu.studygolang.com/about/">关于</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<button id="toc-btn" class="hdr-btn desktop-only-ib" title="目录"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3" y2="6"></line><line x1="3" y1="12" x2="3" y2="12"></line><line x1="3" y1="18" x2="3" y2="18"></line></svg></button><span class="hdr-social hide-in-mobile"><a href="https://github.com/polaris1119" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a><a href="https://twitter.com/polaris1119" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="菜单"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://polarisxu.studygolang.com/">首页</a></li>
+			<li><a href="https://polarisxu.studygolang.com/categories/echo%E7%B3%BB%E5%88%97/">Echo系列</a></li>
+			<li><a href="https://polarisxu.studygolang.com/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a></li>
+			<li><a href="https://polarisxu.studygolang.com/posts/">归档</a></li>
+			<li><a href="https://polarisxu.studygolang.com/about/">关于</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Jan 18, 2022</span></div>
+				<h1>Go 为什么选择 Gopher 作为吉祥物？</h1>
+			</header>
+			<div class="content">
+				<p>大家好，我是 polarisxu。</p>
+<p>Go 语言的诞生，伴随着出现了 Gopher。现在 Go 爱好者通常自称为 Gopher。实际上，Gopher 最开始只是表示 Go 的吉祥物：</p>
+<p><p class="md__image">
+  <img src="../imgs/gopher.png"
+    alt="gopher"  />
+</p>
+</p>
+<p>那 Gopher 这个吉祥物前世今生为何？据说，有些人学 Go 是因为 Gopher 这个吉祥物~</p>
+<p>大约在 1999 年（远早于 Go 的诞生日）—— gopher 第一次出现在新泽西州的 <a href="https://wfmu.org/" target="_blank" rel="noopener">WFMU radio station</a>
+，作为广播电台的宣传物。当时，<a href="http://reneefrench.blogspot.com/" target="_blank" rel="noopener">Renée French</a>
+ 被委托为年度筹款活动设计一件 T 恤，结果这只地鼠（gopher）出现了。WFMU 上 gopher 的形象是这样的：</p>
+<p><p class="md__image">
+  <img src="../imgs/wfmu.jpg"
+    alt="wfmu"  />
+</p>
+</p>
+<p>之后，基于该形象，还为贝尔实验室设计了一系列形象，包括 ken、r、rsc 几个人的化身：</p>
+<p><p class="md__image">
+  <img src="../imgs/bell-labs.png"
+    alt=""  />
+</p>
+</p>
+<p>了解 Go 演化进程的应该知晓，Go 底层不少内容有 Plan 9 操作系统的影子。Renée French 为 Plan 9 也设计过一个吉祥物，叫 <a href="https://9p.io/plan9/glenda.html" target="_blank" rel="noopener">Glenda</a>
+：</p>
+<p><p class="md__image">
+  <img src="../imgs/glenda.png"
+    alt=""  />
+</p>
+</p>
+<p>所以，当 Bell Labs 的几个大牛想开发一个新语言时，Renée French 自然自告奋勇，为其设计一个吉祥物。可能是因为 Go 和 Gopher 有点关联，2009 年，Go 开源时，Renée French 建议在 WFMU gopher 的基础上改进，为 Go 设计一个吉祥物，于是 Go gopher 诞生了。</p>
+<p>Gopher 还有一张模型表，说明了它的特征以及如何正确表示它们：<a href="https://go.dev/doc/gopher/modelsheet.jpg" target="_blank" rel="noopener">https://go.dev/doc/gopher/modelsheet.jpg</a>
+</p>
+<p><p class="md__image">
+  <img src="../imgs/modelsheet.jpg"
+    alt=""  />
+</p>
+</p>
+<p>这个模型表是 Renée French 在  2016 年 Gophercon 的一次<a href="https://www.youtube.com/watch?v=4rw_B4yY69k" target="_blank" rel="noopener">演讲</a>
+中首次展示的。</p>
+<p>基于此，网络上越来越多各种设计的 Gopher，也有各种毛绒绒玩具。在网络上可以找到很多漂亮的 Gopher 图片，我也收集了很多，需要的可以在公众号「polarisxu」回复 **gopher ** 获取。</p>
+<p><strong>参考</strong>：<a href="https://docs.studygolang.com/blog/gopher" target="_blank" rel="noopener">https://docs.studygolang.com/blog/gopher</a>
+</p>
+
+			</div><div class="content">
+	<br>
+	<img src="https://static.studygolang.com/static/img/polarisxu-qrcode-soso-s.png">
+</div>
+
+<div class="related-posts thin">
+	<h2>相关推荐</h2>
+	<ul>
+	
+	<li><a href="/posts/go/java/go-for-java02/">为 Java 开发者准备的 Go 教程 02：Java 有而 Go 无</a></li>
+	
+	<li><a href="/posts/go/studygolang-github-security/">GitHub 发现了 studygolang 项目依赖的漏洞</a></li>
+	
+	<li><a href="/posts/go/java/go-for-java01/">为 Java 开发者准备的 Go 教程 01：漫游了</a></li>
+	
+	<li><a href="/posts/go/pkg/singleflight-generic/">泛型版 singleflight：Go 中如何防止缓存击穿？</a></li>
+	
+	<li><a href="/posts/devtool/scc/">2021 年你写了多少代码？这个 Go 工具帮你统计</a></li>
+	
+	</ul>
+</div>
+
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://polarisxu.studygolang.com/tags/go">Go</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/gopher">Gopher</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>636 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2022-01-18 22:30 &#43;0800</p>
+			</footer>
+		</article>
+		<aside id="toc">
+			<div class="toc-title">目录</div>
+			<nav id="TableOfContents"></nav>
+		</aside>
+		<div class="post-nav thin">
+			<a class="prev-post" href="https://polarisxu.studygolang.com/posts/devtool/multi-github/">
+				<span class="post-nav-label">旧&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>本地如何配置多个 GitHub/Gitee 账号？</span>
+			</a>
+		</div>
+		<div id="comments" class="thin"><script src="https://utteranc.es/client.js"
+	repo="polaris1119/polarisxu"
+	issue-term="pathname"
+	theme="github-light"
+	crossorigin="anonymous"
+	async>
+</script>
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2019 - 2022 <a href="https://polarisxu.studygolang.com">polarisxu</a> &#183; <a href="https://beian.miit.gov.cn/">京ICP备14030343号-1</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://polarisxu.studygolang.com/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+		<span id="busuanzi_container" style="color: #666;">
+			本站总访客数/访问量：<span id="busuanzi_value_site_uv"></span>/<span id="busuanzi_value_site_pv"></span>
+		</span>
+	</footer>
+
+
+
+	<script src="https://polarisxu.studygolang.com/js/main.min.4eaa15feccc672488716f0338ac605e08c7553ce0ce175e13fa00a873636bf98.js" integrity="sha256-TqoV/szGckiHFvAzisYF4Ix1U84M4XXhP6AKhzY2v5g=" crossorigin="anonymous"></script>
+	<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?224c227cd9239761ec770bc8c1fb134c";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+</body>
+
+</html>
