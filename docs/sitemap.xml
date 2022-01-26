@@ -2,6 +2,24 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://polarisxu.studygolang.com/</loc>
+    <lastmod>2022-01-26T17:30:00+08:00</lastmod>
+  </url><url>
+    <loc>https://polarisxu.studygolang.com/tags/</loc>
+    <lastmod>2022-01-26T17:30:00+08:00</lastmod>
+  </url><url>
+    <loc>https://polarisxu.studygolang.com/tags/%E5%86%85%E5%8D%B7/</loc>
+    <lastmod>2022-01-26T17:30:00+08:00</lastmod>
+  </url><url>
+    <loc>https://polarisxu.studygolang.com/posts/</loc>
+    <lastmod>2022-01-26T17:30:00+08:00</lastmod>
+  </url><url>
+    <loc>https://polarisxu.studygolang.com/tags/%E9%B9%85%E5%8E%82/</loc>
+    <lastmod>2022-01-26T17:30:00+08:00</lastmod>
+  </url><url>
+    <loc>https://polarisxu.studygolang.com/posts/talk/tx-ijaban/</loc>
+    <lastmod>2022-01-26T17:30:00+08:00</lastmod>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/go/</loc>
     <lastmod>2022-01-18T22:30:00+08:00</lastmod>
   </url><url>
@@ -9,15 +27,6 @@
     <lastmod>2022-01-18T22:30:00+08:00</lastmod>
   </url><url>
     <loc>https://polarisxu.studygolang.com/tags/gopher/</loc>
-    <lastmod>2022-01-18T22:30:00+08:00</lastmod>
-  </url><url>
-    <loc>https://polarisxu.studygolang.com/</loc>
-    <lastmod>2022-01-18T22:30:00+08:00</lastmod>
-  </url><url>
-    <loc>https://polarisxu.studygolang.com/tags/</loc>
-    <lastmod>2022-01-18T22:30:00+08:00</lastmod>
-  </url><url>
-    <loc>https://polarisxu.studygolang.com/posts/</loc>
     <lastmod>2022-01-18T22:30:00+08:00</lastmod>
   </url><url>
     <loc>https://polarisxu.studygolang.com/tags/git/</loc>

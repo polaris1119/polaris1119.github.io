@@ -71,6 +71,26 @@
 		
         <div class="post animated fadeInDown">
             <div class="post-title">
+                <h2><a href="/posts/go/book/20211007-manning-books/">假期结束，推荐 2 本 manning 出的 Go 图书</a>
+                </h2>
+            </div>
+            <div class="post-content">
+                <div class="p_part"><p>大家好，我是 polarisxu。 国庆假期结束了，大家玩的开心吗？！ 该收收心，认真学习工作了~ manning 最近有 2 本 Go 相关图书，推荐给大家。 01 Build an Orchestrator in Go 本书希望带领大家通过使用 Go 和 Docker API 构建自己的编排系统，深入了解 Kubernetes 和其他编排系统。具体来说包括： 了解构成任何编排系统的组件 将容器安排到工作节点 使用 Docker API 启动和停止容器 使用简单的 API 管理工作节点集群 使用从 cutting-edge Google Borg 研究论文中获取的算法</p></div>
+            </div>
+            <div class="post-footer">
+                <div class="meta">
+                    <div class="info"><em class="fas fa-calendar-day"></em><span
+                                class="date">2021-10-07</span>
+                        <a class="tag"
+                                   href="/tags/go/">Go</a><a class="tag"
+                                   href="/tags/%E5%9B%BE%E4%B9%A6/">图书</a>
+                    </div>
+                </div>
+            </div>
+				</div>
+    
+        <div class="post animated fadeInDown">
+            <div class="post-title">
                 <h2><a href="/posts/go/fiber/go-fiber-basic-tutorial04/">Go Fiber 框架系列教程 04：测试应用</a>
                 </h2>
             </div>
@@ -246,26 +266,6 @@
                                    href="/tags/go/">Go</a><a class="tag"
                                    href="/tags/testing/">testing</a><a class="tag"
                                    href="/tags/%E6%96%B0%E7%89%B9%E6%80%A7/">新特性</a>
-                    </div>
-                </div>
-            </div>
-				</div>
-    
-        <div class="post animated fadeInDown">
-            <div class="post-title">
-                <h2><a href="/posts/go/action/chained-channel-operations-in-a-single-select-case/">StackOverflow 上关于 Go select 死锁的问题</a>
-                </h2>
-            </div>
-            <div class="post-content">
-                <div class="p_part"><p>大家好，我是 polarisxu。 前两天，火丁笔记发了一篇文章：《一个 select 死锁问题》 ，又是一个小细节。我将其中的问题改一下，更好理解： package main import &#34;sync&#34; func main() { var wg sync.WaitGroup foo := make(chan int) bar := make(chan int) wg.Add(1) go func() { defer wg.Done() select { case foo &lt;- &lt;-bar: default: println(&#34;default&#34;) } }() wg.Wait() } 按常规理解，go func 中的 select 应该执行 default 分支，程序正常运行。但结果却不是，而是死锁。可以通过该链接测试：https://play.studygolang.com/p</p></div>
-            </div>
-            <div class="post-footer">
-                <div class="meta">
-                    <div class="info"><em class="fas fa-calendar-day"></em><span
-                                class="date">2021-08-30</span>
-                        <a class="tag"
-                                   href="/tags/go/">Go</a><a class="tag"
-                                   href="/tags/select/">select</a>
                     </div>
                 </div>
             </div>
