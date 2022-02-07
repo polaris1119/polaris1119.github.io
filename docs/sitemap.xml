@@ -2,16 +2,37 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://polarisxu.studygolang.com/tags/go/</loc>
+    <lastmod>2022-02-05T22:00:00+08:00</lastmod>
+  </url><url>
+    <loc>https://polarisxu.studygolang.com/posts/go/dynamic/go1.18-move-constraints/</loc>
+    <lastmod>2022-02-05T22:00:00+08:00</lastmod>
+  </url><url>
     <loc>https://polarisxu.studygolang.com/</loc>
-    <lastmod>2022-01-26T17:30:00+08:00</lastmod>
+    <lastmod>2022-02-05T22:00:00+08:00</lastmod>
   </url><url>
     <loc>https://polarisxu.studygolang.com/tags/</loc>
-    <lastmod>2022-01-26T17:30:00+08:00</lastmod>
-  </url><url>
-    <loc>https://polarisxu.studygolang.com/tags/%E5%86%85%E5%8D%B7/</loc>
-    <lastmod>2022-01-26T17:30:00+08:00</lastmod>
+    <lastmod>2022-02-05T22:00:00+08:00</lastmod>
   </url><url>
     <loc>https://polarisxu.studygolang.com/posts/</loc>
+    <lastmod>2022-02-05T22:00:00+08:00</lastmod>
+  </url><url>
+    <loc>https://polarisxu.studygolang.com/tags/%E6%96%B0%E7%89%B9%E6%80%A7/</loc>
+    <lastmod>2022-02-05T22:00:00+08:00</lastmod>
+  </url><url>
+    <loc>https://polarisxu.studygolang.com/tags/%E6%B3%9B%E5%9E%8B/</loc>
+    <lastmod>2022-02-03T22:30:00+08:00</lastmod>
+  </url><url>
+    <loc>https://polarisxu.studygolang.com/posts/go/generics/gophercon2021-generics/</loc>
+    <lastmod>2022-02-03T22:30:00+08:00</lastmod>
+  </url><url>
+    <loc>https://polarisxu.studygolang.com/posts/go/2022-dev-env/</loc>
+    <lastmod>2022-01-29T11:30:00+08:00</lastmod>
+  </url><url>
+    <loc>https://polarisxu.studygolang.com/tags/%E5%85%A5%E9%97%A8/</loc>
+    <lastmod>2022-01-29T11:30:00+08:00</lastmod>
+  </url><url>
+    <loc>https://polarisxu.studygolang.com/tags/%E5%86%85%E5%8D%B7/</loc>
     <lastmod>2022-01-26T17:30:00+08:00</lastmod>
   </url><url>
     <loc>https://polarisxu.studygolang.com/tags/%E9%B9%85%E5%8E%82/</loc>
@@ -19,9 +40,6 @@
   </url><url>
     <loc>https://polarisxu.studygolang.com/posts/talk/tx-ijaban/</loc>
     <lastmod>2022-01-26T17:30:00+08:00</lastmod>
-  </url><url>
-    <loc>https://polarisxu.studygolang.com/tags/go/</loc>
-    <lastmod>2022-01-18T22:30:00+08:00</lastmod>
   </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/why/why-use-gopher/</loc>
     <lastmod>2022-01-18T22:30:00+08:00</lastmod>
@@ -82,12 +100,6 @@
   </url><url>
     <loc>https://polarisxu.studygolang.com/tags/scc/</loc>
     <lastmod>2021-12-28T22:30:00+08:00</lastmod>
-  </url><url>
-    <loc>https://polarisxu.studygolang.com/posts/go/generics/gophercon2021-generics/</loc>
-    <lastmod>2021-12-28T20:30:00+08:00</lastmod>
-  </url><url>
-    <loc>https://polarisxu.studygolang.com/tags/%E6%B3%9B%E5%9E%8B/</loc>
-    <lastmod>2021-12-28T20:30:00+08:00</lastmod>
   </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/dynamic/go1.18-trylock/</loc>
     <lastmod>2021-12-26T22:30:00+08:00</lastmod>
@@ -225,9 +237,6 @@
     <lastmod>2021-09-12T17:00:00+08:00</lastmod>
   </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/dynamic/1.17-golang-go-get-updated/</loc>
-    <lastmod>2021-09-04T20:10:00+08:00</lastmod>
-  </url><url>
-    <loc>https://polarisxu.studygolang.com/tags/%E6%96%B0%E7%89%B9%E6%80%A7/</loc>
     <lastmod>2021-09-04T20:10:00+08:00</lastmod>
   </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/dynamic/go-1-17-new-features-added-to-testing/</loc>

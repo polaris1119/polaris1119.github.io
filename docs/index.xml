@@ -7,7 +7,34 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Wed, 26 Jan 2022 17:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 05 Feb 2022 22:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go1.18 快讯：constraints 包被移除标准库</title>
+      <link>https://polarisxu.studygolang.com/posts/go/dynamic/go1.18-move-constraints/</link>
+      <pubDate>Sat, 05 Feb 2022 22:00:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/dynamic/go1.18-move-constraints/</guid>
+      <description>大家好，我是 polarisxu。 Go1.18 已经发布 Beta2 版本了，正式版本预计 3 月份发布。Go1.18 最重要的特性莫过于泛型，之前写过几篇相关文章： Go泛型系列：提前掌握Go泛型的基本使用 Go泛型系列：Go1.18 类型约束那些事 Go 泛型入门教程 其中提到一个标准库新包：constraints，相关提案见：https://github.com/golang/go/issues/</description>
+    </item>
+    
+    <item>
+      <title>跟着 Go 作者学泛型</title>
+      <link>https://polarisxu.studygolang.com/posts/go/generics/gophercon2021-generics/</link>
+      <pubDate>Thu, 03 Feb 2022 22:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/generics/gophercon2021-generics/</guid>
+      <description>大家好，我是 polarisxu。 在 GopherCon 2021 年大会上，Go 两位作者 Robert Griesemer 和 Ian Lance Taylor 做了泛型相关的演讲，即将在 Go1.18 发布的 Go 泛型，正是两位设计的。一直想着把他们的演讲做一个梳理，然后分享给大家。拖的有点久，趁春节假期整理出来了。 Go1.18 关于泛型部分，主要有三个特性： Type parameters for functions and types，即函数和类型的类型参数 Type sets defined by interfaces，即由接口定义的类型集合 Type inference</description>
+    </item>
+    
+    <item>
+      <title>「2022 版」轻松搞定 Go 开发环境</title>
+      <link>https://polarisxu.studygolang.com/posts/go/2022-dev-env/</link>
+      <pubDate>Sat, 29 Jan 2022 11:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/2022-dev-env/</guid>
+      <description>大家好，我是 polarisxu。 实话说，这个时候还写这么基础的文章，感觉有点太 low？但几乎每天有人开始学习 Go，那自然绕不开搭建 Go 开发环境。很多人会通过搜索网上的教程来照着做，于是发现搞不定，原因是找到的教程大部分比较老旧，都是基于 GOPATH 的。隔段时间我就会看到有人问类似的问题，所以才决定写一篇 2022 版 Go 开发环境搭建。 提醒一句，入门教程涉及到代码放入 src 目录下的，基本</description>
+    </item>
+    
     <item>
       <title>鹅厂小哥用行动反对加班：程序员加班能被终结吗？</title>
       <link>https://polarisxu.studygolang.com/posts/talk/tx-ijaban/</link>
@@ -69,33 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/java/go-for-java01/</guid>
       <description>大家好，我是 polarisxu。 在正式工作之前，一直使用 Java，虽然这些年对 Java 的关注变少了，但很显然，Java 用户群体特别大。不过，我也知晓，有不少 Java 用户在学 Go。我尝试写一系列文章，为 Java 开发者讲解 Go 语言。 这是第一篇，从大的层面简单对比下 Go 和 Java，算作是一次漫游。 整体上，Java 和 Go 之间有许多明显而微妙的区别，包括语言层面和运行时层面。我们这里主要在语</description>
-    </item>
-    
-    <item>
-      <title>我的 2021 年终总结</title>
-      <link>https://polarisxu.studygolang.com/posts/talk/2021-summary/</link>
-      <pubDate>Mon, 03 Jan 2022 20:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/talk/2021-summary/</guid>
-      <description>大家好，我是 polarisxu。 元旦假期结束，2022 年工作开启，2021 年总结做了吗？今天我简单回顾下我的 2021。 年终总结，是对我自己的一个回顾，但发出来，我希望能够对大家有点帮助或启发。 这份总结主要会聊五个方面的内容： 写作 读书 理财 家庭 收获 01 写作 这里主要谈我的个人品牌公众号 「polarisxu」，而不是 「Go语言中文网」，Go语言中文网的年终总结见：Go</description>
-    </item>
-    
-    <item>
-      <title>泛型版 singleflight：Go 中如何防止缓存击穿？</title>
-      <link>https://polarisxu.studygolang.com/posts/go/pkg/singleflight-generic/</link>
-      <pubDate>Thu, 30 Dec 2021 13:00:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/pkg/singleflight-generic/</guid>
-      <description>大家好，我是 polarisxu。 并发是 Go 的优势，但并发也需要很好的进行控制。标准库中有 sync 包，经常使用的功能有 sync.Mutex、sync.WaitGroup 等。其实，除了标准库，还有一个官方的扩展库，也叫 sync，其中有一个子包：sync/singleflight，专门做并发控制，比如防止缓存击穿。 01 从例子说起 看一个模拟缓存的例子，有如下代码： package main import ( &amp;#34;errors&amp;#34; &amp;#34;flag&amp;#34;</description>
-    </item>
-    
-    <item>
-      <title>2021 年你写了多少代码？这个 Go 工具帮你统计</title>
-      <link>https://polarisxu.studygolang.com/posts/devtool/scc/</link>
-      <pubDate>Tue, 28 Dec 2021 22:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/devtool/scc/</guid>
-      <description>大家好，我是 polarisxu。 2021 年马上要过完了，一年下来，你写了多少代码？其中 Go 代码又有多少呢？虽然大家一般讨厌将代码行数作为考核业绩指标，但我们自己对一年的代码量有一个基本掌握还是挺有必要的。 如果你搜索，会发现代码统计工具有很多。比如 sloccount 、github.com/AlDanial/cloc 等，似乎大家很喜欢统计代码行数。当然，也有人直接使用 grep、awk 之</description>
     </item>
     
   </channel>

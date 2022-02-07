@@ -7,7 +7,43 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Wed, 26 Jan 2022 17:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 05 Feb 2022 22:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go</title>
+      <link>https://polarisxu.studygolang.com/tags/go/</link>
+      <pubDate>Sat, 05 Feb 2022 22:00:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/tags/go/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>新特性</title>
+      <link>https://polarisxu.studygolang.com/tags/%E6%96%B0%E7%89%B9%E6%80%A7/</link>
+      <pubDate>Sat, 05 Feb 2022 22:00:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/tags/%E6%96%B0%E7%89%B9%E6%80%A7/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>泛型</title>
+      <link>https://polarisxu.studygolang.com/tags/%E6%B3%9B%E5%9E%8B/</link>
+      <pubDate>Thu, 03 Feb 2022 22:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/tags/%E6%B3%9B%E5%9E%8B/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>入门</title>
+      <link>https://polarisxu.studygolang.com/tags/%E5%85%A5%E9%97%A8/</link>
+      <pubDate>Sat, 29 Jan 2022 11:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/tags/%E5%85%A5%E9%97%A8/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>内卷</title>
       <link>https://polarisxu.studygolang.com/tags/%E5%86%85%E5%8D%B7/</link>
@@ -23,15 +59,6 @@
       <pubDate>Wed, 26 Jan 2022 17:30:00 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/tags/%E9%B9%85%E5%8E%82/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Go</title>
-      <link>https://polarisxu.studygolang.com/tags/go/</link>
-      <pubDate>Tue, 18 Jan 2022 22:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/tags/go/</guid>
       <description></description>
     </item>
     
@@ -68,33 +95,6 @@
       <pubDate>Tue, 11 Jan 2022 22:30:00 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/tags/java/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Markdown</title>
-      <link>https://polarisxu.studygolang.com/tags/markdown/</link>
-      <pubDate>Fri, 07 Jan 2022 22:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/tags/markdown/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>MarkText</title>
-      <link>https://polarisxu.studygolang.com/tags/marktext/</link>
-      <pubDate>Fri, 07 Jan 2022 22:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/tags/marktext/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Typora</title>
-      <link>https://polarisxu.studygolang.com/tags/typora/</link>
-      <pubDate>Fri, 07 Jan 2022 22:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/tags/typora/</guid>
       <description></description>
     </item>
     

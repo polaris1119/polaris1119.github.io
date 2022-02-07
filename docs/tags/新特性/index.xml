@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Sat, 04 Sep 2021 20:10:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/%E6%96%B0%E7%89%B9%E6%80%A7/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 05 Feb 2022 22:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/%E6%96%B0%E7%89%B9%E6%80%A7/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go1.18 快讯：constraints 包被移除标准库</title>
+      <link>https://polarisxu.studygolang.com/posts/go/dynamic/go1.18-move-constraints/</link>
+      <pubDate>Sat, 05 Feb 2022 22:00:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/dynamic/go1.18-move-constraints/</guid>
+      <description>大家好，我是 polarisxu。 Go1.18 已经发布 Beta2 版本了，正式版本预计 3 月份发布。Go1.18 最重要的特性莫过于泛型，之前写过几篇相关文章： Go泛型系列：提前掌握Go泛型的基本使用 Go泛型系列：Go1.18 类型约束那些事 Go 泛型入门教程 其中提到一个标准库新包：constraints，相关提案见：https://github.com/golang/go/issues/</description>
+    </item>
+    
     <item>
       <title>Go1.17 新特性：go get 变了</title>
       <link>https://polarisxu.studygolang.com/posts/go/dynamic/1.17-golang-go-get-updated/</link>

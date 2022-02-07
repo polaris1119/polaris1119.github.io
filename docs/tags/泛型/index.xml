@@ -7,14 +7,14 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Tue, 28 Dec 2021 20:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/%E6%B3%9B%E5%9E%8B/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 03 Feb 2022 22:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/%E6%B3%9B%E5%9E%8B/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>掌握泛型：GopherCon2021 上的泛型演讲主题</title>
+      <title>跟着 Go 作者学泛型</title>
       <link>https://polarisxu.studygolang.com/posts/go/generics/gophercon2021-generics/</link>
-      <pubDate>Tue, 28 Dec 2021 20:30:00 +0800</pubDate>
+      <pubDate>Thu, 03 Feb 2022 22:30:00 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/posts/go/generics/gophercon2021-generics/</guid>
-      <description>大家好，我是 polarisxu。 2021 年 12 月初，GopherCon2021 举办，Robert Griesemer 和 Ian Lance Taylor 做了关于泛型的主题演讲。 https://www.youtube.com/watch?v=Pa_e9EeCdy8&amp;list=RDCMUCx9QVEApa5BKLw9r8cnOFEA&amp;index=1</description>
+      <description>大家好，我是 polarisxu。 在 GopherCon 2021 年大会上，Go 两位作者 Robert Griesemer 和 Ian Lance Taylor 做了泛型相关的演讲，即将在 Go1.18 发布的 Go 泛型，正是两位设计的。一直想着把他们的演讲做一个梳理，然后分享给大家。拖的有点久，趁春节假期整理出来了。 Go1.18 关于泛型部分，主要有三个特性： Type parameters for functions and types，即函数和类型的类型参数 Type sets defined by interfaces，即由接口定义的类型集合 Type inference</description>
     </item>
     
     <item>

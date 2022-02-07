@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>入门 on polarisxu</title>
+    <link>https://polarisxu.studygolang.com/tags/%E5%85%A5%E9%97%A8/</link>
+    <description>Recent content in 入门 on polarisxu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
+    <lastBuildDate>Sat, 29 Jan 2022 11:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/%E5%85%A5%E9%97%A8/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>「2022 版」轻松搞定 Go 开发环境</title>
+      <link>https://polarisxu.studygolang.com/posts/go/2022-dev-env/</link>
+      <pubDate>Sat, 29 Jan 2022 11:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/2022-dev-env/</guid>
+      <description>大家好，我是 polarisxu。 实话说，这个时候还写这么基础的文章，感觉有点太 low？但几乎每天有人开始学习 Go，那自然绕不开搭建 Go 开发环境。很多人会通过搜索网上的教程来照着做，于是发现搞不定，原因是找到的教程大部分比较老旧，都是基于 GOPATH 的。隔段时间我就会看到有人问类似的问题，所以才决定写一篇 2022 版 Go 开发环境搭建。 提醒一句，入门教程涉及到代码放入 src 目录下的，基本</description>
+    </item>
+    
+  </channel>
+</rss>

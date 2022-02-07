@@ -71,6 +71,47 @@
 		
         <div class="post animated fadeInDown">
             <div class="post-title">
+                <h2><a href="/posts/go/dynamic/1.17-golang-go-get-updated/">Go1.17 新特性：go get 变了</a>
+                </h2>
+            </div>
+            <div class="post-content">
+                <div class="p_part"><p>大家好，我是 polarisxu。 为什么把 Go 的一些小变化单独写文章，而不是一篇文章介绍所有的变化？主要是想让大家对某一个特性有更深的记忆。全部列出，很容易一眼而过，过段时间就忘记了。但一个变化，专门一篇文章介绍，更容易记住。 01 安装命令会警告 一直以来，go get 用于下载并安装 Go 包、命令等，而 go install 在 module 时代几乎很少使用，在 GOPATH 年代，go install 用来编译安装本地项目。 自 1.16 起，官方</p></div>
+            </div>
+            <div class="post-footer">
+                <div class="meta">
+                    <div class="info"><em class="fas fa-calendar-day"></em><span
+                                class="date">2021-09-04</span>
+                        <a class="tag"
+                                   href="/tags/go/">Go</a><a class="tag"
+                                   href="/tags/%E6%96%B0%E7%89%B9%E6%80%A7/">新特性</a>
+                    </div>
+                </div>
+            </div>
+				</div>
+    
+        <div class="post animated fadeInDown">
+            <div class="post-title">
+                <h2><a href="/posts/go/dynamic/go-1-17-new-features-added-to-testing/">Go1.17 新特性：testing 包的相关变化</a>
+                </h2>
+            </div>
+            <div class="post-content">
+                <div class="p_part"><p>大家好，我是 polarisxu。 今天介绍下 Go1.17 中的特性：testing 包的一些变化。先看 Release Notes 关于 testing 变化的描述： Added a new testing flag -shuffle which controls the execution order of tests and benchmarks. The new T.Setenv and B.Setenv methods support setting an environment variable for the duration of the test or benchmark. 关于 shuffle 这个 flag，1.17 还未发布时，我就写过文章介绍：Go1.17这个新特性竟然是6年前提出来的 。关于它的作用，记住关键一点：我们写测试时，测试之间别相互依赖，应该是独立的。 本文着</p></div>
+            </div>
+            <div class="post-footer">
+                <div class="meta">
+                    <div class="info"><em class="fas fa-calendar-day"></em><span
+                                class="date">2021-09-04</span>
+                        <a class="tag"
+                                   href="/tags/go/">Go</a><a class="tag"
+                                   href="/tags/testing/">testing</a><a class="tag"
+                                   href="/tags/%E6%96%B0%E7%89%B9%E6%80%A7/">新特性</a>
+                    </div>
+                </div>
+            </div>
+				</div>
+    
+        <div class="post animated fadeInDown">
+            <div class="post-title">
                 <h2><a href="/posts/go/action/chained-channel-operations-in-a-single-select-case/">StackOverflow 上关于 Go select 死锁的问题</a>
                 </h2>
             </div>
@@ -224,46 +265,6 @@
                         <a class="tag"
                                    href="/tags/go/">Go</a><a class="tag"
                                    href="/tags/%E5%B7%A5%E5%85%B7/">工具</a>
-                    </div>
-                </div>
-            </div>
-				</div>
-    
-        <div class="post animated fadeInDown">
-            <div class="post-title">
-                <h2><a href="/posts/go/why-time-use-2006/">Go 的时间格式化为什么是 2006-01-02 15:04:05？</a>
-                </h2>
-            </div>
-            <div class="post-content">
-                <div class="p_part"><p>大家好，我是 polarisxu。 没有什么是完美的！而且，有些东西，有些人认为好，有些人认为很糟糕。Go 也是如此。喜欢 Go 语言的朋友，大概率对其中某些地方不喜欢。比如，你喜欢 Go 中时间格式化固定的 2006-01-02 15:04:05 -0700 吗？为什么是这么一个时间？今天来一探究竟！ 01 新手的困惑 无论是各种群里还是网上搜一下，包括国外的，对 2006-01-02 15:04:05 -0700 都很困惑。 一般的困扰主要有： 不知道只能固定要这个时间，换其他</p></div>
-            </div>
-            <div class="post-footer">
-                <div class="meta">
-                    <div class="info"><em class="fas fa-calendar-day"></em><span
-                                class="date">2021-08-03</span>
-                        <a class="tag"
-                                   href="/tags/go/">Go</a><a class="tag"
-                                   href="/tags/time/">time</a>
-                    </div>
-                </div>
-            </div>
-				</div>
-    
-        <div class="post animated fadeInDown">
-            <div class="post-title">
-                <h2><a href="/posts/go/dynamic/github-supply-chain-security-features-go-community/">GitHub 为 Go 社区带来安全支持</a>
-                </h2>
-            </div>
-            <div class="post-content">
-                <div class="p_part"><p>大家好，我是 polarisxu。 关于 Go 安全相关的内容，我写过几篇文章：《Go 团队开始重视安全问题了》 、《Go Module 有漏洞？免费的 Go 漏洞扫描 VSCode 插件》 和《这个工具真好：看看你的Go项目依赖有无漏洞》 ，有兴趣的可以看看。 今天介绍另外一个关于安全的内容，是 GitHub 的。 大家都知晓，目前 Go 是严重依赖 GitHub 的，很多第三方库基本都托管在 GitHub 上。因为 Go 把 GitHub 既当作代码协作的平台，也当作发布包的</p></div>
-            </div>
-            <div class="post-footer">
-                <div class="meta">
-                    <div class="info"><em class="fas fa-calendar-day"></em><span
-                                class="date">2021-07-29</span>
-                        <a class="tag"
-                                   href="/tags/go/">Go</a><a class="tag"
-                                   href="/tags/github/">GitHub</a>
                     </div>
                 </div>
             </div>

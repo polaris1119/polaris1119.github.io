@@ -6,8 +6,402 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en</language>
 		<copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-		<lastBuildDate>Wed, 26 Jan 2022 17:30:00 +0800</lastBuildDate>
+		<lastBuildDate>Sat, 05 Feb 2022 22:00:00 +0800</lastBuildDate>
 		<atom:link href="https://polarisxu.studygolang.com/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>Go1.18 快讯：constraints 包被移除标准库</title>
+			<link>https://polarisxu.studygolang.com/posts/go/dynamic/go1.18-move-constraints/</link>
+			<pubDate>Sat, 05 Feb 2022 22:00:00 +0800</pubDate>
+			
+			<guid>https://polarisxu.studygolang.com/posts/go/dynamic/go1.18-move-constraints/</guid>
+			<description>大家好，我是 polarisxu。 Go1.18 已经发布 Beta2 版本了，正式版本预计 3 月份发布。Go1.18 最重要的特性莫过于泛型，之前写过几篇相关文章： Go泛型系列：提前掌握Go泛型的基本使用 Go泛型系列：Go1.18 类型约束那些事 Go 泛型入门教程 其中提到一个标准库新包：constraints，相关提案见：https://github.com/golang/go/issues/</description>
+			<content type="html"><![CDATA[<p>大家好，我是 polarisxu。</p>
+<p>Go1.18 已经发布 Beta2 版本了，正式版本预计 3 月份发布。Go1.18 最重要的特性莫过于泛型，之前写过几篇相关文章：</p>
+<ul>
+<li><a href="https://polarisxu.studygolang.com/posts/go/generics/generics-basic/" target="_blank" rel="noopener">Go泛型系列：提前掌握Go泛型的基本使用</a>
+</li>
+<li><a href="https://polarisxu.studygolang.com/posts/go/generics/generics-constraints/" target="_blank" rel="noopener">Go泛型系列：Go1.18 类型约束那些事</a>
+</li>
+<li><a href="https://polarisxu.studygolang.com/posts/go/generics/generics-tutorial/" target="_blank" rel="noopener">Go 泛型入门教程</a>
+</li>
+</ul>
+<p>其中提到一个标准库新包：constraints，相关提案见：<a href="https://github.com/golang/go/issues/45458" target="_blank" rel="noopener">https://github.com/golang/go/issues/45458</a>
+。该包的目的是想预定义一些常用的泛型约束，避免用户自己重复定义。</p>
+<p>这是该包最初希望包含的约束：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// Package constraints defines a set of useful constraints to be used with type parameters.
+</span><span class="c1"></span><span class="kn">package</span> <span class="nx">constraints</span>
+
+<span class="c1">// Signed is a constraint that permits any signed integer type.
+</span><span class="c1"></span><span class="kd">type</span> <span class="nx">Signed</span> <span class="kd">interface</span> <span class="p">{</span> <span class="o">...</span> <span class="p">}</span>
+
+<span class="c1">// Unsigned is a constraint that permits any unsigned integer type.
+</span><span class="c1"></span><span class="kd">type</span> <span class="nx">Unsigned</span> <span class="kd">interface</span> <span class="p">{</span> <span class="o">...</span> <span class="p">}</span>
+
+<span class="c1">// Integer is a constraint that permits any integer type.
+</span><span class="c1"></span><span class="kd">type</span> <span class="nx">Integer</span> <span class="kd">interface</span> <span class="p">{</span> <span class="o">...</span> <span class="p">}</span>
+
+<span class="c1">// Float is a constraint that permits any floating-point type.
+</span><span class="c1"></span><span class="kd">type</span> <span class="nx">Float</span> <span class="kd">interface</span> <span class="p">{</span> <span class="o">...</span> <span class="p">}</span>
+
+<span class="c1">// Complex is a constraint that permits any complex numeric type.
+</span><span class="c1"></span><span class="kd">type</span> <span class="nx">Complex</span> <span class="kd">interface</span> <span class="p">{</span> <span class="o">...</span> <span class="p">}</span>
+
+<span class="c1">// Ordered is a constraint that permits any ordered type: any type that supports the operators &lt; &lt;= &gt;= &gt;.
+</span><span class="c1"></span><span class="kd">type</span> <span class="nx">Ordered</span> <span class="kd">interface</span> <span class="p">{</span> <span class="o">...</span> <span class="p">}</span>
+
+<span class="c1">// Slice is a constraint that matches slices of any element type.
+</span><span class="c1"></span><span class="kd">type</span> <span class="nx">Slice</span><span class="p">[</span><span class="nx">Elem</span> <span class="nx">any</span><span class="p">]</span> <span class="kd">interface</span> <span class="p">{</span> <span class="err">~</span><span class="p">[]</span><span class="nx">Elem</span> <span class="p">}</span>
+
+<span class="c1">// Map is a constraint that matches maps of any element and value type.
+</span><span class="c1"></span><span class="kd">type</span> <span class="nx">Map</span><span class="p">[</span><span class="nx">Key</span> <span class="nx">comparable</span><span class="p">,</span> <span class="nx">Val</span> <span class="nx">any</span><span class="p">]</span> <span class="kd">interface</span> <span class="p">{</span> <span class="err">~</span><span class="kd">map</span><span class="p">[</span><span class="nx">Key</span><span class="p">]</span><span class="nx">Val</span> <span class="p">}</span>
+
+<span class="c1">// Chan is a constraint that matches channels of any element type.
+</span><span class="c1"></span><span class="kd">type</span> <span class="nx">Chan</span><span class="p">[</span><span class="nx">Elem</span> <span class="nx">any</span><span class="p">]</span> <span class="kd">interface</span> <span class="p">{</span> <span class="err">~</span><span class="kd">chan</span> <span class="nx">Elem</span> <span class="p">}</span>
+</code></pre></div><p>然而简洁一直是 Go 追求的，于是有人提出，该包中的 Slice、Map、Chan 的约束根本不必要，包括简化约束字面值语法，具体讨论见：<a href="https://github.com/golang/go/issues/48424" target="_blank" rel="noopener">https://github.com/golang/go/issues/48424</a>
+。于是，Go1.18 Beta 版本中，将这几个约束类型去掉了。</p>
+<p>然而，依然有人对 constraints 有其他意见，包括对包名不满意。这个 <a href="https://github.com/golang/go/issues/50348" target="_blank" rel="noopener">issue</a>
+ 就提议将包名改为 of。</p>
+<p>当然，最重要的是尚不清楚该包中哪些约束是重要的，应该存在，哪些不应该存在。</p>
+<p>当初决定将 slices 和 maps 移到 x/exp 包，而留下 constraints，是因为 Go Team 认为它是使用泛型的基础，但在实践中似乎并没有被证明是这样。特别是，大多数代码使用 any 或 comparable 即可，如果是这样，也许 constraints 包很少被用到。</p>
+<p>当然，其中的 constraints.Ordered 还是挺常用的，既然如此，也许应该和 comparable 类似，变成预声明标识符。</p>
+<p>经过  rsc 与 robpike、griesemer、ianlancetaylor 等讨论，决定 Go1.18 中，将 constraints 和 slices、maps 一起，移到 x/exp 包中，之后在 Go 1.19 或 Go 1.20 中重新考虑它。</p>
+<p>虽然目前 Go1.18 Beta2 还包含 constraints 包，但已经确定正式版本会移除。</p>
+<p>如果你需要使用 constraints.Ordered，建议先自己实现，如下：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">Ordered</span> <span class="kd">interface</span> <span class="p">{</span>
+	<span class="err">~</span><span class="kt">int</span> <span class="p">|</span> <span class="err">~</span><span class="kt">int8</span> <span class="p">|</span> <span class="err">~</span><span class="kt">int16</span> <span class="p">|</span> <span class="err">~</span><span class="kt">int32</span> <span class="p">|</span> <span class="err">~</span><span class="kt">int64</span> <span class="p">|</span> <span class="err">~</span><span class="kt">uint</span> <span class="p">|</span> <span class="err">~</span><span class="kt">uint8</span> <span class="p">|</span> <span class="err">~</span><span class="kt">uint16</span> <span class="p">|</span> <span class="err">~</span><span class="kt">uint32</span> <span class="p">|</span> <span class="err">~</span><span class="kt">uint64</span> <span class="p">|</span> <span class="err">~</span><span class="kt">uintptr</span> <span class="p">|</span> <span class="err">~</span><span class="kt">float32</span> <span class="p">|</span> <span class="err">~</span><span class="kt">float64</span> <span class="p">|</span> <span class="err">~</span><span class="kt">string</span>
+<span class="p">}</span>
+</code></pre></div><p>关于将 constraints 移到 x/exp 的详细说明，见 rsc 提的 issue：<a href="https://github.com/golang/go/issues/50792" target="_blank" rel="noopener">https://github.com/golang/go/issues/50792</a>
+。</p>
+]]></content>
+		</item>
+		
+		<item>
+			<title>跟着 Go 作者学泛型</title>
+			<link>https://polarisxu.studygolang.com/posts/go/generics/gophercon2021-generics/</link>
+			<pubDate>Thu, 03 Feb 2022 22:30:00 +0800</pubDate>
+			
+			<guid>https://polarisxu.studygolang.com/posts/go/generics/gophercon2021-generics/</guid>
+			<description>大家好，我是 polarisxu。 在 GopherCon 2021 年大会上，Go 两位作者 Robert Griesemer 和 Ian Lance Taylor 做了泛型相关的演讲，即将在 Go1.18 发布的 Go 泛型，正是两位设计的。一直想着把他们的演讲做一个梳理，然后分享给大家。拖的有点久，趁春节假期整理出来了。 Go1.18 关于泛型部分，主要有三个特性： Type parameters for functions and types，即函数和类型的类型参数 Type sets defined by interfaces，即由接口定义的类型集合 Type inference</description>
+			<content type="html"><![CDATA[<p>大家好，我是 polarisxu。</p>
+<p>在 GopherCon 2021 年大会上，Go 两位作者 Robert Griesemer 和 Ian Lance Taylor 做了泛型相关的演讲，即将在 Go1.18 发布的 Go 泛型，正是两位设计的。一直想着把他们的演讲做一个梳理，然后分享给大家。拖的有点久，趁春节假期整理出来了。</p>
+<p>Go1.18 关于泛型部分，主要有三个特性：</p>
+<ul>
+<li>Type parameters for functions and types，即函数和类型的类型参数</li>
+<li>Type sets defined by interfaces，即由接口定义的类型集合</li>
+<li>Type inference，即类型推断</li>
+</ul>
+<h2 id="1类型参数">1、类型参数</h2>
+<p>先看函数的类型参数。</p>
+<h3 id="类型参数列表type-parameter-lists">类型参数列表（Type parameter lists）</h3>
+<p>类型参数列表看起来是带方括号的普通参数列表。通常，类型参数以大写字母开头，以强调它们是类型：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="p">[</span><span class="nx">P</span><span class="p">,</span> <span class="nx">Q</span> <span class="nx">constraint1</span><span class="p">,</span> <span class="nx">R</span> <span class="nx">constraint2</span><span class="p">]</span>
+</code></pre></div><p>看一个例子。</p>
+<p>非泛型版本的求最小值：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">min</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span> <span class="kt">float64</span><span class="p">)</span> <span class="kt">float64</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="nx">x</span> <span class="p">&lt;</span> <span class="nx">y</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">x</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="nx">y</span>
+<span class="p">}</span>
+</code></pre></div><p>如果有 int 类型的 min 版本需求，得另外写一个类似的函数，这完全是重复代码。</p>
+<p>那泛型版本呢？</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nx">min</span><span class="p">[</span><span class="nx">T</span> <span class="nx">constraints</span><span class="p">.</span><span class="nx">Ordered</span><span class="p">](</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span> <span class="nx">T</span><span class="p">)</span> <span class="nx">T</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="nx">x</span> <span class="p">&lt;</span> <span class="nx">y</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">x</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="nx">y</span>
+<span class="p">}</span>
+</code></pre></div><p>注意和上面版本的区别。</p>
+<ul>
+<li>多了一个 <code>[T constraints.Ordered]</code>，这就是类型参数列表，声明了一个类型 T，它的约束是 constraints.Ordered，即类型 T 满足它规定的条件</li>
+<li>参数类型 float64 变成了 T，而不是具体的某个类型</li>
+</ul>
+<p>那这个泛型函数如何调用呢？</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="nx">m</span> <span class="o">:=</span> <span class="nx">min</span><span class="p">[</span><span class="kt">int</span><span class="p">](</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</code></pre></div><p>是不是很奇怪？其实仔细一琢磨，好像没问题。因为函数声明中有  <code>[T constraints.Ordered]</code>，跟普通的函数参数有点像。调用时，提供 int，表明普通函数参数是 int 类型。</p>
+<h3 id="实例化">实例化</h3>
+<p>在调用时，会进行实例化过程：</p>
+<p>1）用类型实参（type arguments）替换类型形参（type parameters）</p>
+<p>2）检查类型实参（type arguments）是否实现了类型约束</p>
+<p>如果第 2 步失败，实例化（调用）失败。</p>
+<p>所以，调用过程可以分解为以下两步：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="nx">fmin</span> <span class="o">:=</span> <span class="nx">min</span><span class="p">[</span><span class="kt">float64</span><span class="p">]</span>
+<span class="nx">m</span> <span class="o">:=</span> <span class="nf">fmin</span><span class="p">(</span><span class="mf">2.3</span><span class="p">,</span> <span class="mf">3.4</span><span class="p">)</span>
+
+<span class="c1">// 和下面等价
+</span><span class="c1"></span><span class="nx">m</span> <span class="o">:=</span> <span class="nx">min</span><span class="p">[</span><span class="kt">float64</span><span class="p">](</span><span class="mf">2.3</span><span class="p">,</span> <span class="mf">3.4</span><span class="p">)</span>
+<span class="c1">// 相当于 m := (min[float64])(2.3, 3.4)
+</span></code></pre></div><p>所以，实例化产生了一个非泛型函数。</p>
+<h3 id="类型的类型参数">类型的类型参数</h3>
+<p>类型也可以有类型参数。通过一个例子理解一下。</p>
+<p>一个泛型版二叉树：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">Tree</span><span class="p">[</span><span class="nx">T</span> <span class="kd">interface</span><span class="p">{}]</span> <span class="kd">struct</span> <span class="p">{</span>
+	<span class="nx">left</span><span class="p">,</span> <span class="nx">right</span> <span class="o">*</span><span class="nx">Tree</span><span class="p">[</span><span class="nx">T</span><span class="p">]</span>
+	<span class="nx">data</span>        <span class="nx">T</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="p">(</span><span class="nx">t</span> <span class="o">*</span><span class="nx">Tree</span><span class="p">[</span><span class="nx">T</span><span class="p">])</span> <span class="nf">Lookup</span><span class="p">(</span><span class="nx">x</span> <span class="nx">T</span><span class="p">)</span> <span class="o">*</span><span class="nx">Tree</span><span class="p">[</span><span class="nx">T</span><span class="p">]</span>
+
+<span class="kd">var</span> <span class="nx">stringTree</span> <span class="nx">Tree</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span>
+</code></pre></div><p>注意其中的 <code>[T interface{}]</code> ，跟函数的类型参数语法是一样的，T 相当于是一个类型，所以，之后用到 Tree 的地方，T 都跟随着，即 <code>Tree[T]</code>，包括方法的接收者（receiver）。</p>
+<p>注意实例化的地方：<code>var stringTree Tree[string]</code>，和上面两个实例化步骤中的第一步一样。</p>
+<h2 id="2类型集合type-sets">2、类型集合（Type sets）</h2>
+<p>先看值参数的类型（the type of value parameters）。</p>
+<p>函数普通参数列表中的每个值参数都有一个类型，这个类型定义值的集合。比如 float64 定义了浮点数值的集合。</p>
+<p>相应的有类型参数的类型（the type of type parameters），也就是说，类型参数列表中的每个类型参数都有一个类型，这个类型定义了类型的集合，这叫做类型约束（type constraint）：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nx">min</span><span class="p">[</span><span class="nx">T</span> <span class="nx">constraints</span><span class="p">.</span><span class="nx">Ordered</span><span class="p">](</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span> <span class="nx">T</span><span class="p">)</span> <span class="nx">T</span>
+</code></pre></div><p>这里的 constraints.Ordered 是类型参数列表中的 T 参数的类型，它定义了类型的集合，即类型约束。</p>
+<p>constraints.Ordered 是 Go1.18 内置的一个类型约束，它有两个功能：</p>
+<ul>
+<li>只有值支持排序的类型才能传递给类型参数 T；</li>
+<li>T 类型的值必须支持 <code>&lt;</code> 操作符，因为函数体中使用了该操作符。</li>
+</ul>
+<h3 id="类型约束是接口">类型约束是接口</h3>
+<p>大家都知道接口定义了方法集（method sets），演讲中给了一张图：</p>
+<p><p class="md__image">
+  <img src="../imgs/gophercon01.png"
+    alt="method sets"  />
+</p>
+</p>
+<p>根据 Go 的规则，类型 P、Q、R 方法中包含了 a、b、c，因此它们实现了接口。</p>
+<p>所以，反过来可以说，接口也定义了类型集（type sets）：</p>
+<p><p class="md__image">
+  <img src="../imgs/gophercon02.png"
+    alt="type sets"  />
+</p>
+</p>
+<p>上图中，类型 P、Q、R 都实现了左边的接口（因为都实现了接口的方法集），因此我们可以说该接口定义了类型集。</p>
+<p>既然接口是定义类型集，只不过是间接定义的：类型实现接口的方法集。而类型约束是类型集，因此完全可以重用接口的语义，只不过这次是直接定义类型集：</p>
+<p><p class="md__image">
+  <img src="../imgs/gophercon03.png"
+    alt="interface defines type sets"  />
+</p>
+</p>
+<p>这就是类型约束的语法，通过接口直接定义类型集：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">Xxx</span> <span class="kd">interface</span> <span class="p">{</span>
+  <span class="kt">int</span> <span class="p">|</span> <span class="kt">string</span> <span class="p">|</span> <span class="kt">bool</span>
+<span class="p">}</span>
+</code></pre></div><p>而 constraints.Ordered 的定义如下：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// Ordered is a constraint that permits any ordered type: any type
+</span><span class="c1">// that supports the operators &lt; &lt;= &gt;= &gt;.
+</span><span class="c1">// If future releases of Go add new ordered types,
+</span><span class="c1">// this constraint will be modified to include them.
+</span><span class="c1"></span><span class="kd">type</span> <span class="nx">Ordered</span> <span class="kd">interface</span> <span class="p">{</span>
+	<span class="nx">Integer</span> <span class="p">|</span> <span class="nx">Float</span> <span class="p">|</span> <span class="err">~</span><span class="kt">string</span>
+<span class="p">}</span>
+</code></pre></div><p>Ordered 定义了所有 interger、浮点数和字符串类型的集合。所以，&lt; 操作符也是支持的。这其中的 Integer、Float 也在 constraints 包有定义。</p>
+<p>细心的朋友应该发现了 <code>~string</code>，类型前面的 <code>~</code>。<code>~T</code> 意味着包含底层类型 T 的所有类型集合。</p>
+<blockquote>
+<p>如果约束中的所有类型都支持一个操作，则该操作可以与相应的类型参数一起使用</p>
+</blockquote>
+<p>除了将约束单独定义为类型外，还可以写成字面值的形式，比如：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="p">[</span><span class="nx">S</span> <span class="kd">interface</span><span class="p">{</span><span class="err">~</span><span class="p">[]</span><span class="nx">E</span><span class="p">},</span> <span class="nx">E</span> <span class="kd">interface</span><span class="p">{}]</span>
+</code></pre></div><p>这看着有点晕，其实可以直接这么写：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="p">[</span><span class="nx">S</span> <span class="err">~</span><span class="p">[]</span><span class="nx">E</span><span class="p">,</span> <span class="nx">E</span> <span class="kd">interface</span><span class="p">{}]</span>
+</code></pre></div><p>Go1.18 中，any 是 interface{} 的别名，因此可以进一步写为：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="p">[</span><span class="nx">S</span> <span class="err">~</span><span class="p">[]</span><span class="nx">E</span><span class="p">,</span> <span class="nx">E</span> <span class="nx">any</span><span class="p">]</span>
+</code></pre></div><p>E 是切片的元素类型，<code>~[]E</code> 表示底层是 <code>[]E</code> 切片类型的都符合该约束。</p>
+<h2 id="3类型推断">3、类型推断</h2>
+<p>在调用泛型函数时，提供类型实参感觉有点多余。Go 虽然是静态类型语言，但擅长类型推断。因此泛型这里，Go 也实现了类型推断。</p>
+<p>调用泛型版的 min，可以不提供类型实参，而是直接由 Go 进行类型推断：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">var</span> <span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">,</span> <span class="nx">m</span> <span class="kt">float64</span>
+<span class="nx">m</span> <span class="o">:=</span> <span class="nx">min</span><span class="p">[</span><span class="kt">float64</span><span class="p">](</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span>
+</code></pre></div><p>类型推断的细节很复杂，但使用起来还是很简单，大部分时候，跟普通函数调用没有区别。</p>
+<p>关于类型推断，演讲中给了一个例子：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nx">Scale</span><span class="p">[</span><span class="nx">E</span> <span class="nx">constraints</span><span class="p">.</span><span class="nx">Integer</span><span class="p">](</span><span class="nx">s</span> <span class="p">[]</span><span class="nx">E</span><span class="p">,</span> <span class="nx">c</span> <span class="nx">E</span><span class="p">)</span> <span class="p">[]</span><span class="nx">E</span> <span class="p">{</span>
+	<span class="nx">r</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="nx">E</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="nx">s</span><span class="p">))</span>
+	<span class="k">for</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">v</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">s</span> <span class="p">{</span>
+		<span class="nx">r</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="p">=</span> <span class="nx">v</span> <span class="o">*</span> <span class="nx">c</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="nx">r</span>
+<span class="p">}</span>
+</code></pre></div><p>这个函数的目的是希望对 s 中的每个元素都乘以参数 c，最后返回一个新的切片。</p>
+<p>接着定义一个类型：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">Point</span> <span class="p">[]</span><span class="kt">int32</span>
+
+<span class="kd">func</span> <span class="p">(</span><span class="nx">p</span> <span class="nx">Point</span><span class="p">)</span> <span class="nf">String</span><span class="p">()</span> <span class="kt">string</span> <span class="p">{</span>
+	<span class="c1">// 实现细节不重要，忽略
+</span><span class="c1"></span>	<span class="k">return</span> <span class="s">&#34;point&#34;</span>
+<span class="p">}</span>
+</code></pre></div><p>很显然，Point 类型的切片可以传递给 Scale：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">ScaleAndPrint</span><span class="p">(</span><span class="nx">p</span> <span class="nx">Point</span><span class="p">)</span> <span class="p">{</span>
+	<span class="nx">r</span> <span class="o">:=</span> <span class="nf">Scale</span><span class="p">(</span><span class="nx">p</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nf">String</span><span class="p">())</span>
+<span class="p">}</span>
+</code></pre></div><p>我们希望对 p 进行 Scale，得到一个新的 p，但发现返回的 r 根本不是 Point：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="nx">p</span> <span class="o">:=</span> <span class="nx">Point</span><span class="p">{</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">}</span>
+	<span class="nf">ScaleAndPrint</span><span class="p">(</span><span class="nx">p</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div><p>会报错：<code>r.String undefined (type []int32 has no field or method String)</code>。</p>
+<p>所以，我们应该这样修改 Scale 函数：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nx">Scale</span><span class="p">[</span><span class="nx">S</span> <span class="err">~</span><span class="p">[]</span><span class="nx">E</span><span class="p">,</span> <span class="nx">E</span> <span class="nx">constraints</span><span class="p">.</span><span class="nx">Integer</span><span class="p">](</span><span class="nx">s</span> <span class="nx">S</span><span class="p">,</span> <span class="nx">c</span> <span class="nx">E</span><span class="p">)</span> <span class="nx">S</span> <span class="p">{</span>
+	<span class="nx">r</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="nx">S</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="nx">s</span><span class="p">))</span>
+	<span class="k">for</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">v</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">s</span> <span class="p">{</span>
+		<span class="nx">r</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="p">=</span> <span class="nx">v</span> <span class="o">*</span> <span class="nx">c</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="nx">r</span>
+<span class="p">}</span>
+</code></pre></div><p>注意其中的变化：加入了泛型 S，以及额外的类型约束 <code>~[]E</code>。</p>
+<p>调用 Scale 时，不需要 <code>r := Scale[Point, int32](p, 2)</code>，因为 Go 会进行类型推断。</p>
+<p>正确的完整代码如下：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+	<span class="s">&#34;constraints&#34;</span>
+	<span class="s">&#34;fmt&#34;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nx">Scale</span><span class="p">[</span><span class="nx">S</span> <span class="err">~</span><span class="p">[]</span><span class="nx">E</span><span class="p">,</span> <span class="nx">E</span> <span class="nx">constraints</span><span class="p">.</span><span class="nx">Integer</span><span class="p">](</span><span class="nx">s</span> <span class="nx">S</span><span class="p">,</span> <span class="nx">c</span> <span class="nx">E</span><span class="p">)</span> <span class="nx">S</span> <span class="p">{</span>
+	<span class="nx">r</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="nx">S</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="nx">s</span><span class="p">))</span>
+	<span class="k">for</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">v</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">s</span> <span class="p">{</span>
+		<span class="nx">r</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="p">=</span> <span class="nx">v</span> <span class="o">*</span> <span class="nx">c</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="nx">r</span>
+<span class="p">}</span>
+
+<span class="kd">type</span> <span class="nx">Point</span> <span class="p">[]</span><span class="kt">int32</span>
+
+<span class="kd">func</span> <span class="p">(</span><span class="nx">p</span> <span class="nx">Point</span><span class="p">)</span> <span class="nf">String</span><span class="p">()</span> <span class="kt">string</span> <span class="p">{</span>
+	<span class="c1">// 实现细节不重要，忽略
+</span><span class="c1"></span>	<span class="k">return</span> <span class="s">&#34;point&#34;</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">ScaleAndPrint</span><span class="p">(</span><span class="nx">p</span> <span class="nx">Point</span><span class="p">)</span> <span class="p">{</span>
+	<span class="nx">r</span> <span class="o">:=</span> <span class="nf">Scale</span><span class="p">(</span><span class="nx">p</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nf">String</span><span class="p">())</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="nx">p</span> <span class="o">:=</span> <span class="nx">Point</span><span class="p">{</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">}</span>
+	<span class="nf">ScaleAndPrint</span><span class="p">(</span><span class="nx">p</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div><h2 id="4什么时候用泛型">4、什么时候用泛型</h2>
+<p>泛型的加入，无疑增加了复杂度。我个人认为，能不用泛型就不用泛型。在演讲中，两位大佬提到，在以下场景可以考虑使用泛型：</p>
+<ul>
+<li>对于 slice、map、channel 等类型，如果它们的元素类型是不确定的，操作这类类型的函数可以考虑用泛型</li>
+<li>一些通用目的的数据结构，比如前面提到的二叉树等</li>
+<li>如果一些函数行为相同，只是类型不同，可以考虑用泛型重构</li>
+</ul>
+<p>注意，目前 Go 方法不支持类型参数，所以，如果方法有需要泛型的场景，可以转为函数的形式。</p>
+<p>此外，不要为了泛型而泛型。比如这样的泛型就很糟糕：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nx">ReadFour</span><span class="p">[</span><span class="nx">T</span> <span class="nx">io</span><span class="p">.</span><span class="nx">Reader</span><span class="p">](</span><span class="nx">r</span> <span class="nx">T</span><span class="p">)</span> <span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+</code></pre></div><p>而应该使用非泛型版本：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">ReadFour</span><span class="p">(</span><span class="nx">r</span> <span class="nx">io</span><span class="p">.</span><span class="nx">Reader</span><span class="p">)</span> <span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+</code></pre></div><h2 id="5总结">5、总结</h2>
+<p>泛型是一把双刃剑。泛型的加入，让 Go 不那么简单了。有些代码写出来，可读性可能非常差。我们应该按没有泛型时候写代码，当发现在 Repeat Yourself 时，再考虑能不能用泛型重构，千万别玩什么花样！</p>
+<p>最后，放上演讲的视频地址，有兴趣的可以观看：<a href="https://www.youtube.com/watch?v=Pa_e9EeCdy8" target="_blank" rel="noopener">https://www.youtube.com/watch?v=Pa_e9EeCdy8</a>
+。</p>
+]]></content>
+		</item>
+		
+		<item>
+			<title>「2022 版」轻松搞定 Go 开发环境</title>
+			<link>https://polarisxu.studygolang.com/posts/go/2022-dev-env/</link>
+			<pubDate>Sat, 29 Jan 2022 11:30:00 +0800</pubDate>
+			
+			<guid>https://polarisxu.studygolang.com/posts/go/2022-dev-env/</guid>
+			<description>大家好，我是 polarisxu。 实话说，这个时候还写这么基础的文章，感觉有点太 low？但几乎每天有人开始学习 Go，那自然绕不开搭建 Go 开发环境。很多人会通过搜索网上的教程来照着做，于是发现搞不定，原因是找到的教程大部分比较老旧，都是基于 GOPATH 的。隔段时间我就会看到有人问类似的问题，所以才决定写一篇 2022 版 Go 开发环境搭建。 提醒一句，入门教程涉及到代码放入 src 目录下的，基本</description>
+			<content type="html"><![CDATA[<p>大家好，我是 polarisxu。</p>
+<p>实话说，这个时候还写这么基础的文章，感觉有点太 low？但几乎每天有人开始学习 Go，那自然绕不开搭建 Go 开发环境。很多人会通过搜索网上的教程来照着做，于是发现搞不定，原因是找到的教程大部分比较老旧，都是基于 GOPATH 的。隔段时间我就会看到有人问类似的问题，所以才决定写一篇 2022 版 Go 开发环境搭建。</p>
+<blockquote>
+<p>提醒一句，入门教程涉及到代码放入 src 目录下的，基本是基于 GOPATH 的教程，请忽略。</p>
+</blockquote>
+<h2 id="1安装-go">1、安装 Go</h2>
+<p>Go 语言支持多平台，因此需要根据你的平台来下载对应的 Go 安装包。本文以当前最新的版本（1.17.6）为例，以 Mac 系统为主讲解。</p>
+<h3 id="常规安装">常规安装</h3>
+<p>到 <a href="https://studygolang.com/dl" target="_blank" rel="noopener">https://studygolang.com/dl</a>
+ 下载对应的安装包。</p>
+<p><p class="md__image">
+  <img src="../imgs/go-install01.png"
+    alt="下载 Go"  />
+</p>
+</p>
+<p>如果你是 M1 之后的 Mac，下载 go1.17.6.darwin-arm64.pkg，否则下载 go1.17.6.darwin-amd64.pkg。之后双击下载的安装包，按提示一步步操作即可。</p>
+<blockquote>
+<p>Windows 安装方式类似，一步步操作即可。</p>
+<p>Linux 下，需要解压压缩包，然后将解压后的文件夹移动到 /usr/local/ 目录下。</p>
+</blockquote>
+<p>默认情况下，经过以上操作，Go 安装在了 /usr/local/go 中，可以通过以下命令验证是否安装成功：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ /usr/local/go/bin/go version
+go version go1.17.6 darwin/amd64
+</code></pre></div><p>如果能正常输出版本信息，表示安装成功了。</p>
+<p>你发现没？我没有配置任何环境变量。实际上，Go 默认已经不需要配置任何环境变量了——什么 GOROOT、GOPATH 等都不需要了。</p>
+<p>但有一个环境变量需要配置下，那就是 PATH，否则每次都需要指定 <code>/usr/local/go/bin/go</code> 这么长的路径。</p>
+<p>打开 <code>~/.bash_profile</code>，在文末加上以下内容：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:/usr/local/go/bin
+</code></pre></div><p>然后执行：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nb">source</span>  ~/.bash_profile
+</code></pre></div><p>这时在终端直接输入 go verison：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ go version
+go version go1.17.6 darwin/amd64
+</code></pre></div><p>这就是 PATH 环境变量的作用。</p>
+<blockquote>
+<p>Linux 下配置和 Mac 类似。</p>
+<p>Windows 下请查阅配置 PATH 环境变量的方法。</p>
+</blockquote>
+<p>不过，国内特殊的环境，我们还需要做一个<strong>重要的配置</strong>，那就是 GOPROXY：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ go env -w <span class="nv">GOPROXY</span><span class="o">=</span>https://goproxy.cn,https://goproxy.io,direct
+</code></pre></div><p>这样可以方便的下载 golang.org/x 等包，所以，记得执行以上命令。</p>
+<h3 id="其他安装方法">其他安装方法</h3>
+<p>以上是常规的安装方法，你也可以通过源码编译安装。不过，我更喜欢通过第三方工具管理 Go，因为可以方便的切换多版本。</p>
+<p>具体可以参考我之前写的文章：<a href="https://mp.weixin.qq.com/s/yTblk9Js1Zcq5aWVcYGjOA" target="_blank" rel="noopener">《终于找到了一款我喜欢的安装和管理 Go 版本的工具》</a>
+。</p>
+<h2 id="2使用-goland">2、使用 GoLand</h2>
+<p>这是大名鼎鼎的 JB 专门为 Go 语言定制的 IDE，很强大，目前最新稳定版本是 2021.3。</p>
+<p>到 <a href="https://www.jetbrains.com/zh-cn/go/" target="_blank" rel="noopener">https://www.jetbrains.com/zh-cn/go/</a>
+ 下载 goland-2021.3.3（2022.1.28 日构建 213.6777.51），之后双击安装。打开后看到如下界面：（GoLand 是付费软件，不过可以试用 30 天）</p>
+<p><p class="md__image">
+  <img src="../imgs/go-install02.png"
+    alt="GoLand 2021.3"  />
+</p>
+</p>
+<p>可以看到，GoLand 支持远程开发了，在打开/创建项目之前，可以做一些基本的配置，包括学习 GoLand、安装插件等。如果你不喜欢英文界面，在 Plugins 中可以找到中文界面插件，安装即可（GoLand 现在已经支持本地化，在你打开一个项目时，右下角会有提示，要不要切换到本地语言环境，即不需要手动安装语言包）。（我比较建议直接使用英文版）</p>
+<p>我们点击 New Project，创建一个新项目：</p>
+<p><p class="md__image">
+  <img src="../imgs/go-install03.png"
+    alt="GoLang New Project"  />
+</p>
+</p>
+<p>一定要选择第一项，而不是 Go（GOPATH），Location 可以选择你喜欢的位置，GOROOT 就是你 Go 安装的位置，GoLand 会自动检测到。</p>
+<p>创建后，会创建好项目，里面会有一个 go.mod 文件。这是 Go Module 的依赖管理文件。创建一个文件 main.go，输入以下内容：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="s">&#34;fmt&#34;</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Hello, 2022. I am PolarisXu!&#34;</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div><p>GoLand 默认会自动保存。然后点击运行按钮运行：</p>
+<p><p class="md__image">
+  <img src="../imgs/go-install04.png"
+    alt="GoLand Run"  />
+</p>
+</p>
+<p>还可以 Debug。</p>
+<p>对于已经存在的项目，如果发现代码提示、依赖等有问题，打开 GoLand 的「Preferences」，确认有无勾选 Module：</p>
+<p><p class="md__image">
+  <img src="../imgs/go-install05.png"
+    alt="Enable Module"  />
+</p>
+</p>
+<p>GoLand 是开箱即用的，几乎不需要任何配置就可以愉快的玩耍。</p>
+<h2 id="3使用-vscode">3、使用 VSCode</h2>
+<p>如果你更喜欢轻量级的文本编辑器，VSCode 会是一个不错的选择。之前我写过<a href="https://mp.weixin.qq.com/mp/appmsgalbum?__biz=MzAxNzY0NDE3NA==&amp;action=getalbum&amp;album_id=1495071262631641088&amp;scene=126#wechat_redirect" target="_blank" rel="noopener">一系列关于 VSCode 的文章</a>
+，涉及到关于 VSCode 进行 Go 开发的内容，其中关于 Go 开发环境的配置，主要看这篇：<a href="https://mp.weixin.qq.com/s/J01LY7s6xMB8Lk10sxTFhg" target="_blank" rel="noopener">《VSCode 开发 Go 程序也可以和 GoLand 一样强大》</a>
+。这里就不重复了。</p>
+<h2 id="4总结">4、总结</h2>
+<p>总结一下，如下几个关键步骤：</p>
+<ul>
+<li>下载安装 Go</li>
+<li>配置 PATH 环境变量</li>
+<li>配置 GOPROXY</li>
+<li>选择 GoLand 或 VSCode 或其他你喜欢的开发工具</li>
+</ul>
+<p>Enjoy Coding with Go！</p>
+]]></content>
+		</item>
 		
 		<item>
 			<title>鹅厂小哥用行动反对加班：程序员加班能被终结吗？</title>
@@ -770,20 +1164,6 @@ Estimated People Required 69.888518
 。</p>
 <hr>
 <p>如果要统计 2021 年你写了多少代码，可能不是简单地运行 scc 就能搞定，因为多半代码不是你一个人写的，可能需要借助 git 辅助。有兴趣的小伙伴可以研究研究。</p>
-]]></content>
-		</item>
-		
-		<item>
-			<title>掌握泛型：GopherCon2021 上的泛型演讲主题</title>
-			<link>https://polarisxu.studygolang.com/posts/go/generics/gophercon2021-generics/</link>
-			<pubDate>Tue, 28 Dec 2021 20:30:00 +0800</pubDate>
-			
-			<guid>https://polarisxu.studygolang.com/posts/go/generics/gophercon2021-generics/</guid>
-			<description>大家好，我是 polarisxu。 2021 年 12 月初，GopherCon2021 举办，Robert Griesemer 和 Ian Lance Taylor 做了关于泛型的主题演讲。 https://www.youtube.com/watch?v=Pa_e9EeCdy8&amp;list=RDCMUCx9QVEApa5BKLw9r8cnOFEA&amp;index=1</description>
-			<content type="html"><![CDATA[<p>大家好，我是 polarisxu。</p>
-<p>2021 年 12 月初，GopherCon2021 举办，Robert Griesemer 和 Ian Lance Taylor 做了关于泛型的主题演讲。</p>
-<p><a href="https://www.youtube.com/watch?v=Pa_e9EeCdy8&amp;list=RDCMUCx9QVEApa5BKLw9r8cnOFEA&amp;index=1" target="_blank" rel="noopener">https://www.youtube.com/watch?v=Pa_e9EeCdy8&list=RDCMUCx9QVEApa5BKLw9r8cnOFEA&index=1</a>
-</p>
 ]]></content>
 		</item>
 		
@@ -2083,9 +2463,9 @@ This is package mypkg
 <p>针对上面的这个问题，Michael Matloob 提出了 Workspace Mode（工作区模式）。相关 issue 讨论：<a href="https://github.com/golang/go/issues/45713" target="_blank" rel="noopener">cmd/go: add a workspace mode</a>
 ，<a href="https://go.googlesource.com/proposal/&#43;/master/design/45713-workspace.md" target="_blank" rel="noopener">这里是 Proposal</a>
 。</p>
-<p>为了能够试验工作区，请在本地使用 Go1.18beta1，建议<a href="https://mp.weixin.qq.com/s/yTblk9Js1Zcq5aWVcYGjOA" target="_blank" rel="noopener">通过 goup 切换 Go 版本</a>
+<p>为了能够试验工作区，请在本地使用 Go1.18beta2，建议<a href="https://mp.weixin.qq.com/s/yTblk9Js1Zcq5aWVcYGjOA" target="_blank" rel="noopener">通过 goup 切换 Go 版本</a>
 ：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ goup install 1.18beta1
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ goup install 1.18beta2
 $ goup show
 <span class="p">|</span>  VERSION  <span class="p">|</span> ACTIVE <span class="p">|</span>
 <span class="p">|</span>-----------<span class="p">|</span>--------<span class="p">|</span>
@@ -2099,32 +2479,64 @@ $ goup show
 <span class="p">|</span>   1.16    <span class="p">|</span>        <span class="p">|</span>
 <span class="p">|</span>  1.16.2   <span class="p">|</span>        <span class="p">|</span>
 <span class="p">|</span>   1.17    <span class="p">|</span>        <span class="p">|</span>
-<span class="p">|</span> 1.18beta1 <span class="p">|</span>   *    <span class="p">|</span>
+<span class="p">|</span> 1.18beta2 <span class="p">|</span>   *    <span class="p">|</span>
 <span class="p">|</span>    1.4    <span class="p">|</span>        <span class="p">|</span>
 <span class="p">|</span>   1.4.3   <span class="p">|</span>        <span class="p">|</span>
 <span class="p">|</span>    tip    <span class="p">|</span>        <span class="p">|</span>
 </code></pre></div><p>我本地当前版本：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ go version
-go version go1.18beta1 darwin/amd64
+go version go1.18beta2 darwin/amd64
 </code></pre></div><p>通过 go help work 可以看到 work 相关命令：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ go <span class="nb">help</span> work
 Go workspace provides access to operations on workspaces.
 
-Note that support <span class="k">for</span> workspaces is built into many other commands,
-not just <span class="s1">&#39;go work&#39;</span>.
+Note that support <span class="k">for</span> workspaces is built into many other commands, not
+just <span class="s1">&#39;go work&#39;</span>.
 
-See <span class="s1">&#39;go help modules&#39;</span> <span class="k">for</span> information about Go<span class="err">&#39;</span>s module system of
-which workspaces are a part.
+See <span class="s1">&#39;go help modules&#39;</span> <span class="k">for</span> information about Go<span class="s1">&#39;s module system of which
+</span><span class="s1">workspaces are a part.
+</span><span class="s1">
+</span><span class="s1">A workspace is specified by a go.work file that specifies a set of
+</span><span class="s1">module directories with the &#34;use&#34; directive. These modules are used as
+</span><span class="s1">root modules by the go command for builds and related operations.  A
+</span><span class="s1">workspace that does not specify modules to be used cannot be used to do
+</span><span class="s1">builds from local modules.
+</span><span class="s1">
+</span><span class="s1">go.work files are line-oriented. Each line holds a single directive,
+</span><span class="s1">made up of a keyword followed by aruments. For example:
+</span><span class="s1">
+</span><span class="s1">	go 1.18
+</span><span class="s1">
+</span><span class="s1">	use ../foo/bar
+</span><span class="s1">	use ./baz
+</span><span class="s1">
+</span><span class="s1">	replace example.com/foo v1.2.3 =&gt; example.com/bar v1.4.5
+</span><span class="s1">
+</span><span class="s1">The leading keyword can be factored out of adjacent lines to create a block,
+</span><span class="s1">like in Go imports.
+</span><span class="s1">
+</span><span class="s1">	use (
+</span><span class="s1">	  ../foo/bar
+</span><span class="s1">	  ./baz
+</span><span class="s1">	)
+</span><span class="s1">
+</span><span class="s1">The use directive specifies a module to be included in the workspace&#39;</span>s
+<span class="nb">set</span> of main modules. The argument to the use directive is the directory
+containing the module<span class="err">&#39;</span>s go.mod file.
 
-A workspace is specified by a go.work file that specifies a <span class="nb">set</span> of
-module directories with the <span class="s2">&#34;use&#34;</span> directive. These modules are used
-as root modules by the go <span class="nb">command</span> <span class="k">for</span> builds and related operations.
-A workspace that does not specify modules to be used cannot be used
-to <span class="k">do</span> builds from <span class="nb">local</span> modules.
+The go directive specifies the version of Go the file was written at. It
+is possible there may be future changes in the semantics of workspaces
+that could be controlled by this version, but <span class="k">for</span> now the version
+specified has no effect.
 
-To determine whether the go <span class="nb">command</span> is operating in workspace mode,
-use the <span class="s2">&#34;go env GOWORK&#34;</span> command. This will specify the workspace
-file being used.
+The replace directive has the same syntax as the replace directive in a
+go.mod file and takes precedence over replaces in go.mod files.  It is
+primarily intended to override conflicting replaces in different workspace
+modules.
+
+To determine whether the go <span class="nb">command</span> is operating in workspace mode, use
+the <span class="s2">&#34;go env GOWORK&#34;</span> command. This will specify the workspace file being
+used.
 
 Usage:
 
