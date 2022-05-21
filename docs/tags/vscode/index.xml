@@ -23,7 +23,7 @@
       <pubDate>Thu, 08 Apr 2021 10:00:00 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/posts/rust/rust-tutorial-01/</guid>
-      <description>大家好，我是站长 polarisxu。 今天起正式 Rust “劝退”之旅。我也是在学习中，大家一起探讨交流，看谁先被劝退。在这个系列教程中，我通过和 Go 对比学习，同时只讲 Rust 最常用的特性，尽量避免入门就劝退。 工欲善其事必先利其器！本文我们先打造一个 Rust 的开发环境。 01 安装 Rust 打开 Rust 官网：https://rust-lang.org ，可以切换到简体中文界面。在顶部菜单有「安装」。 对于</description>
+      <description>大家好，我是站长 polarisxu。 今天起正式 Rust “劝退”之旅。我也是在学习中，大家一起探讨交流，看谁先被劝退。在这个系列教程中，我通过和 Go 对比学习，同时只讲 Rust 最常用的特性，尽量避免入门就劝退。 工欲善其事必先利其器！本文我们先打造一个 Rust 的开发环境。 01 安装 Rust 打开 Rust 官网：https://rust-lang.org，可以切换到简体中文界面。在顶部菜单有「安装」。 对于</description>
     </item>
     
     <item>

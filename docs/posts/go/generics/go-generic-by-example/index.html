@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#fcfcfc">
+	<meta name="msapplication-TileColor" content="#fcfcfc">
+<meta itemprop="name" content="">
+<meta itemprop="description" content="Go1.18 已经发布，通过例子学习泛型
+大家好，我是 polarisxu。
+Go1.18 已经发布，泛型也正式面世。也许你不一定要得到泛型，但还是有必要学习下。之前我出过两个泛型相关的教程，没有看的可以看看。
+ Go 泛型入门教程  跟着 Go 作者学泛型   今天通过另外一种方式学习泛型，即具体的例子，建议可以实际动手试验这些例子，同时也领会一下泛型的使用场景。
+求最小值、最大值 直接上代码：
+package main import ( &#34;fmt&#34; &#34;golang.org/x/exp/constraints&#34; ) func max[T constraints.Ordered](s []T) T { if len(s) == 0 { var zero T return zero } m := s[0] for _, v := range s { if m &lt; v { m = v } } return m } func min[T constraints.Ordered](s []T) T { if len(s) == 0 { var zero T return zero } m := s[0] for _, v := range s { if m &gt; v { m = v } } return m } func main() { fmt.Println(min([]int{10, 2, 4, 1, 6, 8, 2})) fmt.Println(max([]float64{3.2, 5.1, 6.2, 7.6, 8.2, 1.5, 4.8})) } 注意，golang.org/x/exp/constraints 这个包是实验性的，生产环境代码建议定义自己的一套。
+因为要进行大小比较，所以对泛型 T 做了类型约束：constraints.Ordered，只有可进行大小比较的类型才符合类型 T。
+2、泛型版 slice 包含函数 标准库中，对字符串、字节数组实现了相关的函数，进行包含判断：strings.Contains 和 bytes.Contains。那对其他基本类型怎么办？比如判断一个 int 是否在一个 int slice 中呢？得自己实现一个。
+有了泛型，可以来一个泛型版本：
+package main import &#34;fmt&#34; func contains[T comparable](elems []T, v T) bool { for _, s := range elems { if v == s { return true } } return false } func main() { fmt.Println(contains([]string{&#34;a&#34;, &#34;b&#34;, &#34;c&#34;}, &#34;b&#34;)) fmt.Println(contains([]int{1, 2, 3}, 2)) fmt.">
+
+<meta itemprop="wordCount" content="388">
+<meta itemprop="keywords" content="" /><meta property="og:title" content="" />
+<meta property="og:description" content="Go1.18 已经发布，通过例子学习泛型
+大家好，我是 polarisxu。
+Go1.18 已经发布，泛型也正式面世。也许你不一定要得到泛型，但还是有必要学习下。之前我出过两个泛型相关的教程，没有看的可以看看。
+ Go 泛型入门教程  跟着 Go 作者学泛型   今天通过另外一种方式学习泛型，即具体的例子，建议可以实际动手试验这些例子，同时也领会一下泛型的使用场景。
+求最小值、最大值 直接上代码：
+package main import ( &#34;fmt&#34; &#34;golang.org/x/exp/constraints&#34; ) func max[T constraints.Ordered](s []T) T { if len(s) == 0 { var zero T return zero } m := s[0] for _, v := range s { if m &lt; v { m = v } } return m } func min[T constraints.Ordered](s []T) T { if len(s) == 0 { var zero T return zero } m := s[0] for _, v := range s { if m &gt; v { m = v } } return m } func main() { fmt.Println(min([]int{10, 2, 4, 1, 6, 8, 2})) fmt.Println(max([]float64{3.2, 5.1, 6.2, 7.6, 8.2, 1.5, 4.8})) } 注意，golang.org/x/exp/constraints 这个包是实验性的，生产环境代码建议定义自己的一套。
+因为要进行大小比较，所以对泛型 T 做了类型约束：constraints.Ordered，只有可进行大小比较的类型才符合类型 T。
+2、泛型版 slice 包含函数 标准库中，对字符串、字节数组实现了相关的函数，进行包含判断：strings.Contains 和 bytes.Contains。那对其他基本类型怎么办？比如判断一个 int 是否在一个 int slice 中呢？得自己实现一个。
+有了泛型，可以来一个泛型版本：
+package main import &#34;fmt&#34; func contains[T comparable](elems []T, v T) bool { for _, s := range elems { if v == s { return true } } return false } func main() { fmt.Println(contains([]string{&#34;a&#34;, &#34;b&#34;, &#34;c&#34;}, &#34;b&#34;)) fmt.Println(contains([]int{1, 2, 3}, 2)) fmt." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/generics/go-generic-by-example/" /><meta property="article:section" content="posts" />
+
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content=""/>
+<meta name="twitter:description" content="Go1.18 已经发布，通过例子学习泛型
+大家好，我是 polarisxu。
+Go1.18 已经发布，泛型也正式面世。也许你不一定要得到泛型，但还是有必要学习下。之前我出过两个泛型相关的教程，没有看的可以看看。
+ Go 泛型入门教程  跟着 Go 作者学泛型   今天通过另外一种方式学习泛型，即具体的例子，建议可以实际动手试验这些例子，同时也领会一下泛型的使用场景。
+求最小值、最大值 直接上代码：
+package main import ( &#34;fmt&#34; &#34;golang.org/x/exp/constraints&#34; ) func max[T constraints.Ordered](s []T) T { if len(s) == 0 { var zero T return zero } m := s[0] for _, v := range s { if m &lt; v { m = v } } return m } func min[T constraints.Ordered](s []T) T { if len(s) == 0 { var zero T return zero } m := s[0] for _, v := range s { if m &gt; v { m = v } } return m } func main() { fmt.Println(min([]int{10, 2, 4, 1, 6, 8, 2})) fmt.Println(max([]float64{3.2, 5.1, 6.2, 7.6, 8.2, 1.5, 4.8})) } 注意，golang.org/x/exp/constraints 这个包是实验性的，生产环境代码建议定义自己的一套。
+因为要进行大小比较，所以对泛型 T 做了类型约束：constraints.Ordered，只有可进行大小比较的类型才符合类型 T。
+2、泛型版 slice 包含函数 标准库中，对字符串、字节数组实现了相关的函数，进行包含判断：strings.Contains 和 bytes.Contains。那对其他基本类型怎么办？比如判断一个 int 是否在一个 int slice 中呢？得自己实现一个。
+有了泛型，可以来一个泛型版本：
+package main import &#34;fmt&#34; func contains[T comparable](elems []T, v T) bool { for _, s := range elems { if v == s { return true } } return false } func main() { fmt.Println(contains([]string{&#34;a&#34;, &#34;b&#34;, &#34;c&#34;}, &#34;b&#34;)) fmt.Println(contains([]int{1, 2, 3}, 2)) fmt."/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title></title>
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.f74778e3020c87c304fb5982e09b92ba63a5c7f202996d4c7283d6057acfe9c1.css" integrity="sha256-90d44wIMh8ME+1mC4JuSumOlx/ICmW1McoPWBXrP6cE=" crossorigin="anonymous">
+	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/styles.css">
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://polarisxu.studygolang.com">polarisxu</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+  <a href="https://polarisxu.studygolang.com/">首页</a>
+  <a href="https://polarisxu.studygolang.com/categories/echo%E7%B3%BB%E5%88%97/">Echo系列</a>
+  <a href="https://polarisxu.studygolang.com/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a>
+  <a href="https://polarisxu.studygolang.com/posts/">归档</a>
+  <a href="https://polarisxu.studygolang.com/about/">关于</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<span class="hdr-social hide-in-mobile"><a href="https://github.com/polaris1119" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a><a href="https://twitter.com/polaris1119" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="菜单"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://polarisxu.studygolang.com/">首页</a></li>
+			<li><a href="https://polarisxu.studygolang.com/categories/echo%E7%B3%BB%E5%88%97/">Echo系列</a></li>
+			<li><a href="https://polarisxu.studygolang.com/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a></li>
+			<li><a href="https://polarisxu.studygolang.com/posts/">归档</a></li>
+			<li><a href="https://polarisxu.studygolang.com/about/">关于</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Jan 1, 0001</span></div>
+				<h1></h1>
+			</header>
+			<div class="content">
+				<p>Go1.18 已经发布，通过例子学习泛型</p>
+<p>大家好，我是 polarisxu。</p>
+<p>Go1.18 已经发布，泛型也正式面世。也许你不一定要得到泛型，但还是有必要学习下。之前我出过两个泛型相关的教程，没有看的可以看看。</p>
+<ul>
+<li><a href="https://polarisxu.studygolang.com/posts/go/generics/generics-tutorial/" target="_blank" rel="noopener">Go 泛型入门教程</a>
+</li>
+<li><a href="https://polarisxu.studygolang.com/posts/go/generics/gophercon2021-generics/" target="_blank" rel="noopener">跟着 Go 作者学泛型</a>
+</li>
+</ul>
+<p>今天通过另外一种方式学习泛型，即具体的例子，建议可以实际动手试验这些例子，同时也领会一下泛型的使用场景。</p>
+<h2 id="求最小值最大值">求最小值、最大值<a href="#求最小值最大值" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>直接上代码：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+	<span class="s">&#34;fmt&#34;</span>
+
+	<span class="s">&#34;golang.org/x/exp/constraints&#34;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nx">max</span><span class="p">[</span><span class="nx">T</span> <span class="nx">constraints</span><span class="p">.</span><span class="nx">Ordered</span><span class="p">](</span><span class="nx">s</span> <span class="p">[]</span><span class="nx">T</span><span class="p">)</span> <span class="nx">T</span> <span class="p">{</span>
+	<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nx">s</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">zero</span> <span class="nx">T</span>
+		<span class="k">return</span> <span class="nx">zero</span>
+	<span class="p">}</span>
+	<span class="nx">m</span> <span class="o">:=</span> <span class="nx">s</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+	<span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">v</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">s</span> <span class="p">{</span>
+		<span class="k">if</span> <span class="nx">m</span> <span class="p">&lt;</span> <span class="nx">v</span> <span class="p">{</span>
+			<span class="nx">m</span> <span class="p">=</span> <span class="nx">v</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="nx">m</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nx">min</span><span class="p">[</span><span class="nx">T</span> <span class="nx">constraints</span><span class="p">.</span><span class="nx">Ordered</span><span class="p">](</span><span class="nx">s</span> <span class="p">[]</span><span class="nx">T</span><span class="p">)</span> <span class="nx">T</span> <span class="p">{</span>
+	<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nx">s</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">zero</span> <span class="nx">T</span>
+		<span class="k">return</span> <span class="nx">zero</span>
+	<span class="p">}</span>
+	<span class="nx">m</span> <span class="o">:=</span> <span class="nx">s</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+	<span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">v</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">s</span> <span class="p">{</span>
+		<span class="k">if</span> <span class="nx">m</span> <span class="p">&gt;</span> <span class="nx">v</span> <span class="p">{</span>
+			<span class="nx">m</span> <span class="p">=</span> <span class="nx">v</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="nx">m</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nf">min</span><span class="p">([]</span><span class="kt">int</span><span class="p">{</span><span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">2</span><span class="p">}))</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nf">max</span><span class="p">([]</span><span class="kt">float64</span><span class="p">{</span><span class="mf">3.2</span><span class="p">,</span> <span class="mf">5.1</span><span class="p">,</span> <span class="mf">6.2</span><span class="p">,</span> <span class="mf">7.6</span><span class="p">,</span> <span class="mf">8.2</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mf">4.8</span><span class="p">}))</span>
+<span class="p">}</span>
+
+</code></pre></div><p>注意，golang.org/x/exp/constraints 这个包是实验性的，生产环境代码建议定义自己的一套。</p>
+<p>因为要进行大小比较，所以对泛型 T 做了类型约束：constraints.Ordered，只有可进行大小比较的类型才符合类型 T。</p>
+<h2 id="2泛型版-slice-包含函数">2、泛型版 slice 包含函数<a href="#2泛型版-slice-包含函数" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>标准库中，对字符串、字节数组实现了相关的函数，进行包含判断：strings.Contains 和 bytes.Contains。那对其他基本类型怎么办？比如判断一个 int 是否在一个 int slice 中呢？得自己实现一个。</p>
+<p>有了泛型，可以来一个泛型版本：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="s">&#34;fmt&#34;</span>
+
+<span class="kd">func</span> <span class="nx">contains</span><span class="p">[</span><span class="nx">T</span> <span class="nx">comparable</span><span class="p">](</span><span class="nx">elems</span> <span class="p">[]</span><span class="nx">T</span><span class="p">,</span> <span class="nx">v</span> <span class="nx">T</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">s</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">elems</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="nx">v</span> <span class="o">==</span> <span class="nx">s</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="kc">true</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="kc">false</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nf">contains</span><span class="p">([]</span><span class="kt">string</span><span class="p">{</span><span class="s">&#34;a&#34;</span><span class="p">,</span> <span class="s">&#34;b&#34;</span><span class="p">,</span> <span class="s">&#34;c&#34;</span><span class="p">},</span> <span class="s">&#34;b&#34;</span><span class="p">))</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nf">contains</span><span class="p">([]</span><span class="kt">int</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">},</span> <span class="mi">2</span><span class="p">))</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nf">contains</span><span class="p">([]</span><span class="kt">int</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">},</span> <span class="mi">10</span><span class="p">))</span>
+<span class="p">}</span>
+</code></pre></div><p>实际上，golang.org/x/exp/slices 包实现了这样的功能。</p>
+<h2 id="3从-map-中获得-key-的-slice">3、从 map 中获得 key 的 slice<a href="#3从-map-中获得-key-的-slice" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>因为 map 是无序的，但有时候我们需要根据 map 中 key 的顺序做处理，这时候需要提取 map 中的 key 组成一个 slice，然后排序。</p>
+<p>不同的类型，都需要做一遍，有了泛型，可以直接出一个泛型版。</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&#34;fmt&#34;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nx">keys</span><span class="p">[</span><span class="nx">K</span> <span class="nx">comparable</span><span class="p">,</span> <span class="nx">V</span> <span class="nx">any</span><span class="p">](</span><span class="nx">m</span> <span class="kd">map</span><span class="p">[</span><span class="nx">K</span><span class="p">]</span><span class="nx">V</span><span class="p">)</span> <span class="p">[]</span><span class="nx">K</span> <span class="p">{</span>
+    <span class="nx">keys</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="nx">K</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="nx">m</span><span class="p">))</span>
+    <span class="k">for</span> <span class="nx">k</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">m</span> <span class="p">{</span>
+        <span class="nx">keys</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">keys</span><span class="p">,</span> <span class="nx">k</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">keys</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">vegetableSet</span> <span class="o">:=</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">bool</span><span class="p">{</span>
+        <span class="s">&#34;potato&#34;</span><span class="p">:</span>  <span class="kc">true</span><span class="p">,</span>
+        <span class="s">&#34;cabbage&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="s">&#34;carrot&#34;</span><span class="p">:</span>  <span class="kc">true</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="nx">fruitRank</span> <span class="o">:=</span> <span class="kd">map</span><span class="p">[</span><span class="kt">int</span><span class="p">]</span><span class="kt">string</span><span class="p">{</span>
+        <span class="mi">1</span><span class="p">:</span> <span class="s">&#34;strawberry&#34;</span><span class="p">,</span>
+        <span class="mi">2</span><span class="p">:</span> <span class="s">&#34;raspberry&#34;</span><span class="p">,</span>
+        <span class="mi">3</span><span class="p">:</span> <span class="s">&#34;blueberry&#34;</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;vegetableSet keys: %+v\n&#34;</span><span class="p">,</span> <span class="nf">keys</span><span class="p">(</span><span class="nx">vegetableSet</span><span class="p">))</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;fruitRank keys: %+v\n&#34;</span><span class="p">,</span> <span class="nf">keys</span><span class="p">(</span><span class="nx">fruitRank</span><span class="p">))</span>
+<span class="p">}</span>
+</code></pre></div><p>输出：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">vegetableSet keys: <span class="o">[</span>potato cabbage carrot<span class="o">]</span>
+fruitRank keys: <span class="o">[</span><span class="m">1</span> <span class="m">2</span> 3<span class="o">]</span>
+</code></pre></div><p>实际上，golang.org/x/exp/maps 包提供了这样的功能。</p>
+<h2 id="4通用的-slice-排序功能">4、通用的 slice 排序功能<a href="#4通用的-slice-排序功能" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>上面提到了 slice 的排序，这是很常见的需求。Go 标准库提供了排序的包：sort，一般这么用：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+	<span class="s">&#34;fmt&#34;</span>
+	<span class="s">&#34;sort&#34;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="nx">ints</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">int</span><span class="p">{</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">}</span> <span class="c1">// unsorted
+</span><span class="c1"></span>	<span class="nx">sort</span><span class="p">.</span><span class="nf">Ints</span><span class="p">(</span><span class="nx">ints</span><span class="p">)</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">ints</span><span class="p">)</span>
+
+	<span class="nx">s</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&#34;Go&#34;</span><span class="p">,</span> <span class="s">&#34;Bravo&#34;</span><span class="p">,</span> <span class="s">&#34;Gopher&#34;</span><span class="p">,</span> <span class="s">&#34;Alpha&#34;</span><span class="p">,</span> <span class="s">&#34;Grin&#34;</span><span class="p">,</span> <span class="s">&#34;Delta&#34;</span><span class="p">}</span>
+	<span class="nx">sort</span><span class="p">.</span><span class="nf">Strings</span><span class="p">(</span><span class="nx">s</span><span class="p">)</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">s</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div><p>标准库 sort 中有看起来差不多的代码。</p>
+<p>有了泛型就简单多了，golang.org/x/exp/slices 也提供了相应的实现：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nx">Sort</span><span class="p">[</span><span class="nx">E</span> <span class="nx">constraints</span><span class="p">.</span><span class="nx">Ordered</span><span class="p">](</span><span class="nx">x</span> <span class="p">[]</span><span class="nx">E</span><span class="p">)</span>
+<span class="kd">func</span> <span class="nx">SortFunc</span><span class="p">[</span><span class="nx">E</span> <span class="nx">any</span><span class="p">](</span><span class="nx">x</span> <span class="p">[]</span><span class="nx">E</span><span class="p">,</span> <span class="nx">less</span> <span class="kd">func</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span> <span class="nx">E</span><span class="p">)</span> <span class="kt">bool</span><span class="p">)</span>
+<span class="kd">func</span> <span class="nx">SortStableFunc</span><span class="p">[</span><span class="nx">E</span> <span class="nx">any</span><span class="p">](</span><span class="nx">x</span> <span class="p">[]</span><span class="nx">E</span><span class="p">,</span> <span class="nx">less</span> <span class="kd">func</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span> <span class="nx">E</span><span class="p">)</span> <span class="kt">bool</span><span class="p">)</span>
+</code></pre></div><p>对不同的 slice，调用的同一个泛型函数：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+	<span class="s">&#34;fmt&#34;</span>
+
+	<span class="s">&#34;golang.org/x/exp/slices&#34;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="nx">ints</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">int</span><span class="p">{</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">}</span> <span class="c1">// unsorted
+</span><span class="c1"></span>	<span class="nx">slices</span><span class="p">.</span><span class="nf">Sort</span><span class="p">(</span><span class="nx">ints</span><span class="p">)</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">ints</span><span class="p">)</span>
+
+	<span class="nx">s</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&#34;Go&#34;</span><span class="p">,</span> <span class="s">&#34;Bravo&#34;</span><span class="p">,</span> <span class="s">&#34;Gopher&#34;</span><span class="p">,</span> <span class="s">&#34;Alpha&#34;</span><span class="p">,</span> <span class="s">&#34;Grin&#34;</span><span class="p">,</span> <span class="s">&#34;Delta&#34;</span><span class="p">}</span>
+	<span class="nx">slices</span><span class="p">.</span><span class="nf">Sort</span><span class="p">(</span><span class="nx">s</span><span class="p">)</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">s</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div><h2 id="5filter-功能的实现">5、filter 功能的实现<a href="#5filter-功能的实现" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>函数式编程中，filter</p>
+
+			</div><div class="content">
+	<br>
+	<img src="https://static.golangjob.cn/static/img/polarisxu-qrcode-soso-s.png">
+</div>
+
+			<hr class="post-end">
+			<footer class="post-info">
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>388 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>0001-01-01 08:05 &#43;0805</p>
+			</footer>
+		</article>
+		<div class="post-nav thin">
+			<a class="next-post" href="https://polarisxu.studygolang.com/posts/go/echo/echo/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;新</span><br><span>Echo 系列教程——Go 语言 Web 框架 Echo 系列教程</span>
+			</a>
+			<a class="prev-post" href="https://polarisxu.studygolang.com/posts/systemprogramming/go/01/">
+				<span class="post-nav-label">旧&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span></span>
+			</a>
+		</div>
+		<div id="comments" class="thin"><script src="https://utteranc.es/client.js"
+	repo="polaris1119/polarisxu"
+	issue-term="pathname"
+	theme="github-light"
+	crossorigin="anonymous"
+	async>
+</script>
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2019 - 2022 <a href="https://polarisxu.studygolang.com">polarisxu</a> &#183; <a href="https://beian.miit.gov.cn/">京ICP备14030343号-1</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://polarisxu.studygolang.com/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+		<span id="busuanzi_container" style="color: #666;">
+			本站总访客数/访问量：<span id="busuanzi_value_site_uv"></span>/<span id="busuanzi_value_site_pv"></span>
+		</span>
+	</footer>
+
+
+
+	<script src="https://polarisxu.studygolang.com/js/main.min.4eaa15feccc672488716f0338ac605e08c7553ce0ce175e13fa00a873636bf98.js" integrity="sha256-TqoV/szGckiHFvAzisYF4Ix1U84M4XXhP6AKhzY2v5g=" crossorigin="anonymous"></script>
+	<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?224c227cd9239761ec770bc8c1fb134c";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+</body>
+
+</html>

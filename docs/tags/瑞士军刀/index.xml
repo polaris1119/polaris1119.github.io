@@ -14,7 +14,7 @@
       <pubDate>Sat, 18 Dec 2021 13:00:00 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/posts/devtool/dev-transform/</guid>
-      <description>大家好，我是 polarisxu。 上次推荐的 「Go网址导航」，其中收录了一项：转换器。 网址是：https://transform.tools/ 。 这是一个开源项目，项目地址：https://github.com/ritz078/transform ，目前 Star 数 2.8k+。 这个网站将转换工具分成了几类： SVG HTML JSON JSON Schema CSS JavaScript GraphQL JSON-LD TypeScript Flow Others 其中有一些对 Gopher 比较有用，这里简单列举介绍下</description>
+      <description>大家好，我是 polarisxu。 上次推荐的 「Go网址导航」，其中收录了一项：转换器。 网址是：https://transform.tools/。 这是一个开源项目，项目地址：https://github.com/ritz078/transform，目前 Star 数 2.8k+。 这个网站将转换工具分成了几类： SVG HTML JSON JSON Schema CSS JavaScript GraphQL JSON-LD TypeScript Flow Others 其中有一些对 Gopher 比较有用，这里简单列举介绍下</description>
     </item>
     
   </channel>

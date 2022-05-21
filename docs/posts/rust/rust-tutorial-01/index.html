@@ -8,19 +8,19 @@
 	<meta name="theme-color" content="#fcfcfc">
 	<meta name="msapplication-TileColor" content="#fcfcfc">
 <meta itemprop="name" content="Rust 劝退系列 01：打造开发环境">
-<meta itemprop="description" content="大家好，我是站长 polarisxu。 今天起正式 Rust “劝退”之旅。我也是在学习中，大家一起探讨交流，看谁先被劝退。在这个系列教程中，我通过和 Go 对比学习，同时只讲 Rust 最常用的特性，尽量避免入门就劝退。 工欲善其事必先利其器！本文我们先打造一个 Rust 的开发环境。 01 安装 Rust 打开 Rust 官网：https://rust-lang.org ，可以切换到简体中文界面。在顶部菜单有「安装」。 对于"><meta itemprop="datePublished" content="2021-04-08T10:00:00+08:00" />
-<meta itemprop="dateModified" content="2021-04-08T10:00:00+08:00" />
+<meta itemprop="description" content="大家好，我是站长 polarisxu。 今天起正式 Rust “劝退”之旅。我也是在学习中，大家一起探讨交流，看谁先被劝退。在这个系列教程中，我通过和 Go 对比学习，同时只讲 Rust 最常用的特性，尽量避免入门就劝退。 工欲善其事必先利其器！本文我们先打造一个 Rust 的开发环境。 01 安装 Rust 打开 Rust 官网：https://rust-lang.org，可以切换到简体中文界面。在顶部菜单有「安装」。 对于"><meta itemprop="datePublished" content="2021-04-08T10:00:00&#43;08:00" />
+<meta itemprop="dateModified" content="2021-04-08T10:00:00&#43;08:00" />
 <meta itemprop="wordCount" content="1905">
 <meta itemprop="keywords" content="rust,vscode," /><meta property="og:title" content="Rust 劝退系列 01：打造开发环境" />
-<meta property="og:description" content="大家好，我是站长 polarisxu。 今天起正式 Rust “劝退”之旅。我也是在学习中，大家一起探讨交流，看谁先被劝退。在这个系列教程中，我通过和 Go 对比学习，同时只讲 Rust 最常用的特性，尽量避免入门就劝退。 工欲善其事必先利其器！本文我们先打造一个 Rust 的开发环境。 01 安装 Rust 打开 Rust 官网：https://rust-lang.org ，可以切换到简体中文界面。在顶部菜单有「安装」。 对于" />
+<meta property="og:description" content="大家好，我是站长 polarisxu。 今天起正式 Rust “劝退”之旅。我也是在学习中，大家一起探讨交流，看谁先被劝退。在这个系列教程中，我通过和 Go 对比学习，同时只讲 Rust 最常用的特性，尽量避免入门就劝退。 工欲善其事必先利其器！本文我们先打造一个 Rust 的开发环境。 01 安装 Rust 打开 Rust 官网：https://rust-lang.org，可以切换到简体中文界面。在顶部菜单有「安装」。 对于" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://polarisxu.studygolang.com/posts/rust/rust-tutorial-01/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2021-04-08T10:00:00+08:00" />
-<meta property="article:modified_time" content="2021-04-08T10:00:00+08:00" />
+<meta property="article:published_time" content="2021-04-08T10:00:00&#43;08:00" />
+<meta property="article:modified_time" content="2021-04-08T10:00:00&#43;08:00" />
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Rust 劝退系列 01：打造开发环境"/>
-<meta name="twitter:description" content="大家好，我是站长 polarisxu。 今天起正式 Rust “劝退”之旅。我也是在学习中，大家一起探讨交流，看谁先被劝退。在这个系列教程中，我通过和 Go 对比学习，同时只讲 Rust 最常用的特性，尽量避免入门就劝退。 工欲善其事必先利其器！本文我们先打造一个 Rust 的开发环境。 01 安装 Rust 打开 Rust 官网：https://rust-lang.org ，可以切换到简体中文界面。在顶部菜单有「安装」。 对于"/>
+<meta name="twitter:description" content="大家好，我是站长 polarisxu。 今天起正式 Rust “劝退”之旅。我也是在学习中，大家一起探讨交流，看谁先被劝退。在这个系列教程中，我通过和 Go 对比学习，同时只讲 Rust 最常用的特性，尽量避免入门就劝退。 工欲善其事必先利其器！本文我们先打造一个 Rust 的开发环境。 01 安装 Rust 打开 Rust 官网：https://rust-lang.org，可以切换到简体中文界面。在顶部菜单有「安装」。 对于"/>
 
 	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -30,7 +30,7 @@
 	<link rel="shortcut icon" href="/favicon.ico">
 
 	<title>Rust 劝退系列 01：打造开发环境</title>
-	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.f74778e3020c87c304fb5982e09b92ba63a5c7f202996d4c7283d6057acfe9c1.css" integrity="sha256-90d44wIMh8ME+1mC4JuSumOlx/ICmW1McoPWBXrP6cE=" crossorigin="anonymous">
 	
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/styles.css">
@@ -81,14 +81,12 @@
 <p>今天起正式 Rust “劝退”之旅。我也是在学习中，大家一起探讨交流，看谁先被劝退。在这个系列教程中，我通过和 Go 对比学习，同时只讲 Rust 最常用的特性，尽量避免入门就劝退。</p>
 <p>工欲善其事必先利其器！本文我们先打造一个 Rust 的开发环境。</p>
 <h2 id="01-安装-rust">01 安装 Rust<a href="#01-安装-rust" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-<p>打开 Rust 官网：<a href="https://rust-lang.org" target="_blank" rel="noopener">https://rust-lang.org</a>
-，可以切换到简体中文界面。在顶部菜单有「安装」。</p>
+<p>打开 Rust 官网：<a href="https://rust-lang.org">https://rust-lang.org</a>，可以切换到简体中文界面。在顶部菜单有「安装」。</p>
 <p>对于类 Unix 系统（MacOS、Linux 等），官方推荐下载 Rustup 并安装 Rust（如果是 Windows，但使用 Linux 子系统，即 WSL，安装方式和 Linux 一样），在终端执行如下命令进行安装：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">curl --proto <span class="s1">&#39;=https&#39;</span> --tlsv1.2 -sSf https://sh.rustup.rs <span class="p">|</span> sh
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">curl --proto <span class="s1">&#39;=https&#39;</span> --tlsv1.2 -sSf https://sh.rustup.rs <span class="p">|</span> sh
 </code></pre></div><p>如果是 Windows 用户，会让你下载预编译好的 RUSTUP-INIT.exe 文件（32 位或 64 位），一步步操作即可。</p>
 <p>安装完成后，在终端执行 <code>rustup --version</code>，看到了版本信息即表示安装成功。</p>
-<p>也可以 <a href="https://rustup.rs" target="_blank" rel="noopener">https://rustup.rs</a>
- 网站可以看到查看 rustup：</p>
+<p>也可以 <a href="https://rustup.rs">https://rustup.rs</a> 网站可以看到查看 rustup：</p>
 <p><p class="md__image">
   <img src="../imgs/tutorial01-01.png"
     alt=""  />
@@ -96,7 +94,7 @@
 </p>
 <h3 id="rustup-是什么">rustup 是什么<a href="#rustup-是什么" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>在终端执行 rustup，看到类似如下信息：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ rustup	
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ rustup	
 rustup 1.23.1 <span class="o">(</span>3df2264a9 2020-11-30<span class="o">)</span>
 The Rust toolchain installer
 ...
@@ -107,7 +105,7 @@ The Rust toolchain installer
 <p>Go 的安装，如果不用第三方工具，一般通过下载对应操作系统的预编译版本，然后跟普通软件一样安装即可。也可以通过对应系统的工具进行安装，比如 Mac 下的 homebrew，不过很可能安装的不是最新版本的 Go。此外，还可以通过源码安装 Go。</p>
 <p>一般地，为了省事，我推荐使用类似 goup 这样的工具来安装、管理 Go 版本，就跟 Rust 自带的 rustup 工具一样。</p>
 <p>回到 rustup 命令，看看帮助文档：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ rustup
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ rustup
 rustup 1.23.1 <span class="o">(</span>3df2264a9 2020-11-30<span class="o">)</span>
 The Rust toolchain installer
 
@@ -180,8 +178,7 @@ DISCUSSION:
 </p>
 </p>
 <p>官方的 4 星，社区的 5 星。</p>
-<p>一般我们都会安装官方的。但我用了后，发现官方的有些功能缺失，比如没法在 VSCode 中直接运行 Rust。于是我换成社区的，发现可以。查了一些资料，目前看社区版本确实比官方的好。因此目前建议大家安装社区版的 rust-analyzer。该插件的完整手册地址：<a href="https://rust-analyzer.github.io/manual.html" target="_blank" rel="noopener">https://rust-analyzer.github.io/manual.html</a>
-。（如果两个都安装了，记得把官方的 disabled，否则很可能冲突）</p>
+<p>一般我们都会安装官方的。但我用了后，发现官方的有些功能缺失，比如没法在 VSCode 中直接运行 Rust。于是我换成社区的，发现可以。查了一些资料，目前看社区版本确实比官方的好。因此目前建议大家安装社区版的 rust-analyzer。该插件的完整手册地址：<a href="https://rust-analyzer.github.io/manual.html">https://rust-analyzer.github.io/manual.html</a>。（如果两个都安装了，记得把官方的 disabled，否则很可能冲突）</p>
 <p>安装 rust-analyzer 后，如果提示你安装其他组件，按提示安装即可。</p>
 <p>反观 Golang 开发工具，JetBrains 为其定制了 GoLand IDE，这一定程度也说明 Go 的欢迎程度，期待其为 Rust 定制 IDE 的那一天。而 Go 的 VSCode 插件：vscode-go，最开始并不是 Go 官方开发的，而是 VSCode 团队开发的，只是后来转给了 Go 官方维护。</p>
 <p>和 Rust 插件不同的是，Go 安装完 VSCode 插件后，会提示用户安装一堆工具，因为很多的功能是通过一堆工具组装的。在安装这些工具过程中，很可能会安装失败，幸好有了 GOPROXY，让安装更顺畅。关于 VSCode 打造 Go 开发环境，可以参考我之前写的文章：<a href="https://mp.weixin.qq.com/s/J01LY7s6xMB8Lk10sxTFhg" target="_blank" rel="noopener">《VSCode 开发 Go 程序也可以和 GoLand 一样强大》</a>
@@ -193,7 +190,7 @@ DISCUSSION:
 
 			</div><div class="content">
 	<br>
-	<img src="https://static.studygolang.com/static/img/polarisxu-qrcode-soso-s.png">
+	<img src="https://static.golangjob.cn/static/img/polarisxu-qrcode-soso-s.png">
 </div>
 
 <div class="related-posts thin">

@@ -8,19 +8,19 @@
 	<meta name="theme-color" content="#fcfcfc">
 	<meta name="msapplication-TileColor" content="#fcfcfc">
 <meta itemprop="name" content="厉害了我的 Go：推荐系统都有开源实现">
-<meta itemprop="description" content="大家好，我是 polarisxu。 看到一个项目：https://gorse.io/ ，这是一个用 Go 编写的开源推荐系统。Gorse 的目标是成为一个通用的开源推荐系统，可以迅速地引入到各种各样的在线服务中。通过将项目、用户和交互数据导入 Gorse，系统将自动训练模型，为每个用户生成推荐。 这个项目代码托管在 GitHub 上：https://github.com/zhenghaoz"><meta itemprop="datePublished" content="2021-07-19T14:10:00+08:00" />
-<meta itemprop="dateModified" content="2021-07-19T14:10:00+08:00" />
+<meta itemprop="description" content="大家好，我是 polarisxu。 看到一个项目：https://gorse.io/，这是一个用 Go 编写的开源推荐系统。Gorse 的目标是成为一个通用的开源推荐系统，可以迅速地引入到各种各样的在线服务中。通过将项目、用户和交互数据导入 Gorse，系统将自动训练模型，为每个用户生成推荐。 这个项目代码托管在 GitHub 上：https://github.com/zhenghaoz"><meta itemprop="datePublished" content="2021-07-19T14:10:00&#43;08:00" />
+<meta itemprop="dateModified" content="2021-07-19T14:10:00&#43;08:00" />
 <meta itemprop="wordCount" content="618">
 <meta itemprop="keywords" content="Go,开源项目," /><meta property="og:title" content="厉害了我的 Go：推荐系统都有开源实现" />
-<meta property="og:description" content="大家好，我是 polarisxu。 看到一个项目：https://gorse.io/ ，这是一个用 Go 编写的开源推荐系统。Gorse 的目标是成为一个通用的开源推荐系统，可以迅速地引入到各种各样的在线服务中。通过将项目、用户和交互数据导入 Gorse，系统将自动训练模型，为每个用户生成推荐。 这个项目代码托管在 GitHub 上：https://github.com/zhenghaoz" />
+<meta property="og:description" content="大家好，我是 polarisxu。 看到一个项目：https://gorse.io/，这是一个用 Go 编写的开源推荐系统。Gorse 的目标是成为一个通用的开源推荐系统，可以迅速地引入到各种各样的在线服务中。通过将项目、用户和交互数据导入 Gorse，系统将自动训练模型，为每个用户生成推荐。 这个项目代码托管在 GitHub 上：https://github.com/zhenghaoz" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/project/recommender-gorse/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2021-07-19T14:10:00+08:00" />
-<meta property="article:modified_time" content="2021-07-19T14:10:00+08:00" />
+<meta property="article:published_time" content="2021-07-19T14:10:00&#43;08:00" />
+<meta property="article:modified_time" content="2021-07-19T14:10:00&#43;08:00" />
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="厉害了我的 Go：推荐系统都有开源实现"/>
-<meta name="twitter:description" content="大家好，我是 polarisxu。 看到一个项目：https://gorse.io/ ，这是一个用 Go 编写的开源推荐系统。Gorse 的目标是成为一个通用的开源推荐系统，可以迅速地引入到各种各样的在线服务中。通过将项目、用户和交互数据导入 Gorse，系统将自动训练模型，为每个用户生成推荐。 这个项目代码托管在 GitHub 上：https://github.com/zhenghaoz"/>
+<meta name="twitter:description" content="大家好，我是 polarisxu。 看到一个项目：https://gorse.io/，这是一个用 Go 编写的开源推荐系统。Gorse 的目标是成为一个通用的开源推荐系统，可以迅速地引入到各种各样的在线服务中。通过将项目、用户和交互数据导入 Gorse，系统将自动训练模型，为每个用户生成推荐。 这个项目代码托管在 GitHub 上：https://github.com/zhenghaoz"/>
 
 	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -30,7 +30,7 @@
 	<link rel="shortcut icon" href="/favicon.ico">
 
 	<title>厉害了我的 Go：推荐系统都有开源实现</title>
-	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.f74778e3020c87c304fb5982e09b92ba63a5c7f202996d4c7283d6057acfe9c1.css" integrity="sha256-90d44wIMh8ME+1mC4JuSumOlx/ICmW1McoPWBXrP6cE=" crossorigin="anonymous">
 	
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/styles.css">
@@ -78,10 +78,8 @@
 			</header>
 			<div class="content">
 				<p>大家好，我是 polarisxu。</p>
-<p>看到一个项目：<a href="https://gorse.io/" target="_blank" rel="noopener">https://gorse.io/</a>
-，这是一个用 Go 编写的开源推荐系统。Gorse 的目标是成为一个通用的开源推荐系统，可以迅速地引入到各种各样的在线服务中。通过将项目、用户和交互数据导入 Gorse，系统将自动训练模型，为每个用户生成推荐。</p>
-<p>这个项目代码托管在 GitHub 上：<a href="https://github.com/zhenghaoz/gorse" target="_blank" rel="noopener">https://github.com/zhenghaoz/gorse</a>
-，目前 Star 数 1.7k+，查了下记录，2018 年中旬，国人发起开发的这个项目（国人对 Go 确实情有独钟？！），因为他们参考的项目，一个是 Java 实现的，一个是 Python 实现的。</p>
+<p>看到一个项目：<a href="https://gorse.io/">https://gorse.io/</a>，这是一个用 Go 编写的开源推荐系统。Gorse 的目标是成为一个通用的开源推荐系统，可以迅速地引入到各种各样的在线服务中。通过将项目、用户和交互数据导入 Gorse，系统将自动训练模型，为每个用户生成推荐。</p>
+<p>这个项目代码托管在 GitHub 上：<a href="https://github.com/zhenghaoz/gorse">https://github.com/zhenghaoz/gorse</a>，目前 Star 数 1.7k+，查了下记录，2018 年中旬，国人发起开发的这个项目（国人对 Go 确实情有独钟？！），因为他们参考的项目，一个是 Java 实现的，一个是 Python 实现的。</p>
 <p>经过近 3 年的发展，目前该项目版本是 0.2.2，有两个实际的使用案例：</p>
 <p><p class="md__image">
   <img src="../imgs/case.png"
@@ -101,13 +99,12 @@
     alt=""  />
 </p>
 </p>
-<p>这个项目提供了比较完整的文档：<a href="https://docs.gorse.io/" target="_blank" rel="noopener">https://docs.gorse.io/</a>
-，包括安装、使用的介绍，同时还提供了设计的思路、架构图，方便使用者学习、理解。从提交记录看，贡献者很活跃。</p>
+<p>这个项目提供了比较完整的文档：<a href="https://docs.gorse.io/">https://docs.gorse.io/</a>，包括安装、使用的介绍，同时还提供了设计的思路、架构图，方便使用者学习、理解。从提交记录看，贡献者很活跃。</p>
 <p>如果你只是对推荐系统感兴趣，刚好也想通过一个项目更熟悉 Go 语言，我觉得这个项目一定很适合你，可以好好学习学习。</p>
 
 			</div><div class="content">
 	<br>
-	<img src="https://static.studygolang.com/static/img/polarisxu-qrcode-soso-s.png">
+	<img src="https://static.golangjob.cn/static/img/polarisxu-qrcode-soso-s.png">
 </div>
 
 <div class="related-posts thin">

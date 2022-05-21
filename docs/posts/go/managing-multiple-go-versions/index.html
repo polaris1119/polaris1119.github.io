@@ -8,15 +8,15 @@
 	<meta name="theme-color" content="#fcfcfc">
 	<meta name="msapplication-TileColor" content="#fcfcfc">
 <meta itemprop="name" content="官方的 Go 多版本管理：使用和原理">
-<meta itemprop="description" content="大家好，我是 polarisxu。 有些人可能注意到，每次 Go 发布新版本，官方都会提供类似这样的升级截图： 这可以说是官方的 Go 多版本管理，也是升级 Go 的方式。今天就一起聊一聊这种多版本管理方式及其实现原理。（我之前介绍过一个第三方多版本管理工具 goup ，是我比较推荐的）。 注意，Windows 用户应该使用 WSL2。 01 为什么需要多个 Go 版本 有些人可能觉得没有这样的需求。实际工作中"><meta itemprop="datePublished" content="2021-05-24T20:30:00+08:00" />
-<meta itemprop="dateModified" content="2021-05-24T20:30:00+08:00" />
-<meta itemprop="wordCount" content="2417">
+<meta itemprop="description" content="大家好，我是 polarisxu。 有些人可能注意到，每次 Go 发布新版本，官方都会提供类似这样的升级截图： 这可以说是官方的 Go 多版本管理，也是升级 Go 的方式。今天就一起聊一聊这种多版本管理方式及其实现原理。（我之前介绍过一个第三方多版本管理工具 goup ，是我比较推荐的）。 注意，Windows 用户应该使用 WSL2。 01 为什么需要多个 Go 版本 有些人可能觉得没有这样的需求。实际工作中"><meta itemprop="datePublished" content="2021-05-24T20:30:00&#43;08:00" />
+<meta itemprop="dateModified" content="2021-05-24T20:30:00&#43;08:00" />
+<meta itemprop="wordCount" content="2444">
 <meta itemprop="keywords" content="Go,version," /><meta property="og:title" content="官方的 Go 多版本管理：使用和原理" />
 <meta property="og:description" content="大家好，我是 polarisxu。 有些人可能注意到，每次 Go 发布新版本，官方都会提供类似这样的升级截图： 这可以说是官方的 Go 多版本管理，也是升级 Go 的方式。今天就一起聊一聊这种多版本管理方式及其实现原理。（我之前介绍过一个第三方多版本管理工具 goup ，是我比较推荐的）。 注意，Windows 用户应该使用 WSL2。 01 为什么需要多个 Go 版本 有些人可能觉得没有这样的需求。实际工作中" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/managing-multiple-go-versions/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2021-05-24T20:30:00+08:00" />
-<meta property="article:modified_time" content="2021-05-24T20:30:00+08:00" />
+<meta property="article:published_time" content="2021-05-24T20:30:00&#43;08:00" />
+<meta property="article:modified_time" content="2021-05-24T20:30:00&#43;08:00" />
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="官方的 Go 多版本管理：使用和原理"/>
@@ -30,7 +30,7 @@
 	<link rel="shortcut icon" href="/favicon.ico">
 
 	<title>官方的 Go 多版本管理：使用和原理</title>
-	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.f74778e3020c87c304fb5982e09b92ba63a5c7f202996d4c7283d6057acfe9c1.css" integrity="sha256-90d44wIMh8ME+1mC4JuSumOlx/ICmW1McoPWBXrP6cE=" crossorigin="anonymous">
 	
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/styles.css">
@@ -99,11 +99,11 @@
 <p>多版本并存，让我们可以更自如的使用 Go。</p>
 <h2 id="02-官方多版本的使用方式">02 官方多版本的使用方式<a href="#02-官方多版本的使用方式" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>根据上面的图，安装某个版本的 Go，跟一般 Go 包安装一样，执行 go get 命令：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ go get golang.org/dl/go&lt;version&gt;		// 其中 &lt;version&gt; 替换为你希望安装的 Go 版本
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ go get golang.org/dl/go&lt;version&gt;		// 其中 &lt;version&gt; 替换为你希望安装的 Go 版本
 </code></pre></div><p>这一步，只是安装了一个特定 Go 版本的包装器，真正安装特定的 Go 版本，还需要执行如下命令：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ go&lt;version&gt; download			// 和上面一样，&lt;version&gt; 是具体的版本
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ go&lt;version&gt; download			// 和上面一样，&lt;version&gt; 是具体的版本
 </code></pre></div><p>因此，如果需要安装 Go1.16.4，执行如下两个命令即可。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ go get golang.org/dl/go1.16.4
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ go get golang.org/dl/go1.16.4
 $ go1.16.4 download
 </code></pre></div><p>几个注意的点：</p>
 <ul>
@@ -115,8 +115,7 @@ $ go1.16.4 download
 <p>可见，最后下载下来的 Go 放在了 ~/sdk/go1.16.4 目录下。</p>
 <p>现在你是否有这样的疑问：没执行 download 之前，直接运行 go1.16.4 会报错，执行之后，它就成了具体的 Go 命令了，怎么做到的？</p>
 <h2 id="03-扒一扒原理">03 扒一扒原理<a href="#03-扒一扒原理" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-<p><code>golang.org/dl/go&lt;version&gt;</code> 对应的源码在 <a href="https://github.com/golang/dl" target="_blank" rel="noopener">https://github.com/golang/dl</a>
-（这是一个镜像）。</p>
+<p><code>golang.org/dl/go&lt;version&gt;</code> 对应的源码在 <a href="https://github.com/golang/dl">https://github.com/golang/dl</a>（这是一个镜像）。</p>
 <p>查看该仓库代码，发现一堆以各个版本命名的目录：</p>
 <p><p class="md__image">
   <img src="../imgs/golang-dl.png"
@@ -127,7 +126,7 @@ $ go1.16.4 download
 <p>随便打开一个（比如 go1.16.4），看看里面包含什么文件：</p>
 <p>就一个 main.go 文件（从 go get 安装操作，你应该猜到一定有一个 main.go 文件）。</p>
 <p>main.go 文件的内容如下：（gotip 的内容不一样，它调用的是 version.RunTip()）</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="s">&#34;golang.org/dl/internal/version&#34;</span>
 
@@ -135,7 +134,7 @@ $ go1.16.4 download
 	<span class="nx">version</span><span class="p">.</span><span class="nf">Run</span><span class="p">(</span><span class="s">&#34;go1.16.4&#34;</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre></div><p>所以，关键在于 internal/version 包的 Run 函数（不同版本，version 参数不同）。注意以下代码我给的注释：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// Run runs the &#34;go&#34; tool of the provided Go version.
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// Run runs the &#34;go&#34; tool of the provided Go version.
 </span><span class="c1"></span><span class="kd">func</span> <span class="nf">Run</span><span class="p">(</span><span class="nx">version</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
 	<span class="nx">log</span><span class="p">.</span><span class="nf">SetFlags</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 
@@ -165,7 +164,7 @@ $ go1.16.4 download
 <h3 id="下载">下载<a href="#下载" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>我们先看下载、安装 Go。</p>
 <p>当执行 go1.16.4 download 时，会运行 install 函数，查看该函数发现，它调用了 versionArchiveURL 函数获取要下载的 Go 的 URL：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// versionArchiveURL returns the zip or tar.gz URL of the given Go version.
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// versionArchiveURL returns the zip or tar.gz URL of the given Go version.
 </span><span class="c1"></span><span class="kd">func</span> <span class="nf">versionArchiveURL</span><span class="p">(</span><span class="nx">version</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">string</span> <span class="p">{</span>
     <span class="nx">goos</span> <span class="o">:=</span> <span class="nf">getOS</span><span class="p">()</span>
 
@@ -179,8 +178,7 @@ $ go1.16.4 download
     <span class="p">}</span>
     <span class="k">return</span> <span class="s">&#34;https://dl.google.com/go/&#34;</span> <span class="o">+</span> <span class="nx">version</span> <span class="o">+</span> <span class="s">&#34;.&#34;</span> <span class="o">+</span> <span class="nx">goos</span> <span class="o">+</span> <span class="s">&#34;-&#34;</span> <span class="o">+</span> <span class="nx">arch</span> <span class="o">+</span> <span class="nx">ext</span>
 <span class="p">}</span>
-</code></pre></div><p>也就是从 <a href="https://dl.google.com" target="_blank" rel="noopener">https://dl.google.com</a>
- 下载 Go 包，最终的包（是一个归档文件，Wiindows 下是 .zip，其他系统是 .tar.gz）会放到 ~/sdk/go1.16.4 目录下。</p>
+</code></pre></div><p>也就是从 <a href="https://dl.google.com">https://dl.google.com</a> 下载 Go 包，最终的包（是一个归档文件，Wiindows 下是 .zip，其他系统是 .tar.gz）会放到 ~/sdk/go1.16.4 目录下。</p>
 <p>之后通过 sha256 验证文件的完整性（因为服务端放了 sha256 校验文件），最后解压缩，并创建上面说的 <code>.unpacked-success</code> 空标记文件。这样这个版本的 Go 就安装成功了。</p>
 <blockquote>
 <p>注意，gotip 的下载是通过 git 获取源码的方式进行的，它会通过源码构建安装最新的 gotip 版本。具体逻辑在 internal/version/gotip.go 中。</p>
@@ -189,7 +187,7 @@ $ go1.16.4 download
 <p>因为下载的 Go 是预编译好的，因此可以直接使用。</p>
 <p>但是它将 Go 下载到了 <code>~/sdk/go&lt;version&gt;</code> 目录下了，我们并没有将这个目录的 bin 目录加入 PATH，因此直接 go 命令运行的还是之前的版本，而不是刚安装的 go1.16.4。这个问题我们一会再说，先看看为什么这个时候 go1.16.4 命令可以当作 go 命令来使用。</p>
 <p>上文说了，go1.16.4 只是一个包装器。当对应的 Go1.16.4 安装成功后，再次运行 go1.16.4，会执行 internal/version/version.go 中的 runGo(root) 函数。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">runGo</span><span class="p">(</span><span class="nx">root</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">runGo</span><span class="p">(</span><span class="nx">root</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">gobin</span> <span class="o">:=</span> <span class="nx">filepath</span><span class="p">.</span><span class="nf">Join</span><span class="p">(</span><span class="nx">root</span><span class="p">,</span> <span class="s">&#34;bin&#34;</span><span class="p">,</span> <span class="s">&#34;go&#34;</span><span class="o">+</span><span class="nf">exe</span><span class="p">())</span>
     <span class="nx">cmd</span> <span class="o">:=</span> <span class="nx">exec</span><span class="p">.</span><span class="nf">Command</span><span class="p">(</span><span class="nx">gobin</span><span class="p">,</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span><span class="o">...</span><span class="p">)</span>
     <span class="nx">cmd</span><span class="p">.</span><span class="nx">Stdin</span> <span class="p">=</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Stdin</span>
@@ -217,11 +215,10 @@ $ go1.16.4 download
 <li>移动 go1.16.4 替换之前的 go（不推荐）；</li>
 </ul>
 <h2 id="03-每次升级版本创建一个包装器">03 每次升级版本创建一个包装器<a href="#03-每次升级版本创建一个包装器" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-<p>手动复制粘贴代码做这件事情肯定是很笨的办法。在 golang.org/dl 中提供了一个工具，可以快速生成对应版本的包装器：<a href="https://github.com/golang/dl/blob/master/internal/genv/main.go" target="_blank" rel="noopener">https://github.com/golang/dl/blob/master/internal/genv/main.go</a>
-。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ genv go1.16.4
+<p>手动复制粘贴代码做这件事情肯定是很笨的办法。在 golang.org/dl 中提供了一个工具，可以快速生成对应版本的包装器：<a href="https://github.com/golang/dl/blob/master/internal/genv/main.go">https://github.com/golang/dl/blob/master/internal/genv/main.go</a>。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ genv go1.16.4
 </code></pre></div><p>就可以生成 go1.16.4 包装器。这里的实现，有一个点提一下，它使用了 go list -m -json 命令：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ go list -m -json
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ go list -m -json
 <span class="o">{</span>
         <span class="s2">&#34;Path&#34;</span>: <span class="s2">&#34;golang.org/dl&#34;</span>,
         <span class="s2">&#34;Main&#34;</span>: true,
@@ -249,7 +246,7 @@ $ go1.16.4 download
 
 			</div><div class="content">
 	<br>
-	<img src="https://static.studygolang.com/static/img/polarisxu-qrcode-soso-s.png">
+	<img src="https://static.golangjob.cn/static/img/polarisxu-qrcode-soso-s.png">
 </div>
 
 <div class="related-posts thin">
@@ -274,7 +271,7 @@ $ go1.16.4 download
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://polarisxu.studygolang.com/tags/go">Go</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/version">version</a></span>
 				</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>2417 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>2444 字</p>
 				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2021-05-24 20:30 &#43;0800</p>
 			</footer>
 		</article>

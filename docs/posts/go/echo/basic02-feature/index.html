@@ -8,15 +8,15 @@
 	<meta name="theme-color" content="#fcfcfc">
 	<meta name="msapplication-TileColor" content="#fcfcfc">
 <meta itemprop="name" content="Echo 系列教程——基础篇2：Echo 核心亮点介绍">
-<meta itemprop="description" content="在 Echo 的官网的首页，列出了 9 个核心功能或亮点。我这里将它说成是亮点（也许并不一定都比其他框架更好）。 一、优化的路由 高度优化的 HTTP 路由，动态内存分配为零，可对路由进行优先级排序。 这一点从上一篇：[搭建 Echo 开发环境](基础篇：搭建 Echo 开发环境.md) 可以看到。 Echo 路由基于 radix tree ，查询速度非常快。路由使用 sync pool 来重用内存，实现无 GC 开销下的零动态内存分配。 路由的注册和使用方式 各大"><meta itemprop="datePublished" content="2019-10-28T11:15:51+08:00" />
-<meta itemprop="dateModified" content="2019-10-28T11:15:51+08:00" />
+<meta itemprop="description" content="在 Echo 的官网的首页，列出了 9 个核心功能或亮点。我这里将它说成是亮点（也许并不一定都比其他框架更好）。 一、优化的路由 高度优化的 HTTP 路由，动态内存分配为零，可对路由进行优先级排序。 这一点从上一篇：[搭建 Echo 开发环境](基础篇：搭建 Echo 开发环境.md) 可以看到。 Echo 路由基于 radix tree ，查询速度非常快。路由使用 sync pool 来重用内存，实现无 GC 开销下的零动态内存分配。 路由的注册和使用方式 各大"><meta itemprop="datePublished" content="2019-10-28T11:15:51&#43;08:00" />
+<meta itemprop="dateModified" content="2019-10-28T11:15:51&#43;08:00" />
 <meta itemprop="wordCount" content="1725">
 <meta itemprop="keywords" content="echo,web框架,亮点," /><meta property="og:title" content="Echo 系列教程——基础篇2：Echo 核心亮点介绍" />
 <meta property="og:description" content="在 Echo 的官网的首页，列出了 9 个核心功能或亮点。我这里将它说成是亮点（也许并不一定都比其他框架更好）。 一、优化的路由 高度优化的 HTTP 路由，动态内存分配为零，可对路由进行优先级排序。 这一点从上一篇：[搭建 Echo 开发环境](基础篇：搭建 Echo 开发环境.md) 可以看到。 Echo 路由基于 radix tree ，查询速度非常快。路由使用 sync pool 来重用内存，实现无 GC 开销下的零动态内存分配。 路由的注册和使用方式 各大" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/echo/basic02-feature/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2019-10-28T11:15:51+08:00" />
-<meta property="article:modified_time" content="2019-10-28T11:15:51+08:00" />
+<meta property="article:published_time" content="2019-10-28T11:15:51&#43;08:00" />
+<meta property="article:modified_time" content="2019-10-28T11:15:51&#43;08:00" />
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Echo 系列教程——基础篇2：Echo 核心亮点介绍"/>
@@ -30,7 +30,7 @@
 	<link rel="shortcut icon" href="/favicon.ico">
 
 	<title>Echo 系列教程——基础篇2：Echo 核心亮点介绍</title>
-	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.f74778e3020c87c304fb5982e09b92ba63a5c7f202996d4c7283d6057acfe9c1.css" integrity="sha256-90d44wIMh8ME+1mC4JuSumOlx/ICmW1McoPWBXrP6cE=" crossorigin="anonymous">
 	
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/styles.css">
@@ -86,27 +86,25 @@
  来重用内存，实现无 GC 开销下的零动态内存分配。</p>
 <h3 id="路由的注册和使用方式">路由的注册和使用方式<a href="#路由的注册和使用方式" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>各大框架路由的注册和使用方式都类似，通过 HTTP 方法（GET、POST、PUT、DELETE 等），将 url 路径和一个处理程序绑定在一起，唯一不太一样的一般是处理程序的函数签名不一样（主要参数类型不一样）。例如，下面的代码则展示了一个注册路由的例子：它包括 <code>GET</code> 的访问方式， <code>/hello</code> 的访问路径，以及发送 <code>Hello World</code> HTTP 响应的处理程序。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// 业务处理
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// 业务处理
 </span><span class="c1"></span><span class="kd">func</span> <span class="nf">hello</span><span class="p">(</span><span class="nx">c</span> <span class="nx">echo</span><span class="p">.</span><span class="nx">Context</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
   	<span class="k">return</span> <span class="nx">c</span><span class="p">.</span><span class="nf">String</span><span class="p">(</span><span class="nx">http</span><span class="p">.</span><span class="nx">StatusOK</span><span class="p">,</span> <span class="s">&#34;Hello, World!&#34;</span><span class="p">)</span>
 <span class="p">}</span>
 
 <span class="c1">// 路由
 </span><span class="c1"></span><span class="nx">e</span><span class="p">.</span><span class="nf">GET</span><span class="p">(</span><span class="s">&#34;/hello&#34;</span><span class="p">,</span> <span class="nx">hello</span><span class="p">)</span>
-</code></pre></div><p>更多路由的特性，参考文档：<a href="https://echo.labstack.com/guide/routing/" target="_blank" rel="noopener">https://echo.labstack.com/guide/routing/</a>
-（英文）、 <a href="https://www.bookstack.cn/read/echo-v3-zh/guide-routing.md" target="_blank" rel="noopener">https://www.bookstack.cn/read/echo-v3-zh/guide-routing.md</a>
- （中文）。（上篇贴的中文文档打不开了。注意，中文文档基于 V3，而不是 V4）</p>
+</code></pre></div><p>更多路由的特性，参考文档：<a href="https://echo.labstack.com/guide/routing/">https://echo.labstack.com/guide/routing/</a>（英文）、 <a href="https://www.bookstack.cn/read/echo-v3-zh/guide-routing.md">https://www.bookstack.cn/read/echo-v3-zh/guide-routing.md</a> （中文）。（上篇贴的中文文档打不开了。注意，中文文档基于 V3，而不是 V4）</p>
 <h2 id="二scalable">二、Scalable<a href="#二scalable" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>Echo 方便构建健壮的 RESTful API，轻松将其组织起来。</p>
 <p>根据上一节路由，我们可以轻松构建出 RESTful API，比如：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="nx">e</span><span class="p">.</span><span class="nf">POST</span><span class="p">(</span><span class="s">&#34;/user&#34;</span><span class="p">,</span> <span class="nx">createUser</span><span class="p">)</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">e</span><span class="p">.</span><span class="nf">POST</span><span class="p">(</span><span class="s">&#34;/user&#34;</span><span class="p">,</span> <span class="nx">createUser</span><span class="p">)</span>
 <span class="nx">e</span><span class="p">.</span><span class="nf">GET</span><span class="p">(</span><span class="s">&#34;/user/1&#34;</span><span class="p">,</span> <span class="nx">findUser</span><span class="p">)</span>
 <span class="nx">e</span><span class="p">.</span><span class="nf">PUT</span><span class="p">(</span><span class="s">&#34;/user/1&#34;</span><span class="p">,</span> <span class="nx">updateUser</span><span class="p">)</span>
 <span class="nx">e</span><span class="p">.</span><span class="nf">DELETE</span><span class="p">(</span><span class="s">&#34;/user/1&#34;</span><span class="p">,</span> <span class="nx">deleteUser</span><span class="p">)</span>
 </code></pre></div><p>可以轻松对应上 RESTful API 的标准。</p>
 <h2 id="三自动-tls">三、自动 TLS<a href="#三自动-tls" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>Echo 能够通过 “Let&rsquo;s Encrypt” 自动安装 TLS 证书。<code>Echo#StartAutoTLS</code> 接受一个接听 443 端口的网络地址。类似 <code>:443</code> 这样。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="nx">e</span><span class="p">.</span><span class="nf">StartAutoTLS</span><span class="p">(</span><span class="s">&#34;:443&#34;</span><span class="p">)</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">e</span><span class="p">.</span><span class="nf">StartAutoTLS</span><span class="p">(</span><span class="s">&#34;:443&#34;</span><span class="p">)</span>
 </code></pre></div><p>可以通过 <code>e.AutoTLSManager</code> 做一些控制，比如缓存等。</p>
 <h2 id="四http2">四、HTTP/2<a href="#四http2" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>Echo 自动支持 HTTP/2。HTTP/2 (原本的名字是 HTTP/2.0) 是万维网使用的 HTTP 网络协议的第二个主要版本。HTTP/2 提供了更快的速度和更好的用户体验。</p>
@@ -146,18 +144,18 @@
 </ul>
 <h4 id="3组级别中间件">3、组级别中间件<a href="#3组级别中间件" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
 <p>当在路由中创建一个组的时候，可以为这个组注册一个中间件。例如，给 admin 这个组注册一个 BasicAuth 中间件。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="nx">e</span> <span class="o">:=</span> <span class="nx">echo</span><span class="p">.</span><span class="nf">New</span><span class="p">()</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">e</span> <span class="o">:=</span> <span class="nx">echo</span><span class="p">.</span><span class="nf">New</span><span class="p">()</span>
 <span class="nx">admin</span> <span class="o">:=</span> <span class="nx">e</span><span class="p">.</span><span class="nf">Group</span><span class="p">(</span><span class="s">&#34;/admin&#34;</span><span class="p">,</span> <span class="nx">middleware</span><span class="p">.</span><span class="nf">BasicAuth</span><span class="p">())</span>
 </code></pre></div><p>也可以在创建组之后用 <code>admin.Use()</code>注册该中间件。</p>
 <h4 id="4路由级别中间件">4、路由级别中间件<a href="#4路由级别中间件" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
 <p>当你创建了一个新的路由，可以选择性的给这个路由注册一个中间件。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="nx">e</span> <span class="o">:=</span> <span class="nx">echo</span><span class="p">.</span><span class="nf">New</span><span class="p">()</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">e</span> <span class="o">:=</span> <span class="nx">echo</span><span class="p">.</span><span class="nf">New</span><span class="p">()</span>
 <span class="nx">e</span><span class="p">.</span><span class="nf">GET</span><span class="p">(</span><span class="s">&#34;/&#34;</span><span class="p">,</span> <span class="p">&lt;</span><span class="nx">Handler</span><span class="p">&gt;,</span> <span class="p">&lt;</span><span class="nx">Middleware</span><span class="o">...</span><span class="p">&gt;)</span>
 </code></pre></div><h2 id="六数据绑定">六、数据绑定<a href="#六数据绑定" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>HTTP 请求有效负载的数据绑定，包括 JSON，XML 或表单数据。</p>
 <p>可以使用 <code>Context#Bind(i interface{})</code> 将请求内容体绑定至 go 的结构体。默认绑定器支持基于 <code>Content-Type</code>  请求头包含 application/json，application/xml 和 application/x-www-form-urlencoded 的数据。</p>
 <p>下面是绑定请求数据到 <code>User</code> 结构体的例子。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// User
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// User
 </span><span class="c1"></span><span class="nx">User</span> <span class="kd">struct</span> <span class="p">{</span>
   <span class="nx">Name</span>  <span class="kt">string</span> <span class="s">`json:&#34;name&#34; form:&#34;name&#34; query:&#34;name&#34;`</span>
   <span class="nx">Email</span> <span class="kt">string</span> <span class="s">`json:&#34;email&#34; form:&#34;email&#34; query:&#34;email&#34;`</span>
@@ -173,19 +171,19 @@
 <span class="p">}</span>
 </code></pre></div><p>以上代码支持如下请求数据的绑定：</p>
 <p>1、JSON 数据</p>
-<pre tabindex="0"><code>curl \
+<pre><code>curl \
   -X POST \
   http://localhost:1323/users \
   -H 'Content-Type: application/json' \
   -d '{&quot;name&quot;:&quot;Joe&quot;,&quot;email&quot;:&quot;joe@labstack&quot;}'
 </code></pre><p>2、Form 表单数据</p>
-<pre tabindex="0"><code>curl \
+<pre><code>curl \
   -X POST \
   http://localhost:1323/users \
   -d 'name=Joe' \
   -d 'email=joe@labstack.com'
 </code></pre><p>3、查询参数 (Query Parameters)</p>
-<pre tabindex="0"><code>curl \
+<pre><code>curl \
   -X GET \
   http://localhost:1323/users\?name\=Joe\&amp;email\=joe@labstack.com
 </code></pre><h2 id="七数据呈现">七、数据呈现<a href="#七数据呈现" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
@@ -200,7 +198,7 @@
 
 			</div><div class="content">
 	<br>
-	<img src="https://static.studygolang.com/static/img/polarisxu-qrcode-soso-s.png">
+	<img src="https://static.golangjob.cn/static/img/polarisxu-qrcode-soso-s.png">
 </div>
 
 <div class="related-posts thin">

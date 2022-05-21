@@ -14,7 +14,7 @@
       <pubDate>Wed, 02 Dec 2020 19:20:00 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/posts/go/dynamic/go1.16-changes-2020/</guid>
-      <description>大家好，我是站长 polarisxu。 先说一下我一般怎么了解 Go 最新的一些动态。 01 从哪获取信息 主要通过以下方式： 逛推特，通过搜索功能，浏览 Go 信息，比如搜索：#golang since:2020-12-01 until:2020-12-02 看 Go 仓库的提交记录； 查看 https://tip.golang.org 。这个一般在一个版本开发了一段时间看，比如现在可以看 Go1.16 的一些内容，主要可以看还未完成的 Release Notes：https://tip.golang.org/doc/go1.1</description>
+      <description>大家好，我是站长 polarisxu。 先说一下我一般怎么了解 Go 最新的一些动态。 01 从哪获取信息 主要通过以下方式： 逛推特，通过搜索功能，浏览 Go 信息，比如搜索：#golang since:2020-12-01 until:2020-12-02 看 Go 仓库的提交记录； 查看 https://tip.golang.org。这个一般在一个版本开发了一段时间看，比如现在可以看 Go1.16 的一些内容，主要可以看还未完成的 Release Notes：https://tip</description>
     </item>
     
   </channel>

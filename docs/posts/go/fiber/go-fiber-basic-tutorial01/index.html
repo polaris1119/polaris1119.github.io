@@ -8,19 +8,19 @@
 	<meta name="theme-color" content="#fcfcfc">
 	<meta name="msapplication-TileColor" content="#fcfcfc">
 <meta itemprop="name" content="Go Fiber 框架系列教程 01: 和 Express 对比学习">
-<meta itemprop="description" content="大家好，我是 polarisxu。 每次发框架相关的文章，总有人提到 Go Fiber 框架。于是乎，学习了下 Fiber，感觉确实挺不错的。因此写下这个 Fiber 系列。 Fiber 项目地址：https://github.com/gofiber/fiber ，目前 Star 数 15.3k&#43;。 01 Fiber 框架 这是一个 Go 语言 Web 框架，启发自 NodeJS 框架：Express 。该框架基于 FastHTTP 构建，旨在简化、零内存分配和提高性能，以便快速开"><meta itemprop="datePublished" content="2021-09-20T22:30:00+08:00" />
-<meta itemprop="dateModified" content="2021-09-20T22:30:00+08:00" />
+<meta itemprop="description" content="大家好，我是 polarisxu。 每次发框架相关的文章，总有人提到 Go Fiber 框架。于是乎，学习了下 Fiber，感觉确实挺不错的。因此写下这个 Fiber 系列。 Fiber 项目地址：https://github.com/gofiber/fiber，目前 Star 数 15.3k&#43;。 01 Fiber 框架 这是一个 Go 语言 Web 框架，启发自 NodeJS 框架：Express 。该框架基于 FastHTTP 构建，旨在简化、零内存分配和提高性能，以便快速开"><meta itemprop="datePublished" content="2021-09-20T22:30:00&#43;08:00" />
+<meta itemprop="dateModified" content="2021-09-20T22:30:00&#43;08:00" />
 <meta itemprop="wordCount" content="2086">
 <meta itemprop="keywords" content="Go,Fiber," /><meta property="og:title" content="Go Fiber 框架系列教程 01: 和 Express 对比学习" />
-<meta property="og:description" content="大家好，我是 polarisxu。 每次发框架相关的文章，总有人提到 Go Fiber 框架。于是乎，学习了下 Fiber，感觉确实挺不错的。因此写下这个 Fiber 系列。 Fiber 项目地址：https://github.com/gofiber/fiber ，目前 Star 数 15.3k&#43;。 01 Fiber 框架 这是一个 Go 语言 Web 框架，启发自 NodeJS 框架：Express 。该框架基于 FastHTTP 构建，旨在简化、零内存分配和提高性能，以便快速开" />
+<meta property="og:description" content="大家好，我是 polarisxu。 每次发框架相关的文章，总有人提到 Go Fiber 框架。于是乎，学习了下 Fiber，感觉确实挺不错的。因此写下这个 Fiber 系列。 Fiber 项目地址：https://github.com/gofiber/fiber，目前 Star 数 15.3k&#43;。 01 Fiber 框架 这是一个 Go 语言 Web 框架，启发自 NodeJS 框架：Express 。该框架基于 FastHTTP 构建，旨在简化、零内存分配和提高性能，以便快速开" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/fiber/go-fiber-basic-tutorial01/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2021-09-20T22:30:00+08:00" />
-<meta property="article:modified_time" content="2021-09-20T22:30:00+08:00" />
+<meta property="article:published_time" content="2021-09-20T22:30:00&#43;08:00" />
+<meta property="article:modified_time" content="2021-09-20T22:30:00&#43;08:00" />
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Go Fiber 框架系列教程 01: 和 Express 对比学习"/>
-<meta name="twitter:description" content="大家好，我是 polarisxu。 每次发框架相关的文章，总有人提到 Go Fiber 框架。于是乎，学习了下 Fiber，感觉确实挺不错的。因此写下这个 Fiber 系列。 Fiber 项目地址：https://github.com/gofiber/fiber ，目前 Star 数 15.3k&#43;。 01 Fiber 框架 这是一个 Go 语言 Web 框架，启发自 NodeJS 框架：Express 。该框架基于 FastHTTP 构建，旨在简化、零内存分配和提高性能，以便快速开"/>
+<meta name="twitter:description" content="大家好，我是 polarisxu。 每次发框架相关的文章，总有人提到 Go Fiber 框架。于是乎，学习了下 Fiber，感觉确实挺不错的。因此写下这个 Fiber 系列。 Fiber 项目地址：https://github.com/gofiber/fiber，目前 Star 数 15.3k&#43;。 01 Fiber 框架 这是一个 Go 语言 Web 框架，启发自 NodeJS 框架：Express 。该框架基于 FastHTTP 构建，旨在简化、零内存分配和提高性能，以便快速开"/>
 
 	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -30,7 +30,7 @@
 	<link rel="shortcut icon" href="/favicon.ico">
 
 	<title>Go Fiber 框架系列教程 01: 和 Express 对比学习</title>
-	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.f74778e3020c87c304fb5982e09b92ba63a5c7f202996d4c7283d6057acfe9c1.css" integrity="sha256-90d44wIMh8ME+1mC4JuSumOlx/ICmW1McoPWBXrP6cE=" crossorigin="anonymous">
 	
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/styles.css">
@@ -79,15 +79,13 @@
 			<div class="content">
 				<p>大家好，我是 polarisxu。</p>
 <p>每次发框架相关的文章，总有人提到 Go Fiber 框架。于是乎，学习了下 Fiber，感觉确实挺不错的。因此写下这个 Fiber 系列。</p>
-<p>Fiber 项目地址：<a href="https://github.com/gofiber/fiber" target="_blank" rel="noopener">https://github.com/gofiber/fiber</a>
-，目前 Star 数 15.3k+。</p>
+<p>Fiber 项目地址：<a href="https://github.com/gofiber/fiber">https://github.com/gofiber/fiber</a>，目前 Star 数 15.3k+。</p>
 <h2 id="01-fiber-框架">01 Fiber 框架<a href="#01-fiber-框架" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>这是一个 Go 语言 Web 框架，启发自 NodeJS 框架：<a href="https://github.com/expressjs/express" target="_blank" rel="noopener">Express</a>
 。该框架基于 <a href="https://github.com/valyala/fasthttp" target="_blank" rel="noopener">FastHTTP</a>
  构建，旨在<strong>简化</strong>、<strong>零内存分配</strong>和<strong>提高性能</strong>，以便<strong>快速</strong>开发。</p>
 <blockquote>
-<p>如果你是一位 NodeJS 开发者，想学习 Go，这个框架应该很适合你，同时这里还有一份专门为 NodeJS 开发者准备的 Go 学习资料：<a href="https://github.com/miguelmota/golang-for-nodejs-developers" target="_blank" rel="noopener">https://github.com/miguelmota/golang-for-nodejs-developers</a>
-</p>
+<p>如果你是一位 NodeJS 开发者，想学习 Go，这个框架应该很适合你，同时这里还有一份专门为 NodeJS 开发者准备的 Go 学习资料：<a href="https://github.com/miguelmota/golang-for-nodejs-developers">https://github.com/miguelmota/golang-for-nodejs-developers</a></p>
 </blockquote>
 <p>这个框架是 2020 年 1 月份启动开发的，没想到短时间就受到很多人关注。从 README 的多国语言就可见一斑：</p>
 <p><p class="md__image">
@@ -95,8 +93,7 @@
     alt=""  />
 </p>
 </p>
-<p>从第三方性能测试结果看，Fiber 的表现比 Gin、Echo 好很多。这里有详细的 Benchmark 测试说明：<a href="https://docs.gofiber.io/extra/benchmarks" target="_blank" rel="noopener">https://docs.gofiber.io/extra/benchmarks</a>
-。</p>
+<p>从第三方性能测试结果看，Fiber 的表现比 Gin、Echo 好很多。这里有详细的 Benchmark 测试说明：<a href="https://docs.gofiber.io/extra/benchmarks">https://docs.gofiber.io/extra/benchmarks</a>。</p>
 <p>摘抄一段官方关于 Fiber 的哲学：</p>
 <blockquote>
 <p>Fiber 作为一个 Web 框架 ，是按照极简主义的思想并遵循 UNIX 方式创建的，因此新的 gopher 可以在热烈和可信赖的欢迎中迅速进入 Go 的世界。</p>
@@ -122,7 +119,7 @@
 <p>既然是受 Express 启发，那就和它比较下。</p>
 <h3 id="hello-world">Hello World<a href="#hello-world" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>基于 Express 的 Hello World 程序：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&#34;express&#34;</span><span class="p">);</span> <span class="c1">// 引用 Express library
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&#34;express&#34;</span><span class="p">);</span> <span class="c1">// 引用 Express library
 </span><span class="c1"></span><span class="kr">const</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">express</span><span class="p">();</span> <span class="c1">// 创建一个 Express 实例
 </span><span class="c1"></span>
 <span class="c1">// 路由：/ endpoint
@@ -134,7 +131,7 @@
 </span><span class="c1"></span><span class="nx">app</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="mi">3000</span><span class="p">);</span>
 </code></pre></div><p>确实挺简单，几行代码就搞定了一个 Web 服务。</p>
 <p>现在用 Fiber 实现类似上面的功能：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="s">&#34;github.com/gofiber/fiber/v2&#34;</span> <span class="c1">// 注意，最新版本是 v2.18.0，所以有 v2
 </span><span class="c1"></span>
@@ -151,7 +148,7 @@
 <span class="p">}</span>
 </code></pre></div><p>目前，几乎所有 Go 框架都是类似的路子，没有太多好解释的。</p>
 <p>Fiber 启动后终端的输出结果：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ go run main.go
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ go run main.go
 
  ┌───────────────────────────────────────────────────┐
  │                   Fiber v2.18.0                   │
@@ -164,7 +161,7 @@
 </code></pre></div><h3 id="路由和端点">路由和端点<a href="#路由和端点" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>任何 Web 应用程序、微服务或 API 都包含一个基于描述 HTTP 方法的端点（endpoint）和处理程序函数的路由系统，只有在这个端点接收到客户端的请求后才会执行这个路由系统。</p>
 <p>除了上面的 HTTP GET 方法，Express 和 Fiber 还支持其他 HTTP 基本方法（当然还支持其他 HTTP 方法）。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="c1">// Endpoint for POST method
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">// Endpoint for POST method
 </span><span class="c1"></span><span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s2">&#34;/&#34;</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
   <span class="c1">// function that stores a new data
 </span><span class="c1"></span><span class="p">});</span>
@@ -184,7 +181,7 @@
   <span class="c1">// function that deletes the data
 </span><span class="c1"></span><span class="p">});</span>
 </code></pre></div><p>对应的 Fiber 代码：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// Endpoint for Post method
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// Endpoint for Post method
 </span><span class="c1"></span><span class="nx">app</span><span class="p">.</span><span class="nf">Post</span><span class="p">(</span><span class="s">&#34;/&#34;</span><span class="p">,</span> <span class="kd">func</span><span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">fiber</span><span class="p">.</span><span class="nx">Ctx</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
   <span class="c1">// function that stores a new data
 </span><span class="c1"></span><span class="p">})</span>
@@ -212,14 +209,14 @@
 <li>调用堆栈中的下一个中间件函数</li>
 </ul>
 <p>看一个中间件的例子，它们在 Express 和 Fiber 中如何写。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="p">{</span>
   <span class="c1">// 打印当前时间
 </span><span class="c1"></span>  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&#34;Date:&#34;</span><span class="p">,</span> <span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">());</span>
 
   <span class="nx">next</span><span class="p">();</span>
 <span class="p">});</span>
 </code></pre></div><p>对应 Fiber 的代码如下：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="nx">app</span><span class="p">.</span><span class="nf">Use</span><span class="p">(</span><span class="kd">func</span><span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">fiber</span><span class="p">.</span><span class="nx">Ctx</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">app</span><span class="p">.</span><span class="nf">Use</span><span class="p">(</span><span class="kd">func</span><span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">fiber</span><span class="p">.</span><span class="nx">Ctx</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
   <span class="c1">// 打印当前时间
 </span><span class="c1"></span>  <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Date:&#34;</span><span class="p">,</span> <span class="nx">time</span><span class="p">.</span><span class="nf">Now</span><span class="p">())</span>
 
@@ -234,12 +231,12 @@
 <li>对挂载点进行引用</li>
 </ul>
 <p>看看 Express 如何做到的：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span>
   <span class="s2">&#34;/static&#34;</span><span class="p">,</span> <span class="c1">// mount address
 </span><span class="c1"></span>  <span class="nx">express</span><span class="p">.</span><span class="kr">static</span><span class="p">(</span><span class="s2">&#34;public&#34;</span><span class="p">)</span> <span class="c1">// path to the file folder
 </span><span class="c1"></span><span class="p">);</span>
 </code></pre></div><p>对应 Fiber 的代码如下：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="nx">app</span><span class="p">.</span><span class="nf">Static</span><span class="p">(</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">app</span><span class="p">.</span><span class="nf">Static</span><span class="p">(</span>
   <span class="s">&#34;/static&#34;</span><span class="p">,</span>  <span class="c1">// mount address
 </span><span class="c1"></span>  <span class="s">&#34;./public&#34;</span><span class="p">,</span> <span class="c1">// path to the file folder
 </span><span class="c1"></span><span class="p">)</span>
@@ -254,7 +251,7 @@
  和 <a href="https://handlebarsjs.com/" target="_blank" rel="noopener">Handlebars</a>
  等。</p>
 <p>以 Pug 为例，看看 Express 和 Fiber 如何使用的。（注意，以下代码会查找 ./views 目录下的 index.pug 文件，没有该文件会报错）</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="nx">app</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s2">&#34;view engine&#34;</span><span class="p">,</span> <span class="s2">&#34;pug&#34;</span><span class="p">);</span>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">app</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s2">&#34;view engine&#34;</span><span class="p">,</span> <span class="s2">&#34;pug&#34;</span><span class="p">);</span>
 
 <span class="c1">// 初始化模板文件夹
 </span><span class="c1"></span><span class="nx">app</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s2">&#34;views&#34;</span><span class="p">,</span> <span class="s2">&#34;./views&#34;</span><span class="p">);</span>
@@ -265,9 +262,8 @@
     <span class="nx">message</span><span class="o">:</span> <span class="s2">&#34;This is the index template.&#34;</span><span class="p">,</span>
   <span class="p">});</span>
 <span class="p">});</span>
-</code></pre></div><p>对应的 Fiber 代码如下（注意，Fiber 对模板的支持是 <a href="https://github.com/gofiber/template" target="_blank" rel="noopener">https://github.com/gofiber/template</a>
- 包）：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// 基于 ./views 文件夹初始化 Pug 模板引擎
+</code></pre></div><p>对应的 Fiber 代码如下（注意，Fiber 对模板的支持是 <a href="https://github.com/gofiber/template">https://github.com/gofiber/template</a> 包）：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// 基于 ./views 文件夹初始化 Pug 模板引擎
 </span><span class="c1"></span><span class="nx">engine</span> <span class="o">:=</span> <span class="nx">pug</span><span class="p">.</span><span class="nf">New</span><span class="p">(</span><span class="s">&#34;./views&#34;</span><span class="p">,</span> <span class="s">&#34;.pug&#34;</span><span class="p">)</span>
 
 <span class="nx">app</span> <span class="o">:=</span> <span class="nx">fiber</span><span class="p">.</span><span class="nf">New</span><span class="p">(</span><span class="nx">fiber</span><span class="p">.</span><span class="nx">Config</span><span class="p">{</span>
@@ -285,15 +281,13 @@
 <p>下篇文章会较详细的介绍 Fiber 的一些特性。</p>
 <h2 id="参考">参考<a href="#参考" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <ul>
-<li><a href="https://dev.to/koddr/go-fiber-by-examples-how-can-the-fiber-web-framework-be-useful-487a" target="_blank" rel="noopener">https://dev.to/koddr/go-fiber-by-examples-how-can-the-fiber-web-framework-be-useful-487a</a>
-</li>
-<li><a href="https://docs.gofiber.io/api/fiber" target="_blank" rel="noopener">https://docs.gofiber.io/api/fiber</a>
-</li>
+<li><a href="https://dev.to/koddr/go-fiber-by-examples-how-can-the-fiber-web-framework-be-useful-487a">https://dev.to/koddr/go-fiber-by-examples-how-can-the-fiber-web-framework-be-useful-487a</a></li>
+<li><a href="https://docs.gofiber.io/api/fiber">https://docs.gofiber.io/api/fiber</a></li>
 </ul>
 
 			</div><div class="content">
 	<br>
-	<img src="https://static.studygolang.com/static/img/polarisxu-qrcode-soso-s.png">
+	<img src="https://static.golangjob.cn/static/img/polarisxu-qrcode-soso-s.png">
 </div>
 
 <div class="related-posts thin">

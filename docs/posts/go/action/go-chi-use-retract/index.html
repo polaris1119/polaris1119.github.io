@@ -8,15 +8,15 @@
 	<meta name="theme-color" content="#fcfcfc">
 	<meta name="msapplication-TileColor" content="#fcfcfc">
 <meta itemprop="name" content="从 go-chi 框架撤回所有主版本聊 Go1.16 的新特性">
-<meta itemprop="description" content="大家好，我是站长 polarisxu。 在 Reddit 上看到一条消息： go-chi is retracting all major versions with go1.16 new retract directive. go.mod 的变更如下： 这利用了 Go 1.16 中 Module 的新特性。在这之前，先一起学习下该特性。 01 retract：撤回版本 也许不少人没有开发过自己的 Module（模块），但了解模块版本撤回还是有必要的，说不定哪天就能用到。因此建议你能够跟着本文操作一遍。 一般地，模块作者需要一种方法来指示不应该使用某个已发布"><meta itemprop="datePublished" content="2021-02-23T18:30:00+08:00" />
-<meta itemprop="dateModified" content="2021-02-23T18:30:00+08:00" />
+<meta itemprop="description" content="大家好，我是站长 polarisxu。 在 Reddit 上看到一条消息： go-chi is retracting all major versions with go1.16 new retract directive. go.mod 的变更如下： 这利用了 Go 1.16 中 Module 的新特性。在这之前，先一起学习下该特性。 01 retract：撤回版本 也许不少人没有开发过自己的 Module（模块），但了解模块版本撤回还是有必要的，说不定哪天就能用到。因此建议你能够跟着本文操作一遍。 一般地，模块作者需要一种方法来指示不应该使用某个已发布"><meta itemprop="datePublished" content="2021-02-23T18:30:00&#43;08:00" />
+<meta itemprop="dateModified" content="2021-02-23T18:30:00&#43;08:00" />
 <meta itemprop="wordCount" content="3512">
 <meta itemprop="keywords" content="Go,Module,Chi," /><meta property="og:title" content="从 go-chi 框架撤回所有主版本聊 Go1.16 的新特性" />
 <meta property="og:description" content="大家好，我是站长 polarisxu。 在 Reddit 上看到一条消息： go-chi is retracting all major versions with go1.16 new retract directive. go.mod 的变更如下： 这利用了 Go 1.16 中 Module 的新特性。在这之前，先一起学习下该特性。 01 retract：撤回版本 也许不少人没有开发过自己的 Module（模块），但了解模块版本撤回还是有必要的，说不定哪天就能用到。因此建议你能够跟着本文操作一遍。 一般地，模块作者需要一种方法来指示不应该使用某个已发布" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/action/go-chi-use-retract/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2021-02-23T18:30:00+08:00" />
-<meta property="article:modified_time" content="2021-02-23T18:30:00+08:00" />
+<meta property="article:published_time" content="2021-02-23T18:30:00&#43;08:00" />
+<meta property="article:modified_time" content="2021-02-23T18:30:00&#43;08:00" />
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="从 go-chi 框架撤回所有主版本聊 Go1.16 的新特性"/>
@@ -30,7 +30,7 @@
 	<link rel="shortcut icon" href="/favicon.ico">
 
 	<title>从 go-chi 框架撤回所有主版本聊 Go1.16 的新特性</title>
-	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.f74778e3020c87c304fb5982e09b92ba63a5c7f202996d4c7283d6057acfe9c1.css" integrity="sha256-90d44wIMh8ME+1mC4JuSumOlx/ICmW1McoPWBXrP6cE=" crossorigin="anonymous">
 	
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/styles.css">
@@ -103,8 +103,7 @@
 <p>撤回的版本应该在模块代理和原始代码库中保持可用。依赖已撤回版本的构建应可以继续工作。当用户依赖于一个已撤回的版本（直接或间接）时，应该通知用户。它也应该很难无意中升级到一个已撤回版本。</p>
 <p>为了让大家更好的理解模块撤回功能，本文通过具体的例子来演示。我们会创建两个模块：</p>
 <ul>
-<li>foo，这是一个模块，本文将其 push 到 GitHub，完整路径：<a href="https://github.com/polaris1119/foo" target="_blank" rel="noopener">https://github.com/polaris1119/foo</a>
-，你本地试验记得路径使用你的。本文将发布该模块的许多版本。</li>
+<li>foo，这是一个模块，本文将其 push 到 GitHub，完整路径：<a href="https://github.com/polaris1119/foo">https://github.com/polaris1119/foo</a>，你本地试验记得路径使用你的。本文将发布该模块的许多版本。</li>
 <li>gopher，一个简单的 main 包，使用了上面的模块，该模块不会发布，只是作为本地模块；</li>
 </ul>
 <blockquote>
@@ -112,14 +111,14 @@
 <p>本文演示用的操作系统是 MacOS。</p>
 </blockquote>
 <h3 id="创建-foo-模块">创建 foo 模块<a href="#创建-foo-模块" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ mkdir -p ~/foo
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ mkdir -p ~/foo
 $ <span class="nb">cd</span> ~/foo
 $ git init -q
 $ git remote add origin https://github.com/polaris1119/foo
 $ go mod init github.com/polaris1119/foo
 go: creating new go.mod: module github.com/polaris1119/foo
 </code></pre></div><p>在模块目录中创建一个文件 foo.go，输入如下内容：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">foo</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">foo</span>
 
 <span class="kd">func</span> <span class="nf">Bar</span><span class="p">()</span> <span class="kt">string</span> <span class="p">{</span>
 		<span class="k">return</span> <span class="s">&#34;这是初始版本&#34;</span>
@@ -128,21 +127,21 @@ go: creating new go.mod: module github.com/polaris1119/foo
 <p>注意：在把该模块代码提交之前，先在 GitHub 上创建好项目 foo。</p>
 </blockquote>
 <p>将 foo 模块的改动提交 git 并 push。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ git add -A
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ git add -A
 $ git commit -q -m <span class="s2">&#34;Initial commit&#34;</span>
 $ git branch -M main
 $ git push -u origin main
 </code></pre></div><p>这是该模块的初始版本，我们用 v0 语言版本来标记它，表明它还不稳定。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ git tag v0.1.0
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ git tag v0.1.0
 $ git push -q origin v0.1.0
 </code></pre></div><p>foo 的第一个版本已经发布，我们看看使用它的 gopher 模块。</p>
 <h3 id="创建-gopher-模块">创建 gopher 模块<a href="#创建-gopher-模块" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>该模块就放在本地，因此不用设置 git：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ mkdir ~/gopher
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ mkdir ~/gopher
 $ <span class="nb">cd</span> ~/gopher
 $ go mod init gopher
 </code></pre></div><p>创建一个 main.go 文件，内容如下：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
     <span class="s">&#34;fmt&#34;</span>
@@ -154,106 +153,105 @@ $ go mod init gopher
      <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">foo</span><span class="p">.</span><span class="nf">Bar</span><span class="p">())</span>
 <span class="p">}</span>
 </code></pre></div><p>接下来，我们通过 go get 显示指定依赖 foo 的版本：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ go get github.com/polaris1119/foo@v0.1.go
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ go get github.com/polaris1119/foo@v0.1.go
 go: downloading github.com/polaris1119/foo v0.1.0
 go get: added github.com/polaris1119/foo v0.1.0
 </code></pre></div><blockquote>
 <p>注意：我本地配置了 GOPROXY=https://goproxy.cn,direct</p>
 </blockquote>
 <p>然后运行：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ go run .
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ go run .
 这是初始版本
 </code></pre></div><p>目前一切正常。</p>
 <h3 id="一个更好的版本">一个更好的版本<a href="#一个更好的版本" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>经过一段时间，foo 的功能有一些变化，这里假设 Bar 方法语句变了（一个兼容的变化）。</p>
 <p>回到 foo 模块，修改代码如下：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">foo</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">foo</span>
 
 <span class="kd">func</span> <span class="nf">Bar</span><span class="p">()</span> <span class="kt">string</span> <span class="p">{</span>
 		<span class="k">return</span> <span class="s">&#34;这是一个更好的版本&#34;</span>
 <span class="p">}</span>
 </code></pre></div><p>提交并推送到 GitHub。</p>
 <p>但现在 foo 模块还不是稳定版，因此不想标记为 v1。安全起见，我们发布 v0.2.0：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ git tag v0.2.0
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ git tag v0.2.0
 $ git push -q origin v0.2.0
 </code></pre></div><p>现在 foo 发布了 v0.2.0 版本，我们在 gopher 项目尝试下。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nb">cd</span> ~/gopher
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nb">cd</span> ~/gopher
 $ go get github.com/polaris1119/foo@v0.2.0
 go: downloading github.com/polaris1119/foo v0.2.0
 go get: upgraded github.com/polaris1119/foo v0.1.0 <span class="o">=</span>&gt; v0.2.0
 </code></pre></div><p>然后 go run 运行：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ go run .
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ go run .
 这是一个更好的版本
 </code></pre></div><p>这时，你发现 “这是一个更好的版本” 不好，怎么办？你可以修改掉，然后再发布一个新版本。然而，gopher 项目已经依赖了 v0.2.0，怎么办？</p>
 <h3 id="撤回模块版本">撤回模块版本<a href="#撤回模块版本" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>我们可以在 go.mod 中增加 retract 指令来撤回某个模块版本。</p>
 <p>可以通过命令实现：（也可以直接修改 go.mod 文件）</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ go mod edit -retract<span class="o">=</span>v0.2.0
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ go mod edit -retract<span class="o">=</span>v0.2.0
 </code></pre></div><p>这时 go.mod 内容如下：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">module github.com/polaris1119/foo
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">module github.com/polaris1119/foo
 
 go 1.16
 
 retract v0.2.0
 </code></pre></div><p>一般建议在 retract 上加上撤回的原因。go get、go list 等会显示这个原因。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">module github.com/polaris1119/foo
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">module github.com/polaris1119/foo
 
 go 1.16
 
 // Bar 方法返回值不友好
 retract v0.2.0
 </code></pre></div><p>修改下 Bar 的返回内容，提交 GitHub 并发布 v0.3.0：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">Bar</span><span class="p">()</span> <span class="kt">string</span> <span class="p">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">Bar</span><span class="p">()</span> <span class="kt">string</span> <span class="p">{</span>
 		<span class="k">return</span> <span class="s">&#34;这是v0.3.0版本&#34;</span>
 <span class="p">}</span>
 </code></pre></div><p>v0.3.0 发布后，回到 gopher 模块，使用这个新版本。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nb">cd</span> ~/gopher
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nb">cd</span> ~/gopher
 $ go get github.com/polaris1119/foo@v0.3.0
 go: downloading github.com/polaris1119/foo v0.3.0
 go get: upgraded github.com/polaris1119/foo v0.2.0 <span class="o">=</span>&gt; v0.3.0
-</code></pre></div><p>这一步确保 <a href="https://goproxy.cn" target="_blank" rel="noopener">https://goproxy.cn</a>
- 这个代理知晓了 v0.3.0 版本，这是一种手动让代理拉取你模块的方法。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ go run .
+</code></pre></div><p>这一步确保 <a href="https://goproxy.cn">https://goproxy.cn</a> 这个代理知晓了 v0.3.0 版本，这是一种手动让代理拉取你模块的方法。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ go run .
 这是v0.3.0版本
 </code></pre></div><p>已经正常了。</p>
 <p>经过这个步骤到底发生了什么？我们通过以下命令看一下：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ go list -m -versions github.com/polaris1119/foo
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ go list -m -versions github.com/polaris1119/foo
 github.com/polaris1119/foo v0.1.0 v0.3.0
 </code></pre></div><p>v0.2.0 不见了。通过增加 -retracted 选项可以查看撤回的版本：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ go list -m -versions -retracted github.com/polaris1119/foo
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ go list -m -versions -retracted github.com/polaris1119/foo
 github.com/polaris1119/foo v0.1.0 v0.2.0 v0.3.0
 </code></pre></div><p>如果我们依赖回收的 v0.2.0 版本会怎么样了？</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ go get github.com/polaris1119/foo@v0.2.0
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ go get github.com/polaris1119/foo@v0.2.0
 go: warning: github.com/polaris1119/foo@v0.2.0: retracted by module author: Bar 方法返回值不友好
 go: to switch to the latest unretracted version, run:
 	go get github.com/polaris1119/foo@latest go get: downgraded github.com/polaris1119/foo v0.3.0 <span class="o">=</span>&gt; v0.2.0
 </code></pre></div><p>提示信息还是挺友好的，告知你 v0.2.0 是一个撤回的版本。</p>
 <p>虽然警告，但 v0.2.0 可以正常使用吗？</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ go run .
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ go run .
 这是一个更好的版本
 </code></pre></div><p>发现一切正常。</p>
 <p>有了这个功能，有一些模块可能会使用它。那怎么知晓我们的项目有没有依赖撤回的版本呢？使用 go list 命令即可：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ go list -m -u all
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ go list -m -u all
 gopher
 github.com/polaris1119/foo v0.2.0 <span class="o">(</span>retracted<span class="o">)</span> <span class="o">[</span>v0.3.0<span class="o">]</span>
 </code></pre></div><p>我们现在回到最新版本：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ go get github.com/polaris1119/foo@latest
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ go get github.com/polaris1119/foo@latest
 go get: upgraded github.com/polaris1119/foo v0.2.0 <span class="o">=</span>&gt; v0.3.0
 </code></pre></div><h3 id="为-foo-模块增加功能">为 foo 模块增加功能<a href="#为-foo-模块增加功能" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>又过了一段时间，我们为 foo 模块增加了新的功能：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">Quz</span><span class="p">()</span> <span class="kt">string</span> <span class="p">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">Quz</span><span class="p">()</span> <span class="kt">string</span> <span class="p">{</span>
     <span class="k">return</span> <span class="s">&#34;This is Quz function&#34;</span>
 <span class="p">}</span>
 </code></pre></div><p>提交到 GitHub，并发布 v0.4.0，依然是不稳定版本。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ git tag v1.0.0
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ git tag v1.0.0
 $ git push -q origin v1.0.0
 
 </code></pre></div><p>但很糟糕的是，我不小心发布了 v1.0.0，这样会让用户以为你的模块已经是稳定版本，但实际上并不是这样。所以，我们想撤回 v1.0.0。</p>
 <p>在撤回这个版本之前，我们应该先发布 v0.4.0 版本：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ git tag v0.4.0
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ git tag v0.4.0
 $ git push -q origin v0.4.0
 </code></pre></div><p>要撤回 v1.0.0，我们需要发布 v1.0.1（为什么？因为我们要写入撤回的信息）。不过这样一来，我们还得撤回 v1.0.1，死循环了。。。go module 允许我们指定一个撤回的版本范围，这次手动编辑 go.mod 文件。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">module github.com/polaris1119/foo
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">module github.com/polaris1119/foo
 
 go 1.16
 
@@ -265,26 +263,25 @@ retract <span class="o">(</span>
     <span class="o">[</span>v1.0.0, v1.0.1<span class="o">]</span>
 <span class="o">)</span>
 </code></pre></div><p>提交这次改动到 GitHub，然后再创建 v1.0.1 版本。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ git tag v1.0.1
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ git tag v1.0.1
 $ git push -q origin v1.0.1
 </code></pre></div><p>接着切到 gopher 模块。</p>
-<p>为了让 <a href="https://goproxy.cn" target="_blank" rel="noopener">https://goproxy.cn</a>
- 知晓 v1.0.0 等版本，我们先获取它。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ go get github.com/polaris1119/foo@v1.0.0
+<p>为了让 <a href="https://goproxy.cn">https://goproxy.cn</a> 知晓 v1.0.0 等版本，我们先获取它。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ go get github.com/polaris1119/foo@v1.0.0
 $ go get github.com/polaris1119/foo@v1.0.1
 $ go get github.com/polaris1119/foo@v0.4.0
 </code></pre></div><blockquote>
 <p>注意，切换到 v1.0.x 版本时，很可能看不到版本撤回的信息，因为 proxy 可能还没自动定期更新。一般需要等待一段时间，比如 1 分钟。如果没有看到警告信息，等待 1 分钟后再试，应该能看到。</p>
 </blockquote>
 <p>现在列出所有的版本：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ go list -m -versions -retracted github.com/polaris1119/foo
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ go list -m -versions -retracted github.com/polaris1119/foo
 github.com/polaris1119/foo v0.1.0 v0.2.0 v0.3.0 v0.4.0 v1.0.0 v1.0.1
 </code></pre></div><p>或只列出未撤回版本：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ go list -m -versions github.com/polaris1119/foo
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ go list -m -versions github.com/polaris1119/foo
 github.com/polaris1119/foo v0.1.0 v0.3.0 v0.4.0
 </code></pre></div><p>赞！v0.4.0 是该模块的新版本。</p>
 <p>这时可以更新下 gopher，来使用 foo 的新功能：（加上对 foo.Quz 函数的调用）</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ go run .
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ go run .
 这是v0.3.0版本
 This is Quz <span class="k">function</span>
 </code></pre></div><blockquote>
@@ -305,7 +302,7 @@ This is Quz <span class="k">function</span>
 </blockquote>
 <p>它主要强调自己是一个路由，方便构建 HTTP 服务。它兼容 net/http，没有任何第三方依赖。</p>
 <p>简单使用示例：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
 	<span class="s">&#34;net/http&#34;</span>
@@ -325,12 +322,11 @@ This is Quz <span class="k">function</span>
 </code></pre></div><p>有兴趣的自己去了解。这里主要说下它撤回主版本的事情。</p>
 <p>chi 保证自己有很好的兼容性，而作者特别厌烦模块名带版本号，即 <code>github.com/go-chi/chi/v4</code> 这样的（有强迫症），但 chi 项目 tag 已经到 4.x.x 了，怎么办？</p>
 <p>从上面截图看，它一直使用的 incompatible。没想过到 Go1.16 除了 retract 的功能，于是 chi 作者做了一个决定：在已经发布的版本中，只保留 v1.5.x 系列，其他的全部撤回。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ go list -m -versions github.com/go-chi/chi
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ go list -m -versions github.com/go-chi/chi
 github.com/go-chi/chi v1.5.0 v1.5.1 v1.5.2 v1.5.3
 </code></pre></div><p>没有了一大堆带 incompatible 的版本，世界瞬间清静了。</p>
 <p>不过它的这个决定，有不少人反对，reddit 上也是激烈讨论。</p>
-<p>作者表示：<a href="https://github.com/go-chi/chi/issues/561" target="_blank" rel="noopener">https://github.com/go-chi/chi/issues/561</a>
-</p>
+<p>作者表示：<a href="https://github.com/go-chi/chi/issues/561">https://github.com/go-chi/chi/issues/561</a></p>
 <blockquote>
 <p>对于给您带来的不便，我再次表示歉意，但是我为此项目投入了数年甚至数千小时的时间，对此我非常感兴趣，SIV 是我坚决反对的事情，因此我不会采纳它。尽管许多人不同意，但请记住，这是 OSS，不是以任何方式赞助或付费的，您始终可以选择 fork 它并维护自己的版本。</p>
 </blockquote>
@@ -339,7 +335,7 @@ github.com/go-chi/chi v1.5.0 v1.5.1 v1.5.2 v1.5.3
 
 			</div><div class="content">
 	<br>
-	<img src="https://static.studygolang.com/static/img/polarisxu-qrcode-soso-s.png">
+	<img src="https://static.golangjob.cn/static/img/polarisxu-qrcode-soso-s.png">
 </div>
 
 <div class="related-posts thin">

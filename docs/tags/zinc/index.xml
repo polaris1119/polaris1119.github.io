@@ -14,7 +14,7 @@
       <pubDate>Sun, 12 Dec 2021 22:00:00 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/posts/go/project/zinc-like-es/</guid>
-      <description>大家好，我是 polarisxu。 企业内部搭建搜索引擎常用 Solr、Elasticsearch，它们都是使用 Java 实现的，底层依赖 Lucene，Java 相对来说占用较多内存。而今天要介绍的这个项目，目标就是作为 ES 的替代者，一个轻量级搜索引擎：Zinc。 项目地址：https://github.com/prabhatsharma/zinc ，该项目开源十来天，目前 Star 数 3</description>
+      <description>大家好，我是 polarisxu。 企业内部搭建搜索引擎常用 Solr、Elasticsearch，它们都是使用 Java 实现的，底层依赖 Lucene，Java 相对来说占用较多内存。而今天要介绍的这个项目，目标就是作为 ES 的替代者，一个轻量级搜索引擎：Zinc。 项目地址：https://github.com/prabhatsharma/zinc，该项目开源十来天，目前 Star 数 3</description>
     </item>
     
   </channel>

@@ -8,15 +8,15 @@
 	<meta name="theme-color" content="#fcfcfc">
 	<meta name="msapplication-TileColor" content="#fcfcfc">
 <meta itemprop="name" content="你喜欢的 Go 第三方库：一步为系统集成可视化实时运行时统计">
-<meta itemprop="description" content="大家好，我是站长 polarisxu。 掌握系统运行状态，知道系统哪些地方可能存在问题，方便进行优化，这是一个实际系统必备的。裸奔，对系统一无所知，迟早是要出大事的。 在 Go 语言中，官方标准库提供了方法，让我们能够获得内存分配、GC 和 Goroutine 等情况。比如内存、GC 等情况，可以通过 runtime.MemStats 获取：https://docs.studygolang.com/pkg/runtime/#M"><meta itemprop="datePublished" content="2020-10-15T18:12:51+08:00" />
-<meta itemprop="dateModified" content="2020-10-15T18:12:51+08:00" />
+<meta itemprop="description" content="大家好，我是站长 polarisxu。 掌握系统运行状态，知道系统哪些地方可能存在问题，方便进行优化，这是一个实际系统必备的。裸奔，对系统一无所知，迟早是要出大事的。 在 Go 语言中，官方标准库提供了方法，让我们能够获得内存分配、GC 和 Goroutine 等情况。比如内存、GC 等情况，可以通过 runtime.MemStats 获取：https://docs.studygolang.com/pkg/runtime/#M"><meta itemprop="datePublished" content="2020-10-15T18:12:51&#43;08:00" />
+<meta itemprop="dateModified" content="2020-10-15T18:12:51&#43;08:00" />
 <meta itemprop="wordCount" content="1280">
 <meta itemprop="keywords" content="Go,Golang,第三方库,统计," /><meta property="og:title" content="你喜欢的 Go 第三方库：一步为系统集成可视化实时运行时统计" />
 <meta property="og:description" content="大家好，我是站长 polarisxu。 掌握系统运行状态，知道系统哪些地方可能存在问题，方便进行优化，这是一个实际系统必备的。裸奔，对系统一无所知，迟早是要出大事的。 在 Go 语言中，官方标准库提供了方法，让我们能够获得内存分配、GC 和 Goroutine 等情况。比如内存、GC 等情况，可以通过 runtime.MemStats 获取：https://docs.studygolang.com/pkg/runtime/#M" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/pkg/statsviz/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2020-10-15T18:12:51+08:00" />
-<meta property="article:modified_time" content="2020-10-15T18:12:51+08:00" />
+<meta property="article:published_time" content="2020-10-15T18:12:51&#43;08:00" />
+<meta property="article:modified_time" content="2020-10-15T18:12:51&#43;08:00" />
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="你喜欢的 Go 第三方库：一步为系统集成可视化实时运行时统计"/>
@@ -30,7 +30,7 @@
 	<link rel="shortcut icon" href="/favicon.ico">
 
 	<title>你喜欢的 Go 第三方库：一步为系统集成可视化实时运行时统计</title>
-	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.f74778e3020c87c304fb5982e09b92ba63a5c7f202996d4c7283d6057acfe9c1.css" integrity="sha256-90d44wIMh8ME+1mC4JuSumOlx/ICmW1McoPWBXrP6cE=" crossorigin="anonymous">
 	
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/styles.css">
@@ -79,11 +79,9 @@
 			<div class="content">
 				<p>大家好，我是站长 polarisxu。</p>
 <p>掌握系统运行状态，知道系统哪些地方可能存在问题，方便进行优化，这是一个实际系统必备的。裸奔，对系统一无所知，迟早是要出大事的。</p>
-<p>在 Go 语言中，官方标准库提供了方法，让我们能够获得内存分配、GC 和 Goroutine 等情况。比如内存、GC 等情况，可以通过 runtime.MemStats 获取：<a href="https://docs.studygolang.com/pkg/runtime/#MemStats" target="_blank" rel="noopener">https://docs.studygolang.com/pkg/runtime/#MemStats</a>
-，Goroutine 数量可以通过 runtime.NumGoroutine() 函数获得。</p>
+<p>在 Go 语言中，官方标准库提供了方法，让我们能够获得内存分配、GC 和 Goroutine 等情况。比如内存、GC 等情况，可以通过 runtime.MemStats 获取：<a href="https://docs.studygolang.com/pkg/runtime/#MemStats">https://docs.studygolang.com/pkg/runtime/#MemStats</a>，Goroutine 数量可以通过 runtime.NumGoroutine() 函数获得。</p>
 <p>一般我们我们需要自己解析 MemStats 信息、做展示，也可以做图表。</p>
-<p>今天我给大家推荐一个库：<a href="https://github.com/arl/statsviz" target="_blank" rel="noopener">https://github.com/arl/statsviz</a>
-，它是一个在浏览器中实时查看 Go 应用程序运行时统计信息（GC，MemStats 等）的库。</p>
+<p>今天我给大家推荐一个库：<a href="https://github.com/arl/statsviz">https://github.com/arl/statsviz</a>，它是一个在浏览器中实时查看 Go 应用程序运行时统计信息（GC，MemStats 等）的库。</p>
 <p>它能展示的信息如下图：</p>
 <p><p class="md__image">
   <img src="../imgs/statsviz01.png"
@@ -97,7 +95,7 @@
 </p>
 </p>
 <p>上面这些通过运行下面这段代码就可以了：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
 	<span class="s">&#34;math/rand&#34;</span>
@@ -149,24 +147,24 @@
 <p>如果你的项目没有使用框架，直接基于 net/http；或者你的项目并没有提供 HTTP 服务。集成 statsviz 可以按照下面的方式。</p>
 <p><strong>1）一个使用 net/http 的 Web 项目</strong></p>
 <p>只需要 import statsviz 包后，在注册路由的地方加上如下代码：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="nx">statsviz</span><span class="p">.</span><span class="nf">RegisterDefault</span><span class="p">()</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">statsviz</span><span class="p">.</span><span class="nf">RegisterDefault</span><span class="p">()</span>
 </code></pre></div><p>这是使用默认的 http.DefaultServeMux，如果你使用的是自定义 Mux，则加上如下类似如下代码：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="nx">mux</span> <span class="o">:=</span> <span class="nx">http</span><span class="p">.</span><span class="nf">NewServeMux</span><span class="p">()</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">mux</span> <span class="o">:=</span> <span class="nx">http</span><span class="p">.</span><span class="nf">NewServeMux</span><span class="p">()</span>
 <span class="nx">statsviz</span><span class="p">.</span><span class="nf">Register</span><span class="p">(</span><span class="nx">mux</span><span class="p">)</span>
 </code></pre></div><p>其中，mux 使用你定义好的。</p>
 <p>实际上，statsviz.RegisterDefault() 内部是这么实现的：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">RegisterDefault</span><span class="p">()</span> <span class="p">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">RegisterDefault</span><span class="p">()</span> <span class="p">{</span>
 	<span class="nf">Register</span><span class="p">(</span><span class="nx">http</span><span class="p">.</span><span class="nx">DefaultServeMux</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre></div><p><strong>2）没有提供 HTTP 服务的项目</strong></p>
 <p>这时最简单的方式就是使用 statsviz.RegisterDefault() ，同时需要启动一个 HTTP 服务：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
   <span class="nx">statsviz</span><span class="p">.</span><span class="nf">RegisterDefault</span><span class="p">()</span>
   <span class="nx">log</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">http</span><span class="p">.</span><span class="nf">ListenAndServe</span><span class="p">(</span><span class="s">&#34;localhost:8080&#34;</span><span class="p">,</span> <span class="kc">nil</span><span class="p">))</span>
 <span class="p">}()</span>
 </code></pre></div><h3 id="基于兼容-nethttp-的框架">基于兼容 net/http 的框架<a href="#基于兼容-nethttp-的框架" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>因为兼容 net/http 框架，因此可以直接将 statsviz 的 Handler 集成进去。比如对于 gorilla/mux 库，可以这么做：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="nx">r</span> <span class="o">:=</span> <span class="nx">mux</span><span class="p">.</span><span class="nf">NewRouter</span><span class="p">()</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">r</span> <span class="o">:=</span> <span class="nx">mux</span><span class="p">.</span><span class="nf">NewRouter</span><span class="p">()</span>
 <span class="nx">r</span><span class="p">.</span><span class="nf">Methods</span><span class="p">(</span><span class="s">&#34;GET&#34;</span><span class="p">).</span><span class="nf">Path</span><span class="p">(</span><span class="s">&#34;/debug/statsviz/ws&#34;</span><span class="p">).</span><span class="nf">Name</span><span class="p">(</span><span class="s">&#34;GET /debug/statsviz/ws&#34;</span><span class="p">).</span><span class="nf">HandlerFunc</span><span class="p">(</span><span class="nx">statsviz</span><span class="p">.</span><span class="nx">Ws</span><span class="p">)</span>
 <span class="nx">r</span><span class="p">.</span><span class="nf">Methods</span><span class="p">(</span><span class="s">&#34;GET&#34;</span><span class="p">).</span><span class="nf">PathPrefix</span><span class="p">(</span><span class="s">&#34;/debug/statsviz/&#34;</span><span class="p">).</span><span class="nf">Name</span><span class="p">(</span><span class="s">&#34;GET /debug/statsviz/&#34;</span><span class="p">).</span><span class="nf">Handler</span><span class="p">(</span><span class="nx">statsviz</span><span class="p">.</span><span class="nx">Index</span><span class="p">)</span>
 
@@ -176,20 +174,20 @@
 </code></pre></div><p>这里主要是 statsviz.Ws 和 statsviz.Index，因为 gorilla/mux 库兼容 net/http，所以可以这么做。</p>
 <h3 id="不兼容-nethttp-的框架">不兼容 net/http 的框架<a href="#不兼容-nethttp-的框架" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>比如集成进 Gin 框架。做法就是和“没有提供 HTTP 服务的项目”一样，另开一个 HTTP 端口。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
   <span class="nx">statsviz</span><span class="p">.</span><span class="nf">RegisterDefault</span><span class="p">()</span>
   <span class="nx">log</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">http</span><span class="p">.</span><span class="nf">ListenAndServe</span><span class="p">(</span><span class="s">&#34;localhost:8080&#34;</span><span class="p">,</span> <span class="kc">nil</span><span class="p">))</span>
 <span class="p">}()</span>
 </code></pre></div><p>因此这里实际上和具体框架没关系。</p>
 <h3 id="最佳实践">最佳实践<a href="#最佳实践" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>因为 runtime 信息属于系统内部信息，不适合暴露给公网用户。因此，实际上中，最佳实践是，不管什么情况下，都单独开一个 HTTP 端口，类似下面这样，对公网不可访问。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
   <span class="nx">statsviz</span><span class="p">.</span><span class="nf">RegisterDefault</span><span class="p">()</span>
   <span class="nx">log</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">http</span><span class="p">.</span><span class="nf">ListenAndServe</span><span class="p">(</span><span class="s">&#34;localhost:8080&#34;</span><span class="p">,</span> <span class="kc">nil</span><span class="p">))</span>
 <span class="p">}()</span>
 </code></pre></div><h2 id="原理简单说明">原理简单说明<a href="#原理简单说明" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>该库使用 WebSocket 协议，定时将系统的 runtime 数据发送给浏览器，浏览器接收到之后，利用 JS 绘制图表，展示出来。Go 核心代码如下：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// sendStats indefinitely send runtime statistics on the websocket connection.
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// sendStats indefinitely send runtime statistics on the websocket connection.
 </span><span class="c1"></span><span class="kd">func</span> <span class="nf">sendStats</span><span class="p">(</span><span class="nx">conn</span> <span class="o">*</span><span class="nx">websocket</span><span class="p">.</span><span class="nx">Conn</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
 	<span class="nx">tick</span> <span class="o">:=</span> <span class="nx">time</span><span class="p">.</span><span class="nf">NewTicker</span><span class="p">(</span><span class="nx">defaultSendPeriod</span><span class="p">)</span>
 	<span class="k">defer</span> <span class="nx">tick</span><span class="p">.</span><span class="nf">Stop</span><span class="p">()</span>
@@ -209,14 +207,14 @@
 </code></pre></div><p>对客户端代码感兴趣的请自行阅读源码。</p>
 <h2 id="总结">总结<a href="#总结" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>如果你需要实时图表的方式查看系统运行时的一些数据，可以尝试下它。用类似这样几行代码一步将它集成进你的系统：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
   <span class="nx">statsviz</span><span class="p">.</span><span class="nf">RegisterDefault</span><span class="p">()</span>
   <span class="nx">log</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">http</span><span class="p">.</span><span class="nf">ListenAndServe</span><span class="p">(</span><span class="s">&#34;localhost:8080&#34;</span><span class="p">,</span> <span class="kc">nil</span><span class="p">))</span>
 <span class="p">}()</span>
 </code></pre></div>
 			</div><div class="content">
 	<br>
-	<img src="https://static.studygolang.com/static/img/polarisxu-qrcode-soso-s.png">
+	<img src="https://static.golangjob.cn/static/img/polarisxu-qrcode-soso-s.png">
 </div>
 
 <div class="related-posts thin">

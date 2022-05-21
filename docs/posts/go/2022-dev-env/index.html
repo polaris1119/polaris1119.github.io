@@ -8,15 +8,15 @@
 	<meta name="theme-color" content="#fcfcfc">
 	<meta name="msapplication-TileColor" content="#fcfcfc">
 <meta itemprop="name" content="「2022 版」轻松搞定 Go 开发环境">
-<meta itemprop="description" content="大家好，我是 polarisxu。 实话说，这个时候还写这么基础的文章，感觉有点太 low？但几乎每天有人开始学习 Go，那自然绕不开搭建 Go 开发环境。很多人会通过搜索网上的教程来照着做，于是发现搞不定，原因是找到的教程大部分比较老旧，都是基于 GOPATH 的。隔段时间我就会看到有人问类似的问题，所以才决定写一篇 2022 版 Go 开发环境搭建。 提醒一句，入门教程涉及到代码放入 src 目录下的，基本"><meta itemprop="datePublished" content="2022-01-29T11:30:00+08:00" />
-<meta itemprop="dateModified" content="2022-01-29T11:30:00+08:00" />
+<meta itemprop="description" content="大家好，我是 polarisxu。 实话说，这个时候还写这么基础的文章，感觉有点太 low？但几乎每天有人开始学习 Go，那自然绕不开搭建 Go 开发环境。很多人会通过搜索网上的教程来照着做，于是发现搞不定，原因是找到的教程大部分比较老旧，都是基于 GOPATH 的。隔段时间我就会看到有人问类似的问题，所以才决定写一篇 2022 版 Go 开发环境搭建。 提醒一句，入门教程涉及到代码放入 src 目录下的，基本"><meta itemprop="datePublished" content="2022-01-29T11:30:00&#43;08:00" />
+<meta itemprop="dateModified" content="2022-01-29T11:30:00&#43;08:00" />
 <meta itemprop="wordCount" content="1579">
 <meta itemprop="keywords" content="Go,入门," /><meta property="og:title" content="「2022 版」轻松搞定 Go 开发环境" />
 <meta property="og:description" content="大家好，我是 polarisxu。 实话说，这个时候还写这么基础的文章，感觉有点太 low？但几乎每天有人开始学习 Go，那自然绕不开搭建 Go 开发环境。很多人会通过搜索网上的教程来照着做，于是发现搞不定，原因是找到的教程大部分比较老旧，都是基于 GOPATH 的。隔段时间我就会看到有人问类似的问题，所以才决定写一篇 2022 版 Go 开发环境搭建。 提醒一句，入门教程涉及到代码放入 src 目录下的，基本" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/2022-dev-env/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2022-01-29T11:30:00+08:00" />
-<meta property="article:modified_time" content="2022-01-29T11:30:00+08:00" />
+<meta property="article:published_time" content="2022-01-29T11:30:00&#43;08:00" />
+<meta property="article:modified_time" content="2022-01-29T11:30:00&#43;08:00" />
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="「2022 版」轻松搞定 Go 开发环境"/>
@@ -30,7 +30,7 @@
 	<link rel="shortcut icon" href="/favicon.ico">
 
 	<title>「2022 版」轻松搞定 Go 开发环境</title>
-	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.f74778e3020c87c304fb5982e09b92ba63a5c7f202996d4c7283d6057acfe9c1.css" integrity="sha256-90d44wIMh8ME+1mC4JuSumOlx/ICmW1McoPWBXrP6cE=" crossorigin="anonymous">
 	
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/styles.css">
@@ -85,8 +85,7 @@
 <h2 id="1安装-go">1、安装 Go<a href="#1安装-go" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>Go 语言支持多平台，因此需要根据你的平台来下载对应的 Go 安装包。本文以当前最新的版本（1.17.6）为例，以 Mac 系统为主讲解。</p>
 <h3 id="常规安装">常规安装<a href="#常规安装" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-<p>到 <a href="https://studygolang.com/dl" target="_blank" rel="noopener">https://studygolang.com/dl</a>
- 下载对应的安装包。</p>
+<p>到 <a href="https://studygolang.com/dl">https://studygolang.com/dl</a> 下载对应的安装包。</p>
 <p><p class="md__image">
   <img src="../imgs/go-install01.png"
     alt="下载 Go"  />
@@ -98,17 +97,17 @@
 <p>Linux 下，需要解压压缩包，然后将解压后的文件夹移动到 /usr/local/ 目录下。</p>
 </blockquote>
 <p>默认情况下，经过以上操作，Go 安装在了 /usr/local/go 中，可以通过以下命令验证是否安装成功：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ /usr/local/go/bin/go version
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ /usr/local/go/bin/go version
 go version go1.17.6 darwin/amd64
 </code></pre></div><p>如果能正常输出版本信息，表示安装成功了。</p>
 <p>你发现没？我没有配置任何环境变量。实际上，Go 默认已经不需要配置任何环境变量了——什么 GOROOT、GOPATH 等都不需要了。</p>
 <p>但有一个环境变量需要配置下，那就是 PATH，否则每次都需要指定 <code>/usr/local/go/bin/go</code> 这么长的路径。</p>
 <p>打开 <code>~/.bash_profile</code>，在文末加上以下内容：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:/usr/local/go/bin
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:/usr/local/go/bin
 </code></pre></div><p>然后执行：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nb">source</span>  ~/.bash_profile
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nb">source</span>  ~/.bash_profile
 </code></pre></div><p>这时在终端直接输入 go verison：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ go version
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ go version
 go version go1.17.6 darwin/amd64
 </code></pre></div><p>这就是 PATH 环境变量的作用。</p>
 <blockquote>
@@ -116,7 +115,7 @@ go version go1.17.6 darwin/amd64
 <p>Windows 下请查阅配置 PATH 环境变量的方法。</p>
 </blockquote>
 <p>不过，国内特殊的环境，我们还需要做一个<strong>重要的配置</strong>，那就是 GOPROXY：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ go env -w <span class="nv">GOPROXY</span><span class="o">=</span>https://goproxy.cn,https://goproxy.io,direct
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ go env -w <span class="nv">GOPROXY</span><span class="o">=</span>https://goproxy.cn,https://goproxy.io,direct
 </code></pre></div><p>这样可以方便的下载 golang.org/x 等包，所以，记得执行以上命令。</p>
 <h3 id="其他安装方法">其他安装方法<a href="#其他安装方法" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>以上是常规的安装方法，你也可以通过源码编译安装。不过，我更喜欢通过第三方工具管理 Go，因为可以方便的切换多版本。</p>
@@ -124,8 +123,7 @@ go version go1.17.6 darwin/amd64
 。</p>
 <h2 id="2使用-goland">2、使用 GoLand<a href="#2使用-goland" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>这是大名鼎鼎的 JB 专门为 Go 语言定制的 IDE，很强大，目前最新稳定版本是 2021.3。</p>
-<p>到 <a href="https://www.jetbrains.com/zh-cn/go/" target="_blank" rel="noopener">https://www.jetbrains.com/zh-cn/go/</a>
- 下载 goland-2021.3.3（2022.1.28 日构建 213.6777.51），之后双击安装。打开后看到如下界面：（GoLand 是付费软件，不过可以试用 30 天）</p>
+<p>到 <a href="https://www.jetbrains.com/zh-cn/go/">https://www.jetbrains.com/zh-cn/go/</a> 下载 goland-2021.3.3（2022.1.28 日构建 213.6777.51），之后双击安装。打开后看到如下界面：（GoLand 是付费软件，不过可以试用 30 天）</p>
 <p><p class="md__image">
   <img src="../imgs/go-install02.png"
     alt="GoLand 2021.3"  />
@@ -140,7 +138,7 @@ go version go1.17.6 darwin/amd64
 </p>
 <p>一定要选择第一项，而不是 Go（GOPATH），Location 可以选择你喜欢的位置，GOROOT 就是你 Go 安装的位置，GoLand 会自动检测到。</p>
 <p>创建后，会创建好项目，里面会有一个 go.mod 文件。这是 Go Module 的依赖管理文件。创建一个文件 main.go，输入以下内容：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="s">&#34;fmt&#34;</span>
 
@@ -177,7 +175,7 @@ go version go1.17.6 darwin/amd64
 
 			</div><div class="content">
 	<br>
-	<img src="https://static.studygolang.com/static/img/polarisxu-qrcode-soso-s.png">
+	<img src="https://static.golangjob.cn/static/img/polarisxu-qrcode-soso-s.png">
 </div>
 
 <div class="related-posts thin">

@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-	<meta name="generator" content="Hugo 0.88.1" />
+	<meta name="generator" content="Hugo 0.81.0" />
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -27,7 +27,7 @@
 
 	<title>polarisxu</title>
 	<link rel="alternate" type="application/rss+xml" href="https://polarisxu.studygolang.com/index.xml" title="polarisxu" />
-	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.f74778e3020c87c304fb5982e09b92ba63a5c7f202996d4c7283d6057acfe9c1.css" integrity="sha256-90d44wIMh8ME+1mC4JuSumOlx/ICmW1McoPWBXrP6cE=" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/styles.css">
 </head>
@@ -289,7 +289,7 @@ version:&#34;3.5&#34;services:web:container_name:dockerdevbuild:./ports:- &#34;8
 在继续之前，我们需要 GoLand 2020.1.1 或更高版本，该版本带有最新的 Docker 插件。我们还需要一个相当现代的 Docker 版本，例如 17.06 或更高版本。注意：虽然旧版本的 IDE 在一定程度上可以使用，但是本文使用了新功能，并且 IDE 的外观可能有所不同。
 项目设置 让我们开始设置我们的项目。
 我们可以创建一个新的 Go Modules 项目，也可以使用现有的项目。
-项目结构应类似于此仓库中的结构：https://github.com/dlsniper/dockerdev 。
+项目结构应类似于此仓库中的结构：https://github.com/dlsniper/dockerdev。
 本教程不会介绍如何为你的系统安装和配置 Docker。
 相反，我们将从配置 Docker 服务器开始，以便我们可以运行我们的应用程序。将 Docker 安装到系统中后，转到 Settings/Preferences | Build, Execution, Deployment | Docker，然后单击 + 按钮添加新的 Docker 服务器连接。
 默认情况下，该插件将创建与本地计算机 Docker 服务器的连接，对于我们的教程而言已经足够了。单击确定按钮以创建服务器配置。
@@ -371,35 +371,46 @@ Go 1.14 添加了对嵌入重叠接口的支持，我们也添加了此功能！
     
     <div class="pagination">
         
-    <ul class="pagination pagination-default">
-      <li class="page-item">
-        <a href="/" aria-label="First" class="page-link" role="button"><span aria-hidden="true">&laquo;&laquo;</span></a>
-      </li>
-      <li class="page-item">
-        <a href="/page/19/" aria-label="Previous" class="page-link" role="button"><span aria-hidden="true">&laquo;</span></a>
-      </li>
-      <li class="page-item">
-        <a href="/page/18/" aria-label="Page 18" class="page-link" role="button">18</a>
-      </li>
-      <li class="page-item">
-        <a href="/page/19/" aria-label="Page 19" class="page-link" role="button">19</a>
-      </li>
-      <li class="page-item active">
-        <a href="#" aria-current="page" aria-label="Page 20" class="page-link" role="button">20</a>
-      </li>
-      <li class="page-item">
-        <a href="/page/21/" aria-label="Page 21" class="page-link" role="button">21</a>
-      </li>
-      <li class="page-item">
-        <a href="/page/22/" aria-label="Page 22" class="page-link" role="button">22</a>
-      </li>
-      <li class="page-item">
-        <a href="/page/21/" aria-label="Next" class="page-link" role="button"><span aria-hidden="true">&raquo;</span></a>
-      </li>
-      <li class="page-item">
-        <a href="/page/22/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
-      </li>
-    </ul>
+<ul class="pagination">
+  <li class="page-item">
+    <a href="/" class="page-link" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
+  </li>
+  <li class="page-item">
+    <a href="/page/19/" class="page-link" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="/">1</a>
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="/page/2/">2</a>
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="/page/3/">3</a>
+  </li>
+  <li class="page-item disabled">
+    <span aria-hidden="true">&nbsp;&hellip;&nbsp;</span>
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="/page/19/">19</a>
+  </li>
+  <li class="page-item active">
+    <a class="page-link" href="/page/20/">20</a>
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="/page/21/">21</a>
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="/page/22/">22</a>
+  </li>
+  <li class="page-item">
+    <a href="/page/21/" class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
+  </li>
+  <li class="page-item">
+    <a href="/page/22/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+  </li>
+</ul>
+
+
     </div>
 		</main>
 

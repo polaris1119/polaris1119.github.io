@@ -8,19 +8,19 @@
 	<meta name="theme-color" content="#fcfcfc">
 	<meta name="msapplication-TileColor" content="#fcfcfc">
 <meta itemprop="name" content="这个工具真好：看看你的Go项目依赖有无漏洞">
-<meta itemprop="description" content="大家好，我是 polarisxu。 发现了一个好工具，推荐给大家！ https://deps.dev/ ，这是 Google 新出的一个实验性工具，命名为：Open Source Insights，它能让你更了解你的项目依赖。 通过这个网站，你可以查询任意开源项目的依赖情况，还包括依赖的依赖，可以看到完整的依赖关系图，而且可以看到它们的许可证。 目前该工具支持 Go Modules、NPM packages、Java 的Mavan 和 Rust 的 C"><meta itemprop="datePublished" content="2021-07-11T22:10:00+08:00" />
-<meta itemprop="dateModified" content="2021-07-11T22:10:00+08:00" />
-<meta itemprop="wordCount" content="597">
+<meta itemprop="description" content="大家好，我是 polarisxu。 发现了一个好工具，推荐给大家！ https://deps.dev/，这是 Google 新出的一个实验性工具，命名为：Open Source Insights，它能让你更了解你的项目依赖。 通过这个网站，你可以查询任意开源项目的依赖情况，还包括依赖的依赖，可以看到完整的依赖关系图，而且可以看到它们的许可证。 目前该工具支持 Go Modules、NPM package"><meta itemprop="datePublished" content="2021-07-11T22:10:00&#43;08:00" />
+<meta itemprop="dateModified" content="2021-07-11T22:10:00&#43;08:00" />
+<meta itemprop="wordCount" content="613">
 <meta itemprop="keywords" content="Go,工具," /><meta property="og:title" content="这个工具真好：看看你的Go项目依赖有无漏洞" />
-<meta property="og:description" content="大家好，我是 polarisxu。 发现了一个好工具，推荐给大家！ https://deps.dev/ ，这是 Google 新出的一个实验性工具，命名为：Open Source Insights，它能让你更了解你的项目依赖。 通过这个网站，你可以查询任意开源项目的依赖情况，还包括依赖的依赖，可以看到完整的依赖关系图，而且可以看到它们的许可证。 目前该工具支持 Go Modules、NPM packages、Java 的Mavan 和 Rust 的 C" />
+<meta property="og:description" content="大家好，我是 polarisxu。 发现了一个好工具，推荐给大家！ https://deps.dev/，这是 Google 新出的一个实验性工具，命名为：Open Source Insights，它能让你更了解你的项目依赖。 通过这个网站，你可以查询任意开源项目的依赖情况，还包括依赖的依赖，可以看到完整的依赖关系图，而且可以看到它们的许可证。 目前该工具支持 Go Modules、NPM package" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/project/google-deps/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2021-07-11T22:10:00+08:00" />
-<meta property="article:modified_time" content="2021-07-11T22:10:00+08:00" />
+<meta property="article:published_time" content="2021-07-11T22:10:00&#43;08:00" />
+<meta property="article:modified_time" content="2021-07-11T22:10:00&#43;08:00" />
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="这个工具真好：看看你的Go项目依赖有无漏洞"/>
-<meta name="twitter:description" content="大家好，我是 polarisxu。 发现了一个好工具，推荐给大家！ https://deps.dev/ ，这是 Google 新出的一个实验性工具，命名为：Open Source Insights，它能让你更了解你的项目依赖。 通过这个网站，你可以查询任意开源项目的依赖情况，还包括依赖的依赖，可以看到完整的依赖关系图，而且可以看到它们的许可证。 目前该工具支持 Go Modules、NPM packages、Java 的Mavan 和 Rust 的 C"/>
+<meta name="twitter:description" content="大家好，我是 polarisxu。 发现了一个好工具，推荐给大家！ https://deps.dev/，这是 Google 新出的一个实验性工具，命名为：Open Source Insights，它能让你更了解你的项目依赖。 通过这个网站，你可以查询任意开源项目的依赖情况，还包括依赖的依赖，可以看到完整的依赖关系图，而且可以看到它们的许可证。 目前该工具支持 Go Modules、NPM package"/>
 
 	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -30,7 +30,7 @@
 	<link rel="shortcut icon" href="/favicon.ico">
 
 	<title>这个工具真好：看看你的Go项目依赖有无漏洞</title>
-	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.f74778e3020c87c304fb5982e09b92ba63a5c7f202996d4c7283d6057acfe9c1.css" integrity="sha256-90d44wIMh8ME+1mC4JuSumOlx/ICmW1McoPWBXrP6cE=" crossorigin="anonymous">
 	
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/styles.css">
@@ -79,8 +79,7 @@
 			<div class="content">
 				<p>大家好，我是 polarisxu。</p>
 <p>发现了一个好工具，推荐给大家！</p>
-<p><a href="https://deps.dev/" target="_blank" rel="noopener">https://deps.dev/</a>
-，这是 Google 新出的一个实验性工具，命名为：Open Source Insights，它能让你更了解你的项目依赖。</p>
+<p><a href="https://deps.dev/">https://deps.dev/</a>，这是 Google 新出的一个实验性工具，命名为：Open Source Insights，它能让你更了解你的项目依赖。</p>
 <p>通过这个网站，你可以查询任意开源项目的依赖情况，还包括依赖的依赖，可以看到完整的依赖关系图，而且可以看到它们的许可证。</p>
 <p>目前该工具支持 Go Modules、NPM packages、Java 的Mavan 和 Rust 的 Cargo，将来可能还会支持 .Net 的 NuGet 和 Python 的 PyPI。</p>
 <p><p class="md__image">
@@ -89,8 +88,7 @@
 </p>
 </p>
 <p>以 Go 语言中文网的源码为例，看看使用情况。</p>
-<p>输入包名：github.com/studygolang/studygolang，<a href="https://deps.dev/go/github.com%2Fstudygolang%2Fstudygolang" target="_blank" rel="noopener">https://deps.dev/go/github.com%2Fstudygolang%2Fstudygolang</a>
- 结果如下：</p>
+<p>输入包名：github.com/studygolang/studygolang，<a href="https://deps.dev/go/github.com%2Fstudygolang%2Fstudygolang">https://deps.dev/go/github.com%2Fstudygolang%2Fstudygolang</a> 结果如下：</p>
 <p><p class="md__image">
   <img src="../imgs/deps02.png"
     alt=""  />
@@ -110,8 +108,7 @@
     alt=""  />
 </p>
 </p>
-<p>gjson 1.6.3 及以下版本存在这个漏洞，具体信息来源：<a href="https://github.com/tidwall/gjson/issues/192" target="_blank" rel="noopener">https://github.com/tidwall/gjson/issues/192</a>
-，由于不正确的边界检查，恶意构造的 JSON 对象可能会引起越界 panic。如果解析用户输入，这可能被用作分布式拒绝服务攻击。</p>
+<p>gjson 1.6.3 及以下版本存在这个漏洞，具体信息来源：<a href="https://github.com/tidwall/gjson/issues/192">https://github.com/tidwall/gjson/issues/192</a>，由于不正确的边界检查，恶意构造的 JSON 对象可能会引起越界 panic。如果解析用户输入，这可能被用作分布式拒绝服务攻击。</p>
 <p>根据这个提示应该升级我们的依赖，修复漏洞。</p>
 <p>在 Dependencies 标签可以看到项目依赖，支持表格方式和图表方式查看依赖。在 Dependents 标签可以看到哪些项目依赖了当前项目。</p>
 <p>赶紧看看你在使用的开源项目有无安全漏洞，会不会有安全隐患。比如 Gin 项目就有安全漏洞：</p>
@@ -123,7 +120,7 @@
 
 			</div><div class="content">
 	<br>
-	<img src="https://static.studygolang.com/static/img/polarisxu-qrcode-soso-s.png">
+	<img src="https://static.golangjob.cn/static/img/polarisxu-qrcode-soso-s.png">
 </div>
 
 <div class="related-posts thin">
@@ -148,7 +145,7 @@
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://polarisxu.studygolang.com/tags/go">Go</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/%E5%B7%A5%E5%85%B7">工具</a></span>
 				</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>597 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>613 字</p>
 				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2021-07-11 22:10 &#43;0800</p>
 			</footer>
 		</article>

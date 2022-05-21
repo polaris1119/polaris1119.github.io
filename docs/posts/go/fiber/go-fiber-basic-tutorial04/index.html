@@ -8,15 +8,15 @@
 	<meta name="theme-color" content="#fcfcfc">
 	<meta name="msapplication-TileColor" content="#fcfcfc">
 <meta itemprop="name" content="Go Fiber 框架系列教程 04：测试应用">
-<meta itemprop="description" content="大家好，我是 polarisxu。 实际项目中，大家经常不会对 Web API 写单元测试。Go 标准库不仅有 testing 包支持普通单元测试，还有 net/http/httptest 包支持 HTTP 的测试。 本文虽然是测试 Fiber 应用程序，但对其他的框架也适用。 01 如何测试 Web API 的单元测试如何进行？ 本节介绍的测试方法主要是验证请求返回的 HTTP 状态码是否符合预期。 如果返回的状态码是 200 OK，那么表示这个测试用例成功（Pass），如果返回的状态码是 404"><meta itemprop="datePublished" content="2021-10-06T22:30:00+08:00" />
-<meta itemprop="dateModified" content="2021-10-06T22:30:00+08:00" />
+<meta itemprop="description" content="大家好，我是 polarisxu。 实际项目中，大家经常不会对 Web API 写单元测试。Go 标准库不仅有 testing 包支持普通单元测试，还有 net/http/httptest 包支持 HTTP 的测试。 本文虽然是测试 Fiber 应用程序，但对其他的框架也适用。 01 如何测试 Web API 的单元测试如何进行？ 本节介绍的测试方法主要是验证请求返回的 HTTP 状态码是否符合预期。 如果返回的状态码是 200 OK，那么表示这个测试用例成功（Pass），如果返回的状态码是 404"><meta itemprop="datePublished" content="2021-10-06T22:30:00&#43;08:00" />
+<meta itemprop="dateModified" content="2021-10-06T22:30:00&#43;08:00" />
 <meta itemprop="wordCount" content="719">
 <meta itemprop="keywords" content="Go,Fiber," /><meta property="og:title" content="Go Fiber 框架系列教程 04：测试应用" />
 <meta property="og:description" content="大家好，我是 polarisxu。 实际项目中，大家经常不会对 Web API 写单元测试。Go 标准库不仅有 testing 包支持普通单元测试，还有 net/http/httptest 包支持 HTTP 的测试。 本文虽然是测试 Fiber 应用程序，但对其他的框架也适用。 01 如何测试 Web API 的单元测试如何进行？ 本节介绍的测试方法主要是验证请求返回的 HTTP 状态码是否符合预期。 如果返回的状态码是 200 OK，那么表示这个测试用例成功（Pass），如果返回的状态码是 404" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/fiber/go-fiber-basic-tutorial04/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2021-10-06T22:30:00+08:00" />
-<meta property="article:modified_time" content="2021-10-06T22:30:00+08:00" />
+<meta property="article:published_time" content="2021-10-06T22:30:00&#43;08:00" />
+<meta property="article:modified_time" content="2021-10-06T22:30:00&#43;08:00" />
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Go Fiber 框架系列教程 04：测试应用"/>
@@ -30,7 +30,7 @@
 	<link rel="shortcut icon" href="/favicon.ico">
 
 	<title>Go Fiber 框架系列教程 04：测试应用</title>
-	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.f74778e3020c87c304fb5982e09b92ba63a5c7f202996d4c7283d6057acfe9c1.css" integrity="sha256-90d44wIMh8ME+1mC4JuSumOlx/ICmW1McoPWBXrP6cE=" crossorigin="anonymous">
 	
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/styles.css">
@@ -93,7 +93,7 @@
 </p>
 </p>
 <p>点击它会自动创建 main_test.go 文件，并生成类似下面的代码：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="s">&#34;testing&#34;</span>
 
@@ -111,12 +111,12 @@
 <span class="p">}</span>
 </code></pre></div><h2 id="03-动手写单元测试">03 动手写单元测试<a href="#03-动手写单元测试" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>动手之前，需要先介绍下 Fiber 中专门针对测试提供的方法：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// Test is used for internal debugging by passing a *http.Request.
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// Test is used for internal debugging by passing a *http.Request.
 </span><span class="c1">// Timeout is optional and defaults to 1s, -1 will disable it completely.
 </span><span class="c1"></span><span class="kd">func</span> <span class="p">(</span><span class="nx">app</span> <span class="o">*</span><span class="nx">App</span><span class="p">)</span> <span class="nf">Test</span><span class="p">(</span><span class="nx">req</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">,</span> <span class="nx">msTimeout</span> <span class="o">...</span><span class="kt">int</span><span class="p">)</span> <span class="p">(</span><span class="nx">resp</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Response</span><span class="p">,</span> <span class="nx">err</span> <span class="kt">error</span><span class="p">)</span>
 </code></pre></div><p>该方法接收一个 <code>*http.Request</code>，返回 <code>*http.Response</code>，通过这个 Response 可以获得 HTTP StatusCode。</p>
 <p>待测试的程序如下：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// main.go
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// main.go
 </span><span class="c1"></span><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
@@ -135,7 +135,7 @@
 	<span class="nx">app</span><span class="p">.</span><span class="nf">Listen</span><span class="p">(</span><span class="s">&#34;:3000&#34;</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre></div><p>测试程序如下：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
 	<span class="s">&#34;net/http/httptest&#34;</span>
@@ -176,7 +176,7 @@
 <span class="p">}</span>
 </code></pre></div><p>我们还用了 <code>github.com/stretchr/testify</code> 库，这是一个辅助测试的库，assert 是它的子包，用于进行断言。</p>
 <p>然后运行如下命令测试：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ go <span class="nb">test</span> -v .
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ go <span class="nb">test</span> -v .
 <span class="o">===</span> RUN   TestHelloRoute
 --- PASS: TestHelloRoute <span class="o">(</span>0.00s<span class="o">)</span>
 PASS
@@ -186,7 +186,7 @@ ok  	github.com/polaris1119/fiber-example
 
 			</div><div class="content">
 	<br>
-	<img src="https://static.studygolang.com/static/img/polarisxu-qrcode-soso-s.png">
+	<img src="https://static.golangjob.cn/static/img/polarisxu-qrcode-soso-s.png">
 </div>
 
 <div class="related-posts thin">

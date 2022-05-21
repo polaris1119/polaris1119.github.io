@@ -23,7 +23,7 @@
       <pubDate>Wed, 28 Apr 2021 18:30:00 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/posts/go/book/go-gui-book/</guid>
-      <description>大家好，我是站长 polarisxu。 最近看到一个视频：Building a Chess GUI with Fyne ，讲解如何使用 Go 构建一个完整的国际象棋应用程序。这个视频演示了如何构建 UI，添加动画，交互和拖放。所有这些都基于 Fyne 这个库构建，可以安装到桌面和移动设备！这个国际象棋的项目地址：https://github.com/andydotxyz/chess 。 出于好奇，我深挖了一下，访问了视</description>
+      <description>大家好，我是站长 polarisxu。 最近看到一个视频：Building a Chess GUI with Fyne ，讲解如何使用 Go 构建一个完整的国际象棋应用程序。这个视频演示了如何构建 UI，添加动画，交互和拖放。所有这些都基于 Fyne 这个库构建，可以安装到桌面和移动设备！这个国际象棋的项目地址：https://github.com/andydotxyz/chess。 出于好奇，我深挖了一下，访问了视</description>
     </item>
     
   </channel>

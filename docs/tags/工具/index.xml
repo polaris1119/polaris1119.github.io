@@ -14,7 +14,7 @@
       <pubDate>Sat, 18 Dec 2021 13:00:00 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/posts/devtool/dev-transform/</guid>
-      <description>大家好，我是 polarisxu。 上次推荐的 「Go网址导航」，其中收录了一项：转换器。 网址是：https://transform.tools/ 。 这是一个开源项目，项目地址：https://github.com/ritz078/transform ，目前 Star 数 2.8k+。 这个网站将转换工具分成了几类： SVG HTML JSON JSON Schema CSS JavaScript GraphQL JSON-LD TypeScript Flow Others 其中有一些对 Gopher 比较有用，这里简单列举介绍下</description>
+      <description>大家好，我是 polarisxu。 上次推荐的 「Go网址导航」，其中收录了一项：转换器。 网址是：https://transform.tools/。 这是一个开源项目，项目地址：https://github.com/ritz078/transform，目前 Star 数 2.8k+。 这个网站将转换工具分成了几类： SVG HTML JSON JSON Schema CSS JavaScript GraphQL JSON-LD TypeScript Flow Others 其中有一些对 Gopher 比较有用，这里简单列举介绍下</description>
     </item>
     
     <item>
@@ -32,7 +32,7 @@
       <pubDate>Sun, 11 Jul 2021 22:10:00 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/posts/go/project/google-deps/</guid>
-      <description>大家好，我是 polarisxu。 发现了一个好工具，推荐给大家！ https://deps.dev/ ，这是 Google 新出的一个实验性工具，命名为：Open Source Insights，它能让你更了解你的项目依赖。 通过这个网站，你可以查询任意开源项目的依赖情况，还包括依赖的依赖，可以看到完整的依赖关系图，而且可以看到它们的许可证。 目前该工具支持 Go Modules、NPM packages、Java 的Mavan 和 Rust 的 C</description>
+      <description>大家好，我是 polarisxu。 发现了一个好工具，推荐给大家！ https://deps.dev/，这是 Google 新出的一个实验性工具，命名为：Open Source Insights，它能让你更了解你的项目依赖。 通过这个网站，你可以查询任意开源项目的依赖情况，还包括依赖的依赖，可以看到完整的依赖关系图，而且可以看到它们的许可证。 目前该工具支持 Go Modules、NPM package</description>
     </item>
     
     <item>

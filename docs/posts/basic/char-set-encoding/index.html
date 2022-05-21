@@ -8,15 +8,15 @@
 	<meta name="theme-color" content="#fcfcfc">
 	<meta name="msapplication-TileColor" content="#fcfcfc">
 <meta itemprop="name" content="Unicode 和 UTF-8 是什么关系？本文为你解惑">
-<meta itemprop="description" content="十几年前，国内 UTF-8 还不太流行，新手开发过程中，乱码问题是很常见的。记得我刚毕业那会，公司的系统是这样的：数据库 MySQL 使用的是 Latin-1 编码（ISO8859-1），程序源码使用的是 GBK，这样的情况，乱码真是满天飞~好在对数据库操作做了封装，编码问题在中间层处理了。那时候听到关于乱码问题的一个终极解决方案是：保证各个地方编码一致。 现如今，Unicode 相当普及，中文使用 UTF-8 编"><meta itemprop="datePublished" content="2021-01-21T22:40:00+08:00" />
-<meta itemprop="dateModified" content="2021-01-21T22:40:00+08:00" />
+<meta itemprop="description" content="十几年前，国内 UTF-8 还不太流行，新手开发过程中，乱码问题是很常见的。记得我刚毕业那会，公司的系统是这样的：数据库 MySQL 使用的是 Latin-1 编码（ISO8859-1），程序源码使用的是 GBK，这样的情况，乱码真是满天飞~好在对数据库操作做了封装，编码问题在中间层处理了。那时候听到关于乱码问题的一个终极解决方案是：保证各个地方编码一致。 现如今，Unicode 相当普及，中文使用 UTF-8 编"><meta itemprop="datePublished" content="2021-01-21T22:40:00&#43;08:00" />
+<meta itemprop="dateModified" content="2021-01-21T22:40:00&#43;08:00" />
 <meta itemprop="wordCount" content="5332">
 <meta itemprop="keywords" content="Unicode,UTF8," /><meta property="og:title" content="Unicode 和 UTF-8 是什么关系？本文为你解惑" />
 <meta property="og:description" content="十几年前，国内 UTF-8 还不太流行，新手开发过程中，乱码问题是很常见的。记得我刚毕业那会，公司的系统是这样的：数据库 MySQL 使用的是 Latin-1 编码（ISO8859-1），程序源码使用的是 GBK，这样的情况，乱码真是满天飞~好在对数据库操作做了封装，编码问题在中间层处理了。那时候听到关于乱码问题的一个终极解决方案是：保证各个地方编码一致。 现如今，Unicode 相当普及，中文使用 UTF-8 编" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://polarisxu.studygolang.com/posts/basic/char-set-encoding/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2021-01-21T22:40:00+08:00" />
-<meta property="article:modified_time" content="2021-01-21T22:40:00+08:00" />
+<meta property="article:published_time" content="2021-01-21T22:40:00&#43;08:00" />
+<meta property="article:modified_time" content="2021-01-21T22:40:00&#43;08:00" />
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Unicode 和 UTF-8 是什么关系？本文为你解惑"/>
@@ -30,7 +30,7 @@
 	<link rel="shortcut icon" href="/favicon.ico">
 
 	<title>Unicode 和 UTF-8 是什么关系？本文为你解惑</title>
-	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.f74778e3020c87c304fb5982e09b92ba63a5c7f202996d4c7283d6057acfe9c1.css" integrity="sha256-90d44wIMh8ME+1mC4JuSumOlx/ICmW1McoPWBXrP6cE=" crossorigin="anonymous">
 	
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/styles.css">
@@ -111,8 +111,7 @@
 <blockquote>
 <p>Unicode provides a unique number for every character, no matter what the platform, program, or language is.</p>
 </blockquote>
-<p>即 Unicode 为每一个字符提供了一个唯一的数字编码（代号），叫做 Code Point（码点）。这里可以查找你要查询某个字符的码点（Code Point）：<a href="https://www.unicode.org/cgi-bin/GetUnihanData.pl" target="_blank" rel="noopener">https://www.unicode.org/cgi-bin/GetUnihanData.pl</a>
-。注意这里的码点不是字符编码，只是字符集而已。</p>
+<p>即 Unicode 为每一个字符提供了一个唯一的数字编码（代号），叫做 Code Point（码点）。这里可以查找你要查询某个字符的码点（Code Point）：<a href="https://www.unicode.org/cgi-bin/GetUnihanData.pl">https://www.unicode.org/cgi-bin/GetUnihanData.pl</a>。注意这里的码点不是字符编码，只是字符集而已。</p>
 <p>所以，Unicode 字符集一个最主要的工作就是维护这样一个表，可以把它想象成是一个数据库表，里面存储着每一个字符对应的唯一 ID（即 Code Point），统一用 U+XXXX 来表示（X 为 16 进制的字符，因为字符很多，并不一定所有的字符都是 4 个 16 进制数，比如笑哭的 Emoji 表情，Code Point 是 U+1F602），如 「徐」U+5F90、「新」U+65B0。现在这个数据表已经拥有 100 多万的字符，还在不停的更新。</p>
 <p>为什么会出现 Unicode 呢？因为之前的编码方式，大多只考虑自己国家，不同国家的编码方式不同，导致使用中国 GBK 编码的文档，在日本用本地编码打开就乱码了。标准总是在混乱中诞生的，于是一些国际组织制定出了全球统一的编码格式。这就是 Unicode。</p>
 <blockquote>
@@ -254,17 +253,16 @@
 <li>unicode/utf8：用于处理 UTF-8 编码的文本，提供一些常量和函数，包括在 rune（码点） 和 UTF-8 字节序列之间的转换。</li>
 <li>unicode/utf16：函数比较少，主要是 UTF-16 序列的编码和解码。</li>
 </ul>
-<p>具体函数不讲解了，大家可以看标准库文档或通过我的开源书阅读相关章节：<a href="https://github.com/polaris1119/The-Golang-Standard-Library-by-Example" target="_blank" rel="noopener">https://github.com/polaris1119/The-Golang-Standard-Library-by-Example</a>
-。</p>
+<p>具体函数不讲解了，大家可以看标准库文档或通过我的开源书阅读相关章节：<a href="https://github.com/polaris1119/The-Golang-Standard-Library-by-Example">https://github.com/polaris1119/The-Golang-Standard-Library-by-Example</a>。</p>
 <p>着重介绍下 Go 中字符串的写法。</p>
 <p>在 Go 语言中，字符串字面值有 4 种写法，比如「徐新华」可以这么写：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="nx">s1</span> <span class="o">:=</span> <span class="s">&#34;徐新华&#34;</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">s1</span> <span class="o">:=</span> <span class="s">&#34;徐新华&#34;</span>
 <span class="nx">s2</span> <span class="o">:=</span> <span class="s">&#34;\u5F90\u65B0\u534E&#34;</span>
 <span class="nx">s3</span> <span class="o">:=</span> <span class="s">&#34;\U00005F90\U000065B0\U0000534E&#34;</span>
 <span class="nx">s4</span> <span class="o">:=</span> <span class="s">&#34;\xe5\xbe\x90\xe6\x96\xb0\xe5\x8d\x8e&#34;</span>
 </code></pre></div><p>简单来生活就是 \u 紧跟四个十六进制数，\U 紧跟八个十六进制数。其中 \u 或 \U 代表后面是 Unicode 码点。而 \x 紧跟两个十六进制数，这些十六进制不是 Unicode 码点，而是 UTF-8 编码。</p>
 <p>下面的代码有利于你的理解：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
 	<span class="s">&#34;fmt&#34;</span>
@@ -293,15 +291,14 @@
 	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">s4</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre></div><p>运行结果：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">字符	Unicode码点	UTF-8编码十六进制	UTF-8编码二进制
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">字符	Unicode码点	UTF-8编码十六进制	UTF-8编码二进制
 <span class="s1">&#39;徐&#39;</span>	U+5F90		E5BE90		<span class="o">[</span><span class="m">11100101</span> <span class="m">10111110</span> 10010000<span class="o">]</span>
 <span class="s1">&#39;新&#39;</span>	U+65B0		E696B0		<span class="o">[</span><span class="m">11100110</span> <span class="m">10010110</span> 10110000<span class="o">]</span>
 <span class="s1">&#39;华&#39;</span>	U+534E		E58D8E		<span class="o">[</span><span class="m">11100101</span> <span class="m">10001101</span> 10001110<span class="o">]</span>
 徐新华
 徐新华
 徐新华
-</code></pre></div><p>此外，关于字符串其他方面的处理，比如编码转换等，可以到 <a href="https://pkg.go.dev/golang.org/x/text" target="_blank" rel="noopener">https://pkg.go.dev/golang.org/x/text</a>
- 里找。</p>
+</code></pre></div><p>此外，关于字符串其他方面的处理，比如编码转换等，可以到 <a href="https://pkg.go.dev/golang.org/x/text">https://pkg.go.dev/golang.org/x/text</a> 里找。</p>
 <h2 id="7大小端问题little-endian-和-big-endian">7、大小端问题（Little endian 和 Big endian）<a href="#7大小端问题little-endian-和-big-endian" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>最后聊一下大小端的问题。</p>
 <p>一个字符使用多字节存储时，涉及到哪个在前哪个在后。以汉字「徐」为例，Unicode 码点是 5F90，需要用两个字节存储，一个字节是<code>5F</code>，另一个字节是<code>90</code>。存储的时候，<code>5F</code>在前，<code>90</code> 在后，这就是 Big endian 方式；<code>90</code>在前，<code>5F</code>在后，这是 Little endian 方式。</p>
@@ -317,19 +314,15 @@
 <p>你可以通过 hexdump 工具查看文件开始的字符。</p>
 <h2 id="8参考文献">8、参考文献<a href="#8参考文献" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <ul>
-<li><a href="http://www.ruanyifeng.com/blog/2007/10/ascii_unicode_and_utf-8.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2007/10/ascii_unicode_and_utf-8.html</a>
-</li>
-<li><a href="https://books.studygolang.com/gopl-zh/ch3/ch3-05.html" target="_blank" rel="noopener">https://books.studygolang.com/gopl-zh/ch3/ch3-05.html</a>
-</li>
-<li><a href="https://blog.csdn.net/hezh1994/article/details/78899683" target="_blank" rel="noopener">https://blog.csdn.net/hezh1994/article/details/78899683</a>
-</li>
-<li><a href="https://blog.csdn.net/weixin_39640298/article/details/84074498" target="_blank" rel="noopener">https://blog.csdn.net/weixin_39640298/article/details/84074498</a>
-</li>
+<li><a href="http://www.ruanyifeng.com/blog/2007/10/ascii_unicode_and_utf-8.html">http://www.ruanyifeng.com/blog/2007/10/ascii_unicode_and_utf-8.html</a></li>
+<li><a href="https://books.studygolang.com/gopl-zh/ch3/ch3-05.html">https://books.studygolang.com/gopl-zh/ch3/ch3-05.html</a></li>
+<li><a href="https://blog.csdn.net/hezh1994/article/details/78899683">https://blog.csdn.net/hezh1994/article/details/78899683</a></li>
+<li><a href="https://blog.csdn.net/weixin_39640298/article/details/84074498">https://blog.csdn.net/weixin_39640298/article/details/84074498</a></li>
 </ul>
 
 			</div><div class="content">
 	<br>
-	<img src="https://static.studygolang.com/static/img/polarisxu-qrcode-soso-s.png">
+	<img src="https://static.golangjob.cn/static/img/polarisxu-qrcode-soso-s.png">
 </div>
 
 			<hr class="post-end">

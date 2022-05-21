@@ -8,19 +8,19 @@
 	<meta name="theme-color" content="#fcfcfc">
 	<meta name="msapplication-TileColor" content="#fcfcfc">
 <meta itemprop="name" content="Go 1.18 中的 any 是什么？">
-<meta itemprop="description" content="大家好，我是 polarisxu。 Go 1.18 因为泛型引入 any，这实际上是 interface{} 的别名： type any = interface{} 以下代码虽然不是泛型，但用 Go 1.18 可以正常运行，证明 any 和 interface{} 是一样的：（这里可以在线运行：https://gotipplay.golang.org/p/dPeNhe-7nkA ） package main import ( &#34;fmt&#34; ) // 这里的 any 并非泛型的约束，而是类型 func test(x any) any { return x } func main() { fmt.Println(test(&#34;a&#34;)) } 泛型中，any 换为 interface{} 也可以：（这里"><meta itemprop="datePublished" content="2021-12-02T20:30:00+08:00" />
-<meta itemprop="dateModified" content="2021-12-02T20:30:00+08:00" />
+<meta itemprop="description" content="大家好，我是 polarisxu。 Go 1.18 因为泛型引入 any，这实际上是 interface{} 的别名： type any = interface{} 以下代码虽然不是泛型，但用 Go 1.18 可以正常运行，证明 any 和 interface{} 是一样的：（这里可以在线运行：https://gotipplay.golang.org/p/dPeNhe-7nkA） package main import ( &#34;fmt&#34; ) // 这里的 any 并非泛型的约束，而是类型 func test(x any) any { return x } func main() { fmt.Println(test(&#34;a&#34;)) } 泛型中，any 换为 interface{} 也可以：（这里"><meta itemprop="datePublished" content="2021-12-02T20:30:00&#43;08:00" />
+<meta itemprop="dateModified" content="2021-12-02T20:30:00&#43;08:00" />
 <meta itemprop="wordCount" content="376">
 <meta itemprop="keywords" content="Go,泛型,any," /><meta property="og:title" content="Go 1.18 中的 any 是什么？" />
-<meta property="og:description" content="大家好，我是 polarisxu。 Go 1.18 因为泛型引入 any，这实际上是 interface{} 的别名： type any = interface{} 以下代码虽然不是泛型，但用 Go 1.18 可以正常运行，证明 any 和 interface{} 是一样的：（这里可以在线运行：https://gotipplay.golang.org/p/dPeNhe-7nkA ） package main import ( &#34;fmt&#34; ) // 这里的 any 并非泛型的约束，而是类型 func test(x any) any { return x } func main() { fmt.Println(test(&#34;a&#34;)) } 泛型中，any 换为 interface{} 也可以：（这里" />
+<meta property="og:description" content="大家好，我是 polarisxu。 Go 1.18 因为泛型引入 any，这实际上是 interface{} 的别名： type any = interface{} 以下代码虽然不是泛型，但用 Go 1.18 可以正常运行，证明 any 和 interface{} 是一样的：（这里可以在线运行：https://gotipplay.golang.org/p/dPeNhe-7nkA） package main import ( &#34;fmt&#34; ) // 这里的 any 并非泛型的约束，而是类型 func test(x any) any { return x } func main() { fmt.Println(test(&#34;a&#34;)) } 泛型中，any 换为 interface{} 也可以：（这里" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/dynamic/go1.18-any/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2021-12-02T20:30:00+08:00" />
-<meta property="article:modified_time" content="2021-12-02T20:30:00+08:00" />
+<meta property="article:published_time" content="2021-12-02T20:30:00&#43;08:00" />
+<meta property="article:modified_time" content="2021-12-02T20:30:00&#43;08:00" />
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Go 1.18 中的 any 是什么？"/>
-<meta name="twitter:description" content="大家好，我是 polarisxu。 Go 1.18 因为泛型引入 any，这实际上是 interface{} 的别名： type any = interface{} 以下代码虽然不是泛型，但用 Go 1.18 可以正常运行，证明 any 和 interface{} 是一样的：（这里可以在线运行：https://gotipplay.golang.org/p/dPeNhe-7nkA ） package main import ( &#34;fmt&#34; ) // 这里的 any 并非泛型的约束，而是类型 func test(x any) any { return x } func main() { fmt.Println(test(&#34;a&#34;)) } 泛型中，any 换为 interface{} 也可以：（这里"/>
+<meta name="twitter:description" content="大家好，我是 polarisxu。 Go 1.18 因为泛型引入 any，这实际上是 interface{} 的别名： type any = interface{} 以下代码虽然不是泛型，但用 Go 1.18 可以正常运行，证明 any 和 interface{} 是一样的：（这里可以在线运行：https://gotipplay.golang.org/p/dPeNhe-7nkA） package main import ( &#34;fmt&#34; ) // 这里的 any 并非泛型的约束，而是类型 func test(x any) any { return x } func main() { fmt.Println(test(&#34;a&#34;)) } 泛型中，any 换为 interface{} 也可以：（这里"/>
 
 	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -30,7 +30,7 @@
 	<link rel="shortcut icon" href="/favicon.ico">
 
 	<title>Go 1.18 中的 any 是什么？</title>
-	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.f74778e3020c87c304fb5982e09b92ba63a5c7f202996d4c7283d6057acfe9c1.css" integrity="sha256-90d44wIMh8ME+1mC4JuSumOlx/ICmW1McoPWBXrP6cE=" crossorigin="anonymous">
 	
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/styles.css">
@@ -79,10 +79,9 @@
 			<div class="content">
 				<p>大家好，我是 polarisxu。</p>
 <p>Go 1.18 因为泛型引入 any，这实际上是 interface{} 的别名：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">any</span> <span class="p">=</span> <span class="kd">interface</span><span class="p">{}</span>
-</code></pre></div><p>以下代码虽然不是泛型，但用 Go 1.18 可以正常运行，证明 any 和 interface{} 是一样的：（这里可以在线运行：<a href="https://gotipplay.golang.org/p/dPeNhe-7nkA" target="_blank" rel="noopener">https://gotipplay.golang.org/p/dPeNhe-7nkA</a>
-）</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">any</span> <span class="p">=</span> <span class="kd">interface</span><span class="p">{}</span>
+</code></pre></div><p>以下代码虽然不是泛型，但用 Go 1.18 可以正常运行，证明 any 和 interface{} 是一样的：（这里可以在线运行：<a href="https://gotipplay.golang.org/p/dPeNhe-7nkA">https://gotipplay.golang.org/p/dPeNhe-7nkA</a>）</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
 	<span class="s">&#34;fmt&#34;</span>
@@ -96,9 +95,8 @@
 <span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
 	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nf">test</span><span class="p">(</span><span class="s">&#34;a&#34;</span><span class="p">))</span>
 <span class="p">}</span>
-</code></pre></div><p>泛型中，any 换为 interface{} 也可以：（这里可以在线运行：<a href="https://gotipplay.golang.org/p/wKL3rKuldQX" target="_blank" rel="noopener">https://gotipplay.golang.org/p/wKL3rKuldQX</a>
-）</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+</code></pre></div><p>泛型中，any 换为 interface{} 也可以：（这里可以在线运行：<a href="https://gotipplay.golang.org/p/wKL3rKuldQX">https://gotipplay.golang.org/p/wKL3rKuldQX</a>）</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
 	<span class="s">&#34;fmt&#34;</span>
@@ -117,11 +115,11 @@
 </code></pre></div><p>你也可以本地使用 tip 运行验证下。</p>
 <p>可见，之所以引入 any 关键字，主要是让泛型修饰时短一点，少一些括号。any 比 interface{} 会更清爽~</p>
 <p>此外，项目中如果想要做替换，可以通过 gofmt 将 interface{} 改为 any：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">gofmt -w -r <span class="s1">&#39;interface{} -&gt; any&#39;</span> ./...
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">gofmt -w -r <span class="s1">&#39;interface{} -&gt; any&#39;</span> ./...
 </code></pre></div>
 			</div><div class="content">
 	<br>
-	<img src="https://static.studygolang.com/static/img/polarisxu-qrcode-soso-s.png">
+	<img src="https://static.golangjob.cn/static/img/polarisxu-qrcode-soso-s.png">
 </div>
 
 <div class="related-posts thin">

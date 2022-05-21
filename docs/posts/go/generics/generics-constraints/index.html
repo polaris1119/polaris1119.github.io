@@ -8,15 +8,15 @@
 	<meta name="theme-color" content="#fcfcfc">
 	<meta name="msapplication-TileColor" content="#fcfcfc">
 <meta itemprop="name" content="Go泛型系列：Go1.18 类型约束那些事">
-<meta itemprop="description" content="大家好，我是 polarisxu。 上篇《Go泛型系列：提前掌握Go泛型的基本使用》 简单讲解了泛型中的约束，但约束相关内容远不止那些，本文介绍更多约束相关内容。 请安装最新的 tip 版本，方便验证本文的内容。当然，也可以通过 https://gotipplay.golang.org/ 在线验证。 01 语法变更 上次提到，定义约束的语法类似这样： type Addable interface { type int, int8, int16, int32, int64, uint, uint8, uint16, uint32, uint64, uintptr, float32, float64, complex64, complex128, string } 不过目前已经确认，语法改成如下形式： type Addable interface { int |"><meta itemprop="datePublished" content="2021-11-14T20:30:00+08:00" />
-<meta itemprop="dateModified" content="2021-11-14T20:30:00+08:00" />
+<meta itemprop="description" content="大家好，我是 polarisxu。 上篇《Go泛型系列：提前掌握Go泛型的基本使用》 简单讲解了泛型中的约束，但约束相关内容远不止那些，本文介绍更多约束相关内容。 请安装最新的 tip 版本，方便验证本文的内容。当然，也可以通过 https://gotipplay.golang.org/ 在线验证。 01 语法变更 上次提到，定义约束的语法类似这样： type Addable interface { type int, int8, int16, int32, int64, uint, uint8, uint16, uint32, uint64, uintptr, float32, float64, complex64, complex128, string } 不过目前已经确认，语法改成如下形式： type Addable interface { int |"><meta itemprop="datePublished" content="2021-11-14T20:30:00&#43;08:00" />
+<meta itemprop="dateModified" content="2021-11-14T20:30:00&#43;08:00" />
 <meta itemprop="wordCount" content="959">
 <meta itemprop="keywords" content="Go,泛型," /><meta property="og:title" content="Go泛型系列：Go1.18 类型约束那些事" />
 <meta property="og:description" content="大家好，我是 polarisxu。 上篇《Go泛型系列：提前掌握Go泛型的基本使用》 简单讲解了泛型中的约束，但约束相关内容远不止那些，本文介绍更多约束相关内容。 请安装最新的 tip 版本，方便验证本文的内容。当然，也可以通过 https://gotipplay.golang.org/ 在线验证。 01 语法变更 上次提到，定义约束的语法类似这样： type Addable interface { type int, int8, int16, int32, int64, uint, uint8, uint16, uint32, uint64, uintptr, float32, float64, complex64, complex128, string } 不过目前已经确认，语法改成如下形式： type Addable interface { int |" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/generics/generics-constraints/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2021-11-14T20:30:00+08:00" />
-<meta property="article:modified_time" content="2021-11-14T20:30:00+08:00" />
+<meta property="article:published_time" content="2021-11-14T20:30:00&#43;08:00" />
+<meta property="article:modified_time" content="2021-11-14T20:30:00&#43;08:00" />
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Go泛型系列：Go1.18 类型约束那些事"/>
@@ -30,7 +30,7 @@
 	<link rel="shortcut icon" href="/favicon.ico">
 
 	<title>Go泛型系列：Go1.18 类型约束那些事</title>
-	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.f74778e3020c87c304fb5982e09b92ba63a5c7f202996d4c7283d6057acfe9c1.css" integrity="sha256-90d44wIMh8ME+1mC4JuSumOlx/ICmW1McoPWBXrP6cE=" crossorigin="anonymous">
 	
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/styles.css">
@@ -81,23 +81,22 @@
 <p>上篇<a href="https://mp.weixin.qq.com/s/0sdNN7Tlx09Hwtqb-2jlRA" target="_blank" rel="noopener">《Go泛型系列：提前掌握Go泛型的基本使用》</a>
 简单讲解了泛型中的约束，但约束相关内容远不止那些，本文介绍更多约束相关内容。</p>
 <blockquote>
-<p>请安装最新的 tip 版本，方便验证本文的内容。当然，也可以通过 <a href="https://gotipplay.golang.org/" target="_blank" rel="noopener">https://gotipplay.golang.org/</a>
- 在线验证。</p>
+<p>请安装最新的 tip 版本，方便验证本文的内容。当然，也可以通过 <a href="https://gotipplay.golang.org/">https://gotipplay.golang.org/</a> 在线验证。</p>
 </blockquote>
 <h2 id="01-语法变更">01 语法变更<a href="#01-语法变更" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>上次提到，定义约束的语法类似这样：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">Addable</span> <span class="kd">interface</span> <span class="p">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">Addable</span> <span class="kd">interface</span> <span class="p">{</span>
 	<span class="kd">type</span> <span class="kt">int</span><span class="p">,</span> <span class="kt">int8</span><span class="p">,</span> <span class="kt">int16</span><span class="p">,</span> <span class="kt">int32</span><span class="p">,</span> <span class="kt">int64</span><span class="p">,</span> <span class="kt">uint</span><span class="p">,</span> <span class="kt">uint8</span><span class="p">,</span> <span class="kt">uint16</span><span class="p">,</span> <span class="kt">uint32</span><span class="p">,</span> <span class="kt">uint64</span><span class="p">,</span> <span class="kt">uintptr</span><span class="p">,</span> <span class="kt">float32</span><span class="p">,</span> <span class="kt">float64</span><span class="p">,</span> <span class="kt">complex64</span><span class="p">,</span> <span class="kt">complex128</span><span class="p">,</span> <span class="kt">string</span>
 <span class="p">}</span>
 </code></pre></div><p>不过目前已经确认，语法改成如下形式：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">Addable</span> <span class="kd">interface</span> <span class="p">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">Addable</span> <span class="kd">interface</span> <span class="p">{</span>
   <span class="kt">int</span> <span class="p">|</span> <span class="kt">int8</span> <span class="p">|</span> <span class="kt">int16</span> <span class="p">|</span> <span class="kt">int32</span> <span class="p">|</span> <span class="kt">int64</span> <span class="p">|</span> <span class="kt">uint</span> <span class="p">|</span> <span class="kt">uint8</span> <span class="p">|</span> <span class="kt">uint16</span> <span class="p">|</span> <span class="kt">uint32</span> <span class="p">|</span> <span class="kt">uint64</span> <span class="p">|</span> <span class="kt">uintptr</span> <span class="p">|</span> <span class="kt">float32</span> <span class="p">|</span> <span class="kt">float64</span> <span class="p">|</span> <span class="kt">complex64</span> <span class="p">|</span> <span class="kt">complex128</span> <span class="p">|</span> <span class="kt">string</span>
 <span class="p">}</span>
 </code></pre></div><p>对于这样的修改，大家褒贬不一。就语义来说，新的方式 <code>|</code> 有或之意，更贴切，而且少了一个 <code>type</code>，更简洁。</p>
 <h2 id="02-额外用法">02 额外用法<a href="#02-额外用法" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>除了以上提到的优点，新的方式还还有额外的用途，也就是不用每次都定义一个接口约束。</p>
 <p>看一个具体示例：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
 	<span class="s">&#34;fmt&#34;</span>
@@ -117,12 +116,12 @@
 </span><span class="c1">// 3.5
 </span></code></pre></div><p>最后注释的一行代码，会编译报错：<code>string does not satisfy int|float64</code>。</p>
 <p>注意 add 函数的泛型约束：<code>T int|float64</code>。如果约束是逗号分隔，无法采用这种语法：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nx">add</span><span class="p">[</span><span class="nx">T</span> <span class="kt">int</span><span class="p">,</span><span class="kt">float64</span><span class="p">](</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span> <span class="nx">T</span><span class="p">)</span> <span class="nx">T</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nx">add</span><span class="p">[</span><span class="nx">T</span> <span class="kt">int</span><span class="p">,</span><span class="kt">float64</span><span class="p">](</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span> <span class="nx">T</span><span class="p">)</span> <span class="nx">T</span>
 </code></pre></div><p>以上代码显然很不友好，编译器也不好解析。</p>
 <p>采用了 <code>|</code> 后，不需要每次都定义接口约束，可以让代码更少。不过，这种方式建议只在少数类型约束时才适合，否则可读性太差。</p>
 <p>除了以上用法，约束还有一种用法。</p>
 <p>在 Go 语言中，基于某类型定义新类型，有时可能希望泛型约束是某类型的所有衍生类型。看一个具体例子：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
 	<span class="s">&#34;fmt&#34;</span>
@@ -145,11 +144,11 @@
 </span><span class="c1">// abab
 </span><span class="c1">// cdcd
 </span></code></pre></div><p>注意 add 函数的签名：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nx">add</span><span class="p">[</span><span class="nx">T</span> <span class="err">~</span><span class="kt">string</span><span class="p">](</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span> <span class="nx">T</span><span class="p">)</span> <span class="nx">T</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nx">add</span><span class="p">[</span><span class="nx">T</span> <span class="err">~</span><span class="kt">string</span><span class="p">](</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span> <span class="nx">T</span><span class="p">)</span> <span class="nx">T</span>
 </code></pre></div><p>约束 <code>~string</code>  表示支持 string 类型以及底层是 string 类型的类型，因此 MyString 类型值也可以传递给 add。</p>
 <h2 id="03-注意事项">03 注意事项<a href="#03-注意事项" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>约束形式的多样性，导致 Go 泛型语法一下子复杂起来：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// 没有任何约束
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// 没有任何约束
 </span><span class="c1"></span><span class="kd">func</span> <span class="nx">add</span><span class="p">[</span><span class="nx">T</span> <span class="nx">any</span><span class="p">](</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span> <span class="nx">T</span><span class="p">)</span> <span class="nx">T</span>
 <span class="c1">// 约束 Addble (需要单独定义)
 </span><span class="c1"></span><span class="kd">func</span> <span class="nx">add</span><span class="p">[</span><span class="nx">T</span> <span class="nx">Addble</span><span class="p">](</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span> <span class="nx">T</span><span class="p">)</span> <span class="nx">T</span>
@@ -158,7 +157,7 @@
 <span class="c1">// 约束允许底层类型是 string 的类型（包括 string 类型）
 </span><span class="c1"></span><span class="kd">func</span> <span class="nx">add</span><span class="p">[</span><span class="nx">T</span> <span class="err">~</span><span class="kt">string</span><span class="p">](</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span> <span class="nx">T</span><span class="p">)</span> <span class="nx">T</span>
 </code></pre></div><p>在泛型中，有些场景可能想当然可以成立，但结果可能不成立，在使用时需要注意（当然，不排除将来支持）。比如：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nx">MakeChan</span><span class="p">[</span><span class="nx">T</span> <span class="kd">chan</span> <span class="kt">bool</span> <span class="p">|</span> <span class="kd">chan</span> <span class="kt">int</span><span class="p">](</span><span class="nx">c</span> <span class="nx">T</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nx">MakeChan</span><span class="p">[</span><span class="nx">T</span> <span class="kd">chan</span> <span class="kt">bool</span> <span class="p">|</span> <span class="kd">chan</span> <span class="kt">int</span><span class="p">](</span><span class="nx">c</span> <span class="nx">T</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">_</span> <span class="p">=</span> <span class="nb">make</span><span class="p">(</span><span class="nx">T</span><span class="p">)</span> <span class="c1">// 错误
 </span><span class="c1"></span>   <span class="nx">_</span> <span class="p">=</span> <span class="nb">new</span><span class="p">(</span><span class="nx">T</span><span class="p">)</span> <span class="c1">// 正确
 </span><span class="c1"></span>  <span class="nx">_</span> <span class="p">=</span> <span class="nb">len</span><span class="p">(</span><span class="nx">c</span><span class="p">)</span>  <span class="c1">// 正确
@@ -175,7 +174,7 @@
 
 			</div><div class="content">
 	<br>
-	<img src="https://static.studygolang.com/static/img/polarisxu-qrcode-soso-s.png">
+	<img src="https://static.golangjob.cn/static/img/polarisxu-qrcode-soso-s.png">
 </div>
 
 <div class="related-posts thin">

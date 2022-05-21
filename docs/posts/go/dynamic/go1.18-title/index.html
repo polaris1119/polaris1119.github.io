@@ -8,19 +8,19 @@
 	<meta name="theme-color" content="#fcfcfc">
 	<meta name="msapplication-TileColor" content="#fcfcfc">
 <meta itemprop="name" content="Go1.18 快讯：废弃了这个 API">
-<meta itemprop="description" content="大家好，我是 polarisxu。 从 11 月 01 日起，Go1.18 就冻结了，也就是 1.18 的功能已经确定。 今天介绍一个 Go1.18 废弃的 API，同时介绍响应的替代 API。 01 strings.Title 被废弃 查看 go tip 标准库文档，发现 strings.Title 被标识为 deprecated：https://pkg.go.dev/strings@master ，而且该 API 的文档默认被折叠了。 pkg.go.dev 针对废弃的 API 使用了不一样的样式。 该 API 是干什么的？为"><meta itemprop="datePublished" content="2021-11-07T09:00:00+08:00" />
-<meta itemprop="dateModified" content="2021-11-07T09:00:00+08:00" />
+<meta itemprop="description" content="大家好，我是 polarisxu。 从 11 月 01 日起，Go1.18 就冻结了，也就是 1.18 的功能已经确定。 今天介绍一个 Go1.18 废弃的 API，同时介绍响应的替代 API。 01 strings.Title 被废弃 查看 go tip 标准库文档，发现 strings.Title 被标识为 deprecated：https://pkg.go.dev/strings@master，而且该 API 的文档默认被折叠了。 pkg.go.dev 针对废弃的 API 使用了不一样的样式。 该 API 是干什么的？为"><meta itemprop="datePublished" content="2021-11-07T09:00:00&#43;08:00" />
+<meta itemprop="dateModified" content="2021-11-07T09:00:00&#43;08:00" />
 <meta itemprop="wordCount" content="899">
 <meta itemprop="keywords" content="Go,标准库," /><meta property="og:title" content="Go1.18 快讯：废弃了这个 API" />
-<meta property="og:description" content="大家好，我是 polarisxu。 从 11 月 01 日起，Go1.18 就冻结了，也就是 1.18 的功能已经确定。 今天介绍一个 Go1.18 废弃的 API，同时介绍响应的替代 API。 01 strings.Title 被废弃 查看 go tip 标准库文档，发现 strings.Title 被标识为 deprecated：https://pkg.go.dev/strings@master ，而且该 API 的文档默认被折叠了。 pkg.go.dev 针对废弃的 API 使用了不一样的样式。 该 API 是干什么的？为" />
+<meta property="og:description" content="大家好，我是 polarisxu。 从 11 月 01 日起，Go1.18 就冻结了，也就是 1.18 的功能已经确定。 今天介绍一个 Go1.18 废弃的 API，同时介绍响应的替代 API。 01 strings.Title 被废弃 查看 go tip 标准库文档，发现 strings.Title 被标识为 deprecated：https://pkg.go.dev/strings@master，而且该 API 的文档默认被折叠了。 pkg.go.dev 针对废弃的 API 使用了不一样的样式。 该 API 是干什么的？为" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/dynamic/go1.18-title/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2021-11-07T09:00:00+08:00" />
-<meta property="article:modified_time" content="2021-11-07T09:00:00+08:00" />
+<meta property="article:published_time" content="2021-11-07T09:00:00&#43;08:00" />
+<meta property="article:modified_time" content="2021-11-07T09:00:00&#43;08:00" />
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Go1.18 快讯：废弃了这个 API"/>
-<meta name="twitter:description" content="大家好，我是 polarisxu。 从 11 月 01 日起，Go1.18 就冻结了，也就是 1.18 的功能已经确定。 今天介绍一个 Go1.18 废弃的 API，同时介绍响应的替代 API。 01 strings.Title 被废弃 查看 go tip 标准库文档，发现 strings.Title 被标识为 deprecated：https://pkg.go.dev/strings@master ，而且该 API 的文档默认被折叠了。 pkg.go.dev 针对废弃的 API 使用了不一样的样式。 该 API 是干什么的？为"/>
+<meta name="twitter:description" content="大家好，我是 polarisxu。 从 11 月 01 日起，Go1.18 就冻结了，也就是 1.18 的功能已经确定。 今天介绍一个 Go1.18 废弃的 API，同时介绍响应的替代 API。 01 strings.Title 被废弃 查看 go tip 标准库文档，发现 strings.Title 被标识为 deprecated：https://pkg.go.dev/strings@master，而且该 API 的文档默认被折叠了。 pkg.go.dev 针对废弃的 API 使用了不一样的样式。 该 API 是干什么的？为"/>
 
 	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -30,7 +30,7 @@
 	<link rel="shortcut icon" href="/favicon.ico">
 
 	<title>Go1.18 快讯：废弃了这个 API</title>
-	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.f74778e3020c87c304fb5982e09b92ba63a5c7f202996d4c7283d6057acfe9c1.css" integrity="sha256-90d44wIMh8ME+1mC4JuSumOlx/ICmW1McoPWBXrP6cE=" crossorigin="anonymous">
 	
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/styles.css">
@@ -86,8 +86,7 @@
 </p>
 <p>今天介绍一个 Go1.18 废弃的 API，同时介绍响应的替代 API。</p>
 <h2 id="01-stringstitle-被废弃">01 strings.Title 被废弃<a href="#01-stringstitle-被废弃" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-<p>查看 go tip 标准库文档，发现 strings.Title 被标识为 deprecated：<a href="https://pkg.go.dev/strings@master" target="_blank" rel="noopener">https://pkg.go.dev/strings@master</a>
-，而且该 API 的文档默认被折叠了。</p>
+<p>查看 go tip 标准库文档，发现 strings.Title 被标识为 deprecated：<a href="https://pkg.go.dev/strings@master">https://pkg.go.dev/strings@master</a>，而且该 API 的文档默认被折叠了。</p>
 <p><p class="md__image">
   <img src="../imgs/go1.18-title-deprecated.png"
     alt="deprecated"  />
@@ -96,7 +95,7 @@
 <p>pkg.go.dev 针对废弃的 API 使用了不一样的样式。</p>
 <p>该 API 是干什么的？为什么会被标识为废弃？</p>
 <p>看一个例子就知道 strings.Title 的作用了：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
 	<span class="s">&#34;fmt&#34;</span>
@@ -109,7 +108,7 @@
 	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">strings</span><span class="p">.</span><span class="nf">Title</span><span class="p">(</span><span class="s">&#34;хлеб&#34;</span><span class="p">))</span>
 <span class="p">}</span>
 </code></pre></div><p>输出：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">Her Royal Highness
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">Her Royal Highness
 Loud Noises
 Хлеб
 </code></pre></div><p>可见，strings.Title 会将每个单词的首字母变成大写字母。</p>
@@ -117,19 +116,19 @@ Loud Noises
 ，它们的区别是 Unicode 规定的区别。</p>
 <p>那 strings.Title 为什么废弃呢？strings.Title 的规则是使用单词边界，不能正确处理 Unicode 标点。</p>
 <p>比如下面的代码：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">strings</span><span class="p">.</span><span class="nf">Title</span><span class="p">(</span><span class="s">&#34;here comes o&#39;brian&#34;</span><span class="p">))</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">strings</span><span class="p">.</span><span class="nf">Title</span><span class="p">(</span><span class="s">&#34;here comes o&#39;brian&#34;</span><span class="p">))</span>
 </code></pre></div><p>期望输出：<code>Here Comes O'brian</code>，但 strings.Title 的结果是：<code>Here Comes O'Brian</code>。</p>
 <h2 id="02-golangorgxtextcases-包">02 golang.org/x/text/cases 包<a href="#02-golangorgxtextcases-包" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>在 strings.Title 中提到，可以使用 <code>golang.org/x/text/cases</code> 代替 strings.Title，具体来说就是 cases.Title。</p>
 <p>该包提供了通用和特定于语言的 case map，其中有一个 Title 函数，签名如下：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">Title</span><span class="p">(</span><span class="nx">t</span> <span class="nx">language</span><span class="p">.</span><span class="nx">Tag</span><span class="p">,</span> <span class="nx">opts</span> <span class="o">...</span><span class="nx">Option</span><span class="p">)</span> <span class="nx">Caser</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">Title</span><span class="p">(</span><span class="nx">t</span> <span class="nx">language</span><span class="p">.</span><span class="nx">Tag</span><span class="p">,</span> <span class="nx">opts</span> <span class="o">...</span><span class="nx">Option</span><span class="p">)</span> <span class="nx">Caser</span>
 </code></pre></div><p>第一个参数是 language.Tag 类型，表示 BCP 47 种语言标记。它用于指定特定语言或区域设置的实例。所有语言标记值都保证格式良好。</p>
 <p>第二个参数是不定参数，类型是 Option，这是一个函数类型：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">Option</span> <span class="kd">func</span><span class="p">(</span><span class="nx">o</span> <span class="nx">options</span><span class="p">)</span> <span class="nx">options</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">Option</span> <span class="kd">func</span><span class="p">(</span><span class="nx">o</span> <span class="nx">options</span><span class="p">)</span> <span class="nx">options</span>
 </code></pre></div><p>它被用来修改 Caser 的行为，cases 包可以找到相关 Option 的实例。</p>
 <p>cases.Title 的返回类型是 Caser，这是一个结构体，这里我们只关心它的 String 方法，它接收一个字符串，并返回一个经过 Caser 处理过后的字符串。</p>
 <p>所以，针对上文 strings.Title 的场景，可以改为 cases.Title 实现。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="nx">caser</span> <span class="o">:=</span> <span class="nx">cases</span><span class="p">.</span><span class="nf">Title</span><span class="p">(</span><span class="nx">language</span><span class="p">.</span><span class="nx">English</span><span class="p">)</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">caser</span> <span class="o">:=</span> <span class="nx">cases</span><span class="p">.</span><span class="nf">Title</span><span class="p">(</span><span class="nx">language</span><span class="p">.</span><span class="nx">English</span><span class="p">)</span>
 <span class="nx">caser</span><span class="p">.</span><span class="nf">String</span><span class="p">(</span><span class="s">&#34;here comes o&#39;brian&#34;</span><span class="p">)</span>
 </code></pre></div><p>得到的结果是：<code>Here Comes O'brian</code>。</p>
 <h2 id="03-总结">03 总结<a href="#03-总结" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
@@ -137,7 +136,7 @@ Loud Noises
 
 			</div><div class="content">
 	<br>
-	<img src="https://static.studygolang.com/static/img/polarisxu-qrcode-soso-s.png">
+	<img src="https://static.golangjob.cn/static/img/polarisxu-qrcode-soso-s.png">
 </div>
 
 <div class="related-posts thin">

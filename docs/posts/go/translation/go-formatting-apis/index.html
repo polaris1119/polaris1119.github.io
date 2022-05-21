@@ -8,15 +8,15 @@
 	<meta name="theme-color" content="#fcfcfc">
 	<meta name="msapplication-TileColor" content="#fcfcfc">
 <meta itemprop="name" content="Go 格式化 API —  CockroachDB errors 库（第2篇）">
-<meta itemprop="description" content="这篇文章是关于 “CockroachDB errors 库” 的系列文章的第 2 篇，“CockroachDB errors 库”实际上是 Go 的标准 errors 包的通用、开放源码的替代品。 以下面的代码为例： import &#34;fmt&#34; type T struct { x int } func main() { v := T{123} fmt.Println(v) } 这个程序打印 {123}，尽管我们没有教 Go 如何打印我们的 T 类型。它是如何做到这一点的？ printer 的等效性 fmt 包中的逻辑在所有 printer 之间共享，因此以下调用都保证等效： fmt.Print(x) fmt.Printf(&quot;%v&quot;, x) os.Stdout.Write([]byte(fmt.Sprint(x))) os.Stdout.Write([]byte(fmt.Sprintf(&quot;%v&quot;, x))) 换句话说"><meta itemprop="datePublished" content="2020-10-24T11:15:51+08:00" />
-<meta itemprop="dateModified" content="2020-10-24T11:15:51+08:00" />
+<meta itemprop="description" content="这篇文章是关于 “CockroachDB errors 库” 的系列文章的第 2 篇，“CockroachDB errors 库”实际上是 Go 的标准 errors 包的通用、开放源码的替代品。 以下面的代码为例： import &#34;fmt&#34; type T struct { x int } func main() { v := T{123} fmt.Println(v) } 这个程序打印 {123}，尽管我们没有教 Go 如何打印我们的 T 类型。它是如何做到这一点的？ printer 的等效性 fmt 包中的逻辑在所有 printer 之间共享，因此以下调用都保证等效： fmt.Print(x) fmt.Printf(&quot;%v&quot;, x) os.Stdout.Write([]byte(fmt.Sprint(x))) os.Stdout.Write([]byte(fmt.Sprintf(&quot;%v&quot;, x))) 换句话说"><meta itemprop="datePublished" content="2020-10-24T11:15:51&#43;08:00" />
+<meta itemprop="dateModified" content="2020-10-24T11:15:51&#43;08:00" />
 <meta itemprop="wordCount" content="4459">
 <meta itemprop="keywords" content="Go,CockroachDB,error," /><meta property="og:title" content="Go 格式化 API —  CockroachDB errors 库（第2篇）" />
 <meta property="og:description" content="这篇文章是关于 “CockroachDB errors 库” 的系列文章的第 2 篇，“CockroachDB errors 库”实际上是 Go 的标准 errors 包的通用、开放源码的替代品。 以下面的代码为例： import &#34;fmt&#34; type T struct { x int } func main() { v := T{123} fmt.Println(v) } 这个程序打印 {123}，尽管我们没有教 Go 如何打印我们的 T 类型。它是如何做到这一点的？ printer 的等效性 fmt 包中的逻辑在所有 printer 之间共享，因此以下调用都保证等效： fmt.Print(x) fmt.Printf(&quot;%v&quot;, x) os.Stdout.Write([]byte(fmt.Sprint(x))) os.Stdout.Write([]byte(fmt.Sprintf(&quot;%v&quot;, x))) 换句话说" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/translation/go-formatting-apis/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2020-10-24T11:15:51+08:00" />
-<meta property="article:modified_time" content="2020-10-24T11:15:51+08:00" />
+<meta property="article:published_time" content="2020-10-24T11:15:51&#43;08:00" />
+<meta property="article:modified_time" content="2020-10-24T11:15:51&#43;08:00" />
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Go 格式化 API —  CockroachDB errors 库（第2篇）"/>
@@ -30,7 +30,7 @@
 	<link rel="shortcut icon" href="/favicon.ico">
 
 	<title>Go 格式化 API —  CockroachDB errors 库（第2篇）</title>
-	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.f74778e3020c87c304fb5982e09b92ba63a5c7f202996d4c7283d6057acfe9c1.css" integrity="sha256-90d44wIMh8ME+1mC4JuSumOlx/ICmW1McoPWBXrP6cE=" crossorigin="anonymous">
 	
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/styles.css">
@@ -80,7 +80,7 @@
 				<p>这篇文章是关于 <a href="https://github.com/cockroachdb/errors" target="_blank" rel="noopener">“CockroachDB errors 库”</a>
 的系列文章的第 2 篇，“CockroachDB errors 库”实际上是 Go 的标准 errors 包的通用、开放源码的替代品。</p>
 <p>以下面的代码为例：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">import</span> <span class="s">&#34;fmt&#34;</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">import</span> <span class="s">&#34;fmt&#34;</span>
 
 <span class="kd">type</span> <span class="nx">T</span> <span class="kd">struct</span> <span class="p">{</span>
    <span class="nx">x</span> <span class="kt">int</span>
@@ -103,10 +103,10 @@
 <p>同样，fmt.Println 使用 fmt.Print，外加 %v 动词，<code>fmt.Sprintln</code> 和 <code>fmt.Sprint</code> 是同样的道理。</p>
 <h2 id="fmtstringer-和-fmtformatter">fmt.Stringer 和 fmt.Formatter<a href="#fmtstringer-和-fmtformatter" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>现在，在上面的代码底部添加以下内容：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="p">(</span><span class="nx">t</span> <span class="nx">T</span><span class="p">)</span> <span class="nf">String</span><span class="p">()</span> <span class="kt">string</span> <span class="p">{</span> <span class="k">return</span> <span class="s">&#34;boo&#34;</span> <span class="p">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="p">(</span><span class="nx">t</span> <span class="nx">T</span><span class="p">)</span> <span class="nf">String</span><span class="p">()</span> <span class="kt">string</span> <span class="p">{</span> <span class="k">return</span> <span class="s">&#34;boo&#34;</span> <span class="p">}</span>
 </code></pre></div><p>再次运行程序。会发生什么？它打印 <code>boo</code>。值 123 没有了。</p>
 <p>这里发生的情况是，方法 String() 返回字符串实现了标准接口 fmt.Stringer，fmt 中的函数如果发现有它就会使用它。另外，尝试删除上面的 String() 函数定义，并将其替换为：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="p">(</span><span class="nx">t</span> <span class="nx">T</span><span class="p">)</span> <span class="nf">Format</span><span class="p">(</span><span class="nx">s</span> <span class="nx">fmt</span><span class="p">.</span><span class="nx">State</span><span class="p">,</span> <span class="nx">_</span> <span class="kt">rune</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="p">(</span><span class="nx">t</span> <span class="nx">T</span><span class="p">)</span> <span class="nf">Format</span><span class="p">(</span><span class="nx">s</span> <span class="nx">fmt</span><span class="p">.</span><span class="nx">State</span><span class="p">,</span> <span class="nx">_</span> <span class="kt">rune</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">fmt</span><span class="p">.</span><span class="nf">Fprint</span><span class="p">(</span><span class="nx">s</span><span class="p">,</span> <span class="s">&#34;baa&#34;</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre></div><p>现在会发生什么？程序打印 <code>baa</code>。值 123 依然没有了。</p>
@@ -133,16 +133,16 @@
 </ul>
 <h2 id="打印值指针方法集">打印值，指针方法集<a href="#打印值指针方法集" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>现在考虑上面的程序，以及以下实现的组合（注意接收器的类型）：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="p">(</span><span class="nx">t</span> <span class="nx">T</span><span class="p">)</span> <span class="nf">String</span><span class="p">()</span> <span class="kt">string</span> <span class="p">{</span> <span class="k">return</span> <span class="s">&#34;boo&#34;</span> <span class="p">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="p">(</span><span class="nx">t</span> <span class="nx">T</span><span class="p">)</span> <span class="nf">String</span><span class="p">()</span> <span class="kt">string</span> <span class="p">{</span> <span class="k">return</span> <span class="s">&#34;boo&#34;</span> <span class="p">}</span>
 <span class="kd">func</span> <span class="p">(</span><span class="nx">t</span> <span class="o">*</span><span class="nx">T</span><span class="p">)</span> <span class="nf">Format</span><span class="p">(</span><span class="nx">s</span> <span class="nx">fmt</span><span class="p">.</span><span class="nx">State</span><span class="p">,</span> <span class="nx">_</span> <span class="kt">rune</span><span class="p">)</span> <span class="p">{</span> <span class="nx">fmt</span><span class="p">.</span><span class="nf">Fprint</span><span class="p">(</span><span class="nx">s</span><span class="p">,</span> <span class="s">&#34;baa&#34;</span><span class="p">)</span> <span class="p">}</span>
 </code></pre></div><p>现在打印的是 boo。为什么是这样？上面的代码按值传递 T 实例。根据方法集的概念，只实现了 fmt.Stringer 接口，因此输出 boo。如果现在改为这样：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="p">(</span><span class="nx">t</span> <span class="o">*</span><span class="nx">T</span><span class="p">)</span> <span class="nf">String</span><span class="p">()</span> <span class="kt">string</span> <span class="p">{</span> <span class="k">return</span> <span class="s">&#34;boo&#34;</span> <span class="p">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="p">(</span><span class="nx">t</span> <span class="o">*</span><span class="nx">T</span><span class="p">)</span> <span class="nf">String</span><span class="p">()</span> <span class="kt">string</span> <span class="p">{</span> <span class="k">return</span> <span class="s">&#34;boo&#34;</span> <span class="p">}</span>
 <span class="kd">func</span> <span class="p">(</span><span class="nx">t</span> <span class="o">*</span><span class="nx">T</span><span class="p">)</span> <span class="nf">Format</span><span class="p">(</span><span class="nx">s</span> <span class="nx">fmt</span><span class="p">.</span><span class="nx">State</span><span class="p">,</span> <span class="nx">_</span> <span class="kt">rune</span><span class="p">)</span> <span class="p">{</span> <span class="nx">fmt</span><span class="p">.</span><span class="nf">Fprint</span><span class="p">(</span><span class="nx">s</span><span class="p">,</span> <span class="s">&#34;baa&#34;</span><span class="p">)</span> <span class="p">}</span>
 </code></pre></div><p>输出什么？这次再次输出：{123}，因为 fmt 的逻辑“看不到”上面的方法。</p>
 <p>因此有如下规则：如果对象按值打印，则只考虑其按值方法。（其实就是方法集问题）</p>
 <h2 id="打印引用值方法集">打印引用，值方法集<a href="#打印引用值方法集" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>现在，让我们用以下主程序：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
    <span class="nx">v</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">T</span><span class="p">{</span><span class="mi">123</span><span class="p">}</span>
    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span>
 <span class="p">}</span>
@@ -150,22 +150,22 @@
 <ul>
 <li>
 <p>变体 A：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="p">(</span><span class="nx">t</span> <span class="nx">T</span><span class="p">)</span> <span class="nf">String</span><span class="p">()</span> <span class="kt">string</span> <span class="p">{</span> <span class="k">return</span> <span class="s">&#34;boo&#34;</span> <span class="p">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="p">(</span><span class="nx">t</span> <span class="nx">T</span><span class="p">)</span> <span class="nf">String</span><span class="p">()</span> <span class="kt">string</span> <span class="p">{</span> <span class="k">return</span> <span class="s">&#34;boo&#34;</span> <span class="p">}</span>
 <span class="kd">func</span> <span class="p">(</span><span class="nx">t</span> <span class="nx">T</span><span class="p">)</span> <span class="nf">Format</span><span class="p">(</span><span class="nx">s</span> <span class="nx">fmt</span><span class="p">.</span><span class="nx">State</span><span class="p">,</span> <span class="nx">_</span> <span class="kt">rune</span><span class="p">)</span> <span class="p">{</span> <span class="nx">fmt</span><span class="p">.</span><span class="nf">Fprint</span><span class="p">(</span><span class="nx">s</span><span class="p">,</span> <span class="s">&#34;baa&#34;</span><span class="p">)</span> <span class="p">}</span>
 </code></pre></div></li>
 <li>
 <p>变体 B：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="p">(</span><span class="nx">t</span> <span class="nx">T</span><span class="p">)</span> <span class="nf">String</span><span class="p">()</span> <span class="kt">string</span> <span class="p">{</span> <span class="k">return</span> <span class="s">&#34;boo&#34;</span> <span class="p">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="p">(</span><span class="nx">t</span> <span class="nx">T</span><span class="p">)</span> <span class="nf">String</span><span class="p">()</span> <span class="kt">string</span> <span class="p">{</span> <span class="k">return</span> <span class="s">&#34;boo&#34;</span> <span class="p">}</span>
 <span class="kd">func</span> <span class="p">(</span><span class="nx">t</span> <span class="o">*</span><span class="nx">T</span><span class="p">)</span> <span class="nf">Format</span><span class="p">(</span><span class="nx">s</span> <span class="nx">fmt</span><span class="p">.</span><span class="nx">State</span><span class="p">,</span> <span class="nx">_</span> <span class="kt">rune</span><span class="p">)</span> <span class="p">{</span> <span class="nx">fmt</span><span class="p">.</span><span class="nf">Fprint</span><span class="p">(</span><span class="nx">s</span><span class="p">,</span> <span class="s">&#34;baa&#34;</span><span class="p">)</span> <span class="p">}</span>
 </code></pre></div></li>
 <li>
 <p>变体 C：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="p">(</span><span class="nx">t</span> <span class="o">*</span><span class="nx">T</span><span class="p">)</span> <span class="nf">String</span><span class="p">()</span> <span class="kt">string</span> <span class="p">{</span> <span class="k">return</span> <span class="s">&#34;boo&#34;</span> <span class="p">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="p">(</span><span class="nx">t</span> <span class="o">*</span><span class="nx">T</span><span class="p">)</span> <span class="nf">String</span><span class="p">()</span> <span class="kt">string</span> <span class="p">{</span> <span class="k">return</span> <span class="s">&#34;boo&#34;</span> <span class="p">}</span>
 <span class="kd">func</span> <span class="p">(</span><span class="nx">t</span> <span class="nx">T</span><span class="p">)</span> <span class="nf">Format</span><span class="p">(</span><span class="nx">s</span> <span class="nx">fmt</span><span class="p">.</span><span class="nx">State</span><span class="p">,</span> <span class="nx">_</span> <span class="kt">rune</span><span class="p">)</span> <span class="p">{</span> <span class="nx">fmt</span><span class="p">.</span><span class="nf">Fprint</span><span class="p">(</span><span class="nx">s</span><span class="p">,</span> <span class="s">&#34;baa&#34;</span><span class="p">)</span> <span class="p">}</span>
 </code></pre></div></li>
 <li>
 <p>变体 D：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="p">(</span><span class="nx">t</span> <span class="o">*</span><span class="nx">T</span><span class="p">)</span> <span class="nf">String</span><span class="p">()</span> <span class="kt">string</span> <span class="p">{</span> <span class="k">return</span> <span class="s">&#34;boo&#34;</span> <span class="p">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="p">(</span><span class="nx">t</span> <span class="o">*</span><span class="nx">T</span><span class="p">)</span> <span class="nf">String</span><span class="p">()</span> <span class="kt">string</span> <span class="p">{</span> <span class="k">return</span> <span class="s">&#34;boo&#34;</span> <span class="p">}</span>
 <span class="kd">func</span> <span class="p">(</span><span class="nx">t</span> <span class="o">*</span><span class="nx">T</span><span class="p">)</span> <span class="nf">Format</span><span class="p">(</span><span class="nx">s</span> <span class="nx">fmt</span><span class="p">.</span><span class="nx">State</span><span class="p">,</span> <span class="nx">_</span> <span class="kt">rune</span><span class="p">)</span> <span class="p">{</span> <span class="nx">fmt</span><span class="p">.</span><span class="nf">Fprint</span><span class="p">(</span><span class="nx">s</span><span class="p">,</span> <span class="s">&#34;baa&#34;</span><span class="p">)</span> <span class="p">}</span>
 </code></pre></div></li>
 </ul>
@@ -179,7 +179,7 @@
 <p>Go 库没有规定应如何实现：不同的包往往以不同的方式实现。然而，缺乏规范不是问题；在这两种情况下，输出都供人眼使用，因此小显示不一致并不被视为问题。</p>
 <h2 id="go-语法表示和-v-动词">Go 语法表示和 %#v 动词<a href="#go-语法表示和-v-动词" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>最后，将原来的主程序改为使用 %#v 动词：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
    <span class="nx">v</span> <span class="o">:=</span> <span class="nx">T</span><span class="p">{</span><span class="mi">123</span><span class="p">}</span>
    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;%#v\n&#34;</span><span class="p">,</span> <span class="nx">v</span><span class="p">)</span>
 <span class="p">}</span>
@@ -192,13 +192,12 @@
 </ul>
 <p>这里发生的情况是，%#v 说明符打算打印值的 “Go表示”，而不是它的“人类可读表示”。fmt 逻辑知道如何这样做，但是自定义类型可以用 fmt 自定义这种行为：即实现 fmt.Formatter 或 GoStringer 接口。</p>
 <p>注意，出于完整性考虑，上面解释了 GoStringer，但在实践中，发现它很少被使用。</p>
-<p>我个人推荐 <a href="https://github.com/kr/pretty" target="_blank" rel="noopener">https://github.com/kr/pretty</a>
- 这个工具，它比 Go 的标准库更清晰地打印 Go 语法表示。例如：<code>fmt.Printf(&quot;%# v&quot;, pretty.Formatter(x))</code>。</p>
+<p>我个人推荐 <a href="https://github.com/kr/pretty">https://github.com/kr/pretty</a> 这个工具，它比 Go 的标准库更清晰地打印 Go 语法表示。例如：<code>fmt.Printf(&quot;%# v&quot;, pretty.Formatter(x))</code>。</p>
 <h2 id="格式化动词标识和修改器">格式化动词、标识和修改器<a href="#格式化动词标识和修改器" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>到目前为止，我们已经看到 %v 与 %s 在意图和目的上的不同，以及例 %v 与 %+v 的不同。</p>
 <p>如果我们想用不同的结果来定义我们自己的定制呢？</p>
 <p>对于上面三种情况，可靠的定制机制是 fmt.Formatter 接口：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">fmt</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">fmt</span>
 
 <span class="c1">// Formatter can be implemented by your custom types.
 </span><span class="c1"></span><span class="kd">type</span> <span class="nx">Formatter</span> <span class="kd">interface</span> <span class="p">{</span>
@@ -223,7 +222,7 @@
 </ul>
 <p>fmt.State 上的 Width() 和 Precision() 方法也很有趣，因为它们允许访问格式化字符串中的附加数值参数或修饰符。例如，在 %3.2f 中，我们有宽度 3 和精度 2。然而，这些在实践中很少被使用。</p>
 <p>下面是一个符合 Go 习惯的例子：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">Response</span> <span class="kd">struct</span> <span class="p">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">Response</span> <span class="kd">struct</span> <span class="p">{</span>
      <span class="nx">code</span> <span class="kt">int</span>
      <span class="nx">msg</span> <span class="kt">string</span>
 <span class="p">}</span>
@@ -264,11 +263,11 @@
 <li>非数值类型的自定义格式化程序几乎从不处理宽度和精度修饰符。</li>
 </ul>
 <p>最后一点特别说明了为什么关心固定宽度字符串格式的代码应该在以下两个步骤中拼写输出：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="nx">s</span> <span class="o">:=</span> <span class="nx">fmt</span><span class="p">.</span><span class="nf">Sprint</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">s</span> <span class="o">:=</span> <span class="nx">fmt</span><span class="p">.</span><span class="nf">Sprint</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span>
 <span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;%30s&#34;</span><span class="p">,</span> <span class="nx">s</span><span class="p">)</span>  <span class="c1">// instead of printing v directly
 </span></code></pre></div><h2 id="在-fmtstringerfmtformatter-和-error-之间重用代码">在 fmt.Stringer、fmt.Formatter 和 error 之间重用代码<a href="#在-fmtstringerfmtformatter-和-error-之间重用代码" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>上面的一个例子是通过调用 fmt.Sprint 实现 String()。它又在同一类型上使用 Format() 方法。简化为：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">T</span> <span class="kd">struct</span> <span class="p">{</span> <span class="nx">msg</span> <span class="kt">string</span> <span class="p">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">T</span> <span class="kd">struct</span> <span class="p">{</span> <span class="nx">msg</span> <span class="kt">string</span> <span class="p">}</span>
 
 <span class="kd">func</span> <span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">T</span><span class="p">)</span> <span class="nf">Format</span><span class="p">(</span><span class="nx">s</span> <span class="nx">fmt</span><span class="p">.</span><span class="nx">State</span><span class="p">,</span> <span class="nx">_</span> <span class="kt">rune</span><span class="p">)</span> <span class="p">{</span>
    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Fprint</span><span class="p">(</span><span class="nx">s</span><span class="p">,</span> <span class="nx">r</span><span class="p">.</span><span class="nx">msg</span><span class="p">)</span>
@@ -282,7 +281,7 @@
 </code></pre></div><p>在这种情况下，为什么人们会选择通过返回 fmt.Sprint(r) 而不是返回 r.msg 来实现 String() 呢?</p>
 <p>这是遵循 DRY 原则的实例：如果以后逻辑需要更改为&quot;打印更多内容&quot;，则只需修改 Format() 方法；String() 方法会自动从中受益。</p>
 <p>这种模式比较常见。以下是另一种形式：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">T</span> <span class="kd">struct</span> <span class="p">{</span> <span class="nx">msg</span> <span class="kt">string</span> <span class="p">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">T</span> <span class="kd">struct</span> <span class="p">{</span> <span class="nx">msg</span> <span class="kt">string</span> <span class="p">}</span>
 
 <span class="kd">func</span> <span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">T</span><span class="p">)</span> <span class="nf">String</span><span class="p">()</span> <span class="kt">string</span> <span class="p">{</span>
    <span class="k">return</span> <span class="nx">r</span><span class="p">.</span><span class="nx">msg</span>
@@ -293,7 +292,7 @@
 </span><span class="c1"></span><span class="p">}</span>
 </code></pre></div><p>同样，一个方法实现&quot;使用另一个&quot;，因此一个方法只需要更改其中任何一个，在两者中获得相同的行为。</p>
 <p>同样，如果涉及 error 接口，我们会在实践中看到所有重用组合：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">T</span> <span class="kd">struct</span> <span class="p">{</span> <span class="nx">msg</span> <span class="kt">string</span> <span class="p">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">T</span> <span class="kd">struct</span> <span class="p">{</span> <span class="nx">msg</span> <span class="kt">string</span> <span class="p">}</span>
 
 <span class="kd">func</span> <span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">T</span><span class="p">)</span> <span class="nf">Error</span><span class="p">()</span> <span class="kt">string</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">r</span><span class="p">.</span><span class="nx">msg</span> <span class="p">}</span>
 <span class="kd">func</span> <span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">T</span><span class="p">)</span> <span class="nf">String</span><span class="p">()</span> <span class="kt">string</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">r</span><span class="p">.</span><span class="nf">Error</span><span class="p">()</span> <span class="p">}</span>
@@ -335,7 +334,7 @@
 
 			</div><div class="content">
 	<br>
-	<img src="https://static.studygolang.com/static/img/polarisxu-qrcode-soso-s.png">
+	<img src="https://static.golangjob.cn/static/img/polarisxu-qrcode-soso-s.png">
 </div>
 
 <div class="related-posts thin">

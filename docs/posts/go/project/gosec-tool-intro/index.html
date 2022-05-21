@@ -8,15 +8,15 @@
 	<meta name="theme-color" content="#fcfcfc">
 	<meta name="msapplication-TileColor" content="#fcfcfc">
 <meta itemprop="name" content="担心密码提交到 GitHub？建议使用这个 Go 开源工具">
-<meta itemprop="description" content="大家好，我是 polarisxu。 最近跟安全扛上了！这是我分享的 Go 安全相关的第 5 篇文章，前 4 篇文章如下： 《Go 团队开始重视安全问题了》 《Go Module 有漏洞？免费的 Go 漏洞扫描 VSCode 插件》 《这个工具真好：看看你的Go项目依赖有无漏洞》 重磅！GitHub 为 Go 社区带来安全支持 今天要分享的这个开源工具，我个人认为更实用，可以当作一个 vet 工具使用，切切实实检查日常开发经常会忽略的安全"><meta itemprop="datePublished" content="2021-08-10T22:10:00+08:00" />
-<meta itemprop="dateModified" content="2021-08-10T22:10:00+08:00" />
+<meta itemprop="description" content="大家好，我是 polarisxu。 最近跟安全扛上了！这是我分享的 Go 安全相关的第 5 篇文章，前 4 篇文章如下： 《Go 团队开始重视安全问题了》 《Go Module 有漏洞？免费的 Go 漏洞扫描 VSCode 插件》 《这个工具真好：看看你的Go项目依赖有无漏洞》 重磅！GitHub 为 Go 社区带来安全支持 今天要分享的这个开源工具，我个人认为更实用，可以当作一个 vet 工具使用，切切实实检查日常开发经常会忽略的安全"><meta itemprop="datePublished" content="2021-08-10T22:10:00&#43;08:00" />
+<meta itemprop="dateModified" content="2021-08-10T22:10:00&#43;08:00" />
 <meta itemprop="wordCount" content="2036">
 <meta itemprop="keywords" content="Go,工具," /><meta property="og:title" content="担心密码提交到 GitHub？建议使用这个 Go 开源工具" />
 <meta property="og:description" content="大家好，我是 polarisxu。 最近跟安全扛上了！这是我分享的 Go 安全相关的第 5 篇文章，前 4 篇文章如下： 《Go 团队开始重视安全问题了》 《Go Module 有漏洞？免费的 Go 漏洞扫描 VSCode 插件》 《这个工具真好：看看你的Go项目依赖有无漏洞》 重磅！GitHub 为 Go 社区带来安全支持 今天要分享的这个开源工具，我个人认为更实用，可以当作一个 vet 工具使用，切切实实检查日常开发经常会忽略的安全" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/project/gosec-tool-intro/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2021-08-10T22:10:00+08:00" />
-<meta property="article:modified_time" content="2021-08-10T22:10:00+08:00" />
+<meta property="article:published_time" content="2021-08-10T22:10:00&#43;08:00" />
+<meta property="article:modified_time" content="2021-08-10T22:10:00&#43;08:00" />
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="担心密码提交到 GitHub？建议使用这个 Go 开源工具"/>
@@ -30,7 +30,7 @@
 	<link rel="shortcut icon" href="/favicon.ico">
 
 	<title>担心密码提交到 GitHub？建议使用这个 Go 开源工具</title>
-	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.f74778e3020c87c304fb5982e09b92ba63a5c7f202996d4c7283d6057acfe9c1.css" integrity="sha256-90d44wIMh8ME+1mC4JuSumOlx/ICmW1McoPWBXrP6cE=" crossorigin="anonymous">
 	
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/styles.css">
@@ -90,11 +90,9 @@
 </li>
 </ul>
 <p>今天要分享的这个开源工具，我个人认为更实用，可以当作一个 vet 工具使用，切切实实检查日常开发经常会忽略的安全问题，最常见的，比如将密码提交到 GitHub 上了。。。</p>
-<p>这个工具就是 gosec，GitHub 地址：<a href="https://github.com/securego/gosec" target="_blank" rel="noopener">https://github.com/securego/gosec</a>
-，截止目前 Star 数 4.9k+，目测这一波能涨不少~</p>
+<p>这个工具就是 gosec，GitHub 地址：<a href="https://github.com/securego/gosec">https://github.com/securego/gosec</a>，截止目前 Star 数 4.9k+，目测这一波能涨不少~</p>
 <h2 id="01-简介">01 简介<a href="#01-简介" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-<p>这个工具通过扫描 Go 代码的 AST 树来发现安全问题，具体来说，它通过一些规则来检查代码的安全。有专门的官网：<a href="https://securego.io/" target="_blank" rel="noopener">https://securego.io/</a>
-。</p>
+<p>这个工具通过扫描 Go 代码的 AST 树来发现安全问题，具体来说，它通过一些规则来检查代码的安全。有专门的官网：<a href="https://securego.io/">https://securego.io/</a>。</p>
 <p><p class="md__image">
   <img src="../imgs/gosec-logo.png"
     alt="gosec"  />
@@ -106,9 +104,9 @@
 <p>Go1.16 开始，安装可执行 Go 程序使用 go install，下载安装普通库，使用 go get</p>
 </blockquote>
 <p>因为目前最新版本是 v2，因此这么安装：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ go install github.com/securego/gosec/v2/cmd/gosec@latest
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ go install github.com/securego/gosec/v2/cmd/gosec@latest
 </code></pre></div><p>当然，你也可以使用官方编译好的安装：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># binary will be $(go env GOPATH)/bin/gosec</span>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># binary will be $(go env GOPATH)/bin/gosec</span>
 curl -sfL https://raw.githubusercontent.com/securego/gosec/master/install.sh <span class="p">|</span> sh -s -- -b <span class="k">$(</span>go env GOPATH<span class="k">)</span>/bin vX.Y.Z
 
 <span class="c1"># or install it into ./bin/</span>
@@ -121,7 +119,7 @@ wget -O - -q https://raw.githubusercontent.com/securego/gosec/master/install.sh 
 <span class="c1"># then you will have to download a tar.gz file for your operating system instead of a binary file</span>
 wget https://github.com/securego/gosec/releases/download/vX.Y.Z/gosec_vX.Y.Z_OS.tar.gz
 </code></pre></div><p>如果你想将其和 CI 工具集成，可以参考和 GitHub Action 的集成方式：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Run Gosec</span><span class="w">
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Run Gosec</span><span class="w">
 </span><span class="w"></span><span class="nt">on</span><span class="p">:</span><span class="w">
 </span><span class="w">  </span><span class="nt">push</span><span class="p">:</span><span class="w">
 </span><span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w">
@@ -143,7 +141,7 @@ wget https://github.com/securego/gosec/releases/download/vX.Y.Z/gosec_vX.Y.Z_OS.
 </span><span class="w">          </span><span class="nt">args</span><span class="p">:</span><span class="w"> </span><span class="l">./...</span><span class="w">
 </span></code></pre></div><h2 id="03-使用和规则介绍">03 使用和规则介绍<a href="#03-使用和规则介绍" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>本地安装好后，执行 gosec -h 可以看到使用帮助：（请确保 gosec 在 PATH 环境变量中）</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ gosec -h
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ gosec -h
 
 gosec - Golang security checker
 
@@ -248,7 +246,7 @@ RULES:
 	G505: Import blocklist: crypto/sha1
 	G601: Implicit memory aliasing in RangeStmt
 </code></pre></div><p>拿 Go 语言中文网试验一下，切换到 studygolang 源码目录，执行：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ gosec ./...
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ gosec ./...
 ...
 Summary:
   Gosec  : dev
@@ -257,12 +255,12 @@ Summary:
   Nosec  : <span class="m">0</span>
   Issues : <span class="m">292</span>
 </code></pre></div><p>中间过程输出内容很多，最后进行了汇总。根据默认规则，一共发现了 292 个 issue。但别慌，这里面有些规则太严格了，比如：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>/Users/xuxinhua/project/golang/studygolang/cmd/studygolang/background.go:57<span class="o">]</span> - G104 <span class="o">(</span>CWE-703<span class="o">)</span>: Errors unhandled. <span class="o">(</span>Confidence: HIGH, Severity: LOW<span class="o">)</span>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>/Users/xuxinhua/project/golang/studygolang/cmd/studygolang/background.go:57<span class="o">]</span> - G104 <span class="o">(</span>CWE-703<span class="o">)</span>: Errors unhandled. <span class="o">(</span>Confidence: HIGH, Severity: LOW<span class="o">)</span>
     56: 		// 生成阅读排行榜
   &gt; 57: 		c.AddFunc<span class="o">(</span><span class="s2">&#34;@daily&#34;</span>, genViewRank<span class="o">)</span>
     58:
 </code></pre></div><p>因为 c.AddFunc 会返回 error，这个 error 一般不需要处理（这是启动定时任务进行处理），它提示没有处理，对应的规则是 G104。所以，我们将该规则排除掉：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ gosec -exclude ./...
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ gosec -exclude ./...
 ...
 Summary:
   Gosec  : dev
@@ -271,14 +269,14 @@ Summary:
   Nosec  : <span class="m">0</span>
   Issues : <span class="m">51</span>
 </code></pre></div><p>这次 issue 只剩下 51 个。查看过程中指出的问题代码，依然发现有些规则可以忽略，比如：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>/Users/xuxinhua/project/golang/studygolang/logic/sitemap.go:266<span class="o">]</span> - G307 <span class="o">(</span>CWE-703<span class="o">)</span>: Deferring unsafe method <span class="s2">&#34;Close&#34;</span> on <span class="nb">type</span> <span class="s2">&#34;*os.File&#34;</span> <span class="o">(</span>Confidence: HIGH, Severity: MEDIUM<span class="o">)</span>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>/Users/xuxinhua/project/golang/studygolang/logic/sitemap.go:266<span class="o">]</span> - G307 <span class="o">(</span>CWE-703<span class="o">)</span>: Deferring unsafe method <span class="s2">&#34;Close&#34;</span> on <span class="nb">type</span> <span class="s2">&#34;*os.File&#34;</span> <span class="o">(</span>Confidence: HIGH, Severity: MEDIUM<span class="o">)</span>
     265: 	<span class="o">}</span>
   &gt; 266: 	defer file.Close<span class="o">()</span>
     267:
 </code></pre></div><p>对应规则是 G307：Deferring a method which returns an error。大家一般都会这么做，因此这个规则也可以排除。</p>
 <p>有兴趣的可以一步步看，默认提供的 30 来个规则都检测了哪些问题，根据你的项目情况，排除或使用哪些规则。</p>
 <p>接下来，看一下密码安全问题规则，这是第一个规则：G101，只使用这个规则检测 studygolang 试试：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ gosec -include<span class="o">=</span>G101 ./...
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ gosec -include<span class="o">=</span>G101 ./...
 ...
 <span class="o">[</span>/Users/xuxinhua/project/golang/studygolang/http/http.go:437<span class="o">]</span> - G101 <span class="o">(</span>CWE-798<span class="o">)</span>: Potential hardcoded credentials <span class="o">(</span>Confidence: LOW, Severity: HIGH<span class="o">)</span>
     436: const <span class="o">(</span>
@@ -310,7 +308,7 @@ Summary:
 
 			</div><div class="content">
 	<br>
-	<img src="https://static.studygolang.com/static/img/polarisxu-qrcode-soso-s.png">
+	<img src="https://static.golangjob.cn/static/img/polarisxu-qrcode-soso-s.png">
 </div>
 
 <div class="related-posts thin">

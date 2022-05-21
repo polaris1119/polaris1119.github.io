@@ -8,15 +8,15 @@
 	<meta name="theme-color" content="#fcfcfc">
 	<meta name="msapplication-TileColor" content="#fcfcfc">
 <meta itemprop="name" content="Rust 劝退系列 03：变量">
-<meta itemprop="description" content="大家好，我是站长 polarisxu。 这是 Rust 劝退系列的第 3 个教程，探讨 Rust 中的变量。 01 变量和绑定 变量指定了某存储单元（Memory Location）的名称，该存储单元会存储特定类型的值。 Rust 是静态类型语言，不能在运行期改变变量类型。 和你熟悉的大部分编程语言不一样，Rust 中变量一般不叫声明，而叫做绑定（这是从函数式语言中借鉴的，使用关键字 let 绑定），那有什么区别呢？"><meta itemprop="datePublished" content="2021-04-19T12:30:00+08:00" />
-<meta itemprop="dateModified" content="2021-04-19T12:30:00+08:00" />
+<meta itemprop="description" content="大家好，我是站长 polarisxu。 这是 Rust 劝退系列的第 3 个教程，探讨 Rust 中的变量。 01 变量和绑定 变量指定了某存储单元（Memory Location）的名称，该存储单元会存储特定类型的值。 Rust 是静态类型语言，不能在运行期改变变量类型。 和你熟悉的大部分编程语言不一样，Rust 中变量一般不叫声明，而叫做绑定（这是从函数式语言中借鉴的，使用关键字 let 绑定），那有什么区别呢？"><meta itemprop="datePublished" content="2021-04-19T12:30:00&#43;08:00" />
+<meta itemprop="dateModified" content="2021-04-19T12:30:00&#43;08:00" />
 <meta itemprop="wordCount" content="1215">
 <meta itemprop="keywords" content="rust,变量," /><meta property="og:title" content="Rust 劝退系列 03：变量" />
 <meta property="og:description" content="大家好，我是站长 polarisxu。 这是 Rust 劝退系列的第 3 个教程，探讨 Rust 中的变量。 01 变量和绑定 变量指定了某存储单元（Memory Location）的名称，该存储单元会存储特定类型的值。 Rust 是静态类型语言，不能在运行期改变变量类型。 和你熟悉的大部分编程语言不一样，Rust 中变量一般不叫声明，而叫做绑定（这是从函数式语言中借鉴的，使用关键字 let 绑定），那有什么区别呢？" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://polarisxu.studygolang.com/posts/rust/rust-tutorial-03/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2021-04-19T12:30:00+08:00" />
-<meta property="article:modified_time" content="2021-04-19T12:30:00+08:00" />
+<meta property="article:published_time" content="2021-04-19T12:30:00&#43;08:00" />
+<meta property="article:modified_time" content="2021-04-19T12:30:00&#43;08:00" />
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Rust 劝退系列 03：变量"/>
@@ -30,7 +30,7 @@
 	<link rel="shortcut icon" href="/favicon.ico">
 
 	<title>Rust 劝退系列 03：变量</title>
-	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.f74778e3020c87c304fb5982e09b92ba63a5c7f202996d4c7283d6057acfe9c1.css" integrity="sha256-90d44wIMh8ME+1mC4JuSumOlx/ICmW1McoPWBXrP6cE=" crossorigin="anonymous">
 	
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/styles.css">
@@ -84,7 +84,7 @@
 <p>Rust 是静态类型语言，不能在运行期改变变量类型。</p>
 <p>和你熟悉的大部分编程语言不一样，Rust 中变量一般不叫声明，而叫做绑定（这是从函数式语言中借鉴的，使用关键字 let 绑定），那有什么区别呢？</p>
 <p>在 Go 语言中一般有下面几种声明变量的方式：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">var</span> <span class="nx">age</span> <span class="p">=</span> <span class="mi">10</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">var</span> <span class="nx">age</span> <span class="p">=</span> <span class="mi">10</span>
 <span class="kd">var</span> <span class="nx">age</span> <span class="kt">int</span>
 <span class="kd">var</span> <span class="nx">age</span> <span class="kt">int</span> <span class="p">=</span> <span class="mi">10</span>
 <span class="nx">age</span> <span class="o">:=</span> <span class="mi">10</span>	<span class="c1">// 只能在函数内部使用
@@ -95,12 +95,12 @@
 <span class="p">)</span>
 </code></pre></div><p>Go 中声明变量，可以不指定类型（会进行类型推导），也可以不给初始值（会有默认初始值）。</p>
 <p>而 Rust 中，形式比较少，主要有两种：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="kd">let</span><span class="w"> </span><span class="n">age</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w">
+<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="kd">let</span><span class="w"> </span><span class="n">age</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w">
 </span><span class="w"></span><span class="kd">let</span><span class="w"> </span><span class="n">age</span>: <span class="kt">i32</span> <span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w">
 </span></code></pre></div><p>和 Go 一样，大部分时候，Rust 也能够推导出类型。在显示指定类型时，需要加上 <code>:</code>。关于类型，后续讲解。</p>
 <p>那为什么 Rust 中变量创建一般叫做绑定呢？</p>
 <p>1）Rust 和 C 一样，变量创建后必须初始化后才能使用（未使用的变量会警告）。以下代码编译报错：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
 </span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">age</span>: <span class="kt">i32</span><span class="p">;</span><span class="w">
 </span><span class="w">    </span><span class="n">println</span><span class="o">!</span><span class="p">(</span><span class="s">&#34;age is {}&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">age</span><span class="p">);</span><span class="w">
 </span><span class="w"></span><span class="p">}</span><span class="w">
@@ -111,7 +111,7 @@
 </blockquote>
 <h2 id="02-可变性">02 可变性<a href="#02-可变性" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>第一次看到下面的代码报错，你肯定特别的惊讶：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
 </span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">age</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w">
 </span><span class="w">   	</span><span class="n">println</span><span class="o">!</span><span class="p">(</span><span class="s">&#34;age is {}&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">age</span><span class="p">);</span><span class="w">
 </span><span class="w">    </span><span class="n">age</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">11</span><span class="p">;</span><span class="w">
@@ -120,7 +120,7 @@
 </span><span class="w"></span><span class="c1">// error[E0384]: cannot assign twice to immutable variable `age`
 </span></code></pre></div><p>没错，Rust 中的变量默认是不可变的（好吧，变量不可变。。。但又不是常量）。这也是 Rust 中内存管理很重要的一个特性。</p>
 <p>如果我想变量可变，怎么办？Rust 提供了关键字 mut，这叫做可变绑定：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
 </span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">age</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w">
 </span><span class="w">   	</span><span class="n">println</span><span class="o">!</span><span class="p">(</span><span class="s">&#34;age is {}&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">age</span><span class="p">);</span><span class="w">
 </span><span class="w">    </span><span class="n">age</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">11</span><span class="p">;</span><span class="w">
@@ -129,7 +129,7 @@
 </span></code></pre></div><p>通常，我们应该优先创建不可变变量，只有真的需要时，才使用可变变量。</p>
 <h2 id="03-隐藏shadow">03 隐藏（shadow）<a href="#03-隐藏shadow" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>因为变量默认不可变，Rust 中还存在这样「诡异」的情况。下面代码一切正常：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
 </span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">age</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w">
 </span><span class="w">   	</span><span class="n">println</span><span class="o">!</span><span class="p">(</span><span class="s">&#34;age is {}&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">age</span><span class="p">);</span><span class="w">
 </span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">age</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">11</span><span class="p">;</span><span class="w">
@@ -138,16 +138,16 @@
 </span></code></pre></div><p>在 Go 中，肯定报重复声明。</p>
 <p>这种「重复」创建同名变量的语法，Rust 中叫做隐藏（Shadow）。也就是说上次创建的被这次创建的隐藏了。具体有什么用呢？</p>
 <p>比如类似这样的代码，在 Go 中还是比较常见的：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="nx">ageStr</span> <span class="o">:=</span> <span class="nx">req</span><span class="p">.</span><span class="nf">FormValue</span><span class="p">(</span><span class="s">&#34;age&#34;</span><span class="p">)</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">ageStr</span> <span class="o">:=</span> <span class="nx">req</span><span class="p">.</span><span class="nf">FormValue</span><span class="p">(</span><span class="s">&#34;age&#34;</span><span class="p">)</span>
 <span class="nx">age</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">strconv</span><span class="p">.</span><span class="nf">Atoi</span><span class="p">(</span><span class="nx">ageStr</span><span class="p">)</span>
 </code></pre></div><p>也就是说，同样的数值，因为类型不同，需要用两个不同名称的变量表示。但 Rust 中可以这样：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
 </span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">age</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#34;10&#34;</span><span class="p">;</span><span class="w">
 </span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">age</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">age</span><span class="p">.</span><span class="n">parse</span>::<span class="o">&lt;</span><span class="kt">i32</span><span class="o">&gt;</span><span class="p">().</span><span class="n">unwrap</span><span class="p">();</span><span class="w">
 </span><span class="w">   	</span><span class="n">println</span><span class="o">!</span><span class="p">(</span><span class="s">&#34;age is {}&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">age</span><span class="p">);</span><span class="w">
 </span><span class="w"></span><span class="p">}</span><span class="w">
 </span></code></pre></div><p>不过这种语法有好处也有弊端。当涉及到作用域时，要特别注意隐藏的问题。这和 Go 中的简短声明（:=）的「坑」很像。类似下面这样的代码，最后的 age 依然是 10：（实际中的代码一般不会这么明显）</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
 </span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">age</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w">
 </span><span class="w">    </span><span class="p">{</span><span class="w">
 </span><span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="n">age</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#34;abc&#34;</span><span class="p">;</span><span class="w">
@@ -169,7 +169,7 @@
 
 			</div><div class="content">
 	<br>
-	<img src="https://static.studygolang.com/static/img/polarisxu-qrcode-soso-s.png">
+	<img src="https://static.golangjob.cn/static/img/polarisxu-qrcode-soso-s.png">
 </div>
 
 <div class="related-posts thin">

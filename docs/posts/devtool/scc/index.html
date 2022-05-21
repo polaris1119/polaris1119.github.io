@@ -8,15 +8,15 @@
 	<meta name="theme-color" content="#fcfcfc">
 	<meta name="msapplication-TileColor" content="#fcfcfc">
 <meta itemprop="name" content="2021 年你写了多少代码？这个 Go 工具帮你统计">
-<meta itemprop="description" content="大家好，我是 polarisxu。 2021 年马上要过完了，一年下来，你写了多少代码？其中 Go 代码又有多少呢？虽然大家一般讨厌将代码行数作为考核业绩指标，但我们自己对一年的代码量有一个基本掌握还是挺有必要的。 如果你搜索，会发现代码统计工具有很多。比如 sloccount 、github.com/AlDanial/cloc 等，似乎大家很喜欢统计代码行数。当然，也有人直接使用 grep、awk 之"><meta itemprop="datePublished" content="2021-12-28T22:30:00+08:00" />
-<meta itemprop="dateModified" content="2021-12-28T22:30:00+08:00" />
+<meta itemprop="description" content="大家好，我是 polarisxu。 2021 年马上要过完了，一年下来，你写了多少代码？其中 Go 代码又有多少呢？虽然大家一般讨厌将代码行数作为考核业绩指标，但我们自己对一年的代码量有一个基本掌握还是挺有必要的。 如果你搜索，会发现代码统计工具有很多。比如 sloccount 、github.com/AlDanial/cloc 等，似乎大家很喜欢统计代码行数。当然，也有人直接使用 grep、awk 之"><meta itemprop="datePublished" content="2021-12-28T22:30:00&#43;08:00" />
+<meta itemprop="dateModified" content="2021-12-28T22:30:00&#43;08:00" />
 <meta itemprop="wordCount" content="1533">
 <meta itemprop="keywords" content="Go,scc," /><meta property="og:title" content="2021 年你写了多少代码？这个 Go 工具帮你统计" />
 <meta property="og:description" content="大家好，我是 polarisxu。 2021 年马上要过完了，一年下来，你写了多少代码？其中 Go 代码又有多少呢？虽然大家一般讨厌将代码行数作为考核业绩指标，但我们自己对一年的代码量有一个基本掌握还是挺有必要的。 如果你搜索，会发现代码统计工具有很多。比如 sloccount 、github.com/AlDanial/cloc 等，似乎大家很喜欢统计代码行数。当然，也有人直接使用 grep、awk 之" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://polarisxu.studygolang.com/posts/devtool/scc/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2021-12-28T22:30:00+08:00" />
-<meta property="article:modified_time" content="2021-12-28T22:30:00+08:00" />
+<meta property="article:published_time" content="2021-12-28T22:30:00&#43;08:00" />
+<meta property="article:modified_time" content="2021-12-28T22:30:00&#43;08:00" />
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="2021 年你写了多少代码？这个 Go 工具帮你统计"/>
@@ -30,7 +30,7 @@
 	<link rel="shortcut icon" href="/favicon.ico">
 
 	<title>2021 年你写了多少代码？这个 Go 工具帮你统计</title>
-	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.f74778e3020c87c304fb5982e09b92ba63a5c7f202996d4c7283d6057acfe9c1.css" integrity="sha256-90d44wIMh8ME+1mC4JuSumOlx/ICmW1McoPWBXrP6cE=" crossorigin="anonymous">
 	
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/styles.css">
@@ -83,11 +83,10 @@
 、github.com/AlDanial/cloc 等，似乎大家很喜欢统计代码行数。当然，也有人直接使用 grep、awk 之类的工具。</p>
 <p>本文简单对比两个工具：cloc 和 scc。</p>
 <p>这两个工具的原理类似。在 Mac 下，通过 brew 安装：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ brew install cloc scc
-</code></pre></div><p>其中 cloc 使用 Perl 实现，有 13.1k+ Star；而 scc 是 Go 实现的，项目地址：<a href="https://github.com/boyter/scc" target="_blank" rel="noopener">https://github.com/boyter/scc</a>
-，有 3k+ Star。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ brew install cloc scc
+</code></pre></div><p>其中 cloc 使用 Perl 实现，有 13.1k+ Star；而 scc 是 Go 实现的，项目地址：<a href="https://github.com/boyter/scc">https://github.com/boyter/scc</a>，有 3k+ Star。</p>
 <p>使用这两个工具统计 github.com/studygolang/studygolang 项目。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ cloc .
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ cloc .
     <span class="m">4287</span> text files.
     <span class="m">4028</span> unique files.
 Complex regular subexpression recursion limit <span class="o">(</span>32766<span class="o">)</span> exceeded at /usr/local/Cellar/cloc/1.82/libexec/bin/cloc line 9334.
@@ -123,7 +122,7 @@ CoffeeScript                      <span class="m">2</span>              <span cl
 SUM:                           <span class="m">3737</span>          <span class="m">53845</span>          <span class="m">94432</span>         <span class="m">338327</span>
 --------------------------------------------------------------------------------
 </code></pre></div><p>统计花了近 6 秒。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ scc
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ scc
 ───────────────────────────────────────────────────────────────────────────────
 Language                 Files     Lines     Code  Comments   Blanks Complexity
 ───────────────────────────────────────────────────────────────────────────────
@@ -162,17 +161,14 @@ Estimated People Required 69.888518
 <p>这两个工具的功能类似，但也会有差别。不过 scc 速度快很多，无疑，大家应该会更喜欢 Go 语言实现的 scc。</p>
 <p>scc，又叫做  Sloc、Cloc 和 Code，即取这三个单词的首字母：SCC。scc 是一个非常快速准确的代码计数器，具有复杂度计算和 COCOMO 估计，用纯 Go 编写。</p>
 <p>scc 允许查看代码使用的每种编程语言、行数、注释、文件等。这是一个非常快速且有用的工具。大部分语言 scc 都支持，通过 <code>scc --languages</code> 查看支持的语言，目前有 201 种。</p>
-<p>在第一届 GopherCon AU 上 scc 作者 boyter 作了关于 scc 设计和实现的演讲，这里有 PPT：<a href="https://boyter.org/static/gophercon-syd-presentation/" target="_blank" rel="noopener">https://boyter.org/static/gophercon-syd-presentation/</a>
-，也有视频：<a href="https://www.youtube.com/watch?v=jd-sjoy3GZo" target="_blank" rel="noopener">https://www.youtube.com/watch?v=jd-sjoy3GZo</a>
-。</p>
-<p>关于 scc 的更多信息，可以访问项目首页查看：<a href="https://github.com/boyter/scc" target="_blank" rel="noopener">https://github.com/boyter/scc</a>
-。</p>
+<p>在第一届 GopherCon AU 上 scc 作者 boyter 作了关于 scc 设计和实现的演讲，这里有 PPT：<a href="https://boyter.org/static/gophercon-syd-presentation/">https://boyter.org/static/gophercon-syd-presentation/</a>，也有视频：<a href="https://www.youtube.com/watch?v=jd-sjoy3GZo">https://www.youtube.com/watch?v=jd-sjoy3GZo</a>。</p>
+<p>关于 scc 的更多信息，可以访问项目首页查看：<a href="https://github.com/boyter/scc">https://github.com/boyter/scc</a>。</p>
 <hr>
 <p>如果要统计 2021 年你写了多少代码，可能不是简单地运行 scc 就能搞定，因为多半代码不是你一个人写的，可能需要借助 git 辅助。有兴趣的小伙伴可以研究研究。</p>
 
 			</div><div class="content">
 	<br>
-	<img src="https://static.studygolang.com/static/img/polarisxu-qrcode-soso-s.png">
+	<img src="https://static.golangjob.cn/static/img/polarisxu-qrcode-soso-s.png">
 </div>
 
 <div class="related-posts thin">

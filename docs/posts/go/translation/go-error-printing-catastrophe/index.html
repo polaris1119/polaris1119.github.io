@@ -8,15 +8,15 @@
 	<meta name="theme-color" content="#fcfcfc">
 	<meta name="msapplication-TileColor" content="#fcfcfc">
 <meta itemprop="name" content="Go error 打印灾难 —  CockroachDB errors 库（第3篇）">
-<meta itemprop="description" content="这篇文章是关于 “CockroachDB errors 库” 的系列文章的第 3 篇，“CockroachDB errors 库”实际上是 Go 的标准 errors 包的通用、开放源码的替代品。 Go 1.13 的标准库采用了 Dave Cheney 自 2015 年以来对错误处理的主要贡献：将 Go 错误对象构造为链表的想法。 唉，这种方式给 Go 开发人员造成了巨大的障碍：使打印错误对象变得困难、几乎不可能。 这就是我所说的 “Go error 打印灾难&quot;，下面我们将准确"><meta itemprop="datePublished" content="2020-10-26T11:15:51+08:00" />
-<meta itemprop="dateModified" content="2020-10-26T11:15:51+08:00" />
+<meta itemprop="description" content="这篇文章是关于 “CockroachDB errors 库” 的系列文章的第 3 篇，“CockroachDB errors 库”实际上是 Go 的标准 errors 包的通用、开放源码的替代品。 Go 1.13 的标准库采用了 Dave Cheney 自 2015 年以来对错误处理的主要贡献：将 Go 错误对象构造为链表的想法。 唉，这种方式给 Go 开发人员造成了巨大的障碍：使打印错误对象变得困难、几乎不可能。 这就是我所说的 “Go error 打印灾难&quot;，下面我们将准确"><meta itemprop="datePublished" content="2020-10-26T11:15:51&#43;08:00" />
+<meta itemprop="dateModified" content="2020-10-26T11:15:51&#43;08:00" />
 <meta itemprop="wordCount" content="6868">
 <meta itemprop="keywords" content="Go,CockroachDB,error," /><meta property="og:title" content="Go error 打印灾难 —  CockroachDB errors 库（第3篇）" />
 <meta property="og:description" content="这篇文章是关于 “CockroachDB errors 库” 的系列文章的第 3 篇，“CockroachDB errors 库”实际上是 Go 的标准 errors 包的通用、开放源码的替代品。 Go 1.13 的标准库采用了 Dave Cheney 自 2015 年以来对错误处理的主要贡献：将 Go 错误对象构造为链表的想法。 唉，这种方式给 Go 开发人员造成了巨大的障碍：使打印错误对象变得困难、几乎不可能。 这就是我所说的 “Go error 打印灾难&quot;，下面我们将准确" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/translation/go-error-printing-catastrophe/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2020-10-26T11:15:51+08:00" />
-<meta property="article:modified_time" content="2020-10-26T11:15:51+08:00" />
+<meta property="article:published_time" content="2020-10-26T11:15:51&#43;08:00" />
+<meta property="article:modified_time" content="2020-10-26T11:15:51&#43;08:00" />
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Go error 打印灾难 —  CockroachDB errors 库（第3篇）"/>
@@ -30,7 +30,7 @@
 	<link rel="shortcut icon" href="/favicon.ico">
 
 	<title>Go error 打印灾难 —  CockroachDB errors 库（第3篇）</title>
-	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.f74778e3020c87c304fb5982e09b92ba63a5c7f202996d4c7283d6057acfe9c1.css" integrity="sha256-90d44wIMh8ME+1mC4JuSumOlx/ICmW1McoPWBXrP6cE=" crossorigin="anonymous">
 	
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/styles.css">
@@ -83,7 +83,7 @@
 <p>这就是我所说的 “Go error 打印灾难&quot;，下面我们将准确地看到它是什么。</p>
 <h2 id="提醒go-错误为什么是链表怎么做的">提醒：Go 错误为什么是链表，怎么做的<a href="#提醒go-错误为什么是链表怎么做的" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>Go 的错误 API，从 v1.13 开始，如下所示：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// error is a pre-defined type.
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// error is a pre-defined type.
 </span><span class="c1"></span><span class="kd">type</span> <span class="kt">error</span> <span class="kd">interface</span> <span class="p">{</span>
    <span class="c1">// Error returns an error&#39;s short message string.
 </span><span class="c1"></span>   <span class="c1">// This is used e.g. when formatting an error with %s/%v.
@@ -140,7 +140,7 @@
 <h2 id="提醒详细的打印模式">提醒：详细的打印模式<a href="#提醒详细的打印模式" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>当使用 %+v 格式参数时，fmt 内部逻辑将采用&quot;详细&quot;模式，以显示参数列表中的相应值。默认情况下，详细模式会触发例如在结构类型中显示字段名称。</p>
 <p>例如：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="nx">s</span> <span class="o">:=</span> <span class="kd">struct</span> <span class="p">{</span> <span class="nx">a</span> <span class="kt">int</span> <span class="p">}{</span><span class="mi">123</span><span class="p">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">s</span> <span class="o">:=</span> <span class="kd">struct</span> <span class="p">{</span> <span class="nx">a</span> <span class="kt">int</span> <span class="p">}{</span><span class="mi">123</span><span class="p">}</span>
 <span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;%v\n&#34;</span><span class="p">,</span> <span class="nx">s</span><span class="p">)</span>  <span class="c1">// prints {123}
 </span><span class="c1"></span><span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;%+v\n&#34;</span><span class="p">,</span> <span class="nx">s</span><span class="p">)</span> <span class="c1">// verbose mode: prints {a:123}
 </span></code></pre></div><p>&ldquo;详细模式”的定义有一个新的抽象：某些数据在常见情况下不可见，但可根据请求变为可见。</p>
@@ -156,7 +156,7 @@
 <p>不幸的是，实现这个目标是相当困难的。</p>
 <h2 id="基本缺陷-1在包装器中无法自定义">基本缺陷 1：在包装器中无法自定义<a href="#基本缺陷-1在包装器中无法自定义" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>我们试验和设计自己的错误类型，其中一些隐藏的信息只在详细模式下显示。我们可以这样做，如下所示：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">myError</span> <span class="kd">struct</span> <span class="p">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">myError</span> <span class="kd">struct</span> <span class="p">{</span>
    <span class="nx">msg</span> <span class="kt">string</span> <span class="c1">// public message
 </span><span class="c1"></span>   <span class="nx">code</span> <span class="kt">int</span> <span class="c1">// hidden code
 </span><span class="c1"></span><span class="p">}</span>
@@ -178,7 +178,7 @@
 <p>除了最后一点， 代码似乎工作正常？</p>
 <p>唉！</p>
 <p>尝试以下代码：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="nx">err</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">myError</span><span class="p">{</span><span class="s">&#34;hello&#34;</span><span class="p">,</span> <span class="mi">123</span><span class="p">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">err</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">myError</span><span class="p">{</span><span class="s">&#34;hello&#34;</span><span class="p">,</span> <span class="mi">123</span><span class="p">}</span>
 <span class="nx">err</span> <span class="p">=</span> <span class="nx">fmt</span><span class="p">.</span><span class="nf">Errorf</span><span class="p">(</span><span class="s">&#34;wazaa: %w&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
 <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>         <span class="c1">// simple mode: prints just &#34;wazaa: hello&#34;
 </span><span class="c1"></span><span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;%+v\n&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span> <span class="c1">// verbose: prints... what?
@@ -192,7 +192,7 @@
 <h2 id="基本缺陷-2转发forwarding-fmtformatter-的困难">基本缺陷 2：转发（forwarding） fmt.Formatter 的困难<a href="#基本缺陷-2转发forwarding-fmtformatter-的困难" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>如果我们愿意支付抽象税，并同意所有包装错误类型也将实现 fmt.Formatter，那又会这样？怎么会这样呢？</p>
 <p>作为支持示例，让我们尝试一个非常简单的包装，它没有任何特殊功能：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">myWrapper</span> <span class="kd">struct</span> <span class="p">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">myWrapper</span> <span class="kd">struct</span> <span class="p">{</span>
    <span class="nx">cause</span> <span class="kt">error</span> <span class="c1">// tail of linked list
 </span><span class="c1"></span><span class="p">}</span>
 
@@ -203,7 +203,7 @@
 </span><span class="c1"></span><span class="kd">func</span> <span class="p">(</span><span class="nx">e</span> <span class="o">*</span><span class="nx">myWrapper</span><span class="p">)</span> <span class="nf">Unwrap</span><span class="p">()</span> <span class="kt">error</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">e</span><span class="p">.</span><span class="nx">cause</span> <span class="p">}</span>
 </code></pre></div><p>然后，我们可以开始实现 fmt.Formatter。至少，它应该区分冗长和非冗长模式。</p>
 <p>但是，如果我们不确定错误原因（error cause）是否实际实现 fmt.Formatter？也许没有。因此，为了减少的惊讶，我们需要做&quot;与 fmt 相同的一些事&rdquo;。实现此目的的最佳方法是调用 fmt 本身逻辑：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// Format implements the fmt.Formatter interface.
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// Format implements the fmt.Formatter interface.
 </span><span class="c1"></span><span class="kd">func</span> <span class="p">(</span><span class="nx">e</span> <span class="o">*</span><span class="nx">myWrapper</span><span class="p">)</span> <span class="nf">Format</span><span class="p">(</span><span class="nx">s</span> <span class="nx">fmt</span><span class="p">.</span><span class="nx">State</span><span class="p">,</span> <span class="nx">verb</span> <span class="kt">rune</span><span class="p">)</span> <span class="p">{</span>
    <span class="k">if</span> <span class="nx">verb</span> <span class="o">==</span> <span class="sc">&#39;v&#39;</span> <span class="o">&amp;&amp;</span> <span class="nx">s</span><span class="p">.</span><span class="nf">Flag</span><span class="p">(</span><span class="sc">&#39;+&#39;</span><span class="p">)</span> <span class="p">{</span>
       <span class="c1">// Verbose mode. Make fmt ask the cause
@@ -218,7 +218,7 @@
 </code></pre></div><p>这是一个繁琐的模式，只是为了确保 e. cause 得到打印。</p>
 <p>此外，如果 e.cause 想要了解有关原始格式的信息，那该内容会如何呢？如果与 %#v 一起使用时，使用 #v？还是 %#+v？还是 %q？</p>
 <p>遗憾的是，fmt 中没有标准 API 来正确将所有状态转发到递归调用。自 Go 1.15 起，将所有格式状态（formatting state）完全转发到错误原因而不打印任何其他内容的代码量最低如下：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// Format implements the fmt.Formatter interface.
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// Format implements the fmt.Formatter interface.
 </span><span class="c1"></span><span class="kd">func</span> <span class="p">(</span><span class="nx">e</span> <span class="o">*</span><span class="nx">myWrapper</span><span class="p">)</span> <span class="nf">Format</span><span class="p">(</span><span class="nx">s</span> <span class="nx">fmt</span><span class="p">.</span><span class="nx">State</span><span class="p">,</span> <span class="nx">verb</span> <span class="kt">rune</span><span class="p">)</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">f</span> <span class="nx">strings</span><span class="p">.</span><span class="nx">Builder</span>
     <span class="nx">f</span><span class="p">.</span><span class="nf">WriteByte</span><span class="p">(</span><span class="sc">&#39;%&#39;</span><span class="p">)</span>
@@ -249,7 +249,7 @@
 <span class="p">}</span>
 </code></pre></div><p>这看起来非常不方便，容易出错。</p>
 <p>即使是 Dave Cheney 的 pkg/errors 包也没有做到这一点，它仅在包装器中按如下方式实现 Format()，如下所示：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="p">(</span><span class="nx">w</span> <span class="o">*</span><span class="nx">withMessage</span><span class="p">)</span> <span class="nf">Format</span><span class="p">(</span><span class="nx">s</span> <span class="nx">fmt</span><span class="p">.</span><span class="nx">State</span><span class="p">,</span> <span class="nx">verb</span> <span class="kt">rune</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="p">(</span><span class="nx">w</span> <span class="o">*</span><span class="nx">withMessage</span><span class="p">)</span> <span class="nf">Format</span><span class="p">(</span><span class="nx">s</span> <span class="nx">fmt</span><span class="p">.</span><span class="nx">State</span><span class="p">,</span> <span class="nx">verb</span> <span class="kt">rune</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">switch</span> <span class="nx">verb</span> <span class="p">{</span>
     <span class="k">case</span> <span class="sc">&#39;v&#39;</span><span class="p">:</span>
         <span class="k">if</span> <span class="nx">s</span><span class="p">.</span><span class="nf">Flag</span><span class="p">(</span><span class="sc">&#39;+&#39;</span><span class="p">)</span> <span class="p">{</span>
@@ -279,7 +279,7 @@
 </ul>
 <p>因为 fmt.Formatter 接口 Format() 方法的第一个参数 fmt.State，是一个接口类型，因此实际在 fmt 中会是一个特定的 State 实例，可以&quot;分离&quot;当前错误层内的直接打印，从进一步递归执行打印。</p>
 <p>例如，如下 Format() 实现：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// Format implements the fmt.Formatter interface.
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// Format implements the fmt.Formatter interface.
 </span><span class="c1"></span><span class="kd">func</span> <span class="p">(</span><span class="nx">e</span> <span class="o">*</span><span class="nx">myWrapper</span><span class="p">)</span> <span class="nf">Format</span><span class="p">(</span><span class="nx">s</span> <span class="nx">fmt</span><span class="p">.</span><span class="nx">State</span><span class="p">,</span> <span class="nx">verb</span> <span class="kt">rune</span><span class="p">)</span> <span class="p">{</span>
    <span class="k">if</span> <span class="nx">verb</span> <span class="o">==</span> <span class="sc">&#39;v&#39;</span> <span class="o">&amp;&amp;</span> <span class="nx">s</span><span class="p">.</span><span class="nf">Flag</span><span class="p">(</span><span class="sc">&#39;+&#39;</span><span class="p">)</span> <span class="p">{</span>
       <span class="c1">// Verbose mode. Make fmt ask the cause
@@ -293,7 +293,7 @@
 <span class="p">}</span>
 </code></pre></div><p>通过此代码可见，在 Format 内部调用的 fmt.Fprintf 或 fmt.Fprint 的第一参数是 fmt.State 的实例，这是 fmt 包负责注入的。简单字符串和非错误值可以传递，每次看到错误值时，它都会被”忽略”，以便外部 fmt 循环可以转到下一层，而不会重复输出。</p>
 <p>这个想法的问题， 要知晓 Format() 方法中是怎么使用 fmt.State 的。它不适用于实现以下函数的软件包：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="p">(</span><span class="nx">w</span> <span class="o">*</span><span class="nx">withMessage</span><span class="p">)</span> <span class="nf">Format</span><span class="p">(</span><span class="nx">s</span> <span class="nx">fmt</span><span class="p">.</span><span class="nx">State</span><span class="p">,</span> <span class="nx">verb</span> <span class="kt">rune</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="p">(</span><span class="nx">w</span> <span class="o">*</span><span class="nx">withMessage</span><span class="p">)</span> <span class="nf">Format</span><span class="p">(</span><span class="nx">s</span> <span class="nx">fmt</span><span class="p">.</span><span class="nx">State</span><span class="p">,</span> <span class="nx">verb</span> <span class="kt">rune</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">switch</span> <span class="nx">verb</span> <span class="p">{</span>
         <span class="c1">// ...
 </span><span class="c1"></span>    <span class="k">case</span> <span class="sc">&#39;s&#39;</span><span class="p">,</span> <span class="sc">&#39;q&#39;</span><span class="p">:</span>
@@ -325,11 +325,11 @@
 </li>
 <li>
 <p>提议的接口如下：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">errors</span>
-
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">errors</span>
+  
 <span class="kd">type</span> <span class="nx">Formatter</span> <span class="p">{</span>
      <span class="kt">error</span>
-
+  
      <span class="c1">// FormatError can be implemented to customize the formatting
 </span><span class="c1"></span>     <span class="c1">// of errors, instead of fmt.Formatter&#39;s Format.
 </span><span class="c1"></span>     <span class="c1">//
@@ -349,11 +349,11 @@
 </span><span class="c1"></span>     <span class="c1">// by errors.Is() to iterate through the tail.
 </span><span class="c1"></span>     <span class="nf">FormatError</span><span class="p">(</span><span class="nx">p</span> <span class="nx">Printer</span><span class="p">)</span> <span class="p">(</span><span class="nx">next</span> <span class="kt">error</span><span class="p">)</span>
 <span class="p">}</span>
-
+  
 <span class="kd">type</span> <span class="nx">Printer</span> <span class="kd">interface</span> <span class="p">{</span>
     <span class="nf">Print</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>  <span class="c1">// can be used to output stuff
 </span><span class="c1"></span>    <span class="nf">Printf</span><span class="p">(</span><span class="o">...</span><span class="p">)</span> <span class="c1">// can be used to output stuff
-</span><span class="c1"></span>
+</span><span class="c1"></span>  
     <span class="c1">// Detail is a “magic” predicate which both indicates whether
 </span><span class="c1"></span>    <span class="c1">// verbose mode is requested via %+v, and also starts indenting
 </span><span class="c1"></span>    <span class="c1">// the output performed by subsequent Print()/Printf() calls in
@@ -364,7 +364,7 @@
 </code></pre></div></li>
 </ul>
 <p>一个示例用法如下所示：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// FormatError implements the errors.Formatter interface.
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// FormatError implements the errors.Formatter interface.
 </span><span class="c1"></span><span class="kd">func</span> <span class="p">(</span><span class="nx">e</span> <span class="o">*</span><span class="nx">myWrapper</span><span class="p">)</span> <span class="nf">FormatError</span><span class="p">(</span><span class="nx">p</span> <span class="nx">errors</span><span class="p">.</span><span class="nx">Printer</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">p</span><span class="p">.</span><span class="nf">Print</span><span class="p">(</span><span class="s">&#34;always&#34;</span><span class="p">)</span>
     <span class="k">if</span> <span class="nx">p</span><span class="p">.</span><span class="nf">Detail</span><span class="p">()</span> <span class="p">{</span>
@@ -373,7 +373,7 @@
     <span class="k">return</span> <span class="nx">e</span><span class="p">.</span><span class="nx">cause</span>
 <span class="p">}</span>
 </code></pre></div><p>使用此代码，我们将得到以下行为：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="nx">err</span> <span class="o">:=</span> <span class="nx">errors</span><span class="p">.</span><span class="nf">New</span><span class="p">(</span><span class="s">&#34;hello&#34;</span><span class="p">)</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">err</span> <span class="o">:=</span> <span class="nx">errors</span><span class="p">.</span><span class="nf">New</span><span class="p">(</span><span class="s">&#34;hello&#34;</span><span class="p">)</span>
 <span class="nx">err</span> <span class="p">=</span> <span class="o">&amp;</span><span class="nx">myWrapper</span><span class="p">{</span><span class="nx">cause</span><span class="p">:</span> <span class="nx">err</span><span class="p">,</span> <span class="nx">code</span><span class="p">:</span> <span class="mi">123</span><span class="p">}</span>
 <span class="nx">err</span> <span class="p">=</span> <span class="o">&amp;</span><span class="nx">myWrapper</span><span class="p">{</span><span class="nx">cause</span><span class="p">:</span> <span class="nx">err</span><span class="p">,</span> <span class="nx">code</span><span class="p">:</span> <span class="mi">456</span><span class="p">}</span>
 
@@ -440,7 +440,7 @@
 
 			</div><div class="content">
 	<br>
-	<img src="https://static.studygolang.com/static/img/polarisxu-qrcode-soso-s.png">
+	<img src="https://static.golangjob.cn/static/img/polarisxu-qrcode-soso-s.png">
 </div>
 
 <div class="related-posts thin">

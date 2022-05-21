@@ -8,15 +8,15 @@
 	<meta name="theme-color" content="#fcfcfc">
 	<meta name="msapplication-TileColor" content="#fcfcfc">
 <meta itemprop="name" content="Rust 劝退系列 04：基本数据类型">
-<meta itemprop="description" content="大家好，我是站长 polarisxu。 这是 Rust 劝退系列的第 4 个教程，探讨 Rust 中的基本数据类型，或叫标量类型（scalar type）。 Rust 和 Go 一样，都是静态类型语言，这表示每个变量的类型必须明确。和 Go 类似，大多数情况下，Rust 编译器能够推断出某个值的类型，不需要我们显示指定，写起来有点类似于弱类型似语言。但有些情况下，必须明确告知编译器我们使用什么类型，在 Rust 中，这叫"><meta itemprop="datePublished" content="2021-04-25T12:30:00+08:00" />
-<meta itemprop="dateModified" content="2021-04-25T12:30:00+08:00" />
+<meta itemprop="description" content="大家好，我是站长 polarisxu。 这是 Rust 劝退系列的第 4 个教程，探讨 Rust 中的基本数据类型，或叫标量类型（scalar type）。 Rust 和 Go 一样，都是静态类型语言，这表示每个变量的类型必须明确。和 Go 类似，大多数情况下，Rust 编译器能够推断出某个值的类型，不需要我们显示指定，写起来有点类似于弱类型似语言。但有些情况下，必须明确告知编译器我们使用什么类型，在 Rust 中，这叫"><meta itemprop="datePublished" content="2021-04-25T12:30:00&#43;08:00" />
+<meta itemprop="dateModified" content="2021-04-25T12:30:00&#43;08:00" />
 <meta itemprop="wordCount" content="2282">
 <meta itemprop="keywords" content="rust,类型," /><meta property="og:title" content="Rust 劝退系列 04：基本数据类型" />
 <meta property="og:description" content="大家好，我是站长 polarisxu。 这是 Rust 劝退系列的第 4 个教程，探讨 Rust 中的基本数据类型，或叫标量类型（scalar type）。 Rust 和 Go 一样，都是静态类型语言，这表示每个变量的类型必须明确。和 Go 类似，大多数情况下，Rust 编译器能够推断出某个值的类型，不需要我们显示指定，写起来有点类似于弱类型似语言。但有些情况下，必须明确告知编译器我们使用什么类型，在 Rust 中，这叫" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://polarisxu.studygolang.com/posts/rust/rust-tutorial-04/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2021-04-25T12:30:00+08:00" />
-<meta property="article:modified_time" content="2021-04-25T12:30:00+08:00" />
+<meta property="article:published_time" content="2021-04-25T12:30:00&#43;08:00" />
+<meta property="article:modified_time" content="2021-04-25T12:30:00&#43;08:00" />
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Rust 劝退系列 04：基本数据类型"/>
@@ -30,7 +30,7 @@
 	<link rel="shortcut icon" href="/favicon.ico">
 
 	<title>Rust 劝退系列 04：基本数据类型</title>
-	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.f74778e3020c87c304fb5982e09b92ba63a5c7f202996d4c7283d6057acfe9c1.css" integrity="sha256-90d44wIMh8ME+1mC4JuSumOlx/ICmW1McoPWBXrP6cE=" crossorigin="anonymous">
 	
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/styles.css">
@@ -81,21 +81,21 @@
 <p>这是 Rust 劝退系列的第 4 个教程，探讨 Rust 中的基本数据类型，或叫标量类型（scalar type）。</p>
 <p>Rust 和 Go 一样，都是静态类型语言，这表示每个变量的类型必须明确。和 Go 类似，大多数情况下，Rust 编译器能够推断出某个值的类型，不需要我们显示指定，写起来有点类似于弱类型似语言。但有些情况下，必须明确告知编译器我们使用什么类型，在 Rust 中，这叫 「类型注解」（type annotations）。</p>
 <p>对于类型注解，看一个常见的例子：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="kd">let</span><span class="w"> </span><span class="n">guess</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#34;42&#34;</span><span class="p">.</span><span class="n">parse</span><span class="p">().</span><span class="n">expect</span><span class="p">(</span><span class="s">&#34;Not a number!&#34;</span><span class="p">);</span><span class="w">
+<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="kd">let</span><span class="w"> </span><span class="n">guess</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#34;42&#34;</span><span class="p">.</span><span class="n">parse</span><span class="p">().</span><span class="n">expect</span><span class="p">(</span><span class="s">&#34;Not a number!&#34;</span><span class="p">);</span><span class="w">
 </span></code></pre></div><p>这是将字符串 <code>&quot;42&quot;</code> 转为数字 42。在 Go 语言中，一般这么做：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="nx">guess</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">strconv</span><span class="p">.</span><span class="nf">Atoi</span><span class="p">(</span><span class="s">&#34;42&#34;</span><span class="p">)</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">guess</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">strconv</span><span class="p">.</span><span class="nf">Atoi</span><span class="p">(</span><span class="s">&#34;42&#34;</span><span class="p">)</span>
 <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
   <span class="nb">panic</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre></div><p>但上面的 Rust 代码会报错：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">error<span class="o">[</span>E0282<span class="o">]</span>: <span class="nb">type</span> annotations needed
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">error<span class="o">[</span>E0282<span class="o">]</span>: <span class="nb">type</span> annotations needed
  --&gt; src/main.rs:2:9
   <span class="p">|</span>
 <span class="m">2</span> <span class="p">|</span>     <span class="nb">let</span> <span class="nv">guess</span> <span class="o">=</span> <span class="s2">&#34;42a&#34;</span>.parse<span class="o">()</span>.expect<span class="o">(</span><span class="s2">&#34;Not a number!&#34;</span><span class="o">)</span><span class="p">;</span>
   <span class="p">|</span>         ^^^^^^ consider giving <span class="sb">`</span>guess<span class="sb">`</span> a <span class="nb">type</span>
 </code></pre></div><p>这和 Go 还是不太一样。Go 中很多时候，数值类型会是 int。</p>
 <p>为了修复这个问题，我们需要为 number 指定一个类型，比如 u32。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="kd">let</span><span class="w"> </span><span class="n">guess</span>: <span class="kt">u32</span> <span class="o">=</span><span class="w"> </span><span class="s">&#34;42&#34;</span><span class="p">.</span><span class="n">parse</span><span class="p">().</span><span class="n">expect</span><span class="p">(</span><span class="s">&#34;Not a number!&#34;</span><span class="p">);</span><span class="w">
+<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="kd">let</span><span class="w"> </span><span class="n">guess</span>: <span class="kt">u32</span> <span class="o">=</span><span class="w"> </span><span class="s">&#34;42&#34;</span><span class="p">.</span><span class="n">parse</span><span class="p">().</span><span class="n">expect</span><span class="p">(</span><span class="s">&#34;Not a number!&#34;</span><span class="p">);</span><span class="w">
 </span></code></pre></div><blockquote>
 <p>吐槽：在 Rust 中，类型注解和 Go 中一样，放在变量后面。但 Rust 中变量和类型直接非得加一个冒号（:），而且一般冒号紧跟着变量名（rustfmt 的建议）。不知道冒号有啥特殊需要？！</p>
 </blockquote>
@@ -178,12 +178,12 @@
 <li>isize 和 usize 对应 Go 中的 int 和 uint，它们的长度依赖运行程序的计算机架构：64 位架构上它们是 64 位的， 32 位架构上它们是 32 位的</li>
 </ul>
 <p>在 Go 中，整型变量默认类型是 int，以下代码可以证明这一点：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="nx">x</span> <span class="o">:=</span> <span class="mi">32</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">x</span> <span class="o">:=</span> <span class="mi">32</span>
 <span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;%T\n&#34;</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span>
 <span class="c1">// 输出：int
 </span></code></pre></div><p>那 Rust 中默认是什么类型呢？</p>
 <p>我想在 Rust 中找到一种办法，打印变量类型，网上找到了这样的办法（有点挫）：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="c1">// 打印变量类型的函数。该函数看不懂先放着。
+<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="c1">// 打印变量类型的函数。该函数看不懂先放着。
 </span><span class="c1"></span><span class="k">fn</span> <span class="nf">print_type_of</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span>: <span class="kp">&amp;</span><span class="nc">T</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
 </span><span class="w">		</span><span class="n">println</span><span class="o">!</span><span class="p">(</span><span class="s">&#34;{}&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">std</span>::<span class="n">any</span>::<span class="n">type_name</span>::<span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">())</span><span class="w">
 </span><span class="w"></span><span class="p">}</span><span class="w">
@@ -196,7 +196,7 @@
 </span></code></pre></div><p>可见 Rust 中整型变量默认类型是 i32（即使在 64 位机器上，也是 i32）。这一定程度上说明，在 Go 中，整数一般建议用 int 类型；而 Rust 中，一般建议用 i32 类型。（所以，为什么开头的 parse 不能默认推断为 i32 类型呢？怕溢出？）</p>
 <h3 id="更智能的类型推断">更智能的类型推断<a href="#更智能的类型推断" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>上文说 Rust 和 Go 一样，支持类型推断。不过 Rust 的推断更智能，怎么个智能法？看下面的代码：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="c1">// 打印变量类型的函数
+<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="c1">// 打印变量类型的函数
 </span><span class="c1"></span><span class="k">fn</span> <span class="nf">print_type_of</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span>: <span class="kp">&amp;</span><span class="nc">T</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
 </span><span class="w">    </span><span class="n">println</span><span class="o">!</span><span class="p">(</span><span class="s">&#34;{}&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">std</span>::<span class="n">any</span>::<span class="n">type_name</span>::<span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">())</span><span class="w">
 </span><span class="w"></span><span class="p">}</span><span class="w">
@@ -210,7 +210,7 @@
 </span></code></pre></div><p>根据上面的讲解，x 应该是默认类型：i32。但实际上，x 和 y 的类型都是 i8。也就是说，因为 x 的类型没有显示的指定（类型注解），Rust 编译器会根据上下文（实际上是 <code>let y: i8 = x</code> 这句）推断出 x 的类型应该和 y 一致，即 i8。</p>
 <p>在 Go 中，int8 和 int 是不会进行隐式转换的，Rust 也一样，必须进行显示转换。但 Rust 的智能类型推断，可以让开发者少写类型转换的代码。</p>
 <p>比如上面代码，在 Go 语言中是行不通的：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
 	<span class="s">&#34;fmt&#34;</span>
@@ -223,7 +223,7 @@
 	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;%T\n&#34;</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre></div><p>会报错：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">cannot use x <span class="o">(</span><span class="nb">type</span> int<span class="o">)</span> as <span class="nb">type</span> int8 in assignment
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">cannot use x <span class="o">(</span><span class="nb">type</span> int<span class="o">)</span> as <span class="nb">type</span> int8 in assignment
 </code></pre></div><p>也就是说，Go 中的类型推断不会考虑上下文，因此没有 Rust 智能。</p>
 <p>因为编译器的强大，VSCode 中（安装 rust-analyzer）会有类型提示，这样上面的 print_type_of 函数也不需要了。做了一个动图，注意上面 x 的类型变化：</p>
 <p><p class="md__image">
@@ -238,34 +238,33 @@
 <h2 id="02-浮点类型">02 浮点类型<a href="#02-浮点类型" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>和 Go 一样，Rust 也有两种浮点数类型：f32 和 f64，对应 Go 中的 float32 和 float64。和 Go 一样，默认类型是 f64，可以通过类型注解指定具体的浮点类型。（采用 IEEE-754 标准表示，关于浮点数知识，可以阅读<a href="https://mp.weixin.qq.com/s/BmXbChq3RVRmdGNgfxLyvw" target="_blank" rel="noopener">我之前写的文章</a>
 。）</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="kd">let</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2.0</span><span class="p">;</span><span class="w">	</span><span class="c1">// 默认是 f64
+<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="kd">let</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2.0</span><span class="p">;</span><span class="w">	</span><span class="c1">// 默认是 f64
 </span></code></pre></div><p>一般地，整数类型和浮点类型都成为数值类型。</p>
 <p>数值类型有一些共同的东西。比如都支持基本的数学运算。此外，除了通过类型注解指定类型，数值类型还可以在字面值后面带上类型后缀指定类型，比如：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="kd">let</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2.0</span><span class="k">f32</span><span class="p">;</span><span class="w">	</span><span class="c1">// f32 类型
+<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="kd">let</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2.0</span><span class="k">f32</span><span class="p">;</span><span class="w">	</span><span class="c1">// f32 类型
 </span><span class="c1"></span><span class="kd">let</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">32</span><span class="k">i64</span><span class="p">;</span><span class="w">	</span><span class="c1">// i64 类型
 </span></code></pre></div><h2 id="03-布尔型">03 布尔型<a href="#03-布尔型" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>和 Go 语言一样，Rust 中的布尔类型使用 bool 表示（咋没用 b、bl 之类的缩写呢？哈哈哈）。有两个可能的值：true 和 false。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
 </span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span><span class="w">
 </span><span class="w">
 </span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">f</span>: <span class="kt">bool</span> <span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span><span class="w"> </span><span class="c1">// 显式指定类型注解
 </span><span class="c1"></span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id="04-字符型">04 字符型<a href="#04-字符型" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>Rust 中的 char 表示字符类型，是 Rust 的基本类型，字面值由单引号指定。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="kd">let</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sc">&#39;a&#39;</span><span class="p">;</span><span class="w">
+<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="kd">let</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sc">&#39;a&#39;</span><span class="p">;</span><span class="w">
 </span><span class="w"></span><span class="kd">let</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sc">&#39;中&#39;</span><span class="p">;</span><span class="w">
 </span><span class="w"></span><span class="kd">let</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sc">&#39;🤣&#39;</span><span class="p">;</span><span class="w">
 </span></code></pre></div><p>可见，Rust 中的 char 类型和 Go 中的 rune 一样，表示的是 Unicode 码点，占 4 个字节。</p>
 <p>因为 Rust 中的字符串很复杂，而且不是基本类型，因此留在以后讲解。</p>
 <h2 id="05-小结">05 小结<a href="#05-小结" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-<p>本文介绍了 Rust 中的四种基本数据类型：整型、浮点型、布尔型和字符型。其中，浮点型、布尔型和字符型分别对应 Go 中的浮点型、布尔型和 rune 类型，但整型，Go 和 Rust 有些许不一样，上文已经详细介绍了。此外，Go 中复数也是基本数据类型：complex64 和 complex128，而 Rust 中没有，复数通过第三方库实现，比如：<a href="https://crates.io/crates/easy_complex" target="_blank" rel="noopener">https://crates.io/crates/easy_complex</a>
-。</p>
+<p>本文介绍了 Rust 中的四种基本数据类型：整型、浮点型、布尔型和字符型。其中，浮点型、布尔型和字符型分别对应 Go 中的浮点型、布尔型和 rune 类型，但整型，Go 和 Rust 有些许不一样，上文已经详细介绍了。此外，Go 中复数也是基本数据类型：complex64 和 complex128，而 Rust 中没有，复数通过第三方库实现，比如：<a href="https://crates.io/crates/easy_complex">https://crates.io/crates/easy_complex</a>。</p>
 <p>此外，你可能会说 Go 中还有一个基本类型：byte，而 Rust 没有。其实 Go 中的 byte 只是 uint8 的别名。另外，string 在 Go 中是基本数据类型，而在 Rust 中不是。</p>
 <p>本节内容就这些，你被劝退了吗？欢迎留言交流！</p>
 
 			</div><div class="content">
 	<br>
-	<img src="https://static.studygolang.com/static/img/polarisxu-qrcode-soso-s.png">
+	<img src="https://static.golangjob.cn/static/img/polarisxu-qrcode-soso-s.png">
 </div>
 
 <div class="related-posts thin">

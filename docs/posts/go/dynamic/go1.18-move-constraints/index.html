@@ -8,15 +8,15 @@
 	<meta name="theme-color" content="#fcfcfc">
 	<meta name="msapplication-TileColor" content="#fcfcfc">
 <meta itemprop="name" content="Go1.18 快讯：constraints 包被移除标准库">
-<meta itemprop="description" content="大家好，我是 polarisxu。 Go1.18 已经发布 Beta2 版本了，正式版本预计 3 月份发布。Go1.18 最重要的特性莫过于泛型，之前写过几篇相关文章： Go泛型系列：提前掌握Go泛型的基本使用 Go泛型系列：Go1.18 类型约束那些事 Go 泛型入门教程 其中提到一个标准库新包：constraints，相关提案见：https://github.com/golang/go/issues/"><meta itemprop="datePublished" content="2022-02-05T22:00:00+08:00" />
-<meta itemprop="dateModified" content="2022-02-05T22:00:00+08:00" />
+<meta itemprop="description" content="大家好，我是 polarisxu。 Go1.18 已经发布 Beta2 版本了，正式版本预计 3 月份发布。Go1.18 最重要的特性莫过于泛型，之前写过几篇相关文章： Go泛型系列：提前掌握Go泛型的基本使用 Go泛型系列：Go1.18 类型约束那些事 Go 泛型入门教程 其中提到一个标准库新包：constraints，相关提案见：https://github.com/golang/go/issues/"><meta itemprop="datePublished" content="2022-02-05T22:00:00&#43;08:00" />
+<meta itemprop="dateModified" content="2022-02-05T22:00:00&#43;08:00" />
 <meta itemprop="wordCount" content="1001">
 <meta itemprop="keywords" content="Go,新特性," /><meta property="og:title" content="Go1.18 快讯：constraints 包被移除标准库" />
 <meta property="og:description" content="大家好，我是 polarisxu。 Go1.18 已经发布 Beta2 版本了，正式版本预计 3 月份发布。Go1.18 最重要的特性莫过于泛型，之前写过几篇相关文章： Go泛型系列：提前掌握Go泛型的基本使用 Go泛型系列：Go1.18 类型约束那些事 Go 泛型入门教程 其中提到一个标准库新包：constraints，相关提案见：https://github.com/golang/go/issues/" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/dynamic/go1.18-move-constraints/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2022-02-05T22:00:00+08:00" />
-<meta property="article:modified_time" content="2022-02-05T22:00:00+08:00" />
+<meta property="article:published_time" content="2022-02-05T22:00:00&#43;08:00" />
+<meta property="article:modified_time" content="2022-02-05T22:00:00&#43;08:00" />
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Go1.18 快讯：constraints 包被移除标准库"/>
@@ -30,7 +30,7 @@
 	<link rel="shortcut icon" href="/favicon.ico">
 
 	<title>Go1.18 快讯：constraints 包被移除标准库</title>
-	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.f74778e3020c87c304fb5982e09b92ba63a5c7f202996d4c7283d6057acfe9c1.css" integrity="sha256-90d44wIMh8ME+1mC4JuSumOlx/ICmW1McoPWBXrP6cE=" crossorigin="anonymous">
 	
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/styles.css">
@@ -87,10 +87,9 @@
 <li><a href="https://polarisxu.studygolang.com/posts/go/generics/generics-tutorial/" target="_blank" rel="noopener">Go 泛型入门教程</a>
 </li>
 </ul>
-<p>其中提到一个标准库新包：constraints，相关提案见：<a href="https://github.com/golang/go/issues/45458" target="_blank" rel="noopener">https://github.com/golang/go/issues/45458</a>
-。该包的目的是想预定义一些常用的泛型约束，避免用户自己重复定义。</p>
+<p>其中提到一个标准库新包：constraints，相关提案见：<a href="https://github.com/golang/go/issues/45458">https://github.com/golang/go/issues/45458</a>。该包的目的是想预定义一些常用的泛型约束，避免用户自己重复定义。</p>
 <p>这是该包最初希望包含的约束：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// Package constraints defines a set of useful constraints to be used with type parameters.
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// Package constraints defines a set of useful constraints to be used with type parameters.
 </span><span class="c1"></span><span class="kn">package</span> <span class="nx">constraints</span>
 
 <span class="c1">// Signed is a constraint that permits any signed integer type.
@@ -119,8 +118,7 @@
 
 <span class="c1">// Chan is a constraint that matches channels of any element type.
 </span><span class="c1"></span><span class="kd">type</span> <span class="nx">Chan</span><span class="p">[</span><span class="nx">Elem</span> <span class="nx">any</span><span class="p">]</span> <span class="kd">interface</span> <span class="p">{</span> <span class="err">~</span><span class="kd">chan</span> <span class="nx">Elem</span> <span class="p">}</span>
-</code></pre></div><p>然而简洁一直是 Go 追求的，于是有人提出，该包中的 Slice、Map、Chan 的约束根本不必要，包括简化约束字面值语法，具体讨论见：<a href="https://github.com/golang/go/issues/48424" target="_blank" rel="noopener">https://github.com/golang/go/issues/48424</a>
-。于是，Go1.18 Beta 版本中，将这几个约束类型去掉了。</p>
+</code></pre></div><p>然而简洁一直是 Go 追求的，于是有人提出，该包中的 Slice、Map、Chan 的约束根本不必要，包括简化约束字面值语法，具体讨论见：<a href="https://github.com/golang/go/issues/48424">https://github.com/golang/go/issues/48424</a>。于是，Go1.18 Beta 版本中，将这几个约束类型去掉了。</p>
 <p>然而，依然有人对 constraints 有其他意见，包括对包名不满意。这个 <a href="https://github.com/golang/go/issues/50348" target="_blank" rel="noopener">issue</a>
  就提议将包名改为 of。</p>
 <p>当然，最重要的是尚不清楚该包中哪些约束是重要的，应该存在，哪些不应该存在。</p>
@@ -129,15 +127,14 @@
 <p>经过  rsc 与 robpike、griesemer、ianlancetaylor 等讨论，决定 Go1.18 中，将 constraints 和 slices、maps 一起，移到 x/exp 包中，之后在 Go 1.19 或 Go 1.20 中重新考虑它。</p>
 <p>虽然目前 Go1.18 Beta2 还包含 constraints 包，但已经确定正式版本会移除。</p>
 <p>如果你需要使用 constraints.Ordered，建议先自己实现，如下：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">Ordered</span> <span class="kd">interface</span> <span class="p">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">Ordered</span> <span class="kd">interface</span> <span class="p">{</span>
 	<span class="err">~</span><span class="kt">int</span> <span class="p">|</span> <span class="err">~</span><span class="kt">int8</span> <span class="p">|</span> <span class="err">~</span><span class="kt">int16</span> <span class="p">|</span> <span class="err">~</span><span class="kt">int32</span> <span class="p">|</span> <span class="err">~</span><span class="kt">int64</span> <span class="p">|</span> <span class="err">~</span><span class="kt">uint</span> <span class="p">|</span> <span class="err">~</span><span class="kt">uint8</span> <span class="p">|</span> <span class="err">~</span><span class="kt">uint16</span> <span class="p">|</span> <span class="err">~</span><span class="kt">uint32</span> <span class="p">|</span> <span class="err">~</span><span class="kt">uint64</span> <span class="p">|</span> <span class="err">~</span><span class="kt">uintptr</span> <span class="p">|</span> <span class="err">~</span><span class="kt">float32</span> <span class="p">|</span> <span class="err">~</span><span class="kt">float64</span> <span class="p">|</span> <span class="err">~</span><span class="kt">string</span>
 <span class="p">}</span>
-</code></pre></div><p>关于将 constraints 移到 x/exp 的详细说明，见 rsc 提的 issue：<a href="https://github.com/golang/go/issues/50792" target="_blank" rel="noopener">https://github.com/golang/go/issues/50792</a>
-。</p>
+</code></pre></div><p>关于将 constraints 移到 x/exp 的详细说明，见 rsc 提的 issue：<a href="https://github.com/golang/go/issues/50792">https://github.com/golang/go/issues/50792</a>。</p>
 
 			</div><div class="content">
 	<br>
-	<img src="https://static.studygolang.com/static/img/polarisxu-qrcode-soso-s.png">
+	<img src="https://static.golangjob.cn/static/img/polarisxu-qrcode-soso-s.png">
 </div>
 
 <div class="related-posts thin">

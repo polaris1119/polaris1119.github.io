@@ -8,15 +8,15 @@
 	<meta name="theme-color" content="#fcfcfc">
 	<meta name="msapplication-TileColor" content="#fcfcfc">
 <meta itemprop="name" content="Go1.18 快讯：新增的 Cut 函数太方便了">
-<meta itemprop="description" content="大家好，我是 polarisxu。 在编程中，字符串使用是最频繁的。Go 语言对字符串相关的操作也提供了大量的 API，一方面，字符串可以向普通 slice 一样进行相关操作；另一方面，标准库专门提供了一个包 strings 进行字符串的操作。 01 strings.Index 系列函数 假如有一个这样的需求：从 192.168.1.1:8080 中获取 ip 和 port。 我们一般会这么实现： addr := &#34;192.168.1.1:8080&#34; pos := strings.Index(addr, &#34;:&#34;) if pos == -1 { panic(&#34;非法地址&#34;) } ip, port :="><meta itemprop="datePublished" content="2021-11-08T09:00:00+08:00" />
-<meta itemprop="dateModified" content="2021-11-08T09:00:00+08:00" />
+<meta itemprop="description" content="大家好，我是 polarisxu。 在编程中，字符串使用是最频繁的。Go 语言对字符串相关的操作也提供了大量的 API，一方面，字符串可以向普通 slice 一样进行相关操作；另一方面，标准库专门提供了一个包 strings 进行字符串的操作。 01 strings.Index 系列函数 假如有一个这样的需求：从 192.168.1.1:8080 中获取 ip 和 port。 我们一般会这么实现： addr := &#34;192.168.1.1:8080&#34; pos := strings.Index(addr, &#34;:&#34;) if pos == -1 { panic(&#34;非法地址&#34;) } ip, port :="><meta itemprop="datePublished" content="2021-11-08T09:00:00&#43;08:00" />
+<meta itemprop="dateModified" content="2021-11-08T09:00:00&#43;08:00" />
 <meta itemprop="wordCount" content="866">
 <meta itemprop="keywords" content="Go,标准库," /><meta property="og:title" content="Go1.18 快讯：新增的 Cut 函数太方便了" />
 <meta property="og:description" content="大家好，我是 polarisxu。 在编程中，字符串使用是最频繁的。Go 语言对字符串相关的操作也提供了大量的 API，一方面，字符串可以向普通 slice 一样进行相关操作；另一方面，标准库专门提供了一个包 strings 进行字符串的操作。 01 strings.Index 系列函数 假如有一个这样的需求：从 192.168.1.1:8080 中获取 ip 和 port。 我们一般会这么实现： addr := &#34;192.168.1.1:8080&#34; pos := strings.Index(addr, &#34;:&#34;) if pos == -1 { panic(&#34;非法地址&#34;) } ip, port :=" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/dynamic/go1.18-cut/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2021-11-08T09:00:00+08:00" />
-<meta property="article:modified_time" content="2021-11-08T09:00:00+08:00" />
+<meta property="article:published_time" content="2021-11-08T09:00:00&#43;08:00" />
+<meta property="article:modified_time" content="2021-11-08T09:00:00&#43;08:00" />
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Go1.18 快讯：新增的 Cut 函数太方便了"/>
@@ -30,7 +30,7 @@
 	<link rel="shortcut icon" href="/favicon.ico">
 
 	<title>Go1.18 快讯：新增的 Cut 函数太方便了</title>
-	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.f74778e3020c87c304fb5982e09b92ba63a5c7f202996d4c7283d6057acfe9c1.css" integrity="sha256-90d44wIMh8ME+1mC4JuSumOlx/ICmW1McoPWBXrP6cE=" crossorigin="anonymous">
 	
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/styles.css">
@@ -82,7 +82,7 @@
 <h2 id="01-stringsindex-系列函数">01 strings.Index 系列函数<a href="#01-stringsindex-系列函数" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>假如有一个这样的需求：从 <code>192.168.1.1:8080</code> 中获取 ip 和 port。</p>
 <p>我们一般会这么实现：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="nx">addr</span> <span class="o">:=</span> <span class="s">&#34;192.168.1.1:8080&#34;</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">addr</span> <span class="o">:=</span> <span class="s">&#34;192.168.1.1:8080&#34;</span>
 <span class="nx">pos</span> <span class="o">:=</span> <span class="nx">strings</span><span class="p">.</span><span class="nf">Index</span><span class="p">(</span><span class="nx">addr</span><span class="p">,</span> <span class="s">&#34;:&#34;</span><span class="p">)</span>
 <span class="k">if</span> <span class="nx">pos</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span> <span class="p">{</span>
   <span class="nb">panic</span><span class="p">(</span><span class="s">&#34;非法地址&#34;</span><span class="p">)</span>
@@ -93,7 +93,7 @@
 <p>此处忽略通过 net.TCPAddr 方式得到，主要在于讲解字符串处理。</p>
 </blockquote>
 <p>strings 包中，Index 相关函数有好几个：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">Index</span><span class="p">(</span><span class="nx">s</span><span class="p">,</span> <span class="nx">substr</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">int</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">Index</span><span class="p">(</span><span class="nx">s</span><span class="p">,</span> <span class="nx">substr</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">int</span>
 <span class="kd">func</span> <span class="nf">IndexAny</span><span class="p">(</span><span class="nx">s</span><span class="p">,</span> <span class="nx">chars</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">int</span>
 <span class="kd">func</span> <span class="nf">IndexByte</span><span class="p">(</span><span class="nx">s</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">c</span> <span class="kt">byte</span><span class="p">)</span> <span class="kt">int</span>
 <span class="kd">func</span> <span class="nf">IndexFunc</span><span class="p">(</span><span class="nx">s</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">f</span> <span class="kd">func</span><span class="p">(</span><span class="kt">rune</span><span class="p">)</span> <span class="kt">bool</span><span class="p">)</span> <span class="kt">int</span>
@@ -114,16 +114,16 @@
 <p>相关需求是这么多，而 Index 显然不是处理类似需求最好的方式。于是 Russ Cox 提议，在 strings 包中新增一个函数 Cut，专门处理类似的常见。</p>
 <h2 id="02-新增的-cut-函数">02 新增的 Cut 函数<a href="#02-新增的-cut-函数" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>Cut 函数的签名如下：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">Cut</span><span class="p">(</span><span class="nx">s</span><span class="p">,</span> <span class="nx">sep</span> <span class="kt">string</span><span class="p">)</span> <span class="p">(</span><span class="nx">before</span><span class="p">,</span> <span class="nx">after</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">found</span> <span class="kt">bool</span><span class="p">)</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">Cut</span><span class="p">(</span><span class="nx">s</span><span class="p">,</span> <span class="nx">sep</span> <span class="kt">string</span><span class="p">)</span> <span class="p">(</span><span class="nx">before</span><span class="p">,</span> <span class="nx">after</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">found</span> <span class="kt">bool</span><span class="p">)</span>
 </code></pre></div><p>将字符串 s 在第一个 sep 处切割为两部分，分别存在 before 和 after 中。如果 s 中没有 sep，返回 <code>s,&quot;&quot;,false</code>。</p>
 <p>根据 Russ Cox 的统计，Go 源码中 221 处使用 Cut 会更好。</p>
 <p>针对上文提到的需求，改用 Cut 函数：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="nx">addr</span> <span class="o">:=</span> <span class="s">&#34;192.168.1.1:8080&#34;</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">addr</span> <span class="o">:=</span> <span class="s">&#34;192.168.1.1:8080&#34;</span>
 <span class="nx">ip</span><span class="p">,</span> <span class="nx">port</span><span class="p">,</span> <span class="nx">ok</span> <span class="o">:=</span> <span class="nx">strings</span><span class="p">.</span><span class="nf">Cut</span><span class="p">(</span><span class="nx">addr</span><span class="p">,</span> <span class="s">&#34;:&#34;</span><span class="p">)</span>
 </code></pre></div><p>是不是很清晰？！</p>
 <p>这是又一个改善生活质量的优化。</p>
 <p>针对该函数，官方提供了如下示例：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
 	<span class="s">&#34;fmt&#34;</span>
@@ -157,7 +157,7 @@
 
 			</div><div class="content">
 	<br>
-	<img src="https://static.studygolang.com/static/img/polarisxu-qrcode-soso-s.png">
+	<img src="https://static.golangjob.cn/static/img/polarisxu-qrcode-soso-s.png">
 </div>
 
 <div class="related-posts thin">

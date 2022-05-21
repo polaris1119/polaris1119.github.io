@@ -14,7 +14,7 @@
       <pubDate>Mon, 21 Oct 2019 14:17:51 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/posts/go/echo/basic01-env/</guid>
-      <description>工欲善其事必先利其器。我们先搞定 Echo 环境。 Go 开发环境 这个系列基于 Go1.14.4，Linux 系统。 安装 Go 的方式有很多，可以在这里 https://studygolang.com/dl 下载对应操作系统的版本。我自己比较喜欢通过源码安装。我将我的方式告诉大家。（Windows 环境比较建议直接下载对应的包进行安装 https://studygolang.com/dl/golang/go1.14.4.windows-amd64.msi ） 下载源码 在你本地某个目录（比如 $HOME/golang），执行如下命令（确保安装了 git）： git clone https://github.com/golang/go 因为</description>
+      <description>工欲善其事必先利其器。我们先搞定 Echo 环境。 Go 开发环境 这个系列基于 Go1.14.4，Linux 系统。 安装 Go 的方式有很多，可以在这里 https://studygolang.com/dl 下载对应操作系统的版本。我自己比较喜欢通过源码安装。我将我的方式告诉大家。（Windows 环境比较建议直接下载对应的包进行安装 https://studygolang.com/dl/golang/go1.14.4.windows-am</description>
     </item>
     
   </channel>

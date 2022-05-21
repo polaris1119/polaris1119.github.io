@@ -8,15 +8,15 @@
 	<meta name="theme-color" content="#fcfcfc">
 	<meta name="msapplication-TileColor" content="#fcfcfc">
 <meta itemprop="name" content="Echo 系列教程——定制篇1：自定义 Binder，处理 Request 数据绑定">
-<meta itemprop="description" content="Web 开发，数据获取和校验是两个最基本的功能。在数据获取时，我们可以通过标准库的 *http.Request 提供的相关功能进行获取。然而这样效率是很低，重复工作较多，而且考虑到数据自动校验，我们更应该做到自动绑定。 在讲述 Echo 的 Binder 前，先探讨一下客户端数据一般通过什么方式发送给服务端的。 客户端如何传递数据给服务端？ 这个问题其实对大部分人来说太简单了，然而，很多客户端的人却不清楚。工作中，我接触"><meta itemprop="datePublished" content="2020-02-21T19:26:51+08:00" />
-<meta itemprop="dateModified" content="2020-02-21T19:26:51+08:00" />
+<meta itemprop="description" content="Web 开发，数据获取和校验是两个最基本的功能。在数据获取时，我们可以通过标准库的 *http.Request 提供的相关功能进行获取。然而这样效率是很低，重复工作较多，而且考虑到数据自动校验，我们更应该做到自动绑定。 在讲述 Echo 的 Binder 前，先探讨一下客户端数据一般通过什么方式发送给服务端的。 客户端如何传递数据给服务端？ 这个问题其实对大部分人来说太简单了，然而，很多客户端的人却不清楚。工作中，我接触"><meta itemprop="datePublished" content="2020-02-21T19:26:51&#43;08:00" />
+<meta itemprop="dateModified" content="2020-02-21T19:26:51&#43;08:00" />
 <meta itemprop="wordCount" content="3655">
 <meta itemprop="keywords" content="echo,web框架,数据绑定," /><meta property="og:title" content="Echo 系列教程——定制篇1：自定义 Binder，处理 Request 数据绑定" />
 <meta property="og:description" content="Web 开发，数据获取和校验是两个最基本的功能。在数据获取时，我们可以通过标准库的 *http.Request 提供的相关功能进行获取。然而这样效率是很低，重复工作较多，而且考虑到数据自动校验，我们更应该做到自动绑定。 在讲述 Echo 的 Binder 前，先探讨一下客户端数据一般通过什么方式发送给服务端的。 客户端如何传递数据给服务端？ 这个问题其实对大部分人来说太简单了，然而，很多客户端的人却不清楚。工作中，我接触" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/echo/custom01-binder/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2020-02-21T19:26:51+08:00" />
-<meta property="article:modified_time" content="2020-02-21T19:26:51+08:00" />
+<meta property="article:published_time" content="2020-02-21T19:26:51&#43;08:00" />
+<meta property="article:modified_time" content="2020-02-21T19:26:51&#43;08:00" />
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Echo 系列教程——定制篇1：自定义 Binder，处理 Request 数据绑定"/>
@@ -30,7 +30,7 @@
 	<link rel="shortcut icon" href="/favicon.ico">
 
 	<title>Echo 系列教程——定制篇1：自定义 Binder，处理 Request 数据绑定</title>
-	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.f74778e3020c87c304fb5982e09b92ba63a5c7f202996d4c7283d6057acfe9c1.css" integrity="sha256-90d44wIMh8ME+1mC4JuSumOlx/ICmW1McoPWBXrP6cE=" crossorigin="anonymous">
 	
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/styles.css">
@@ -84,7 +84,7 @@
 <p>为了让大家更容易掌握相关知识点，我通过问题的形式讲解。</p>
 <h3 id="问题-1get-和-post-参数如何获取">问题 1：Get 和 Post 参数如何获取<a href="#问题-1get-和-post-参数如何获取" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>讲再多都不如一个实际的程序演示来的清楚明白。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
 	<span class="s">&#34;fmt&#34;</span>
@@ -114,7 +114,7 @@
  来模拟请求，看不同的输出。（关于 httpie 的使用可以看官方文档）</p>
 <p>1）<code>http -v :2020 name==polaris</code></p>
 <p>命令的输出：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">GET /?name<span class="o">=</span>polaris HTTP/1.1
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">GET /?name<span class="o">=</span>polaris HTTP/1.1
 Accept: */*
 Accept-Encoding: gzip, deflate
 Connection: keep-alive
@@ -133,7 +133,7 @@ map<span class="o">[</span>form:map<span class="o">[</span>name:<span class="o">
 <p>从输出可以看出，GET 参数放在了 req.Form 中，实际开发中，一般这样获取 GET 的参数：<code>req.FormValue(&quot;name&quot;)</code>。因为默认情况下，参数并没有解析，也就是 Form 中没有，这也就是我们上面代码中 <code>req.ParseMultipartForm(32 &lt;&lt; 20)</code> 这样代码的作用。而 req.FormValue 会判断有没有解析。</p>
 <p>2）<code>http -v --form :2020 name==polaris name=xuxinhua sex=male</code></p>
 <p>直接看命令的输出：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">POST /?name<span class="o">=</span>polaris HTTP/1.1
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">POST /?name<span class="o">=</span>polaris HTTP/1.1
 Accept: */*
 Accept-Encoding: gzip, deflate
 Connection: keep-alive
@@ -163,9 +163,9 @@ map<span class="o">[</span>form:map<span class="o">[</span>name:<span class="o">
 </blockquote>
 <h3 id="问题-2客户端传递-json-怎么办">问题 2：客户端传递 JSON 怎么办？<a href="#问题-2客户端传递-json-怎么办" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>继续基于上面的例子，执行如下命令：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ http -v :2020 <span class="nv">name</span><span class="o">=</span>xuxinhua <span class="nv">sex</span><span class="o">=</span>male
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ http -v :2020 <span class="nv">name</span><span class="o">=</span>xuxinhua <span class="nv">sex</span><span class="o">=</span>male
 </code></pre></div><p>输出如下：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">POST / HTTP/1.1
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">POST / HTTP/1.1
 Accept: application/json, */*
 Accept-Encoding: gzip, deflate
 Connection: keep-alive
@@ -186,12 +186,12 @@ Date: Fri, <span class="m">21</span> Feb <span class="m">2020</span> 07:58:05 GM
 
 map<span class="o">[</span>form:map<span class="o">[]</span> post_form:map<span class="o">[]]</span>
 </code></pre></div><p>这次请求头的 Content-Type 值是：application/json，表明客户端将参数通过 JSON 格式传递，具体参数放在了 Body 中：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
     <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;xuxinhua&#34;</span><span class="p">,</span>
     <span class="nt">&#34;sex&#34;</span><span class="p">:</span> <span class="s2">&#34;male&#34;</span>
 <span class="p">}</span>
 </code></pre></div><p>从服务端的输出可以看到，Form 和 PostForm 都没有获取到这些参数，怎么办？答案是从 Body 中读取。如下：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="nx">reqBody</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">ioutil</span><span class="p">.</span><span class="nf">ReadAll</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">Body</span><span class="p">)</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">reqBody</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">ioutil</span><span class="p">.</span><span class="nf">ReadAll</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">Body</span><span class="p">)</span>
 <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
   <span class="nx">http</span><span class="p">.</span><span class="nf">Error</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="nx">err</span><span class="p">.</span><span class="nf">Error</span><span class="p">(),</span> <span class="nx">http</span><span class="p">.</span><span class="nx">StatusInternalServerError</span><span class="p">)</span>
   <span class="k">return</span>
@@ -199,7 +199,7 @@ map<span class="o">[</span>form:map<span class="o">[]</span> post_form:map<span 
 <span class="nx">data</span><span class="p">[</span><span class="s">&#34;json_data&#34;</span><span class="p">]</span> <span class="p">=</span> <span class="nb">string</span><span class="p">(</span><span class="nx">reqBody</span><span class="p">)</span>
 </code></pre></div><p>最后简单说下 Content-Type 是 multipart/form-data 的情况。</p>
 <p>当需要进行文件上传时，要求 Content-Type 设置为 multipart/form-data，对应的页面表单就是：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">form</span> <span class="na">action</span><span class="o">=</span><span class="s">&#34;/&#34;</span> <span class="na">method</span><span class="o">=</span><span class="s">&#34;POST&#34;</span> <span class="na">enctype</span><span class="o">=</span><span class="s">&#34;multipart/form-data&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">form</span> <span class="na">action</span><span class="o">=</span><span class="s">&#34;/&#34;</span> <span class="na">method</span><span class="o">=</span><span class="s">&#34;POST&#34;</span> <span class="na">enctype</span><span class="o">=</span><span class="s">&#34;multipart/form-data&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
 </code></pre></div><p>这样的表单才能进行文件上传。对文件上传的处理，Go 中对应的是 req.MultipartForm 和 req.FormFile()。</p>
 <p>当然，除此之外，Content-Type 还有其他值（一般叫做 MIME），但常用的已经介绍了（相较而言，GET 只有一种 Content-Type: application/x-www-form-urlencoding）。</p>
 <h2 id="echo-的-binder-是如何做的">Echo 的 Binder 是如何做的？<a href="#echo-的-binder-是如何做的" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
@@ -213,11 +213,11 @@ map<span class="o">[</span>form:map<span class="o">[]</span> post_form:map<span 
 <p>对于 Binder，Echo 默认提供了一个实现：echo.DefaultBinder，通常情况下，这个默认实现就能够满足要求。我们先看看它的实现。</p>
 <h3 id="defaultbinder-的实现">DefaultBinder 的实现<a href="#defaultbinder-的实现" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>首先，Echo 定义了一个接口：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">Binder</span> <span class="kd">interface</span><span class="p">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">Binder</span> <span class="kd">interface</span><span class="p">{</span>
   <span class="nf">Bind</span><span class="p">(</span><span class="nx">i</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">c</span> <span class="nx">Context</span><span class="p">)</span> <span class="kt">error</span>
 <span class="p">}</span>
 </code></pre></div><p>任何 Binder 必须实现该接口，也就是提供 Bind 方法。一起看看 DefaultBinder 的 Bind 方法实现：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="p">(</span><span class="nx">b</span> <span class="o">*</span><span class="nx">DefaultBinder</span><span class="p">)</span> <span class="nf">Bind</span><span class="p">(</span><span class="nx">i</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">c</span> <span class="nx">Context</span><span class="p">)</span> <span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="p">(</span><span class="nx">b</span> <span class="o">*</span><span class="nx">DefaultBinder</span><span class="p">)</span> <span class="nf">Bind</span><span class="p">(</span><span class="nx">i</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">c</span> <span class="nx">Context</span><span class="p">)</span> <span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
 	<span class="nx">req</span> <span class="o">:=</span> <span class="nx">c</span><span class="p">.</span><span class="nf">Request</span><span class="p">()</span>
 
 	<span class="nx">names</span> <span class="o">:=</span> <span class="nx">c</span><span class="p">.</span><span class="nf">ParamNames</span><span class="p">()</span>
@@ -270,8 +270,7 @@ map<span class="o">[</span>form:map<span class="o">[]</span> post_form:map<span 
 <span class="p">}</span>
 </code></pre></div><p>一起分析下这个方法：</p>
 <ul>
-<li>DefaultBinder 的 bindData 方法进行实际的数据绑定，主要通过反射进行处理，要求被绑定的类型是 map[string]interface{} 或 struct（实际是时间它们的指针），有兴趣的可以查看它的源码；<a href="https://github.com/labstack/echo/blob/master/bind.go#L86" target="_blank" rel="noopener">https://github.com/labstack/echo/blob/master/bind.go#L86</a>
-</li>
+<li>DefaultBinder 的 bindData 方法进行实际的数据绑定，主要通过反射进行处理，要求被绑定的类型是 map[string]interface{} 或 struct（实际是时间它们的指针），有兴趣的可以查看它的源码；<a href="https://github.com/labstack/echo/blob/master/bind.go#L86">https://github.com/labstack/echo/blob/master/bind.go#L86</a></li>
 <li>通过给 Struct 的字段加上不同的 Tag 来接收不同类型的值：
 <ul>
 <li>param tag 对应路径参数；</li>
@@ -284,7 +283,7 @@ map<span class="o">[</span>form:map<span class="o">[]</span> post_form:map<span 
 <li>从代码的顺序可以看出，当同一个字段在多种方式存在值时，优先级顺序：param &lt; query &lt; 其他；</li>
 </ul>
 <p>讲解完了，来一个实际的例子加深理解。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
 	<span class="s">&#34;net/http&#34;</span>
@@ -313,9 +312,9 @@ map<span class="o">[</span>form:map<span class="o">[]</span> post_form:map<span 
 <span class="p">}</span>
 </code></pre></div><p>同样使用 httpie 来进行测试。</p>
 <p><strong>1）GET 请求</strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ http -v :2020 <span class="nv">name</span><span class="o">==</span>xuxinhua <span class="nv">sex</span><span class="o">==</span>male
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ http -v :2020 <span class="nv">name</span><span class="o">==</span>xuxinhua <span class="nv">sex</span><span class="o">==</span>male
 </code></pre></div><p>输出：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">GET /?name<span class="o">=</span>xuxinhua<span class="p">&amp;</span><span class="nv">sex</span><span class="o">=</span>male HTTP/1.1
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">GET /?name<span class="o">=</span>xuxinhua<span class="p">&amp;</span><span class="nv">sex</span><span class="o">=</span>male HTTP/1.1
 Accept: */*
 Accept-Encoding: gzip, deflate
 Connection: keep-alive
@@ -336,9 +335,9 @@ Date: Fri, <span class="m">21</span> Feb <span class="m">2020</span> 09:27:25 GM
 </code></pre></div><p>能够正确绑定值。</p>
 <p><strong>2）POST 请求</strong></p>
 <p>特意加上 URL 参数混淆下，看看结果</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ http -v --form :2020 <span class="nv">name</span><span class="o">==</span>polaris <span class="nv">name</span><span class="o">=</span>xuxinhua <span class="nv">sex</span><span class="o">=</span>male
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ http -v --form :2020 <span class="nv">name</span><span class="o">==</span>polaris <span class="nv">name</span><span class="o">=</span>xuxinhua <span class="nv">sex</span><span class="o">=</span>male
 </code></pre></div><p>输出如下：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">POST /?name<span class="o">=</span>polaris HTTP/1.1
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">POST /?name<span class="o">=</span>polaris HTTP/1.1
 Accept: */*
 Accept-Encoding: gzip, deflate
 Connection: keep-alive
@@ -360,9 +359,9 @@ Date: Fri, <span class="m">21</span> Feb <span class="m">2020</span> 09:46:09 GM
 <span class="o">}</span>
 </code></pre></div><p>从结果 name 是 xuxinhua 可以看出，URL 参数的优先级较低。</p>
 <p><strong>3）请求参数是 JSON</strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ http -v :2020  <span class="nv">name</span><span class="o">=</span>xuxinhua <span class="nv">sex</span><span class="o">=</span>male
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ http -v :2020  <span class="nv">name</span><span class="o">=</span>xuxinhua <span class="nv">sex</span><span class="o">=</span>male
 </code></pre></div><p>输出如下：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">POST / HTTP/1.1
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">POST / HTTP/1.1
 Accept: application/json, */*
 Accept-Encoding: gzip, deflate
 Connection: keep-alive
@@ -389,15 +388,15 @@ Date: Fri, <span class="m">21</span> Feb <span class="m">2020</span> 09:48:48 GM
 <p><strong>4）试试 XML ？</strong></p>
 <p>目前 XML 用的还是比较少，基本是 JSON。所以，我们的例子代码默认并没有支持 XML。</p>
 <p>我们先创建一个 XML 文件，作为输入：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="cp">&lt;?xml version=&#34;1.0&#34;?&gt;</span>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="cp">&lt;?xml version=&#34;1.0&#34;?&gt;</span>
 <span class="nt">&lt;user&gt;</span>
 	<span class="nt">&lt;name&gt;</span>xuxinhua<span class="nt">&lt;/name&gt;</span>
 	<span class="nt">&lt;sex&gt;</span>male<span class="nt">&lt;/sex&gt;</span>
 <span class="nt">&lt;/user&gt;</span>
 </code></pre></div><p>接着执行如下命令：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ http -v :2020 @user.xml
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ http -v :2020 @user.xml
 </code></pre></div><p>输出如下：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">POST / HTTP/1.1
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">POST / HTTP/1.1
 Accept: application/json, */*
 Accept-Encoding: gzip, deflate
 Connection: keep-alive
@@ -423,7 +422,7 @@ Date: Fri, <span class="m">21</span> Feb <span class="m">2020</span> 09:55:54 GM
     <span class="s2">&#34;sex&#34;</span>: <span class="s2">&#34;&#34;</span>
 <span class="o">}</span>
 </code></pre></div><p>一方面，请求的 Content-Type 是 application/xml，但响应却不对。原因是 User 结构中，我们没有为字段指定 xml 这个 tag，加上 tag 再试一下就会正确：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">User</span> <span class="kd">struct</span> <span class="p">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">User</span> <span class="kd">struct</span> <span class="p">{</span>
 	<span class="nx">Name</span> <span class="kt">string</span> <span class="s">`query:&#34;name&#34; form:&#34;name&#34; json:&#34;name&#34; xml:&#34;name&#34;`</span>
 	<span class="nx">Sex</span>  <span class="kt">string</span> <span class="s">`query:&#34;sex&#34; form:&#34;sex&#34; json:&#34;sex&#34; xml:&#34;sex&#34;`</span>
 <span class="p">}</span>
@@ -434,7 +433,7 @@ Date: Fri, <span class="m">21</span> Feb <span class="m">2020</span> 09:55:54 GM
  格式。这时候，echo 默认的 DefaultBinder 已经没法满足我们的需求了，这时候就需要自定义 Binder。类似的还有 protobuf 等。</p>
 <h3 id="自定义-msgpackbinder">自定义 MsgpackBinder<a href="#自定义-msgpackbinder" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>现在，我们就自己实现一个支持 msgpack 格式的 Binder。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">MsgpackBinder</span> <span class="kd">struct</span><span class="p">{}</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">MsgpackBinder</span> <span class="kd">struct</span><span class="p">{}</span>
 
 <span class="kd">func</span> <span class="p">(</span><span class="nx">b</span> <span class="o">*</span><span class="nx">MsgpackBinder</span><span class="p">)</span> <span class="nf">Bind</span><span class="p">(</span><span class="nx">i</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">ctx</span> <span class="nx">echo</span><span class="p">.</span><span class="nx">Context</span><span class="p">)</span> <span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
 	<span class="c1">// 也支持默认 Binder 相关的绑定
@@ -457,13 +456,13 @@ Date: Fri, <span class="m">21</span> Feb <span class="m">2020</span> 09:55:54 GM
 <span class="p">}</span>
 </code></pre></div><p>我们的自定义 Binder 除了支持 msgpack 外，还支持默认 Binder 支持的绑定方式。所以，在 Bind 方法入口，先实例化了一个 DefaultBinder，用它进行绑定处理。只有它返回的 err 是 ErrUnsupportedMediaType 时，才进行我们自定义 Binder 的处理逻辑。关于 msgpack 的解析，使用了第三方库：github.com/vmihailenco/msgpack ，使用方式和 JSON 类似。</p>
 <p>这样，自定义的 Binder 就完成了。接下来需要替换到 Echo 默认的 Binder：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="nx">e</span> <span class="o">:=</span> <span class="nx">echo</span><span class="p">.</span><span class="nf">New</span><span class="p">()</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">e</span> <span class="o">:=</span> <span class="nx">echo</span><span class="p">.</span><span class="nf">New</span><span class="p">()</span>
 
 <span class="nx">e</span><span class="p">.</span><span class="nx">Binder</span> <span class="p">=</span> <span class="nb">new</span><span class="p">(</span><span class="nx">MsgpackBinder</span><span class="p">)</span>
 </code></pre></div><p>即在得到 echo.Echo 的实例后，通过 e.Binder 来覆盖默认的 Binder。</p>
 <h3 id="验证自定义的-binder">验证自定义的 Binder<a href="#验证自定义的-binder" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>因为 msgpack 是二进制格式，不方便直接使用 httpie 进行验证。我们写一个简单的客户端工具进行验证。代码如下：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
 	<span class="s">&#34;bytes&#34;</span>
@@ -499,19 +498,18 @@ Date: Fri, <span class="m">21</span> Feb <span class="m">2020</span> 09:55:54 GM
 	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;%s\n&#34;</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre></div><p>启动服务端，然后运行客户端。我本地试验，输出结果如下：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span><span class="nt">&#34;name&#34;</span><span class="p">:</span><span class="s2">&#34;xuxinhua&#34;</span><span class="p">,</span><span class="nt">&#34;sex&#34;</span><span class="p">:</span><span class="s2">&#34;male&#34;</span><span class="p">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span><span class="nt">&#34;name&#34;</span><span class="p">:</span><span class="s2">&#34;xuxinhua&#34;</span><span class="p">,</span><span class="nt">&#34;sex&#34;</span><span class="p">:</span><span class="s2">&#34;male&#34;</span><span class="p">}</span>
 </code></pre></div><p>表明我们的自定义 Binder 生效了。</p>
 <blockquote>
 <p>说明一下，跟标准库的 json 一样，没有 tag 时，msgpack 库能根据导出字段识别出对应关系。默认情况，msgpack 库使用 msgpack 这个 tag，同时可以通过 UseJSONTag 方法来退而求其次使用 json 这个 tag。当然，我们这里没有使用 tag，而是根据导出字段自动识别对应关系的。</p>
 </blockquote>
 <h2 id="小结">小结<a href="#小结" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>到这里，自定义 Binder 就介绍完了。内容比较简单，但是必须掌握，这是基础知识。另外，这里没有提到 cookie，标准库和 echo 都提供了相关的方法进行处理，但一般 cookie 不需要进行数据绑定，额外处理即可。</p>
-<p>本文完整代码：<a href="https://github.com/polaris1119/go-echo-example/tree/master/cmd/binder" target="_blank" rel="noopener">https://github.com/polaris1119/go-echo-example/tree/master/cmd/binder</a>
-</p>
+<p>本文完整代码：<a href="https://github.com/polaris1119/go-echo-example/tree/master/cmd/binder">https://github.com/polaris1119/go-echo-example/tree/master/cmd/binder</a></p>
 
 			</div><div class="content">
 	<br>
-	<img src="https://static.studygolang.com/static/img/polarisxu-qrcode-soso-s.png">
+	<img src="https://static.golangjob.cn/static/img/polarisxu-qrcode-soso-s.png">
 </div>
 
 <div class="related-posts thin">

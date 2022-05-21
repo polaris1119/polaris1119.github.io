@@ -8,15 +8,15 @@
 	<meta name="theme-color" content="#fcfcfc">
 	<meta name="msapplication-TileColor" content="#fcfcfc">
 <meta itemprop="name" content="通过这个 Runtime 统计信息可视化库学到了什么？">
-<meta itemprop="description" content="大家好，我是站长 polarisxu。 掌握系统运行状态，知道系统哪些地方可能存在问题，方便进行优化，这是一个实际系统必备的。裸奔，对系统一无所知，迟早是要出大事的。 在 Go 语言中，官方标准库提供了方法，让我们能够获得内存分配、GC 和 Goroutine 等情况。比如内存、GC 等情况，可以通过 runtime.MemStats 获取：https://docs.studygolang.com/pkg/runtime/#M"><meta itemprop="datePublished" content="2020-11-17T15:12:00+08:00" />
-<meta itemprop="dateModified" content="2020-11-17T15:12:00+08:00" />
+<meta itemprop="description" content="大家好，我是站长 polarisxu。 掌握系统运行状态，知道系统哪些地方可能存在问题，方便进行优化，这是一个实际系统必备的。裸奔，对系统一无所知，迟早是要出大事的。 在 Go 语言中，官方标准库提供了方法，让我们能够获得内存分配、GC 和 Goroutine 等情况。比如内存、GC 等情况，可以通过 runtime.MemStats 获取：https://docs.studygolang.com/pkg/runtime/#M"><meta itemprop="datePublished" content="2020-11-17T15:12:00&#43;08:00" />
+<meta itemprop="dateModified" content="2020-11-17T15:12:00&#43;08:00" />
 <meta itemprop="wordCount" content="2281">
 <meta itemprop="keywords" content="Go,Golang,第三方库,统计," /><meta property="og:title" content="通过这个 Runtime 统计信息可视化库学到了什么？" />
 <meta property="og:description" content="大家好，我是站长 polarisxu。 掌握系统运行状态，知道系统哪些地方可能存在问题，方便进行优化，这是一个实际系统必备的。裸奔，对系统一无所知，迟早是要出大事的。 在 Go 语言中，官方标准库提供了方法，让我们能够获得内存分配、GC 和 Goroutine 等情况。比如内存、GC 等情况，可以通过 runtime.MemStats 获取：https://docs.studygolang.com/pkg/runtime/#M" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/pkg/statsview/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2020-11-17T15:12:00+08:00" />
-<meta property="article:modified_time" content="2020-11-17T15:12:00+08:00" />
+<meta property="article:published_time" content="2020-11-17T15:12:00&#43;08:00" />
+<meta property="article:modified_time" content="2020-11-17T15:12:00&#43;08:00" />
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="通过这个 Runtime 统计信息可视化库学到了什么？"/>
@@ -30,7 +30,7 @@
 	<link rel="shortcut icon" href="/favicon.ico">
 
 	<title>通过这个 Runtime 统计信息可视化库学到了什么？</title>
-	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.f74778e3020c87c304fb5982e09b92ba63a5c7f202996d4c7283d6057acfe9c1.css" integrity="sha256-90d44wIMh8ME+1mC4JuSumOlx/ICmW1McoPWBXrP6cE=" crossorigin="anonymous">
 	
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/styles.css">
@@ -79,12 +79,10 @@
 			<div class="content">
 				<p>大家好，我是站长 polarisxu。</p>
 <p>掌握系统运行状态，知道系统哪些地方可能存在问题，方便进行优化，这是一个实际系统必备的。裸奔，对系统一无所知，迟早是要出大事的。</p>
-<p>在 Go 语言中，官方标准库提供了方法，让我们能够获得内存分配、GC 和 Goroutine 等情况。比如内存、GC 等情况，可以通过 runtime.MemStats 获取：<a href="https://docs.studygolang.com/pkg/runtime/#MemStats" target="_blank" rel="noopener">https://docs.studygolang.com/pkg/runtime/#MemStats</a>
-，Goroutine 数量可以通过 runtime.NumGoroutine() 函数获得。</p>
+<p>在 Go 语言中，官方标准库提供了方法，让我们能够获得内存分配、GC 和 Goroutine 等情况。比如内存、GC 等情况，可以通过 runtime.MemStats 获取：<a href="https://docs.studygolang.com/pkg/runtime/#MemStats">https://docs.studygolang.com/pkg/runtime/#MemStats</a>，Goroutine 数量可以通过 runtime.NumGoroutine() 函数获得。</p>
 <p>一般我们我们需要自己解析 MemStats 信息、做展示，也可以做图表。</p>
 <p>之前推荐过一个在浏览器中实时查看 Go 应用程序运行时统计信息（GC，MemStats 等）的库：<a href="https://polarisxu.studygolang.com/posts/go/pkg/statsviz/" target="_blank" rel="noopener">statsviz</a>
-。今天给大家推荐另外一个库：<a href="https://github.com/go-echarts/statsview" target="_blank" rel="noopener">https://github.com/go-echarts/statsview</a>
-，这是这两天刚出来的。</p>
+。今天给大家推荐另外一个库：<a href="https://github.com/go-echarts/statsview">https://github.com/go-echarts/statsview</a>，这是这两天刚出来的。</p>
 <p>看长什么样：</p>
 <p><p class="md__image">
   <img src="../imgs/statsview.png"
@@ -92,7 +90,7 @@
 </p>
 </p>
 <p>我们可以运行下面这段代码得到类似上面的图：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
     <span class="s">&#34;github.com/go-echarts/statsview&#34;</span>
@@ -140,7 +138,7 @@
 <li>尽情享受吧~</li>
 </ul>
 <p>此外，可以通过 <code>viewer.SetConfiguration(opts …Option)</code>改变一些行为，包括：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// WithInterval sets the interval(in millisecond) of collecting and pulling metrics
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// WithInterval sets the interval(in millisecond) of collecting and pulling metrics
 </span><span class="c1">// default -&gt; 1500
 </span><span class="c1"></span><span class="nf">WithInterval</span><span class="p">(</span><span class="nx">interval</span> <span class="kt">int</span><span class="p">)</span> <span class="nx">Option</span>
 
@@ -168,9 +166,9 @@
 </span><span class="c1">// * ThemeMacarons
 </span><span class="c1"></span><span class="nf">WithTheme</span><span class="p">(</span><span class="nx">theme</span> <span class="nx">Theme</span><span class="p">)</span> <span class="nx">Option</span>
 </code></pre></div><p>例如修改默认端口：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="nx">viewer</span><span class="p">.</span><span class="nf">SetConfiguration</span><span class="p">(</span><span class="nx">view</span><span class="p">.</span><span class="nf">WithAddr</span><span class="p">(</span><span class="s">&#34;localhost:8087&#34;</span><span class="p">)</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">viewer</span><span class="p">.</span><span class="nf">SetConfiguration</span><span class="p">(</span><span class="nx">view</span><span class="p">.</span><span class="nf">WithAddr</span><span class="p">(</span><span class="s">&#34;localhost:8087&#34;</span><span class="p">)</span>
 </code></pre></div><p>不像之前介绍的 statsviz，statsview 固定使用 net/http，所以集成到项目中只需要让它在单独的一个 goroutine 中运行，单独的端口即可。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
 	<span class="nx">mgr</span> <span class="o">:=</span> <span class="nx">statsview</span><span class="p">.</span><span class="nf">New</span><span class="p">()</span>
 	<span class="nx">mgr</span><span class="p">.</span><span class="nf">Start</span><span class="p">()</span>
 <span class="p">}()</span>
@@ -182,9 +180,9 @@
 <h3 id="多参数控制">多参数控制<a href="#多参数控制" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>关于 statsview，有一个知识点想跟大家讲一下，那就是多参数控制。</p>
 <p>上文提到库可以通过 <code>viewer.SetConfiguration(opts …Option)</code> 函数定制一些行为，其中 Option 是一个函数类型：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">Option</span> <span class="kd">func</span><span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">config</span><span class="p">)</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">Option</span> <span class="kd">func</span><span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">config</span><span class="p">)</span>
 </code></pre></div><p>其中 config 的定义如下：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">config</span> <span class="kd">struct</span> <span class="p">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">config</span> <span class="kd">struct</span> <span class="p">{</span>
 	<span class="nx">Interval</span>   <span class="kt">int</span>
 	<span class="nx">MaxPoints</span>  <span class="kt">int</span>
 	<span class="nx">Template</span>   <span class="kt">string</span>
@@ -193,7 +191,7 @@
 	<span class="nx">Theme</span>      <span class="nx">Theme</span>
 <span class="p">}</span>
 </code></pre></div><p>该类型的字段用于控制该库的一些行为。它有一个默认的实例：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">var</span> <span class="nx">defaultCfg</span> <span class="p">=</span> <span class="o">&amp;</span><span class="nx">config</span><span class="p">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">var</span> <span class="nx">defaultCfg</span> <span class="p">=</span> <span class="o">&amp;</span><span class="nx">config</span><span class="p">{</span>
 	<span class="nx">Interval</span><span class="p">:</span>   <span class="nx">DefaultInterval</span><span class="p">,</span>
 	<span class="nx">MaxPoints</span><span class="p">:</span>  <span class="nx">DefaultMaxPoints</span><span class="p">,</span>
 	<span class="nx">Template</span><span class="p">:</span>   <span class="nx">DefaultTemplate</span><span class="p">,</span>
@@ -207,19 +205,19 @@
 <li>通过提供一系列函数实现修改，比如 SetInterval(int)</li>
 </ul>
 <p>方案一封装性不好，暴露太多细节；而方案二的问题在于，config 的字段类型不一致，通常方案不够优雅。该库的实现方式是定义一个 Option 类型，然后提供一系列具有相似签名的函数来控制这些配置，即上文列出来的 WithXXX 类函数，看其中的一个实现：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// WithAddr sets the listening address
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// WithAddr sets the listening address
 </span><span class="c1"></span><span class="kd">func</span> <span class="nf">WithAddr</span><span class="p">(</span><span class="nx">addr</span> <span class="kt">string</span><span class="p">)</span> <span class="nx">Option</span> <span class="p">{</span>
 	<span class="k">return</span> <span class="kd">func</span><span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
 		<span class="nx">c</span><span class="p">.</span><span class="nx">Addr</span> <span class="p">=</span> <span class="nx">addr</span>
 	<span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div><p>这样通过 WithXXX 函数得到一系列 Option 实例，而 viewer.SetConfiguration 接收一系列 Option 实例，所以使用是就这样了：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="nx">viewer</span><span class="p">.</span><span class="nf">SetConfiguration</span><span class="p">(</span><span class="nx">viewer</span><span class="p">.</span><span class="nf">WithTheme</span><span class="p">(</span><span class="nx">viewer</span><span class="p">.</span><span class="nx">ThemeWalden</span><span class="p">),</span> <span class="nx">view</span><span class="p">.</span><span class="nf">WithAddr</span><span class="p">(</span><span class="s">&#34;localhost:8087&#34;</span><span class="p">))</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">viewer</span><span class="p">.</span><span class="nf">SetConfiguration</span><span class="p">(</span><span class="nx">viewer</span><span class="p">.</span><span class="nf">WithTheme</span><span class="p">(</span><span class="nx">viewer</span><span class="p">.</span><span class="nx">ThemeWalden</span><span class="p">),</span> <span class="nx">view</span><span class="p">.</span><span class="nf">WithAddr</span><span class="p">(</span><span class="s">&#34;localhost:8087&#34;</span><span class="p">))</span>
 </code></pre></div><p>还有其他案例吗？</p>
 <h3 id="colly-中的案例">colly 中的案例<a href="#colly-中的案例" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p><a href="https://github.com/gocolly/colly" target="_blank" rel="noopener">Colly</a>
  是一个 Go 语言实现的，快速的、优雅的 Scraper 和 Crawler 框架。它的实例化函数比较“独特”：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">NewCollector</span><span class="p">(</span><span class="nx">options</span> <span class="o">...</span><span class="kd">func</span><span class="p">(</span><span class="o">*</span><span class="nx">Collector</span><span class="p">))</span> <span class="o">*</span><span class="nx">Collector</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">NewCollector</span><span class="p">(</span><span class="nx">options</span> <span class="o">...</span><span class="kd">func</span><span class="p">(</span><span class="o">*</span><span class="nx">Collector</span><span class="p">))</span> <span class="o">*</span><span class="nx">Collector</span>
 </code></pre></div><p>实例化一个类型，一般有以下几种方式：</p>
 <ol>
 <li>new(T)</li>
@@ -234,7 +232,7 @@
 <li>不要求所有的成员必须指定值；</li>
 </ol>
 <p>针对这些问题，Collector 工厂类 NewCollector() 巧妙的使用不定参数，而且类型是 <code>func(*Collector)</code>，这样可以有选择的配置一个或多个选项，很好地解决了上面的三个问题。它的源码如下：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">NewCollector</span><span class="p">(</span><span class="nx">options</span> <span class="o">...</span><span class="kd">func</span><span class="p">(</span><span class="o">*</span><span class="nx">Collector</span><span class="p">))</span> <span class="o">*</span><span class="nx">Collector</span> <span class="p">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">NewCollector</span><span class="p">(</span><span class="nx">options</span> <span class="o">...</span><span class="kd">func</span><span class="p">(</span><span class="o">*</span><span class="nx">Collector</span><span class="p">))</span> <span class="o">*</span><span class="nx">Collector</span> <span class="p">{</span>
     <span class="nx">c</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">Collector</span><span class="p">{}</span>
     <span class="nx">c</span><span class="p">.</span><span class="nf">Init</span><span class="p">()</span>
 
@@ -247,11 +245,11 @@
     <span class="k">return</span> <span class="nx">c</span>
 <span class="p">}</span>
 </code></pre></div><p>同时，通过函数的方式来配置选项，就好比很多面向对象语言中的 Set 方法，可以在里面有其他的一些逻辑判断，而不仅仅是设置一个值。比如以下配置函数：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">Debugger</span><span class="p">(</span><span class="nx">d</span> <span class="nx">debug</span><span class="p">.</span><span class="nx">Debugger</span><span class="p">)</span> <span class="kd">func</span><span class="p">(</span><span class="o">*</span><span class="nx">Collector</span><span class="p">)</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">Debugger</span><span class="p">(</span><span class="nx">d</span> <span class="nx">debug</span><span class="p">.</span><span class="nx">Debugger</span><span class="p">)</span> <span class="kd">func</span><span class="p">(</span><span class="o">*</span><span class="nx">Collector</span><span class="p">)</span>
 </code></pre></div><h3 id="bigcache-中的案例">BigCache 中的案例<a href="#bigcache-中的案例" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p><a href="https://github.com/allegro/bigcache" target="_blank" rel="noopener">BigCache</a>
  是一个高性能缓存库。获得它的一个实例是这样的形式：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="nx">bigcache</span><span class="p">.</span><span class="nf">NewBigCache</span><span class="p">(</span><span class="nx">bigcache</span><span class="p">.</span><span class="nf">DefaultConfig</span><span class="p">(</span><span class="mi">10</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Minute</span><span class="p">))</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">bigcache</span><span class="p">.</span><span class="nf">NewBigCache</span><span class="p">(</span><span class="nx">bigcache</span><span class="p">.</span><span class="nf">DefaultConfig</span><span class="p">(</span><span class="mi">10</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Minute</span><span class="p">))</span>
 </code></pre></div><p>即它的构造函数（New 函数）接收一个 Config 对象，这也是要控制多个配置。</p>
 <p>因为 Go 不是完全的面向对象语言。当类型中有较多成员，且可以通过外部控制时，根据封装的原则，一般不建议将这些字段导出（公开），但这样一来构造函数就需要能接收很多参数。在 Go 中有两种较常见的设计方法。</p>
 <p>1）通过另外一个结构体来控制</p>
@@ -259,7 +257,7 @@
 <p>一方面控制了 BigCache 类型的行为，避免实例化后可以随意更改，起到了封装的作用。另一方面，让构造函数更简洁，只需要接收一个 Config 即可（注意最好使用 Config 值类型，而不是指针）。而且可以通过提供一些 Config 的默认值来做到更易用，比如 bigcache.DefaultConfig() 函数就是这样的例子。</p>
 <p>2）通过一个函数类型来控制</p>
 <p>比如我们通过这种方式替换 bigcache 包的 Config 结构体。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">BigCacheOption</span> <span class="kd">func</span><span class="p">(</span><span class="o">*</span><span class="nx">BigCache</span><span class="p">)</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">BigCacheOption</span> <span class="kd">func</span><span class="p">(</span><span class="o">*</span><span class="nx">BigCache</span><span class="p">)</span>
 
 <span class="kd">func</span> <span class="nf">ShardsNum</span><span class="p">(</span><span class="nx">shards</span> <span class="kt">int</span><span class="p">)</span> <span class="nx">BigCacheOption</span> <span class="p">{</span>
 	<span class="k">return</span> <span class="kd">func</span><span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">BigCache</span><span class="p">)</span> <span class="p">{</span>
@@ -277,7 +275,7 @@
 </span><span class="c1"></span><span class="o">...</span>
 </code></pre></div><p>通过定义一个函数类型 BigCacheOption 来控制。对 BigCache 类型中非导出的字段，提供相应的函数，该函数返回 BigCacheOption 类型。</p>
 <p>针对这种方式，BigCache 的构造函数需要改为如下的形式：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">NewBigCache</span><span class="p">(</span><span class="nx">options</span> <span class="o">...</span><span class="nx">BigCacheOption</span><span class="p">)</span> <span class="p">(</span><span class="o">*</span><span class="nx">BigCache</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">NewBigCache</span><span class="p">(</span><span class="nx">options</span> <span class="o">...</span><span class="nx">BigCacheOption</span><span class="p">)</span> <span class="p">(</span><span class="o">*</span><span class="nx">BigCache</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
 	<span class="nx">c</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">BigCache</span><span class="p">{}</span>
 	<span class="c1">// 省略其他，主要处理 options 部分
 </span><span class="c1"></span>	<span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">f</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">options</span> <span class="p">{</span>
@@ -292,7 +290,7 @@
 
 			</div><div class="content">
 	<br>
-	<img src="https://static.studygolang.com/static/img/polarisxu-qrcode-soso-s.png">
+	<img src="https://static.golangjob.cn/static/img/polarisxu-qrcode-soso-s.png">
 </div>
 
 <div class="related-posts thin">

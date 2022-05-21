@@ -8,15 +8,15 @@
 	<meta name="theme-color" content="#fcfcfc">
 	<meta name="msapplication-TileColor" content="#fcfcfc">
 <meta itemprop="name" content="答应我，这次一定彻底搞懂 Go 中的类型别名">
-<meta itemprop="description" content="大家好，我是站长 polarisxu。 有下面 3 行代码： // 32 位机器 1）var x int32 = 32.0 2）var y int = x 3）var z rune = x 它们是否能编译通过？为什么？ 如果面试时问这道题，你需要想想面试官想考察你什么。在往下看之前，建议你记下自己的答案。 01 数字字面量 在 Go 语言中，字面量是无类型（untyped）的。无类型是什么意思？无类型意味着可以赋值给类似类型的变量或常量。用上面例"><meta itemprop="datePublished" content="2021-04-07T17:20:00+08:00" />
-<meta itemprop="dateModified" content="2021-04-07T17:20:00+08:00" />
+<meta itemprop="description" content="大家好，我是站长 polarisxu。 有下面 3 行代码： // 32 位机器 1）var x int32 = 32.0 2）var y int = x 3）var z rune = x 它们是否能编译通过？为什么？ 如果面试时问这道题，你需要想想面试官想考察你什么。在往下看之前，建议你记下自己的答案。 01 数字字面量 在 Go 语言中，字面量是无类型（untyped）的。无类型是什么意思？无类型意味着可以赋值给类似类型的变量或常量。用上面例"><meta itemprop="datePublished" content="2021-04-07T17:20:00&#43;08:00" />
+<meta itemprop="dateModified" content="2021-04-07T17:20:00&#43;08:00" />
 <meta itemprop="wordCount" content="1376">
 <meta itemprop="keywords" content="Go,别名," /><meta property="og:title" content="答应我，这次一定彻底搞懂 Go 中的类型别名" />
 <meta property="og:description" content="大家好，我是站长 polarisxu。 有下面 3 行代码： // 32 位机器 1）var x int32 = 32.0 2）var y int = x 3）var z rune = x 它们是否能编译通过？为什么？ 如果面试时问这道题，你需要想想面试官想考察你什么。在往下看之前，建议你记下自己的答案。 01 数字字面量 在 Go 语言中，字面量是无类型（untyped）的。无类型是什么意思？无类型意味着可以赋值给类似类型的变量或常量。用上面例" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/action/type-and-alias/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2021-04-07T17:20:00+08:00" />
-<meta property="article:modified_time" content="2021-04-07T17:20:00+08:00" />
+<meta property="article:published_time" content="2021-04-07T17:20:00&#43;08:00" />
+<meta property="article:modified_time" content="2021-04-07T17:20:00&#43;08:00" />
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="答应我，这次一定彻底搞懂 Go 中的类型别名"/>
@@ -30,7 +30,7 @@
 	<link rel="shortcut icon" href="/favicon.ico">
 
 	<title>答应我，这次一定彻底搞懂 Go 中的类型别名</title>
-	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.f74778e3020c87c304fb5982e09b92ba63a5c7f202996d4c7283d6057acfe9c1.css" integrity="sha256-90d44wIMh8ME+1mC4JuSumOlx/ICmW1McoPWBXrP6cE=" crossorigin="anonymous">
 	
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/styles.css">
@@ -79,7 +79,7 @@
 			<div class="content">
 				<p>大家好，我是站长 polarisxu。</p>
 <p>有下面 3 行代码：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// 32 位机器
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// 32 位机器
 </span><span class="c1"></span><span class="mi">1</span><span class="err">）</span><span class="kd">var</span> <span class="nx">x</span> <span class="kt">int32</span> <span class="p">=</span> <span class="mf">32.0</span>
 <span class="mi">2</span><span class="err">）</span><span class="kd">var</span> <span class="nx">y</span> <span class="kt">int</span> <span class="p">=</span> <span class="nx">x</span>
 <span class="mi">3</span><span class="err">）</span><span class="kd">var</span> <span class="nx">z</span> <span class="kt">rune</span> <span class="p">=</span> <span class="nx">x</span>
@@ -87,7 +87,7 @@
 <p>如果面试时问这道题，你需要想想面试官想考察你什么。在往下看之前，建议你记下自己的答案。</p>
 <h2 id="01-数字字面量">01 数字字面量<a href="#01-数字字面量" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>在 Go 语言中，字面量是无类型（untyped）的。无类型是什么意思？无类型意味着可以赋值给类似类型的变量或常量。用上面例子，32.0 是无类型的浮点数字面量，因此它可以赋值给任意数字相关类型变量（或常量）。以下都是合法的：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">var</span> <span class="nx">a</span> <span class="kt">int64</span> <span class="p">=</span> <span class="mf">32.0</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">var</span> <span class="nx">a</span> <span class="kt">int64</span> <span class="p">=</span> <span class="mf">32.0</span>
 <span class="kd">var</span> <span class="nx">b</span> <span class="kt">int</span> <span class="p">=</span> <span class="mf">32.0</span>
 <span class="kd">var</span> <span class="nx">c</span> <span class="kt">float32</span> <span class="p">=</span> <span class="mf">32.0</span>
 <span class="kd">var</span> <span class="nx">d</span> <span class="kt">complex64</span> <span class="p">=</span> <span class="mf">32.0</span>
@@ -98,12 +98,12 @@
 <p>在目前 Go 1.16 版本中（实际上只有很早期的版本不是），int 类型在 32 位机器占 4 字节，64 位机器占 8 字节。所以，在 32 位机器上，int32 和 int 的内存占用和内存布局是完全一样的。但 Go 语言不会做隐式类型转换，int 和 int32 是不同的类型，因此上题中 2）编译不通过。</p>
 <h2 id="03-类型别名">03 类型别名<a href="#03-类型别名" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>熟悉 C 语言的小伙伴，看到 Go 中以下定义：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">myint</span> <span class="kt">int</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">myint</span> <span class="kt">int</span>
 </code></pre></div><p>会以为 myint 和 int 是一样的，认为 myint 是 int 的别名。而实际上，myint 是和 int 完全不一样的类型，只不过 myint 的底层类型是 int，它们直接可以强制类型转换，却不会隐式转换。关于这点无需多讲，重点要讲的是类型别名。</p>
 <p>从 Go1.9 开始引入了类型别名，定义如下：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="nx">AliasDecl</span> <span class="p">=</span> <span class="nx">identifier</span><span class="p">,</span> <span class="s">&#34;=&#34;</span><span class="p">,</span> <span class="nx">Type</span> <span class="p">.</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">AliasDecl</span> <span class="p">=</span> <span class="nx">identifier</span><span class="p">,</span> <span class="s">&#34;=&#34;</span><span class="p">,</span> <span class="nx">Type</span> <span class="p">.</span>
 </code></pre></div><p>具体例子：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">intalias</span> <span class="p">=</span> <span class="kt">int</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">intalias</span> <span class="p">=</span> <span class="kt">int</span>
 </code></pre></div><p>myint 是新类型，和 int 不一样；而 intalias 却和 int 一样，它只是 int 的别名：所有使用 intalias 的地方都可以使用 int。</p>
 <p>那为什么 Go 中会引入类型别名呢？Russ Cox 的论文 <a href="https://talks.golang.org/2016/refactor.article" target="_blank" rel="noopener">Codebase Refactoring (with help from Go)</a>
  介绍了它的背景。总结一下类型别名的用途，主要有两点：</p>
@@ -112,17 +112,17 @@
 <li>允许一个庞大的包分解成内部的几个小包，但是小包中的类型需要集中暴漏在上层的大包中；</li>
 </ul>
 <p>在 Go 中，你可以为任意类型定义别名，比如数组、结构体、指针、函数、接口、Slice、Map、Channel 等，包括为自定义类型定义别名。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">F</span> <span class="p">=</span> <span class="kd">func</span><span class="p">()</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">F</span> <span class="p">=</span> <span class="kd">func</span><span class="p">()</span>
 <span class="kd">type</span> <span class="nx">I</span> <span class="p">=</span> <span class="kd">interface</span><span class="p">{}</span>
 <span class="o">...</span>
 </code></pre></div><p>此外，还可以为其他包中的类型定义别名，比如为标准库类型定义别名：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">MyReader</span> <span class="p">=</span> <span class="nx">bufio</span><span class="p">.</span><span class="nx">Reader</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">MyReader</span> <span class="p">=</span> <span class="nx">bufio</span><span class="p">.</span><span class="nx">Reader</span>
 </code></pre></div><p>关于类型别名的一些注意事项：</p>
 <ul>
 <li>别名和原类型是一样的，因此 switch-type 结构中，不能存在两个 case，一个是原类型，一个是别名；</li>
 <li>类型别名不能循环定义，比如以下是不允许的：</li>
 </ul>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">T</span> <span class="p">=</span> <span class="kd">struct</span> <span class="p">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">T</span> <span class="p">=</span> <span class="kd">struct</span> <span class="p">{</span>
 	<span class="nx">next</span> <span class="o">*</span><span class="nx">T1</span>
 <span class="p">}</span>
 
@@ -132,16 +132,16 @@
 <li>别名的导出性可以和原类型不一样；</li>
 <li>不能为别的包的类型通过定义别名来增加方法。以下行为是不允许的：</li>
 </ul>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">MyReader</span> <span class="p">=</span> <span class="nx">bufio</span><span class="p">.</span><span class="nx">Reader</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">MyReader</span> <span class="p">=</span> <span class="nx">bufio</span><span class="p">.</span><span class="nx">Reader</span>
 <span class="kd">func</span> <span class="p">(</span><span class="nx">MyReader</span><span class="p">)</span> <span class="nf">AliasMethod</span><span class="p">()</span> <span class="p">{</span>
 	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;This is alias method&#34;</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre></div><p>编译报错：<code>cannot define new methods on non-local type bufio.Reader</code>。</p>
 <p>回到开头题目的 3），rune 是什么类型？定义如下：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="kt">rune</span> <span class="p">=</span> <span class="kt">int32</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="kt">rune</span> <span class="p">=</span> <span class="kt">int32</span>
 </code></pre></div><p>很显然，rune 是 int32 的别名，因此题目中 3）也能编译通过。</p>
 <p>除了 rune，Go 内置类型中，还有 byte 是 uint8 的别名：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="kt">byte</span> <span class="p">=</span> <span class="kt">uint8</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="kt">byte</span> <span class="p">=</span> <span class="kt">uint8</span>
 </code></pre></div><p>需要说明的是，在 Go1.9 之前，rune 和 byte 的别名性质就存在，是编译器负责处理的。只是 Go1.9 之后，别名可以用于其他类型了。</p>
 <h2 id="04-总结">04 总结<a href="#04-总结" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>一道看似简单的题目，如果你能够分析透彻，把语言的变化都说出来，我相信面试官会给你加分。</p>
@@ -149,7 +149,7 @@
 
 			</div><div class="content">
 	<br>
-	<img src="https://static.studygolang.com/static/img/polarisxu-qrcode-soso-s.png">
+	<img src="https://static.golangjob.cn/static/img/polarisxu-qrcode-soso-s.png">
 </div>
 
 <div class="related-posts thin">

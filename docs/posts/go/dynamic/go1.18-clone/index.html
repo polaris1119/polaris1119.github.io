@@ -8,15 +8,15 @@
 	<meta name="theme-color" content="#fcfcfc">
 	<meta name="msapplication-TileColor" content="#fcfcfc">
 <meta itemprop="name" content="Go1.18 快讯：新增字符串 Clone API">
-<meta itemprop="description" content="大家好，我是 polarisxu。 Go 1.18 虽然还有 4 个月发布，但大部分的功能基本确定。我们可以提前知晓、熟悉。 今天介绍的是标准库中新增的一个 API：strings.Clone()。 从名称可以知道，这是克隆。很多其他语言一开始就有这样的功能。比如 PHP 有 clone 关键字、__clone 魔术方法；Java 的根类 Object 有 clone 方法等。 01 函数签名 该函数的定义如下（见：https://pkg."><meta itemprop="datePublished" content="2021-11-02T23:00:00+08:00" />
-<meta itemprop="dateModified" content="2021-11-02T23:00:00+08:00" />
+<meta itemprop="description" content="大家好，我是 polarisxu。 Go 1.18 虽然还有 4 个月发布，但大部分的功能基本确定。我们可以提前知晓、熟悉。 今天介绍的是标准库中新增的一个 API：strings.Clone()。 从名称可以知道，这是克隆。很多其他语言一开始就有这样的功能。比如 PHP 有 clone 关键字、__clone 魔术方法；Java 的根类 Object 有 clone 方法等。 01 函数签名 该函数的定义如下（见：https://pkg."><meta itemprop="datePublished" content="2021-11-02T23:00:00&#43;08:00" />
+<meta itemprop="dateModified" content="2021-11-02T23:00:00&#43;08:00" />
 <meta itemprop="wordCount" content="1162">
 <meta itemprop="keywords" content="Go,Clone,标准库," /><meta property="og:title" content="Go1.18 快讯：新增字符串 Clone API" />
 <meta property="og:description" content="大家好，我是 polarisxu。 Go 1.18 虽然还有 4 个月发布，但大部分的功能基本确定。我们可以提前知晓、熟悉。 今天介绍的是标准库中新增的一个 API：strings.Clone()。 从名称可以知道，这是克隆。很多其他语言一开始就有这样的功能。比如 PHP 有 clone 关键字、__clone 魔术方法；Java 的根类 Object 有 clone 方法等。 01 函数签名 该函数的定义如下（见：https://pkg." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/dynamic/go1.18-clone/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2021-11-02T23:00:00+08:00" />
-<meta property="article:modified_time" content="2021-11-02T23:00:00+08:00" />
+<meta property="article:published_time" content="2021-11-02T23:00:00&#43;08:00" />
+<meta property="article:modified_time" content="2021-11-02T23:00:00&#43;08:00" />
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Go1.18 快讯：新增字符串 Clone API"/>
@@ -30,7 +30,7 @@
 	<link rel="shortcut icon" href="/favicon.ico">
 
 	<title>Go1.18 快讯：新增字符串 Clone API</title>
-	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.f74778e3020c87c304fb5982e09b92ba63a5c7f202996d4c7283d6057acfe9c1.css" integrity="sha256-90d44wIMh8ME+1mC4JuSumOlx/ICmW1McoPWBXrP6cE=" crossorigin="anonymous">
 	
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/styles.css">
@@ -82,9 +82,8 @@
 <p>今天介绍的是标准库中新增的一个 API：<code>strings.Clone()</code>。</p>
 <p>从名称可以知道，这是克隆。很多其他语言一开始就有这样的功能。比如 PHP 有 clone 关键字、<code>__clone</code> 魔术方法；Java 的根类 Object 有 clone 方法等。</p>
 <h2 id="01-函数签名">01 函数签名<a href="#01-函数签名" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-<p>该函数的定义如下（见：<a href="https://pkg.go.dev/strings@master#Clone" target="_blank" rel="noopener">https://pkg.go.dev/strings@master#Clone</a>
-）</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// Clone returns a fresh copy of s.
+<p>该函数的定义如下（见：<a href="https://pkg.go.dev/strings@master#Clone">https://pkg.go.dev/strings@master#Clone</a>）</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// Clone returns a fresh copy of s.
 </span><span class="c1">// It guarantees to make a copy of s into a new allocation,
 </span><span class="c1">// which can be important when retaining only a small substring
 </span><span class="c1">// of a much larger string. Using Clone can help such programs
@@ -98,7 +97,7 @@
 </code></pre></div><p>Clone 返回 s 的新副本。它保证将 s 复制到一个新分配的副本中，当只保留一个很大的字符串中的一个小子字符串时，这一点很重要。使用克隆可以帮助这些程序使用更少的内存。当然，由于使用克隆制作拷贝，过度使用克隆会使程序使用更多内存。通常，只有在分析表明需要克隆时，才谨慎使用克隆。对于长度为零的字符串，将返回字符串 <code>&quot;&quot;</code>，不进行内存分配。</p>
 <h2 id="02-举例说明">02 举例说明<a href="#02-举例说明" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>大家可能还是迷惑，不知道有啥用。举一个代码例子说明：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
 	<span class="s">&#34;fmt&#34;</span>
@@ -122,7 +121,7 @@
 </code></pre></div><p>Len 不相等不需要解释，Data 相等就值得注意。</p>
 <blockquote>
 <p>上面代码，有些人可能不知道什么意思。这里涉及到 Go 中 string 类型的底层结构。在 Go 中，string 类型的底层表示如下：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="kt">string</span> <span class="kd">struct</span> <span class="p">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="kt">string</span> <span class="kd">struct</span> <span class="p">{</span>
 	<span class="nx">ptr</span> <span class="nx">unsafe</span><span class="p">.</span><span class="nx">Pointer</span>
 	<span class="nx">len</span> <span class="kt">int</span>
 <span class="p">}</span>
@@ -130,7 +129,7 @@
 </blockquote>
 <p>在上面示例场景中，如果 s 很大，而之后我们只需要使用它的某个短子串，这会导致内存的浪费，因为子串和原字符串的 Data 部分指向相同的内存，因此整个字符串并不会被 GC 回收。</p>
 <p><code>strings.Clone</code> 函数就是为了解决这个问题的：（要正常运行下面代码，需要按照 Go tip 版本）</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="nx">s2</span> <span class="o">:=</span> <span class="nx">strings</span><span class="p">.</span><span class="nf">Clone</span><span class="p">(</span><span class="nx">s</span><span class="p">[:</span><span class="mi">4</span><span class="p">])</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">s2</span> <span class="o">:=</span> <span class="nx">strings</span><span class="p">.</span><span class="nf">Clone</span><span class="p">(</span><span class="nx">s</span><span class="p">[:</span><span class="mi">4</span><span class="p">])</span>
 
 <span class="nx">s2Header</span> <span class="o">:=</span> <span class="p">(</span><span class="o">*</span><span class="nx">reflect</span><span class="p">.</span><span class="nx">StringHeader</span><span class="p">)(</span><span class="nx">unsafe</span><span class="p">.</span><span class="nf">Pointer</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">s2</span><span class="p">))</span>
 <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">sHeader</span><span class="p">.</span><span class="nx">Len</span> <span class="o">==</span> <span class="nx">s2Header</span><span class="p">.</span><span class="nx">Len</span><span class="p">)</span>
@@ -141,7 +140,7 @@
 </span></code></pre></div><p>通过克隆得到 s2，从最后输出结果看，Data 已经不同了，原始的长字符串就可以被垃圾回收了。（你也可以将传递给 Clone 的参数改为 s1，后面部分用 s1 和 s2 比）</p>
 <h2 id="03-内部实现">03 内部实现<a href="#03-内部实现" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>知道了克隆的用途，再看看 strings.Clone 的实现。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">Clone</span><span class="p">(</span><span class="nx">s</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">string</span> <span class="p">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">Clone</span><span class="p">(</span><span class="nx">s</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">string</span> <span class="p">{</span>
 	<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nx">s</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="p">{</span>
 		<span class="k">return</span> <span class="s">&#34;&#34;</span>
 	<span class="p">}</span>
@@ -160,7 +159,7 @@
 
 			</div><div class="content">
 	<br>
-	<img src="https://static.studygolang.com/static/img/polarisxu-qrcode-soso-s.png">
+	<img src="https://static.golangjob.cn/static/img/polarisxu-qrcode-soso-s.png">
 </div>
 
 <div class="related-posts thin">

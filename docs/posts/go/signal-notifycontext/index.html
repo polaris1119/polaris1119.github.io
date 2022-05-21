@@ -8,15 +8,15 @@
 	<meta name="theme-color" content="#fcfcfc">
 	<meta name="msapplication-TileColor" content="#fcfcfc">
 <meta itemprop="name" content="Go1.16 中的新函数 signal.NotifyContext 怎么用？">
-<meta itemprop="description" content="大家好，我是 polarisxu。 os/signal 这个包大家可能用的不多。但自从 Go1.8 起，有些人开始使用这个包了，原因是 Go1.8 在 net/http 包新增了一个方法： func (srv *Server) Shutdown(ctx context.Context) error 有了它就不需要借助第三方库实现优雅关闭服务了。具体怎么做呢？ func main() { server = http.Server{ Addr: &#34;:8080&#34;, } http.HandleFunc(&#34;/&#34;, func(w http.ResponseWriter, r *http.Request) { time.Sleep(time.Second * 10) fmt.Fprint(w, &#34;Hello world!&#34;) }) go server.ListenAndServe() // 监听中断信号（CTRL &#43; C） c := make(chan os.Signal, 1) signal.Notify(c, os.Interrupt) &lt;-c // 重置 os.Interrupt 的默认行为 signal.Reset(os.Interrupt) fmt.Println(&#34;shutting down gracefully, press Ctrl&#43;C again to force&#34;) // 给程序最多 5 秒时间处理正在服务的"><meta itemprop="datePublished" content="2021-06-01T12:30:00+08:00" />
-<meta itemprop="dateModified" content="2021-06-01T12:30:00+08:00" />
+<meta itemprop="description" content="大家好，我是 polarisxu。 os/signal 这个包大家可能用的不多。但自从 Go1.8 起，有些人开始使用这个包了，原因是 Go1.8 在 net/http 包新增了一个方法： func (srv *Server) Shutdown(ctx context.Context) error 有了它就不需要借助第三方库实现优雅关闭服务了。具体怎么做呢？ func main() { server = http.Server{ Addr: &#34;:8080&#34;, } http.HandleFunc(&#34;/&#34;, func(w http.ResponseWriter, r *http.Request) { time.Sleep(time.Second * 10) fmt.Fprint(w, &#34;Hello world!&#34;) }) go server.ListenAndServe() // 监听中断信号（CTRL &#43; C） c := make(chan os.Signal, 1) signal.Notify(c, os.Interrupt) &lt;-c // 重置 os.Interrupt 的默认行为 signal.Reset(os.Interrupt) fmt.Println(&#34;shutting down gracefully, press Ctrl&#43;C again to force&#34;) // 给程序最多 5 秒时间处理正在服务的"><meta itemprop="datePublished" content="2021-06-01T12:30:00&#43;08:00" />
+<meta itemprop="dateModified" content="2021-06-01T12:30:00&#43;08:00" />
 <meta itemprop="wordCount" content="863">
 <meta itemprop="keywords" content="Go,信号," /><meta property="og:title" content="Go1.16 中的新函数 signal.NotifyContext 怎么用？" />
 <meta property="og:description" content="大家好，我是 polarisxu。 os/signal 这个包大家可能用的不多。但自从 Go1.8 起，有些人开始使用这个包了，原因是 Go1.8 在 net/http 包新增了一个方法： func (srv *Server) Shutdown(ctx context.Context) error 有了它就不需要借助第三方库实现优雅关闭服务了。具体怎么做呢？ func main() { server = http.Server{ Addr: &#34;:8080&#34;, } http.HandleFunc(&#34;/&#34;, func(w http.ResponseWriter, r *http.Request) { time.Sleep(time.Second * 10) fmt.Fprint(w, &#34;Hello world!&#34;) }) go server.ListenAndServe() // 监听中断信号（CTRL &#43; C） c := make(chan os.Signal, 1) signal.Notify(c, os.Interrupt) &lt;-c // 重置 os.Interrupt 的默认行为 signal.Reset(os.Interrupt) fmt.Println(&#34;shutting down gracefully, press Ctrl&#43;C again to force&#34;) // 给程序最多 5 秒时间处理正在服务的" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/signal-notifycontext/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2021-06-01T12:30:00+08:00" />
-<meta property="article:modified_time" content="2021-06-01T12:30:00+08:00" />
+<meta property="article:published_time" content="2021-06-01T12:30:00&#43;08:00" />
+<meta property="article:modified_time" content="2021-06-01T12:30:00&#43;08:00" />
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Go1.16 中的新函数 signal.NotifyContext 怎么用？"/>
@@ -30,7 +30,7 @@
 	<link rel="shortcut icon" href="/favicon.ico">
 
 	<title>Go1.16 中的新函数 signal.NotifyContext 怎么用？</title>
-	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.f74778e3020c87c304fb5982e09b92ba63a5c7f202996d4c7283d6057acfe9c1.css" integrity="sha256-90d44wIMh8ME+1mC4JuSumOlx/ICmW1McoPWBXrP6cE=" crossorigin="anonymous">
 	
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/styles.css">
@@ -79,9 +79,9 @@
 			<div class="content">
 				<p>大家好，我是 polarisxu。</p>
 <p>os/signal 这个包大家可能用的不多。但自从 Go1.8 起，有些人开始使用这个包了，原因是 Go1.8 在 net/http 包新增了一个方法：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="p">(</span><span class="nx">srv</span> <span class="o">*</span><span class="nx">Server</span><span class="p">)</span> <span class="nf">Shutdown</span><span class="p">(</span><span class="nx">ctx</span> <span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">)</span> <span class="kt">error</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="p">(</span><span class="nx">srv</span> <span class="o">*</span><span class="nx">Server</span><span class="p">)</span> <span class="nf">Shutdown</span><span class="p">(</span><span class="nx">ctx</span> <span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">)</span> <span class="kt">error</span>
 </code></pre></div><p>有了它就不需要借助第三方库实现优雅关闭服务了。具体怎么做呢？</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
 	<span class="nx">server</span> <span class="p">=</span> <span class="nx">http</span><span class="p">.</span><span class="nx">Server</span><span class="p">{</span>
 		<span class="nx">Addr</span><span class="p">:</span> <span class="s">&#34;:8080&#34;</span><span class="p">,</span>
 	<span class="p">}</span>
@@ -118,9 +118,9 @@
 </ul>
 <p>优雅退出的关键：1）新请求进不来；2）已有请求给时间处理完。所以，在接收到信号后，调用 server.Shutdown 方法，阻止新请求进来，同时给 5 秒等待时间，让已经进来的请求有时间处理。</p>
 <p>在 Go1.16 中，os/signal 包新增了一个函数：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">NotifyContext</span><span class="p">(</span><span class="nx">parent</span> <span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">,</span> <span class="nx">signals</span> <span class="o">...</span><span class="nx">os</span><span class="p">.</span><span class="nx">Signal</span><span class="p">)</span> <span class="p">(</span><span class="nx">ctx</span> <span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">,</span> <span class="nx">stop</span> <span class="nx">context</span><span class="p">.</span><span class="nx">CancelFunc</span><span class="p">)</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">NotifyContext</span><span class="p">(</span><span class="nx">parent</span> <span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">,</span> <span class="nx">signals</span> <span class="o">...</span><span class="nx">os</span><span class="p">.</span><span class="nx">Signal</span><span class="p">)</span> <span class="p">(</span><span class="nx">ctx</span> <span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">,</span> <span class="nx">stop</span> <span class="nx">context</span><span class="p">.</span><span class="nx">CancelFunc</span><span class="p">)</span>
 </code></pre></div><p>功能和 Notify 类似，但用法上有些不同。上面的例子改用 NotifyContext：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">after</span><span class="p">()</span> <span class="p">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">after</span><span class="p">()</span> <span class="p">{</span>
 	<span class="nx">server</span> <span class="p">=</span> <span class="nx">http</span><span class="p">.</span><span class="nx">Server</span><span class="p">{</span>
 		<span class="nx">Addr</span><span class="p">:</span> <span class="s">&#34;:8080&#34;</span><span class="p">,</span>
 	<span class="p">}</span>
@@ -149,7 +149,7 @@
 	<span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div><p>和上面的写法有区别，完成的功能一样的。其实 NotifyContext 的内部就是基于 Notify 实现的：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">NotifyContext</span><span class="p">(</span><span class="nx">parent</span> <span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">,</span> <span class="nx">signals</span> <span class="o">...</span><span class="nx">os</span><span class="p">.</span><span class="nx">Signal</span><span class="p">)</span> <span class="p">(</span><span class="nx">ctx</span> <span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">,</span> <span class="nx">stop</span> <span class="nx">context</span><span class="p">.</span><span class="nx">CancelFunc</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">NotifyContext</span><span class="p">(</span><span class="nx">parent</span> <span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">,</span> <span class="nx">signals</span> <span class="o">...</span><span class="nx">os</span><span class="p">.</span><span class="nx">Signal</span><span class="p">)</span> <span class="p">(</span><span class="nx">ctx</span> <span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">,</span> <span class="nx">stop</span> <span class="nx">context</span><span class="p">.</span><span class="nx">CancelFunc</span><span class="p">)</span> <span class="p">{</span>
 	<span class="nx">ctx</span><span class="p">,</span> <span class="nx">cancel</span> <span class="o">:=</span> <span class="nx">context</span><span class="p">.</span><span class="nf">WithCancel</span><span class="p">(</span><span class="nx">parent</span><span class="p">)</span>
 	<span class="nx">c</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">signalCtx</span><span class="p">{</span>
 		<span class="nx">Context</span><span class="p">:</span> <span class="nx">ctx</span><span class="p">,</span>
@@ -172,12 +172,11 @@
 </code></pre></div><p>只是在返回的 stop 被调用时，会执行 os/signal 包中的 Stop 函数，这个 Stop 函数的功能和 Reset 类似。因此上面 Notify 的例子，Reset 的地方可以改为 Stop。</p>
 <p>从封装上看，NotifyContext 做的更好。而且，如果在某些需要 Context 的场景下，它把监控系统信号和创建 Context 一步搞定。</p>
 <p>NotifyContext 的用法，优雅的关闭服务，你掌握了吗？希望你实际动手试验下，启动服务，通过 <code>curl http://localhost:8080/</code> 访问，然后按 CTRL + C，看看具体效果。只看不动手，基本知识不是你的。</p>
-<p>关于 NotifyContext 函数的文档可以在这里查看：<a href="https://docs.studygolang.com/pkg/os/signal/#NotifyContext" target="_blank" rel="noopener">https://docs.studygolang.com/pkg/os/signal/#NotifyContext</a>
-。</p>
+<p>关于 NotifyContext 函数的文档可以在这里查看：<a href="https://docs.studygolang.com/pkg/os/signal/#NotifyContext">https://docs.studygolang.com/pkg/os/signal/#NotifyContext</a>。</p>
 
 			</div><div class="content">
 	<br>
-	<img src="https://static.studygolang.com/static/img/polarisxu-qrcode-soso-s.png">
+	<img src="https://static.golangjob.cn/static/img/polarisxu-qrcode-soso-s.png">
 </div>
 
 <div class="related-posts thin">

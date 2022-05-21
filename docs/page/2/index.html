@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-	<meta name="generator" content="Hugo 0.88.1" />
+	<meta name="generator" content="Hugo 0.81.0" />
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -27,7 +27,7 @@
 
 	<title>polarisxu</title>
 	<link rel="alternate" type="application/rss+xml" href="https://polarisxu.studygolang.com/index.xml" title="polarisxu" />
-	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.f74778e3020c87c304fb5982e09b92ba63a5c7f202996d4c7283d6057acfe9c1.css" integrity="sha256-90d44wIMh8ME+1mC4JuSumOlx/ICmW1McoPWBXrP6cE=" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/styles.css">
 </head>
@@ -155,7 +155,7 @@
                 </h2>
             </div>
             <div class="post-content">
-                <div class="p_part"><p>大家好，我是 polarisxu。 有泛型的 Go 版本 1.18 已经发布了 Beta1 版本，之前陆陆续续介绍了泛型，但可能有些人还是对 Go 泛型没有完整的了解，因此有这份入门教程。 01 准备工作 开始学习泛型之前，你应该安装 Go1.18 Beta1 或之后发布的版本，建议使用 goup 等版本管理工具 ，当然也可以直接通过 playground 来验证：https://go.dev/play/?v=gotip 。 不过，本教程基于本地安装 Go1.18 Beta1 为例进行。</p></div>
+                <div class="p_part"><p>大家好，我是 polarisxu。 有泛型的 Go 版本 1.18 已经发布了 Beta1 版本，之前陆陆续续介绍了泛型，但可能有些人还是对 Go 泛型没有完整的了解，因此有这份入门教程。 01 准备工作 开始学习泛型之前，你应该安装 Go1.18 Beta1 或之后发布的版本，建议使用 goup 等版本管理工具 ，当然也可以直接通过 playground 来验证：https://go.dev/play/?v=gotip。 不过，本教程基于本地安装 Go1.18 Beta1 为例进行。</p></div>
             </div>
             <div class="post-footer">
                 <div class="meta">
@@ -175,7 +175,7 @@
                 </h2>
             </div>
             <div class="post-content">
-                <div class="p_part"><p>大家好，我是 polarisxu。 上次推荐的 「Go网址导航」，其中收录了一项：转换器。 网址是：https://transform.tools/ 。 这是一个开源项目，项目地址：https://github.com/ritz078/transform ，目前 Star 数 2.8k+。 这个网站将转换工具分成了几类： SVG HTML JSON JSON Schema CSS JavaScript GraphQL JSON-LD TypeScript Flow Others 其中有一些对 Gopher 比较有用，这里简单列举介绍下</p></div>
+                <div class="p_part"><p>大家好，我是 polarisxu。 上次推荐的 「Go网址导航」，其中收录了一项：转换器。 网址是：https://transform.tools/。 这是一个开源项目，项目地址：https://github.com/ritz078/transform，目前 Star 数 2.8k+。 这个网站将转换工具分成了几类： SVG HTML JSON JSON Schema CSS JavaScript GraphQL JSON-LD TypeScript Flow Others 其中有一些对 Gopher 比较有用，这里简单列举介绍下</p></div>
             </div>
             <div class="post-footer">
                 <div class="meta">
@@ -195,7 +195,7 @@
                 </h2>
             </div>
             <div class="post-content">
-                <div class="p_part"><p>大家好，我是 polarisxu。 企业内部搭建搜索引擎常用 Solr、Elasticsearch，它们都是使用 Java 实现的，底层依赖 Lucene，Java 相对来说占用较多内存。而今天要介绍的这个项目，目标就是作为 ES 的替代者，一个轻量级搜索引擎：Zinc。 项目地址：https://github.com/prabhatsharma/zinc ，该项目开源十来天，目前 Star 数 3</p></div>
+                <div class="p_part"><p>大家好，我是 polarisxu。 企业内部搭建搜索引擎常用 Solr、Elasticsearch，它们都是使用 Java 实现的，底层依赖 Lucene，Java 相对来说占用较多内存。而今天要介绍的这个项目，目标就是作为 ES 的替代者，一个轻量级搜索引擎：Zinc。 项目地址：https://github.com/prabhatsharma/zinc，该项目开源十来天，目前 Star 数 3</p></div>
             </div>
             <div class="post-footer">
                 <div class="meta">
@@ -235,7 +235,7 @@
                 </h2>
             </div>
             <div class="post-content">
-                <div class="p_part"><p>大家好，我是 polarisxu。 Go 1.18 因为泛型引入 any，这实际上是 interface{} 的别名： type any = interface{} 以下代码虽然不是泛型，但用 Go 1.18 可以正常运行，证明 any 和 interface{} 是一样的：（这里可以在线运行：https://gotipplay.golang.org/p/dPeNhe-7nkA ） package main import ( &#34;fmt&#34; ) // 这里的 any 并非泛型的约束，而是类型 func test(x any) any { return x } func main() { fmt.Println(test(&#34;a&#34;)) } 泛型中，any 换为 interface{} 也可以：（这里</p></div>
+                <div class="p_part"><p>大家好，我是 polarisxu。 Go 1.18 因为泛型引入 any，这实际上是 interface{} 的别名： type any = interface{} 以下代码虽然不是泛型，但用 Go 1.18 可以正常运行，证明 any 和 interface{} 是一样的：（这里可以在线运行：https://gotipplay.golang.org/p/dPeNhe-7nkA） package main import ( &#34;fmt&#34; ) // 这里的 any 并非泛型的约束，而是类型 func test(x any) any { return x } func main() { fmt.Println(test(&#34;a&#34;)) } 泛型中，any 换为 interface{} 也可以：（这里</p></div>
             </div>
             <div class="post-footer">
                 <div class="meta">
@@ -272,35 +272,37 @@
     
     <div class="pagination">
         
-    <ul class="pagination pagination-default">
-      <li class="page-item">
-        <a href="/" aria-label="First" class="page-link" role="button"><span aria-hidden="true">&laquo;&laquo;</span></a>
-      </li>
-      <li class="page-item">
-        <a href="/" aria-label="Previous" class="page-link" role="button"><span aria-hidden="true">&laquo;</span></a>
-      </li>
-      <li class="page-item">
-        <a href="/" aria-label="Page 1" class="page-link" role="button">1</a>
-      </li>
-      <li class="page-item active">
-        <a href="#" aria-current="page" aria-label="Page 2" class="page-link" role="button">2</a>
-      </li>
-      <li class="page-item">
-        <a href="/page/3/" aria-label="Page 3" class="page-link" role="button">3</a>
-      </li>
-      <li class="page-item">
-        <a href="/page/4/" aria-label="Page 4" class="page-link" role="button">4</a>
-      </li>
-      <li class="page-item">
-        <a href="/page/5/" aria-label="Page 5" class="page-link" role="button">5</a>
-      </li>
-      <li class="page-item">
-        <a href="/page/3/" aria-label="Next" class="page-link" role="button"><span aria-hidden="true">&raquo;</span></a>
-      </li>
-      <li class="page-item">
-        <a href="/page/22/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
-      </li>
-    </ul>
+<ul class="pagination">
+  <li class="page-item">
+    <a href="/" class="page-link" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
+  </li>
+  <li class="page-item">
+    <a href="/" class="page-link" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="/">1</a>
+  </li>
+  <li class="page-item active">
+    <a class="page-link" href="/page/2/">2</a>
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="/page/3/">3</a>
+  </li>
+  <li class="page-item disabled">
+    <span aria-hidden="true">&nbsp;&hellip;&nbsp;</span>
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="/page/22/">22</a>
+  </li>
+  <li class="page-item">
+    <a href="/page/3/" class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
+  </li>
+  <li class="page-item">
+    <a href="/page/22/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+  </li>
+</ul>
+
+
     </div>
 		</main>
 

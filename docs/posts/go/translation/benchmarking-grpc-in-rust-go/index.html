@@ -8,15 +8,15 @@
 	<meta name="theme-color" content="#fcfcfc">
 	<meta name="msapplication-TileColor" content="#fcfcfc">
 <meta itemprop="name" content="对 gRPC 的 Rust 和 Go 版本进行基准测试">
-<meta itemprop="description" content="背景 如果你计划构建可靠，内存安全 ，高性能的应用程序，那么 Rust＆Go 无疑会是你的选择。 如果您希望从内部应用程序中获得更高的性能，则可能还需要考虑使用 gRPC 而不是普通的 REST API。所有这些都是减少您的计算开销的解决方案。 我尝试比较各种库以了解它们的性能，并希望对你有所帮助。 关注的库 tower-grpc (Rust) 高性能 rust 库，尽管已被 tonic 替代 grpc-go (Golang) grpc 的官方 Go 模块 grpc-rust (Rust) 仍在开发中，另一个 rust grpc 库。看起来"><meta itemprop="datePublished" content="2020-07-16T11:15:51+08:00" />
-<meta itemprop="dateModified" content="2020-07-16T11:15:51+08:00" />
+<meta itemprop="description" content="背景 如果你计划构建可靠，内存安全 ，高性能的应用程序，那么 Rust＆Go 无疑会是你的选择。 如果您希望从内部应用程序中获得更高的性能，则可能还需要考虑使用 gRPC 而不是普通的 REST API。所有这些都是减少您的计算开销的解决方案。 我尝试比较各种库以了解它们的性能，并希望对你有所帮助。 关注的库 tower-grpc (Rust) 高性能 rust 库，尽管已被 tonic 替代 grpc-go (Golang) grpc 的官方 Go 模块 grpc-rust (Rust) 仍在开发中，另一个 rust grpc 库。看起来"><meta itemprop="datePublished" content="2020-07-16T11:15:51&#43;08:00" />
+<meta itemprop="dateModified" content="2020-07-16T11:15:51&#43;08:00" />
 <meta itemprop="wordCount" content="1610">
 <meta itemprop="keywords" content="Go,Rust,gRPC,基准测试," /><meta property="og:title" content="对 gRPC 的 Rust 和 Go 版本进行基准测试" />
 <meta property="og:description" content="背景 如果你计划构建可靠，内存安全 ，高性能的应用程序，那么 Rust＆Go 无疑会是你的选择。 如果您希望从内部应用程序中获得更高的性能，则可能还需要考虑使用 gRPC 而不是普通的 REST API。所有这些都是减少您的计算开销的解决方案。 我尝试比较各种库以了解它们的性能，并希望对你有所帮助。 关注的库 tower-grpc (Rust) 高性能 rust 库，尽管已被 tonic 替代 grpc-go (Golang) grpc 的官方 Go 模块 grpc-rust (Rust) 仍在开发中，另一个 rust grpc 库。看起来" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/translation/benchmarking-grpc-in-rust-go/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2020-07-16T11:15:51+08:00" />
-<meta property="article:modified_time" content="2020-07-16T11:15:51+08:00" />
+<meta property="article:published_time" content="2020-07-16T11:15:51&#43;08:00" />
+<meta property="article:modified_time" content="2020-07-16T11:15:51&#43;08:00" />
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="对 gRPC 的 Rust 和 Go 版本进行基准测试"/>
@@ -30,7 +30,7 @@
 	<link rel="shortcut icon" href="/favicon.ico">
 
 	<title>对 gRPC 的 Rust 和 Go 版本进行基准测试</title>
-	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.f74778e3020c87c304fb5982e09b92ba63a5c7f202996d4c7283d6057acfe9c1.css" integrity="sha256-90d44wIMh8ME+1mC4JuSumOlx/ICmW1McoPWBXrP6cE=" crossorigin="anonymous">
 	
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/styles.css">
@@ -125,7 +125,7 @@
 <p>该测试将重点关注如果使用上述每个库将 10,000 个并发请求的相同负载发送到服务器，将有多少开销。我将为每个使用相同的 <a href="https://github.com/grpc/grpc-go/blob/master/examples/helloworld/helloworld/helloworld.proto" target="_blank" rel="noopener">helloworld</a>
  greeter。不会为任何测试启用 TLS，因此我们可以大致了解每种测试的原始性能。</p>
 <h3 id="grpc-go">grpc-go<a href="#grpc-go" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">Summary:
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">Summary:
   Count: <span class="m">10000</span>
   Total: 229.40 ms
   Slowest: 6.26 ms
@@ -152,7 +152,7 @@
   <span class="m">99</span> % in 4.77 msStatus code distribution:
   <span class="o">[</span>OK<span class="o">]</span>   <span class="m">10000</span> responses
 </code></pre></div><h3 id="tonic">tonic<a href="#tonic" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">Summary:
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">Summary:
   Count: <span class="m">10000</span>
   Total: 581.81 ms
   Slowest: 6.39 ms
@@ -179,7 +179,7 @@
   <span class="m">99</span> % in 4.22 msStatus code distribution:
   <span class="o">[</span>OK<span class="o">]</span>   <span class="m">10000</span> responses
 </code></pre></div><h3 id="grpc-node">grpc-node<a href="#grpc-node" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">Summary:
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">Summary:
   Count: <span class="m">10000</span>
   Total: 589.25 ms
   Slowest: 12.56 ms
@@ -206,7 +206,7 @@
   <span class="m">99</span> % in 6.41 msStatus code distribution:
   <span class="o">[</span>OK<span class="o">]</span>   <span class="m">10000</span> responses
 </code></pre></div><h3 id="tower-grpc">tower-grpc<a href="#tower-grpc" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">Summary:
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">Summary:
   Count: <span class="m">10000</span>
   Total: 571.88 ms
   Slowest: 10.59 ms
@@ -233,7 +233,7 @@
   <span class="m">99</span> % in 7.18 msStatus code distribution:
   <span class="o">[</span>OK<span class="o">]</span>   <span class="m">10000</span> responses
 </code></pre></div><h3 id="grpc-rust">grpc-rust<a href="#grpc-rust" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">Summary:
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">Summary:
   Count: <span class="m">10000</span>
   Total: 479.30 ms
   Slowest: 8.15 ms
@@ -260,7 +260,7 @@
   <span class="m">99</span> % in 4.11 msStatus code distribution:
   <span class="o">[</span>OK<span class="o">]</span>   <span class="m">10000</span> responses
 </code></pre></div><h3 id="grpc-rs">Grpc-rs<a href="#grpc-rs" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">Summary:
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">Summary:
   Count: <span class="m">10000</span>
   Total: 289.82 ms
   Slowest: 4.22 ms
@@ -304,15 +304,14 @@
 <p>Go 库在并发性和最小开销方面均表现出色。</p>
 <p>如果有人对 Go 库表现优异有些疑惑，请给留言给出你的看法！</p>
 <blockquote>
-<p>原文链接：<a href="https://medium.com/@Rustling_gopher/benchmarking-grpc-in-rust-go-184545e7688a" target="_blank" rel="noopener">https://medium.com/@Rustling_gopher/benchmarking-grpc-in-rust-go-184545e7688a</a>
-</p>
+<p>原文链接：<a href="https://medium.com/@Rustling_gopher/benchmarking-grpc-in-rust-go-184545e7688a">https://medium.com/@Rustling_gopher/benchmarking-grpc-in-rust-go-184545e7688a</a></p>
 <p>作者：Rustler</p>
 <p>编译：polaris</p>
 </blockquote>
 
 			</div><div class="content">
 	<br>
-	<img src="https://static.studygolang.com/static/img/polarisxu-qrcode-soso-s.png">
+	<img src="https://static.golangjob.cn/static/img/polarisxu-qrcode-soso-s.png">
 </div>
 
 <div class="related-posts thin">

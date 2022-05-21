@@ -46,7 +46,7 @@ IDE 将识别自定义位置，并将其用于具有依赖关系的所有后续�
 在继续之前，我们需要 GoLand 2020.1.1 或更高版本，该版本带有最新的 Docker 插件。我们还需要一个相当现代的 Docker 版本，例如 17.06 或更高版本。注意：虽然旧版本的 IDE 在一定程度上可以使用，但是本文使用了新功能，并且 IDE 的外观可能有所不同。
 项目设置 让我们开始设置我们的项目。
 我们可以创建一个新的 Go Modules 项目，也可以使用现有的项目。
-项目结构应类似于此仓库中的结构：https://github.com/dlsniper/dockerdev 。
+项目结构应类似于此仓库中的结构：https://github.com/dlsniper/dockerdev。
 本教程不会介绍如何为你的系统安装和配置 Docker。
 相反，我们将从配置 Docker 服务器开始，以便我们可以运行我们的应用程序。将 Docker 安装到系统中后，转到 Settings/Preferences | Build, Execution, Deployment | Docker，然后单击 + 按钮添加新的 Docker 服务器连接。
 默认情况下，该插件将创建与本地计算机 Docker 服务器的连接，对于我们的教程而言已经足够了。单击确定按钮以创建服务器配置。

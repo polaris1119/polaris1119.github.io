@@ -14,7 +14,7 @@
       <pubDate>Tue, 01 Dec 2020 11:30:00 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/posts/talk/myblog-with-hugo-github-pages/</guid>
-      <description>大家好，我是站长 polarisxu。 很早之前，我使用 WordPress 搭建了个人博客：http://blog.studygolang.com ，毕竟那时候 WordPress 是首选。现如今，大家似乎更喜欢静态博客，各种语言的静态博客生成器轮子不断，比如 Go 语言的 Hugo 就是一个静态博客生成器。我个人认为，静态博客生成器流行的一个很大原因，是 Markdown 的流行，开发人员习惯了使用 Markdown 进行写作。 对于我，有另外一个痛点</description>
+      <description>大家好，我是站长 polarisxu。 很早之前，我使用 WordPress 搭建了个人博客：http://blog.studygolang.com，毕竟那时候 WordPress 是首选。现如今，大家似乎更喜欢静态博客，各种语言的静态博客生成器轮子不断，比如 Go 语言的 Hugo 就是一个静态博客生成器。我个人认为，静态博客生成器流行的一个很大原因，是 Markdown 的流行，开发人员习惯了使用 Markdown 进行写作。 对于我，有另外一个痛点</description>
     </item>
     
   </channel>

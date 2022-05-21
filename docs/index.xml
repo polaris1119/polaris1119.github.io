@@ -23,7 +23,7 @@
       <pubDate>Thu, 03 Feb 2022 22:30:00 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/posts/go/generics/gophercon2021-generics/</guid>
-      <description>大家好，我是 polarisxu。 在 GopherCon 2021 年大会上，Go 两位作者 Robert Griesemer 和 Ian Lance Taylor 做了泛型相关的演讲，即将在 Go1.18 发布的 Go 泛型，正是两位设计的。一直想着把他们的演讲做一个梳理，然后分享给大家。拖的有点久，趁春节假期整理出来了。 Go1.18 关于泛型部分，主要有三个特性： Type parameters for functions and types，即函数和类型的类型参数 Type sets defined by interfaces，即由接口定义的类型集合 Type inference</description>
+      <description>大家好，我是 polarisxu。 在 GopherCon 2021 年大会上，Go 两位作者 Robert Griesemer 和 Ian Lance Taylor 做了泛型相关的演讲，即将在 Go1.18 发布的 Go 泛型，正是两位设计的。一直想着把他们的演讲做一个梳理，然后分享给大家。拖的有点久，趁春节假期整理出来了。 注意，本文中的 constraints 包，已经确定在 Go1.18 正式版中去除，放入 golang.org/x/exp 中。详细可以参考该文：Go1.18 这个包确定没了 。 Go1.18 关于泛型部分，主要有三个特性： Type parameters for functions and ty</description>
     </item>
     
     <item>

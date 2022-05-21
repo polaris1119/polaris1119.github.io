@@ -8,15 +8,15 @@
 	<meta name="theme-color" content="#fcfcfc">
 	<meta name="msapplication-TileColor" content="#fcfcfc">
 <meta itemprop="name" content="微信 8.0 的这个功能和 Go 的 error 一样？">
-<meta itemprop="description" content="大家好，我是站长 polarisxu。 今天早上发了一个朋友圈，吐槽了一下微信 8.0 的一个功能，不少人有同感，其中一位朋友提到了 Go 的 error。 微信 8.0 通过好友请求时，仅聊天还是朋友圈，你必须选择一个。挺烦的。有一个朋友留言说：这就跟 err 一样，某些地方强迫你有意识的做选择，在这里就是强迫你对自己的隐私做选择。 Go 中的 error，社区的反应特别的激烈，喜欢的人夸，不喜欢的人"><meta itemprop="datePublished" content="2021-01-25T11:00:00+08:00" />
-<meta itemprop="dateModified" content="2021-01-25T11:00:00+08:00" />
+<meta itemprop="description" content="大家好，我是站长 polarisxu。 今天早上发了一个朋友圈，吐槽了一下微信 8.0 的一个功能，不少人有同感，其中一位朋友提到了 Go 的 error。 微信 8.0 通过好友请求时，仅聊天还是朋友圈，你必须选择一个。挺烦的。有一个朋友留言说：这就跟 err 一样，某些地方强迫你有意识的做选择，在这里就是强迫你对自己的隐私做选择。 Go 中的 error，社区的反应特别的激烈，喜欢的人夸，不喜欢的人"><meta itemprop="datePublished" content="2021-01-25T11:00:00&#43;08:00" />
+<meta itemprop="dateModified" content="2021-01-25T11:00:00&#43;08:00" />
 <meta itemprop="wordCount" content="1478">
 <meta itemprop="keywords" content="微信,error," /><meta property="og:title" content="微信 8.0 的这个功能和 Go 的 error 一样？" />
 <meta property="og:description" content="大家好，我是站长 polarisxu。 今天早上发了一个朋友圈，吐槽了一下微信 8.0 的一个功能，不少人有同感，其中一位朋友提到了 Go 的 error。 微信 8.0 通过好友请求时，仅聊天还是朋友圈，你必须选择一个。挺烦的。有一个朋友留言说：这就跟 err 一样，某些地方强迫你有意识的做选择，在这里就是强迫你对自己的隐私做选择。 Go 中的 error，社区的反应特别的激烈，喜欢的人夸，不喜欢的人" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://polarisxu.studygolang.com/posts/wechat/wechat-8.0/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2021-01-25T11:00:00+08:00" />
-<meta property="article:modified_time" content="2021-01-25T11:00:00+08:00" />
+<meta property="article:published_time" content="2021-01-25T11:00:00&#43;08:00" />
+<meta property="article:modified_time" content="2021-01-25T11:00:00&#43;08:00" />
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="微信 8.0 的这个功能和 Go 的 error 一样？"/>
@@ -30,7 +30,7 @@
 	<link rel="shortcut icon" href="/favicon.ico">
 
 	<title>微信 8.0 的这个功能和 Go 的 error 一样？</title>
-	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.f74778e3020c87c304fb5982e09b92ba63a5c7f202996d4c7283d6057acfe9c1.css" integrity="sha256-90d44wIMh8ME+1mC4JuSumOlx/ICmW1McoPWBXrP6cE=" crossorigin="anonymous">
 	
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/styles.css">
@@ -88,7 +88,7 @@
 <li>微信 8.0 通过好友请求时，仅聊天还是朋友圈，你必须选择一个。挺烦的。有一个朋友留言说：这就跟 err 一样，某些地方强迫你有意识的做选择，在这里就是强迫你对自己的隐私做选择。</li>
 </ul>
 <p>Go 中的 error，社区的反应特别的激烈，喜欢的人夸，不喜欢的人喷，出现了两级分化。就像这位朋友说的，Go 希望开发者明确知晓有可能有错误发生。Go 的初衷也许是好的，但这也导致了代码中经常出现这样的情况：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="nx">x</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nf">foo</span><span class="p">()</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">x</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nf">foo</span><span class="p">()</span>
 <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
 	<span class="k">return</span> <span class="nx">err</span>
 <span class="p">}</span>
@@ -143,7 +143,7 @@
 
 			</div><div class="content">
 	<br>
-	<img src="https://static.studygolang.com/static/img/polarisxu-qrcode-soso-s.png">
+	<img src="https://static.golangjob.cn/static/img/polarisxu-qrcode-soso-s.png">
 </div>
 
 <div class="related-posts thin">

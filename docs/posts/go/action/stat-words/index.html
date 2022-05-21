@@ -8,15 +8,15 @@
 	<meta name="theme-color" content="#fcfcfc">
 	<meta name="msapplication-TileColor" content="#fcfcfc">
 <meta itemprop="name" content="用 Go 如何实现精准统计文章字数">
-<meta itemprop="description" content="大家好，我是站长 polarisxu。 今天要聊的内容应该可以当做一道面试题，你可以先想想该怎么实现。 统计字数是一个很常见的需求，很多人印象最深的应该是微博早些时候限制 140 字，而且边输入会边统计剩余字数。现在很多社区文章也会有字数统计的功能，而且可以依据字数来预估阅读时间。比如 Go语言中文网就有这样的功能。 01 需求分析 下手之前先分析下这个需求。从我个人经验看，在实际"><meta itemprop="datePublished" content="2021-01-14T17:00:00+08:00" />
-<meta itemprop="dateModified" content="2021-01-14T17:00:00+08:00" />
+<meta itemprop="description" content="大家好，我是站长 polarisxu。 今天要聊的内容应该可以当做一道面试题，你可以先想想该怎么实现。 统计字数是一个很常见的需求，很多人印象最深的应该是微博早些时候限制 140 字，而且边输入会边统计剩余字数。现在很多社区文章也会有字数统计的功能，而且可以依据字数来预估阅读时间。比如 Go语言中文网就有这样的功能。 01 需求分析 下手之前先分析下这个需求。从我个人经验看，在实际"><meta itemprop="datePublished" content="2021-01-14T17:00:00&#43;08:00" />
+<meta itemprop="dateModified" content="2021-01-14T17:00:00&#43;08:00" />
 <meta itemprop="wordCount" content="2584">
 <meta itemprop="keywords" content="Go," /><meta property="og:title" content="用 Go 如何实现精准统计文章字数" />
 <meta property="og:description" content="大家好，我是站长 polarisxu。 今天要聊的内容应该可以当做一道面试题，你可以先想想该怎么实现。 统计字数是一个很常见的需求，很多人印象最深的应该是微博早些时候限制 140 字，而且边输入会边统计剩余字数。现在很多社区文章也会有字数统计的功能，而且可以依据字数来预估阅读时间。比如 Go语言中文网就有这样的功能。 01 需求分析 下手之前先分析下这个需求。从我个人经验看，在实际" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/action/stat-words/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2021-01-14T17:00:00+08:00" />
-<meta property="article:modified_time" content="2021-01-14T17:00:00+08:00" />
+<meta property="article:published_time" content="2021-01-14T17:00:00&#43;08:00" />
+<meta property="article:modified_time" content="2021-01-14T17:00:00&#43;08:00" />
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="用 Go 如何实现精准统计文章字数"/>
@@ -30,7 +30,7 @@
 	<link rel="shortcut icon" href="/favicon.ico">
 
 	<title>用 Go 如何实现精准统计文章字数</title>
-	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.f74778e3020c87c304fb5982e09b92ba63a5c7f202996d4c7283d6057acfe9c1.css" integrity="sha256-90d44wIMh8ME+1mC4JuSumOlx/ICmW1McoPWBXrP6cE=" crossorigin="anonymous">
 	
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/styles.css">
@@ -109,7 +109,7 @@
 <p>先看最简单的。</p>
 <h3 id="纯英文">纯英文<a href="#纯英文" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>根据以上分析，如果文章只包含普通文本且是英文，也就是说，每个字（单词）根据空格分隔，统计是最简单的。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">TotalWords</span><span class="p">(</span><span class="nx">s</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">TotalWords</span><span class="p">(</span><span class="nx">s</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
 	<span class="nx">n</span> <span class="o">:=</span> <span class="mi">0</span>
 	<span class="nx">inWord</span> <span class="o">:=</span> <span class="kc">false</span>
 	<span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">r</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">s</span> <span class="p">{</span>
@@ -122,10 +122,10 @@
 	<span class="k">return</span> <span class="nx">n</span>
 <span class="p">}</span>
 </code></pre></div><p>还有一种更简单的方式：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="nb">len</span><span class="p">(</span><span class="nx">strings</span><span class="p">.</span><span class="nf">Fields</span><span class="p">(</span><span class="nx">s</span><span class="p">))</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nb">len</span><span class="p">(</span><span class="nx">strings</span><span class="p">.</span><span class="nf">Fields</span><span class="p">(</span><span class="nx">s</span><span class="p">))</span>
 </code></pre></div><p>不过看 strings.Fields 的实现，性能会不如第一种方式。</p>
 <p>回顾上面的需求分析，会发现这个实现是有 Bug 的。比如下面的例子：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="nx">s1</span> <span class="o">:=</span> <span class="s">&#34;Hello,playground&#34;</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">s1</span> <span class="o">:=</span> <span class="s">&#34;Hello,playground&#34;</span>
 <span class="nx">s2</span> <span class="o">:=</span> <span class="s">&#34;Hello, playground&#34;</span>
 </code></pre></div><p>用上面的实现，s1 的字数是 1，s2 的字数是 2。它们都忽略了标点符号。而且因为写法的多样性（不规范统一），导致计算字数会有误差。所以我们需要对写法进行规范。</p>
 <h3 id="规范排版">规范排版<a href="#规范排版" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
@@ -136,8 +136,7 @@
 <p>有研究显示，打字的时候不喜欢在中文和英文之间加空格的人，感情路都走得很辛苦，有七成的比例会在 34 岁的时候跟自己不爱的人结婚，而其余三成的人最后只能把遗产留给自己的猫。毕竟爱情跟书写都需要适时地留白。</p>
 </blockquote>
 <p>建议大家可以看看这个指北，一些知名的网站就是按照这个做的。</p>
-<p>因为 GCTT 的排版在这个规范做，但人为约束不是最好的方法，所以我开发了一个 Go 工具：<a href="https://github.com/studygolang/autocorrect" target="_blank" rel="noopener">https://github.com/studygolang/autocorrect</a>
-，用于自动给中英文之间加入合理的空格并纠正专用名词大小写。</p>
+<p>因为 GCTT 的排版在这个规范做，但人为约束不是最好的方法，所以我开发了一个 Go 工具：<a href="https://github.com/studygolang/autocorrect">https://github.com/studygolang/autocorrect</a>，用于自动给中英文之间加入合理的空格并纠正专用名词大小写。</p>
 <p>所以为了让字数统计更准确，我们假定文章是按一定的规范书写的。比如上面的例子，规范的写法是 <code>s2 := &quot;Hello, playground&quot;</code>。不过这里标点不算作字数。</p>
 <p>刚去微博上试了一下，发现微博的字数计算方式有点诡异，竟然是 9 个字。</p>
 <p><p class="md__image">
@@ -150,13 +149,13 @@
 <p>中文不像英文，单词之间没有空格分隔，因此开始的那两种方式不适合。</p>
 <p>如果是纯中文，我们怎么计算字数呢？</p>
 <p>在 Go 语言中，字符串使用 UTF-8 编码，一个字符用 rune 表示。因此在标准库中查找相关计算方法。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">RuneCountInString</span><span class="p">(</span><span class="nx">s</span> <span class="kt">string</span><span class="p">)</span> <span class="p">(</span><span class="nx">n</span> <span class="kt">int</span><span class="p">)</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">RuneCountInString</span><span class="p">(</span><span class="nx">s</span> <span class="kt">string</span><span class="p">)</span> <span class="p">(</span><span class="nx">n</span> <span class="kt">int</span><span class="p">)</span>
 </code></pre></div><p>这个方法能计算字符串包含的 rune（字符）数，对于纯中文，就是汉字数。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="nx">str</span> <span class="o">:=</span> <span class="s">&#34;你好世界&#34;</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">str</span> <span class="o">:=</span> <span class="s">&#34;你好世界&#34;</span>
 <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">utf8</span><span class="p">.</span><span class="nf">RuneCountInString</span><span class="p">(</span><span class="nx">str</span><span class="p">))</span>
 </code></pre></div><p>以上代码输出 4。</p>
 <p>然而，因为很多时候文章会中英文混合，因此我们先采用上面的纯英文的处理方式，即：<code>strings.Fields()</code>，将文章用空格分隔，然后处理每一部分。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">TotalWords</span><span class="p">(</span><span class="nx">s</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">TotalWords</span><span class="p">(</span><span class="nx">s</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
 	<span class="nx">wordCount</span> <span class="o">:=</span> <span class="mi">0</span>
   
 	<span class="nx">plainWords</span> <span class="o">:=</span> <span class="nx">strings</span><span class="p">.</span><span class="nf">Fields</span><span class="p">(</span><span class="nx">s</span><span class="p">)</span>
@@ -172,7 +171,7 @@
 	<span class="k">return</span> <span class="nx">wordCount</span>
 <span class="p">}</span>
 </code></pre></div><p>增加如下的测试用例：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">TestTotalWords</span><span class="p">(</span><span class="nx">t</span> <span class="o">*</span><span class="nx">testing</span><span class="p">.</span><span class="nx">T</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">TestTotalWords</span><span class="p">(</span><span class="nx">t</span> <span class="o">*</span><span class="nx">testing</span><span class="p">.</span><span class="nx">T</span><span class="p">)</span> <span class="p">{</span>
 	<span class="nx">tests</span> <span class="o">:=</span> <span class="p">[]</span><span class="kd">struct</span> <span class="p">{</span>
 		<span class="nx">name</span>  <span class="kt">string</span>
 		<span class="nx">input</span> <span class="kt">string</span>
@@ -193,7 +192,7 @@
 	<span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div><p>发现 en1 和 encn1 测试不通过，因为没有按照上面说的规范书写。因此我们通过程序增加必要的空格。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// AutoSpace 自动给中英文之间加上空格
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// AutoSpace 自动给中英文之间加上空格
 </span><span class="c1"></span><span class="kd">func</span> <span class="nf">AutoSpace</span><span class="p">(</span><span class="nx">str</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">string</span> <span class="p">{</span>
 	<span class="nx">out</span> <span class="o">:=</span> <span class="s">&#34;&#34;</span>
 
@@ -229,7 +228,7 @@
 <h3 id="处理标点和其他类型">处理标点和其他类型<a href="#处理标点和其他类型" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>以上例子标点没计算在内，而且如果英文和中文标点混合在一起，情况又复杂了。</p>
 <p>为了更好地实现开始的需求分析，重构以上代码，设计如下的结构：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">Counter</span> <span class="kd">struct</span> <span class="p">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">Counter</span> <span class="kd">struct</span> <span class="p">{</span>
 	<span class="nx">Total</span>     <span class="kt">int</span> <span class="c1">// 总字数 = Words + Puncts
 </span><span class="c1"></span>	<span class="nx">Words</span>     <span class="kt">int</span> <span class="c1">// 只包含字符数
 </span><span class="c1"></span>	<span class="nx">Puncts</span>    <span class="kt">int</span> <span class="c1">// 标点数
@@ -238,7 +237,7 @@
 </span><span class="c1"></span>	<span class="nx">CodeLines</span> <span class="kt">int</span> <span class="c1">// 代码行数
 </span><span class="c1"></span><span class="p">}</span>
 </code></pre></div><p>同时将 TotalWords 重构为 Counter 的 Stat 方法，同时记录标点数：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="p">(</span><span class="nx">wc</span> <span class="o">*</span><span class="nx">Counter</span><span class="p">)</span> <span class="nf">Stat</span><span class="p">(</span><span class="nx">str</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="p">(</span><span class="nx">wc</span> <span class="o">*</span><span class="nx">Counter</span><span class="p">)</span> <span class="nf">Stat</span><span class="p">(</span><span class="nx">str</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
 	<span class="nx">wc</span><span class="p">.</span><span class="nx">Links</span> <span class="p">=</span> <span class="nb">len</span><span class="p">(</span><span class="nx">rxStrict</span><span class="p">.</span><span class="nf">FindAllString</span><span class="p">(</span><span class="nx">str</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span>
 	<span class="nx">wc</span><span class="p">.</span><span class="nx">Pics</span> <span class="p">=</span> <span class="nb">len</span><span class="p">(</span><span class="nx">imgReg</span><span class="p">.</span><span class="nf">FindAllString</span><span class="p">(</span><span class="nx">str</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span>
 
@@ -319,12 +318,11 @@
 <h2 id="03-总结">03 总结<a href="#03-总结" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>通过本文的分析发现，精准统计字数没那么容易，这里涉及到很多的细节。</p>
 <p>当然，实际应用中，字数不需要那么特别精准，而且对于非正常文字（比如链接、代码）怎么处理，会有不同的约定。</p>
-<p>本文涉及到的完整代码放在 GitHub：<a href="https://github.com/polaris1119/wordscount" target="_blank" rel="noopener">https://github.com/polaris1119/wordscount</a>
-。</p>
+<p>本文涉及到的完整代码放在 GitHub：<a href="https://github.com/polaris1119/wordscount">https://github.com/polaris1119/wordscount</a>。</p>
 
 			</div><div class="content">
 	<br>
-	<img src="https://static.studygolang.com/static/img/polarisxu-qrcode-soso-s.png">
+	<img src="https://static.golangjob.cn/static/img/polarisxu-qrcode-soso-s.png">
 </div>
 
 <div class="related-posts thin">

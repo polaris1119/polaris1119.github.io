@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-	<meta name="generator" content="Hugo 0.88.1" />
+	<meta name="generator" content="Hugo 0.81.0" />
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -27,7 +27,7 @@
 
 	<title>polarisxu</title>
 	<link rel="alternate" type="application/rss+xml" href="https://polarisxu.studygolang.com/index.xml" title="polarisxu" />
-	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.f74778e3020c87c304fb5982e09b92ba63a5c7f202996d4c7283d6057acfe9c1.css" integrity="sha256-90d44wIMh8ME+1mC4JuSumOlx/ICmW1McoPWBXrP6cE=" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/styles.css">
 </head>
@@ -96,7 +96,7 @@
                 </h2>
             </div>
             <div class="post-content">
-                <div class="p_part"><p>工欲善其事必先利其器。我们先搞定 Echo 环境。 Go 开发环境 这个系列基于 Go1.14.4，Linux 系统。 安装 Go 的方式有很多，可以在这里 https://studygolang.com/dl 下载对应操作系统的版本。我自己比较喜欢通过源码安装。我将我的方式告诉大家。（Windows 环境比较建议直接下载对应的包进行安装 https://studygolang.com/dl/golang/go1.14.4.windows-amd64.msi ） 下载源码 在你本地某个目录（比如 $HOME/golang），执行如下命令（确保安装了 git）： git clone https://github.com/golang/go 因为</p></div>
+                <div class="p_part"><p>工欲善其事必先利其器。我们先搞定 Echo 环境。 Go 开发环境 这个系列基于 Go1.14.4，Linux 系统。 安装 Go 的方式有很多，可以在这里 https://studygolang.com/dl 下载对应操作系统的版本。我自己比较喜欢通过源码安装。我将我的方式告诉大家。（Windows 环境比较建议直接下载对应的包进行安装 https://studygolang.com/dl/golang/go1.14.4.windows-am</p></div>
             </div>
             <div class="post-footer">
                 <div class="meta">
@@ -126,6 +126,33 @@
                         <a class="tag"
                                    href="/tags/echo/">echo</a><a class="tag"
                                    href="/tags/web%E6%A1%86%E6%9E%B6/">web框架</a>
+                    </div>
+                </div>
+            </div>
+				</div>
+    
+        <div class="post animated fadeInDown">
+            <div class="post-title">
+                <h2><a href="/posts/go/generics/go-generic-by-example/"></a>
+                </h2>
+            </div>
+            <div class="post-content">
+                <div class="p_part"><p>Go1.18 已经发布，通过例子学习泛型
+大家好，我是 polarisxu。
+Go1.18 已经发布，泛型也正式面世。也许你不一定要得到泛型，但还是有必要学习下。之前我出过两个泛型相关的教程，没有看的可以看看。
+ Go 泛型入门教程  跟着 Go 作者学泛型   今天通过另外一种方式学习泛型，即具体的例子，建议可以实际动手试验这些例子，同时也领会一下泛型的使用场景。
+求最小值、最大值 直接上代码：
+package main import ( &#34;fmt&#34; &#34;golang.org/x/exp/constraints&#34; ) func max[T constraints.Ordered](s []T) T { if len(s) == 0 { var zero T return zero } m := s[0] for _, v := range s { if m &lt; v { m = v } } return m } func min[T constraints.Ordered](s []T) T { if len(s) == 0 { var zero T return zero } m := s[0] for _, v := range s { if m &gt; v { m = v } } return m } func main() { fmt.Println(min([]int{10, 2, 4, 1, 6, 8, 2})) fmt.Println(max([]float64{3.2, 5.1, 6.2, 7.6, 8.2, 1.5, 4.8})) } 注意，golang.org/x/exp/constraints 这个包是实验性的，生产环境代码建议定义自己的一套。
+因为要进行大小比较，所以对泛型 T 做了类型约束：constraints.Ordered，只有可进行大小比较的类型才符合类型 T。
+2、泛型版 slice 包含函数 标准库中，对字符串、字节数组实现了相关的函数，进行包含判断：strings.Contains 和 bytes.Contains。那对其他基本类型怎么办？比如判断一个 int 是否在一个 int slice 中呢？得自己实现一个。
+有了泛型，可以来一个泛型版本：
+package main import &#34;fmt&#34; func contains[T comparable](elems []T, v T) bool { for _, s := range elems { if v == s { return true } } return false } func main() { fmt.Println(contains([]string{&#34;a&#34;, &#34;b&#34;, &#34;c&#34;}, &#34;b&#34;)) fmt.Println(contains([]int{1, 2, 3}, 2)) fmt.</p></div>
+            </div>
+            <div class="post-footer">
+                <div class="meta">
+                    <div class="info"><em class="fas fa-calendar-day"></em><span
+                                class="date">0001-01-01</span>
+                        
                     </div>
                 </div>
             </div>
@@ -164,35 +191,40 @@
     
     <div class="pagination">
         
-    <ul class="pagination pagination-default">
-      <li class="page-item">
-        <a href="/" aria-label="First" class="page-link" role="button"><span aria-hidden="true">&laquo;&laquo;</span></a>
-      </li>
-      <li class="page-item">
-        <a href="/page/21/" aria-label="Previous" class="page-link" role="button"><span aria-hidden="true">&laquo;</span></a>
-      </li>
-      <li class="page-item">
-        <a href="/page/18/" aria-label="Page 18" class="page-link" role="button">18</a>
-      </li>
-      <li class="page-item">
-        <a href="/page/19/" aria-label="Page 19" class="page-link" role="button">19</a>
-      </li>
-      <li class="page-item">
-        <a href="/page/20/" aria-label="Page 20" class="page-link" role="button">20</a>
-      </li>
-      <li class="page-item">
-        <a href="/page/21/" aria-label="Page 21" class="page-link" role="button">21</a>
-      </li>
-      <li class="page-item active">
-        <a href="#" aria-current="page" aria-label="Page 22" class="page-link" role="button">22</a>
-      </li>
-      <li class="page-item disabled">
-        <a href="#" aria-disabled="true" aria-label="Next" class="page-link" role="button" tabindex="-1"><span aria-hidden="true">&raquo;</span></a>
-      </li>
-      <li class="page-item disabled">
-        <a href="#" aria-disabled="true" aria-label="Last" class="page-link" role="button" tabindex="-1"><span aria-hidden="true">&raquo;&raquo;</span></a>
-      </li>
-    </ul>
+<ul class="pagination">
+  <li class="page-item">
+    <a href="/" class="page-link" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
+  </li>
+  <li class="page-item">
+    <a href="/page/21/" class="page-link" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="/">1</a>
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="/page/2/">2</a>
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="/page/3/">3</a>
+  </li>
+  <li class="page-item disabled">
+    <span aria-hidden="true">&nbsp;&hellip;&nbsp;</span>
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="/page/21/">21</a>
+  </li>
+  <li class="page-item active">
+    <a class="page-link" href="/page/22/">22</a>
+  </li>
+  <li class="page-item disabled">
+    <a  class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
+  </li>
+  <li class="page-item">
+    <a href="/page/22/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+  </li>
+</ul>
+
+
     </div>
 		</main>
 

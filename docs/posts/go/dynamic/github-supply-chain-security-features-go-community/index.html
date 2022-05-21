@@ -8,15 +8,15 @@
 	<meta name="theme-color" content="#fcfcfc">
 	<meta name="msapplication-TileColor" content="#fcfcfc">
 <meta itemprop="name" content="GitHub 为 Go 社区带来安全支持">
-<meta itemprop="description" content="大家好，我是 polarisxu。 关于 Go 安全相关的内容，我写过几篇文章：《Go 团队开始重视安全问题了》 、《Go Module 有漏洞？免费的 Go 漏洞扫描 VSCode 插件》 和《这个工具真好：看看你的Go项目依赖有无漏洞》 ，有兴趣的可以看看。 今天介绍另外一个关于安全的内容，是 GitHub 的。 大家都知晓，目前 Go 是严重依赖 GitHub 的，很多第三方库基本都托管在 GitHub 上。因为 Go 把 GitHub 既当作代码协作的平台，也当作发布包的"><meta itemprop="datePublished" content="2021-07-29T22:10:00+08:00" />
-<meta itemprop="dateModified" content="2021-07-29T22:10:00+08:00" />
+<meta itemprop="description" content="大家好，我是 polarisxu。 关于 Go 安全相关的内容，我写过几篇文章：《Go 团队开始重视安全问题了》 、《Go Module 有漏洞？免费的 Go 漏洞扫描 VSCode 插件》 和《这个工具真好：看看你的Go项目依赖有无漏洞》 ，有兴趣的可以看看。 今天介绍另外一个关于安全的内容，是 GitHub 的。 大家都知晓，目前 Go 是严重依赖 GitHub 的，很多第三方库基本都托管在 GitHub 上。因为 Go 把 GitHub 既当作代码协作的平台，也当作发布包的"><meta itemprop="datePublished" content="2021-07-29T22:10:00&#43;08:00" />
+<meta itemprop="dateModified" content="2021-07-29T22:10:00&#43;08:00" />
 <meta itemprop="wordCount" content="985">
 <meta itemprop="keywords" content="Go,GitHub," /><meta property="og:title" content="GitHub 为 Go 社区带来安全支持" />
 <meta property="og:description" content="大家好，我是 polarisxu。 关于 Go 安全相关的内容，我写过几篇文章：《Go 团队开始重视安全问题了》 、《Go Module 有漏洞？免费的 Go 漏洞扫描 VSCode 插件》 和《这个工具真好：看看你的Go项目依赖有无漏洞》 ，有兴趣的可以看看。 今天介绍另外一个关于安全的内容，是 GitHub 的。 大家都知晓，目前 Go 是严重依赖 GitHub 的，很多第三方库基本都托管在 GitHub 上。因为 Go 把 GitHub 既当作代码协作的平台，也当作发布包的" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/dynamic/github-supply-chain-security-features-go-community/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2021-07-29T22:10:00+08:00" />
-<meta property="article:modified_time" content="2021-07-29T22:10:00+08:00" />
+<meta property="article:published_time" content="2021-07-29T22:10:00&#43;08:00" />
+<meta property="article:modified_time" content="2021-07-29T22:10:00&#43;08:00" />
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="GitHub 为 Go 社区带来安全支持"/>
@@ -30,7 +30,7 @@
 	<link rel="shortcut icon" href="/favicon.ico">
 
 	<title>GitHub 为 Go 社区带来安全支持</title>
-	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.f74778e3020c87c304fb5982e09b92ba63a5c7f202996d4c7283d6057acfe9c1.css" integrity="sha256-90d44wIMh8ME+1mC4JuSumOlx/ICmW1McoPWBXrP6cE=" crossorigin="anonymous">
 	
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/styles.css">
@@ -96,8 +96,7 @@
 <p>从上图可以看到，目前这个数据库支持 PHP、Go、Java、JS、.NET、Python、Ruby 等语言，GitHub 发文宣布支持 Go 时，该数据库有 155 条 Go 相关记录，现在已经 164，你看到这篇文章时，应该会更多。正如 GitHub 宣称的，随着他们对现有漏洞和新发现的漏洞进行筛选，这个数字每天都在增长。</p>
 <h2 id="02-如何帮助发现漏洞">02 如何帮助发现漏洞<a href="#02-如何帮助发现漏洞" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>有这个数据库，那 GitHub 是如何帮助发现漏洞的呢？</p>
-<p>GitHub 很早就有一套安全策略，只是现在这套策略可以支持 Go 仓库。关于这套策略的详细信息，可以查看 GitHub 官方文档：<a href="https://docs.github.com/cn/code-security/getting-started/securing-your-repository" target="_blank" rel="noopener">https://docs.github.com/cn/code-security/getting-started/securing-your-repository</a>
-，这里给的是中文版。</p>
+<p>GitHub 很早就有一套安全策略，只是现在这套策略可以支持 Go 仓库。关于这套策略的详细信息，可以查看 GitHub 官方文档：<a href="https://docs.github.com/cn/code-security/getting-started/securing-your-repository">https://docs.github.com/cn/code-security/getting-started/securing-your-repository</a>，这里给的是中文版。</p>
 <p>这里简单介绍几个点。</p>
 <ul>
 <li>公开的仓库，默认启动了相关的安全策略；如果是私有仓库，需要你手动处理，文档中有说明；</li>
@@ -121,7 +120,7 @@
 
 			</div><div class="content">
 	<br>
-	<img src="https://static.studygolang.com/static/img/polarisxu-qrcode-soso-s.png">
+	<img src="https://static.golangjob.cn/static/img/polarisxu-qrcode-soso-s.png">
 </div>
 
 <div class="related-posts thin">

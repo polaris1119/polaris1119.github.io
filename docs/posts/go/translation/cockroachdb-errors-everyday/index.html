@@ -8,15 +8,15 @@
 	<meta name="theme-color" content="#fcfcfc">
 	<meta name="msapplication-TileColor" content="#fcfcfc">
 <meta itemprop="name" content="除了 fmt.Errorf() 之外—Go 中的日常错误对象：CockroachDB errors 库（第4篇）">
-<meta itemprop="description" content="在 Go 中传递错误的惯用方式是使用预定义的类型错误。但是 Go 的标准库仅提供了非常简单的错误对象，errors.New() 和 fmt.Errorf()。 本文介绍了 CockroachDB 的 error 库（它是 Go 标准库库 errors 的直接替代品），Go 程序员如何用它来描述和传播其代码中的错误和错误代号（code）。 Go 标准库 errors 太简单 由 fmt.Errorf() 构造的 Go 中最常见的“简单”错误对象类似于带有错误接口的包含在结构中的字符串：其"><meta itemprop="datePublished" content="2020-11-04T21:00:00+08:00" />
-<meta itemprop="dateModified" content="2020-11-04T21:00:00+08:00" />
-<meta itemprop="wordCount" content="4554">
+<meta itemprop="description" content="在 Go 中传递错误的惯用方式是使用预定义的类型错误。但是 Go 的标准库仅提供了非常简单的错误对象，errors.New() 和 fmt.Errorf()。 本文介绍了 CockroachDB 的 error 库（它是 Go 标准库库 errors 的直接替代品），Go 程序员如何用它来描述和传播其代码中的错误和错误代号（code）。 Go 标准库 errors 太简单 由 fmt.Errorf() 构造的 Go 中最常见的“简单”错误对象类似于带有错误接口的包含在结构中的字符串：其"><meta itemprop="datePublished" content="2020-11-04T21:00:00&#43;08:00" />
+<meta itemprop="dateModified" content="2020-11-04T21:00:00&#43;08:00" />
+<meta itemprop="wordCount" content="4582">
 <meta itemprop="keywords" content="Go,CockroachDB,error," /><meta property="og:title" content="除了 fmt.Errorf() 之外—Go 中的日常错误对象：CockroachDB errors 库（第4篇）" />
 <meta property="og:description" content="在 Go 中传递错误的惯用方式是使用预定义的类型错误。但是 Go 的标准库仅提供了非常简单的错误对象，errors.New() 和 fmt.Errorf()。 本文介绍了 CockroachDB 的 error 库（它是 Go 标准库库 errors 的直接替代品），Go 程序员如何用它来描述和传播其代码中的错误和错误代号（code）。 Go 标准库 errors 太简单 由 fmt.Errorf() 构造的 Go 中最常见的“简单”错误对象类似于带有错误接口的包含在结构中的字符串：其" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/translation/cockroachdb-errors-everyday/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2020-11-04T21:00:00+08:00" />
-<meta property="article:modified_time" content="2020-11-04T21:00:00+08:00" />
+<meta property="article:published_time" content="2020-11-04T21:00:00&#43;08:00" />
+<meta property="article:modified_time" content="2020-11-04T21:00:00&#43;08:00" />
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="除了 fmt.Errorf() 之外—Go 中的日常错误对象：CockroachDB errors 库（第4篇）"/>
@@ -30,7 +30,7 @@
 	<link rel="shortcut icon" href="/favicon.ico">
 
 	<title>除了 fmt.Errorf() 之外—Go 中的日常错误对象：CockroachDB errors 库（第4篇）</title>
-	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.f74778e3020c87c304fb5982e09b92ba63a5c7f202996d4c7283d6057acfe9c1.css" integrity="sha256-90d44wIMh8ME+1mC4JuSumOlx/ICmW1McoPWBXrP6cE=" crossorigin="anonymous">
 	
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/styles.css">
@@ -81,7 +81,7 @@
 <p>本文介绍了 CockroachDB 的 error 库（它是 Go 标准库库 errors 的直接替代品），Go 程序员如何用它来描述和传播其代码中的错误和错误代号（code）。</p>
 <h2 id="go-标准库-errors-太简单">Go 标准库 errors 太简单<a href="#go-标准库-errors-太简单" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>由 fmt.Errorf() 构造的 Go 中最常见的“简单”错误对象类似于带有错误接口的包含在结构中的字符串：其 Error() 方法返回构造错误时设置的字符串。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="nx">err</span> <span class="o">:=</span> <span class="nx">fmt</span><span class="p">.</span><span class="nf">Errorf</span><span class="p">(</span><span class="s">&#34;hello&#34;</span><span class="p">)</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">err</span> <span class="o">:=</span> <span class="nx">fmt</span><span class="p">.</span><span class="nf">Errorf</span><span class="p">(</span><span class="s">&#34;hello&#34;</span><span class="p">)</span>
 <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="c1">// prints &#34;hello&#34;
 </span></code></pre></div><p>什么都没有，仅此而已。打印错误对象也会显示该字符串。顺便说一句，使用 Go 的错误包 errors 的构造函数构建错误 errors.New() 结果一样。</p>
 <h2 id="日常代码的简单错误">日常代码的简单错误<a href="#日常代码的简单错误" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
@@ -89,7 +89,7 @@
 ，或者甚至更好的 <a href="https://github.com/cockroachdb/errors" target="_blank" rel="noopener">CockroachDB 错误库</a>
 （通过导入 <code>github.com/cockroachdb/errors</code>），则简单错误也会在构造错误时自动捕获堆栈跟踪。</p>
 <p>仅当详细打印错误时才显示堆栈跟踪。这样可以更轻松地排除错误的来源：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">import</span> <span class="p">(</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">import</span> <span class="p">(</span>
    <span class="s">&#34;fmt&#34;</span>
    <span class="s">&#34;github.com/cockroachdb/errors&#34;</span>
 <span class="p">)</span>
@@ -101,7 +101,7 @@
   <span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;%+v\n&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span> <span class="c1">// verbose mode
 </span><span class="c1"></span><span class="p">}</span>
 </code></pre></div><p>这会打印：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">hello
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">hello
 <span class="o">(</span>1<span class="o">)</span> attached stack trace
   -- stack trace:
   <span class="p">|</span> main.main
@@ -119,7 +119,7 @@ Error types: <span class="o">(</span>1<span class="o">)</span> *withstack.withSt
 <li>errors.New()：直接替换 Go 标准库的 errors.New()，但它会带有堆栈跟踪；</li>
 <li>errors.Errorf() 或 errors.Newf()：用堆栈跟踪的方式替换 Go 标准库的 fmt.Errorf()；</li>
 </ul>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">github</span><span class="p">.</span><span class="nx">com</span><span class="o">/</span><span class="nx">cockroachdb</span><span class="o">/</span><span class="nx">errors</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">github</span><span class="p">.</span><span class="nx">com</span><span class="o">/</span><span class="nx">cockroachdb</span><span class="o">/</span><span class="nx">errors</span>
 
 <span class="c1">// New constructs a simple error and attaches a stack trace.
 </span><span class="c1"></span><span class="kd">func</span> <span class="nf">New</span><span class="p">(</span><span class="nx">msg</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">error</span>
@@ -135,7 +135,7 @@ Error types: <span class="o">(</span>1<span class="o">)</span> *withstack.withSt
 <p>当从多个位置调用相同的逻辑，并且可能因错误而失败时，则希望将消息前缀添加到任何返回的错误对象。</p>
 <p>这有助于提供有关“错误发生的位置”的更多上下文，以便在运行时出现错误时（何时出现错误），可以清楚地了解哪个代码路径产生了错误。</p>
 <p>例如：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
    <span class="s">&#34;fmt&#34;</span>
@@ -172,7 +172,7 @@ Error types: <span class="o">(</span>1<span class="o">)</span> *withstack.withSt
 <span class="p">}</span>
 </code></pre></div><p>多亏了 errors.Wrap()，它为消息添加了前缀，main 函数可能报告 bar:boo 或 baz:boo，并且人可以很方便的知晓是调用了哪个函数导致的错误。如果没有 errors.Wrap()，则导致错误的调用路径将是无法发现的。</p>
 <p>为方便起见，当提供 nil 错误作为输入时，errors.Wrap() 返回nil。在许多情况下，这使我们可以消除 if err != nil 条件。例如：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">bar</span><span class="p">()</span> <span class="kt">error</span> <span class="p">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">bar</span><span class="p">()</span> <span class="kt">error</span> <span class="p">{</span>
      <span class="k">return</span> <span class="nx">errors</span><span class="p">.</span><span class="nf">Wrap</span><span class="p">(</span><span class="nf">foo</span><span class="p">(),</span> <span class="s">&#34;bar&#34;</span><span class="p">)</span>
 <span class="p">}</span>
 
@@ -181,7 +181,7 @@ Error types: <span class="o">(</span>1<span class="o">)</span> *withstack.withSt
 <span class="p">}</span>
 </code></pre></div><p>最后，errors.Wrap() 还将辅助堆栈跟踪附加到错误对象，从而在对错误的来源进行故障排除时提供了额外的上下文。在 channel 的场景出现错误是特别有用。</p>
 <p>对于 errors.New()，此堆栈跟踪仅在显示详细错误时可见。例如：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">import</span> <span class="p">(</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">import</span> <span class="p">(</span>
    <span class="s">&#34;fmt&#34;</span>
    <span class="s">&#34;github.com/cockroachdb/errors&#34;</span>
 <span class="p">)</span>
@@ -197,7 +197,7 @@ Error types: <span class="o">(</span>1<span class="o">)</span> *withstack.withSt
   <span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;%+v\n&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span> <span class="c1">// verbose mode
 </span><span class="c1"></span><span class="p">}</span>
 </code></pre></div><p>将打印：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">hello: world
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">hello: world
 <span class="o">(</span>1<span class="o">)</span> attached stack trace
   -- stack trace:
   <span class="p">|</span> main.bar
@@ -221,7 +221,7 @@ Error types: <span class="o">(</span>1<span class="o">)</span> *withstack.withSt
 </code></pre></div><p>和以前一样，<code>.Error()</code> 的结果显示在第一行。然后，打印出最外层的堆栈跟踪（errors.Wrap() 的结果）。这表明错误被包裹在第 10 行，但调用跟踪与下面显示的一样。</p>
 <p>然后，详细显示将显示内部错误，并显示消息 <code>world</code> 及其自身的堆栈跟踪。此内部堆栈跟踪显示内部错误是在第 9 行生成的。</p>
 <p>错误包装工具用途广泛：可以使用类似于 printf 的格式来编写消息前缀。这是完整的 API：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">github</span><span class="p">.</span><span class="nx">com</span><span class="o">/</span><span class="nx">cockroachdb</span><span class="o">/</span><span class="nx">errors</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">github</span><span class="p">.</span><span class="nx">com</span><span class="o">/</span><span class="nx">cockroachdb</span><span class="o">/</span><span class="nx">errors</span>
 
 <span class="c1">// Wrap adds a message prefix and also attaches an additional stack trace.
 </span><span class="c1">// If the first argument is nil, it returns nil.
@@ -233,7 +233,7 @@ Error types: <span class="o">(</span>1<span class="o">)</span> *withstack.withSt
 </span><span class="c1"></span><span class="kd">func</span> <span class="nf">Wrapf</span><span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">,</span> <span class="nx">format</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">args</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span> <span class="kt">error</span>
 </code></pre></div><p>此外，为了兼容 Go 1.13 的 fmt.Errorf()，上面看到的 errors.Newf() 和 errors.Errorf() 函数，它们还能识别出格式化动词 ％w，从而触发 wrap 逻辑。</p>
 <p>例如：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// The following is similar to errors.Wrapf(err, &#34;hello&#34;).
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// The following is similar to errors.Wrapf(err, &#34;hello&#34;).
 </span><span class="c1">// However, it does not return nil if err is nil!
 </span><span class="c1"></span><span class="nx">err</span> <span class="p">=</span> <span class="nx">errors</span><span class="p">.</span><span class="nf">Newf</span><span class="p">(</span><span class="s">&#34;hello: %w&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
 </code></pre></div><p>请注意，只有 Newf()/Errorf() 可以识别 ％w：errors.Wrap() 无法识别。</p>
@@ -243,7 +243,7 @@ Error types: <span class="o">(</span>1<span class="o">)</span> *withstack.withSt
 <h2 id="次要错误注解">次要错误注解<a href="#次要错误注解" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>每个中级 Go 程序员都会迅速陷入这一痛苦的境地：如果在处理错误时遇到错误，该怎么办？</p>
 <p>一个常见的示例是在处理文件时遇到错误后清理文件系统：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">writeConfig</span><span class="p">(</span><span class="nx">out</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">cfgA</span><span class="p">,</span> <span class="nx">cfgB</span> <span class="nx">Config</span><span class="p">)</span> <span class="p">(</span><span class="nx">resErr</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">writeConfig</span><span class="p">(</span><span class="nx">out</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">cfgA</span><span class="p">,</span> <span class="nx">cfgB</span> <span class="nx">Config</span><span class="p">)</span> <span class="p">(</span><span class="nx">resErr</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">// Create the destination directory.
 </span><span class="c1"></span>    <span class="k">if</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">os</span><span class="p">.</span><span class="nf">MkDir</span><span class="p">(</span><span class="nx">out</span><span class="p">);</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
        <span class="k">return</span> <span class="nx">err</span>
@@ -280,7 +280,7 @@ Error types: <span class="o">(</span>1<span class="o">)</span> *withstack.withSt
 </ul>
 <p>我们希望以某种方式返回有关这两个错误的详细信息，以帮助进行故障排除。同时，出于原因分析的目的，我们要谨慎地将遇到的第一个错误保留为“主要”错误。</p>
 <p>我们可以通过如下调整代码来实现：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="k">defer</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="k">defer</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
    <span class="c1">// If an error is encountered below, remove
 </span><span class="c1"></span>   <span class="c1">// the destination directory upon exit.
 </span><span class="c1"></span>   <span class="k">if</span> <span class="nx">resErr</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
@@ -294,7 +294,7 @@ Error types: <span class="o">(</span>1<span class="o">)</span> *withstack.withSt
 </code></pre></div><p>通过这种编程模式，我们可以确信，在处理另一个错误时，我们可以保留遇到错误时所发生事件的全部情况。</p>
 <p>次要错误注解不会影响主要错误上 <code>.Error()</code> 返回的文本。从相关代码以及标准 API error.Is() 的角度来看，代码的行为就像仅发生了主要错误一样。</p>
 <p>但是，在详细打印过程中会发现第二个错误。例如：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
    <span class="s">&#34;fmt&#34;</span>
@@ -309,7 +309,7 @@ Error types: <span class="o">(</span>1<span class="o">)</span> *withstack.withSt
   <span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;%+v\n&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span> <span class="c1">// verbose mode
 </span><span class="c1"></span><span class="p">}</span>
 </code></pre></div><p>打印：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">hello
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">hello
 <span class="o">(</span>1<span class="o">)</span> secondary error attachment
   <span class="p">|</span> friend
   <span class="p">|</span> <span class="o">(</span>1<span class="o">)</span> attached stack trace
@@ -335,7 +335,7 @@ Error types: <span class="o">(</span>1<span class="o">)</span> *secondary.withSe
 </code></pre></div><p>像以前一样，我们在第一行看到 <code>.Error()</code> 的文本。然后，我们看到附加的次要错误的详细打印输出，相对于主要错误向右缩进。次要错误自己的 <code>.Error()</code> 是 <code>friend</code>，首先打印它，然后打印次要错误的嵌入式堆栈跟踪。</p>
 <p>然后，打印输出继续，不缩进地显示主要错误的堆栈跟踪。</p>
 <p>API 概览：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">github</span><span class="p">.</span><span class="nx">com</span><span class="o">/</span><span class="nx">cockroachdb</span><span class="o">/</span><span class="nx">errors</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">github</span><span class="p">.</span><span class="nx">com</span><span class="o">/</span><span class="nx">cockroachdb</span><span class="o">/</span><span class="nx">errors</span>
 
 <span class="c1">// WithSecondaryError attaches secondary as an annotation
 </span><span class="c1">// to the primary error. If primary is nil, nil is returned.
@@ -348,11 +348,10 @@ Error types: <span class="o">(</span>1<span class="o">)</span> *secondary.withSe
 </code></pre></div><h2 id="子任务更智能的错误处理">子任务更智能的错误处理<a href="#子任务更智能的错误处理" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>扩展包 <a href="https://godoc.org/golang.org/x/sync/errgroup" target="_blank" rel="noopener">errgroup</a>
  提供了一个可重复使用的库，用于“为处理共同任务的子任务的 goroutine 组进行同步，错误传播和上下文取消”。</p>
-<p>它的实现可以在这里找到：<a href="https://github.com/golang/sync/blob/master/errgroup/errgroup.go" target="_blank" rel="noopener">https://github.com/golang/sync/blob/master/errgroup/errgroup.go</a>
-。</p>
+<p>它的实现可以在这里找到：<a href="https://github.com/golang/sync/blob/master/errgroup/errgroup.go">https://github.com/golang/sync/blob/master/errgroup/errgroup.go</a>。</p>
 <p>在较高的级别上，它使用 sync.WaitGroup 运行多个 goroutine，并在末尾添加一个屏障。此外，一旦它们中的任何一个因错误终止，它将取消该组中的所有其他 goroutine。</p>
 <p>逻辑问题在于，如果两个或多个 goroutine 因错误而失败，则仅报告第一个错误。其他错误是“被遗忘的”：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="p">(</span><span class="nx">g</span> <span class="o">*</span><span class="nx">Group</span><span class="p">)</span> <span class="nf">Go</span><span class="p">(</span><span class="nx">f</span> <span class="kd">func</span><span class="p">()</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="p">(</span><span class="nx">g</span> <span class="o">*</span><span class="nx">Group</span><span class="p">)</span> <span class="nf">Go</span><span class="p">(</span><span class="nx">f</span> <span class="kd">func</span><span class="p">()</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
      <span class="nx">g</span><span class="p">.</span><span class="nx">wg</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 
      <span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
@@ -371,7 +370,7 @@ Error types: <span class="o">(</span>1<span class="o">)</span> *secondary.withSe
      <span class="p">}()</span>
 <span class="p">}</span>
 </code></pre></div><p>我们可以按以下方式解决此问题：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">Group</span> <span class="kd">struct</span> <span class="p">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">Group</span> <span class="kd">struct</span> <span class="p">{</span>
      <span class="o">...</span>
      <span class="nx">errOnce</span> <span class="nx">sync</span><span class="p">.</span><span class="nx">Once</span>
      <span class="nx">mu</span> <span class="p">{</span>
@@ -402,14 +401,14 @@ Error types: <span class="o">(</span>1<span class="o">)</span> *secondary.withSe
 <p>在最常见的情况下，错误会传播，最终通过网络连接返回，或打印到日志文件。</p>
 <p>但是，有时代码需要检查错误对象以决定其他行为。</p>
 <p>为此，库可以定义一些特定的函数来处理这种情况。例如：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">os</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">os</span>
 
 <span class="c1">// IsExist returns a boolean indicating whether the error is known to report
 </span><span class="c1">// that a file or directory already exists. It is satisfied by ErrExist as
 </span><span class="c1">// well as some syscall errors.
 </span><span class="c1"></span><span class="kd">func</span> <span class="nf">IsExist</span><span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">)</span> <span class="kt">bool</span>
 </code></pre></div><p>可以这样使用：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">ensureDirectoryExists</span><span class="p">(</span><span class="nx">path</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">ensureDirectoryExists</span><span class="p">(</span><span class="nx">path</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
     <span class="k">if</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">os</span><span class="p">.</span><span class="nf">Mkdir</span><span class="p">(</span><span class="nx">path</span><span class="p">);</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
        <span class="k">if</span> <span class="nx">os</span><span class="p">.</span><span class="nf">IsExist</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
          <span class="c1">// The directory already exists. This is OK,
@@ -423,7 +422,7 @@ Error types: <span class="o">(</span>1<span class="o">)</span> *secondary.withSe
 </code></pre></div><p>此函数尝试创建目录。如果已经存在，它将不执行任何操作。如果遇到另一个错误（例如磁盘损坏等），则会报告该错误。</p>
 <p>另一种技术是使用“前哨”错误，并将返回的错误对象与那些标记进行比较以检测特定情况。</p>
 <p>我们看到了上面带有 error.Is(err, context.Canceled) 的示例。这是来自 SQL 客户端程序的另一个示例：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">sqlConn</span><span class="p">)</span> <span class="nf">Query</span><span class="p">(</span><span class="nx">query</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">args</span> <span class="p">[]</span><span class="nx">driver</span><span class="p">.</span><span class="nx">Value</span><span class="p">)</span> <span class="p">(</span><span class="o">*</span><span class="nx">sqlRows</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">sqlConn</span><span class="p">)</span> <span class="nf">Query</span><span class="p">(</span><span class="nx">query</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">args</span> <span class="p">[]</span><span class="nx">driver</span><span class="p">.</span><span class="nx">Value</span><span class="p">)</span> <span class="p">(</span><span class="o">*</span><span class="nx">sqlRows</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
      <span class="k">if</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">c</span><span class="p">.</span><span class="nf">ensureConn</span><span class="p">();</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
              <span class="k">return</span> <span class="kc">nil</span><span class="p">,</span> <span class="nx">err</span>
      <span class="p">}</span>
@@ -447,8 +446,7 @@ Error types: <span class="o">(</span>1<span class="o">)</span> *secondary.withSe
 <p>errors.is() 可以通过重复调用  Unwrap() 方法来检测整个错误的直接因果链中的前哨错误。因此，将忽略“在途中”发现的任何次要错误注解。这种行为是有意设计的：类似树的行为将使人们难以推理出错误是另一个“原因”的含义。还会在其他 API errors.As() 错误中引发有关遍历顺序的难题。就个人而言，经验还没有向我表明，除线性因果链之外，其他任何东西在实践中有用。</p>
 </blockquote>
 <h2 id="和-pkgerrors-的不同">和 pkg/errors 的不同<a href="#和-pkgerrors-的不同" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-<p>自 2016 年以来，事实上是 Go 的错误包的标准替代品是 Dave Cheney 的 pkg/errors 库，该库位于 <a href="https://github.com/pkg/errors" target="_blank" rel="noopener">https://github.com/pkg/errors</a>
-。</p>
+<p>自 2016 年以来，事实上是 Go 的错误包的标准替代品是 Dave Cheney 的 pkg/errors 库，该库位于 <a href="https://github.com/pkg/errors">https://github.com/pkg/errors</a>。</p>
 <p>该包最初引入了链接列表错误对象的概念，自动包装错误并添加堆栈跟踪以在故障排除期间提供更多上下文。</p>
 <p>不幸的是，Go 1.13 的发布使 pkg/errors 过时了：Dave Cheney 定义了自己的库，使用一种名为 Cause() 的方法来提取错误链的线性原因。当 Go 1.13 采纳用链接列表出错的想法时，它定义了另一个方法 Unwrap() 来提取原因。因此，Go 的errors.Is()和其他 API 无法理解源自 pkg/errors 的错误。</p>
 <p>此外，来自 pkg/errors 的对象将严重遭受 Go Error 打印灾难，因此该库使自定义错误类型的实现非常困难。</p>
@@ -463,7 +461,7 @@ Error types: <span class="o">(</span>1<span class="o">)</span> *secondary.withSe
 
 			</div><div class="content">
 	<br>
-	<img src="https://static.studygolang.com/static/img/polarisxu-qrcode-soso-s.png">
+	<img src="https://static.golangjob.cn/static/img/polarisxu-qrcode-soso-s.png">
 </div>
 
 <div class="related-posts thin">
@@ -488,7 +486,7 @@ Error types: <span class="o">(</span>1<span class="o">)</span> *secondary.withSe
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://polarisxu.studygolang.com/tags/go">Go</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/cockroachdb">CockroachDB</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/error">error</a></span>
 				</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>4554 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>4582 字</p>
 				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2020-11-04 21:00 &#43;0800</p>
 			</footer>
 		</article>

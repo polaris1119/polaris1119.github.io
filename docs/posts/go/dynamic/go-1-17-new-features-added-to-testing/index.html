@@ -8,15 +8,15 @@
 	<meta name="theme-color" content="#fcfcfc">
 	<meta name="msapplication-TileColor" content="#fcfcfc">
 <meta itemprop="name" content="Go1.17 新特性：testing 包的相关变化">
-<meta itemprop="description" content="大家好，我是 polarisxu。 今天介绍下 Go1.17 中的特性：testing 包的一些变化。先看 Release Notes 关于 testing 变化的描述： Added a new testing flag -shuffle which controls the execution order of tests and benchmarks. The new T.Setenv and B.Setenv methods support setting an environment variable for the duration of the test or benchmark. 关于 shuffle 这个 flag，1.17 还未发布时，我就写过文章介绍：Go1.17这个新特性竟然是6年前提出来的 。关于它的作用，记住关键一点：我们写测试时，测试之间别相互依赖，应该是独立的。 本文着"><meta itemprop="datePublished" content="2021-09-04T19:10:00+08:00" />
-<meta itemprop="dateModified" content="2021-09-04T19:10:00+08:00" />
+<meta itemprop="description" content="大家好，我是 polarisxu。 今天介绍下 Go1.17 中的特性：testing 包的一些变化。先看 Release Notes 关于 testing 变化的描述： Added a new testing flag -shuffle which controls the execution order of tests and benchmarks. The new T.Setenv and B.Setenv methods support setting an environment variable for the duration of the test or benchmark. 关于 shuffle 这个 flag，1.17 还未发布时，我就写过文章介绍：Go1.17这个新特性竟然是6年前提出来的 。关于它的作用，记住关键一点：我们写测试时，测试之间别相互依赖，应该是独立的。 本文着"><meta itemprop="datePublished" content="2021-09-04T19:10:00&#43;08:00" />
+<meta itemprop="dateModified" content="2021-09-04T19:10:00&#43;08:00" />
 <meta itemprop="wordCount" content="587">
 <meta itemprop="keywords" content="Go,testing,新特性," /><meta property="og:title" content="Go1.17 新特性：testing 包的相关变化" />
 <meta property="og:description" content="大家好，我是 polarisxu。 今天介绍下 Go1.17 中的特性：testing 包的一些变化。先看 Release Notes 关于 testing 变化的描述： Added a new testing flag -shuffle which controls the execution order of tests and benchmarks. The new T.Setenv and B.Setenv methods support setting an environment variable for the duration of the test or benchmark. 关于 shuffle 这个 flag，1.17 还未发布时，我就写过文章介绍：Go1.17这个新特性竟然是6年前提出来的 。关于它的作用，记住关键一点：我们写测试时，测试之间别相互依赖，应该是独立的。 本文着" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/dynamic/go-1-17-new-features-added-to-testing/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2021-09-04T19:10:00+08:00" />
-<meta property="article:modified_time" content="2021-09-04T19:10:00+08:00" />
+<meta property="article:published_time" content="2021-09-04T19:10:00&#43;08:00" />
+<meta property="article:modified_time" content="2021-09-04T19:10:00&#43;08:00" />
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Go1.17 新特性：testing 包的相关变化"/>
@@ -30,7 +30,7 @@
 	<link rel="shortcut icon" href="/favicon.ico">
 
 	<title>Go1.17 新特性：testing 包的相关变化</title>
-	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.f74778e3020c87c304fb5982e09b92ba63a5c7f202996d4c7283d6057acfe9c1.css" integrity="sha256-90d44wIMh8ME+1mC4JuSumOlx/ICmW1McoPWBXrP6cE=" crossorigin="anonymous">
 	
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/styles.css">
@@ -90,7 +90,7 @@
 <p>你可能会说，os 包不是有 Setenv 吗？</p>
 <p><code>os.Setenv</code> 会影响当前进程的环境变量，而 T.Setenv 和 B.Setenv 只会影响当前测试函数的环境变量，不会对其他测试函数造成影响。通过它们，可以做到每个测试有自己的独立的环境变量。</p>
 <p>Go 源码中，有不少测试文件使用了这个新功能，比如：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">TestImportVendor</span><span class="p">(</span><span class="nx">t</span> <span class="o">*</span><span class="nx">testing</span><span class="p">.</span><span class="nx">T</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">TestImportVendor</span><span class="p">(</span><span class="nx">t</span> <span class="o">*</span><span class="nx">testing</span><span class="p">.</span><span class="nx">T</span><span class="p">)</span> <span class="p">{</span>
 	<span class="nx">testenv</span><span class="p">.</span><span class="nf">MustHaveGoBuild</span><span class="p">(</span><span class="nx">t</span><span class="p">)</span> <span class="c1">// really must just have source
 </span><span class="c1"></span>
 	<span class="nx">t</span><span class="p">.</span><span class="nf">Setenv</span><span class="p">(</span><span class="s">&#34;GO111MODULE&#34;</span><span class="p">,</span> <span class="s">&#34;off&#34;</span><span class="p">)</span>
@@ -110,14 +110,13 @@
 		<span class="nx">t</span><span class="p">.</span><span class="nf">Fatalf</span><span class="p">(</span><span class="s">&#34;Import succeeded but found %q, want %q&#34;</span><span class="p">,</span> <span class="nx">p</span><span class="p">.</span><span class="nx">ImportPath</span><span class="p">,</span> <span class="nx">want</span><span class="p">)</span>
 	<span class="p">}</span>
 <span class="p">}</span>
-</code></pre></div><p>具体源码：<a href="https://github.com/golang/go/blob/891547e2d4bc2a23973e2c9f972ce69b2b48478e/src/go/build/build_test.go#L556" target="_blank" rel="noopener">https://github.com/golang/go/blob/891547e2d4bc2a23973e2c9f972ce69b2b48478e/src/go/build/build_test.go#L556</a>
-。</p>
+</code></pre></div><p>具体源码：<a href="https://github.com/golang/go/blob/891547e2d4bc2a23973e2c9f972ce69b2b48478e/src/go/build/build_test.go#L556">https://github.com/golang/go/blob/891547e2d4bc2a23973e2c9f972ce69b2b48478e/src/go/build/build_test.go#L556</a>。</p>
 <p>如果你项目中的测试依赖环境变量，可以考虑使用这个新的函数。</p>
 <p>注意：在 Parallel 测试中不能使用 Setenv。</p>
 
 			</div><div class="content">
 	<br>
-	<img src="https://static.studygolang.com/static/img/polarisxu-qrcode-soso-s.png">
+	<img src="https://static.golangjob.cn/static/img/polarisxu-qrcode-soso-s.png">
 </div>
 
 <div class="related-posts thin">

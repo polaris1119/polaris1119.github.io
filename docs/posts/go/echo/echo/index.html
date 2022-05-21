@@ -8,15 +8,15 @@
 	<meta name="theme-color" content="#fcfcfc">
 	<meta name="msapplication-TileColor" content="#fcfcfc">
 <meta itemprop="name" content="Echo 系列教程——Go 语言 Web 框架 Echo 系列教程">
-<meta itemprop="description" content="大家好，从今天起，我们一起来学习 Echo 框架。 这几年，随着 Go 语言的发展，各种 Web 框架也出现了。常言道：没有选择是一种无奈，有选择是一种痛苦。所以，大家总是问：Web 框架大佬推荐哪个？ 这一年，国内推荐 Gin 的人很多，也让 Gin 的 Star 数增加到了 32k&#43;（2019-10-17），网络上 Gin 相关的教程也很多。总体来说，Gin、Echo 等都比较轻量，易用性也差距不大，而 Gin 最大的一个优势是"><meta itemprop="datePublished" content="2019-10-21T13:42:51+08:00" />
-<meta itemprop="dateModified" content="2019-10-21T13:42:51+08:00" />
+<meta itemprop="description" content="大家好，从今天起，我们一起来学习 Echo 框架。 这几年，随着 Go 语言的发展，各种 Web 框架也出现了。常言道：没有选择是一种无奈，有选择是一种痛苦。所以，大家总是问：Web 框架大佬推荐哪个？ 这一年，国内推荐 Gin 的人很多，也让 Gin 的 Star 数增加到了 32k&#43;（2019-10-17），网络上 Gin 相关的教程也很多。总体来说，Gin、Echo 等都比较轻量，易用性也差距不大，而 Gin 最大的一个优势是"><meta itemprop="datePublished" content="2019-10-21T13:42:51&#43;08:00" />
+<meta itemprop="dateModified" content="2019-10-21T13:42:51&#43;08:00" />
 <meta itemprop="wordCount" content="865">
 <meta itemprop="keywords" content="echo,web框架," /><meta property="og:title" content="Echo 系列教程——Go 语言 Web 框架 Echo 系列教程" />
 <meta property="og:description" content="大家好，从今天起，我们一起来学习 Echo 框架。 这几年，随着 Go 语言的发展，各种 Web 框架也出现了。常言道：没有选择是一种无奈，有选择是一种痛苦。所以，大家总是问：Web 框架大佬推荐哪个？ 这一年，国内推荐 Gin 的人很多，也让 Gin 的 Star 数增加到了 32k&#43;（2019-10-17），网络上 Gin 相关的教程也很多。总体来说，Gin、Echo 等都比较轻量，易用性也差距不大，而 Gin 最大的一个优势是" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/echo/echo/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2019-10-21T13:42:51+08:00" />
-<meta property="article:modified_time" content="2019-10-21T13:42:51+08:00" />
+<meta property="article:published_time" content="2019-10-21T13:42:51&#43;08:00" />
+<meta property="article:modified_time" content="2019-10-21T13:42:51&#43;08:00" />
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Echo 系列教程——Go 语言 Web 框架 Echo 系列教程"/>
@@ -30,7 +30,7 @@
 	<link rel="shortcut icon" href="/favicon.ico">
 
 	<title>Echo 系列教程——Go 语言 Web 框架 Echo 系列教程</title>
-	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.f74778e3020c87c304fb5982e09b92ba63a5c7f202996d4c7283d6057acfe9c1.css" integrity="sha256-90d44wIMh8ME+1mC4JuSumOlx/ICmW1McoPWBXrP6cE=" crossorigin="anonymous">
 	
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/styles.css">
@@ -289,9 +289,8 @@
 <li>(3): Heap Memory (B/op), lower is better</li>
 <li>(4): Average Allocations per Repetition (allocs/op), lower is better</li>
 </ul>
-<p>然而我下载 Gin 上提供的测试代码，发现 Echo 性能更好（或至少不比 Gin 差），下面是和上面对应的在我本地的测试（MacOS 4核 8G），测试代码：<a href="https://github.com/julienschmidt/go-http-routing-benchmark" target="_blank" rel="noopener">https://github.com/julienschmidt/go-http-routing-benchmark</a>
-</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">BenchmarkEcho_GithubAll               	   35334	     <span class="m">34642</span> ns/op	       <span class="m">0</span> B/op	       <span class="m">0</span> allocs/op
+<p>然而我下载 Gin 上提供的测试代码，发现 Echo 性能更好（或至少不比 Gin 差），下面是和上面对应的在我本地的测试（MacOS 4核 8G），测试代码：<a href="https://github.com/julienschmidt/go-http-routing-benchmark">https://github.com/julienschmidt/go-http-routing-benchmark</a></p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">BenchmarkEcho_GithubAll               	   35334	     <span class="m">34642</span> ns/op	       <span class="m">0</span> B/op	       <span class="m">0</span> allocs/op
 BenchmarkGin_GithubAll                	   34724	     <span class="m">34696</span> ns/op	       <span class="m">0</span> B/op	       <span class="m">0</span> allocs/op
 </code></pre></div><p>而且 Echo 上提供的测试结果也表明了这一点（我本地试验了，确实如此）：</p>
 <p><p class="md__image">
@@ -321,7 +320,7 @@ BenchmarkGin_GithubAll                	   34724	     <span class="m">34696</span
 
 			</div><div class="content">
 	<br>
-	<img src="https://static.studygolang.com/static/img/polarisxu-qrcode-soso-s.png">
+	<img src="https://static.golangjob.cn/static/img/polarisxu-qrcode-soso-s.png">
 </div>
 
 <div class="related-posts thin">
@@ -370,7 +369,7 @@ BenchmarkGin_GithubAll                	   34724	     <span class="m">34696</span
 			<a class="next-post" href="https://polarisxu.studygolang.com/posts/go/echo/basic01-env/">
 				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;新</span><br><span>Echo 系列教程——基础篇1：搭建 Echo 开发环境</span>
 			</a>
-			<a class="prev-post" href="https://polarisxu.studygolang.com/posts/systemprogramming/go/01/">
+			<a class="prev-post" href="https://polarisxu.studygolang.com/posts/go/generics/go-generic-by-example/">
 				<span class="post-nav-label">旧&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span></span>
 			</a>
 		</div>

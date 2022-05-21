@@ -8,15 +8,15 @@
 	<meta name="theme-color" content="#fcfcfc">
 	<meta name="msapplication-TileColor" content="#fcfcfc">
 <meta itemprop="name" content="Go 这样设置版本号：我们的项目也可以">
-<meta itemprop="description" content="大家好，我是 polarisxu。 项目中，特别是开源项目，会特别重视项目的版本号。有些项目，会把版本号写入源码中，每次升级都修改源码号。不过这不是特别好的方式。本文通过学习 Go 语言源码的处理方式来掌握它，并应用于自己的项目中。 本文基于 Go1.17，不同版本的实现细节可能有所不同 01 如何获取版本号 在 Go 语言项目中，如果要获取当前 Go 语言版本，只需要调用 runtime.V"><meta itemprop="datePublished" content="2021-10-16T22:30:00+08:00" />
-<meta itemprop="dateModified" content="2021-10-16T22:30:00+08:00" />
+<meta itemprop="description" content="大家好，我是 polarisxu。 项目中，特别是开源项目，会特别重视项目的版本号。有些项目，会把版本号写入源码中，每次升级都修改源码号。不过这不是特别好的方式。本文通过学习 Go 语言源码的处理方式来掌握它，并应用于自己的项目中。 本文基于 Go1.17，不同版本的实现细节可能有所不同 01 如何获取版本号 在 Go 语言项目中，如果要获取当前 Go 语言版本，只需要调用 runtime.V"><meta itemprop="datePublished" content="2021-10-16T22:30:00&#43;08:00" />
+<meta itemprop="dateModified" content="2021-10-16T22:30:00&#43;08:00" />
 <meta itemprop="wordCount" content="1516">
 <meta itemprop="keywords" content="Go," /><meta property="og:title" content="Go 这样设置版本号：我们的项目也可以" />
 <meta property="og:description" content="大家好，我是 polarisxu。 项目中，特别是开源项目，会特别重视项目的版本号。有些项目，会把版本号写入源码中，每次升级都修改源码号。不过这不是特别好的方式。本文通过学习 Go 语言源码的处理方式来掌握它，并应用于自己的项目中。 本文基于 Go1.17，不同版本的实现细节可能有所不同 01 如何获取版本号 在 Go 语言项目中，如果要获取当前 Go 语言版本，只需要调用 runtime.V" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/pkg/go-version/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2021-10-16T22:30:00+08:00" />
-<meta property="article:modified_time" content="2021-10-16T22:30:00+08:00" />
+<meta property="article:published_time" content="2021-10-16T22:30:00&#43;08:00" />
+<meta property="article:modified_time" content="2021-10-16T22:30:00&#43;08:00" />
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Go 这样设置版本号：我们的项目也可以"/>
@@ -30,7 +30,7 @@
 	<link rel="shortcut icon" href="/favicon.ico">
 
 	<title>Go 这样设置版本号：我们的项目也可以</title>
-	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.f74778e3020c87c304fb5982e09b92ba63a5c7f202996d4c7283d6057acfe9c1.css" integrity="sha256-90d44wIMh8ME+1mC4JuSumOlx/ICmW1McoPWBXrP6cE=" crossorigin="anonymous">
 	
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/styles.css">
@@ -84,7 +84,7 @@
 </blockquote>
 <h2 id="01-如何获取版本号">01 如何获取版本号<a href="#01-如何获取版本号" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>在 Go 语言项目中，如果要获取当前 Go 语言版本，只需要调用 <code>runtime.Version</code>：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
 	<span class="s">&#34;fmt&#34;</span>
@@ -96,7 +96,7 @@
 <span class="p">}</span>
 </code></pre></div><h2 id="02-如何实现的">02 如何实现的<a href="#02-如何实现的" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>查看 <code>runtime.Version</code> 的源码：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// buildVersion is the Go tree&#39;s version string at build time.
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// buildVersion is the Go tree&#39;s version string at build time.
 </span><span class="c1">//
 </span><span class="c1">// If any GOEXPERIMENTs are set to non-default values, it will include
 </span><span class="c1">// &#34;X:&lt;GOEXPERIMENT&gt;&#34;.
@@ -113,14 +113,14 @@
 	<span class="k">return</span> <span class="nx">buildVersion</span>
 <span class="p">}</span>\
 </code></pre></div><p>根据注释提示，在 Go 仓库源码中，找到 src/cmd/link，这是 Go 链接器的实现。在其中的 internal/ld/main.go 文件找到了如下代码：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="nx">buildVersion</span> <span class="o">:=</span> <span class="nx">buildcfg</span><span class="p">.</span><span class="nx">Version</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">buildVersion</span> <span class="o">:=</span> <span class="nx">buildcfg</span><span class="p">.</span><span class="nx">Version</span>
 <span class="k">if</span> <span class="nx">goexperiment</span> <span class="o">:=</span> <span class="nx">buildcfg</span><span class="p">.</span><span class="nf">GOEXPERIMENT</span><span class="p">();</span> <span class="nx">goexperiment</span> <span class="o">!=</span> <span class="s">&#34;&#34;</span> <span class="p">{</span>
   <span class="nx">buildVersion</span> <span class="o">+=</span> <span class="s">&#34; X:&#34;</span> <span class="o">+</span> <span class="nx">goexperiment</span>
 <span class="p">}</span>
 <span class="nf">addstrdata1</span><span class="p">(</span><span class="nx">ctxt</span><span class="p">,</span> <span class="s">&#34;runtime.buildVersion=&#34;</span><span class="o">+</span><span class="nx">buildVersion</span><span class="p">)</span>
 </code></pre></div><p>buildVersion 值从 buildcfg.Version 获取，如果设置了 GOEXPERIMENT（环境变量值），则用该值。</p>
 <p>着重看 buildcfg.Version 如何得到的：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">var</span> <span class="p">(</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">var</span> <span class="p">(</span>
 	<span class="nx">defaultGOROOT</span> <span class="kt">string</span> <span class="c1">// set by linker
 </span><span class="c1"></span>
 	<span class="nx">GOROOT</span>   <span class="p">=</span> <span class="nf">envOr</span><span class="p">(</span><span class="s">&#34;GOROOT&#34;</span><span class="p">,</span> <span class="nx">defaultGOROOT</span><span class="p">)</span>
@@ -136,7 +136,7 @@
 	<span class="nx">Version</span>  <span class="p">=</span> <span class="nx">version</span>
 <span class="p">)</span>
 </code></pre></div><p>很奇怪，Version 的值，直接用 version 赋值的。但 version 的值是什么？在 src/cmd/dist/buildruntime.go 文件中，有一个函数 mkbuildcfg，用于生成 buildcfg：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// mkbuildcfg writes internal/buildcfg/zbootstrap.go:
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// mkbuildcfg writes internal/buildcfg/zbootstrap.go:
 </span><span class="c1">//
 </span><span class="c1">//	package buildcfg
 </span><span class="c1">//
@@ -178,7 +178,7 @@
 	<span class="nf">writefile</span><span class="p">(</span><span class="nx">buf</span><span class="p">.</span><span class="nf">String</span><span class="p">(),</span> <span class="nx">file</span><span class="p">,</span> <span class="nx">writeSkipSame</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre></div><p>其中 version 的值是通过 findgoversion() 得到，该函数定义在 src/cmd/dist/build.go 中：（省略了部分细节）</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// findgoversion determines the Go version to use in the version string.
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// findgoversion determines the Go version to use in the version string.
 </span><span class="c1"></span><span class="kd">func</span> <span class="nf">findgoversion</span><span class="p">()</span> <span class="kt">string</span> <span class="p">{</span>
 	<span class="c1">// The $GOROOT/VERSION file takes priority, for distributions
 </span><span class="c1"></span>	<span class="c1">// without the source repo.
@@ -227,7 +227,7 @@
 <p>对于我们自己的 Go 项目，通过 Git 获得版本信息，可以通过 shell 脚本实现，最后编译 Go 项目时，将版本信息通过 <code>-X</code> 传递进去。</p>
 <p>现在我们通过脚本来实现这个功能。</p>
 <p>项目代码如下：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// main.go
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// main.go
 </span><span class="c1"></span><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
@@ -240,7 +240,7 @@
 	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Version:&#34;</span><span class="p">,</span> <span class="nx">Version</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre></div><p>现在写一个 shell 脚本，通过该脚本对以上代码进行编译：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="err">#</span><span class="p">!</span><span class="o">/</span><span class="nx">bin</span><span class="o">/</span><span class="nx">sh</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="err">#</span><span class="p">!</span><span class="o">/</span><span class="nx">bin</span><span class="o">/</span><span class="nx">sh</span>
 
 <span class="nx">version</span><span class="p">=</span><span class="s">&#34;&#34;</span>
 
@@ -271,7 +271,7 @@
 
 			</div><div class="content">
 	<br>
-	<img src="https://static.studygolang.com/static/img/polarisxu-qrcode-soso-s.png">
+	<img src="https://static.golangjob.cn/static/img/polarisxu-qrcode-soso-s.png">
 </div>
 
 <div class="related-posts thin">

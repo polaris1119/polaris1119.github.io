@@ -8,15 +8,15 @@
 	<meta name="theme-color" content="#fcfcfc">
 	<meta name="msapplication-TileColor" content="#fcfcfc">
 <meta itemprop="name" content="Go1.18 快讯：Module 工作区模式">
-<meta itemprop="description" content="大家好，我是 polarisxu。 工作区模式（Workspace mode），可不是之前 GOPATH 时代的 Workspace，而是希望在本地开发时支持多 Module。 01 缘起 为了大家全面理解工作区模式，通过一个具体例子讲解。 本地有两个项目，分别是两个 module：mypkg 和 example。（Windows 系统请按自己方式创建目录） $ cd ~/ $ mkdir polarisxu $ cd polarisxu $ mkdir mypkg example $ cd mypkg $ go mod init github.com/polaris1119/mypkg"><meta itemprop="datePublished" content="2021-11-10T22:00:00+08:00" />
-<meta itemprop="dateModified" content="2021-11-10T22:00:00+08:00" />
+<meta itemprop="description" content="大家好，我是 polarisxu。 工作区模式（Workspace mode），可不是之前 GOPATH 时代的 Workspace，而是希望在本地开发时支持多 Module。 01 缘起 为了大家全面理解工作区模式，通过一个具体例子讲解。 本地有两个项目，分别是两个 module：mypkg 和 example。（Windows 系统请按自己方式创建目录） $ cd ~/ $ mkdir polarisxu $ cd polarisxu $ mkdir mypkg example $ cd mypkg $ go mod init github.com/polaris1119/mypkg"><meta itemprop="datePublished" content="2021-11-10T22:00:00&#43;08:00" />
+<meta itemprop="dateModified" content="2021-11-10T22:00:00&#43;08:00" />
 <meta itemprop="wordCount" content="1666">
 <meta itemprop="keywords" content="Go,Workspace," /><meta property="og:title" content="Go1.18 快讯：Module 工作区模式" />
 <meta property="og:description" content="大家好，我是 polarisxu。 工作区模式（Workspace mode），可不是之前 GOPATH 时代的 Workspace，而是希望在本地开发时支持多 Module。 01 缘起 为了大家全面理解工作区模式，通过一个具体例子讲解。 本地有两个项目，分别是两个 module：mypkg 和 example。（Windows 系统请按自己方式创建目录） $ cd ~/ $ mkdir polarisxu $ cd polarisxu $ mkdir mypkg example $ cd mypkg $ go mod init github.com/polaris1119/mypkg" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/dynamic/go1.18-workspace/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2021-11-10T22:00:00+08:00" />
-<meta property="article:modified_time" content="2021-11-10T22:00:00+08:00" />
+<meta property="article:published_time" content="2021-11-10T22:00:00&#43;08:00" />
+<meta property="article:modified_time" content="2021-11-10T22:00:00&#43;08:00" />
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Go1.18 快讯：Module 工作区模式"/>
@@ -30,7 +30,7 @@
 	<link rel="shortcut icon" href="/favicon.ico">
 
 	<title>Go1.18 快讯：Module 工作区模式</title>
-	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.f74778e3020c87c304fb5982e09b92ba63a5c7f202996d4c7283d6057acfe9c1.css" integrity="sha256-90d44wIMh8ME+1mC4JuSumOlx/ICmW1McoPWBXrP6cE=" crossorigin="anonymous">
 	
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/styles.css">
@@ -82,7 +82,7 @@
 <h2 id="01-缘起">01 缘起<a href="#01-缘起" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>为了大家全面理解工作区模式，通过一个具体例子讲解。</p>
 <p>本地有两个项目，分别是两个 module：mypkg 和 example。（Windows 系统请按自己方式创建目录）</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nb">cd</span> ~/
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nb">cd</span> ~/
 $ mkdir polarisxu
 $ <span class="nb">cd</span> polarisxu
 $ mkdir mypkg example
@@ -90,17 +90,17 @@ $ <span class="nb">cd</span> mypkg
 $ go mod init github.com/polaris1119/mypkg
 $ touch bar.go
 </code></pre></div><p>在 bar.go 中增加如下示例代码：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">mypkg</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">mypkg</span>
 
 <span class="kd">func</span> <span class="nf">Bar</span><span class="p">()</span> <span class="p">{</span>
 	<span class="nb">println</span><span class="p">(</span><span class="s">&#34;This is package mypkg&#34;</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre></div><p>接着，在 example 模块中处理：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nb">cd</span> ~/polarisxu/example
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nb">cd</span> ~/polarisxu/example
 $ go mod init github.com/polaris1119/example
 $ touch main.go
 </code></pre></div><p>在 main.go 中增加如下内容：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
     <span class="s">&#34;github.com/polaris1119/mypkg&#34;</span>
@@ -110,11 +110,11 @@ $ touch main.go
     <span class="nx">mypkg</span><span class="p">.</span><span class="nf">Bar</span><span class="p">()</span>
 <span class="p">}</span>
 </code></pre></div><p>这时候，如果我们运行 go mod tidy，肯定会报错，因为我们的 mypkg 包根本没有提交到 github 上，肯定找不到。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">fatal: repository <span class="s1">&#39;https://github.com/polaris1119/mypkg/&#39;</span> not found
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">fatal: repository <span class="s1">&#39;https://github.com/polaris1119/mypkg/&#39;</span> not found
 </code></pre></div><p>go run main.go 也就不成功。</p>
 <p>我们当然可以提交 mypkg 到 github，但我们每修改一次 mypkg，就需要提交，否则 example 中就没法使用上最新的。</p>
 <p>针对这种情况，目前是建议通过 replace 来解决，即在 example 中的 go.mod 增加如下 replace：（v1.0.0 根据具体情况修改，还未提交，可以使用 v1.0.0）</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">module github.com/polaris1119/example
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">module github.com/polaris1119/example
 
 go 1.17
 
@@ -122,7 +122,7 @@ require github.com/polaris1119/mypkg v1.0.0
 
 replace github.com/polaris1119/mypkg <span class="o">=</span>&gt; ../mypkg
 </code></pre></div><p>再次运行 go run main.go，输出如下：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ go run main.go
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ go run main.go
 This is package mypkg
 </code></pre></div><p>当都开发完成时，我们需要手动删除 replace，并执行 go mod tidy 后提交，否则别人使用就报错了。</p>
 <p>这还是挺不方便的，如果本地有多个 module，每一个都得这么处理。</p>
@@ -132,7 +132,7 @@ This is package mypkg
 。</p>
 <p>为了能够试验工作区，请在本地使用 Go1.18beta2，建议<a href="https://mp.weixin.qq.com/s/yTblk9Js1Zcq5aWVcYGjOA" target="_blank" rel="noopener">通过 goup 切换 Go 版本</a>
 ：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ goup install 1.18beta2
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ goup install 1.18beta2
 $ goup show
 <span class="p">|</span>  VERSION  <span class="p">|</span> ACTIVE <span class="p">|</span>
 <span class="p">|</span>-----------<span class="p">|</span>--------<span class="p">|</span>
@@ -151,10 +151,10 @@ $ goup show
 <span class="p">|</span>   1.4.3   <span class="p">|</span>        <span class="p">|</span>
 <span class="p">|</span>    tip    <span class="p">|</span>        <span class="p">|</span>
 </code></pre></div><p>我本地当前版本：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ go version
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ go version
 go version go1.18beta2 darwin/amd64
 </code></pre></div><p>通过 go help work 可以看到 work 相关命令：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ go <span class="nb">help</span> work
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ go <span class="nb">help</span> work
 Go workspace provides access to operations on workspaces.
 
 Note that support <span class="k">for</span> workspaces is built into many other commands, not
@@ -218,7 +218,7 @@ The commands are:
 
 Use <span class="s2">&#34;go help work &lt;command&gt;&#34;</span> <span class="k">for</span> more information about a command.
 </code></pre></div><p>根据这个提示，我们初始化 workspace：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nb">cd</span> ~/polarisxu
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nb">cd</span> ~/polarisxu
 $ go work init mypkg example
 $ tree
 .
@@ -236,7 +236,7 @@ $ tree
 <li>go work init 之后跟上需要本地开发的子模块目录名；</li>
 </ul>
 <p>打开 go.work 看看长什么样：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">go 1.18
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">go 1.18
 
 use <span class="o">(</span>
 	./example
@@ -246,7 +246,7 @@ use <span class="o">(</span>
 <p>现在，我们将 example/go.mod 中的 replace 语句删除，再次执行 go run main.go（在 example 目录下），得到了正常的输出。也可以在 polarisxu 目录下，这么运行：go run example/main.go，也能正常。</p>
 <p>注意，go.work 不需要提交到 Git 中，因为它只是你本地开发使用的。</p>
 <p>如果想要禁用 workspace，可以通过 <code>-workfile=off</code> 实现。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">-workfile file
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">-workfile file
 		in module aware mode, use the given go.work file as a workspace file.
 		By default or when -workfile is <span class="s2">&#34;auto&#34;</span>, the go <span class="nb">command</span> searches <span class="k">for</span> a
 		file named go.work in the current directory and <span class="k">then</span> containing directories
@@ -261,7 +261,7 @@ use <span class="o">(</span>
 
 			</div><div class="content">
 	<br>
-	<img src="https://static.studygolang.com/static/img/polarisxu-qrcode-soso-s.png">
+	<img src="https://static.golangjob.cn/static/img/polarisxu-qrcode-soso-s.png">
 </div>
 
 <div class="related-posts thin">

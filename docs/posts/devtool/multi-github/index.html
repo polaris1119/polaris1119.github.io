@@ -8,15 +8,15 @@
 	<meta name="theme-color" content="#fcfcfc">
 	<meta name="msapplication-TileColor" content="#fcfcfc">
 <meta itemprop="name" content="本地如何配置多个 GitHub/Gitee 账号？">
-<meta itemprop="description" content="大家好，我是 polarisxu。 现在的开发，无论是日常工作还是参与开源，都离不开 Git。开源项目，大家通常使用 GitHub 或 Gitee，而工作中通常会自建 Git 服务，比如通过 GitLab、Gogs 等搭建。 为了方便使用，一般大家会配置 SSH keys，通过 ssh 协议 pull/push 仓库。 1、生成 ssh 密钥 首先，我们需要生成 ssh 密钥：（基于 mac，linux 类似，Windows 下找对应工具） ssh-keygen -C &#34;polaris@studygolang.com&#34; Generating public/private rsa key"><meta itemprop="datePublished" content="2022-01-16T22:30:00+08:00" />
-<meta itemprop="dateModified" content="2022-01-16T22:30:00+08:00" />
+<meta itemprop="description" content="大家好，我是 polarisxu。 现在的开发，无论是日常工作还是参与开源，都离不开 Git。开源项目，大家通常使用 GitHub 或 Gitee，而工作中通常会自建 Git 服务，比如通过 GitLab、Gogs 等搭建。 为了方便使用，一般大家会配置 SSH keys，通过 ssh 协议 pull/push 仓库。 1、生成 ssh 密钥 首先，我们需要生成 ssh 密钥：（基于 mac，linux 类似，Windows 下找对应工具） ssh-keygen -C &#34;polaris@studygolang.com&#34; Generating public/private rsa key"><meta itemprop="datePublished" content="2022-01-16T22:30:00&#43;08:00" />
+<meta itemprop="dateModified" content="2022-01-16T22:30:00&#43;08:00" />
 <meta itemprop="wordCount" content="974">
 <meta itemprop="keywords" content="GitHub,Git," /><meta property="og:title" content="本地如何配置多个 GitHub/Gitee 账号？" />
 <meta property="og:description" content="大家好，我是 polarisxu。 现在的开发，无论是日常工作还是参与开源，都离不开 Git。开源项目，大家通常使用 GitHub 或 Gitee，而工作中通常会自建 Git 服务，比如通过 GitLab、Gogs 等搭建。 为了方便使用，一般大家会配置 SSH keys，通过 ssh 协议 pull/push 仓库。 1、生成 ssh 密钥 首先，我们需要生成 ssh 密钥：（基于 mac，linux 类似，Windows 下找对应工具） ssh-keygen -C &#34;polaris@studygolang.com&#34; Generating public/private rsa key" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://polarisxu.studygolang.com/posts/devtool/multi-github/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2022-01-16T22:30:00+08:00" />
-<meta property="article:modified_time" content="2022-01-16T22:30:00+08:00" />
+<meta property="article:published_time" content="2022-01-16T22:30:00&#43;08:00" />
+<meta property="article:modified_time" content="2022-01-16T22:30:00&#43;08:00" />
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="本地如何配置多个 GitHub/Gitee 账号？"/>
@@ -30,7 +30,7 @@
 	<link rel="shortcut icon" href="/favicon.ico">
 
 	<title>本地如何配置多个 GitHub/Gitee 账号？</title>
-	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.d3141168199607bf3a517216ce3c263814eecdbc8fca72a9a88700799a838219.css" integrity="sha256-0xQRaBmWB786UXIWzjwmOBTuzbyPynKpqIcAeZqDghk=" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.f74778e3020c87c304fb5982e09b92ba63a5c7f202996d4c7283d6057acfe9c1.css" integrity="sha256-90d44wIMh8ME+1mC4JuSumOlx/ICmW1McoPWBXrP6cE=" crossorigin="anonymous">
 	
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/styles.css">
@@ -82,15 +82,14 @@
 <p>为了方便使用，一般大家会配置 SSH keys，通过 ssh 协议 pull/push 仓库。</p>
 <h2 id="1生成-ssh-密钥">1、生成 ssh 密钥<a href="#1生成-ssh-密钥" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>首先，我们需要生成 ssh 密钥：（基于 mac，linux 类似，Windows 下找对应工具）</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">ssh-keygen -C <span class="s2">&#34;polaris@studygolang.com&#34;</span>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">ssh-keygen -C <span class="s2">&#34;polaris@studygolang.com&#34;</span>
 Generating public/private rsa key pair.
 Enter file in which to save the key <span class="o">(</span>/Users/xuxinhua/.ssh/id_rsa<span class="o">)</span>:
-</code></pre></div><p>出现的提示，使用默认值即可。命令执行完后，会生成 id_rsa 和 id_rsa.pub 文件，其中 id_rsa.pub 是公钥，拷贝其中的内容配置到 GitHub 或 GitLab 之类的网站。比如 GitHub 是这里：<a href="https://github.com/settings/ssh/new" target="_blank" rel="noopener">https://github.com/settings/ssh/new</a>
-。</p>
+</code></pre></div><p>出现的提示，使用默认值即可。命令执行完后，会生成 id_rsa 和 id_rsa.pub 文件，其中 id_rsa.pub 是公钥，拷贝其中的内容配置到 GitHub 或 GitLab 之类的网站。比如 GitHub 是这里：<a href="https://github.com/settings/ssh/new">https://github.com/settings/ssh/new</a>。</p>
 <h2 id="2一个电脑两个不同网站账号">2、一个电脑两个不同网站账号<a href="#2一个电脑两个不同网站账号" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>这是最常见的场景：一个业余号（github），一个工作号（比如自建 gitlab）。因为是不同网站，因此可以使用同一个邮箱。当然也可以是一个 github 账号，一个 gitee 账号，为了方便，以下使用 github 和 gitee。</p>
 <p>在 <code>~/.ssh</code> 目录下创建一个 config 文件，在其中添加如下内容：</p>
-<pre tabindex="0"><code class="language-config" data-lang="config">host github
+<pre><code class="language-config" data-lang="config">host github
   hostname github.com
   Port 22
 host gitee
@@ -104,10 +103,10 @@ host gitee
 <p>当然，你也完全可以使用两个不同的账号，具体见下文。</p>
 <h2 id="3一个电脑两个-github-账号">3、一个电脑两个 GitHub 账号<a href="#3一个电脑两个-github-账号" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>因为两个 GitHub 账号，自然不能使用同一个 ssh 密钥，因此生成另外一个：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ ssh-keygen -t rsa -f ~/.ssh/id_rsa_gmail -C <span class="s2">&#34;polaris@gmail.com&#34;</span>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ ssh-keygen -t rsa -f ~/.ssh/id_rsa_gmail -C <span class="s2">&#34;polaris@gmail.com&#34;</span>
 </code></pre></div><p>这会在 <code>~/.ssh</code> 目录生成 id_rsa_gmail 和 id_rsa_gmail.pub 两个文件。</p>
 <p>将 id_rsa.pub 和 id_rsa_gmail.pub 配置到对应的 GitHub 账号。然后跟上文一样，编辑 config 文件：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># github 账号：polaris@studygolang.com</span>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># github 账号：polaris@studygolang.com</span>
 host github
     hostname github.com
     Port <span class="m">22</span>
@@ -119,22 +118,21 @@ host gmail-github
     Port <span class="m">22</span>
     User git
     IdentityFile ~/.ssh/id_rsa_gmail
-</code></pre></div><p>config 是 ssh 的配置，详细信息可以参考：<a href="https://daemon369.github.io/ssh/2015/03/21/using-ssh-config-file" target="_blank" rel="noopener">https://daemon369.github.io/ssh/2015/03/21/using-ssh-config-file</a>
-。</p>
+</code></pre></div><p>config 是 ssh 的配置，详细信息可以参考：<a href="https://daemon369.github.io/ssh/2015/03/21/using-ssh-config-file">https://daemon369.github.io/ssh/2015/03/21/using-ssh-config-file</a>。</p>
 <p>针对以上场景，在具体使用时，我们需要注意以下几点：</p>
 <ul>
 <li>默认会使用第一个账号，要使用第二个账号，需要设置该项目自己的 user.email 和 user.name</li>
 <li>git clone 时，第二个账号，地址得是类似这样的：<code>git@gmail-github.com:studygolang/studygolang.git </code></li>
 </ul>
 <p>如果有问题，可以执行以下两个命令验证：（记得替换为你自己的配置）</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ ssh-add ~/.ssh/id_rsa_gmail
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ ssh-add ~/.ssh/id_rsa_gmail
 ssh -T git@gmail-github.com
 </code></pre></div><h2 id="4总结">4、总结<a href="#4总结" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>生活一个号，工作一个号。如果你没有很好的区分，可以试试本文的方法，更愉快的 Coding！</p>
 
 			</div><div class="content">
 	<br>
-	<img src="https://static.studygolang.com/static/img/polarisxu-qrcode-soso-s.png">
+	<img src="https://static.golangjob.cn/static/img/polarisxu-qrcode-soso-s.png">
 </div>
 
 <div class="related-posts thin">
