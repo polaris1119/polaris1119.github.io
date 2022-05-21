@@ -7,13 +7,31 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Sat, 05 Feb 2022 22:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 21 May 2022 17:10:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>cache</title>
+      <link>https://polarisxu.studygolang.com/tags/cache/</link>
+      <pubDate>Sat, 21 May 2022 17:10:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/tags/cache/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>Go</title>
       <link>https://polarisxu.studygolang.com/tags/go/</link>
-      <pubDate>Sat, 05 Feb 2022 22:00:00 +0800</pubDate>
+      <pubDate>Sat, 21 May 2022 17:10:00 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/tags/go/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>test</title>
+      <link>https://polarisxu.studygolang.com/tags/test/</link>
+      <pubDate>Sat, 21 May 2022 17:10:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/tags/test/</guid>
       <description></description>
     </item>
     
@@ -77,24 +95,6 @@
       <pubDate>Sun, 16 Jan 2022 22:30:00 +0800</pubDate>
       
       <guid>https://polarisxu.studygolang.com/tags/git/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>GitHub</title>
-      <link>https://polarisxu.studygolang.com/tags/github/</link>
-      <pubDate>Sun, 16 Jan 2022 22:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/tags/github/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Java</title>
-      <link>https://polarisxu.studygolang.com/tags/java/</link>
-      <pubDate>Tue, 11 Jan 2022 22:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/tags/java/</guid>
       <description></description>
     </item>
     

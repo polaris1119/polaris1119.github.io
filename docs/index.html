@@ -71,6 +71,27 @@
 		
         <div class="post animated fadeInDown">
             <div class="post-title">
+                <h2><a href="/posts/go/go-test-disable-cached/">go test 如何禁用缓存？</a>
+                </h2>
+            </div>
+            <div class="post-content">
+                <div class="p_part"><p>大家好，我是 polarisxu。 每次执行单元测试，如果代码没有任何变动（包括可能读取的配置文件），则后续的执行，会直接读取缓存中的测试结果，同时会有一个 cached 标记。 $ go test -run ^TestPrint$ test/hello ok test/hello 0.113s $ go test -run ^TestPrint$ test/hello ok test/hello (cached) 有时候可能希望能执行实际的测试，比如看日志输出，想要禁用缓存，怎么办？ 碰到这样的问题，你一般会怎么获得答案？ 本文介绍几种方法，对你解决其他问题可能也会有帮助。 1、查</p></div>
+            </div>
+            <div class="post-footer">
+                <div class="meta">
+                    <div class="info"><em class="fas fa-calendar-day"></em><span
+                                class="date">2022-05-21</span>
+                        <a class="tag"
+                                   href="/tags/go/">Go</a><a class="tag"
+                                   href="/tags/test/">test</a><a class="tag"
+                                   href="/tags/cache/">cache</a>
+                    </div>
+                </div>
+            </div>
+				</div>
+    
+        <div class="post animated fadeInDown">
+            <div class="post-title">
                 <h2><a href="/posts/go/dynamic/go1.18-move-constraints/">Go1.18 快讯：constraints 包被移除标准库</a>
                 </h2>
             </div>
@@ -245,26 +266,6 @@
                                    href="/tags/markdown/">Markdown</a><a class="tag"
                                    href="/tags/typora/">Typora</a><a class="tag"
                                    href="/tags/marktext/">MarkText</a>
-                    </div>
-                </div>
-            </div>
-				</div>
-    
-        <div class="post animated fadeInDown">
-            <div class="post-title">
-                <h2><a href="/posts/go/java/go-for-java01/">为 Java 开发者准备的 Go 教程 01：漫游了</a>
-                </h2>
-            </div>
-            <div class="post-content">
-                <div class="p_part"><p>大家好，我是 polarisxu。 在正式工作之前，一直使用 Java，虽然这些年对 Java 的关注变少了，但很显然，Java 用户群体特别大。不过，我也知晓，有不少 Java 用户在学 Go。我尝试写一系列文章，为 Java 开发者讲解 Go 语言。 这是第一篇，从大的层面简单对比下 Go 和 Java，算作是一次漫游。 整体上，Java 和 Go 之间有许多明显而微妙的区别，包括语言层面和运行时层面。我们这里主要在语</p></div>
-            </div>
-            <div class="post-footer">
-                <div class="meta">
-                    <div class="info"><em class="fas fa-calendar-day"></em><span
-                                class="date">2022-01-05</span>
-                        <a class="tag"
-                                   href="/tags/go/">Go</a><a class="tag"
-                                   href="/tags/java/">Java</a>
                     </div>
                 </div>
             </div>

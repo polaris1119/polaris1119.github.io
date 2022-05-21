@@ -6,8 +6,53 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en</language>
 		<copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-		<lastBuildDate>Sat, 05 Feb 2022 22:00:00 +0800</lastBuildDate>
+		<lastBuildDate>Sat, 21 May 2022 17:10:00 +0800</lastBuildDate>
 		<atom:link href="https://polarisxu.studygolang.com/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>go test 如何禁用缓存？</title>
+			<link>https://polarisxu.studygolang.com/posts/go/go-test-disable-cached/</link>
+			<pubDate>Sat, 21 May 2022 17:10:00 +0800</pubDate>
+			
+			<guid>https://polarisxu.studygolang.com/posts/go/go-test-disable-cached/</guid>
+			<description>大家好，我是 polarisxu。 每次执行单元测试，如果代码没有任何变动（包括可能读取的配置文件），则后续的执行，会直接读取缓存中的测试结果，同时会有一个 cached 标记。 $ go test -run ^TestPrint$ test/hello ok test/hello 0.113s $ go test -run ^TestPrint$ test/hello ok test/hello (cached) 有时候可能希望能执行实际的测试，比如看日志输出，想要禁用缓存，怎么办？ 碰到这样的问题，你一般会怎么获得答案？ 本文介绍几种方法，对你解决其他问题可能也会有帮助。 1、查</description>
+			<content type="html"><![CDATA[<p>大家好，我是 polarisxu。</p>
+<p>每次执行单元测试，如果代码没有任何变动（包括可能读取的配置文件），则后续的执行，会直接读取缓存中的测试结果，同时会有一个 cached 标记。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ go <span class="nb">test</span> -run ^TestPrint$ test/hello
+ok  	test/hello	0.113s
+
+$ go <span class="nb">test</span> -run ^TestPrint$ test/hello
+ok  	test/hello	<span class="o">(</span>cached<span class="o">)</span>
+</code></pre></div><p>有时候可能希望能执行实际的测试，比如看日志输出，想要禁用缓存，怎么办？</p>
+<p>碰到这样的问题，你一般会怎么获得答案？</p>
+<p>本文介绍几种方法，对你解决其他问题可能也会有帮助。</p>
+<h2 id="1查看-go-test-的帮助文档">1、查看 go test 的帮助文档</h2>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ go <span class="nb">help</span> testflag
+</code></pre></div><p>文档内容很多，初步浏览，似乎没有这样的 flag。实际上有这么一段话：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">When <span class="s1">&#39;go test&#39;</span> runs in package list mode, <span class="s1">&#39;go test&#39;</span> caches successful
+package <span class="nb">test</span> results to avoid unnecessary repeated running of tests. To
+disable <span class="nb">test</span> caching, use any <span class="nb">test</span> flag or argument other than the
+cacheable flags. The idiomatic way to disable <span class="nb">test</span> caching explicitly
+is to use -count<span class="o">=</span>1.
+</code></pre></div><p>也就是说加上 <code>-count=1</code> 即可以禁用缓存。</p>
+<h2 id="2在-go-官方仓库的-issue-中搜索">2、在 go 官方仓库的 issue 中搜索</h2>
+<p><p class="md__image">
+  <img src="../imgs/go-test-disable-cached01.png"
+    alt="search in github issue"  />
+</p>
+</p>
+<blockquote>
+<p>小提示：因为 issue 比较多，可以考虑加上 in:title 限定只在标题中搜索</p>
+</blockquote>
+<p>其中 <a href="https://github.com/golang/go/issues/24573">https://github.com/golang/go/issues/24573</a> 里面有人提到，在 Go1.10 及以前通过 <code>GOCACHE=off go test</code> 禁用，Go1.11 及以上版本使用 <code>-count=1</code> flag 禁用。因为 Go1.11 开始，GOCACHE=off 会影响 go.mod。</p>
+<p>同时，在这个 issue 中，还有人提到 VSCode 中如何配置，即加上如下配置：</p>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="s2">&#34;go.testFlags&#34;</span><span class="err">:</span> <span class="p">[</span><span class="s2">&#34;-count=1&#34;</span><span class="p">]</span>
+</code></pre></div><h2 id="3百度或谷歌搜索">3、百度或谷歌搜索</h2>
+<p>这是很多人可能会用的方案，当然，还包括在 StackOverflow、golang-nuts 邮件组上搜索。</p>
+<hr>
+<p>学到了一个知识点，是不是还学到了如何找问题的答案？！授人以渔很重要。</p>
+]]></content>
+		</item>
 		
 		<item>
 			<title>Go1.18 快讯：constraints 包被移除标准库</title>

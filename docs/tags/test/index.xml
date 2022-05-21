@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>test on polarisxu</title>
+    <link>https://polarisxu.studygolang.com/tags/test/</link>
+    <description>Recent content in test on polarisxu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
+    <lastBuildDate>Sat, 21 May 2022 17:10:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/test/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>go test 如何禁用缓存？</title>
+      <link>https://polarisxu.studygolang.com/posts/go/go-test-disable-cached/</link>
+      <pubDate>Sat, 21 May 2022 17:10:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/go-test-disable-cached/</guid>
+      <description>大家好，我是 polarisxu。 每次执行单元测试，如果代码没有任何变动（包括可能读取的配置文件），则后续的执行，会直接读取缓存中的测试结果，同时会有一个 cached 标记。 $ go test -run ^TestPrint$ test/hello ok test/hello 0.113s $ go test -run ^TestPrint$ test/hello ok test/hello (cached) 有时候可能希望能执行实际的测试，比如看日志输出，想要禁用缓存，怎么办？ 碰到这样的问题，你一般会怎么获得答案？ 本文介绍几种方法，对你解决其他问题可能也会有帮助。 1、查</description>
+    </item>
+    
+  </channel>
+</rss>

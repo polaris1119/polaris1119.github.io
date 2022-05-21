@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Sat, 05 Feb 2022 22:00:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 21 May 2022 17:10:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>go test 如何禁用缓存？</title>
+      <link>https://polarisxu.studygolang.com/posts/go/go-test-disable-cached/</link>
+      <pubDate>Sat, 21 May 2022 17:10:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/go-test-disable-cached/</guid>
+      <description>大家好，我是 polarisxu。 每次执行单元测试，如果代码没有任何变动（包括可能读取的配置文件），则后续的执行，会直接读取缓存中的测试结果，同时会有一个 cached 标记。 $ go test -run ^TestPrint$ test/hello ok test/hello 0.113s $ go test -run ^TestPrint$ test/hello ok test/hello (cached) 有时候可能希望能执行实际的测试，比如看日志输出，想要禁用缓存，怎么办？ 碰到这样的问题，你一般会怎么获得答案？ 本文介绍几种方法，对你解决其他问题可能也会有帮助。 1、查</description>
+    </item>
+    
     <item>
       <title>Go1.18 快讯：constraints 包被移除标准库</title>
       <link>https://polarisxu.studygolang.com/posts/go/dynamic/go1.18-move-constraints/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/devtool/scc/</guid>
       <description>大家好，我是 polarisxu。 2021 年马上要过完了，一年下来，你写了多少代码？其中 Go 代码又有多少呢？虽然大家一般讨厌将代码行数作为考核业绩指标，但我们自己对一年的代码量有一个基本掌握还是挺有必要的。 如果你搜索，会发现代码统计工具有很多。比如 sloccount 、github.com/AlDanial/cloc 等，似乎大家很喜欢统计代码行数。当然，也有人直接使用 grep、awk 之</description>
-    </item>
-    
-    <item>
-      <title>Go1.18 新特性：TryLock</title>
-      <link>https://polarisxu.studygolang.com/posts/go/dynamic/go1.18-trylock/</link>
-      <pubDate>Sun, 26 Dec 2021 22:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/dynamic/go1.18-trylock/</guid>
-      <description>大家好，我是 polarisxu。 我们知晓，Go 标准库的 sync/Mutex、RWMutex 实现了 sync/Locker 接口， 提供了 Lock() 和 UnLock() 方法，可以获取锁和释放锁，我们可以方便的使用它来控制对共享资源的并发控制。（其他语言，比如 Java 是有类似 TryLock 的功能的） type Locker interface { Lock() Unlock() } 但是锁被获取后，在未释放之前其他 goroutine 再调用 Lock 则会被阻塞住，这种设计在有些情况下可能不能满足需求。有时我们希望尝试获取锁，</description>
     </item>
     
   </channel>
