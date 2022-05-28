@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#fcfcfc">
+	<meta name="msapplication-TileColor" content="#fcfcfc">
+<meta itemprop="name" content="Go 开源项目推荐：一个简单的 Go 练手项目">
+<meta itemprop="description" content="大家好，我是 polarisxu。 Go 语言中文网微信群时不时有人问，有没有练手项目推荐。实话说，公众号陆续推荐过不少，但大家更擅长及时问，而不是找找。今天看到一个开源项目，值得学习了 Go 语言，但没有实战过的人练练手。 项目地址：https://github.com/cloudlena/s3manager，这是一个 Web 项目，通过 Web GUI 管理 S3 buckets。你可以基于这个项"><meta itemprop="datePublished" content="2022-05-28T20:20:00&#43;08:00" />
+<meta itemprop="dateModified" content="2022-05-28T20:20:00&#43;08:00" />
+<meta itemprop="wordCount" content="608">
+<meta itemprop="keywords" content="Go,项目," /><meta property="og:title" content="Go 开源项目推荐：一个简单的 Go 练手项目" />
+<meta property="og:description" content="大家好，我是 polarisxu。 Go 语言中文网微信群时不时有人问，有没有练手项目推荐。实话说，公众号陆续推荐过不少，但大家更擅长及时问，而不是找找。今天看到一个开源项目，值得学习了 Go 语言，但没有实战过的人练练手。 项目地址：https://github.com/cloudlena/s3manager，这是一个 Web 项目，通过 Web GUI 管理 S3 buckets。你可以基于这个项" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/project/go-web-project-s3-manager/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-05-28T20:20:00&#43;08:00" />
+<meta property="article:modified_time" content="2022-05-28T20:20:00&#43;08:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Go 开源项目推荐：一个简单的 Go 练手项目"/>
+<meta name="twitter:description" content="大家好，我是 polarisxu。 Go 语言中文网微信群时不时有人问，有没有练手项目推荐。实话说，公众号陆续推荐过不少，但大家更擅长及时问，而不是找找。今天看到一个开源项目，值得学习了 Go 语言，但没有实战过的人练练手。 项目地址：https://github.com/cloudlena/s3manager，这是一个 Web 项目，通过 Web GUI 管理 S3 buckets。你可以基于这个项"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>Go 开源项目推荐：一个简单的 Go 练手项目</title>
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.b21595ccbc2181c24e6a019eb9b89ca67727675a14634f9cbdb25e7a4f556601.css">
+	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/styles.css">
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://polarisxu.studygolang.com">polarisxu</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+  <a href="https://polarisxu.studygolang.com/">首页</a>
+  <a href="https://polarisxu.studygolang.com/categories/echo%E7%B3%BB%E5%88%97/">Echo系列</a>
+  <a href="https://polarisxu.studygolang.com/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a>
+  <a href="https://polarisxu.studygolang.com/posts/">归档</a>
+  <a href="https://polarisxu.studygolang.com/about/">关于</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<button id="toc-btn" class="hdr-btn desktop-only-ib" title="目录"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3" y2="6"></line><line x1="3" y1="12" x2="3" y2="12"></line><line x1="3" y1="18" x2="3" y2="18"></line></svg></button><span class="hdr-social hide-in-mobile"><a href="https://github.com/polaris1119" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a><a href="https://twitter.com/polaris1119" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitter"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="菜单"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://polarisxu.studygolang.com/">首页</a></li>
+			<li><a href="https://polarisxu.studygolang.com/categories/echo%E7%B3%BB%E5%88%97/">Echo系列</a></li>
+			<li><a href="https://polarisxu.studygolang.com/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a></li>
+			<li><a href="https://polarisxu.studygolang.com/posts/">归档</a></li>
+			<li><a href="https://polarisxu.studygolang.com/about/">关于</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>May 28, 2022</span></div>
+				<h1>Go 开源项目推荐：一个简单的 Go 练手项目</h1>
+			</header>
+			<div class="content">
+				<p>大家好，我是 polarisxu。</p>
+<p>Go 语言中文网微信群时不时有人问，有没有练手项目推荐。实话说，公众号陆续推荐过不少，但大家更擅长及时问，而不是找找。今天看到一个开源项目，值得学习了 Go 语言，但没有实战过的人练练手。</p>
+<p>项目地址：<a href="https://github.com/cloudlena/s3manager">https://github.com/cloudlena/s3manager</a>，这是一个 Web 项目，通过 Web GUI 管理 S3 buckets。你可以基于这个项目开发自己的管理阿里 buckets 或七牛 buckets 等。</p>
+<p><p class="md__image">
+  <img src="../imgs/s3manager.png"
+    alt=""  />
+</p>
+</p>
+<h2 id="主要功能">主要功能<a href="#主要功能" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>该项目实现了如下功能：</p>
+<ul>
+<li>列出你账号的所有 buckets</li>
+<li>创建一个新的 bucket</li>
+<li>列出某个 bucket 中的所有对象</li>
+<li>将新对象上传到 bucket</li>
+<li>从 bucket 下载对象</li>
+<li>删除 bucket 中的对象</li>
+</ul>
+<h2 id="第三方依赖">第三方依赖<a href="#第三方依赖" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>该项目主要使用了下面两个第三方库：</p>
+<ul>
+<li>github.com/gorilla/mux：没有使用 net/http，而是使用了这个路由库，也没有使用 gin、echo 之类的框架</li>
+<li>github.com/spf13/viper：配置管理库。该项目的配置是通过环境变量设置的，环境变量通过 viper 读取</li>
+</ul>
+<p>此外，就是基于 S3 的 SDK。</p>
+<h2 id="3核心设计">3、核心设计<a href="#3核心设计" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>简单介绍下该项目的核心设计。</p>
+<p>1）前后端分离。</p>
+<p>API 接口使用 RESTful 风格，例如：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">r</span><span class="p">.</span><span class="nf">Handle</span><span class="p">(</span><span class="s">&#34;/api/buckets/{bucketName}/objects&#34;</span><span class="p">,</span> <span class="nx">s3manager</span><span class="p">.</span><span class="nf">HandleCreateObject</span><span class="p">(</span><span class="nx">s3</span><span class="p">)).</span><span class="nf">Methods</span><span class="p">(</span><span class="nx">http</span><span class="p">.</span><span class="nx">MethodPost</span><span class="p">)</span>
+</code></pre></div><p>前端基于 jQuery。</p>
+<p>2）使用 Go1.16 的 embed</p>
+<p>静态资源，包括模板和 css/js，通过 embed 嵌入最终的二进制文件中，使得编译后只需一个二进制文件即可运行，部署方便。</p>
+<p>3编写了 Dockerfile</p>
+<p>方便通过 Docker 部署。</p>
+<h2 id="4总结">4、总结<a href="#4总结" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>这个项目功能比较简单，作为练手比较合适。建议新手可以参照这个项目，申请一个 S3 或国内的对象存储，实现自己的一个 bucket 管理系统。</p>
+
+			</div><div class="content">
+	<br>
+	<img src="https://static.golangjob.cn/static/img/polarisxu-qrcode-soso-s.png">
+</div>
+
+<div class="related-posts thin">
+	<h2></h2>
+	<ul>
+	
+	<li><a href="/posts/go/go-test-disable-cached/">go test 如何禁用缓存？</a></li>
+	
+	<li><a href="/posts/go/dynamic/go1.18-move-constraints/">Go1.18 快讯：constraints 包被移除标准库</a></li>
+	
+	<li><a href="/posts/go/generics/gophercon2021-generics/">跟着 Go 作者学泛型</a></li>
+	
+	<li><a href="/posts/go/2022-dev-env/">「2022 版」轻松搞定 Go 开发环境</a></li>
+	
+	<li><a href="/posts/go/why/why-use-gopher/">Go 为什么选择 Gopher 作为吉祥物？</a></li>
+	
+	</ul>
+</div>
+
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://polarisxu.studygolang.com/tags/go">Go</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/%E9%A1%B9%E7%9B%AE">项目</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>608 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2022-05-28 20:20 &#43;0800</p>
+			</footer>
+		</article>
+		<aside id="toc">
+			<div class="toc-title">目录</div>
+			<nav id="TableOfContents">
+  <ul>
+    <li><a href="#主要功能">主要功能</a></li>
+    <li><a href="#第三方依赖">第三方依赖</a></li>
+    <li><a href="#3核心设计">3、核心设计</a></li>
+    <li><a href="#4总结">4、总结</a></li>
+  </ul>
+</nav>
+		</aside>
+		<div class="post-nav thin">
+			<a class="prev-post" href="https://polarisxu.studygolang.com/posts/go/go-test-disable-cached/">
+				<span class="post-nav-label">旧&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>go test 如何禁用缓存？</span>
+			</a>
+		</div>
+		<div id="comments" class="thin"><script src="https://utteranc.es/client.js"
+	repo="polaris1119/polarisxu"
+	issue-term="pathname"
+	theme="github-light"
+	crossorigin="anonymous"
+	async>
+</script>
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2019 - 2022 <a href="https://polarisxu.studygolang.com">polarisxu</a> &#183; <a href="https://beian.miit.gov.cn/">京ICP备14030343号-1</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://polarisxu.studygolang.com/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+		<span id="busuanzi_container" style="color: #666;">
+			本站总访客数/访问量：<span id="busuanzi_value_site_uv"></span>/<span id="busuanzi_value_site_pv"></span>
+		</span>
+	</footer>
+
+
+	<script src="https://polarisxu.studygolang.com/js/main.min.3b8561d63aeee77aa04e677df95581a230b4b43adf7b208b8d671433e446cfc1.js"></script><script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?224c227cd9239761ec770bc8c1fb134c";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+</body>
+
+</html>

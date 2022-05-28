@@ -2,25 +2,31 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://polarisxu.studygolang.com/tags/cache/</loc>
-    <lastmod>2022-05-21T17:10:00+08:00</lastmod>
-  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/go/</loc>
+    <lastmod>2022-05-28T20:20:00+08:00</lastmod>
+  </url><url>
+    <loc>https://polarisxu.studygolang.com/posts/go/project/go-web-project-s3-manager/</loc>
+    <lastmod>2022-05-28T20:20:00+08:00</lastmod>
+  </url><url>
+    <loc>https://polarisxu.studygolang.com/</loc>
+    <lastmod>2022-05-28T20:20:00+08:00</lastmod>
+  </url><url>
+    <loc>https://polarisxu.studygolang.com/tags/</loc>
+    <lastmod>2022-05-28T20:20:00+08:00</lastmod>
+  </url><url>
+    <loc>https://polarisxu.studygolang.com/posts/</loc>
+    <lastmod>2022-05-28T20:20:00+08:00</lastmod>
+  </url><url>
+    <loc>https://polarisxu.studygolang.com/tags/%E9%A1%B9%E7%9B%AE/</loc>
+    <lastmod>2022-05-28T20:20:00+08:00</lastmod>
+  </url><url>
+    <loc>https://polarisxu.studygolang.com/tags/cache/</loc>
     <lastmod>2022-05-21T17:10:00+08:00</lastmod>
   </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/go-test-disable-cached/</loc>
     <lastmod>2022-05-21T17:10:00+08:00</lastmod>
   </url><url>
-    <loc>https://polarisxu.studygolang.com/</loc>
-    <lastmod>2022-05-21T17:10:00+08:00</lastmod>
-  </url><url>
-    <loc>https://polarisxu.studygolang.com/tags/</loc>
-    <lastmod>2022-05-21T17:10:00+08:00</lastmod>
-  </url><url>
     <loc>https://polarisxu.studygolang.com/tags/test/</loc>
-    <lastmod>2022-05-21T17:10:00+08:00</lastmod>
-  </url><url>
-    <loc>https://polarisxu.studygolang.com/posts/</loc>
     <lastmod>2022-05-21T17:10:00+08:00</lastmod>
   </url><url>
     <loc>https://polarisxu.studygolang.com/posts/go/dynamic/go1.18-move-constraints/</loc>

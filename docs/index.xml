@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Sat, 21 May 2022 17:10:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 28 May 2022 20:20:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go 开源项目推荐：一个简单的 Go 练手项目</title>
+      <link>https://polarisxu.studygolang.com/posts/go/project/go-web-project-s3-manager/</link>
+      <pubDate>Sat, 28 May 2022 20:20:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/project/go-web-project-s3-manager/</guid>
+      <description>大家好，我是 polarisxu。 Go 语言中文网微信群时不时有人问，有没有练手项目推荐。实话说，公众号陆续推荐过不少，但大家更擅长及时问，而不是找找。今天看到一个开源项目，值得学习了 Go 语言，但没有实战过的人练练手。 项目地址：https://github.com/cloudlena/s3manager，这是一个 Web 项目，通过 Web GUI 管理 S3 buckets。你可以基于这个项</description>
+    </item>
+    
     <item>
       <title>go test 如何禁用缓存？</title>
       <link>https://polarisxu.studygolang.com/posts/go/go-test-disable-cached/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/studygolang-github-security/</guid>
       <description>大家好，我是 polarisxu。 今天打开 studygolang 项目的 GitHub 仓库主页，发现了一个醒目的提示： 即发现了潜在的安全漏洞。 之所以 GitHub 能够发现这个安全漏洞，前提是我之前进行了授权。之前我写过一篇文章：《重磅！GitHub 为 Go 社区带来安全支持》 ，没看过的可以看看。 查看 「Dependabot alerts」，发现是 tidwall/gjson 有漏洞： 点击可以查看该漏洞的详细信息： 所以，修复该问题很简单，在 studygolang 项</description>
-    </item>
-    
-    <item>
-      <title>Typora 宣布收费后，这款开源 Markdown 编辑器火了</title>
-      <link>https://polarisxu.studygolang.com/posts/devtool/markdown-editor/</link>
-      <pubDate>Fri, 07 Jan 2022 22:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/devtool/markdown-editor/</guid>
-      <description>大家好，我是 polarisxu。 这几年，Markdown 写作不要太流行，包括一些社区也基本支持 Markdown 格式，包括 Go 语言中文网。GitHub 的评论也是支持 Markdown 格式，因此 Markdown 是每个程序员都应该掌握的。如果你从来没有使用过 Markdown，现在是时候尝试使用了。 Markdown 是一种纯文本格式，用来撰写结构化文档。由 John Gruber 在 2004 年创造。他用 perl 实现了第一个 Markdown 到 HTML 的转换器，迅速地在网络上普及开来</description>
     </item>
     
   </channel>
