@@ -71,6 +71,27 @@
 		
         <div class="post animated fadeInDown">
             <div class="post-title">
+                <h2><a href="/posts/go/action/weekly-question-148/">这道题正确率竟然只有 22%</a>
+                </h2>
+            </div>
+            <div class="post-content">
+                <div class="p_part"><p>大家好，我是 polarisxu。 《Go 语言爱好者周刊》 第 148 期有一道题目：以下代码输出什么？ package main import ( &#34;fmt&#34; ) func main() { m := [...]int{ &#39;a&#39;: 1, &#39;b&#39;: 2, &#39;c&#39;: 3, } m[&#39;a&#39;] = 3 fmt.Println(len(m)) } A：3；B：4；C：100；D：编译失败 大家的答题情况如下： 正确率只有 22%（正确答案是 C）。不知道你选对了吗？ 核心知识点 这道题目的核心点在于对 rune 字面量的理解和数组的语法。 在 Go 语言规范中有这么一句话： A rune literal represents a rune constant , an integer value</p></div>
+            </div>
+            <div class="post-footer">
+                <div class="meta">
+                    <div class="info"><em class="fas fa-calendar-day"></em><span
+                                class="date">2022-06-19</span>
+                        <a class="tag"
+                                   href="/tags/go/">Go</a><a class="tag"
+                                   href="/tags/%E5%91%A8%E5%88%8A/">周刊</a><a class="tag"
+                                   href="/tags/%E5%B8%B8%E9%87%8F/">常量</a>
+                    </div>
+                </div>
+            </div>
+				</div>
+    
+        <div class="post animated fadeInDown">
+            <div class="post-title">
                 <h2><a href="/posts/go/project/go-web-project-s3-manager/">Go 开源项目推荐：一个简单的 Go 练手项目</a>
                 </h2>
             </div>
@@ -245,26 +266,6 @@
                         <a class="tag"
                                    href="/tags/go/">Go</a><a class="tag"
                                    href="/tags/java/">Java</a>
-                    </div>
-                </div>
-            </div>
-				</div>
-    
-        <div class="post animated fadeInDown">
-            <div class="post-title">
-                <h2><a href="/posts/go/studygolang-github-security/">GitHub 发现了 studygolang 项目依赖的漏洞</a>
-                </h2>
-            </div>
-            <div class="post-content">
-                <div class="p_part"><p>大家好，我是 polarisxu。 今天打开 studygolang 项目的 GitHub 仓库主页，发现了一个醒目的提示： 即发现了潜在的安全漏洞。 之所以 GitHub 能够发现这个安全漏洞，前提是我之前进行了授权。之前我写过一篇文章：《重磅！GitHub 为 Go 社区带来安全支持》 ，没看过的可以看看。 查看 「Dependabot alerts」，发现是 tidwall/gjson 有漏洞： 点击可以查看该漏洞的详细信息： 所以，修复该问题很简单，在 studygolang 项</p></div>
-            </div>
-            <div class="post-footer">
-                <div class="meta">
-                    <div class="info"><em class="fas fa-calendar-day"></em><span
-                                class="date">2022-01-08</span>
-                        <a class="tag"
-                                   href="/tags/go/">Go</a><a class="tag"
-                                   href="/tags/github/">GitHub</a>
                     </div>
                 </div>
             </div>

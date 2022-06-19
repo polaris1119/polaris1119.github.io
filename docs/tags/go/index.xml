@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Sat, 28 May 2022 20:20:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 19 Jun 2022 20:20:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>这道题正确率竟然只有 22%</title>
+      <link>https://polarisxu.studygolang.com/posts/go/action/weekly-question-148/</link>
+      <pubDate>Sun, 19 Jun 2022 20:20:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/action/weekly-question-148/</guid>
+      <description>大家好，我是 polarisxu。 《Go 语言爱好者周刊》 第 148 期有一道题目：以下代码输出什么？ package main import ( &amp;#34;fmt&amp;#34; ) func main() { m := [...]int{ &amp;#39;a&amp;#39;: 1, &amp;#39;b&amp;#39;: 2, &amp;#39;c&amp;#39;: 3, } m[&amp;#39;a&amp;#39;] = 3 fmt.Println(len(m)) } A：3；B：4；C：100；D：编译失败 大家的答题情况如下： 正确率只有 22%（正确答案是 C）。不知道你选对了吗？ 核心知识点 这道题目的核心点在于对 rune 字面量的理解和数组的语法。 在 Go 语言规范中有这么一句话： A rune literal represents a rune constant , an integer value</description>
+    </item>
+    
     <item>
       <title>Go 开源项目推荐：一个简单的 Go 练手项目</title>
       <link>https://polarisxu.studygolang.com/posts/go/project/go-web-project-s3-manager/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/java/go-for-java01/</guid>
       <description>大家好，我是 polarisxu。 在正式工作之前，一直使用 Java，虽然这些年对 Java 的关注变少了，但很显然，Java 用户群体特别大。不过，我也知晓，有不少 Java 用户在学 Go。我尝试写一系列文章，为 Java 开发者讲解 Go 语言。 这是第一篇，从大的层面简单对比下 Go 和 Java，算作是一次漫游。 整体上，Java 和 Go 之间有许多明显而微妙的区别，包括语言层面和运行时层面。我们这里主要在语</description>
-    </item>
-    
-    <item>
-      <title>泛型版 singleflight：Go 中如何防止缓存击穿？</title>
-      <link>https://polarisxu.studygolang.com/posts/go/pkg/singleflight-generic/</link>
-      <pubDate>Thu, 30 Dec 2021 13:00:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/pkg/singleflight-generic/</guid>
-      <description>大家好，我是 polarisxu。 并发是 Go 的优势，但并发也需要很好的进行控制。标准库中有 sync 包，经常使用的功能有 sync.Mutex、sync.WaitGroup 等。其实，除了标准库，还有一个官方的扩展库，也叫 sync，其中有一个子包：sync/singleflight，专门做并发控制，比如防止缓存击穿。 01 从例子说起 看一个模拟缓存的例子，有如下代码： package main import ( &amp;#34;errors&amp;#34; &amp;#34;flag&amp;#34;</description>
     </item>
     
   </channel>

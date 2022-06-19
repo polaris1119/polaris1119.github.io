@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Sat, 28 May 2022 20:20:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 19 Jun 2022 20:20:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>这道题正确率竟然只有 22%</title>
+      <link>https://polarisxu.studygolang.com/posts/go/action/weekly-question-148/</link>
+      <pubDate>Sun, 19 Jun 2022 20:20:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/action/weekly-question-148/</guid>
+      <description>大家好，我是 polarisxu。 《Go 语言爱好者周刊》 第 148 期有一道题目：以下代码输出什么？ package main import ( &amp;#34;fmt&amp;#34; ) func main() { m := [...]int{ &amp;#39;a&amp;#39;: 1, &amp;#39;b&amp;#39;: 2, &amp;#39;c&amp;#39;: 3, } m[&amp;#39;a&amp;#39;] = 3 fmt.Println(len(m)) } A：3；B：4；C：100；D：编译失败 大家的答题情况如下： 正确率只有 22%（正确答案是 C）。不知道你选对了吗？ 核心知识点 这道题目的核心点在于对 rune 字面量的理解和数组的语法。 在 Go 语言规范中有这么一句话： A rune literal represents a rune constant , an integer value</description>
+    </item>
+    
     <item>
       <title>Go 开源项目推荐：一个简单的 Go 练手项目</title>
       <link>https://polarisxu.studygolang.com/posts/go/project/go-web-project-s3-manager/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/go/java/go-for-java02/</guid>
       <description>大家好，我是 polarisxu。 Go 语言的设计是站在巨人的肩膀上的，它吸取了其他语言的优秀设计，同时摒弃了一些「不认可」的设计。同时，为了保持简单性，Go 的特性也比很多其他语言少。因此，Java 有一些特性，Go 没有。但没有，不代表不好。本文就看看具体有哪些。（当然，也存在 Go 有的特性，而 Java 没有） 1、多重赋值 Java 可以在一条语句中将同一个值分配给多个变量（很多 C 族语言</description>
-    </item>
-    
-    <item>
-      <title>GitHub 发现了 studygolang 项目依赖的漏洞</title>
-      <link>https://polarisxu.studygolang.com/posts/go/studygolang-github-security/</link>
-      <pubDate>Sat, 08 Jan 2022 15:00:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/studygolang-github-security/</guid>
-      <description>大家好，我是 polarisxu。 今天打开 studygolang 项目的 GitHub 仓库主页，发现了一个醒目的提示： 即发现了潜在的安全漏洞。 之所以 GitHub 能够发现这个安全漏洞，前提是我之前进行了授权。之前我写过一篇文章：《重磅！GitHub 为 Go 社区带来安全支持》 ，没看过的可以看看。 查看 「Dependabot alerts」，发现是 tidwall/gjson 有漏洞： 点击可以查看该漏洞的详细信息： 所以，修复该问题很简单，在 studygolang 项</description>
     </item>
     
   </channel>

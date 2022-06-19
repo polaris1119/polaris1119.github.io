@@ -6,8 +6,83 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en</language>
 		<copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-		<lastBuildDate>Sat, 28 May 2022 20:20:00 +0800</lastBuildDate>
+		<lastBuildDate>Sun, 19 Jun 2022 20:20:00 +0800</lastBuildDate>
 		<atom:link href="https://polarisxu.studygolang.com/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>这道题正确率竟然只有 22%</title>
+			<link>https://polarisxu.studygolang.com/posts/go/action/weekly-question-148/</link>
+			<pubDate>Sun, 19 Jun 2022 20:20:00 +0800</pubDate>
+			
+			<guid>https://polarisxu.studygolang.com/posts/go/action/weekly-question-148/</guid>
+			<description>大家好，我是 polarisxu。 《Go 语言爱好者周刊》 第 148 期有一道题目：以下代码输出什么？ package main import ( &amp;#34;fmt&amp;#34; ) func main() { m := [...]int{ &amp;#39;a&amp;#39;: 1, &amp;#39;b&amp;#39;: 2, &amp;#39;c&amp;#39;: 3, } m[&amp;#39;a&amp;#39;] = 3 fmt.Println(len(m)) } A：3；B：4；C：100；D：编译失败 大家的答题情况如下： 正确率只有 22%（正确答案是 C）。不知道你选对了吗？ 核心知识点 这道题目的核心点在于对 rune 字面量的理解和数组的语法。 在 Go 语言规范中有这么一句话： A rune literal represents a rune constant , an integer value</description>
+			<content type="html"><![CDATA[<p>大家好，我是 polarisxu。</p>
+<p><a href="https://github.com/polaris1119/golangweekly" target="_blank" rel="noopener">《Go 语言爱好者周刊》</a>
+第 148 期有一道题目：以下代码输出什么？</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+	<span class="s">&#34;fmt&#34;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="nx">m</span> <span class="o">:=</span> <span class="p">[</span><span class="o">...</span><span class="p">]</span><span class="kt">int</span><span class="p">{</span>
+		<span class="sc">&#39;a&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+		<span class="sc">&#39;b&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+		<span class="sc">&#39;c&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+	<span class="p">}</span>
+	<span class="nx">m</span><span class="p">[</span><span class="sc">&#39;a&#39;</span><span class="p">]</span> <span class="p">=</span> <span class="mi">3</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="nx">m</span><span class="p">))</span>
+<span class="p">}</span>
+</code></pre></div><p>A：3；B：4；C：100；D：编译失败</p>
+<p>大家的答题情况如下：</p>
+<p><p class="md__image">
+  <img src="../imgs/weekly-question-148.png"
+    alt=""  />
+</p>
+</p>
+<p>正确率只有 22%（正确答案是 C）。不知道你选对了吗？</p>
+<h2 id="核心知识点">核心知识点</h2>
+<p>这道题目的核心点在于对 rune 字面量的理解和数组的语法。</p>
+<p>在 Go 语言规范中有这么一句话：</p>
+<blockquote>
+<p>A rune literal represents a <a href="https://docs.studygolang.com/ref/spec#Constants" target="_blank" rel="noopener">rune constant</a>
+, an integer value identifying a Unicode code point. A rune literal is expressed as one or more characters enclosed in single quotes, as in <code>'x'</code> or <code>'\n'</code>.</p>
+</blockquote>
+<p>即一个 rune 字面量代表一个 rune 常量。而常量分为有类型常量（typed）和无类型常量（untyped）。而字面量属于为类型常量，只不过每一个无类型常量都有一个默认类型。比如 <code>a</code> 字面量是一个无类型常量，它的默认类型是 rune。关于常量的这个知识点，之前周刊题解有过详细介绍：<a href="https://polarisxu.studygolang.com/posts/go/action/weekly-question-94/" target="_blank" rel="noopener">常量表达式这个规则应该了解下</a>
+。</p>
+<p>当在上下文中需要一个无类型常量带类型的值时，会进行隐式转换（或使用默认类型）。本题中，<code>a</code>、<code>b</code>、<code>c</code> 是 rune 字面量（rune 是 int32 的别名），但被当做了 int 数组的下标或索引（<code>[...]int</code> 这是数组的一种语法，数组长度编译时推断出来的）。语言规范中关于索引表达式有这么一句话：</p>
+<blockquote>
+<p>a constant index that is untyped is given type <code>int</code></p>
+</blockquote>
+<p>以下示例有助于你理解这个这道题：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// 这样正常
+</span><span class="c1"></span><span class="kd">const</span> <span class="nx">r</span> <span class="p">=</span> <span class="sc">&#39;a&#39;</span>
+<span class="kd">var</span> <span class="nx">a</span> <span class="kt">int</span> <span class="p">=</span> <span class="nx">r</span>
+<span class="c1">// 这样不能编译
+</span><span class="c1"></span><span class="kd">const</span> <span class="nx">r</span> <span class="kt">rune</span> <span class="p">=</span> <span class="sc">&#39;a&#39;</span>
+<span class="kd">var</span> <span class="nx">a</span> <span class="kt">int</span> <span class="p">=</span> <span class="nx">r</span>
+</code></pre></div><p>而我们知晓 <code>c</code> 的 ASCII 码是 99，这道题相当于这样：</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+	<span class="s">&#34;fmt&#34;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="nx">m</span> <span class="o">:=</span> <span class="p">[</span><span class="o">...</span><span class="p">]</span><span class="kt">int</span><span class="p">{</span>
+		<span class="mi">97</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+		<span class="mi">98</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+		<span class="mi">99</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+	<span class="p">}</span>
+	<span class="nx">m</span><span class="p">[</span><span class="mi">97</span><span class="p">]</span> <span class="p">=</span> <span class="mi">3</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="nx">m</span><span class="p">))</span>
+<span class="p">}</span>
+</code></pre></div><p>很显然长度是 100。</p>
+<hr>
+<p>不要在乎题目是不是变态，而是希望能够通过题目掌握一两个知识点。</p>
+]]></content>
+		</item>
 		
 		<item>
 			<title>Go 开源项目推荐：一个简单的 Go 练手项目</title>

@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Mon, 18 Jan 2021 11:25:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/%E5%91%A8%E5%88%8A/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 19 Jun 2022 20:20:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/%E5%91%A8%E5%88%8A/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>这道题正确率竟然只有 22%</title>
+      <link>https://polarisxu.studygolang.com/posts/go/action/weekly-question-148/</link>
+      <pubDate>Sun, 19 Jun 2022 20:20:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/action/weekly-question-148/</guid>
+      <description>大家好，我是 polarisxu。 《Go 语言爱好者周刊》 第 148 期有一道题目：以下代码输出什么？ package main import ( &amp;#34;fmt&amp;#34; ) func main() { m := [...]int{ &amp;#39;a&amp;#39;: 1, &amp;#39;b&amp;#39;: 2, &amp;#39;c&amp;#39;: 3, } m[&amp;#39;a&amp;#39;] = 3 fmt.Println(len(m)) } A：3；B：4；C：100；D：编译失败 大家的答题情况如下： 正确率只有 22%（正确答案是 C）。不知道你选对了吗？ 核心知识点 这道题目的核心点在于对 rune 字面量的理解和数组的语法。 在 Go 语言规范中有这么一句话： A rune literal represents a rune constant , an integer value</description>
+    </item>
+    
     <item>
       <title>第 78 期周刊题目解析：答题正确率有点低</title>
       <link>https://polarisxu.studygolang.com/posts/go/action/weekly-question-78/</link>
