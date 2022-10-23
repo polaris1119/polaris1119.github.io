@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>工作区 on polarisxu</title>
+    <link>https://polarisxu.studygolang.com/tags/%E5%B7%A5%E4%BD%9C%E5%8C%BA/</link>
+    <description>Recent content in 工作区 on polarisxu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
+    <lastBuildDate>Sun, 23 Oct 2022 11:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/tags/%E5%B7%A5%E4%BD%9C%E5%8C%BA/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>通过一个例子让你彻底掌握 Go 工作区模式</title>
+      <link>https://polarisxu.studygolang.com/posts/go/workspace/</link>
+      <pubDate>Sun, 23 Oct 2022 11:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/workspace/</guid>
+      <description>大家好，我是 polarisxu。 早在 Go1.18 快要发布时，我就试用了工作区（workspace）模式，并写了一篇介绍文章：Go1.18 快讯：Module 工作区模式 。 然而，Go1.18 正式发布后，工作区模式有点变化，导致那篇文章的部分内容不试用了，于是今天重新补一篇，因为工作区模式真的很有用。 工作区模式（Workspace mode），可不是之前 GOPATH 时代的 Workspac</description>
+    </item>
+    
+  </channel>
+</rss>

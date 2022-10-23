@@ -7,20 +7,20 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<meta name="theme-color" content="#fcfcfc">
 	<meta name="msapplication-TileColor" content="#fcfcfc">
-<meta itemprop="name" content="Go1.18 快讯：Module 工作区模式">
-<meta itemprop="description" content="大家好，我是 polarisxu。 工作区模式（Workspace mode），可不是之前 GOPATH 时代的 Workspace，而是希望在本地开发时支持多 Module。 01 缘起 为了大家全面理解工作区模式，通过一个具体例子讲解。 本地有两个项目，分别是两个 module：mypkg 和 example。（Windows 系统请按自己方式创建目录） $ cd ~/ $ mkdir polarisxu $ cd polarisxu $ mkdir mypkg example $ cd mypkg $ go mod init github.com/polaris1119/mypkg"><meta itemprop="datePublished" content="2021-11-10T22:00:00&#43;08:00" />
-<meta itemprop="dateModified" content="2021-11-10T22:00:00&#43;08:00" />
-<meta itemprop="wordCount" content="1666">
-<meta itemprop="keywords" content="Go,Workspace," /><meta property="og:title" content="Go1.18 快讯：Module 工作区模式" />
-<meta property="og:description" content="大家好，我是 polarisxu。 工作区模式（Workspace mode），可不是之前 GOPATH 时代的 Workspace，而是希望在本地开发时支持多 Module。 01 缘起 为了大家全面理解工作区模式，通过一个具体例子讲解。 本地有两个项目，分别是两个 module：mypkg 和 example。（Windows 系统请按自己方式创建目录） $ cd ~/ $ mkdir polarisxu $ cd polarisxu $ mkdir mypkg example $ cd mypkg $ go mod init github.com/polaris1119/mypkg" />
+<meta itemprop="name" content="通过一个例子让你彻底掌握 Go 工作区模式">
+<meta itemprop="description" content="大家好，我是 polarisxu。 早在 Go1.18 快要发布时，我就试用了工作区（workspace）模式，并写了一篇介绍文章：Go1.18 快讯：Module 工作区模式 。 然而，Go1.18 正式发布后，工作区模式有点变化，导致那篇文章的部分内容不试用了，于是今天重新补一篇，因为工作区模式真的很有用。 工作区模式（Workspace mode），可不是之前 GOPATH 时代的 Workspac"><meta itemprop="datePublished" content="2022-10-23T11:30:00&#43;08:00" />
+<meta itemprop="dateModified" content="2022-10-23T11:30:00&#43;08:00" />
+<meta itemprop="wordCount" content="1796">
+<meta itemprop="keywords" content="Go,Workspace,工作区," /><meta property="og:title" content="通过一个例子让你彻底掌握 Go 工作区模式" />
+<meta property="og:description" content="大家好，我是 polarisxu。 早在 Go1.18 快要发布时，我就试用了工作区（workspace）模式，并写了一篇介绍文章：Go1.18 快讯：Module 工作区模式 。 然而，Go1.18 正式发布后，工作区模式有点变化，导致那篇文章的部分内容不试用了，于是今天重新补一篇，因为工作区模式真的很有用。 工作区模式（Workspace mode），可不是之前 GOPATH 时代的 Workspac" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/dynamic/go1.18-workspace/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2021-11-10T22:00:00&#43;08:00" />
-<meta property="article:modified_time" content="2021-11-10T22:00:00&#43;08:00" />
+<meta property="og:url" content="https://polarisxu.studygolang.com/posts/go/workspace/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-10-23T11:30:00&#43;08:00" />
+<meta property="article:modified_time" content="2022-10-23T11:30:00&#43;08:00" />
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Go1.18 快讯：Module 工作区模式"/>
-<meta name="twitter:description" content="大家好，我是 polarisxu。 工作区模式（Workspace mode），可不是之前 GOPATH 时代的 Workspace，而是希望在本地开发时支持多 Module。 01 缘起 为了大家全面理解工作区模式，通过一个具体例子讲解。 本地有两个项目，分别是两个 module：mypkg 和 example。（Windows 系统请按自己方式创建目录） $ cd ~/ $ mkdir polarisxu $ cd polarisxu $ mkdir mypkg example $ cd mypkg $ go mod init github.com/polaris1119/mypkg"/>
+<meta name="twitter:title" content="通过一个例子让你彻底掌握 Go 工作区模式"/>
+<meta name="twitter:description" content="大家好，我是 polarisxu。 早在 Go1.18 快要发布时，我就试用了工作区（workspace）模式，并写了一篇介绍文章：Go1.18 快讯：Module 工作区模式 。 然而，Go1.18 正式发布后，工作区模式有点变化，导致那篇文章的部分内容不试用了，于是今天重新补一篇，因为工作区模式真的很有用。 工作区模式（Workspace mode），可不是之前 GOPATH 时代的 Workspac"/>
 
 	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -29,7 +29,7 @@
 	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
 	<link rel="shortcut icon" href="/favicon.ico">
 
-	<title>Go1.18 快讯：Module 工作区模式</title>
+	<title>通过一个例子让你彻底掌握 Go 工作区模式</title>
 	<link rel="stylesheet" href="https://polarisxu.studygolang.com/css/style.min.b21595ccbc2181c24e6a019eb9b89ca67727675a14634f9cbdb25e7a4f556601.css">
 	
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
@@ -73,11 +73,14 @@
 	<main class="site-main section-inner animated fadeIn faster">
 		<article class="thin">
 			<header class="post-header">
-				<div class="post-meta"><span>Nov 10, 2021</span></div>
-				<h1>Go1.18 快讯：Module 工作区模式</h1>
+				<div class="post-meta"><span>Oct 23, 2022</span></div>
+				<h1>通过一个例子让你彻底掌握 Go 工作区模式</h1>
 			</header>
 			<div class="content">
 				<p>大家好，我是 polarisxu。</p>
+<p>早在 Go1.18 快要发布时，我就试用了工作区（workspace）模式，并写了一篇介绍文章：<a href="https://polarisxu.studygolang.com/posts/go/dynamic/go1.18-workspace/" target="_blank" rel="noopener">Go1.18 快讯：Module 工作区模式</a>
+。</p>
+<p>然而，Go1.18 正式发布后，工作区模式有点变化，导致那篇文章的部分内容不试用了，于是今天重新补一篇，因为工作区模式真的很有用。</p>
 <p>工作区模式（Workspace mode），可不是之前 GOPATH 时代的 Workspace，而是希望在本地开发时支持多 Module。</p>
 <h2 id="01-缘起">01 缘起<a href="#01-缘起" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>为了大家全面理解工作区模式，通过一个具体例子讲解。</p>
@@ -110,13 +113,15 @@ $ touch main.go
     <span class="nx">mypkg</span><span class="p">.</span><span class="nf">Bar</span><span class="p">()</span>
 <span class="p">}</span>
 </code></pre></div><p>这时候，如果我们运行 go mod tidy，肯定会报错，因为我们的 mypkg 包根本没有提交到 github 上，肯定找不到。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">fatal: repository <span class="s1">&#39;https://github.com/polaris1119/mypkg/&#39;</span> not found
-</code></pre></div><p>go run main.go 也就不成功。</p>
-<p>我们当然可以提交 mypkg 到 github，但我们每修改一次 mypkg，就需要提交，否则 example 中就没法使用上最新的。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ go mod tidy
+....
+fatal: repository <span class="s1">&#39;https://github.com/polaris1119/mypkg/&#39;</span> not found
+</code></pre></div><p><code>go run main.go</code> 也就不成功。</p>
+<p>我们当然可以提交 mypkg 到 github，但我们每修改一次 mypkg，就需要提交（而且每次提交之后需要在 example 中 go get 最新版本），否则 example 中就没法使用上最新的。</p>
 <p>针对这种情况，目前是建议通过 replace 来解决，即在 example 中的 go.mod 增加如下 replace：（v1.0.0 根据具体情况修改，还未提交，可以使用 v1.0.0）</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">module github.com/polaris1119/example
 
-go 1.17
+go 1.19
 
 require github.com/polaris1119/mypkg v1.0.0
 
@@ -129,39 +134,26 @@ This is package mypkg
 <h2 id="02-工作区模式">02 工作区模式<a href="#02-工作区模式" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>针对上面的这个问题，Michael Matloob 提出了 Workspace Mode（工作区模式）。相关 issue 讨论：<a href="https://github.com/golang/go/issues/45713" target="_blank" rel="noopener">cmd/go: add a workspace mode</a>
 ，<a href="https://go.googlesource.com/proposal/&#43;/master/design/45713-workspace.md" target="_blank" rel="noopener">这里是 Proposal</a>
-。</p>
-<p>为了能够试验工作区，请在本地使用 Go1.18beta2，建议<a href="https://mp.weixin.qq.com/s/yTblk9Js1Zcq5aWVcYGjOA" target="_blank" rel="noopener">通过 goup 切换 Go 版本</a>
-：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ goup install 1.18beta2
-$ goup show
-<span class="p">|</span>  VERSION  <span class="p">|</span> ACTIVE <span class="p">|</span>
-<span class="p">|</span>-----------<span class="p">|</span>--------<span class="p">|</span>
-<span class="p">|</span>   1.0.1   <span class="p">|</span>        <span class="p">|</span>
-<span class="p">|</span>    1.1    <span class="p">|</span>        <span class="p">|</span>
-<span class="p">|</span>  1.10.8   <span class="p">|</span>        <span class="p">|</span>
-<span class="p">|</span>  1.14.9   <span class="p">|</span>        <span class="p">|</span>
-<span class="p">|</span>  1.15.2   <span class="p">|</span>        <span class="p">|</span>
-<span class="p">|</span>  1.15.3   <span class="p">|</span>        <span class="p">|</span>
-<span class="p">|</span>  1.15.4   <span class="p">|</span>        <span class="p">|</span>
-<span class="p">|</span>   1.16    <span class="p">|</span>        <span class="p">|</span>
-<span class="p">|</span>  1.16.2   <span class="p">|</span>        <span class="p">|</span>
-<span class="p">|</span>   1.17    <span class="p">|</span>        <span class="p">|</span>
-<span class="p">|</span> 1.18beta2 <span class="p">|</span>   *    <span class="p">|</span>
-<span class="p">|</span>    1.4    <span class="p">|</span>        <span class="p">|</span>
-<span class="p">|</span>   1.4.3   <span class="p">|</span>        <span class="p">|</span>
-<span class="p">|</span>    tip    <span class="p">|</span>        <span class="p">|</span>
-</code></pre></div><p>我本地当前版本：</p>
+。并在 Go1.18 中发布了。</p>
+<p>因此，要使用工作区，请确保 Go 版本在 1.18+。</p>
+<p>我本地当前版本：</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ go version
-go version go1.18beta2 darwin/amd64
+go version go1.19.2 darwin/arm64
 </code></pre></div><p>通过 go help work 可以看到 work 相关命令：</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ go <span class="nb">help</span> work
-Go workspace provides access to operations on workspaces.
+Work provides access to operations on workspaces.
 
 Note that support <span class="k">for</span> workspaces is built into many other commands, not
 just <span class="s1">&#39;go work&#39;</span>.
 
 See <span class="s1">&#39;go help modules&#39;</span> <span class="k">for</span> information about Go<span class="s1">&#39;s module system of which
 </span><span class="s1">workspaces are a part.
+</span><span class="s1">
+</span><span class="s1">See https://go.dev/ref/mod#workspaces for an in-depth reference on
+</span><span class="s1">workspaces.
+</span><span class="s1">
+</span><span class="s1">See https://go.dev/doc/tutorial/workspaces for an introductory
+</span><span class="s1">tutorial on workspaces.
 </span><span class="s1">
 </span><span class="s1">A workspace is specified by a go.work file that specifies a set of
 </span><span class="s1">module directories with the &#34;use&#34; directive. These modules are used as
@@ -170,7 +162,7 @@ See <span class="s1">&#39;go help modules&#39;</span> <span class="k">for</span>
 </span><span class="s1">builds from local modules.
 </span><span class="s1">
 </span><span class="s1">go.work files are line-oriented. Each line holds a single directive,
-</span><span class="s1">made up of a keyword followed by aruments. For example:
+</span><span class="s1">made up of a keyword followed by arguments. For example:
 </span><span class="s1">
 </span><span class="s1">    go 1.18
 </span><span class="s1">
@@ -217,7 +209,8 @@ The commands are:
     use         add modules to workspace file
 
 Use <span class="s2">&#34;go help work &lt;command&gt;&#34;</span> <span class="k">for</span> more information about a command.
-</code></pre></div><p>根据这个提示，我们初始化 workspace：</p>
+</code></pre></div><p><em>注意</em>：上文中提到，工作区不只是 go work 相关命令，Go 其他命令也会涉及工作区内容，比如 go run、go build 等。</p>
+<p>根据这个提示，我们初始化 workspace：</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nb">cd</span> ~/polarisxu
 $ go work init mypkg example
 $ tree
@@ -231,33 +224,29 @@ $ tree
     └── go.mod
 </code></pre></div><p>注意几点：</p>
 <ul>
-<li>多个子模块应该在一个目录下。比如这里的 polarisxu 目录；（这不是必须的，但更好管理，否则 go work init 需要提供正确的子模块路径）</li>
+<li>多个子模块应该在一个目录下（或其子目录）。比如这里的 polarisxu 目录；（这不是必须的，但更好管理，否则 go work init 需要提供正确的子模块路径）</li>
 <li>go work init 需要在 polarisxu 目录执行；</li>
 <li>go work init 之后跟上需要本地开发的子模块目录名；</li>
 </ul>
 <p>打开 go.work 看看长什么样：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">go 1.18
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">go 1.19
 
 use <span class="o">(</span>
     ./example
-     ./mypkg
+    ./mypkg
 <span class="o">)</span>
-</code></pre></div><p>go.work 文件的语法和 go.mod 类似，因此也支持 replace。</p>
+</code></pre></div><p>go.work 文件的语法和 go.mod 类似（go.work 优先级高于 go.mod），因此也支持 replace。</p>
+<p>注意：实际项目中，多个模块之间可能还依赖其他模块，建议在 go.work 所在目录执行 <code>go work sync</code>。</p>
 <p>现在，我们将 example/go.mod 中的 replace 语句删除，再次执行 go run main.go（在 example 目录下），得到了正常的输出。也可以在 polarisxu 目录下，这么运行：go run example/main.go，也能正常。</p>
 <p>注意，go.work 不需要提交到 Git 中，因为它只是你本地开发使用的。</p>
-<p>如果想要禁用 workspace，可以通过 <code>-workfile=off</code> 实现。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">-workfile file
-        in module aware mode, use the given go.work file as a workspace file.
-        By default or when -workfile is <span class="s2">&#34;auto&#34;</span>, the go <span class="nb">command</span> searches <span class="k">for</span> a
-        file named go.work in the current directory and <span class="k">then</span> containing directories
-        <span class="k">until</span> one is found. If a valid go.work file is found, the modules
-        specified will collectively be used as the main modules. If -workfile
-        is <span class="s2">&#34;off&#34;</span>, or a go.work file is not found in <span class="s2">&#34;auto&#34;</span> mode, workspace
-        mode is disabled.
-</code></pre></div><p>比如：go run -workfile=off main.go 或 go build -workfile=off，这样运行你会发现又报错了。但通过这种方式，你可以验证依赖包提交到 github 上之后的情况。</p>
+<p>当你开发完成，应该先提交 mypkg 包到 GitHub，然后在 example 下面执行 go get：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ go get -u github.com/polaris1119/mypkg@latest
+</code></pre></div><p>然后禁用 workspace（通过 GOWORK=off 禁用），再次运行 example 模块，是否正确：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nb">cd</span> ~/polarisxu/example
+$ <span class="nv">GOWORK</span><span class="o">=</span>off go run main.go
+</code></pre></div><p>目前 VSCode 的 go 插件已经支持 workspace，不需要做什么配置就可以愉快的玩耍。</p>
 <h2 id="03-总结">03 总结<a href="#03-总结" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>在 GOPATH 年代，多 GOPATH 是一个头疼的问题。当时没有很好的解决，Module 就出现了，多 GOPATH 问题因此消失。但多 Module 问题随之出现。Workspace 方案较好的解决了这个问题。</p>
-<p>下篇文章，我会进一步讲解，如何在 VSCode 中试验 Workspace。</p>
 
 			</div><div class="content">
 	<br>
@@ -268,15 +257,15 @@ use <span class="o">(</span>
 	<h2></h2>
 	<ul>
 	
-	<li><a href="/posts/go/workspace/">通过一个例子让你彻底掌握 Go 工作区模式</a></li>
+	<li><a href="/posts/go/dynamic/go1.18-workspace/">Go1.18 快讯：Module 工作区模式</a></li>
 	
-	<li><a href="/posts/go/pkg/singleflight-generic/">泛型版 singleflight：Go 中如何防止缓存击穿？</a></li>
+	<li><a href="/posts/go/action/weekly-question-148/">这道题正确率竟然只有 22%</a></li>
 	
-	<li><a href="/posts/devtool/scc/">2021 年你写了多少代码？这个 Go 工具帮你统计</a></li>
+	<li><a href="/posts/go/project/go-web-project-s3-manager/">Go 开源项目推荐：一个简单的 Go 练手项目</a></li>
 	
-	<li><a href="/posts/go/dynamic/go1.18-trylock/">Go1.18 新特性：TryLock</a></li>
+	<li><a href="/posts/go/go-test-disable-cached/">go test 如何禁用缓存？</a></li>
 	
-	<li><a href="/posts/go/generics/generics-tutorial/">Go 泛型入门教程</a></li>
+	<li><a href="/posts/go/dynamic/go1.18-move-constraints/">Go1.18 快讯：constraints 包被移除标准库</a></li>
 	
 	</ul>
 </div>
@@ -284,10 +273,10 @@ use <span class="o">(</span>
 			<hr class="post-end">
 			<footer class="post-info">
 				<p>
-					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://polarisxu.studygolang.com/tags/go">Go</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/workspace">Workspace</a></span>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://polarisxu.studygolang.com/tags/go">Go</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/workspace">Workspace</a></span><span class="tag"><a href="https://polarisxu.studygolang.com/tags/%E5%B7%A5%E4%BD%9C%E5%8C%BA">工作区</a></span>
 				</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1666 字</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2021-11-10 22:00 &#43;0800</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1796 字</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2022-10-23 11:30 &#43;0800</p>
 			</footer>
 		</article>
 		<aside id="toc">
@@ -301,11 +290,8 @@ use <span class="o">(</span>
 </nav>
 		</aside>
 		<div class="post-nav thin">
-			<a class="next-post" href="https://polarisxu.studygolang.com/posts/go/generics/generics-constraints/">
-				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;新</span><br><span>Go泛型系列：Go1.18 类型约束那些事</span>
-			</a>
-			<a class="prev-post" href="https://polarisxu.studygolang.com/posts/go/dynamic/go1.18-cut/">
-				<span class="post-nav-label">旧&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>Go1.18 快讯：新增的 Cut 函数太方便了</span>
+			<a class="prev-post" href="https://polarisxu.studygolang.com/posts/go/action/weekly-question-148/">
+				<span class="post-nav-label">旧&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>这道题正确率竟然只有 22%</span>
 			</a>
 		</div>
 		<div id="comments" class="thin"><script src="https://utteranc.es/client.js"

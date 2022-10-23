@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可，转载请注明 polarisxu 和出处链接。</copyright>
-    <lastBuildDate>Sun, 19 Jun 2022 20:20:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 23 Oct 2022 11:30:00 +0800</lastBuildDate><atom:link href="https://polarisxu.studygolang.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>通过一个例子让你彻底掌握 Go 工作区模式</title>
+      <link>https://polarisxu.studygolang.com/posts/go/workspace/</link>
+      <pubDate>Sun, 23 Oct 2022 11:30:00 +0800</pubDate>
+      
+      <guid>https://polarisxu.studygolang.com/posts/go/workspace/</guid>
+      <description>大家好，我是 polarisxu。 早在 Go1.18 快要发布时，我就试用了工作区（workspace）模式，并写了一篇介绍文章：Go1.18 快讯：Module 工作区模式 。 然而，Go1.18 正式发布后，工作区模式有点变化，导致那篇文章的部分内容不试用了，于是今天重新补一篇，因为工作区模式真的很有用。 工作区模式（Workspace mode），可不是之前 GOPATH 时代的 Workspac</description>
+    </item>
+    
     <item>
       <title>这道题正确率竟然只有 22%</title>
       <link>https://polarisxu.studygolang.com/posts/go/action/weekly-question-148/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://polarisxu.studygolang.com/posts/devtool/multi-github/</guid>
       <description>大家好，我是 polarisxu。 现在的开发，无论是日常工作还是参与开源，都离不开 Git。开源项目，大家通常使用 GitHub 或 Gitee，而工作中通常会自建 Git 服务，比如通过 GitLab、Gogs 等搭建。 为了方便使用，一般大家会配置 SSH keys，通过 ssh 协议 pull/push 仓库。 1、生成 ssh 密钥 首先，我们需要生成 ssh 密钥：（基于 mac，linux 类似，Windows 下找对应工具） ssh-keygen -C &amp;#34;polaris@studygolang.com&amp;#34; Generating public/private rsa key</description>
-    </item>
-    
-    <item>
-      <title>为 Java 开发者准备的 Go 教程 02：Java 有而 Go 无</title>
-      <link>https://polarisxu.studygolang.com/posts/go/java/go-for-java02/</link>
-      <pubDate>Tue, 11 Jan 2022 22:30:00 +0800</pubDate>
-      
-      <guid>https://polarisxu.studygolang.com/posts/go/java/go-for-java02/</guid>
-      <description>大家好，我是 polarisxu。 Go 语言的设计是站在巨人的肩膀上的，它吸取了其他语言的优秀设计，同时摒弃了一些「不认可」的设计。同时，为了保持简单性，Go 的特性也比很多其他语言少。因此，Java 有一些特性，Go 没有。但没有，不代表不好。本文就看看具体有哪些。（当然，也存在 Go 有的特性，而 Java 没有） 1、多重赋值 Java 可以在一条语句中将同一个值分配给多个变量（很多 C 族语言</description>
     </item>
     
   </channel>
